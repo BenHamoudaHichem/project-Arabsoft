@@ -3,7 +3,7 @@
 * {
 
  box-sizing: border-box;
- 
+
 font-family: "Poppins", sans-serif;
 }
 
@@ -24,7 +24,7 @@ fieldset {
 }
 
 input{  margin: 10px 0px;
-  width: 100%;
+  width: 70%;
 
   outline: none;
   padding: 10px 5px;
@@ -54,4 +54,8 @@ input{  margin: 10px 0px;
 }
 .extra-line a {
   color: #0095b6;
+}
+button
+{
+ margin-right: 30%;
 }
