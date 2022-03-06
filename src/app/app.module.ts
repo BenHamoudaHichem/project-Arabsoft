@@ -9,7 +9,7 @@ import { RegisterComponent } from './components/public/register/register.compone
 import { LoginComponent } from './components/public/login/login.component';
 import { NavBarComponent } from './components/public/additional/nav-bar/nav-bar.component';
 import { FooterComponent } from './components/public/additional/footer/footer.component';
-import { ContactUSComponent } from './components/public/additional/contact-us/contact-us.component';
+import { ContactUSComponent } from './components/public/contact-us/contact-us.component';
 
 @NgModule({
   declarations: [

@@ -1,0 +1,39 @@
+
+.green-contact-form {
+  width: 700px;
+  margin:0 auto;
+  border-radius:10px;
+
+}
+
+/****************************/
+
+.container{
+
+  text-align: center;
+}
+input,textarea{  margin: 10px 0px;
+  width: 100%;
+
+  outline: none;
+  padding: 10px 5px;
+  background-color: #f6f6f6;
+}
+
+
+.logo {
+  margin-bottom: 20px;
+}
+.logo span,
+.logo span img {
+  font-size: 25px;
+  color: #0d8aa7;
+}
+
+.login-text h1 {
+  font-size: 25px;
+}
+.login-text p {
+  font-size: 15px;
+  color: #000000b2;
+}

@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+
+* {
+
+ box-sizing: border-box;
+ 
+font-family: "Poppins", sans-serif;
+}
+
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+  font-size: 1rem;
+  line-height: 2.15;
+  padding-left: .75em;
+  padding-right: .75em;
+
+}
+.card-registration .select-arrow {
+  top: 20px;
+}
+fieldset {
+
+  border: 2px solid #ccc;
+}
+
+input{  margin: 10px 0px;
+  width: 100%;
+
+  outline: none;
+  padding: 10px 5px;
+  background-color: #f6f6f6;
+}
+
+
+.logo {
+  margin-bottom: 20px;
+}
+.logo span,
+.logo span img {
+  font-size: 25px;
+  color: #0d8aa7;
+}
+
+.login-text h1 {
+  font-size: 25px;
+}
+.login-text p {
+  font-size: 15px;
+  color: #000000b2;
+}
+.extra-line {
+  font-size: 15px;
+  font-weight: 600;
+}
+.extra-line a {
+  color: #0095b6;
+}
