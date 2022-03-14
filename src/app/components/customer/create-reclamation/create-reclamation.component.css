@@ -13,18 +13,19 @@ font-family: "Poppins", sans-serif;
   line-height: 2.15;
   padding-left: .75em;
   padding-right: .75em;
+
 }
 .card-registration .select-arrow {
-  top: 13px;
+  top: 20px;
+
 }
 fieldset {
 
   border: 2px solid #ccc;
-
 }
 
-input{  margin: 10px 0px;
-  width: 100%;
+input,textarea{  margin: 10px 0px;
+  width: 70%;
 
   outline: none;
   padding: 10px 5px;
@@ -33,11 +34,11 @@ input{  margin: 10px 0px;
 
 
 .logo {
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 .logo span,
 .logo span img {
-  font-size: 25px;
+  font-size: 25px bold;
   color: #0d8aa7;
 }
 
@@ -48,10 +49,11 @@ input{  margin: 10px 0px;
   font-size: 15px;
   color: #000000b2;
 }
-.extra-line {
-  font-size: 15px;
-  font-weight: 600;
+
+button
+{
+  margin-top: 50px;
+ margin-right: 30%;
 }
-.extra-line a {
-  color: #0095b6;
-}
+
+

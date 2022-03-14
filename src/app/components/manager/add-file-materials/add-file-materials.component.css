@@ -1,0 +1,48 @@
+
+.custom-file__input {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+  overflow: visible;
+  z-index: auto;
+}
+.custom-file__label {
+  position: relative;
+
+  width: 50%;
+  min-width: 335px;
+  min-height: 45px;
+  margin: 10px 0;
+  padding: 0;
+  background: #ffffff;
+  border: 1px solid #dfdfdf;
+  color: #666666;
+  line-height: 45px;
+  text-align: center;
+
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.custom-file__input:valid ~ .custom-file__label {
+  border-color: #39B54A;
+  background: #39B54A;
+  color: #020503;
+}
+.custom-file__input:valid ~ .custom-file__label:before {
+
+  position: absolute;
+
+  margin: auto;
+  color: #ffffff;
+
+  line-height: 45px;
+}
+
+
+
+
+button
+{
+  margin-right: 22px;
+}

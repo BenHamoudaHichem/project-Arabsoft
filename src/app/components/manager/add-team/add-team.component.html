@@ -1,0 +1,58 @@
+<section class="h-100 bg-light" style="height: 100vh;">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-4">
+          <div class="logo">
+            <div class="card-title text-center">
+              <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
+              <span class="mb-5 text-uppercase">ajouter une Equipe</span>
+            </div>
+          </div>
+
+          <div class="row g-0">
+            <div class="col-xl-6 d-xl-block">
+              <div class="card-body p-md-5 text-black">
+                <div class="form-outline">
+                  <label class="form-label" for="form3Example1n">Titre</label>
+
+                  <input type="text" id="form3Example1n" class="form-control form-control-lg"
+                    placeholder="Entrez le nom de materiel" />
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-6">
+              <div class="card-body p-md-5 text-black">
+                <div class="form-outline">
+                  <label class="form-label" for="form3Example1n"> Ajouter des membres</label>
+
+                  <ng-multiselect-dropdown [placeholder]="'Selectionner membres'" [settings]="dropdownSettings"
+                    [data]="dropdownList" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)"
+                    class=" form-control-lg">
+                  </ng-multiselect-dropdown>
+                  <span class="extra-line">
+
+                    <a href="/"> Ajouter un employé</a>
+                  </span>
+
+                </div>
+
+
+
+                <div class="d-flex justify-content-end pt-3">
+                  <button class="button-82-pushable" role="button">
+                    <span class="button-82-shadow"></span>
+                    <span class="button-82-edge"></span>
+                    <span class="button-82-front text">
+                      Ajouter
+                    </span>
+                  </button>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

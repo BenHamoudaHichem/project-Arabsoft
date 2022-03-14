@@ -6,3 +6,364 @@
 font-family: "Poppins", sans-serif;
 }
 
+/***________  multiple select CUSTUM CSS________****/
+
+.container .multiselect-dropdown .dropdown-btn {
+
+  cursor: pointer!important;
+
+
+  border-radius: 4px!important;
+  margin: 10px 0px;
+  width: 50%;
+
+  outline: none;
+  padding: 10px 5px;
+  background-color: #f6f6f6;
+}
+/***________  button-52 ________****/
+.button-52 {
+  font-size: 16px !important;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid black !important;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0) !important;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-52:after {
+  content: "";
+  background-color: #ffe54c !important;
+  width: 100% !important;
+  z-index: -1 !important;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+
+.button-52:hover:after {
+  top: 0px !important;
+  left: 0px !important;
+}
+
+@media (min-width: 768px) {
+  .button-52 {
+    padding: 13px 50px 13px !important;
+  }
+}
+
+
+/***________  button-54 ________****/
+
+
+.button-54 {
+
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-54:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+}
+
+@media (min-width: 768px) {
+  .button-54 {
+    padding: 0.25em 0.75em;
+  }
+}
+
+/***________  LOGO TILTLE ________****/
+
+
+
+.logo {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.logo span,
+.logo span img {
+  font-size: 25px;
+  color: #0d8aa7;
+}
+
+/***________  button-50 ________****/
+.button-50 {
+  appearance: button;
+  text-transform: uppercase;
+  background-color: rgba(255, 224, 47, 0.836);
+  background-image: none;
+  border: 1px solid #000;
+  border-radius: 4px;
+  box-shadow: #fff 4px 4px 0 0,#000 4px 4px 0 1px;
+  box-sizing: border-box;
+  color: rgb(73, 73, 73);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0 5px 10px 0;
+  overflow: visible;
+  padding: 12px 40px;
+  text-align: center;
+
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.button-50:focus {
+  text-decoration: none;
+}
+
+.button-50:hover {
+  text-decoration: none;
+}
+
+.button-50:active {
+  box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+  outline: 0;
+}
+
+.button-50:not([disabled]):active {
+  box-shadow: #fff 2px 2px 0 0, rgb(214, 224, 69) 2px 2px 0 1px;
+  transform: translate(2px, 2px);
+}
+
+@media (min-width: 768px) {
+  .button-50 {
+    padding: 12px 50px;
+  }
+}
+
+
+
+
+/* CSS */
+.button-82-pushable {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  text-transform: uppercase;
+  cursor: pointer;
+  outline-offset: 4px;
+  transition: filter 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-82-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: hsl(0deg 0% 0% / 0.25);
+  will-change: transform;
+  transform: translateY(2px);
+  transition:
+    transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+}
+
+.button-82-edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: linear-gradient(
+    to left,
+    rgb(190, 154, 32) 0%,
+    rgba(255, 253, 124, 0.753) 8%,
+    rgb(185, 173, 119) 92%,
+    rgb(190, 154, 32)100%
+  );
+}
+
+.button-82-front {
+  display: block;
+  position: relative;
+  padding: 12px 27px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  color: rgb(51, 47, 47);
+  background: rgba(250, 239, 85, 0.61);
+  will-change: transform;
+  transform: translateY(-4px);
+  transition:
+    transform
+    600ms
+    cubic-bezier(.3, .7, .4, 1);
+}
+
+@media (min-width: 768px) {
+  .button-82-front {
+    font-size: 1.1rem;
+    padding: 12px 42px;
+  }
+}
+
+.button-82-pushable:hover {
+  filter: brightness(110%);
+}
+
+.button-82-pushable:hover .button-82-front {
+  transform: translateY(-6px);
+  transition:
+    transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.button-82-pushable:active .button-82-front {
+  transform: translateY(-2px);
+  transition: transform 34ms;
+}
+
+.button-82-pushable:hover .button-82-shadow {
+  transform: translateY(4px);
+  transition:
+    transform
+    250ms
+    cubic-bezier(.3, .7, .4, 1.5);
+}
+
+.button-82-pushable:active .button-82-shadow {
+  transform: translateY(1px);
+  transition: transform 34ms;
+}
+
+.button-82-pushable:focus:not(:focus-visible) {
+  outline: none;
+}
+
+
+
+
+.button-73 {
+
+
+  appearance: none;
+  background-color: #FFFFFF;
+  border-radius: 40em;
+  margin-right: 50px;
+  border-style: none;
+  box-shadow: #ADCFFF 0 -12px 6px inset;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: -.24px;
+
+  outline: none;
+  padding: 1rem 1.3rem ;
+  quotes: auto;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-73:hover {
+  background-color: #29ffb8;
+  box-shadow: #2f6958 0 -6px 8px inset;
+  transform: scale(1.125);
+}
+
+.button-73:active {
+  transform: scale(1.025);
+}
+
+@media (min-width: 768px) {
+  .button-73 {
+    font-size: 1.5rem;
+    padding: .75rem 2rem;
+  }
+}
+
+
+.button-73-2 {
+
+
+  appearance: none;
+  background-color: #FFFFFF;
+  border-radius: 40em;
+  margin-right: 50px;
+  border-style: none;
+  box-shadow: #ADCFFF 0 -12px 6px inset;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: -.24px;
+
+  outline: none;
+  padding: 1rem 1.3rem ;
+  quotes: auto;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  text-transform: uppercase;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-73-2:hover {
+  background-color: #ff4929e0;
+  box-shadow: #723808 0 -6px 8px inset;
+  transform: scale(1.125);
+}
+
+.button-73-2:active {
+  transform: scale(1.025);
+}
+
+@media (min-width: 768px) {
+  .button-73-2 {
+    font-size: 1.5rem;
+    padding: .75rem 2rem;
+  }
+}
+a
+{
+  text-decoration: none;
+  color:black
+}

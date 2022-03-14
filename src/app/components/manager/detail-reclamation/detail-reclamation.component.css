@@ -1,0 +1,17 @@
+
+.card-registration {
+  font-size: 1rem;
+  line-height: 2.15;
+  padding-left: .75em;
+  padding-right: .75em;
+
+
+}
+.card-footer{
+  border: 0;
+  background-color: #fff;
+}
+p{text-align: justify;}
+h5{
+  font-style: italic;
+}

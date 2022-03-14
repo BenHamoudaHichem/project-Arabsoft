@@ -1,0 +1,31 @@
+<div class="bg-light" style="height: 100vh;">
+  <div class="container d-flex justify-content-center">
+    <div class="card shadow" style="position: relative; margin-top: 100px; width: 400px; height:  400px;">
+      <div class="card-body">
+        <div class="card-title text-center"> <div class="logo">
+          <span><img  src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px"/></span>
+          <span class="mb-5 text-uppercase">Telecharger fichier membres </span>
+        </div></div>
+
+
+        <div class="custom-file">
+          <label for="">ajouter un fichier</label>
+        <input type="file" class="custom-file__input" id="field-upload" name="upload"(change)="upload($event)" required>
+        <label *ngIf="output==''" class="custom-file__label" for="field-upload">Choose file</label>
+        <label *ngIf="output!=''" class="custom-file__label" for="field-upload">{{output}}</label>
+        <p *ngIf="typeFile!=''" >Le fichier est de type {{typeFile}}</p>
+        </div>
+<div class="d-flex justify-content-end pt-3">
+
+  <button class="button-82-pushable" role="button">
+    <span class="button-82-shadow"></span>
+    <span class="button-82-edge"></span>
+    <span class="button-82-front text">
+      Ajouter
+    </span>
+  </button>
+  </div>
+    </div>
+  </div>
+</div>
+

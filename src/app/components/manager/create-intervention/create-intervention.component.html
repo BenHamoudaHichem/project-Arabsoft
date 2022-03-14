@@ -1,0 +1,111 @@
+<section class="min-h-100 bg-light" style="height: 100vh;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-4">
+          <div class="logo">
+            <div class="card-title text-center">
+              <span
+                ><img
+                  src="assets/gest.png"
+                  alt="Sample photo"
+                  height="60px"
+                  width="100px"
+              /></span>
+              <span class="mb-5 text-uppercase">Créer une intervention</span>
+            </div>
+          </div>
+
+          <div class="row g-0">
+            <div class="col-xl-6  d-xl-block">
+              <div class="card-body p-md-5 text-black">
+                <div class="form-outline">
+                  <label class="form-label" for="form3Example1n">Titre</label>
+
+                  <input
+                    type="text"
+                    id="form3Example1n"
+                    class="form-control form-control-lg"
+                    placeholder="Entrez le nom de materiel"
+                  />
+                </div>
+                <div class="form-outline">
+                  <label class="form-label" for="form3Example1n"> A quelle date</label>
+
+                 <input type="date" class="form-control form-control-lg" name="" id="">
+                </div>
+                <div class="form-outline">
+                  <label class="form-label" for="form3Example1n"
+                    >Désignation</label
+                  >
+
+                  <textarea
+                    id="form3Example1n"
+                    class="form-control form-control-lg"
+                    placeholder="Ecrivez ..."
+                    rows="6"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-6">
+              <div class="card-body p-md-5 text-black">
+
+
+
+                <div class="form-outline">
+                  <label class="form-label" for="form3Example1n"
+                    >Categorie</label
+                  >
+
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div> <div class="form-outline">
+                  <label class="form-label" for="form3Example1n"
+                    >Equipe</label
+                  >
+
+                  <select
+                    class="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                  </select>
+                </div>
+                <div class="form-outline">
+                  <label class="form-label" for="form3Example1n"> Materiels</label>
+
+                  <ng-multiselect-dropdown [placeholder]="'Selectionner materiels'" [settings]="dropdownSettings"
+                    [data]="dropdownList" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)"
+                    class=" form-control-lg">
+                  </ng-multiselect-dropdown>
+
+
+                </div>
+                <div class="d-flex justify-content-end pt-3">
+                  <button class="button-82-pushable" role="button">
+                    <span class="button-82-shadow"></span>
+                    <span class="button-82-edge"></span>
+                    <span class="button-82-front text">
+                      Créer
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

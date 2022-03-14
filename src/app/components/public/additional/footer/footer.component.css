@@ -18,7 +18,7 @@
   }
 
   .border-shape {
-  background: #ffbe00 none repeat scroll 0 0;
+  background: rgba(250, 239, 85, 0.61) none repeat scroll 0 0;
   color: #fff;
   display: block;
   height: 3px;
@@ -32,7 +32,7 @@
   }
 
   .border-shape::before {
-  background: #ffbe00 none repeat scroll 0 0;
+  background: rgba(250, 239, 85, 0.61) none repeat scroll 0 0;
   bottom: 0;
   content: "";
   height: 1px;
@@ -45,7 +45,7 @@
   }
 
   .border-shape::after {
-  background: #ffbe00 none repeat scroll 0 0;
+  background: rgba(250, 239, 85, 0.61) none repeat scroll 0 0;
   bottom: 0;
   content: "";
   height: 1px;
@@ -95,7 +95,7 @@
   }
 
   .top_header .fa{
-  color:#ffbe00;
+  color:rgba(250, 239, 85, 0.61);
   font-size:35px;
   }
 
