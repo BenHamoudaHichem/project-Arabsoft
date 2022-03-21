@@ -3,7 +3,7 @@ export interface IDemand {
   title: string;
   description: string;
   createdAt: Date;
-  lieu: string;
+  location: string;
   user: string;
   status: string;
 }

@@ -5,14 +5,8 @@
         <div class="card card-registration my-4">
           <div class="logo">
             <div class="card-title text-center">
-              <span
-                ><img
-                  src="assets/images/gest.png"
-                  alt="Sample photo"
-                  height="60px"
-                  width="100px"
-              /></span>
-              <span class="mb-5 text-uppercase">intervention numero 001</span>
+              <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
+              <span class="mb-5 text-uppercase">intervention {{intervention.title}}</span>
             </div>
           </div>
 
@@ -20,11 +14,12 @@
 
             <div class="col-xl-6  d-xl-block">
               <div class="card-body p-md-5 text-black">
-                <h4 class="card-title">Description</h4>
+                <h5 class="card-title">Description</h5>
 
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content Some quick example text to build on the card title and make up the bulk of the card's content Some quick example text to build on the card title and make up the bulk of the card's content Some quick example text to build on the card title and make up the bulk of the card's content Some quick example text to build on the card title and make up the bulk of the card's content .</p>
+                <p class="card-text">
+                  {{intervention.description}}
 
-
+                </p>
 
 
               </div>
@@ -32,19 +27,44 @@
             </div>
             <div class="col-xl-6">
               <div class="card-body p-md-5 text-black">
-                <h4 class="card-title">Categorie</h4>
-                <p class="card-text">######################</p>
-                <h4 class="card-title">Date debut</h4>
-                <p class="card-text">p the bulk of the card's content.</p>
-                <h4 class="card-title">Date d'acceptation</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <h5 class="card-title">Status</h5>
+                <p class="card-text"> {{intervention.status}}</p>
+                <h5 class="card-title">Categorie</h5>
+                <p class="card-text"> {{intervention.category.geteCategory()}}</p>
+                <h5 class="card-title">Date debut</h5>
+                <p class="card-text">
+                  {{intervention.startedAt}}</p>
+                <h5 class="card-title">Date d'acceptation</h5>
+                <p class="card-text">
+                  {{intervention.createdAt}}
+                </p>
 
+                <div class="table-responsive">
+                  <table class="basic-table table-headers table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Désignation</th>
+                        <th>Localisation</th>
+                        <th>Date d'achat</th>
+                        <th>Etat</th>
+                      </tr>
 
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let material of intervention.materials">
+                        <td>{{material.getName()}}</td>
+                        <td>{{material.getLocation()}}</td>
+                        <td>{{material.getDateOfPurshase()}}</td>
+                        <td>{{material.getStatus()}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
 
             </div>
 
- </div>
+          </div>
 
 
         </div>

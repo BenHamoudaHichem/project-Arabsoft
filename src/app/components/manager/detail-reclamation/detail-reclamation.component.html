@@ -12,7 +12,7 @@
                   height="60px"
                   width="100px"
               /></span>
-              <span class="mb-5 text-uppercase">Reclamation numero 001</span>
+              <span class="mb-5 text-uppercase">Reclamation  {{demand.title}} </span>
             </div>
           </div>
 
@@ -22,10 +22,7 @@
               <div class="card-body p-md-5 text-black">
                 <h4 class="card-title">Description</h4>
 
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content Some quick example text to build on the card title and make up the bulk of the card's content Some quick example text to build on the card title and make up the bulk of the card's content Some quick example text to build on the card title and make up the bulk of the card's content Some quick example text to build on the card title and make up the bulk of the card's content .</p>
-
-            <h4 class="card-title">Temps</h4>
-                <p class="card-text">01/20/2000</p>
+                  <p class="card-text">{{demand.description}}.</p>
 
 
               </div>
@@ -37,9 +34,9 @@
 
 
                 <h4 class="card-title">Publié à</h4>
-                <p class="card-text">p the bulk of the card's content.</p>
+                <p class="card-text">{{demand.createdAt}}</p>
                 <h4 class="card-title">Lieu</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <p class="card-text">{{demand.location}}.</p>
 
 
               </div>

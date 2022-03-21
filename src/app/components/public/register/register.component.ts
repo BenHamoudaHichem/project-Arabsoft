@@ -20,7 +20,11 @@ import { Confirmed } from 'src/app/services/validation/Confirmed';
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,private userService:UserService,private router:Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private router: Router
+  ) {
     this.registerForm = this.formBuilder.group(
       {
         firstName: [
@@ -38,9 +42,11 @@ export class RegisterComponent implements OnInit {
           [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{8,}$')],
         ],
         confirm_password: ['', [Validators.required]],
-        Gouvernorat: ['', Validators.required],
-        Ville: ['', Validators.required],
-        Roue: ['', Validators.required],
+
+        city: ['', Validators.required],
+        street: ['', Validators.required],
+        country: ['', Validators.required],
+        zipCode: ['', Validators.required],
       },
       {
         validators: Confirmed.ConfirmedValidator(
@@ -52,14 +58,12 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
   Register() {
     let adresse = new Address(
-
-      String(this.Gouvernorat?.value),
-      String(this.Ville?.value),
-      String(this.Roue?.value),
-      String(this.Roue?.value)
+      String(this.zipCode?.value),
+      String(this.city?.value),
+      String(this.street?.value),
+      String(this.street?.value)
     );
     let user = new User(
       '',
@@ -71,15 +75,14 @@ export class RegisterComponent implements OnInit {
       adresse
     );
     console.log(user);
-    this.userService.create(user).subscribe((user:any)=>
-    {
-      alert("vous avez inscrit avec suuces ")
-      console.log("vous avez inscrit avec suuces ")
-      this.router.navigateByUrl("/login")
-
-    }),(error:HttpErrorResponse)=>
-    {alert(error.message);}
-
+    this.userService.create(user).subscribe((user: any) => {
+      alert('vous avez inscrit avec suuces ');
+      console.log('vous avez inscrit avec suuces ');
+      this.router.navigateByUrl('/login');
+    }),
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      };
   }
 
   get firstName() {
@@ -98,19 +101,22 @@ export class RegisterComponent implements OnInit {
   get password() {
     return this.registerForm.get('password');
   }
-  get Gouvernorat() {
-    return this.registerForm.get('Gouvernorat');
+  get city() {
+    return this.registerForm.get('city');
   }
-  get Ville() {
-    return this.registerForm.get('Ville');
-  }
-  get Roue() {
-    return this.registerForm.get('Roue');
+  get street() {
+    return this.registerForm.get('street');
   }
   get tel() {
     return this.registerForm.get('tel');
   }
 
+  get counrty() {
+    return this.registerForm.get('country');
+  }
+  get zipCode() {
+    return this.registerForm.get('zipCode');
+  }
   get confirm_password() {
     return this.registerForm.get('confirm_password');
   }

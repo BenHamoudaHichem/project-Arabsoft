@@ -15,7 +15,7 @@ export class AddTeamComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) {
     this.teamForm = this.formBuilder.group({
       titre: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
-      membres: ['', [Validators.required]],
+      membres: ['', [Validators.required]]
     });
   }
 
@@ -31,6 +31,7 @@ export class AddTeamComponent implements OnInit {
       { id: 5, firstName: 'employe 5' },
     ];
 
+    // Setting of dropdown multiselect
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',
@@ -55,7 +56,7 @@ export class AddTeamComponent implements OnInit {
 
 
   AddTeam() {
-    let team = new Team( this.titre?.value, '',this.membres?.value);
+    let team = new Team(String(this.titre?.value),'',this.membres?.value);
     console.log(team);
   }
   get titre() {

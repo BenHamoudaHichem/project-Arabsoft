@@ -9,7 +9,7 @@
               <span class="mb-5 text-uppercase">ajouter un materiel</span>
             </div>
           </div>
-          <form [formGroup]="formAddMaterials" (ngSubmit)="addMaterial()" >
+          <form [formGroup]="formAddMaterials" (ngSubmit)="addMaterial()">
             <div class="row g-0">
               <div class="col-xl-6  d-xl-block">
                 <div class="card-body p-md-5 text-black">
@@ -30,13 +30,14 @@
                     <label class="form-label">Etat</label>
                     <div id="radio-buttons">
                       <div class="radio">
-                        <input type="radio" id="radio-1" formControlName="status" name="status"  value="En panne"/>
+                        <input type="radio" id="radio-1" formControlName="status" name="status" value="En panne" />
                         <label for="radio-1"></label>
                         <span>En panne</span>
                       </div>
 
                       <div class="radio">
-                        <input type="radio" formControlName="status" id="radio-2" name="status" value="En bonne condition" />
+                        <input type="radio" formControlName="status" id="radio-2" name="status"
+                          value="En bonne condition" />
                         <label for="radio-2"></label>
                         <span>En bonne condition</span>
                       </div>
@@ -45,7 +46,7 @@
                       <!----------->
                     </div>
                   </div>
-               <!--     <div class="form-outline">
+                  <!--     <div class="form-outline">
                  <label class="form-label" for="image-gallery">Choisir une photo</label>
                     <div class="custom-file">
                       <input type="file" class="custom-file-input" id="image"
@@ -55,8 +56,12 @@
                   <div class="form-outline">
                     <label class="form-label">Date d'achat</label>
 
-                    <input type="number" class="form-control form-control-lg" formControlName="dateOfPurshase"
-                    placeholder="Entrez le date d achat de materiel" />
+                    <input type="date" class="form-control form-control-lg" formControlName="dateOfPurshase" />
+                    <!--Error datePurshase-->
+                    <p *ngIf="(dateOfPurshase?.touched|| dateOfPurshase?.dirty ) && !dateOfPurshase?.valid"
+                      class="text-danger">
+                      Ce champ est obligatoire</p>
+                    <!------------------>
                   </div>
                   <div class="form-outline">
                     <label class="form-label">Désignation</label>
@@ -76,19 +81,22 @@
                 <div class="card-body p-md-5 text-black">
                   <div class="form-outline">
 
-                    <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [clickableIcons]="true">
-                      <agm-marker id="id" [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                    <!--Map graggable-->
+
+                    <agm-map [latitude]="lat" [longitude]="long" [zoom]="zoom" [clickableIcons]="true">
+                      <agm-marker id="id" [latitude]="lat" [longitude]="long" [markerDraggable]="true"
                         (dragEnd)="markerDragEnd($event)">
                       </agm-marker>
 
                     </agm-map>
+                    <!------------->
 
                     <label class="form-label" for="">Latitude</label>
 
-                    <input [disabled]="true" type="number" formControlName="Latitude" [value]="latitude"
+                    <input type="number" formControlName="latitude" [value]="lat"
                       class="form-control form-control-lg" /><label class="form-label" for="">Longitude</label>
 
-                    <input [disabled]="true" [value]="longitude" formControlName="Longitude" type="number"
+                    <input [value]="long" formControlName="longitude" type="number"
                       class="form-control form-control-lg" />
 
 
@@ -99,7 +107,7 @@
 
 
                   <div class="d-flex justify-content-end pt-3">
-                    <button class="button-82-pushable" type="submit"   role="button">
+                    <button class="button-82-pushable" type="submit" [disabled]="formAddMaterials.invalid">
                       <span class="button-82-shadow"></span>
                       <span class="button-82-edge"></span>
                       <span class="button-82-front text">

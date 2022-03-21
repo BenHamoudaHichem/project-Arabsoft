@@ -3,6 +3,6 @@ export interface IMaterial {
   name: string;
   description: string;
   location: Location;
+  dateOfPurshase: Date;
   status: string;
-
 }

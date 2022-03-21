@@ -60,9 +60,9 @@
                     <label class="form-label" for="form3Example1n">Où</label>
 
                     <input type="text" id="form3Example1n" class="form-control form-control-lg"
-                      placeholder="Taper l'adresse" formControlName="lieu" />
+                      placeholder="Taper l'adresse" formControlName="location" />
                     <!--Error Lieu-->
-                    <p *ngIf="(Lieu?.touched|| Description?.dirty ) && !Lieu?.valid" class="text-danger"> Ce champ est
+                    <p *ngIf="(location?.touched|| Description?.dirty ) && !location?.valid" class="text-danger"> Ce champ est
                       obligatoire</p>
                     <!----------->
                   </div>

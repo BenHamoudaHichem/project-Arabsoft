@@ -45,4 +45,16 @@ export class InterventionService {
       this.headers
     );
   }
+
+  showIntervention(id: string): Observable<IIntervention> {
+    return this.http
+      .get<IIntervention>(`${this.apiURL}/intervention/${id}`, this.headers)
+      .pipe(
+        map((intervention: IIntervention) => {
+          return intervention;
+        })
+      );
+  }
+
+
 }

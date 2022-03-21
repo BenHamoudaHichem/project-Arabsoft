@@ -1,9 +1,12 @@
 import { MapsAPILoader } from '@agm/core';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Route, Router } from '@angular/router';
 import { Location } from 'src/app/models/Location';
 
 import { Material } from 'src/app/models/resources/Material';
+import { EquipmentService } from 'src/app/services/resources/material/material.service';
 
 @Component({
   selector: 'app-add-materials',
@@ -12,26 +15,32 @@ import { Material } from 'src/app/models/resources/Material';
 })
 export class AddMaterialsComponent implements OnInit {
   formAddMaterials!: FormGroup;
-  latitude!: number;
-  longitude!: number;
+  lat!: number;
+  long!: number;
   zoom!: number;
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private materialService: EquipmentService,
+    private router: Router
   ) {
     this.formAddMaterials = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
       status: ['', [Validators.required]],
 
-    dateOfPurshase: ['', [Validators.required]],
-      description: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
-      Latitude: ['', [Validators.required]],
-      Longitude: ['', [Validators.required]],
+      dateOfPurshase: ['', [Validators.required]],
+      description: [
+        '',
+        [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+      ],
+      latitude: ['', [Validators.required]],
+      longitude: ['', [Validators.required]],
     });
   }
 
   ngOnInit() {
+    //Load map
     this.mapsAPILoader.load().then(() => {
       this.setCurrentLocation();
     });
@@ -41,29 +50,38 @@ export class AddMaterialsComponent implements OnInit {
   private setCurrentLocation() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
+        this.lat = position.coords.latitude;
+        this.long = position.coords.longitude;
         this.zoom = 8;
       });
     }
   }
 
-
-  addMaterial(){
-    let location=new Location(this.latitude,this.longitude);
-    console.log(location)
-    let material=new Material(this.name?.value,this.description?.value,location,this.dateOfPurshase?.value,this.status?.value)
-console.log(material)
+  addMaterial() {
+    let location = new Location(this.latitude?.value, this.longitude?.value);
+    //  console.log(location)
+    let material = new Material(
+    String(this.name?.value),
+    String(this.description?.value),
+      location,
+      this.dateOfPurshase?.value,
+      String(this.status?.value)
+    );
+    console.log(material);
+    this.materialService.create(material).subscribe((data) => {
+      this.router.navigate(['manager/materialList']);
+    }),
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      };
   }
 
+  /*---- maker drag-----*/
   markerDragEnd($event: google.maps.MouseEvent) {
     console.log($event);
-    this.latitude = $event.latLng.lat();
-    this.longitude = $event.latLng.lng();
+    this.lat = $event.latLng.lat();
+    this.long = $event.latLng.lng();
   }
-
-
-
 
   get name() {
     return this.formAddMaterials.get('name');
@@ -77,14 +95,15 @@ console.log(material)
   get description() {
     return this.formAddMaterials.get('description');
   }
-/*  get Latitude() {
-    return this.formAddMaterials.get('Latitude');
+  get latitude() {
+    return this.formAddMaterials.get('latitude');
   }
-  get Longitude() {
-    return this.formAddMaterials.get('Longitude');
+  get longitude() {
+    return this.formAddMaterials.get('longitude');
   }
-*/
 
+  /*
+// Method for Geocod reverse
 
   getReverseGeocodingData(lat: number, lng: number) {
     var latlng = new google.maps.LatLng(lat, lng);
@@ -101,5 +120,5 @@ console.log(material)
       }
     });
   }
-
+*/
 }

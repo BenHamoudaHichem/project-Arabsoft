@@ -19,7 +19,10 @@ export class DemandService {
   constructor(
     private http: HttpClient,
     private authService: AuthenticateService
-  ) { }
+  ) {}
+
+//Get all
+
   all(): Observable<IDemand[]> {
     return this.http.get<IDemand[]>(`${this.apiURL}/demandes`).pipe(
       map((demandes: IDemand[]) => {
@@ -28,15 +31,32 @@ export class DemandService {
           title: demandes.title,
           description: demandes.description,
           createdAt: demandes.createdAt,
-          lieu: demandes.lieu,
+          location: demandes.location,
           user: demandes.user,
           status: demandes.status,
         }));
       })
     );
   }
+
+//Create demand
+
   create(demande: Demand) {
     var d = JSON.stringify(demande);
+    console.log(d);
     return this.http.post(`${this.apiURL}/createDemande`, d, this.headers);
+  }
+
+
+  //Show demand
+
+  showDemande(id: string): Observable<IDemand> {
+    return this.http
+      .get<IDemand>(`${this.apiURL}/demande/${id}`, this.headers)
+      .pipe(
+        map((demand: IDemand) => {
+          return demand;
+        })
+      );
   }
 }

@@ -9,7 +9,7 @@
               <span class="mb-5 text-uppercase">ajouter une Equipe</span>
             </div>
           </div>
-          <form [formGroup]="teamForm" (ngSubmit)="AddTeam()">
+          <form [formGroup]="teamForm" (ngSubmit)="AddTeam()" >
             <div class="row g-0">
               <div class="col-xl-6 d-xl-block">
                 <div class="card-body p-md-5 text-black">
@@ -23,43 +23,6 @@
                     <p *ngIf="titre?.errors?.['pattern']" class="text-danger"> vous devez entrez au minimun deux
                       caractéres</p>
                     <!----------->
-                  </div>
-      <!----------------Accordion select Team manager------------------>
-      <!--------------------------------------------------------------->
-
-                  <div class="accordion" id="accordionExample">
-                    <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                         Selectionner le chef d'équipe
-                        </button>
-                      </h2>
-                      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                          <div id="radio-buttons">
-                            <div  class="radio">
-                              <input type="radio" id="radio-1" formControlName="teamManager" name="radioBouton" />
-                              <label for="radio-1"></label>
-                              <span>floun floun 1</span>
-                            </div><div  class="radio">
-                              <input type="radio" id="radio-1" formControlName="teamManager" name="radioBouton" />
-                              <label for="radio-1"></label>
-                              <span>floun floun 1</span>
-                            </div><div  class="radio">
-                              <input type="radio" id="radio-1" formControlName="teamManager" name="radioBouton" />
-                              <label for="radio-1"></label>
-                              <span>floun floun 1</span>
-                            </div><div  class="radio">
-                              <input type="radio" id="radio-1" formControlName="teamManager" name="radioBouton" />
-                              <label for="radio-1"></label>
-                              <span>floun floun 1</span>
-                            </div>
-
-                          </div>
-                           </div>
-                      </div>
-                    </div>
-
                   </div>
                 </div>
               </div>
@@ -86,7 +49,8 @@
 
 
                   <div class="d-flex justify-content-end pt-3">
-                    <button class="button-82-pushable" role="button">
+                    <button class="button-82-pushable" type="submit"
+                     [disabled]="teamForm.invalid" role="button">
                       <span class="button-82-shadow"></span>
                       <span class="button-82-edge"></span>
                       <span class="button-82-front text">

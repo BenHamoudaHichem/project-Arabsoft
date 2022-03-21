@@ -26,6 +26,7 @@ export class EquipmentService {
           id: equipment.id,
           name: equipment.name,
           description: equipment.description,
+          dateOfPurshase:equipment.dateOfPurshase,
           location: equipment.location,
           status: equipment.status,
         }));
@@ -33,6 +34,8 @@ export class EquipmentService {
     );
   }
   create(equipment: Material) {
+   console.log( JSON.stringify(equipment))
+
     return this.http.post(
       `${this.apiURL}/addMaterial`,
       JSON.stringify(equipment),
