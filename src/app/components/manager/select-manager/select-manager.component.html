@@ -2,29 +2,23 @@
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col">
-        <div class=" card card-registration my-4" >
-          <div class="logo">
-            <div class="card-title text-center ">
-              <span
-                ><img
-                  src="assets/images/gest.png"
-                  alt="Sample photo"
-                  height="60px"
-                  width="100px"
-              /></span>
-              <span class="mb-5 text-uppercase">ajouter un chef d'Equipe</span>
+          <div class=" card card-registration my-4">
+            <div class="logo">
+              <div class="card-title text-center ">
+                <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
+                <span class="mb-5 text-uppercase">ajouter un chef d'Equipe</span>
+              </div>
             </div>
-          </div>
 
+           <!-- <form [formGroup]="teamManagerForm" (ngSubmit)="validat()">-->
+<form [formGroup]="teamM"   (ngSubmit)="validat()">
+            <div class="card-body p-md-5 text-black">
 
-
-              <div class="card-body p-md-5 text-black">
-<div class="center">
                 <div class="form-outline">
 
                   <div id="radio-buttons">
                     <div class="radio">
-                      <input type="radio" id="radio-1" name="radioBouton" />
+                      <input type="radio" id="radio-1" formControlName="teamManager" name="radioBouton" />
                       <label for="radio-1"></label>
                       <span>floun floun 1</span>
                     </div>
@@ -38,23 +32,28 @@
                       <input type="radio" id="radio-3" name="radioBouton" />
                       <label for="radio-3"></label>
                       <span>floun floun 1</span>
-                    </div>  <div class="radio">
+                    </div>
+                    <div class="radio">
                       <input type="radio" id="radio-2" name="radioBouton" />
                       <label for="radio-2"></label>
                       <span>floun 1</span>
-                    </div>  <div class="radio">
+                    </div>
+                    <div class="radio">
                       <input type="radio" id="radio-2" name="radioBouton" />
                       <label for="radio-2"></label>
                       <span>floun floun 1</span>
-                    </div>  <div class="radio">
+                    </div>
+                    <div class="radio">
                       <input type="radio" id="radio-2" name="radioBouton" />
                       <label for="radio-2"></label>
                       <span>floun floun 1</span>
-                    </div>  <div class="radio">
+                    </div>
+                    <div class="radio">
                       <input type="radio" id="radio-2" name="radioBouton" />
                       <label for="radio-2"></label>
-                      <span>floun  1</span>
-                    </div>  <div class="radio">
+                      <span>floun 1</span>
+                    </div>
+                    <div class="radio">
                       <input type="radio" id="radio-2" name="radioBouton" />
                       <label for="radio-2"></label>
                       <span>floun 1</span>
@@ -62,21 +61,24 @@
                   </div>
                 </div>
               </div>
-                <div class="d-flex justify-content-end pt-3">
-                  <button class="button-82-pushable" role="button">
-                    <span class="button-82-shadow"></span>
-                    <span class="button-82-edge"></span>
-                    <span class="button-82-front text">
-                      Confirmer
-                    </span>
-                  </button>
-                </div>
+              <div class="d-flex justify-content-end pt-3">
+                <button class="button-82-pushable" role="button">
+                  <span class="button-82-shadow"></span>
+                  <span class="button-82-edge"></span>
+                  <span class="button-82-front text">
+                    Confirmer
+                  </span>
+                </button>
               </div>
-
+            </form>
             </div>
+
+
           </div>
-        </div>
+
+      </div>
+    </div>
 
 
-  </div>
+
 </section>

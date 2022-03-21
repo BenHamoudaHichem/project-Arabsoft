@@ -1,4 +1,4 @@
-<section class="h-100 bg-light" style="height: 100vh;">
+<section class="min-h-100 bg-light" style="height: 100vh;">
   <div class="container py-5">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col">
@@ -9,48 +9,95 @@
               <span class="mb-5 text-uppercase">ajouter une Equipe</span>
             </div>
           </div>
+          <form [formGroup]="teamForm" (ngSubmit)="AddTeam()">
+            <div class="row g-0">
+              <div class="col-xl-6 d-xl-block">
+                <div class="card-body p-md-5 text-black">
+                  <div class="form-outline">
+                    <label class="form-label" for="form3Example1n">Titre</label>
 
-          <div class="row g-0">
-            <div class="col-xl-6 d-xl-block">
-              <div class="card-body p-md-5 text-black">
-                <div class="form-outline">
-                  <label class="form-label" for="form3Example1n">Titre</label>
-
-                  <input type="text" id="form3Example1n" class="form-control form-control-lg"
-                    placeholder="Entrez le nom de materiel" />
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-6">
-              <div class="card-body p-md-5 text-black">
-                <div class="form-outline">
-                  <label class="form-label" for="form3Example1n"> Ajouter des membres</label>
-
-                  <ng-multiselect-dropdown [placeholder]="'Selectionner membres'" [settings]="dropdownSettings"
-                    [data]="dropdownList" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)"
-                    class=" form-control-lg">
-                  </ng-multiselect-dropdown>
-                  <span class="extra-line">
-
-                    <a href="/"> Ajouter un employé</a>
-                  </span>
-
-                </div>
-
-
-
-                <div class="d-flex justify-content-end pt-3">
-                  <button class="button-82-pushable" role="button">
-                    <span class="button-82-shadow"></span>
-                    <span class="button-82-edge"></span>
-                    <span class="button-82-front text">
-                      Ajouter
-                    </span>
-                  </button>
+                    <input type="text" placeholder="Entrez le nom d'équipe" class="form-control form-control-lg" formControlName="titre" />
+                    <!--Error Title-->
+                    <p *ngIf="(titre?.touched|| titre?.dirty ) && !titre?.valid" class="text-danger"> Ce champ est
+                      obligatoire</p>
+                    <p *ngIf="titre?.errors?.['pattern']" class="text-danger"> vous devez entrez au minimun deux
+                      caractéres</p>
+                    <!----------->
                   </div>
+      <!----------------Accordion select Team manager------------------>
+      <!--------------------------------------------------------------->
+
+                  <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                         Selectionner le chef d'équipe
+                        </button>
+                      </h2>
+                      <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          <div id="radio-buttons">
+                            <div  class="radio">
+                              <input type="radio" id="radio-1" formControlName="teamManager" name="radioBouton" />
+                              <label for="radio-1"></label>
+                              <span>floun floun 1</span>
+                            </div><div  class="radio">
+                              <input type="radio" id="radio-1" formControlName="teamManager" name="radioBouton" />
+                              <label for="radio-1"></label>
+                              <span>floun floun 1</span>
+                            </div><div  class="radio">
+                              <input type="radio" id="radio-1" formControlName="teamManager" name="radioBouton" />
+                              <label for="radio-1"></label>
+                              <span>floun floun 1</span>
+                            </div><div  class="radio">
+                              <input type="radio" id="radio-1" formControlName="teamManager" name="radioBouton" />
+                              <label for="radio-1"></label>
+                              <span>floun floun 1</span>
+                            </div>
+
+                          </div>
+                           </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6">
+                <div class="card-body p-md-5 text-black">
+                  <div class="form-outline">
+                    <label class="form-label"> Ajouter des membres</label>
+
+                    <ng-multiselect-dropdown [placeholder]="'Selectionner membres'" [settings]="dropdownSettings"
+                      [data]="dropdownList" formControlName="membres" (onSelect)="onItemSelect($event)"
+                      (onSelectAll)="onSelectAll($event)" class=" form-control-lg">
+                    </ng-multiselect-dropdown>
+                    <!--Error membres-->
+                    <p *ngIf="(membres?.touched|| membres?.dirty ) && !membres?.valid" class="text-danger"> Ce champ est
+                      obligatoire</p>
+                    <!----------->
+                    <span class="extra-line">
+
+                      <a href="/"> Ajouter un employé</a>
+                    </span>
+
+                  </div>
+
+
+
+                  <div class="d-flex justify-content-end pt-3">
+                    <button class="button-82-pushable" role="button">
+                      <span class="button-82-shadow"></span>
+                      <span class="button-82-edge"></span>
+                      <span class="button-82-front text">
+                        Ajouter
+                      </span>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

@@ -1,4 +1,3 @@
-
 <section class="h-100  bg-light" style="height: 100vh;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -6,133 +5,185 @@
         <div class="card card-registration my-4">
           <div class="row g-0">
             <div class="col-xl-6 d-none d-xl-block">
-              <img
-
-                src="assets/images/1711_sm005_094_.jpg"
-                alt="Sample photo"
-                class="img-fluid"
-                style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;"
-              />
+              <img src="assets/images/1711_sm005_094_.jpg" alt="Sample photo" class="img-fluid"
+                style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
             </div>
             <div class="col-xl-6">
               <div class="card-body p-md-5 text-black">
 
                 <div class="logo">
-                  <span><img
-
-                    src="assets/images/gest.png"
-                    alt="Sample photo"
-                    height="60px" width="100px"
-                    style="text-align: center;"
-                  /></span>
+                  <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px"
+                      style="text-align: center;" /></span>
                   <span class="mb-5 text-uppercase">Inscrivez vous à notre espace</span>
                 </div>
+                <form [formGroup]="registerForm" (ngSubmit)="Register()" novalidate>
+                  <div class="row">
 
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="firstName">Nom</label>
+                        <input type="text" formControlName="firstName" placeholder="Entrez votre nom"
+                          data-rule="required" class="form-control form-control-lg" />
+                        <!--FisrtName errors-->
+                        <p class="ErrorMsg" *ngIf="!firstName?.valid && (firstName?.dirty ||firstName?.touched)">
+                          Nom est obligatoire
+                        </p>
+                        <p *ngIf="firstName?.errors?.['pattern']" class="ErrorMsg"> vous devez entrez au minimun deux
+                          caractéres</p>
+                        <!------------>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="Prénom">Prénom</label>
 
-                <div class="row">
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                      <label class="form-label" for="nom">Nom</label>
-                      <input type="text" id="nom" placeholder="Entrez votre nom" class="form-control form-control-lg" />
+                        <input type="text" formControlName="lastNamme" placeholder="Entrez votre prénom"
+                          class="form-control form-control-lg" />
+                             <!--FisrtName errors-->
+                        <p class="ErrorMsg" *ngIf="!lastNamme?.valid && (lastNamme?.dirty ||lastNamme?.touched)">
+                          Nom est obligatoire
+                        </p>
+                        <p *ngIf="lastNamme?.errors?.['pattern']" class="ErrorMsg"> vous devez entrez au minimun deux
+                          caractéres</p>
+                        <!------------>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="cin">Numéro de télèphone</label>
+                        <input type="number" formControlName="tel" placeholder="Entrez votre numéro de télephone"
+                          class="form-control form-control-lg" />
+                                    <!--Tel errors-->
+                        <p class="ErrorMsg" *ngIf="!tel?.valid && (tel?.dirty ||tel?.touched)">
+                          Ce champs est obligatoire
+                        </p>
+                        <p *ngIf="tel?.errors?.['pattern']" class="ErrorMsg">Entrez 8 chiffres</p>
+                        <!------------>
+
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="email" formControlName="identifier" placeholder="Entrez votre  Email"
+                          class="form-control form-control-lg" />
+              <!--identifier errors-->
+              <p class="ErrorMsg" *ngIf="!identifier?.valid && (identifier?.dirty ||identifier?.touched)">
+                Ce champs est obligatoire
+              </p>
+              <p *ngIf="identifier?.errors?.['email']" class="ErrorMsg">structure de email : foulen@foulen</p>
+              <!------------>
+                      </div>
 
                     </div>
                   </div>
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                      <label class="form-label" for="Prénom">Prénom</label>
 
-                      <input type="text" id="Prénom" placeholder="Entrez votre prénom" class="form-control form-control-lg" />
-                     </div>
-                  </div>
-                </div>
 
-                <div class="row">
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                      <label class="form-label" for="cin">Numéro de carte d'identité</label>
-                      <input type="number" id="cin" placeholder="Entrez votre  CIN" class="form-control form-control-lg" />
+                  <fieldset>
+                    <legend>
+                      Adresse
+                    </legend>
+                    <div class="row">
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="Gouvernorat">Gouvernorat</label>
+                          <input type="text" formControlName="Gouvernorat" placeholder="Gouvernorat"
+                            class="form-control form-control-lg" />
+ <!--Gouvernorat errors-->
+ <p class="ErrorMsg" *ngIf="!Gouvernorat?.valid && (Gouvernorat?.dirty ||Gouvernorat?.touched)">
+  ce champ est obligatoire
+</p>
+
+<!------------>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="Ville">Ville</label>
+
+                          <input type="text" formControlName="Ville" placeholder="Ville"
+                            class="form-control form-control-lg" />
+
+                            <!--Ville errors-->
+                            <p class="ErrorMsg" *ngIf="!Ville?.valid && (Ville?.dirty ||Ville?.touched)">
+                             ce champ est obligatoire
+                           </p>
+
+                           <!------------>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="Roue">Roue</label>
+                          <input type="text" formControlName="Roue" placeholder="Roue"
+                            class="form-control form-control-lg" />
+                              <!--Ville errors-->
+                              <p class="ErrorMsg" *ngIf="!Roue?.valid && (Roue?.dirty ||Roue?.touched)">
+                                ce champ est obligatoire
+                              </p>
+
+                              <!------------>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+
+
+
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="form3Example1m">Mot de passe</label>
+                        <input type="password" formControlName="password" placeholder="Entrez votre Mot de passe"
+                          class="form-control form-control-lg" />
+ <!--Ville errors-->
+ <p class="ErrorMsg" *ngIf="!password?.valid && (password?.dirty ||password?.touched)">
+  ce champ est obligatoire
+</p>
+<p *ngIf="password?.errors?.['pattern']" class="ErrorMsg">vous devez entrez au minimun 8
+  caractéres</p>
+
+<!------------>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="form3Example1n">Confirmer le mot de passe</label>
+
+                        <input type="password" formControlName="confirm_password"
+                          placeholder="Confirmer votre mot de passe" class="form-control form-control-lg" />
+                          <p class="ErrorMsg" *ngIf="!confirm_password?.valid && (confirm_password?.dirty ||confirm_password?.touched)">
+                            ce champ est obligatoire
+                          </p>
+                          <p *ngIf="registerForm.hasError('ConfirmedValidator')" class="ErrorMsg">not matched</p>
+                      </div>
 
                     </div>
                   </div>
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                      <label class="form-label" for="email">Email</label>
-                      <input type="email" id="email"  placeholder="Entrez votre  Email" class="form-control form-control-lg" />
 
-                    </div>
 
+                  <div class="d-flex justify-content-end pt-3">
+
+                    <button class="button-82-pushable" type="submit" role="button"
+                    [disabled]="!registerForm.valid">
+                      <span class="button-82-shadow"></span>
+                      <span class="button-82-edge"></span>
+                      <span class="button-82-front text">
+                        INSCRIRE
+                      </span>
+                    </button>
                   </div>
-                </div>
 
-                <div class="form-outline mb-4">
-                  <label class="form-label" for="numTel">Numéro de télèphone</label>
-                  <input type="number" id="numTel" placeholder="+216 _ _  _ _ _  _ _ _ " class="form-control form-control-lg" />
+                  <span class="extra-line">
 
-                </div>
-<fieldset>
-  <legend>
-    Adresse
-      </legend>
-  <div class="row">
-    <div class="col-md-6 mb-4">
-      <div class="form-outline">
-        <label class="form-label" for="Gouvernorat">Gouvernorat</label>
-        <input type="text" id="Gouvernorat" placeholder="Gouvernorat" class="form-control form-control-lg" />
-
-      </div>
-    </div>
-    <div class="col-md-6 mb-4">
-      <div class="form-outline">
-        <label class="form-label" for="Ville">Ville</label>
-
-        <input type="text" id="Ville" placeholder="Ville" class="form-control form-control-lg" />
-       </div>
-    </div>
-    <div class="col-md-6 mb-4">
-      <div class="form-outline">
-        <label class="form-label" for="Roue">Roue</label>
-        <input type="text" id="Roue" placeholder="Roue" class="form-control form-control-lg" />
-       </div>
-    </div>
-  </div>
-</fieldset>
-
-
-
-<div class="row">
-  <div class="col-md-6 mb-4">
-    <div class="form-outline">
-      <label class="form-label" for="form3Example1m">Mot de passe</label>
-      <input type="password" id="form3Example1m" placeholder="Entrez votre Mot de passe" class="form-control form-control-lg" />
-
-    </div>
-  </div>
-  <div class="col-md-6 mb-4">
-    <div class="form-outline">
-      <label class="form-label" for="form3Example1n">Confirmer le mot de passe</label>
-
-      <input type="password" id="form3Example1n" placeholder="Confirmer votre mot de passe" class="form-control form-control-lg" />
-     </div>
-  </div>
-</div>
-
-
-                <div class="d-flex justify-content-end pt-3">
-
-                  <button class="button-82-pushable" role="button">
-                    <span class="button-82-shadow"></span>
-                    <span class="button-82-edge"></span>
-                    <span class="button-82-front text">
-                      INSCRIRE
-                    </span>
-                  </button>
-                </div>
-
-                <span class="extra-line">
-
-                  <a routerLink="/login">Vous avez dejà un compte? </a>
-                </span>
+                    <a routerLink="/login">Vous avez dejà un compte? </a>
+                  </span>
+                </form>
               </div>
+
             </div>
           </div>
         </div>

@@ -9,97 +9,108 @@
               <span class="mb-5 text-uppercase">ajouter un materiel</span>
             </div>
           </div>
+          <form [formGroup]="formAddMaterials" (ngSubmit)="addMaterial()" >
+            <div class="row g-0">
+              <div class="col-xl-6  d-xl-block">
+                <div class="card-body p-md-5 text-black">
+                  <div class="form-outline">
+                    <label class="form-label">Nom</label>
 
-          <div class="row g-0">
-            <div class="col-xl-6  d-xl-block">
-              <div class="card-body p-md-5 text-black">
-                <div class="form-outline">
-                  <label class="form-label" for="form3Example1n">Nom</label>
+                    <input type="text" class="form-control form-control-lg" formControlName="name"
+                      placeholder="Entrez le nom de materiel" />
+                    <!--Error name-->
+                    <p *ngIf="(name?.touched|| name?.dirty ) && !name?.valid" class="text-danger"> Ce champ est
+                      obligatoire</p>
+                    <p *ngIf="name?.errors?.['pattern']" class="text-danger"> vous devez entrez au minimun deux
+                      caractéres</p>
+                    <!----------->
+                  </div>
 
-                  <input type="text" id="form3Example1n" class="form-control form-control-lg"
-                    placeholder="Entrez le nom de materiel" />
-                </div>
+                  <div class="form-outline">
+                    <label class="form-label">Etat</label>
+                    <div id="radio-buttons">
+                      <div class="radio">
+                        <input type="radio" id="radio-1" formControlName="status" name="status"  value="En panne"/>
+                        <label for="radio-1"></label>
+                        <span>En panne</span>
+                      </div>
 
-                <div class="form-outline">
-                  <label class="form-label" for="form3Example1n">Etat</label>
-                  <div id="radio-buttons">
-                    <div class="radio">
-                      <input type="radio" id="radio-1" name="radioBouton" />
-                      <label for="radio-1"></label>
-                      <span>En panne</span>
-                    </div>
-
-                    <div class="radio">
-                      <input type="radio" id="radio-2" name="radioBouton" />
-                      <label for="radio-2"></label>
-                      <span>En bonne condition</span>
+                      <div class="radio">
+                        <input type="radio" formControlName="status" id="radio-2" name="status" value="En bonne condition" />
+                        <label for="radio-2"></label>
+                        <span>En bonne condition</span>
+                      </div>
+                      <!--Error name-->
+                      <p *ngIf="!(status?.touched|| status?.dirty )" class="text-danger"> Ce champ est obligatoire</p>
+                      <!----------->
                     </div>
                   </div>
-                </div>
-                <div class="form-outline">
-                  <label class="form-label" for="image-gallery">Choisir une photo</label>
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="image" accept="image/*" />
-                  </div>
-                </div>
-                <div class="form-outline">
-                  <label class="form-label" for="form3Example1n">Désignation</label>
+               <!--     <div class="form-outline">
+                 <label class="form-label" for="image-gallery">Choisir une photo</label>
+                    <div class="custom-file">
+                      <input type="file" class="custom-file-input" id="image"
+                        accept="image/*" />
+                    </div>
+                  </div>-->
+                  <div class="form-outline">
+                    <label class="form-label">Date d'achat</label>
 
-                  <textarea id="form3Example1n" class="form-control form-control-lg" placeholder="Ecrivez ..."
-                    rows="6"></textarea>
+                    <input type="number" class="form-control form-control-lg" formControlName="dateOfPurshase"
+                    placeholder="Entrez le date d achat de materiel" />
+                  </div>
+                  <div class="form-outline">
+                    <label class="form-label">Désignation</label>
+
+                    <textarea formControlName="description" class="form-control form-control-lg"
+                      placeholder="Ecrivez ..." rows="6"></textarea>
+                  </div>
+                  <!--Error Description-->
+                  <p *ngIf="(description?.touched|| description?.dirty ) && !description?.valid" class="text-danger">
+                    Ce champ est obligatoire</p>
+                  <p *ngIf="description?.errors?.['pattern']" class="text-danger"> vous devez entrez au minimun deux
+                    caractéres</p>
+                  <!----------->
+                </div>
+              </div>
+              <div class="col-xl-6">
+                <div class="card-body p-md-5 text-black">
+                  <div class="form-outline">
+
+                    <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [clickableIcons]="true">
+                      <agm-marker id="id" [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
+                        (dragEnd)="markerDragEnd($event)">
+                      </agm-marker>
+
+                    </agm-map>
+
+                    <label class="form-label" for="">Latitude</label>
+
+                    <input [disabled]="true" type="number" formControlName="Latitude" [value]="latitude"
+                      class="form-control form-control-lg" /><label class="form-label" for="">Longitude</label>
+
+                    <input [disabled]="true" [value]="longitude" formControlName="Longitude" type="number"
+                      class="form-control form-control-lg" />
+
+
+
+                  </div>
+
+
+
+
+                  <div class="d-flex justify-content-end pt-3">
+                    <button class="button-82-pushable" type="submit"   role="button">
+                      <span class="button-82-shadow"></span>
+                      <span class="button-82-edge"></span>
+                      <span class="button-82-front text">
+                        Ajouter
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-xl-6">
-              <div class="card-body p-md-5 text-black">
-                <div class="form-outline">
-                  <!-- <label class="form-label" for="form3Example1n"
-                    >Locatisation</label
-                  >
-
-                  <select
-                    class="form-select"
-                    aria-label="Default select example"
-                  >
-                    <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                  </select>
--->
-                  <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" [clickableIcons]="true">
-                    <agm-marker id="id" [latitude]="latitude" [longitude]="longitude" [markerDraggable]="true"
-                      (dragEnd)="markerDragEnd($event)">
-                    </agm-marker>
-
-                  </agm-map>
-
-                  <label class="form-label" for="">Latitude</label>
-
-                  <input  type="number" [value]="latitude" class="form-control form-control-lg" /><label
-                    class="form-label" for="">Longitude</label>
-
-                  <input  [value]="longitude" type="number" class="form-control form-control-lg" />
-
-
-
-                </div>
-
-
-
-
-                <div class="d-flex justify-content-end pt-3">
-                  <button class="button-82-pushable" role="button">
-                    <span class="button-82-shadow"></span>
-                    <span class="button-82-edge"></span>
-                    <span class="button-82-front text">
-                      Ajouter
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

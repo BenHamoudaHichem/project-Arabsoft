@@ -24,6 +24,12 @@ import { DetailInterventionComponent } from './components/manager/detail-interve
 import { TeamListComponent } from './components/manager/team-list/team-list.component';
 import { MaterialListComponent } from './components/manager/material-list/material-list.component';
 import { ReclamationListComponent } from './components/manager/reclamation-list/reclamation-list.component';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { SelectManagerComponent } from './components/manager/select-manager/select-manager.component';
+import { DashboardAdminComponent } from './components/public/dashboard-admin/dashboard-admin.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,11 +52,16 @@ import { ReclamationListComponent } from './components/manager/reclamation-list/
     TeamListComponent,
     MaterialListComponent,
     ReclamationListComponent,
+    SelectManagerComponent,
+    DashboardAdminComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgMultiSelectDropDownModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCYYC0LjtQyFdL2PfLbUymRPuBjKlMtvcs',
       libraries: ['places']

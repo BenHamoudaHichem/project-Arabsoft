@@ -28,21 +28,29 @@
                   <span class="mb-5 text-uppercase">Connectez vous à votre espace </span>
                 </div>
 
+            <form    [formGroup]="loginForm" (ngSubmit)="Login()" novalidate>
+                   <div class="form-outline">
+                  <label class="form-label" >Identifiant</label>
 
-                <div class="form-outline">
-                  <label class="form-label" for="form3Example1n">Identifiant</label>
+                  <input type="text" formControlName="identifier" class="form-control form-control-lg" placeholder="Entrez votre Identifiant" />
+                  <p class="text-danger" *ngIf="!Identifier?.valid && (Identifier?.dirty ||Identifier?.touched)">
+               &nbsp;{{getErrorMessage('identifier') }}
 
-                  <input type="text" id="form3Example1n" class="form-control form-control-lg" placeholder="Entrez votre Identifiant" />
-                 </div>  <div class="form-outline">
-                  <label class="form-label" for="form3Example1n">Mot de passe</label>
+                </p>
+                </div>  <div class="form-outline">
+                  <label class="form-label">Mot de passe</label>
 
-                  <input type="text" id="form3Example1n" class="form-control form-control-lg" placeholder="Entrez votre mot de passe"/>
-                 </div>
+                  <input type="text" formControlName="password" class="form-control form-control-lg" placeholder="Entrez votre mot de passe"/>
+                  <p class="text-danger" *ngIf="!Password?.valid && (Password?.dirty ||Password?.touched)">
+                    <i class="fas exclamation-circle"></i> &nbsp;{{getErrorMessage('password') }}
+
+                </p>
+                </div>
 
 
 
                 <div class="d-flex justify-content-end pt-3">
-                  <button class="button-82-pushable" role="button">
+                  <button class="button-82-pushable" type="submit" [disabled]="!loginForm.valid" role="button">
                     <span class="button-82-shadow"></span>
                     <span class="button-82-edge"></span>
                     <span class="button-82-front text">
@@ -60,7 +68,8 @@
   <span class="extra-line">
 
     <a routerLink="/register2">Créer un nouveau compte </a>
-  </span>
+  </span>      </form>
+
 
               </div>
             </div>

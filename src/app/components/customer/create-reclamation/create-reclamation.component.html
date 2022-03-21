@@ -1,80 +1,85 @@
-<section class="h-100">
+<section class="min-h-100 bg-light " style="min-height: 100vh;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col">
         <div class="card card-registration my-4">
           <div class="logo">
             <div class="card-title text-center">
-              <span
-                ><img
-                  src="assets/images/gest.png"
-                  alt="Sample photo"
-                  height="60px"
-                  width="100px"
-              /></span>
+              <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
               <span class="mb-5 text-uppercase">Créer une reclamation</span>
             </div>
           </div>
+          <form [formGroup]="reclamationForm" (ngSubmit)="sendDemand()" novalidate>
+            <div class="row g-0">
+              <div class="col-xl-6  d-xl-block">
+                <div class="card-body p-md-5 text-black">
+                  <div class="form-outline">
+                    <label class="form-label" for="form3Example1n">Titre</label>
 
-          <div class="row g-0">
-            <div class="col-xl-6  d-xl-block">
-              <div class="card-body p-md-5 text-black">
-                <div class="form-outline">
-                  <label class="form-label" for="form3Example1n">Titre</label>
+                    <input type="text" id="form3Example1n" class="form-control form-control-lg"
+                      placeholder="Entrez le titre de reclamation" formControlName="title" />
+                    <!--Error Title-->
+                    <p *ngIf="(Title?.touched|| Title?.dirty ) && !Title?.valid" class="text-danger"> Ce champ est
+                      obligatoire</p>
+                    <p *ngIf="Title?.errors?.['pattern']" class="text-danger"> vous devez entrez au minimun deux
+                      caractéres</p>
+                    <!----------->
 
-                  <input
-                    type="text"
-                    id="form3Example1n"
-                    class="form-control form-control-lg"
-                    placeholder="Entrez le nom de materiel"
-                  />
+
+
+                  </div>
+                  <div class="form-outline">
+                    <label class="form-label" for="form3Example1n">Désignation</label>
+
+                    <textarea id="form3Example1n" class="form-control form-control-lg" placeholder="Ecrivez ..."
+                      rows="6" formControlName="description"></textarea>
+                    <!--Error Description-->
+                    <p *ngIf="(Description?.touched|| Description?.dirty ) && !Description?.valid" class="text-danger">
+                      Ce champ est obligatoire</p>
+                    <p *ngIf="Description?.errors?.['pattern']" class="text-danger"> vous devez entrez au minimun deux
+                      caractéres</p>
+                    <!----------->
+
+
+                  </div>
                 </div>
-                <div class="form-outline">
-                  <label class="form-label" for="form3Example1n"
-                    >Désignation</label
-                  >
+              </div>
+              <div class="col-xl-6">
+                <div class="card-body p-md-5 text-black">
+                  <div class="form-outline">
+                    <label class="form-label"> A quelle date</label>
+                    <input type="date" class="form-control form-control-lg" formControlName="createdAt">
+                    <!--Error Date-->
+                    <p *ngIf="(createdAt?.touched|| createdAt?.dirty ) && !createdAt?.valid" class="text-danger"> Ce
+                      champ est obligatoire</p>
+                    <!----------->
+                  </div>
 
-                  <textarea
-                    id="form3Example1n"
-                    class="form-control form-control-lg"
-                    placeholder="Ecrivez ..."
-                    rows="6"
-                  ></textarea>
+
+                  <div class="form-outline">
+                    <label class="form-label" for="form3Example1n">Où</label>
+
+                    <input type="text" id="form3Example1n" class="form-control form-control-lg"
+                      placeholder="Taper l'adresse" formControlName="lieu" />
+                    <!--Error Lieu-->
+                    <p *ngIf="(Lieu?.touched|| Description?.dirty ) && !Lieu?.valid" class="text-danger"> Ce champ est
+                      obligatoire</p>
+                    <!----------->
+                  </div>
+
+                  <div class="d-flex justify-content-end pt-3">
+                    <button class="button-82-pushable" role="button" type="submit" [disabled]="!reclamationForm.valid">
+                      <span class="button-82-shadow"></span>
+                      <span class="button-82-edge"></span>
+                      <span class="button-82-front text">
+                        reclamer
+                      </span>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-xl-6">
-              <div class="card-body p-md-5 text-black">
-                <div class="form-outline">
-                  <label class="form-label" for="form3Example1n"> A quelle date</label>
-
-                 <input type="date" class="form-control form-control-lg" name="" id="">
-                </div>
-
-
-                <div class="form-outline">
-                  <label class="form-label" for="form3Example1n">Où</label>
-
-                  <input
-                    type="text"
-                    id="form3Example1n"
-                    class="form-control form-control-lg"
-                    placeholder="Taper l'adresse"
-                  />
-                </div>
-
-                <div class="d-flex justify-content-end pt-3">
-                  <button class="button-82-pushable" role="button">
-                    <span class="button-82-shadow"></span>
-                    <span class="button-82-edge"></span>
-                    <span class="button-82-front text">
-                      reclamer
-                    </span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

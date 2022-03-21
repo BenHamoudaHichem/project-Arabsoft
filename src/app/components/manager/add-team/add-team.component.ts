@@ -1,40 +1,67 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Team } from 'src/app/models/resources/team';
+import { User } from 'src/app/models/user';
+
 @Component({
   selector: 'app-add-team',
   templateUrl: './add-team.component.html',
   styleUrls: ['./add-team.component.css'],
-
 })
 export class AddTeamComponent implements OnInit {
+  membersSelect:any
+  teamForm!: FormGroup;
+  selectedlist: any[] = [];
+  constructor(private formBuilder: FormBuilder) {
+    this.teamForm = this.formBuilder.group({
+      titre: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
+      membres: ['', [Validators.required]],
+    });
+  }
 
-
-  dropdownList: { item_id: number; item_text: string; }[] = [];
-  selectedItems: { item_id: number; item_text: string; }[] = [];
+  dropdownList: { id: number; firstName: string }[] = [];
+  selectedItems: { item_id: number; item_text: string }[] = [];
   dropdownSettings!: {};
   ngOnInit() {
     this.dropdownList = [
-      { item_id: 1,item_text: 'employe 1' },
-      { item_id: 2, item_text: 'employe 2' },
-      { item_id: 3, item_text: 'employe 3' },
-      { item_id: 4, item_text: 'employe 4' },
-      { item_id: 5, item_text: 'employe 5' }
+      { id: 1, firstName: 'employe 1' },
+      { id: 2, firstName: 'employe 2' },
+      { id: 3, firstName: 'employe 3' },
+      { id: 4, firstName: 'employe 4' },
+      { id: 5, firstName: 'employe 5' },
     ];
 
     this.dropdownSettings = {
       singleSelection: false,
-      idField: 'item_id',
-      textField: 'item_text',
+      idField: 'id',
+      textField: 'firstName',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 10,
-      allowSearchFilter: true
+      allowSearchFilter: true,
     };
   }
+
   onItemSelect(item: any) {
-    console.log(item);
+    this.selectedlist.push(item);
+    console.log(this.selectedlist);
   }
   onSelectAll(items: any) {
     console.log(items);
+    this.membersSelect=items
+  }
 
-}
+
+
+
+  AddTeam() {
+    let team = new Team( this.titre?.value, '',this.membres?.value);
+    console.log(team);
+  }
+  get titre() {
+    return this.teamForm.get('titre');
+  }
+  get membres() {
+    return this.teamForm.get('membres');
+  }
 }

@@ -21,6 +21,20 @@ font-family: "Poppins", sans-serif;
   padding: 10px 5px;
   background-color: #f6f6f6;
 }
+
+
+
+
+
+/***________   message validation ________****/
+
+.ErrorMsg{
+  font-size: small;
+  color: red;
+}
+
+
+
 /***________  button-52 ________****/
 .button-52 {
   font-size: 16px !important;

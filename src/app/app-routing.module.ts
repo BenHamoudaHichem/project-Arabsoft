@@ -6,7 +6,7 @@ import { DetailReclamationComponent } from './components/manager/detail-reclamat
 import { InterventionListComponent } from './components/manager/intervention-list/intervention-list.component';
 import { MaterialListComponent } from './components/manager/material-list/material-list.component';
 import { ReclamationListComponent } from './components/manager/reclamation-list/reclamation-list.component';
-import { SelectTeamManagerComponent } from './components/manager/select-team-manager/select-team-manager.component';
+import { SelectManagerComponent } from './components/manager/select-manager/select-manager.component';
 import { TeamListComponent } from './components/manager/team-list/team-list.component';
 import { AboutUsComponent } from './components/public/about-us/about-us.component';
 import { ContactUSComponent } from './components/public/contact-us/contact-us.component';
@@ -20,17 +20,17 @@ const routes: Routes = [
 {path:"register",component:RegisterComponent},
 {path:"propos",component:AboutUsComponent},
 {path:"contact",component:ContactUSComponent},
-{path:"reclamationList",component:ReclamationListComponent},
-{path:"interventionList",component:InterventionListComponent},
+{path:"customer/reclamationList",component:ReclamationListComponent},
+{path:"manager/interventionList",component:InterventionListComponent},
 
-{path:"materialList",component:MaterialListComponent},
-{path:"detailIntervention",component:DetailInterventionComponent},
-{path:"detailReclamation",component:DetailReclamationComponent},
+{path:"manager/materialList",component:MaterialListComponent},
+{path:"manager/detailIntervention",component:DetailInterventionComponent},
+{path:"customer/detailReclamation",component:DetailReclamationComponent},
 
-{path:"createIntervention",component:CreateInterventionComponent},
-{path:"selectTeamManager",component:SelectTeamManagerComponent},
+{path:"manager/createIntervention",component:CreateInterventionComponent},
+{path:"manager/selectTeamManager",component:SelectManagerComponent},
 
-{path:"teamList",component:TeamListComponent},
+{path:"manager/teamList",component:TeamListComponent},
 
 ];
 

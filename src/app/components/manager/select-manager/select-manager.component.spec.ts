@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SelectTeamManagerComponent } from './select-team-manager.component';
+import { SelectManagerComponent } from './select-manager.component';
 
-describe('SelectTeamManagerComponent', () => {
-  let component: SelectTeamManagerComponent;
-  let fixture: ComponentFixture<SelectTeamManagerComponent>;
+describe('SelectManagerComponent', () => {
+  let component: SelectManagerComponent;
+  let fixture: ComponentFixture<SelectManagerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SelectTeamManagerComponent ]
+      declarations: [ SelectManagerComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SelectTeamManagerComponent);
+    fixture = TestBed.createComponent(SelectManagerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
