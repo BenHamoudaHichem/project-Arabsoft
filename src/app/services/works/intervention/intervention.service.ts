@@ -36,6 +36,25 @@ export class InterventionService {
       })
     );
   }
+
+
+  interventionPerStatus(status:string): Observable<IIntervention[]> {
+    return this.http.get<IIntervention[]>(`${this.apiURL}/interventions/${status}`).pipe(
+      map((intervention: IIntervention[]) => {
+        return intervention.map((intervention) => ({
+          id: intervention.id,
+          title: intervention.title,
+          description: intervention.description,
+          createdAt: intervention.createdAt,
+          startedAt: intervention.startedAt,
+          status: intervention.status,
+          category: intervention.category,
+          materials:intervention.materials
+        }));
+      })
+    );
+  }
+
   create(intervention: Intervention): Observable<Intervention> {
     var d = JSON.stringify(intervention);
     console.log(d)

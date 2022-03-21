@@ -26,15 +26,31 @@ export class EquipmentService {
           id: equipment.id,
           name: equipment.name,
           description: equipment.description,
-          dateOfPurshase:equipment.dateOfPurshase,
+          dateOfPurshase: equipment.dateOfPurshase,
           location: equipment.location,
           status: equipment.status,
         }));
       })
     );
   }
+  materialPerStatus(status: string): Observable<IMaterial[]> {
+    return this.http
+      .get<IMaterial[]>(`${this.apiURL}/materials/${status}`)
+      .pipe(
+        map((equipment: IMaterial[]) => {
+          return equipment.map((equipment) => ({
+            id: equipment.id,
+            name: equipment.name,
+            description: equipment.description,
+            dateOfPurshase: equipment.dateOfPurshase,
+            location: equipment.location,
+            status: equipment.status,
+          }));
+        })
+      );
+  }
   create(equipment: Material) {
-   console.log( JSON.stringify(equipment))
+    console.log(JSON.stringify(equipment));
 
     return this.http.post(
       `${this.apiURL}/addMaterial`,

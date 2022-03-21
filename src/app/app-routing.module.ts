@@ -15,27 +15,35 @@ import { LoginComponent } from './components/public/login/login.component';
 import { RegisterComponent } from './components/public/register/register.component';
 
 const routes: Routes = [
-{path:"",component:HomeComponent},
-{path:"login",component:LoginComponent},
-{path:"register",component:RegisterComponent},
-{path:"propos",component:AboutUsComponent},
-{path:"contact",component:ContactUSComponent},
-{path:"customer/reclamationList",component:ReclamationListComponent},
-{path:"manager/interventionList",component:InterventionListComponent},
+  { path: '', component: HomeComponent },
 
-{path:"manager/materialList",component:MaterialListComponent},
-{path:"manager/detailIntervention",component:DetailInterventionComponent},
-{path:"customer/detailReclamation",component:DetailReclamationComponent},
+  { path: 'login', component: LoginComponent },
 
-{path:"manager/createIntervention",component:CreateInterventionComponent},
-{path:"manager/selectTeamManager",component:SelectManagerComponent},
+  { path: 'register', component: RegisterComponent },
 
-{path:"manager/teamList",component:TeamListComponent},
+  { path: 'propos', component: AboutUsComponent },
 
+  { path: 'contact', component: ContactUSComponent },
+
+  { path: 'customer/reclamationList', component: ReclamationListComponent },
+
+  { path: 'manager/interventionList', component: InterventionListComponent },
+  
+  { path: 'manager/materialList', component: MaterialListComponent },
+  {
+    path: 'manager/detailIntervention',component: DetailInterventionComponent,
+  },
+  { path: 'customer/detailReclamation', component: DetailReclamationComponent },
+  {
+    path: 'manager/createIntervention',component: CreateInterventionComponent,
+  },
+  { path: 'manager/selectTeamManager', component: SelectManagerComponent },
+
+  { path: 'manager/teamList', component: TeamListComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

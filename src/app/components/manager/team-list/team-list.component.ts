@@ -1,4 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ITeam } from 'src/app/services/resources/team/iteam';
+import { TeamService } from 'src/app/services/resources/team/team.service';
 
 @Component({
   selector: 'app-team-list',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeamListComponent implements OnInit {
 
-  constructor() { }
+  teamList!: ITeam[];
+  constructor(private serviceTeam: TeamService) {
+    this.showAll();
+  }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  //Teams
+  showAll() {
+    this.serviceTeam.all().subscribe((IT: ITeam[]) => {
+      this.teamList = IT;
+    }),
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      };
   }
 
 }
