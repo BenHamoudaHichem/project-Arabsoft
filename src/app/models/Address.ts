@@ -1,23 +1,25 @@
+import { Location } from "./Location";
+
 export class Address {
   constructor(
-    private zipCode: string,
-    private street: string,
 
+    private city: string,
     private country: string,
-    private state: string
+    private state: string,
+    private location:Location
   ) {}
 
-  public getStreet(): string {
-    return this.street;
+  public getCity(): string {
+    return this.city;
   }
-  public setStreet(value: string): void {
-    this.street = value;
+  public setCity(value: string): void {
+    this.city = value;
   }
-  public getZipCode(): string {
-    return this.zipCode;
+  public getLocation(): Location {
+    return this.location;
   }
-  public setZipCode(value: string): void {
-    this.zipCode = value;
+  public setLocation(value: Location): void {
+    this.location = value;
   }
   public getState(): string {
     return this.state;

@@ -1,3 +1,4 @@
+
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -7,6 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Location } from 'src/app/models/Location';
 import { Address } from 'src/app/models/Address';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
@@ -44,9 +46,9 @@ export class RegisterComponent implements OnInit {
         confirm_password: ['', [Validators.required]],
 
         city: ['', Validators.required],
-        street: ['', Validators.required],
+        state: ['', Validators.required],
         country: ['', Validators.required],
-        zipCode: ['', Validators.required],
+
       },
       {
         validators: Confirmed.ConfirmedValidator(
@@ -60,10 +62,11 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
   Register() {
     let adresse = new Address(
-      String(this.zipCode?.value),
+
       String(this.city?.value),
-      String(this.street?.value),
-      String(this.street?.value)
+      String(this.country?.value),
+      String(this.state?.value),
+    new Location(0,0)
     );
     let user = new User(
       '',
@@ -104,18 +107,16 @@ export class RegisterComponent implements OnInit {
   get city() {
     return this.registerForm.get('city');
   }
-  get street() {
-    return this.registerForm.get('street');
-  }
+
   get tel() {
     return this.registerForm.get('tel');
   }
 
-  get counrty() {
+  get country() {
     return this.registerForm.get('country');
   }
-  get zipCode() {
-    return this.registerForm.get('zipCode');
+  get state() {
+    return this.registerForm.get('state');
   }
   get confirm_password() {
     return this.registerForm.get('confirm_password');
