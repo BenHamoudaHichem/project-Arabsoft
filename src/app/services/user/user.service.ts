@@ -25,15 +25,15 @@ export class UserService {
         return users.map((user) => ({
           id: user.id,
           firstName: user.firstName,
-          lastNamme: user.lastNamme,
-          password: user.password,
+          lastName: user.lastName,
           identifier: user.identifier,
+          password: user.password,
+          address: user.address,
           tel: user.tel,
-          adresse: user.adresse,
-        }));
+role:user.role
       })
     );
-  }
+  }))}
   create(user: User) {
     console.log( JSON.stringify(user))
     return this.http.post(

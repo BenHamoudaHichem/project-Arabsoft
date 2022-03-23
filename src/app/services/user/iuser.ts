@@ -3,9 +3,10 @@ import { Address } from 'src/app/models/Address';
 export interface IUser {
   id: string;
   firstName: string;
-  lastNamme: string;
-  password: string;
+  lastName: string;
   identifier: string;
+  password: string;
+  address: Address;
   tel: string;
-  adresse: Address;
+  role: string[];
 }

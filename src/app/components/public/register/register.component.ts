@@ -72,10 +72,11 @@ export class RegisterComponent implements OnInit {
       '',
       String(this.firstName?.value),
       String(this.lastNamme?.value),
-      String(this.password?.value),
       String(this.identifier?.value),
-      String(this.tel?.value),
+      String(this.password?.value),
       adresse,
+      String(this.tel?.value),
+
       ['']
     );
     console.log(user);

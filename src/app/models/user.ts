@@ -4,11 +4,13 @@ export class User {
   constructor(
     private id: string,
     private firstName: string,
-    private lastNamme: string,
-    private password: string,
+    private lastName: string,
     private identifier: string,
-    private tel: string,
+    private password: string,
+
     private address: Address,
+    private tel: string,
+
     private role: string[]
   ) {}
 
@@ -34,10 +36,10 @@ export class User {
   }
 
   public getlastNamme(): string {
-    return this.lastNamme;
+    return this.lastName;
   }
   public setlastNamme(value: string): void {
-    this.lastNamme = value;
+    this.lastName = value;
   }
 
   public getPassword(): string {
