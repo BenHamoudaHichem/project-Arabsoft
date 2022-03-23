@@ -29,10 +29,11 @@
                   <div class="form-outline">
                     <label class="form-label"> A quelle date</label>
 
-                    <input type="date" formControlName="date" class="form-control form-control-lg" name="" id="">
+                    <input type="date"  formControlName="startedAt" class="form-control form-control-lg" name="" id="">
 
-                    <p *ngIf="(date?.touched|| date?.dirty ) && !date?.valid" class="text-danger"> Ce champ est
-                      obligatoire</p>
+                 <!--   <p *ngIf="(date?.touched|| date?.dirty ) && !date?.valid" class="text-danger"> Ce champ est
+                      obligatoire</p>-->
+                      <p *ngIf="createInterventionForm?.hasError('incorrect') " class="ErrorMsg">impossible de choisir cette date</p>
                   </div>
                   <div class="form-outline">
                     <label class="form-label">Désignation</label>
@@ -85,7 +86,7 @@
 
                   </div>
                   <div class="d-flex justify-content-end pt-3">
-                    <button class="button-82-pushable"type="submit" [disabled]="!createInterventionForm.valid" role="button">
+                    <button class="button-82-pushable"type="submit" role="button">
                       <span class="button-82-shadow"></span>
                       <span class="button-82-edge"></span>
                       <span class="button-82-front text">
