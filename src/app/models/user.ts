@@ -8,8 +8,16 @@ export class User {
     private password: string,
     private identifier: string,
     private tel: string,
-    private address: Address
+    private address: Address,
+    private role: string[]
   ) {}
+
+  public getRole(): string[] {
+    return this.role;
+  }
+  public setRole(value: string[]): void {
+    this.role = value;
+  }
 
   public getId(): string {
     return this.id;

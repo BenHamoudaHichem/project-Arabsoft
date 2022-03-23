@@ -2,12 +2,20 @@ import { Location } from "./Location";
 
 export class Address {
   constructor(
-
-    private city: string,
-    private country: string,
+    private zipCode: string,
+    private street: string,
+    private city:string,
     private state: string,
+    private country: string,
     private location:Location
   ) {}
+
+  public getLocation(): Location {
+    return this.location;
+  }
+  public setLocation(value: Location): void {
+    this.location = value;
+  }
 
   public getCity(): string {
     return this.city;
@@ -15,11 +23,18 @@ export class Address {
   public setCity(value: string): void {
     this.city = value;
   }
-  public getLocation(): Location {
-    return this.location;
+
+  public getStreet(): string {
+    return this.street;
   }
-  public setLocation(value: Location): void {
-    this.location = value;
+  public setStreet(value: string): void {
+    this.street = value;
+  }
+  public getZipCode(): string {
+    return this.zipCode;
+  }
+  public setZipCode(value: string): void {
+    this.zipCode = value;
   }
   public getState(): string {
     return this.state;

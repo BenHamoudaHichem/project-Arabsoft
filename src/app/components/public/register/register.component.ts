@@ -1,4 +1,3 @@
-
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -8,12 +7,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Location } from 'src/app/models/Location';
 import { Address } from 'src/app/models/Address';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
 import { Confirmed } from 'src/app/services/validation/Confirmed';
-
+import { Location } from 'src/app/models/Location';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -44,11 +42,12 @@ export class RegisterComponent implements OnInit {
           [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{8,}$')],
         ],
         confirm_password: ['', [Validators.required]],
-
-        city: ['', Validators.required],
         state: ['', Validators.required],
+        city: ['', Validators.required],
+        street: ['', Validators.required],
         country: ['', Validators.required],
-
+        zipCode: ['', Validators.required],
+        role:['',['', Validators.required,Validators.pattern('^[a-zA-Z ]')]],
       },
       {
         validators: Confirmed.ConfirmedValidator(
@@ -62,11 +61,12 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
   Register() {
     let adresse = new Address(
-
+      String(this.zipCode?.value),
+      String(this.street?.value),
       String(this.city?.value),
-      String(this.country?.value),
       String(this.state?.value),
-    new Location(0,0)
+      String(this.counrty?.value),
+      new Location(1, 1)
     );
     let user = new User(
       '',
@@ -75,7 +75,8 @@ export class RegisterComponent implements OnInit {
       String(this.password?.value),
       String(this.identifier?.value),
       String(this.tel?.value),
-      adresse
+      adresse,
+      ['']
     );
     console.log(user);
     this.userService.create(user).subscribe((user: any) => {
@@ -87,7 +88,9 @@ export class RegisterComponent implements OnInit {
         alert(error.message);
       };
   }
-
+  get state() {
+    return this.registerForm.get('state');
+  }
   get firstName() {
     return this.registerForm.get('firstName');
   }
@@ -107,16 +110,18 @@ export class RegisterComponent implements OnInit {
   get city() {
     return this.registerForm.get('city');
   }
-
+  get street() {
+    return this.registerForm.get('street');
+  }
   get tel() {
     return this.registerForm.get('tel');
   }
 
-  get country() {
+  get counrty() {
     return this.registerForm.get('country');
   }
-  get state() {
-    return this.registerForm.get('state');
+  get zipCode() {
+    return this.registerForm.get('zipCode');
   }
   get confirm_password() {
     return this.registerForm.get('confirm_password');
