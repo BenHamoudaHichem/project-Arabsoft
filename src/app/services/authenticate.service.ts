@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
+import { Report } from 'notiflix';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -23,6 +24,8 @@ export class AuthenticateService {
     };
     return this.http.get(`${this.apiURL}/user`, headers);
   }
+
+
 
   login(email: string, password: string) {
 
@@ -75,12 +78,17 @@ export class AuthenticateService {
     }
   }
 
+  createToken(token:string)
+  {
+    localStorage.setItem('_token',token)
+  }
+
   removeToken() {
     localStorage.removeItem('_token');
   }
 
   redirectIfNotAuth() {
-    alert('Vous devez reconnecter Session expirée');
+    Report.warning("Connexion perdu",'Vous devez reconnecter Session expirée',"Je compris");
     this.removeToken();
     this.router.navigate(['/login']);
   }

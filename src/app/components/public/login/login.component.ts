@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 
 @Component({
@@ -20,8 +21,14 @@ export class LoginComponent implements OnInit {
 
   Login() {
     console.log(this.Identifier?.value, this.Password?.value);
-    this.authService.login(this.Identifier?.value,this.Password?.value).subscribe(()=>{
-      
+    this.authService.login(this.Identifier?.value,this.Password?.value).subscribe((res:any)=>{
+
+      if (res.status) {
+        Report.success("a","b","c")
+        this.authService.createToken(res.token)
+      }
+
+
     })
 
   }

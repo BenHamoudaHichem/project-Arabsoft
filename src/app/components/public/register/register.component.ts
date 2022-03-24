@@ -12,6 +12,7 @@ import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
 import { Confirmed } from 'src/app/services/validation/Confirmed';
 import { Location } from 'src/app/models/Location';
+import { Report } from 'notiflix';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -36,7 +37,7 @@ export class RegisterComponent implements OnInit {
           [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
         ],
         tel: ['', [Validators.required, , Validators.pattern('^[0-9]{8}$')]],
-        identifier: ['', [Validators.required, Validators.email]],
+        identifier: ['', [Validators.required,Validators.minLength(8)]],
         password: [
           '',
           [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{8,}$')],
@@ -47,7 +48,6 @@ export class RegisterComponent implements OnInit {
         street: ['', Validators.required],
         country: ['', Validators.required],
         zipCode: ['', Validators.required],
-        role:['',[Validators.required,Validators.pattern('^[a-zA-Z ]')]],
       },
       {
         Validators: Confirmed.ConfirmedValidator(
@@ -80,13 +80,16 @@ export class RegisterComponent implements OnInit {
       ['']
     );
     console.log(user);
-    this.userService.create(user).subscribe((user: any) => {
-      alert('vous avez inscrit avec suuces ');
-      console.log('vous avez inscrit avec suuces ');
+    this.userService.create(user).subscribe((res: any) => {
+      Report.success(
+        "Notification d'inscription",res.message,"D'accord"
+        );
       this.router.navigateByUrl('/login');
     }),
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        Report.warning(
+          "Notification d'inscription",error.message,"D'accord"
+          );
       };
   }
   get state() {
