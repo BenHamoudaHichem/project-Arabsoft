@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
-  ValidationErrors,
+
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -47,10 +47,10 @@ export class RegisterComponent implements OnInit {
         street: ['', Validators.required],
         country: ['', Validators.required],
         zipCode: ['', Validators.required],
-        role:['',['', Validators.required,Validators.pattern('^[a-zA-Z ]')]],
+        role:['',[Validators.required,Validators.pattern('^[a-zA-Z ]')]],
       },
       {
-        validators: Confirmed.ConfirmedValidator(
+        Validators: Confirmed.ConfirmedValidator(
           'password',
           'confirm_password'
         ),
