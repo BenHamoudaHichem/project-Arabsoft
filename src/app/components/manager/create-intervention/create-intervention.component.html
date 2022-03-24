@@ -33,6 +33,8 @@
 
                     <p *ngIf="(date?.touched|| date?.dirty ) && !date?.valid" class="text-danger"> Ce champ est
                       obligatoire</p>
+
+                    <p *ngIf="createInterventionForm.hasError('DateConfirmation')" class="text-danger"> date choisi est incorrecte </p>
                   </div>
                   <div class="form-outline">
                     <label class="form-label">Désignation</label>

@@ -2,6 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ErrorHandler, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Intervention } from 'src/app/models/works/intervention';
+import { Confirmed } from 'src/app/services/validation/Confirmed';
+import { DateValidation } from 'src/app/services/validation/DateValidation';
 import { InterventionService } from 'src/app/services/works/intervention/intervention.service';
 
 @Component({
@@ -23,6 +25,8 @@ export class CreateInterventionComponent implements OnInit {
       date: ['', [Validators.required]],
       team: ['', [Validators.required]],
       Materiel: ['', [Validators.required]],
+    },{
+      validators:DateValidation.DateConfirmation('date',new Date('2019-12-07'))
     });
   }
 
