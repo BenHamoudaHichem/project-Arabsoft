@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeCustomerComponent } from './components/customer/home-customer/home-customer.component';
+import { AddCustomersComponent } from './components/manager/add-customers/add-customers.component';
 import { CreateInterventionComponent } from './components/manager/create-intervention/create-intervention.component';
 import { DetailInterventionComponent } from './components/manager/detail-intervention/detail-intervention.component';
 import { DetailReclamationComponent } from './components/manager/detail-reclamation/detail-reclamation.component';
@@ -9,6 +10,7 @@ import { MaterialListComponent } from './components/manager/material-list/materi
 import { ReclamationListComponent } from './components/manager/reclamation-list/reclamation-list.component';
 import { SelectManagerComponent } from './components/manager/select-manager/select-manager.component';
 import { TeamListComponent } from './components/manager/team-list/team-list.component';
+import { UpdateInterventionComponent } from './components/manager/update-intervention/update-intervention.component';
 import { AboutUsComponent } from './components/public/about-us/about-us.component';
 import { ContactUSComponent } from './components/public/contact-us/contact-us.component';
 import { HomeComponent } from './components/public/home/home.component';
@@ -28,9 +30,11 @@ const routes: Routes = [
 
   { path: 'customer/reclamationList', component: ReclamationListComponent },
 
+  { path: 'manager/subscribeEmployee', component: AddCustomersComponent },
+
   { path: 'manager/interventionList', component: InterventionListComponent },
 
-  { path: 'cutomer/home', component: HomeCustomerComponent },
+  { path: 'customer/home', component: HomeCustomerComponent },
 
   { path: 'manager/materialList', component: MaterialListComponent },
 
@@ -40,6 +44,9 @@ const routes: Routes = [
   { path: 'customer/detailReclamation', component: DetailReclamationComponent },
   {
     path: 'manager/createIntervention',component: CreateInterventionComponent,
+  },
+  {
+    path: 'manager/updateIntervention',component: UpdateInterventionComponent,
   },
   { path: 'manager/selectTeamManager', component: SelectManagerComponent },
 
