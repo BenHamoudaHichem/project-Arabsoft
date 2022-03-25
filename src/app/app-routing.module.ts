@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomeCustomerComponent } from './components/customer/home-customer/home-customer.component';
 import { CreateInterventionComponent } from './components/manager/create-intervention/create-intervention.component';
 import { DetailInterventionComponent } from './components/manager/detail-intervention/detail-intervention.component';
 import { DetailReclamationComponent } from './components/manager/detail-reclamation/detail-reclamation.component';
@@ -28,8 +29,11 @@ const routes: Routes = [
   { path: 'customer/reclamationList', component: ReclamationListComponent },
 
   { path: 'manager/interventionList', component: InterventionListComponent },
-  
+
+  { path: 'cutomer/home', component: HomeCustomerComponent },
+
   { path: 'manager/materialList', component: MaterialListComponent },
+
   {
     path: 'manager/detailIntervention',component: DetailInterventionComponent,
   },

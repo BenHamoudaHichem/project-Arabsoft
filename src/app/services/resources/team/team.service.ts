@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class TeamService {
-  private apiURL = 'http://127.0.0.1:8080/gestintern';
+  private apiURL = 'http://127.0.0.1:8080';
 
   constructor(
     private http: HttpClient,

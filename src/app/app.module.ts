@@ -28,7 +28,11 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SelectManagerComponent } from './components/manager/select-manager/select-manager.component';
 import { DashboardAdminComponent } from './components/public/dashboard-admin/dashboard-admin.component';
+<<<<<<< Updated upstream
 import { CookieService } from 'ngx-cookie-service';
+=======
+import { HomeCustomerComponent } from './components/customer/home-customer/home-customer.component';
+>>>>>>> Stashed changes
 
 
 @NgModule({
@@ -55,6 +59,7 @@ import { CookieService } from 'ngx-cookie-service';
     ReclamationListComponent,
     SelectManagerComponent,
     DashboardAdminComponent,
+    HomeCustomerComponent,
   ],
   imports: [
     BrowserModule,
