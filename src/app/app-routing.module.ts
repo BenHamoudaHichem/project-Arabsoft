@@ -16,9 +16,12 @@ import { ContactUSComponent } from './components/public/contact-us/contact-us.co
 import { HomeComponent } from './components/public/home/home.component';
 import { LoginComponent } from './components/public/login/login.component';
 import { RegisterComponent } from './components/public/register/register.component';
+import { GuardAuthenticateGuard } from './services/guard-authenticate.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  //{ path: '**', redirectTo: '/home' },
+  { path: 'home', component: HomeComponent },
 
   { path: 'login', component: LoginComponent },
 
@@ -28,29 +31,80 @@ const routes: Routes = [
 
   { path: 'contact', component: ContactUSComponent },
 
-  { path: 'customer/reclamationList', component: ReclamationListComponent },
-
-  { path: 'manager/subscribeEmployee', component: AddCustomersComponent },
-
-  { path: 'manager/interventionList', component: InterventionListComponent },
-
-  { path: 'customer/home', component: HomeCustomerComponent },
-
-  { path: 'manager/materialList', component: MaterialListComponent },
+  {
+    path: 'customer/reclamationList',
+    component: ReclamationListComponent,
+    canActivate: [GuardAuthenticateGuard],
+    data: {
+      role: 'ROLE_USER',
+    },
+  },
 
   {
-    path: 'manager/detailIntervention',component: DetailInterventionComponent,
+    path: 'manager/subscribeEmployee',
+    component: AddCustomersComponent,
+   /* canActivate: [GuardAuthenticateGuard],
+    data: { role: 'ROLE_MANAGER' },*/
   },
-  { path: 'customer/detailReclamation', component: DetailReclamationComponent },
-  {
-    path: 'manager/createIntervention',component: CreateInterventionComponent,
-  },
-  {
-    path: 'manager/updateIntervention',component: UpdateInterventionComponent,
-  },
-  { path: 'manager/selectTeamManager', component: SelectManagerComponent },
 
-  { path: 'manager/teamList', component: TeamListComponent },
+  {
+    path: 'manager/interventionList',
+    component: InterventionListComponent,
+  /*  canActivate: [GuardAuthenticateGuard],
+    data: { role: 'ROLE_MANAGER' },*/
+  },
+
+  {
+    path: 'customer/home',
+    component: HomeCustomerComponent,
+   /* canActivate: [GuardAuthenticateGuard],
+    data: { role: 'ROLE_USER' ,},*/
+  },
+
+  {
+    path: 'manager/materialList',
+    component: MaterialListComponent,
+   /* canActivate: [GuardAuthenticateGuard],
+    data: { role: 'ROLE_MANAGER' ,},*/
+  },
+
+  {
+    path: 'manager/detailIntervention',
+    component: DetailInterventionComponent,
+    /*canActivate: [GuardAuthenticateGuard],
+    data: { role: 'ROLE_MANAGER' },*/
+  },
+  {
+    path: 'customer/detailReclamation',
+    component: DetailReclamationComponent,
+ /*   canActivate: [GuardAuthenticateGuard],
+    data: { role: 'ROLE_USER' },*/
+  },
+  {
+    path: 'manager/createIntervention',
+    component: CreateInterventionComponent,
+    /*canActivate: [GuardAuthenticateGuard],
+    data: { role: 'ROLE_MANAGER' },*/
+  },
+  {
+    path: 'manager/updateIntervention',
+    component: UpdateInterventionComponent,
+    /*canActivate: [GuardAuthenticateGuard],
+    data: { role: 'ROLE_MANAGER' },*/
+  },
+  {
+    path: 'manager/selectTeamManager',
+    component: SelectManagerComponent,
+   /* canActivate: [GuardAuthenticateGuard],
+    data: { role: 'ROLE_MANAGER' },*/
+  },
+
+  {
+    path: 'manager/teamList',
+    component: TeamListComponent,
+  /*canActivate: [GuardAuthenticateGuard],
+    data: { role: 'ROLE_MANAGER' },*/
+  },
 ];
 
 @NgModule({

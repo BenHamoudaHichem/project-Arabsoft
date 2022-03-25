@@ -10,7 +10,7 @@
               <span class="mb-5 text-uppercase">Créer une intervention</span>
             </div>
           </div>
-          <form [formGroup]="createInterventionForm" (ngSubmit)="Creer()" novalidate >
+          <form [formGroup]="createInterventionForm" (ngSubmit)="Creer()" novalidate>
             <div class="row g-0">
               <div class="col-xl-6  d-xl-block">
                 <div class="card-body p-md-5 text-black">
@@ -19,10 +19,10 @@
 
                     <input type="text" formControlName="title" class="form-control form-control-lg"
                       placeholder="Entrez le nom de materiel" />
-                         <!--Error Title-->
-                    <p *ngIf="(title?.touched|| title?.dirty ) && !title?.valid" class="text-danger"> Ce champ est
+                    <!--Error Title-->
+                    <p *ngIf="(title?.touched|| title?.dirty ) && !title?.valid" class="ErrorMsg"> Ce champ est
                       obligatoire</p>
-                    <p *ngIf="title?.errors?.['pattern']" class="text-danger"> vous devez entrez au minimun deux
+                    <p *ngIf="title?.errors?.['pattern']" class="ErrorMsg"> vous devez entrez au minimun deux
                       caractéres</p>
                     <!----------->
                   </div>
@@ -31,20 +31,22 @@
 
                     <input type="date" formControlName="date" class="form-control form-control-lg" name="" id="">
 
-                    <p *ngIf="(date?.touched|| date?.dirty ) && !date?.valid" class="text-danger"> Ce champ est
+                    <p *ngIf="(date?.touched|| date?.dirty ) && !date?.valid" class="ErrorMsg"> Ce champ est
                       obligatoire</p>
 
-                    <p *ngIf="createInterventionForm.hasError('DateConfirmation')" class="text-danger"> date choisi est incorrecte </p>
+                    <p *ngIf="createInterventionForm.hasError('DateConfirmation')" class="ErrorMsg"> date choisi est
+                      incorrecte </p>
                   </div>
                   <div class="form-outline">
                     <label class="form-label">Désignation</label>
 
                     <textarea formControlName="description" class="form-control form-control-lg"
                       placeholder="Ecrivez ..." rows="6"></textarea>
-                                 <!--Error description-->
-                    <p *ngIf="(description?.touched|| description?.dirty ) && !description?.valid" class="text-danger"> Ce champ est
+                    <!--Error description-->
+                    <p *ngIf="(description?.touched|| description?.dirty ) && !description?.valid" class="ErrorMsg"> Ce
+                      champ est
                       obligatoire</p>
-                    <p *ngIf="description?.errors?.['pattern']" class="text-danger"> vous devez entrez au minimun dix
+                    <p *ngIf="description?.errors?.['pattern']" class="ErrorMsg"> vous devez entrez au minimun dix
                       caractéres</p>
                     <!----------->
                   </div>
@@ -58,22 +60,22 @@
                   <div class="form-outline">
                     <label class="form-label">Categorie</label>
 
-                    <select formControlName="category"  class="form-select" aria-label="Default select example">
+                    <select formControlName="category" class="form-select" aria-label="Default select example">
                       <option value="1">categorie1</option>
                     </select>
-                          <!--Error category-->
-             <p *ngIf="(category?.touched|| category?.dirty ) && !category?.valid" class="text-danger"> Ce champ est
-                            obligatoire</p>
+                    <!--Error category-->
+                    <p *ngIf="(category?.touched|| category?.dirty ) && !category?.valid" class="ErrorMsg"> Ce champ est
+                      obligatoire</p>
                   </div>
                   <div class="form-outline">
                     <label class="form-label">Equipe</label>
-                    <select  formControlName="team"  class="form-select" aria-label="Default select example">
-                    <option value="1">One</option>
+                    <select formControlName="team" class="form-select" aria-label="Default select example">
+                      <option value="1">One</option>
                     </select>
-                                <!--Error team-->
-             <p *ngIf="(team?.touched|| team?.dirty ) && !team?.valid" class="text-danger"> Ce champ est
-              obligatoire</p>
-                <!----------->
+                    <!--Error team-->
+                    <p *ngIf="(team?.touched|| team?.dirty ) && !team?.valid" class="ErrorMsg"> Ce champ est
+                      obligatoire</p>
+                    <!----------->
                   </div>
                   <div class="form-outline">
                     <label class="form-label"> Materiels</label>
@@ -82,18 +84,16 @@
                       [settings]="dropdownSettings" [data]="dropdownList" (onSelect)="onItemSelect($event)"
                       (onSelectAll)="onSelectAll($event)" class=" form-control-lg">
                     </ng-multiselect-dropdown>
-                    <p *ngIf="(Materiel?.touched|| Materiel?.dirty ) && !Materiel?.valid" class="text-danger"> Ce champ est
+                    <p *ngIf="(Materiel?.touched|| Materiel?.dirty ) && !Materiel?.valid" class="ErrorMsg"> Ce champ est
                       obligatoire</p>
 
                   </div>
                   <div class="d-flex justify-content-end pt-3">
-                    <button class="button-82-pushable"type="submit" [disabled]="!createInterventionForm.valid" role="button">
-                      <span class="button-82-shadow"></span>
-                      <span class="button-82-edge"></span>
-                      <span class="button-82-front text">
-                        Créer
-                      </span>
-                    </button>
+
+                    <button class="bn632-hover bn24" type="submit" role="button"
+                      [disabled]="createInterventionForm.invalid">Créer</button>
+
+
                   </div>
                 </div>
               </div>

@@ -1,7 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Report } from 'notiflix';
+import { Notify, Report } from 'notiflix';
 import { lastValueFrom, of } from 'rxjs';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 
@@ -28,12 +29,17 @@ export class LoginComponent implements OnInit {
 
         this.authService.onLoginSucces(res.token,res.id,res.roles[0],res.username)
         this.router.navigate([""])
-
+        Notify.success('Connexion établie');
       }
 
 
-    })
 
+    }),(error: HttpErrorResponse) => {
+      Report.warning(
+        "Notification de connexion",error.message,"D'accord"
+        );
+    };
+   // Report.warning('Echec','Veuillez verifier votre adresse ou mot de passe','OK');
   }
 
   get Identifier() {

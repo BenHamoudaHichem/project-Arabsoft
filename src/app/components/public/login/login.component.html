@@ -33,7 +33,7 @@
                   <label class="form-label" >Identifiant</label>
 
                   <input type="text" formControlName="identifier" class="form-control form-control-lg" placeholder="Entrez votre Identifiant" />
-                  <p class="text-danger" *ngIf="!Identifier?.valid && (Identifier?.dirty ||Identifier?.touched)">
+                  <p class="ErrorMsg" *ngIf="!Identifier?.valid && (Identifier?.dirty ||Identifier?.touched)">
                &nbsp;{{getErrorMessage('identifier') }}
 
                 </p>
@@ -41,7 +41,7 @@
                   <label class="form-label">Mot de passe</label>
 
                   <input type="text" formControlName="password" class="form-control form-control-lg" placeholder="Entrez votre mot de passe"/>
-                  <p class="text-danger" *ngIf="!Password?.valid && (Password?.dirty ||Password?.touched)">
+                  <p class="ErrorMsg" *ngIf="!Password?.valid && (Password?.dirty ||Password?.touched)">
                     <i class="fas exclamation-circle"></i> &nbsp;{{getErrorMessage('password') }}
 
                 </p>
@@ -50,13 +50,8 @@
 
 
                 <div class="d-flex justify-content-end pt-3">
-                  <button class="button-82-pushable" type="submit" [disabled]="!loginForm.valid" role="button">
-                    <span class="button-82-shadow"></span>
-                    <span class="button-82-edge"></span>
-                    <span class="button-82-front text">
-                      CONNECTER
-                    </span>
-                  </button>
+            
+                  <button class="bn632-hover bn24"type="submit" role="button" [disabled]="!loginForm.valid">CONNECTER</button>
 
                 </div>
 
