@@ -11,12 +11,14 @@ import { SelectManagerComponent } from './components/manager/select-manager/sele
 import { TeamListComponent } from './components/manager/team-list/team-list.component';
 import { AboutUsComponent } from './components/public/about-us/about-us.component';
 import { ContactUSComponent } from './components/public/contact-us/contact-us.component';
+import { DashboardAdminComponent } from './components/public/dashboard-admin/dashboard-admin.component';
 import { HomeComponent } from './components/public/home/home.component';
 import { LoginComponent } from './components/public/login/login.component';
 import { RegisterComponent } from './components/public/register/register.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'admin', component: DashboardAdminComponent },
 
   { path: 'login', component: LoginComponent },
 

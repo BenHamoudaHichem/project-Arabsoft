@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+declare const hich:any;
 
 @Component({
   selector: 'app-home',
@@ -10,6 +11,7 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    hich
   }
 
 }

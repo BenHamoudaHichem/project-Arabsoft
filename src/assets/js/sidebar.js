@@ -1,0 +1,4 @@
+function hich() {
+  alert('rrrrrrrrr')
+
+}
