@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Notify, Report } from 'notiflix';
 import { Location } from 'src/app/models/Location';
 import { Demand } from 'src/app/models/works/demand';
 import { DemandService } from 'src/app/services/works/demand/demand.service';
@@ -21,12 +22,8 @@ export class CreateReclamationComponent implements OnInit {
   ) {
     this.reclamationForm = this.formBuilder.group({
       title: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
-      description: [
-        '',
-        [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
-      ],
-      createdAt: ['', [Validators.required]],
-      location: ['', [Validators.required]],
+      description: ['',[Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
+      location: ['', [Validators.required, Validators.minLength(2)]],
     });
   }
 
@@ -34,18 +31,19 @@ export class CreateReclamationComponent implements OnInit {
     let demand = new Demand(
       String(this.Title?.value),
       String(this.Description?.value),
-      this.createdAt?.value,
+      new Date(),
       String(this.location?.value),
       '',
       ''
     );
     this.demandeService.create(demand).subscribe((data) => {
       console.log(JSON.stringify(data));
-      this.router.navigateByUrl('customer/detailReclamation');
-    }),(error:HttpErrorResponse)=>
-    {
-alert(error.message)
-    }
+      Notify.success('La reclamation est envoyée avec succès ');
+      this.router.navigate(['/customer/detailReclamation']);
+    }),
+      (error: HttpErrorResponse) => {
+        Report.failure('Erreur', error.message, "D'accord");
+      };
   }
 
   get Title() {

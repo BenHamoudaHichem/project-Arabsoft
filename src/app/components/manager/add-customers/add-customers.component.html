@@ -1,22 +1,19 @@
 <section class="h-100  bg-light" style="height: 100vh;">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col">
-        <div class="card card-registration my-4">
-          <div class="row g-0">
-            <div class="col-xl-6 d-none d-xl-block">
-              <img src="assets/images/1711_sm005_094_.jpg" alt="Sample photo" class="img-fluid"
-                style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
-            </div>
-            <div class="col-xl-6">
-              <div class="card-body p-md-5 text-black">
+
+        <div class="card  card-registration my-4">
+
+
+            <div class="col">
+              <div class="card-body text-black">
 
                 <div class="logo">
                   <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px"
                       style="text-align: center;" /></span>
-                  <span class="mb-5 text-uppercase">Inscrivez vous à notre espace</span>
+                  <span class="mb-5 text-uppercase">Inscrivez un employé dans le domaine</span>
                 </div>
-                <form [formGroup]="registerForm" (ngSubmit)="Register()" novalidate>
+                <form [formGroup]="addCustomerForm" (ngSubmit)="Inscrire()" novalidate>
                   <div class="row">
 
                     <div class="col-md-6 mb-4">
@@ -191,7 +188,7 @@
                           *ngIf="!confirm_password?.valid && (confirm_password?.dirty ||confirm_password?.touched)">
                           ce champ est obligatoire
                         </p>
-                        <p *ngIf="registerForm.hasError('ConfirmedValidator')" class="ErrorMsg">not matched</p>
+                        <p *ngIf="addCustomerForm.hasError('ConfirmedValidator')" class="ErrorMsg">not matched</p>
                       </div>
 
                     </div>
@@ -199,17 +196,9 @@
 
 
                   <div class="d-flex justify-content-end pt-3">
-
-                    <button class="bn632-hover bn24"type="submit" role="button" [disabled]="!registerForm.valid">INSCRIRE</button>
-
-
-
+                    <button class="bn632-hover bn24"type="submit" role="button" [disabled]="!addCustomerForm.valid">INSCRIRE</button>
                   </div>
 
-                  <span class="extra-line">
-
-                    <a routerLink="/login">Vous avez dejà un compte? </a>
-                  </span>
                 </form>
               </div>
 
@@ -217,6 +206,6 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+
+
 </section>

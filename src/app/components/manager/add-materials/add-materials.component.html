@@ -19,9 +19,9 @@
                     <input type="text" class="form-control form-control-lg" formControlName="name"
                       placeholder="Entrez le nom de materiel" />
                     <!--Error name-->
-                    <p *ngIf="(name?.touched|| name?.dirty ) && !name?.valid" class="text-danger"> Ce champ est
+                    <p *ngIf="(name?.touched|| name?.dirty ) && !name?.valid" class="ErrorMsg"> Ce champ est
                       obligatoire</p>
-                    <p *ngIf="name?.errors?.['pattern']" class="text-danger"> vous devez entrez au minimun deux
+                    <p *ngIf="name?.errors?.['pattern']" class="ErrorMsg"> vous devez entrez au minimun deux
                       caractéres</p>
                     <!----------->
                   </div>
@@ -42,7 +42,7 @@
                         <span>En bonne condition</span>
                       </div>
                       <!--Error name-->
-                      <p *ngIf="!(status?.touched|| status?.dirty )" class="text-danger"> Ce champ est obligatoire</p>
+                      <p *ngIf="!(status?.touched|| status?.dirty )" class="ErrorMsg"> Ce champ est obligatoire</p>
                       <!----------->
                     </div>
                   </div>
@@ -59,7 +59,7 @@
                     <input type="date" class="form-control form-control-lg" formControlName="dateOfPurshase" />
                     <!--Error datePurshase-->
                     <p *ngIf="(dateOfPurshase?.touched|| dateOfPurshase?.dirty ) && !dateOfPurshase?.valid"
-                      class="text-danger">
+                      class="ErrorMsg">
                       Ce champ est obligatoire</p>
                     <!------------------>
                   </div>
@@ -70,9 +70,9 @@
                       placeholder="Ecrivez ..." rows="6"></textarea>
                   </div>
                   <!--Error Description-->
-                  <p *ngIf="(description?.touched|| description?.dirty ) && !description?.valid" class="text-danger">
+                  <p *ngIf="(description?.touched|| description?.dirty ) && !description?.valid" class="ErrorMsg">
                     Ce champ est obligatoire</p>
-                  <p *ngIf="description?.errors?.['pattern']" class="text-danger"> vous devez entrez au minimun deux
+                  <p *ngIf="description?.errors?.['pattern']" class="ErrorMsg"> vous devez entrez au minimun deux
                     caractéres</p>
                   <!----------->
                 </div>
@@ -98,22 +98,9 @@
 
                     <input [value]="long" formControlName="longitude" type="number"
                       class="form-control form-control-lg" />
-
-
-
                   </div>
-
-
-
-
                   <div class="d-flex justify-content-end pt-3">
-                    <button class="button-82-pushable" type="submit" [disabled]="formAddMaterials.invalid">
-                      <span class="button-82-shadow"></span>
-                      <span class="button-82-edge"></span>
-                      <span class="button-82-front text">
-                        Ajouter
-                      </span>
-                    </button>
+                      <button class="bn632-hover bn24"type="submit" role="button" [disabled]="!formAddMaterials.invalid">Ajouter</button>
                   </div>
                 </div>
               </div>

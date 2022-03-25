@@ -62,6 +62,7 @@ export class AuthenticateService {
   getToken() {
     return this.cookies.getToken!;
   }
+ 
   // Verify the token
   isValidToken() {
     const token = this.getToken();

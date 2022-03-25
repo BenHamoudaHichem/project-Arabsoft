@@ -30,12 +30,15 @@ import { SelectManagerComponent } from './components/manager/select-manager/sele
 import { DashboardAdminComponent } from './components/public/dashboard-admin/dashboard-admin.component';
 import { CookieService } from 'ngx-cookie-service';
 import { HomeCustomerComponent } from './components/customer/home-customer/home-customer.component';
+import { AddCustomersComponent } from './components/manager/add-customers/add-customers.component';
+import { UpdateInterventionComponent } from './components/manager/update-intervention/update-intervention.component';
+import { GuardAuthenticateGuard } from './services/guard-authenticate.guard';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
+
     AboutUsComponent,
     RegisterComponent,
     LoginComponent,
@@ -57,6 +60,8 @@ import { HomeCustomerComponent } from './components/customer/home-customer/home-
     SelectManagerComponent,
     DashboardAdminComponent,
     HomeCustomerComponent,
+    AddCustomersComponent,
+    UpdateInterventionComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,7 +75,7 @@ import { HomeCustomerComponent } from './components/customer/home-customer/home-
       libraries: ['places']
    })
   ],
-  providers: [CookieService],
+  providers: [CookieService,GuardAuthenticateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
