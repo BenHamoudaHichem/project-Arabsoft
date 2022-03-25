@@ -28,6 +28,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SelectManagerComponent } from './components/manager/select-manager/select-manager.component';
 import { DashboardAdminComponent } from './components/public/dashboard-admin/dashboard-admin.component';
+import { CookieService } from 'ngx-cookie-service';
 
 
 @NgModule({
@@ -67,7 +68,7 @@ import { DashboardAdminComponent } from './components/public/dashboard-admin/das
       libraries: ['places']
    })
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

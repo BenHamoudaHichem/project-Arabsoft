@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 import { Report } from 'notiflix';
+import { Observable } from 'rxjs';
+import { CookiesService } from './cookies.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,8 +16,8 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class AuthenticateService {
-  private apiURL = 'http://127.0.0.1:8000/';
-  constructor(private http: HttpClient, private router: Router) {}
+  private apiURL = 'http://127.0.0.1:8000';
+  constructor(private http: HttpClient, private router: Router,private cookies:CookiesService) {}
 
   getAuthenticatedUser() {
     let headers = {headers: new HttpHeaders({
@@ -27,9 +29,9 @@ export class AuthenticateService {
 
 
 
-  login(email: string, password: string) {
+  public  login(email: string, password: string) {
 
-    return this.http.post(`${this.apiURL}/login`,{ identifier: email, password: password },httpOptions);
+    return  this.http.post(`${this.apiURL}/login`,{ identifier: email, password: password },httpOptions)
   }
 
   logout() {
@@ -58,7 +60,7 @@ export class AuthenticateService {
   }
   //Token service
   getToken() {
-    return localStorage.getItem('_token')!;
+    return this.cookies.getToken!;
   }
   // Verify the token
   isValidToken() {
@@ -78,13 +80,21 @@ export class AuthenticateService {
     }
   }
 
-  createToken(token:string)
+  get getUsername():string{
+
+    return this.cookies.getUsername
+  }
+
+  onLoginSucces(token:string,username:string,id:string,role:string)
   {
-    localStorage.setItem('_token',token)
+    this.cookies.createToken(token)
+    this.cookies.addUserId(id)
+    this.cookies.addUserRole(role)
+    this.cookies.addUsername(username)
   }
 
   removeToken() {
-    localStorage.removeItem('_token');
+    this.cookies.deleteAll()
   }
 
   redirectIfNotAuth() {
