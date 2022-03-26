@@ -4,6 +4,7 @@ import { HomeCustomerComponent } from './components/customer/home-customer/home-
 import { AddCustomersComponent } from './components/manager/add-customers/add-customers.component';
 import { CreateInterventionComponent } from './components/manager/create-intervention/create-intervention.component';
 import { DetailInterventionComponent } from './components/manager/detail-intervention/detail-intervention.component';
+import { DetailMaterialComponent } from './components/manager/detail-material/detail-material.component';
 import { DetailReclamationComponent } from './components/manager/detail-reclamation/detail-reclamation.component';
 import { InterventionListComponent } from './components/manager/intervention-list/intervention-list.component';
 import { MaterialListComponent } from './components/manager/material-list/material-list.component';
@@ -22,10 +23,10 @@ import { GuardAuthenticateGuard } from './services/guard-authenticate.guard';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'admin', component: DashboardAdminComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  //{ path: '**', redirectTo: '/home' },
-  { path: 'home', component: HomeComponent },
-  
+ /* { path: '', redirectTo: '/home', pathMatch: 'full' },
+ { path: '**', redirectTo: '/home' },
+  { path: 'home', component: HomeComponent },*/
+
 
   { path: 'login', component: LoginComponent },
 
@@ -87,6 +88,13 @@ const routes: Routes = [
     /*canActivate: [GuardAuthenticateGuard],
     data: { role: 'ROLE_MANAGER' },*/
   },
+  {
+    path: 'manager/detailMaterial',
+    component: DetailMaterialComponent,
+    /*canActivate: [GuardAuthenticateGuard],
+    data: { role: 'ROLE_MANAGER' },*/
+  },
+
   {
     path: 'manager/updateIntervention',
     component: UpdateInterventionComponent,

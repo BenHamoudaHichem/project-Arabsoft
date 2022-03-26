@@ -61,6 +61,17 @@ export class EquipmentService {
   getName(id: string) {
     return this.http.get<Material[]>(`${this.apiURL}/material/${id}`);
   }
+
+  showMaterial(id: string): Observable<IMaterial> {
+    return this.http
+      .get<IMaterial>(`${this.apiURL}/material/${id}`, httpOptions)
+      .pipe(
+        map((material: IMaterial) => {
+          return material;
+        })
+      );
+  }
+
   update(material: Material) {
     let headers = {
       headers: new HttpHeaders({

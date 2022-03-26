@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { IIntervention } from 'src/app/services/works/intervention/iintervention';
 import { InterventionService } from 'src/app/services/works/intervention/intervention.service';
 
@@ -10,15 +11,19 @@ import { InterventionService } from 'src/app/services/works/intervention/interve
 })
 export class InterventionListComponent implements OnInit {
   interventionList!: IIntervention[];
-  constructor(private serviceIntervention: InterventionService) {
-    this.showAll()
+  status!:string
+  constructor(private serviceIntervention: InterventionService,private route:ActivatedRoute) {
+    this.showPerStatus()
   }
 
   ngOnInit(): void {}
 
   //Interventions
-  showAll() {
-    this.serviceIntervention.all().subscribe((II: IIntervention[]) => {
+  showPerStatus()
+  {
+    this.route.queryParams.subscribe(params=>{this.status=params["status"]; console.log(this.status)} )
+
+    this.serviceIntervention.interventionPerStatus(this.status).subscribe((II: IIntervention[]) => {
       this.interventionList = II;
     }),
       (error: HttpErrorResponse) => {

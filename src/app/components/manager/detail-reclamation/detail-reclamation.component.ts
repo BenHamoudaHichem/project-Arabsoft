@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Report } from 'notiflix';
 import { DemandService } from 'src/app/services/works/demand/demand.service';
 import { IDemand } from 'src/app/services/works/demand/idemand';
 
@@ -29,7 +30,7 @@ export class DetailReclamationComponent implements OnInit {
     this.demandService.showDemande(id).subscribe((ID:IDemand)=>{
       this.demand=ID;
     }),(error:HttpErrorResponse)=>{
-      console.log(error.message)
+      Report.warning('Erreur',error.message,'OK')
     };
   }
 }

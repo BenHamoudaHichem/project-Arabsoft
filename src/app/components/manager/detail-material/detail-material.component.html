@@ -1,0 +1,50 @@
+<section class="min-h-100 bg-light" style="height: 100vh;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-4">
+          <div class="logo">
+            <div class="card-title text-center">
+              <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
+              <span class="mb-5 text-uppercase"> material {{material.name}}</span>
+            </div>
+          </div>
+
+          <div class="row g-2">
+
+            <div class="col-xl-6  d-xl-block">
+              <div class="card-body p-md-5 text-black">
+                <h5 class="card-title">Description</h5>
+
+                <p class="card-text">
+                  {{material.description}}
+
+                </p>
+
+
+              </div>
+
+            </div>
+            <div class="col-xl-6">
+              <div class="card-body p-md-5 text-black">
+                <h5 class="card-title">Status</h5>
+                <p class="card-text"> {{material.status}}</p>
+                <h5 class="card-title">Localisation</h5>
+                <p class="card-text"> {{material.location}}</p>
+                <h5 class="card-title">Date d'achat</h5>
+                <p class="card-text">
+                  {{material.dateOfPurshase}}</p>
+
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
