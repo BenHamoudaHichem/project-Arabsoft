@@ -11,7 +11,9 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    hich
+    new hich()
+
   }
+  //title="Home"
 
 }
