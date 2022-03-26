@@ -38,10 +38,7 @@ const routes: Routes = [
   {
     path: 'customer/reclamationList',
     component: ReclamationListComponent,
-    canActivate: [GuardAuthenticateGuard],
-    data: {
-      role: 'ROLE_USER',
-    },
+
   },
 
   {

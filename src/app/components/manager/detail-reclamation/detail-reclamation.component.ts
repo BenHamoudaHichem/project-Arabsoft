@@ -11,18 +11,19 @@ import { IDemand } from 'src/app/services/works/demand/idemand';
 })
 export class DetailReclamationComponent implements OnInit {
   demand!: IDemand;
-  id: string;
+  id!: string;
   constructor(
     private demandService: DemandService,
-    private ActivatedRoute: ActivatedRoute
+    private route: ActivatedRoute
   ) {
-    this.id = String(this.ActivatedRoute.snapshot.paramMap.get('id'));
+    this.route.queryParams.subscribe(params=>{this.id=params["id"]; console.log(this.id)} )
+    console.log(this.id)
     this.showDetail(this.id);
   }
 
   ngOnInit(): void {}
 
-  
+
 // showDetail
   showDetail(id:string) {
     this.demandService.showDemande(id).subscribe((ID:IDemand)=>{

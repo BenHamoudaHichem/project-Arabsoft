@@ -9,49 +9,36 @@
           </div>
           <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-             <button class="nav-link active " id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
-                type="button" role="tab" aria-controls="nav-home" aria-selected="true">
-
-
-
-
-         Tous
-
-              </button>
-              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
-                type="button" role="tab" aria-selected="false">
-
-                <i class="fa fa-ban" aria-hidden="true" style="color: red;"></i>
-            Rejeté
-              </button>
+              <a [routerLink]="['/customer/reclamationList']" routerLinkActive>
+                <button (click)="showAll()" class="nav-link active " id="nav-home-tab" data-bs-toggle="tab"
+                  data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                  Tous
+                </button>
+              </a>
+              <a [routerLink]="['/customer/reclamationList']" routerLinkActive [queryParams]="{ status: 'rejected'}">
+                <button class="nav-link" (click)="showByStatus()" id="nav-profile-tab" data-bs-toggle="tab"
+                  data-bs-target="#nav-profile" type="button" role="tab" aria-selected="false">
+                  <i class="fa fa-ban" aria-hidden="true" style="color: red;"></i>
+                  Rejeté
+                </button></a>
             </div>
           </nav>
           <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-              <div class="card">
+              <div class="card" *ngFor="let reclamation of demandList">
                 <div class="card-body">
-                  <h5 class="card-title"> <img  height="70px" width="70px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRthZcF6C12-eMC0JrJdv4CWO40-emM4BBFlw&usqp=CAU" alt=""> reclamation 1</h5>
+                  <h5 class="card-title"> <img height="70px" width="70px"
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRthZcF6C12-eMC0JrJdv4CWO40-emM4BBFlw&usqp=CAU"
+                      alt="">{{reclamation.title}}</h5>
 
                   <p class="card-text"><i class="fas fa-calendar-alt"></i>
-                    07/12/2022
+                    {{reclamation.createdAt}}
                   </p>
                   <div class="d-flex justify-content-end pt-3">
 
-                    <button class="button-50" role="button"><a  routerLink="/detailReclamation">Consulter</a></button>
+                    <a [routerLink]="['/customer/detailReclamation']" [queryParams]="{id:reclamation.id}"  queryParamsHandling="merge"> <button  >Consulter</button></a>
 
-                  </div>
-                </div>
-              </div>
-              <div class="card" >
-                <div class="card-body">
-                  <h5 class="card-title"> <img  height="70px" width="70px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRthZcF6C12-eMC0JrJdv4CWO40-emM4BBFlw&usqp=CAU" alt=""> reclamation 2</h5>
-                  <p class="card-text"><i class="fas fa-calendar-alt"></i>
-                    07/12/2022
-                  </p>
-                  <div class="d-flex justify-content-end">
-
-                    <button class="button-50" role="button">Consulter</button>
                   </div>
                 </div>
               </div>
@@ -82,7 +69,7 @@
 
             <div class="form-group  col-md-3">
               <button class="button-54" role="button">Chercher</button>
-            <!--  <button type="submit" class="btn btn-dark rounded-pill p-2 shadow-sm">
+              <!--  <button type="submit" class="btn btn-dark rounded-pill p-2 shadow-sm">
                 <i class="fas fa-search"></i>
               </button>-->
 
@@ -91,18 +78,13 @@
             <fieldset class="">
               <legend><i class=" fas fa-duotone fa-filter"></i>
                 Trier par
-                  </legend>
+              </legend>
               <div class="row">
                 <div class="col-md-6 mb-4">
                   <div class="form-outline">
-                    <label class="form-label" for="form3Example1n"
-                      >Proprieté</label
-                    >
+                    <label class="form-label" for="form3Example1n">Proprieté</label>
 
-                    <select
-                      class="form-select"
-                      aria-label="Default select example"
-                    >
+                    <select class="form-select" aria-label="Default select example">
                       <option selected>Open this select menu</option>
                       <option value="1">One</option>
                       <option value="2">Two</option>
@@ -111,9 +93,7 @@
                   </div>
                   <hr>
                   <div class="form-outline">
-                    <label class="form-label" for="form3Example1n"
-                    >Ordre</label
-                  >
+                    <label class="form-label" for="form3Example1n">Ordre</label>
                     <div id="radio-buttons">
                       <div class="radio">
                         <input type="radio" id="radio-1" name="radioBouton" />
@@ -131,13 +111,14 @@
 
                 </div>
                 <div class="d-flex  justify-content-end">
-              <button class="button-54" role="button">Appliquer</button>
-              </div>
+                  <button class="button-54" role="button">Appliquer</button>
+                </div>
               </div>
             </fieldset>
 
             <div class="btn_pg text-left">
-              <button class="button-54" role="button"><i class="fas fa-arrow-left"></i> Précedant</button>     <button class="button-54" role="button">Suivant <i class="fas fa-arrow-right"></i></button>
+              <button class="button-54" role="button"><i class="fas fa-arrow-left"></i> Précedant</button> <button
+                class="button-54" role="button">Suivant <i class="fas fa-arrow-right"></i></button>
             </div>
           </div>
         </div>

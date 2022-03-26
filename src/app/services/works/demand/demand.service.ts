@@ -14,7 +14,7 @@ export class DemandService {
       Authorization: `Berear${this.authService.getToken()}`,
     }),
   };
-  private apiURL = 'http://127.0.0.1:8080/gestintern';
+  private apiURL = 'http://127.0.0.1:8080';
 
   constructor(
     private http: HttpClient,
@@ -38,6 +38,24 @@ export class DemandService {
       })
     );
   }
+  //Get all by status
+
+  allByStatus( status:string): Observable<IDemand[]> {
+    return this.http.get<IDemand[]>(`${this.apiURL}/demandes/${status}`).pipe(
+      map((demandes: IDemand[]) => {
+        return demandes.map((demandes) => ({
+          id: demandes.id,
+          title: demandes.title,
+          description: demandes.description,
+          createdAt: demandes.createdAt,
+          location: demandes.location,
+          user: demandes.user,
+          status: demandes.status,
+        }));
+      })
+    );
+  }
+
 
 //Create demand
 

@@ -28,7 +28,7 @@ font-family: "Poppins", sans-serif;
   font-size: small;
   color: red;
 }
-
+a{text-decoration: none;}
 /*_________________________CSS Bottom______________________________*/
 .bn632-hover {
   width: 160px;
