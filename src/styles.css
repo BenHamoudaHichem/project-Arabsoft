@@ -201,3 +201,53 @@ btn red*/
 .bn30:hover .text {
   background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
 }
+/*
+___________________________________________________*/
+
+
+
+.bn9 {
+  padding: 2px;
+  outline: 0;
+  font-size: 17px;
+  color: rgb(0, 0, 0);
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#fdde5c),
+    color-stop(#f8ab5e),
+    color-stop(#f56a62),
+    color-stop(#a176c8),
+    color-stop(#759beb),
+    color-stop(#65beb3),
+    to(#70db96)
+  );
+  background: linear-gradient(
+    to right,
+    #fdde5c,
+    #f8ab5e,
+    #f56a62,
+    #a176c8,
+    #759beb,
+    #65beb3,
+    #70db96
+  );
+  border-radius: 30px;
+  border: 0;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.bn9 > span {
+  display: block;
+  padding: 5px 20px;
+  font-size: 15px;
+  font-weight: 500;
+  background: #ffffff;
+  border-radius: 30px;
+}
+p{text-align: justify;}
+h5{
+  font-style: italic;
+}

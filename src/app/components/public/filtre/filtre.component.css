@@ -1,8 +1,4 @@
-.card
-{
-margin-top: 10px;
-border: 1 black;
-}
+
 select{
   width: 150%;
   background-color: #f6f6f6;
@@ -104,6 +100,5 @@ width: 410px;}
   border: 1px solid #cccccc;
 
 }
-
 
 

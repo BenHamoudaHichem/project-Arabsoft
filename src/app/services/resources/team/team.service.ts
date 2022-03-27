@@ -24,8 +24,18 @@ export class TeamService {
       map((team: ITeam[]) => {
         return team.map((team) => ({
           id: team.id,
+          name: team.name,
+          manager: team.manager,
           members: team.members,
         }));
+      })
+    );
+  }
+
+  getTeam(id: string): Observable<ITeam> {
+    return this.http.get<ITeam>(`${this.apiURL}/team/${id}`, httpOptions).pipe(
+      map((demand: ITeam) => {
+        return demand;
       })
     );
   }

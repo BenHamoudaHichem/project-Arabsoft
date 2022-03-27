@@ -1,4 +1,4 @@
-<section class="min-h-100 bg-light" style="height: 100vh;">
+<section class="min-h-100">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="row">
@@ -30,24 +30,39 @@
 
               <div *ngFor="let int of interventionList" class="card">
                 <div class="card-body">
-                  <h5 class="card-title"> <img height="70px" width="70px"
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRthZcF6C12-eMC0JrJdv4CWO40-emM4BBFlw&usqp=CAU"
-                      alt=""> {{int.title}}</h5>
+                  <h5 class="card-title">{{int.title}}</h5>
 
-                  <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-industry"></i>{{int.category}} </h6>
+                  <h6 class="card-subtitle mb-2 text-muted"><i
+                      class="fas fa-industry"></i>{{int.category.geteCategory()}} </h6>
                   <p class="card-text"><i class="fas fa-calendar-alt"></i>
                     {{int.startedAt}}
                   </p>
                   <div class="d-flex justify-content-end pt-3">
-
-
                     <a routerLink="/manager/detailIntervention" [queryParams]="{id:int.id}" queryParamsHandling="merge">
-                      <button class="button-50" role="button"> Consulter</button>
+                      <button class="bn9" role="button"> <span>Consulter</span></button>
                     </a>
                   </div>
                 </div>
               </div>
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    titre intervention :modele statique</h5>
 
+                  <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-industry"></i>categorie </h6>
+                  <p class="card-text"><i class="fas fa-calendar-alt"></i>
+                    21/6/2021
+                  </p>
+                  <div class="d-flex justify-content-end pt-3">
+
+
+                    <a routerLink="/manager/detailIntervention" [queryParams]="{id:'int.id'}"
+                      queryParamsHandling="merge">
+                      <button class="bn9" role="button"> <span>Consulter</span></button>
+                    </a>
+                  </div>
+                </div>
+              </div>
 
 
             </div>
@@ -59,11 +74,10 @@
               <p class="text-center "> pas des interventions en attente en ce moment</p>
               <div *ngFor="let int of interventionList" class="card">
                 <div class="card-body">
-                  <h5 class="card-title"> <img height="70px" width="70px"
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRthZcF6C12-eMC0JrJdv4CWO40-emM4BBFlw&usqp=CAU"
-                      alt=""> {{int.title}}</h5>
+                  <h5 class="card-title">{{int.title}}</h5>
 
-                  <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-industry"></i>{{int.category}} </h6>
+                  <h6 class="card-subtitle mb-2 text-muted"><i
+                      class="fas fa-industry"></i>{{int.category.geteCategory()}} </h6>
                   <p class="card-text"><i class="fas fa-calendar-alt"></i>
                     {{int.startedAt}}
                   </p>
@@ -71,7 +85,7 @@
 
 
                     <a routerLink="/manager/detailIntervention" [queryParams]="{id:int.id}" queryParamsHandling="merge">
-                      <button class="button-50" role="button"> Consulter</button>
+                      <button class="bn9" role="button"> <span>Consulter</span></button>
                     </a>
                   </div>
                 </div>
@@ -84,64 +98,11 @@
 
           <div class="row mb-4">
 
-            <div class=" form-group col-md-9">
-              <input id="exampleFormControlInput5" type="search" placeholder="Chercher..."
-                class="form-control rounded-pill p-2" />
-            </div>
 
-            <div class="form-group  col-md-3">
-              <button class="button-54" role="button">Chercher</button>
-              <!--  <button type="submit" class="btn btn-dark rounded-pill p-2 shadow-sm">
-                <i class="fas fa-search"></i>
-              </button>-->
 
-            </div>
 
-            <fieldset class="">
-              <legend><i class=" fas fa-duotone fa-filter"></i>
-                Trier par
-              </legend>
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <label class="form-label" for="form3Example1n">Proprieté</label>
 
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Open this select menu</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                    </select>
-                  </div>
-                  <hr>
-                  <div class="form-outline">
-                    <label class="form-label" for="form3Example1n">Ordre</label>
-                    <div id="radio-buttons">
-                      <div class="radio">
-                        <input type="radio" id="radio-1" name="radioBouton" />
-                        <label for="radio-1"></label>
-                        <span>Decroissant</span>
-                      </div>
-
-                      <div class="radio">
-                        <input type="radio" id="radio-2" name="radioBouton" />
-                        <label for="radio-2"></label>
-                        <span>Croissant</span>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-                <div class="d-flex  justify-content-end">
-                  <button class="button-54" role="button">Appliquer</button>
-                </div>
-              </div>
-            </fieldset>
-
-            <div class="btn_pg text-left">
-              <button class="button-54" role="button"><i class="fas fa-arrow-left"></i> Précedant</button> <button
-                class="button-54" role="button">Suivant <i class="fas fa-arrow-right"></i></button>
-            </div>
+            <app-filtre></app-filtre>
           </div>
         </div>
       </div>

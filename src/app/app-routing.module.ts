@@ -2,10 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeCustomerComponent } from './components/customer/home-customer/home-customer.component';
 import { AddCustomersComponent } from './components/manager/add-customers/add-customers.component';
+import { AddMaterialsComponent } from './components/manager/add-materials/add-materials.component';
+import { AddTeamComponent } from './components/manager/add-team/add-team.component';
 import { CreateInterventionComponent } from './components/manager/create-intervention/create-intervention.component';
 import { DetailInterventionComponent } from './components/manager/detail-intervention/detail-intervention.component';
 import { DetailMaterialComponent } from './components/manager/detail-material/detail-material.component';
 import { DetailReclamationComponent } from './components/manager/detail-reclamation/detail-reclamation.component';
+import { DetailTeamComponent } from './components/manager/detail-team/detail-team.component';
 import { InterventionListComponent } from './components/manager/intervention-list/intervention-list.component';
 import { MaterialListComponent } from './components/manager/material-list/material-list.component';
 import { ReclamationListComponent } from './components/manager/reclamation-list/reclamation-list.component';
@@ -37,7 +40,7 @@ const routes: Routes = [
   { path: 'contact', component: ContactUSComponent },
 
   {
-    path: 'customer/reclamationList',
+    path: 'manager/reclamationList',
     component: ReclamationListComponent,
 
   },
@@ -49,6 +52,12 @@ const routes: Routes = [
     data: { role: 'ROLE_MANAGER' },*/
   },
 
+  {
+    path: 'manager/addTeam',
+    component: AddTeamComponent,
+   /* canActivate: [GuardAuthenticateGuard],
+    data: { role: 'ROLE_MANAGER' },*/
+  },
   {
     path: 'manager/interventionList',
     component: InterventionListComponent,
@@ -66,6 +75,12 @@ const routes: Routes = [
   {
     path: 'manager/materialList',
     component: MaterialListComponent,
+   /* canActivate: [GuardAuthenticateGuard],
+    data: { role: 'ROLE_MANAGER' ,},*/
+  },
+  {
+    path: 'manager/addMaterial',
+    component: AddMaterialsComponent,
    /* canActivate: [GuardAuthenticateGuard],
     data: { role: 'ROLE_MANAGER' ,},*/
   },
@@ -109,8 +124,20 @@ const routes: Routes = [
   },
 
   {
+    path: 'manager/detailTeam',
+    component: DetailTeamComponent,
+  /*canActivate: [GuardAuthenticateGuard],
+    data: { role: 'ROLE_MANAGER' },*/
+  },
+  {
     path: 'manager/teamList',
     component: TeamListComponent,
+  /*canActivate: [GuardAuthenticateGuard],
+    data: { role: 'ROLE_MANAGER' },*/
+  },
+  {
+    path: 'manager/demandList',
+    component: ReclamationListComponent,
   /*canActivate: [GuardAuthenticateGuard],
     data: { role: 'ROLE_MANAGER' },*/
   },

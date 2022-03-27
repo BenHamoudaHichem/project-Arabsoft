@@ -42,6 +42,18 @@ role:user.role
       httpOptions
     );
   }
+
+
+  getUser(id: string): Observable<IUser> {
+    return this.http
+      .get<IUser>(`${this.apiURL}/intervention/${id}`, httpOptions)
+      .pipe(
+        map((user: IUser) => {
+          return user;
+        })
+      );
+  }
+
   getName(id: number) {
     return this.http.get<User[]>(`${this.apiURL}/username/${id}`);
   }

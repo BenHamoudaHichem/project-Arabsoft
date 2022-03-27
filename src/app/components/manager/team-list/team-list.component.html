@@ -1,4 +1,4 @@
-<section class="min-h-100" >
+<section class="min-h-100">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="row">
@@ -9,8 +9,8 @@
           </div>
           <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <button class="nav-link active " id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
-                type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+              <button (click)="showAll()" class="nav-link active " id="nav-home-tab" data-bs-toggle="tab"
+                data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
 
 
 
@@ -29,27 +29,27 @@
           <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-              <div class="card">
+              <div *ngFor="let team of teamList" class="card">
                 <div class="card-body">
-                  <h5 class="card-title"> <img height="70px" width="70px"
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRthZcF6C12-eMC0JrJdv4CWO40-emM4BBFlw&usqp=CAU"
-                      alt=""> Equipe 1</h5>
+
+                  <h5>{{team.name}} </h5>
+                  <p> {{team.manager}} </p>
 
 
                   <div class="d-flex justify-content-end pt-3">
-                    <a href="/"><button class="bn30">Consulter</button></a>
+                    <a [routerLink]="['/manager/detailTeam']" [queryParams]="{id:team.id}"
+                      queryParamsHandling="merge"><button class="bn9"><span>Consulter</span></button></a>
 
                   </div>
                 </div>
               </div>
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title"> <img height="70px" width="70px"
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRthZcF6C12-eMC0JrJdv4CWO40-emM4BBFlw&usqp=CAU"
-                      alt=""> Equipe 2</h5>
+                  <h5> Equipe 1</h5>
+                  <p>nom de chef d'equipe</p>
 
                   <div class="d-flex justify-content-end">
-                    <a href="/"><button class="bn30">Consulter</button></a>
+                    <a href="/buttons/9"><button class="bn9"><span>Consulter</span></button></a>
 
                   </div>
                 </div>
@@ -66,67 +66,18 @@
           </div>
         </div>
         <div class="col-4">
-    <div class="row mb-4">
+          <div class="row mb-4">
 
-            <div class=" form-group col-md-9">
+            <!--    <div class=" form-group col-md-9">
               <input id="exampleFormControlInput5" type="search" placeholder="Chercher..."
                 class="form-control rounded-pill p-2" />
             </div>
 
             <div class="form-group  col-md-3">
               <a href="/"><button class="bn30"><i class="fa fa-search"></i></button></a>
-
-
             </div>
-
-            <fieldset class="">
-              <legend><i class=" fas fa-duotone fa-filter"></i>
-                Trier par
-              </legend>
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <label class="form-label" for="form3Example1n">Proprieté</label>
-
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Open this select menu</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                    </select>
-                  </div>
-                  <hr>
-                  <div class="form-outline">
-                    <label class="form-label" for="form3Example1n">Ordre</label>
-                    <div id="radio-buttons">
-                      <div class="radio">
-                        <input type="radio" id="radio-1" name="radioBouton" />
-                        <label for="radio-1"></label>
-                        <span>Decroissant</span>
-                      </div>
-
-                      <div class="radio">
-                        <input type="radio" id="radio-2" name="radioBouton" />
-                        <label for="radio-2"></label>
-                        <span>Croissant</span>
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-                <div class="d-flex  justify-content-end">
-                  <a href="/buttons/9"><button class="bn9"><span>Appliquer</span></button></a>
-
-                </div>
-              </div>
-            </fieldset>
-
-            <div class="btn_pg text-left">
-              <a href="/buttons/9"><button class="bn9"><span><i class="fas fa-arrow-left"></i>Appliquer</span></button></a>
-
-              <a href="/"><button class="bn9"><i class="fas fa-arrow-left"></i> </button></a>
-              <a href="/"><button class="bn9"> <i class="fas fa-arrow-right"></i></button></a>
-            </div>
+-->
+         <app-filtre></app-filtre>
           </div>
         </div>
       </div>
