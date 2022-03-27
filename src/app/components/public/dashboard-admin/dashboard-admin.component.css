@@ -34,13 +34,13 @@
 .left ul li {
   list-style-type: none;
 }
-.left ul li.active a {
+/*.left ul li.active a {
   background: black;
   color: white;
 }
 .left ul li.active a:hover {
   background: #490d49;
-}
+}*/
 .left ul li a {
   display: flex;
   align-items: center;

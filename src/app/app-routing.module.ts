@@ -21,7 +21,7 @@ import { RegisterComponent } from './components/public/register/register.compone
 import { GuardAuthenticateGuard } from './services/guard-authenticate.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+ // { path: '', component: HomeComponent },
   { path: 'admin', component: DashboardAdminComponent },
  /* { path: '', redirectTo: '/home', pathMatch: 'full' },
  { path: '**', redirectTo: '/home' },

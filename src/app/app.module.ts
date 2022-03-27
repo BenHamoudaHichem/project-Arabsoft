@@ -34,6 +34,7 @@ import { AddCustomersComponent } from './components/manager/add-customers/add-cu
 import { UpdateInterventionComponent } from './components/manager/update-intervention/update-intervention.component';
 import { GuardAuthenticateGuard } from './services/guard-authenticate.guard';
 import { DetailMaterialComponent } from './components/manager/detail-material/detail-material.component';
+import { DetailTeamComponent } from './components/manager/detail-team/detail-team.component';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { DetailMaterialComponent } from './components/manager/detail-material/de
     AddCustomersComponent,
     UpdateInterventionComponent,
     DetailMaterialComponent,
+    DetailTeamComponent,
   ],
   imports: [
     BrowserModule,

@@ -2,10 +2,10 @@
   <div class="left">
     <ul>
       <li class="menu-heading">Dashboards</li>
-      <li><a data-toggle="tab" href="#overview"><i class="fa fa-home fa-lg"></i> Profil</a></li>
-      <li><a data-toggle="tab" href="#performance"><i class="fa fa-users"></i> Equipe</a></li>
-      <li><a data-toggle="tab" href="#analytics"><i class="fa fa-building"></i> Intervention</a></li>
-      <li><a data-toggle="tab" href="#landing"><i class="fa fa-rocket fa-lg"></i> Clients</a></li>
+      <li><a data-toggle="tab " [routerLink]="['/customer/home']"><i class="fa fa-home fa-lg"></i> Profil</a></li>
+      <li><a data-toggle="tab" [routerLink]="['/manager/teamList']" ><i class="fa fa-users"></i> Teams</a></li>
+      <li><a data-toggle="tab" [routerLink]="['/manager/interventionList']"><i class="fa fa-building"></i> Interventions</a></li>
+      <li><a data-toggle="tab" [routerLink]="['/manager/materialList']"><i class="fa fa-rocket fa-lg"></i> Materials</a></li>
       <li><a data-toggle="tab" href="#projects"><i class="fa fa-table fa-lg"></i>Calendrier </a></li>
       <li class="menu-heading">Pages</li>
       <li class="active"><a data-toggle="tab" href="#user-profile"><i class="fa fa-street-view fa-lg"></i> User Profile</a></li>
@@ -50,16 +50,13 @@
               </div>
             </li>
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-sm-2" type="text" placeholder="Search">
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-          </form>
+    
         </div>
       </div>
     </nav>
     <div class="row">
       <div class="col-sm-6">
-        <div class="card">
+    <!--    <div class="card">
           <div class="card-body">
             <h5 class="card-title">Special title treatment</h5>
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
@@ -74,9 +71,11 @@
             <h5 class="card-title">Special title treatment</h5>
             <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
             <a href="#" class="btn btn-primary">Go somewhere</a>
+
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
+ <router-outlet></router-outlet>
   </div>
 </div>
