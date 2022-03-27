@@ -1,14 +1,16 @@
 /* Custom scrollbar */
 .main ::-webkit-scrollbar {
-  width: 5px;
+  width: 10px;
 }
 .main ::-webkit-scrollbar-track {
   border-radius: 10px;
 }
 .main ::-webkit-scrollbar-thumb {
+  background: #3d3838;
   border-radius: 10px;
 }
 .main ::-webkit-scrollbar-thumb:hover {
+  background: #9fa0a1;
 }
 /* Left Menu */
 .left {
@@ -17,7 +19,7 @@
 
   /*overflow-x: hidden;*/
   overflow-x: auto;
-  overflow-y: auto;
+  overflow-y: scroll;
   background-image: linear-gradient(to bottom, #9182c4, #d8aed3, #ebd9dd);
   position: fixed;
   transition: all 0.5s;

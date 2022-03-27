@@ -30,12 +30,12 @@ import { SelectManagerComponent } from './components/manager/select-manager/sele
 import { DashboardAdminComponent } from './components/public/dashboard-admin/dashboard-admin.component';
 import { CookieService } from 'ngx-cookie-service';
 import { HomeCustomerComponent } from './components/customer/home-customer/home-customer.component';
-import { AddCustomersComponent } from './components/manager/add-customers/add-customers.component';
 import { UpdateInterventionComponent } from './components/manager/update-intervention/update-intervention.component';
 import { GuardAuthenticateGuard } from './services/guard-authenticate.guard';
 import { DetailMaterialComponent } from './components/manager/detail-material/detail-material.component';
 import { DetailTeamComponent } from './components/manager/detail-team/detail-team.component';
 import { FiltreComponent } from './components/public/filtre/filtre.component';
+import { SubscribeMembreComponent } from './components/manager/subscribe-membre/subscribe-membre.component';
 
 
 @NgModule({
@@ -63,11 +63,12 @@ import { FiltreComponent } from './components/public/filtre/filtre.component';
     SelectManagerComponent,
     DashboardAdminComponent,
     HomeCustomerComponent,
-    AddCustomersComponent,
+
     UpdateInterventionComponent,
     DetailMaterialComponent,
     DetailTeamComponent,
     FiltreComponent,
+    SubscribeMembreComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,20 +1,19 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
-import { Location } from 'src/app/models/Location';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
 import { Confirmed } from 'src/app/services/validation/Confirmed';
-
+import { Location } from 'src/app/models/Location';
 @Component({
-  selector: 'app-add-customers',
-  templateUrl: './add-customers.component.html',
-  styleUrls: ['./add-customers.component.css']
+  selector: 'app-subscribe-membre',
+  templateUrl: './subscribe-membre.component.html',
+  styleUrls: ['./subscribe-membre.component.css']
 })
-export class AddCustomersComponent implements OnInit {
+export class SubscribeMembreComponent implements OnInit {
 
   addCustomerForm!: FormGroup;
 
@@ -127,4 +126,5 @@ export class AddCustomersComponent implements OnInit {
   get confirm_password() {
     return this.addCustomerForm.get('confirm_password');
   }
+
 }

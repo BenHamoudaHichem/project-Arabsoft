@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeCustomerComponent } from './components/customer/home-customer/home-customer.component';
-import { AddCustomersComponent } from './components/manager/add-customers/add-customers.component';
+import { AddFileMaterialsComponent } from './components/manager/add-file-materials/add-file-materials.component';
+import { AddFileMembersComponent } from './components/manager/add-file-members/add-file-members.component';
 import { AddMaterialsComponent } from './components/manager/add-materials/add-materials.component';
 import { AddTeamComponent } from './components/manager/add-team/add-team.component';
 import { CreateInterventionComponent } from './components/manager/create-intervention/create-intervention.component';
@@ -13,6 +14,7 @@ import { InterventionListComponent } from './components/manager/intervention-lis
 import { MaterialListComponent } from './components/manager/material-list/material-list.component';
 import { ReclamationListComponent } from './components/manager/reclamation-list/reclamation-list.component';
 import { SelectManagerComponent } from './components/manager/select-manager/select-manager.component';
+import { SubscribeMembreComponent } from './components/manager/subscribe-membre/subscribe-membre.component';
 import { TeamListComponent } from './components/manager/team-list/team-list.component';
 import { UpdateInterventionComponent } from './components/manager/update-intervention/update-intervention.component';
 import { AboutUsComponent } from './components/public/about-us/about-us.component';
@@ -44,13 +46,12 @@ const routes: Routes = [
     component: ReclamationListComponent,
 
   },
-
   {
-    path: 'manager/subscribeEmployee',
-    component: AddCustomersComponent,
-   /* canActivate: [GuardAuthenticateGuard],
-    data: { role: 'ROLE_MANAGER' },*/
+    path: 'manager/subscribeMembre',
+    component: SubscribeMembreComponent,
+
   },
+
 
   {
     path: 'manager/addTeam',
@@ -138,6 +139,19 @@ const routes: Routes = [
   {
     path: 'manager/demandList',
     component: ReclamationListComponent,
+  /*canActivate: [GuardAuthenticateGuard],
+    data: { role: 'ROLE_MANAGER' },*/
+  },
+  {
+    path: 'manager/fileMembersUpload',
+    component: AddFileMembersComponent,
+  /*canActivate: [GuardAuthenticateGuard],
+    data: { role: 'ROLE_MANAGER' },*/
+  },
+
+  {
+    path: 'manager/fileMaterialsUpload',
+    component: AddFileMaterialsComponent,
   /*canActivate: [GuardAuthenticateGuard],
     data: { role: 'ROLE_MANAGER' },*/
   },
