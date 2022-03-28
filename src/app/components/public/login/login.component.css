@@ -59,3 +59,30 @@ button
 {
  margin-right: 30%;
 }
+/*******************************************************************/
+
+button:hover::after {
+  animation-name: rotatecw;
+  animation-duration: 2s;
+}
+button:hover::before {
+  animation-name: rotateccw;
+  animation-duration: 3s;
+}
+button:hover::after, .btn-two:hover::before {
+  left: 96px;
+  width: 64px;
+
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes rotatecw {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+@keyframes rotateccw {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(-360deg);}
+}

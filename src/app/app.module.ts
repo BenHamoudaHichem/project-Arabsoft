@@ -36,6 +36,7 @@ import { DetailMaterialComponent } from './components/manager/detail-material/de
 import { DetailTeamComponent } from './components/manager/detail-team/detail-team.component';
 import { FiltreComponent } from './components/public/filtre/filtre.component';
 import { SubscribeMembreComponent } from './components/manager/subscribe-membre/subscribe-membre.component';
+import { NotFoundComponent } from './components/public/not-found/not-found.component';
 
 
 @NgModule({
@@ -69,6 +70,7 @@ import { SubscribeMembreComponent } from './components/manager/subscribe-membre/
     DetailTeamComponent,
     FiltreComponent,
     SubscribeMembreComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

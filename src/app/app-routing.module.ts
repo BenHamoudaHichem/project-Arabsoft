@@ -22,15 +22,17 @@ import { ContactUSComponent } from './components/public/contact-us/contact-us.co
 import { DashboardAdminComponent } from './components/public/dashboard-admin/dashboard-admin.component';
 import { HomeComponent } from './components/public/home/home.component';
 import { LoginComponent } from './components/public/login/login.component';
+import { NotFoundComponent } from './components/public/not-found/not-found.component';
 import { RegisterComponent } from './components/public/register/register.component';
 import { GuardAuthenticateGuard } from './services/guard-authenticate.guard';
 
 const routes: Routes = [
- // { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
+
+
   { path: 'admin', component: DashboardAdminComponent },
- /* { path: '', redirectTo: '/home', pathMatch: 'full' },
- { path: '**', redirectTo: '/home' },
-  { path: 'home', component: HomeComponent },*/
+
+  { path: 'not-found', component: NotFoundComponent },
 
 
   { path: 'login', component: LoginComponent },
@@ -155,6 +157,9 @@ const routes: Routes = [
   /*canActivate: [GuardAuthenticateGuard],
     data: { role: 'ROLE_MANAGER' },*/
   },
+  { path: '**', redirectTo: '/not-found', pathMatch: 'full' },
+  { path: '', redirectTo: '/not-found', pathMatch: 'full' },
+
 ];
 
 @NgModule({
