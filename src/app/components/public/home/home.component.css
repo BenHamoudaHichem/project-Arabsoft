@@ -2,11 +2,13 @@
   main{
 /*    background: -webkit-linear-gradient(to left, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
    /* background: linear-gradient(to left, #2C5364, #203A43, #0F2027);*/
-   background-color: #f9c5d1;
-background-image: linear-gradient(315deg, #f9c5d1 0%, #9795ef 74%);
-   height:100%;
+
+background-color: #813867;
+background-image: linear-gradient(315deg, #813867 0%, #ebebeb 74%);
+height:100%;
     width:100%;
     }
+
     ul{
       display:block;
       width:100%;
@@ -21,7 +23,7 @@ background-image: linear-gradient(315deg, #f9c5d1 0%, #9795ef 74%);
       left:10%;
       height:30px;
       width:30px;
-      background:rgba(255,255,255,.2);
+      background:rgba(53, 49, 49, 0.87);
     }
     li:nth-child(2)
     {
@@ -29,7 +31,7 @@ background-image: linear-gradient(315deg, #f9c5d1 0%, #9795ef 74%);
       left:30%;
       height:45px;
       width:45px;
-      background:rgba(255,255,255,.2);
+      background:rgba(53, 49, 49, 0.87);
     }
     li:nth-child(3)
     {
@@ -37,7 +39,7 @@ background-image: linear-gradient(315deg, #f9c5d1 0%, #9795ef 74%);
       left:50%;
       height:70px;
       width:70px;
-      background:rgba(255,255,255,.2);
+      background:rgba(53, 49, 49, 0.87);
     }
     li:nth-child(4)
     {
@@ -45,7 +47,7 @@ background-image: linear-gradient(315deg, #f9c5d1 0%, #9795ef 74%);
       left:80%;
       height:20px;
       width:20px;
-      background:rgba(255,255,255,.2);
+      background:rgba(53, 49, 49, 0.87);
     }
     li{
       animation:animate 15s linear 1s infinite;
@@ -73,7 +75,8 @@ background-image: linear-gradient(315deg, #f9c5d1 0%, #9795ef 74%);
 .categoryWrapper{
   height: 310px;
   width: 100%;
-  background: url("http://ohlookawebsite.com/bathroomtestfull.jpg") no-repeat center center;
+
+ /* background: url("http://ohlookawebsite.com/bathroomtestfull.jpg") no-repeat center center;*/
   display: flex;
   justify-content: center;
   align-items: center;
@@ -102,7 +105,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a29ca9', end
 }
 
 .categoryWrapper h1{
-  color:white;
+  color:rgba(53, 49, 49, 0.87);
   font-size: 50px;
   letter-spacing: 2px;
   -webkit-transition: all 0.15s ease 0s;
