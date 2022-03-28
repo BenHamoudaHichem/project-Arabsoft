@@ -250,3 +250,5 @@ p {
 h5 {
   font-style: italic;
 }
+.card{
+  border-left: 15px solid rgb(223, 182, 226);}
