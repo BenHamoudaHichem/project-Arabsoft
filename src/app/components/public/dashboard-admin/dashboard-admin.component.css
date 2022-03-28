@@ -30,6 +30,9 @@
 .left:hover ul li.menu-heading {
   opacity: 1;
 }
+.LinkActive{
+  color: whitesmoke;
+}
 .left ul {
   padding-left: 0;
 }

@@ -19,10 +19,8 @@ font-family: "Poppins", sans-serif;
   top: 20px;
 }
 fieldset {
-
-  border: 2px solid #ccc;
+  border: 0;
 }
-
 input,select,textarea{  margin: 10px 0px;
   width: 70%;
 

@@ -3,6 +3,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
+import { Notify, Report } from 'notiflix';
+import { Address } from 'src/app/models/Address';
 import { Location } from 'src/app/models/Location';
 
 import { Material } from 'src/app/models/resources/Material';
@@ -15,9 +17,6 @@ import { EquipmentService } from 'src/app/services/resources/material/material.s
 })
 export class AddMaterialsComponent implements OnInit {
   formAddMaterials!: FormGroup;
-  lat!: number;
-  long!: number;
-  zoom!: number;
 
   constructor(
     private mapsAPILoader: MapsAPILoader,
@@ -34,53 +33,55 @@ export class AddMaterialsComponent implements OnInit {
         '',
         [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
       ],
-      latitude: ['', [Validators.required]],
-      longitude: ['', [Validators.required]],
+      state: [
+        '',
+        [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+      ],
+      city: [
+        '',
+        [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+      ],
+      street: [
+        '',
+        [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+      ],
+      country: [
+        '',
+        [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+      ],
+      zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{8}$')]],
+    
     });
   }
 
-  ngOnInit() {
-    //Load map
-    this.mapsAPILoader.load().then(() => {
-      this.setCurrentLocation();
-    });
-  }
-
-  // Get Current Location Coordinates
-  private setCurrentLocation() {
-    if ('geolocation' in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.lat = position.coords.latitude;
-        this.long = position.coords.longitude;
-        this.zoom = 8;
-      });
-    }
-  }
+  ngOnInit() {}
 
   addMaterial() {
-    let location = new Location(this.latitude?.value, this.longitude?.value);
+    let address = new Address(
+      this.zipCode?.value,
+      this.street?.value,
+      this.city?.value,
+      this.state?.value,
+      this.counrty?.value,
+      new Location(1, 1)
+    );
     //  console.log(location)
     let material = new Material(
-    String(this.name?.value),
-    String(this.description?.value),
-      location,
+      String(this.name?.value),
+      String(this.description?.value),
+      address,
       this.dateOfPurshase?.value,
       String(this.status?.value)
     );
     console.log(material);
     this.materialService.create(material).subscribe((data) => {
+      console.log(data);
+      Notify.success('Materiel est ajouté avec succès');
       this.router.navigate(['manager/materialList']);
     }),
       (error: HttpErrorResponse) => {
-        alert(error.message);
+        Report.warning('Erreur', error.message, 'OK');
       };
-  }
-
-  /*---- maker drag-----*/
-  markerDragEnd($event: google.maps.MouseEvent) {
-    console.log($event);
-    this.lat = $event.latLng.lat();
-    this.long = $event.latLng.lng();
   }
 
   get name() {
@@ -95,30 +96,19 @@ export class AddMaterialsComponent implements OnInit {
   get description() {
     return this.formAddMaterials.get('description');
   }
-  get latitude() {
-    return this.formAddMaterials.get('latitude');
+  get city() {
+    return this.formAddMaterials.get('city');
   }
-  get longitude() {
-    return this.formAddMaterials.get('longitude');
+  get state() {
+    return this.formAddMaterials.get('state');
   }
-
-  /*
-// Method for Geocod reverse
-
-  getReverseGeocodingData(lat: number, lng: number) {
-    var latlng = new google.maps.LatLng(lat, lng);
-    // This is making the Geocode request
-    var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ location: latlng }, (results, status) => {
-      if (status !== google.maps.GeocoderStatus.OK) {
-        alert(status);
-      }
-      // This is checking to see if the Geoeode Status is OK before proceeding
-      if (status == google.maps.GeocoderStatus.OK) {
-        console.log(results);
-        var address = results[0].formatted_address;
-      }
-    });
+  get street() {
+    return this.formAddMaterials.get('street');
   }
-*/
+  get counrty() {
+    return this.formAddMaterials.get('country');
+  }
+  get zipCode() {
+    return this.formAddMaterials.get('zipCode');
+  }
 }

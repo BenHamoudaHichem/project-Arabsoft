@@ -23,7 +23,7 @@ fieldset {
 }
 
 input,textarea{  margin: 10px 0px;
-  width: 70%;
+  width: 100%;
 
   outline: none;
   padding: 10px 5px;
@@ -125,3 +125,6 @@ margin-left: 10px;
 .accordion{
   width: 70%;
 }
+
+
+

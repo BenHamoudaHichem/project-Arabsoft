@@ -34,6 +34,26 @@ role:user.role
       })
     );
   }))}
+
+
+  allByRole(): Observable<IUser[]> {
+    return this.http.get<IUser[]>(`${this.apiURL}/users?role=ROLE_MANAGER`).pipe(
+      map((users: IUser[]) => {
+        return users.map((user) => ({
+          id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          identifier: user.identifier,
+          password: user.password,
+          address: user.address,
+          tel: user.tel,
+role:user.role
+      })
+    );
+  }))}
+
+
+
   create(user: User) {
     console.log( JSON.stringify(user))
     return this.http.post(

@@ -1,11 +1,12 @@
-import { Location } from '../Location';
+import { Address } from '../Address';
+
 
 export class Material {
   constructor(
 
     private name: string,
     private description: string,
-    private location: Location,
+    private address: Address,
     private dateOfPurshase: Date,
     private status: string
   ) {}
@@ -25,11 +26,11 @@ export class Material {
     this.description = value;
   }
 
-  public getLocation(): Location {
-    return this.location;
+  public getaddress(): Address {
+    return this.address;
   }
-  public setLocation(value: Location): void {
-    this.location = value;
+  public setaddress(value: Address): void {
+    this.address = value;
   }
 
   public getDateOfPurshase(): Date {

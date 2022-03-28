@@ -79,28 +79,91 @@
               </div>
               <div class="col-xl-6">
                 <div class="card-body p-md-5 text-black">
-                  <div class="form-outline">
 
-                    <!--Map graggable-->
 
-                    <agm-map [latitude]="lat" [longitude]="long" [zoom]="zoom" [clickableIcons]="true">
-                      <agm-marker id="id" [latitude]="lat" [longitude]="long" [markerDraggable]="true"
-                        (dragEnd)="markerDragEnd($event)">
-                      </agm-marker>
+                  <fieldset>
+                    <legend>
+                     Localisation
+                    </legend>
+                    <div class="row">
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="pays">Pays</label>
+                          <input type="text" formControlName="country" placeholder="Pays"
+                            class="form-control form-control-lg" />
+                          <!--Country errors-->
+                          <p class="ErrorMsg" *ngIf="!street?.valid && (street?.dirty ||street?.touched)">
+                            ce champ est obligatoire
+                          </p>
 
-                    </agm-map>
-                    <!------------->
+                          <!------------>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="city">Ville</label>
 
-                    <label class="form-label" for="">Latitude</label>
+                          <input type="text" formControlName="city" placeholder="Ville"
+                            class="form-control form-control-lg" />
 
-                    <input type="number" formControlName="latitude" [value]="lat"
-                      class="form-control form-control-lg" /><label class="form-label" for="">Longitude</label>
+                          <!--Ville errors-->
+                          <p class="ErrorMsg" *ngIf="!city?.valid && (city?.dirty ||city?.touched)">
+                            ce champ est obligatoire
+                          </p>
 
-                    <input [value]="long" formControlName="longitude" type="number"
-                      class="form-control form-control-lg" />
-                  </div>
+                          <!------------>
+                        </div>
+
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="code postal">Code postal</label>
+
+                          <input type="text" formControlName="zipCode" placeholder="code postal"
+                            class="form-control form-control-lg" />
+
+                          <!--Zip code errors-->
+                          <p class="ErrorMsg" *ngIf="!zipCode?.valid && (zipCode?.dirty ||zipCode?.touched)">
+                            ce champ est obligatoire
+                          </p>
+
+                          <!------------>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="state">Gouvernorat</label>
+
+                          <input type="text" formControlName="state" placeholder="Gouvernorat"
+                            class="form-control form-control-lg" />
+
+                          <!--Zip code errors-->
+                          <p class="ErrorMsg" *ngIf="!state?.valid && (state?.dirty ||state?.touched)">
+                            ce champ est obligatoire
+                          </p>
+
+                          <!------------>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="Rue">Rue</label>
+                          <input type="text" formControlName="street" placeholder="Rue"
+                            class="form-control form-control-lg" />
+                          <!--Street errors-->
+                          <p class="ErrorMsg" *ngIf="!street?.valid && (street?.dirty ||street?.touched)">
+                            ce champ est obligatoire
+                          </p>
+
+                          <!------------>
+                        </div>
+                      </div>
+
+                    </div>
+                  </fieldset>
+
                   <div class="d-flex justify-content-end pt-3">
-                      <button class="bn632-hover bn24"type="submit" role="button" [disabled]="!formAddMaterials.invalid">Ajouter</button>
+                      <button class="bn632-hover bn24"type="submit" role="button" [disabled]="!formAddMaterials.valid">Ajouter</button>
                   </div>
                 </div>
               </div>

@@ -27,7 +27,7 @@ export class EquipmentService {
           name: equipment.name,
           description: equipment.description,
           dateOfPurshase: equipment.dateOfPurshase,
-          location: equipment.location,
+          address: equipment.address,
           status: equipment.status,
         }));
       })
@@ -43,7 +43,23 @@ export class EquipmentService {
             name: equipment.name,
             description: equipment.description,
             dateOfPurshase: equipment.dateOfPurshase,
-            location: equipment.location,
+            address: equipment.address,
+            status: equipment.status,
+          }));
+        })
+      );
+  }
+  materialStatusOn(): Observable<IMaterial[]> {
+    return this.http
+      .get<IMaterial[]>(`${this.apiURL}/materials?status=DISPONIBLE`)
+      .pipe(
+        map((equipment: IMaterial[]) => {
+          return equipment.map((equipment) => ({
+            id: equipment.id,
+            name: equipment.name,
+            description: equipment.description,
+            dateOfPurshase: equipment.dateOfPurshase,
+            address: equipment.address,
             status: equipment.status,
           }));
         })

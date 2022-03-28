@@ -2,18 +2,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 * {
-
-font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 /***________  multiple select CUSTUM CSS________****/
 
 .container .multiselect-dropdown .dropdown-btn {
+  cursor: pointer !important;
 
-  cursor: pointer!important;
-
-
-  border-radius: 4px!important;
+  border-radius: 4px !important;
   margin: 10px 0px;
   width: 50%;
 
@@ -24,11 +21,13 @@ font-family: "Poppins", sans-serif;
 
 /***________   message validation ________****/
 
-.ErrorMsg{
+.ErrorMsg {
   font-size: small;
   color: red;
 }
-a{text-decoration: none;}
+a {
+  text-decoration: none;
+}
 /*_________________________CSS Bottom______________________________*/
 .bn632-hover {
   width: 160px;
@@ -50,10 +49,10 @@ a{text-decoration: none;}
 
 .bn632-hover:hover {
   background-position: 100% 0;
-  moz-transition: all .4s ease-in-out;
-  -o-transition: all .4s ease-in-out;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .bn632-hover:focus {
@@ -62,12 +61,12 @@ a{text-decoration: none;}
 
 .bn632-hover.bn24 {
   background-image: linear-gradient(
-      to right,
-      #6253e1,
-      #852d91,
-      #a3a1ff,
-      #f24645
-    );
+    to right,
+    #6253e1,
+    #852d91,
+    #a3a1ff,
+    #f24645
+  );
   box-shadow: 0 4px 15px 0 rgba(126, 52, 161, 0.75);
 }
 
@@ -81,22 +80,22 @@ btn green*/
   cursor: pointer;
   margin: 20px;
   height: 55px;
-  text-align:center;
+  text-align: center;
   border: none;
   background-size: 300% 100%;
   border-radius: 50px;
-  moz-transition: all .4s ease-in-out;
-  -o-transition: all .4s ease-in-out;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .bn632-hover:hover {
   background-position: 100% 0;
-  moz-transition: all .4s ease-in-out;
-  -o-transition: all .4s ease-in-out;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .bn632-hover:focus {
@@ -123,22 +122,22 @@ btn red*/
   cursor: pointer;
   margin: 20px;
   height: 55px;
-  text-align:center;
+  text-align: center;
   border: none;
   background-size: 300% 100%;
   border-radius: 50px;
-  moz-transition: all .4s ease-in-out;
-  -o-transition: all .4s ease-in-out;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .bn632-hover:hover {
   background-position: 100% 0;
-  moz-transition: all .4s ease-in-out;
-  -o-transition: all .4s ease-in-out;
-  -webkit-transition: all .4s ease-in-out;
-  transition: all .4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .bn632-hover:focus {
@@ -204,8 +203,6 @@ btn red*/
 /*
 ___________________________________________________*/
 
-
-
 .bn9 {
   padding: 2px;
   outline: 0;
@@ -247,7 +244,9 @@ ___________________________________________________*/
   background: #ffffff;
   border-radius: 30px;
 }
-p{text-align: justify;}
-h5{
+p {
+  text-align: justify;
+}
+h5 {
   font-style: italic;
 }

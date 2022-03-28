@@ -1,11 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Address } from 'src/app/models/Address';
 import { User } from 'src/app/models/user';
@@ -37,17 +32,29 @@ export class RegisterComponent implements OnInit {
           [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
         ],
         tel: ['', [Validators.required, , Validators.pattern('^[0-9]{8}$')]],
-        identifier: ['', [Validators.required,Validators.minLength(8)]],
+        identifier: ['', [Validators.required, Validators.minLength(8)]],
         password: [
           '',
           [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{8,}$')],
         ],
         confirm_password: ['', [Validators.required]],
-        state: ['', Validators.required],
-        city: ['', Validators.required],
-        street: ['', Validators.required],
-        country: ['', Validators.required],
-        zipCode: ['', Validators.required],
+        state: [
+          '',
+          [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+        ],
+        city: [
+          '',
+          [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+        ],
+        street: [
+          '',
+          [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+        ],
+        country: [
+          '',
+          [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+        ],
+        zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{8}$')]],
       },
       {
         Validators: Confirmed.ConfirmedValidator(
@@ -81,15 +88,11 @@ export class RegisterComponent implements OnInit {
     );
     console.log(user);
     this.userService.create(user).subscribe((res: any) => {
-      Report.success(
-        "Notification d'inscription",res.message,"D'accord"
-        );
+      Report.success("Notification d'inscription", res.message, "D'accord");
       this.router.navigateByUrl('/login');
     }),
       (error: HttpErrorResponse) => {
-        Report.warning(
-          "Notification d'inscription",error.message,"D'accord"
-          );
+        Report.warning("Notification d'inscription", error.message, "D'accord");
       };
   }
   get state() {

@@ -157,8 +157,8 @@ const routes: Routes = [
   /*canActivate: [GuardAuthenticateGuard],
     data: { role: 'ROLE_MANAGER' },*/
   },
-  { path: '**', redirectTo: '/not-found', pathMatch: 'full' },
-  { path: '', redirectTo: '/not-found', pathMatch: 'full' },
+ /* { path: '**', redirectTo: '/not-found', pathMatch: 'full' },
+  { path: '', redirectTo: '/not-found', pathMatch: 'full' },*/
 
 ];
 

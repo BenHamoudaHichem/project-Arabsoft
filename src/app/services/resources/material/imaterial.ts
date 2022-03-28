@@ -1,8 +1,10 @@
+import { Address } from "src/app/models/Address";
+
 export interface IMaterial {
   id: string;
   name: string;
   description: string;
-  location: Location;
+  address: Address;
   dateOfPurshase: Date;
   status: string;
 }

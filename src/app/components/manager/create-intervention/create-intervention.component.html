@@ -1,4 +1,4 @@
-<section class="h-100" >
+<section class="h-100">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col">
@@ -60,8 +60,8 @@
                   <div class="form-outline">
                     <label class="form-label">Categorie</label>
 
-                    <select formControlName="category" class="form-select" aria-label="Default select example">
-                      <option value="1">categorie1</option>
+                    <select formControlName="category" class="form-select">
+                      <option *ngFor="let item of categoryList" [value]="item.eCategory">{{item.eCategory}}</option>
                     </select>
                     <!--Error category-->
                     <p *ngIf="(category?.touched|| category?.dirty ) && !category?.valid" class="ErrorMsg"> Ce champ est
@@ -70,7 +70,7 @@
                   <div class="form-outline">
                     <label class="form-label">Equipe</label>
                     <select formControlName="team" class="form-select" aria-label="Default select example">
-                      <option value="1">One</option>
+                      <option *ngFor="let item of teamList" [value]="item.id"> {{item.name}} </option>
                     </select>
                     <!--Error team-->
                     <p *ngIf="(team?.touched|| team?.dirty ) && !team?.valid" class="ErrorMsg"> Ce champ est
@@ -81,7 +81,7 @@
                     <label class="form-label"> Materiels</label>
 
                     <ng-multiselect-dropdown formControlName="Materiel" [placeholder]="'Selectionner materiels'"
-                      [settings]="dropdownSettings" [data]="dropdownList" (onSelect)="onItemSelect($event)"
+                      [settings]="dropdownSettings" [data]="materialsList" (onSelect)="onItemSelect($event)"
                       (onSelectAll)="onSelectAll($event)" class=" form-control-lg">
                     </ng-multiselect-dropdown>
                     <p *ngIf="(Materiel?.touched|| Materiel?.dirty ) && !Materiel?.valid" class="ErrorMsg"> Ce champ est
