@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CustomerProfilComponent } from './components/customer/customer-profil/customer-profil.component';
+import { EditProfilComponent } from './components/customer/edit-profil/edit-profil.component';
 import { HomeCustomerComponent } from './components/customer/home-customer/home-customer.component';
 import { AddFileMaterialsComponent } from './components/manager/add-file-materials/add-file-materials.component';
 import { AddFileMembersComponent } from './components/manager/add-file-members/add-file-members.component';
@@ -68,6 +70,18 @@ const routes: Routes = [
     data: { role: 'ROLE_MANAGER' },*/
   },
 
+  {
+    path: 'customer/customerProfil',
+    component: CustomerProfilComponent,
+   /* canActivate: [GuardAuthenticateGuard],
+    data: { role: 'ROLE_USER' ,},*/
+  },
+  {
+    path: 'customer/editProfil',
+    component: EditProfilComponent,
+   /* canActivate: [GuardAuthenticateGuard],
+    data: { role: 'ROLE_USER' ,},*/
+  },
   {
     path: 'customer/home',
     component: HomeCustomerComponent,
@@ -157,8 +171,8 @@ const routes: Routes = [
   /*canActivate: [GuardAuthenticateGuard],
     data: { role: 'ROLE_MANAGER' },*/
   },
- /* { path: '**', redirectTo: '/not-found', pathMatch: 'full' },
-  { path: '', redirectTo: '/not-found', pathMatch: 'full' },*/
+{ path: '**', redirectTo: '/not-found', pathMatch: 'full' },
+  { path: '', redirectTo: '/not-found', pathMatch: 'full' },
 
 ];
 

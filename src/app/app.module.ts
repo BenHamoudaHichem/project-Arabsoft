@@ -37,6 +37,8 @@ import { DetailTeamComponent } from './components/manager/detail-team/detail-tea
 import { FiltreComponent } from './components/public/filtre/filtre.component';
 import { SubscribeMembreComponent } from './components/manager/subscribe-membre/subscribe-membre.component';
 import { NotFoundComponent } from './components/public/not-found/not-found.component';
+import { CustomerProfilComponent } from './components/customer/customer-profil/customer-profil.component';
+import { EditProfilComponent } from './components/customer/edit-profil/edit-profil.component';
 
 
 @NgModule({
@@ -71,6 +73,8 @@ import { NotFoundComponent } from './components/public/not-found/not-found.compo
     FiltreComponent,
     SubscribeMembreComponent,
     NotFoundComponent,
+    CustomerProfilComponent,
+    EditProfilComponent,
   ],
   imports: [
     BrowserModule,

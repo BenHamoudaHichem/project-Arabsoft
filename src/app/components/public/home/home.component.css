@@ -1,8 +1,10 @@
 
   main{
-    background: -webkit-linear-gradient(to left, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to left, #2C5364, #203A43, #0F2027);
-    height:100%;
+/*    background: -webkit-linear-gradient(to left, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+   /* background: linear-gradient(to left, #2C5364, #203A43, #0F2027);*/
+   background-color: #f9c5d1;
+background-image: linear-gradient(315deg, #f9c5d1 0%, #9795ef 74%);
+   height:100%;
     width:100%;
     }
     ul{

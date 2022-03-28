@@ -1,0 +1,238 @@
+<section class="min-h-100" >
+<br><br>
+<div class="container">
+  <div class="main-body">
+    <!-- /Breadcrumb -->
+
+    <div class="row gutters-sm">
+      <div class="col-md-4 mb-3">
+        <div class="card " style=" background-image: linear-gradient(to left,#cd97c7 , #ddbad9, #eedcec );">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle"
+                width="150" />
+              <div class="mt-3">
+                <h4>BEN HAMMOUDA HICHEM</h4>
+                <p class="text-secondary mb-1"></p>
+                <p class="text-muted text-info font-size-sm">
+                  hichembenhamouda11@gmail.com
+                </p>
+                <button class="bn9"><span>changer photo</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card  mt-3 bg-light">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+              <h6 class="mb-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-globe mr-2 icon-inline">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                  </path>
+                </svg>Website
+              </h6>
+              <span class="text-secondary">https://bootdey.com</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+              <h6 class="mb-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-facebook mr-2 icon-inline text-primary">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>Facebook
+              </h6>
+              <span class="text-secondary">bootdey</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <div class="card-body">
+            <form class="form" [formGroup]="updateForm" (ngSubmit)="Update()">
+              <div class="logo">
+                <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px"
+                    style="text-align: center;" /></span>
+                <span class="mb-5 text-uppercase">Editer votre profil</span>
+              </div>
+
+              <div class="form-outline">
+                <label class="form-label" for="firstName">Nom</label>
+                <div class="relative">
+                  <input type="text" formControlName="firstName" data-rule="required"
+                    class="form-control form-control-lg" />
+                  <i class="fa fa-user"></i>
+                </div>
+              </div>
+              <div class="form-outline">
+                <label class="form-label" for="Prénom">Prénom</label>
+
+                <div class="relative">
+                  <input type="text" formControlName="lastNamme" class="form-control form-control-lg" />
+                  <i class="fa fa-user"></i>
+                </div>
+              </div>
+              <div class="form-outline">
+                <label class="form-label" for="cin">Numéro de télèphone</label>
+                <div class="relative">
+                  <input type="number" formControlName="tel" class="form-control form-control-lg" />
+                  <i class="fa fa-phone"></i>
+                </div>
+              </div>
+              <div class="form-outline">
+                <label class="form-label" for="email">Email</label>
+                <div class="relative">
+                  <input type="email" formControlName="identifier" class="form-control form-control-lg" />
+                  <i class="fa fa-envelope"></i>
+                </div>
+              </div>
+              <div class="form-outline">
+                <fieldset>
+                  <legend>Adresse</legend>
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="pays">Pays</label>
+                        <div class="relative">
+                          <input type="text" formControlName="country" class="form-control form-control-lg" />
+                          <i class="fa fa-css3"></i>
+                        </div>
+                        <!--Country error-->
+                        <p class="ErrorMsg" *ngIf="
+                            !street?.valid && (street?.dirty || street?.touched)
+                          ">
+                          ce champ est obligatoire
+                        </p>
+
+                        <!------------>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="city">Ville</label>
+
+                        <div class="relative">
+                          <input type="text" formControlName="city" class="form-control form-control-lg" />
+                          <i class="fa fa-css3"></i>
+                        </div>
+
+                        <!--Ville errors-->
+                        <p class="ErrorMsg" *ngIf="!city?.valid && (city?.dirty || city?.touched)">
+                          ce champ est obligatoire
+                        </p>
+                        <!------------>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="code postal">Code postal</label>
+
+                        <div class="relative">
+                          <input type="text" formControlName="zipCode" class="form-control form-control-lg" />
+                          <i class="fa fa-css3"></i>
+                        </div>
+
+                        <!--Zip code errors-->
+                        <p class="ErrorMsg" *ngIf="
+                            !zipCode?.valid &&
+                            (zipCode?.dirty || zipCode?.touched)
+                          ">
+                          ce champ est obligatoire
+                        </p>
+
+                        <!------------>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="state">Gouvernorat</label>
+
+                        <div class="relative">
+                          <input type="text" formControlName="state" class="form-control form-control-lg" />
+                          <i class="fa fa-css3"></i>
+                        </div>
+
+                        <!--Zip code errors-->
+                        <p class="ErrorMsg" *ngIf="
+                            !state?.valid && (state?.dirty || state?.touched)
+                          ">
+                          ce champ est obligatoire
+                        </p>
+
+                        <!------------>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="Rue">Rue</label>
+                        <div class="relative">
+                          <input type="text" formControlName="street" class="form-control form-control-lg" />
+                          <i class="fa fa-css3"></i>
+                        </div>
+                        <!--Street errors-->
+                        <p class="ErrorMsg" *ngIf="
+                            !street?.valid && (street?.dirty || street?.touched)
+                          ">
+                          ce champ est obligatoire
+                        </p>
+
+                        <!------------>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="form-outline">
+                <label class="form-label" for="form3Example1m">Mot de passe</label>
+                <div class="relative">
+                  <input type="password" formControlName="password" class="form-control form-control-lg" />
+                  <i class="fa fa-lock"></i>
+                </div>
+                <!--pwd errors--->
+                <p class="ErrorMsg" *ngIf="
+                    !password?.valid && (password?.dirty || password?.touched)
+                  ">
+                  ce champ est obligatoire
+                </p>
+                <p *ngIf="password?.errors?.['pattern']" class="ErrorMsg">
+                  vous devez entrez au minimun 8 caractéres
+                </p>
+
+                <!------------>
+              </div>
+              <div class="form-outline">
+                <label class="form-label" for="form3Example1n">Confirmer le mot de passe</label>
+
+                <div class="relative">
+                  <input type="password" formControlName="confirm_password" class="form-control form-control-lg" />
+                  <i class="fa fa-lock"></i>
+                </div>
+
+                <p class="ErrorMsg" *ngIf="
+                    !confirm_password?.valid &&
+                    (confirm_password?.dirty || confirm_password?.touched)
+                  ">
+                  ce champ est obligatoire
+                </p>
+                <p *ngIf="updateForm.hasError('ConfirmedValidator')" class="ErrorMsg">
+                  not matched
+                </p>
+              </div>
+
+              <div class="d-flex justify-content-end pt-3">
+                <button class="bn632-hover bn24" type="submit" role="button" [disabled]="!updateForm.valid">
+                  Editer
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
