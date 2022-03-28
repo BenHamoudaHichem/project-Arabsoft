@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-declare const hich:any;
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,12 +8,14 @@ declare const hich:any;
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
-    new hich()
 
   }
   //title="Home"
+  toLoginPage(){
+    this.router.navigate(['/login'])
+  }
 
 }
