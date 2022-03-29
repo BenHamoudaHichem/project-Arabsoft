@@ -12,10 +12,16 @@
                   <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle"
                     width="150" />
                   <div class="mt-3">
+                    <h4> {{user.firstName}} {{user.lastName}} </h4>
                     <h4>BEN HAMMOUDA HICHEM</h4>
                     <p class="text-secondary mb-1"></p>
                     <p class="text-muted text-info font-size-sm">
                       hichembenhamouda11@gmail.com
+
+                    </p>
+                    <p class="text-muted text-info font-size-sm">
+                    {{user.identifier}}
+
                     </p>
                     <button class="bn9"><span>MESSAGE</span></button>
                   </div>
@@ -55,17 +61,16 @@
             <div class="card mb-3">
               <div class="card-body">
                 <div class="row">
-                  <div class="col-sm-3">
-                    <h6 class="mb-0">Nom & Prénom</h6>
-                  </div>
-                  <div class="col-sm-9 text-secondary">
-                    Kenneth Valdez
-                  </div>
+
                 </div>
                 <hr>
                 <div class="row">
                   <div class="col-sm-3">
                     <h6 class="mb-0">Email</h6>
+                  </div>
+
+                  <div class="col-sm-9 text-secondary">
+                    {{user.identifier}}
                   </div>
                   <div class="col-sm-9 text-secondary">
                     fip@jukmuh.al
@@ -75,6 +80,10 @@
                 <div class="row">
                   <div class="col-sm-3">
                     <h6 class="mb-0">Télephone</h6>
+                  </div>
+                  <div class="col-sm-9 text-secondary">
+                    {{user.tel}}
+
                   </div>
                   <div class="col-sm-9 text-secondary">
                     (239) 816-9029
@@ -88,13 +97,16 @@
                     <h6 class="mb-0">Address</h6>
                   </div>
                   <div class="col-sm-9 text-secondary">
+                    {{user.address}}
+                  </div>
+                  <div class="col-sm-9 text-secondary">
                     Bay Area, San Francisco, CA
                   </div>
                 </div>
                 <hr>
                 <div class="row">
                   <div class="d-flex justify-content-end pt-3">
-                    <button class="bn9" type="submit" role="button" [routerLink]=" ['/customer/editProfil'] " [disabled]="">
+                    <button class="bn9" type="submit" role="button" [routerLink]=" ['/customer/editProfil']" [queryParams]=" {id:user.id} ">
                      <span> <i class="fa fa-edit"></i> Editer le profil</span>
                     </button>
 
