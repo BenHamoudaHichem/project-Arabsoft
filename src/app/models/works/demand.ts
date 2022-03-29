@@ -1,13 +1,15 @@
+import { Address } from "../Address";
 
 export class Demand {
   constructor(
 
     private title: string,
     private description: string,
+    private address: Address,
     private createdAt: Date,
-    private location: string,
-    private user: string,
-    private status: string
+    private status: string,
+    private user: {id:string},
+
   ) {}
 
 
@@ -39,16 +41,16 @@ export class Demand {
     this.status = value;
   }
 
-  public getUser(): string {
+  public getUser(): {id:string} {
     return this.user;
   }
-  public setUser(value: string): void {
+  public setUser(value: {id:string}): void {
     this.user = value;
   }
-  public getLocation(): string {
-    return this.location;
+  public getLocation(): Address {
+    return this.address;
   }
-  public setLocation(value: string): void {
-    this.location = value;
+  public setLocation(value: Address): void {
+    this.address = value;
   }
 }

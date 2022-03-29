@@ -106,7 +106,7 @@
                 <hr>
                 <div class="row">
                   <div class="d-flex justify-content-end pt-3">
-                    <button class="bn9" type="submit" role="button" [routerLink]=" ['/customer/editProfil']" [queryParams]=" {id:user.id} ">
+                    <button class="bn9" type="submit" role="button" [routerLink]="['/customer/editProfil']" [queryParams]=" {id:user.id}" queryParamsHandling="merge">
                      <span> <i class="fa fa-edit"></i> Editer le profil</span>
                     </button>
 

@@ -7,7 +7,6 @@ export class User {
     private lastName: string,
     private identifier: string,
     private password: string,
-
     private address: Address,
     private tel: string,
 

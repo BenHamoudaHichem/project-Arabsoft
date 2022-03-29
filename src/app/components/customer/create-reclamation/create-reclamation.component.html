@@ -36,7 +36,7 @@
                     <!--Error Description-->
                     <p *ngIf="(Description?.touched|| Description?.dirty ) && !Description?.valid" class="ErrorMsg">
                       Ce champ est obligatoire</p>
-                    <p *ngIf="Description?.errors?.['pattern']" class="ErrorMsg"> vous devez entrez au minimun deux
+                    <p *ngIf="Description?.errors?.['minlength']" class="ErrorMsg"> vous devez entrez au minimun 4
                       caractéres</p>
                     <!----------->
 
@@ -54,17 +54,86 @@
                       champ est obligatoire</p>
                     </div>
       --------->
-                  <div class="form-outline">
-                    <label class="form-label" for="form3Example1n">Où</label>
 
-                    <input type="text" id="form3Example1n" class="form-control form-control-lg"
-                      placeholder="Taper l'adresse" formControlName="location" />
-                    <!--Error Lieu-->
-                    <p *ngIf="(location?.touched|| Description?.dirty ) && !location?.valid" class="ErrorMsg"> Ce champ est
-                      obligatoire</p>
-                    <!----------->
-                  </div>
-            
+
+                  <fieldset>
+
+                    <div class="row">
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="pays">Pays</label>
+                          <input type="text" formControlName="country" placeholder="Pays"
+                            class="form-control form-control-lg" />
+                          <!--Country errors-->
+                          <p class="ErrorMsg" *ngIf="!counrty?.valid && (counrty?.dirty ||counrty?.touched)">
+                            ce champ est obligatoire
+                          </p>
+
+                          <!------------>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="city">Ville</label>
+
+                          <input type="text" formControlName="city" placeholder="Ville"
+                            class="form-control form-control-lg" />
+
+                          <!--Ville errors-->
+                          <p class="ErrorMsg" *ngIf="!city?.valid && (city?.dirty ||city?.touched)">
+                            ce champ est obligatoire
+                          </p>
+
+                          <!------------>
+                        </div>
+
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="code postal">Code postal</label>
+
+                          <input type="text" formControlName="zipCode" placeholder="code postal"
+                            class="form-control form-control-lg" />
+
+                          <!--Zip code errors-->
+                          <p class="ErrorMsg" *ngIf="!zipCode?.valid && (zipCode?.dirty ||zipCode?.touched)">
+                            ce champ est obligatoire
+                          </p>
+
+                          <!------------>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="state">Gouvernorat</label>
+
+                          <input type="text" formControlName="state" placeholder="Gouvernorat"
+                            class="form-control form-control-lg" />
+
+                          <!--Zip code errors-->
+                          <p class="ErrorMsg" *ngIf="!state?.valid && (state?.dirty ||state?.touched)">
+                            ce champ est obligatoire
+                          </p>
+
+                          <!------------>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="Rue">Rue</label>
+                          <input type="text" formControlName="street" placeholder="Rue"
+                            class="form-control form-control-lg" />
+                          <!--Street errors-->
+                          <p class="ErrorMsg" *ngIf="!street?.valid && (street?.dirty ||street?.touched)">
+                            ce champ est obligatoire
+                          </p>
+
+                          <!------------>
+                        </div>
+                      </div>
+
+                    </div>
+                  </fieldset>
                   <div class="d-flex justify-content-end pt-3">
                    <button class="bn632-hover bn24"type="submit" [disabled]="!reclamationForm.valid">Reclamer</button>
 

@@ -3,7 +3,6 @@ import { Material } from '../resources/Material';
 
 export class Intervention {
   constructor(
-
     protected title: string,
     protected description: string,
     protected category: Category,

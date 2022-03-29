@@ -27,7 +27,7 @@ import { LoginComponent } from './components/public/login/login.component';
 import { NotFoundComponent } from './components/public/not-found/not-found.component';
 import { RegisterComponent } from './components/public/register/register.component';
 import { GuardAuthenticateGuard } from './services/guard-authenticate.guard';
-
+import { CreateReclamationComponent } from './components/customer/create-reclamation/create-reclamation.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
 
@@ -45,6 +45,11 @@ const routes: Routes = [
 
   { path: 'contact', component: ContactUSComponent },
 
+  {
+    path: 'customer/createReclamation',
+    component: CreateReclamationComponent,
+
+  },
   {
     path: 'manager/reclamationList',
     component: ReclamationListComponent,

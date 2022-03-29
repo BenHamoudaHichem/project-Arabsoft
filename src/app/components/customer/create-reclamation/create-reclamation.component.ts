@@ -3,8 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Notify, Report } from 'notiflix';
+import { Address } from 'src/app/models/Address';
 import { Location } from 'src/app/models/Location';
 import { Demand } from 'src/app/models/works/demand';
+import { CookiesService } from 'src/app/services/cookies.service';
 import { DemandService } from 'src/app/services/works/demand/demand.service';
 
 @Component({
@@ -14,27 +16,47 @@ import { DemandService } from 'src/app/services/works/demand/demand.service';
 })
 export class CreateReclamationComponent implements OnInit {
   reclamationForm!: FormGroup;
-  keyApi = 'y0pZ5MO8SJJ5s54Q2X7rf1CtT5GnrUTY';
+  id!: string;
   constructor(
     private formBuilder: FormBuilder,
     private demandeService: DemandService,
-    private router: Router
+    private router: Router,
+    private cookiesServices: CookiesService
   ) {
     this.reclamationForm = this.formBuilder.group({
       title: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
-      description: ['',[Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
-      location: ['', [Validators.required, Validators.minLength(2)]],
+      description: ['', [Validators.required, Validators.minLength(5)]],
+      state: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
+      city: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
+      street: [
+        '',
+        [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+      ],
+      country: [
+        '',
+        [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+      ],
+      zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{4,}$')]],
     });
   }
 
   sendDemand() {
+    this.id = this.cookiesServices.getIdentifier;
+    let adresse = new Address(
+      String(this.zipCode?.value),
+      String(this.street?.value),
+      String(this.city?.value),
+      String(this.state?.value),
+      String(this.counrty?.value),
+      new Location(1, 1)
+    );
     let demand = new Demand(
       String(this.Title?.value),
       String(this.Description?.value),
+      adresse,
       new Date(),
-      String(this.location?.value),
-      '',
-      ''
+      'In_Progress',
+      { id: this.id }
     );
     this.demandeService.create(demand).subscribe((data) => {
       console.log(JSON.stringify(data));
@@ -55,8 +77,24 @@ export class CreateReclamationComponent implements OnInit {
   get createdAt() {
     return this.reclamationForm.get('createdAt');
   }
-  get location() {
-    return this.reclamationForm.get('location');
+  get state() {
+    return this.reclamationForm.get('state');
+  }
+  get city() {
+    return this.reclamationForm.get('city');
+  }
+  get street() {
+    return this.reclamationForm.get('street');
+  }
+  get tel() {
+    return this.reclamationForm.get('tel');
+  }
+
+  get counrty() {
+    return this.reclamationForm.get('country');
+  }
+  get zipCode() {
+    return this.reclamationForm.get('zipCode');
   }
   ngOnInit(): void {}
 }

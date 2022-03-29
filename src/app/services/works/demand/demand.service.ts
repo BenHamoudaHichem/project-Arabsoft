@@ -30,10 +30,11 @@ export class DemandService {
           id: demandes.id,
           title: demandes.title,
           description: demandes.description,
+          address: demandes.address,
           createdAt: demandes.createdAt,
-          location: demandes.location,
-          user: demandes.user,
           status: demandes.status,
+          user: demandes.user,
+
         }));
       })
     );
@@ -41,16 +42,17 @@ export class DemandService {
   //Get all by status
 
   allByStatus( status:string): Observable<IDemand[]> {
-    return this.http.get<IDemand[]>(`${this.apiURL}/demandes/${status}`).pipe(
+    return this.http.get<IDemand[]>(`${this.apiURL}/demandes?status=${status}`).pipe(
       map((demandes: IDemand[]) => {
         return demandes.map((demandes) => ({
           id: demandes.id,
           title: demandes.title,
           description: demandes.description,
+          address: demandes.address,
           createdAt: demandes.createdAt,
-          location: demandes.location,
-          user: demandes.user,
           status: demandes.status,
+          user: demandes.user,
+
         }));
       })
     );

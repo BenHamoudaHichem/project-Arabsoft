@@ -30,7 +30,7 @@
                 <h5 class="card-title">Publié à</h5>
                 <p class="card-text">{{demand.createdAt}}</p>
                 <h5 class="card-title">Lieu</h5>
-                <p class="card-text">{{demand.location}}.</p>
+                <p class="card-text">{{demand.address.getZipCode()}} ,{{demand.address.getStreet()}},{{demand.address.getCity()}}, {{demand.address.getState()}}, {{demand.address.getCountry()}}</p>
 
 
               </div>
