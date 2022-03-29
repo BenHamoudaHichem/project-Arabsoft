@@ -22,29 +22,21 @@ import { UpdateInterventionComponent } from './components/manager/update-interve
 import { AboutUsComponent } from './components/public/about-us/about-us.component';
 import { ContactUSComponent } from './components/public/contact-us/contact-us.component';
 import { DashboardAdminComponent } from './components/public/dashboard-admin/dashboard-admin.component';
-import { HomeComponent } from './components/public/home/home.component';
+import { HomeComponentPage } from './components/public/home/home.component';
 import { LoginComponent } from './components/public/login/login.component';
 import { NotFoundComponent } from './components/public/not-found/not-found.component';
 import { RegisterComponent } from './components/public/register/register.component';
 import { GuardAuthenticateGuard } from './services/guard-authenticate.guard';
 import { CreateReclamationComponent } from './components/customer/create-reclamation/create-reclamation.component';
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
 
-
+  { path: 'home', component: HomeComponentPage },
   { path: 'admin', component: DashboardAdminComponent },
-
   { path: 'not-found', component: NotFoundComponent },
-
-
   { path: 'login', component: LoginComponent },
-
   { path: 'register', component: RegisterComponent },
-
   { path: 'propos', component: AboutUsComponent },
-
   { path: 'contact', component: ContactUSComponent },
-
   {
     path: 'customer/createReclamation',
     component: CreateReclamationComponent,
@@ -177,7 +169,7 @@ const routes: Routes = [
     data: { role: 'ROLE_MANAGER' },*/
   },
 { path: '**', redirectTo: '/not-found', pathMatch: 'full' },
-  { path: '', redirectTo: '/not-found', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 
 ];
 

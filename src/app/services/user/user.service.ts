@@ -85,7 +85,7 @@ role:user.role
       }),
     };
 
-    return this.http.post(
+    return this.http.put(
       `${this.apiURL}/user?_method=PUT`,
       JSON.stringify(user),
       headers

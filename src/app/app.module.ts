@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/public/home/home.component';
+import { HomeComponentPage } from './components/public/home/home.component';
 import { AboutUsComponent } from './components/public/about-us/about-us.component';
 import { RegisterComponent } from './components/public/register/register.component';
 import { LoginComponent } from './components/public/login/login.component';
@@ -39,12 +39,10 @@ import { SubscribeMembreComponent } from './components/manager/subscribe-membre/
 import { NotFoundComponent } from './components/public/not-found/not-found.component';
 import { CustomerProfilComponent } from './components/customer/customer-profil/customer-profil.component';
 import { EditProfilComponent } from './components/customer/edit-profil/edit-profil.component';
-
-
 @NgModule({
   declarations: [
     AppComponent,
-
+HomeComponentPage,
     AboutUsComponent,
     RegisterComponent,
     LoginComponent,

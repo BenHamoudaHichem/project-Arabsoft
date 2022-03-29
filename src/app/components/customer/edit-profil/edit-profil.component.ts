@@ -8,19 +8,21 @@ import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
 import { Confirmed } from 'src/app/services/validation/Confirmed';
 import { Location } from 'src/app/models/Location';
+import { CookiesService } from 'src/app/services/cookies.service';
+import { IUser } from 'src/app/services/user/iuser';
 @Component({
   selector: 'app-edit-profil',
   templateUrl: './edit-profil.component.html',
-  styleUrls: ['./edit-profil.component.css']
+  styleUrls: ['./edit-profil.component.css'],
 })
 export class EditProfilComponent implements OnInit {
-
   updateForm!: FormGroup;
-
+  id!: string;
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private cookies: CookiesService
   ) {
     this.updateForm = this.formBuilder.group(
       {
@@ -55,7 +57,7 @@ export class EditProfilComponent implements OnInit {
           '',
           [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
         ],
-        zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{8}$')]],
+        zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
       },
       {
         Validators: Confirmed.ConfirmedValidator(
@@ -66,7 +68,32 @@ export class EditProfilComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this.id != null) {
+      this.showUser();
+    }else{
+      Report.warning('Error','Erreur de chargement de la page, aucun identifiant à étè detecté',"OK")
+    }
+  }
+
+  showUser() {
+    this.id = this.cookies.getIdentifier;
+    this.userService.getUser(this.id).subscribe((res: IUser) => {
+      this.firstName?.setValue(res.firstName),
+        this.lastNamme?.setValue(res.lastName),
+        this.tel?.setValue(res.tel),
+        this.counrty?.setValue(res.address.getCountry());
+      this.city?.setValue(res.address.getCity()),
+        this.street?.setValue(res.address.getStreet()),
+        this.state?.setValue(res.address.getState()),
+        this.password?.setValue(res.password),
+        this.confirmPassword?.setValue(res.password);
+    }),
+      (error: HttpErrorResponse) => {
+        Report.warning('Error', error.message, 'OK');
+      };
+  }
+
   Update() {
     let adresse = new Address(
       String(this.zipCode?.value),
@@ -77,23 +104,22 @@ export class EditProfilComponent implements OnInit {
       new Location(1, 1)
     );
     let user = new User(
-      '',
+      this.id,
       String(this.firstName?.value),
       String(this.lastNamme?.value),
       String(this.identifier?.value),
       String(this.password?.value),
       adresse,
       String(this.tel?.value),
-
       ['']
     );
     console.log(user);
-    this.userService.create(user).subscribe((res: any) => {
-      Report.success("Notification d'inscription", res.message, "D'accord");
-      this.router.navigateByUrl('/login');
+    this.userService.update(user).subscribe((res: any) => {
+      Report.success("Notification de modification", res.message, "D'accord");
+      this.router.navigateByUrl('/customer/customerProfil');
     }),
       (error: HttpErrorResponse) => {
-        Report.warning("Notification d'inscription", error.message, "D'accord");
+        Report.warning("Erreur de modification", error.message, "D'accord");
       };
   }
   get state() {
@@ -134,5 +160,4 @@ export class EditProfilComponent implements OnInit {
   get confirm_password() {
     return this.updateForm.get('confirm_password');
   }
-
 }
