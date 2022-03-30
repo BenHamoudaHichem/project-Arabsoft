@@ -41,8 +41,6 @@ const routes: Routes = [
 
 
   { path: 'dashboard', component: DashboardAdminComponent,children:[
-    {
-      path: 'customer',children:[
 
         {
           path: 'home',
@@ -97,18 +95,6 @@ const routes: Routes = [
          /* canActivate: [GuardAuthenticateGuard],
           data: { role: 'ROLE_USER' ,},*/
         },
-
-      ]},
-
-        {
-          path: 'manager',children:[
-            {
-              path: 'homeManager',
-              component: HomeManagerComponent,
-            },
-
-
-
             {
               path: 'reclamationList',
               component: ReclamationListComponent,
@@ -211,15 +197,8 @@ const routes: Routes = [
       ]
     },
 
-
-      ] },
-
-
-/*
-
 { path: '**', redirectTo: '/not-found', pathMatch: 'full' },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },*/
-
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
