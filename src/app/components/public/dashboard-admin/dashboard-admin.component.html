@@ -1,12 +1,11 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-
 <div class="main">
   <div class="left">
     <ul>
       <li class="menu-heading">Dashboards</li>
-      <li><a data-toggle="tab " [routerLink]="['/customer/home']"><i class="fa fa-home fa-lg"></i> Acceuil</a></li>
+      <li><a data-toggle="tab " [routerLink]="['/dashboard/customer/home']"><i class="fa fa-home fa-lg"></i> Acceuil</a></li>
 
-      <li class="active"><a data-toggle="tab" [routerLink]=" ['customer/customerProfil'] "><i class="fa fa-street-view fa-lg"></i> User
+      <li class="active"><a data-toggle="tab" [routerLink]=" ['/dashboard/customer/customerProfil'] "><i class="fa fa-street-view fa-lg"></i> User
         Profile</a></li>
       <li>
         <a href="#submenu5" class="dropdown-toggle" data-bs-toggle="collapse">
@@ -17,11 +16,11 @@
               des agents</a>
           </li>
           <li>
-            <a data-toggle="tab" class="text-light" [routerLink]="['/manager/subscribeMembre']"><i class="fa fa-user-cog"></i> Inscrire
+            <a data-toggle="tab" class="text-light" [routerLink]="['/dashboard/manager/subscribeMembre']"><i class="fa fa-user-cog"></i> Inscrire
              un agent</a>
           </li>
           <li>
-            <a data-toggle="tab" class="text-light" [routerLink]="['/manager/fileMembersUpload']"><i class="fa fa-upload" aria-hidden="true"></i>
+            <a data-toggle="tab" class="text-light" [routerLink]="['/dashboard/manager/fileMembersUpload']"><i class="fa fa-upload" aria-hidden="true"></i>
               Telecharger
              fichier agents</a>
           </li>
@@ -32,10 +31,10 @@
           <i class="fa fa-users"></i>Equipes</a>
         <ul class="dropdown-menu-dark collapse text-small" id="submenu2" data-bs-parent="#menu">
           <li>
-            <a class="text-light" data-toggle="tab" [routerLink]="['/manager/teamList']"><i class="fa fa-list"></i> Liste équipes</a>
+            <a class="text-light" data-toggle="tab" [routerLink]="['/dashboard/manager/teamList']"><i class="fa fa-list"></i> Liste équipes</a>
           </li>
           <li>
-            <a data-toggle="tab" class="text-light" [routerLink]="['/manager/addTeam']"><i class="fa fa-plus-circle"></i> Nouveau
+            <a data-toggle="tab" class="text-light" [routerLink]="['/dashboard/manager/addTeam']"><i class="fa fa-plus-circle"></i> Nouveau
               équipe</a>
           </li>
         </ul>
@@ -45,11 +44,11 @@
           <i class="fa fa-building"></i>Interventions</a>
         <ul class="dropdown-menu-dark collapse text-small" id="submenu3" data-bs-parent="#menu">
           <li>
-            <a data-toggle="tab" class="text-light" [routerLink]="['/manager/interventionList']"><i class="fa fa-list"></i> Liste
+            <a data-toggle="tab" class="text-light" [routerLink]="['/dashboard/manager/interventionList']"><i class="fa fa-list"></i> Liste
               des interventions</a>
           </li>
           <li>
-            <a data-toggle="tab" class="text-light" [routerLink]="['/manager/createIntervention']"><i class="fa fa-plus-circle"></i> Nouvel
+            <a data-toggle="tab" class="text-light" [routerLink]="['/dashboard/manager/createIntervention']"><i class="fa fa-plus-circle"></i> Nouvel
               intervention</a>
           </li>
         </ul>
@@ -59,21 +58,21 @@
           <i class="fa fa-boxes"></i>Materiels</a>
         <ul class="dropdown-menu-dark collapse text-small" id="submenu4" data-bs-parent="#menu">
           <li >
-            <a data-toggle="tab" class="text-light" [routerLink]="['/manager/materialList']"><i class="fa fa-list"></i> Liste
+            <a data-toggle="tab" class="text-light" [routerLink]="['/dashboard/manager/materialList']"><i class="fa fa-list"></i> Liste
               des materielles</a>
           </li>
           <li>
-            <a data-toggle="tab" class="text-light" [routerLink]="['/manager/addMaterial']"><i class="fa fa-plus-circle"></i> Nouvel
+            <a data-toggle="tab" class="text-light" [routerLink]="['/dashboard/manager/addMaterial']"><i class="fa fa-plus-circle"></i> Nouvel
              materiel</a>
           </li>
           <li>
-            <a data-toggle="tab" class="text-light" [routerLink]="['/manager/fileMaterialsUpload']"><i class="fa fa-upload" aria-hidden="true"></i>
+            <a data-toggle="tab" class="text-light" [routerLink]="['/dashboard/manager/fileMaterialsUpload']"><i class="fa fa-upload" aria-hidden="true"></i>
               Telecharger la
              fichier materiels</a>
           </li>
         </ul>
       </li>
-      <li><a data-toggle="tab " [routerLink]="['/manager/reclamationList']"><i class="fa fa-clipboard-list"></i> Demandes</a></li>
+      <li><a data-toggle="tab " [routerLink]="['/dashboard/manager/reclamationList']"><i class="fa fa-clipboard-list"></i> Demandes</a></li>
 
 
        <li class="menu-heading">Pages</li>

@@ -41,10 +41,9 @@ const routes: Routes = [
 
 
   { path: 'dashboard', component: DashboardAdminComponent,children:[
-
-
     {
       path: 'customer',children:[
+
         {
           path: 'home',
           component: HomeCustomerComponent,
@@ -118,10 +117,7 @@ const routes: Routes = [
             {
               path: 'subscribeMembre',
               component: SubscribeMembreComponent,
-
             },
-
-
             {
               path: 'addTeam',
               component: AddTeamComponent,
@@ -219,10 +215,10 @@ const routes: Routes = [
       ] },
 
 
-
+/*
 
 { path: '**', redirectTo: '/not-found', pathMatch: 'full' },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },*/
 
 ];
 
