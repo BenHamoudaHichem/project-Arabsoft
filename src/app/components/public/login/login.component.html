@@ -1,6 +1,82 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <app-nav-bar></app-nav-bar>
+<div class="boxes">
+  <ul>
+    <li></li>
+    <li></li>
+  </ul>
+</div>
+<section class="h-100">
+  <div class="container">
+    <span>
+      <img
+        src="assets/images/gest.png"
+        alt="Sample photo"
+        height="60px"
+        width="100px"
+        style="text-align: center"
+      />
+    </span>
+    <div class="title">inscrivez vous a notre site</div>
+    <div class="content">
+      <form  novalidate>
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Nom</span>
+            <input
+              type="text"
+              formControlName="firstName"
+              placeholder="Entrez votre nom"
+              data-rule="required"
+            />
+            <!--FisrtName errors-->
+
+            <!------------>
+          </div>
+          <div class="input-box">
+            <span class="details">Prénom</span>
+            <input
+              type="text"
+              formControlName="lastNamme"
+              placeholder="Entrez votre prénom"
+            />
+            <!--FisrtName errors-->
 
 
+            <!------------>
+          </div>
+        </div>
+
+        <span class="extra-line">
+          <a routerLink="/login">Vous avez dejà un compte? </a>
+        </span>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+<!--
 <section class="h-100" >
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -77,3 +153,4 @@
     </div>
   </div>
 </section>
+-->

@@ -28,6 +28,7 @@ import { NotFoundComponent } from './components/public/not-found/not-found.compo
 import { RegisterComponent } from './components/public/register/register.component';
 import { GuardAuthenticateGuard } from './services/guard-authenticate.guard';
 import { CreateReclamationComponent } from './components/customer/create-reclamation/create-reclamation.component';
+import { HomeManagerComponent } from './components/manager/home-manager/home-manager.component';
 const routes: Routes = [
 
   { path: 'home', component: HomeComponentPage },
@@ -96,6 +97,11 @@ const routes: Routes = [
 
         {
           path: 'manager',children:[
+            {
+              path: 'homeManager',
+              component: HomeManagerComponent,
+
+            },
 
             {
               path: 'reclamationList',

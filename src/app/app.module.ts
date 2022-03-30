@@ -39,6 +39,7 @@ import { SubscribeMembreComponent } from './components/manager/subscribe-membre/
 import { NotFoundComponent } from './components/public/not-found/not-found.component';
 import { CustomerProfilComponent } from './components/customer/customer-profil/customer-profil.component';
 import { EditProfilComponent } from './components/customer/edit-profil/edit-profil.component';
+import { HomeManagerComponent } from './components/manager/home-manager/home-manager.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -73,6 +74,7 @@ HomeComponentPage,
     NotFoundComponent,
     CustomerProfilComponent,
     EditProfilComponent,
+    HomeManagerComponent,
   ],
   imports: [
     BrowserModule,
