@@ -37,137 +37,177 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'propos', component: AboutUsComponent },
   { path: 'contact', component: ContactUSComponent },
-  {
-    path: 'customer/createReclamation',
-    component: CreateReclamationComponent,
-
-  },
-  {
-    path: 'manager/reclamationList',
-    component: ReclamationListComponent,
-
-  },
-  {
-    path: 'manager/subscribeMembre',
-    component: SubscribeMembreComponent,
-
-  },
 
 
-  {
-    path: 'manager/addTeam',
-    component: AddTeamComponent,
-   /* canActivate: [GuardAuthenticateGuard],
-    data: { role: 'ROLE_MANAGER' },*/
-  },
-  {
-    path: 'manager/interventionList',
-    component: InterventionListComponent,
-  /*  canActivate: [GuardAuthenticateGuard],
-    data: { role: 'ROLE_MANAGER' },*/
-  },
+  { path: 'dashboard', component: DashboardAdminComponent,children:[
 
-  {
-    path: 'customer/customerProfil',
-    component: CustomerProfilComponent,
-   /* canActivate: [GuardAuthenticateGuard],
-    data: { role: 'ROLE_USER' ,},*/
-  },
-  {
-    path: 'customer/editProfil',
-    component: EditProfilComponent,
-   /* canActivate: [GuardAuthenticateGuard],
-    data: { role: 'ROLE_USER' ,},*/
-  },
-  {
-    path: 'customer/home',
-    component: HomeCustomerComponent,
-   /* canActivate: [GuardAuthenticateGuard],
-    data: { role: 'ROLE_USER' ,},*/
-  },
 
-  {
-    path: 'manager/materialList',
-    component: MaterialListComponent,
-   /* canActivate: [GuardAuthenticateGuard],
-    data: { role: 'ROLE_MANAGER' ,},*/
-  },
-  {
-    path: 'manager/addMaterial',
-    component: AddMaterialsComponent,
-   /* canActivate: [GuardAuthenticateGuard],
-    data: { role: 'ROLE_MANAGER' ,},*/
-  },
+    {
+      path: 'customer',children:[
+        {
+          path: 'detailReclamation',
+          component: DetailReclamationComponent,
+       /*   canActivate: [GuardAuthenticateGuard],
+          data: { role: 'ROLE_USER' },*/
+        },
+        {
+          path: 'createReclamation',
+          component: CreateReclamationComponent,
+        },
+        {
+          path: 'customerProfil',
+          component: CustomerProfilComponent,
+         /* canActivate: [GuardAuthenticateGuard],
+          data: { role: 'ROLE_USER' ,},*/
+        },
+        {
+          path: 'editProfil',
+          component: EditProfilComponent,
+         /* canActivate: [GuardAuthenticateGuard],
+          data: { role: 'ROLE_USER' ,},*/
+        },
+        {
+          path: 'home',
+          component: HomeCustomerComponent,
+         /* canActivate: [GuardAuthenticateGuard],
+          data: { role: 'ROLE_USER' ,},*/
+        },
 
+        {
+          path: 'customerProfil',
+          component: CustomerProfilComponent,
+         /* canActivate: [GuardAuthenticateGuard],
+          data: { role: 'ROLE_USER' ,},*/
+        },
+        {
+          path: 'editProfil',
+          component: EditProfilComponent,
+         /* canActivate: [GuardAuthenticateGuard],
+          data: { role: 'ROLE_USER' ,},*/
+        },
+        {
+          path: 'home',
+          component: HomeCustomerComponent,
+         /* canActivate: [GuardAuthenticateGuard],
+          data: { role: 'ROLE_USER' ,},*/
+        },
+
+      ]},
+
+        {
+          path: 'manager',children:[
+
+            {
+              path: 'reclamationList',
+              component: ReclamationListComponent,
+
+            },
+            {
+              path: 'subscribeMembre',
+              component: SubscribeMembreComponent,
+
+            },
+
+
+            {
+              path: 'addTeam',
+              component: AddTeamComponent,
+             /* canActivate: [GuardAuthenticateGuard],
+              data: { role: 'ROLE_MANAGER' },*/
+            },
+            {
+              path: 'interventionList',
+              component: InterventionListComponent,
+            /*  canActivate: [GuardAuthenticateGuard],
+              data: { role: 'ROLE_MANAGER' },*/
+            },
+
+        {
+          path: 'materialList',
+          component: MaterialListComponent,
+         /* canActivate: [GuardAuthenticateGuard],
+          data: { role: 'ROLE_MANAGER' ,},*/
+        },
+        {
+          path: 'addMaterial',
+          component: AddMaterialsComponent,
+         /* canActivate: [GuardAuthenticateGuard],
+          data: { role: 'ROLE_MANAGER' ,},*/
+        },
+
+        {
+          path: 'detailIntervention',
+          component: DetailInterventionComponent,
+          /*canActivate: [GuardAuthenticateGuard],
+          data: { role: 'ROLE_MANAGER' },*/
+        },
   {
-    path: 'manager/detailIntervention',
-    component: DetailInterventionComponent,
-    /*canActivate: [GuardAuthenticateGuard],
-    data: { role: 'ROLE_MANAGER' },*/
-  },
-  {
-    path: 'customer/detailReclamation',
-    component: DetailReclamationComponent,
- /*   canActivate: [GuardAuthenticateGuard],
-    data: { role: 'ROLE_USER' },*/
-  },
-  {
-    path: 'manager/createIntervention',
+    path: 'createIntervention',
     component: CreateInterventionComponent,
     /*canActivate: [GuardAuthenticateGuard],
     data: { role: 'ROLE_MANAGER' },*/
   },
   {
-    path: 'manager/detailMaterial',
+    path: 'detailMaterial',
     component: DetailMaterialComponent,
     /*canActivate: [GuardAuthenticateGuard],
     data: { role: 'ROLE_MANAGER' },*/
   },
 
   {
-    path: 'manager/updateIntervention',
+    path: 'updateIntervention',
     component: UpdateInterventionComponent,
     /*canActivate: [GuardAuthenticateGuard],
     data: { role: 'ROLE_MANAGER' },*/
   },
   {
-    path: 'manager/selectTeamManager',
+    path: 'selectTeamManager',
     component: SelectManagerComponent,
    /* canActivate: [GuardAuthenticateGuard],
     data: { role: 'ROLE_MANAGER' },*/
   },
 
   {
-    path: 'manager/detailTeam',
+    path: 'detailTeam',
     component: DetailTeamComponent,
   /*canActivate: [GuardAuthenticateGuard],
     data: { role: 'ROLE_MANAGER' },*/
   },
   {
-    path: 'manager/teamList',
+    path: 'teamList',
     component: TeamListComponent,
   /*canActivate: [GuardAuthenticateGuard],
     data: { role: 'ROLE_MANAGER' },*/
   },
   {
-    path: 'manager/demandList',
+    path: 'demandList',
     component: ReclamationListComponent,
   /*canActivate: [GuardAuthenticateGuard],
     data: { role: 'ROLE_MANAGER' },*/
   },
   {
-    path: 'manager/fileMembersUpload',
+    path: 'fileMembersUpload',
     component: AddFileMembersComponent,
   /*canActivate: [GuardAuthenticateGuard],
     data: { role: 'ROLE_MANAGER' },*/
   },
 
   {
-    path: 'manager/fileMaterialsUpload',
+    path: 'fileMaterialsUpload',
     component: AddFileMaterialsComponent,
   /*canActivate: [GuardAuthenticateGuard],
     data: { role: 'ROLE_MANAGER' },*/
-  },
+  }
+
+      ]
+    },
+
+
+      ] },
+
+
+
+
 { path: '**', redirectTo: '/not-found', pathMatch: 'full' },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 

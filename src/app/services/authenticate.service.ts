@@ -19,15 +19,6 @@ export class AuthenticateService {
   private apiURL = 'http://127.0.0.1:8000';
   constructor(private http: HttpClient, private router: Router,private cookies:CookiesService) {}
 
-  getAuthenticatedUser() {
-    let headers = {headers: new HttpHeaders({
-        Authorization: `Berear${this.getToken()}`,
-      }),
-    };
-    return this.http.get(`${this.apiURL}/user`, headers);
-  }
-
-
 
   public  login(email: string, password: string) {
 
@@ -35,6 +26,11 @@ export class AuthenticateService {
   }
 
   logout() {
+    let options = {
+      headers: new HttpHeaders({
+        'Authorization': `Bearer ${this.getToken}`,
+      }),
+    };
     let token = this.getToken();
     this.removeToken();
 
@@ -45,13 +41,13 @@ export class AuthenticateService {
     );
   }
 
-  get userByToken(): number {
+  get userByToken(): string {
     let infos: any;
     try {
       infos = jwtDecode(this.getToken());
-      return Number(infos.sub);
+      return infos.sub;
     } catch (error) {
-      return 0;
+      return '';
     }
   }
 
@@ -62,27 +58,10 @@ export class AuthenticateService {
   getToken() {
     return this.cookies.getToken!;
   }
- 
-  // Verify the token
-  isValidToken() {
-    const token = this.getToken();
 
-    if (token) {
-      this.getAuthenticatedUser().subscribe(
-        (res: any) => {
-          if (!res.user) {
-            this.redirectIfNotAuth();
-          }
-        },
-        (error) => {
-          this.redirectIfNotAuth();
-        }
-      );
-    }
-  }
+
 
   get getUsername():string{
-
     return this.cookies.getUsername
   }
 
