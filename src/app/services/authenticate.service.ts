@@ -59,6 +59,14 @@ export class AuthenticateService {
     return this.cookies.getToken!;
   }
 
+  get isCustumer():boolean
+  {
+    return this.cookies.getRole==CookiesService.ROLE_CUSTOMER
+  }
+  get isMANAGER():boolean
+  {
+    return this.cookies.getRole==CookiesService.ROLE_MANAGER
+  }
 
 
   get getUsername():string{

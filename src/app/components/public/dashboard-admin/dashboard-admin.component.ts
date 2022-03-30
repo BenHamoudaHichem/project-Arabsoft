@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 declare const hich:any;
 @Component({
   selector: 'app-dashboard-admin',
@@ -7,10 +8,17 @@ declare const hich:any;
 })
 export class DashboardAdminComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService:AuthenticateService) { }
 
   ngOnInit(): void {
-   
-  }
 
+  }
+  public get isCustumer():boolean
+  {
+    return this.authService.isCustumer
+  }
+  public get isManager():boolean
+  {
+    return this.authService.isMANAGER
+  }
 }
