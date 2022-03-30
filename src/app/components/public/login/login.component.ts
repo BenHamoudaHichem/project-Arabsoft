@@ -28,8 +28,14 @@ export class LoginComponent implements OnInit {
       if (!res.status) {
 
         this.authService.onLoginSucces(res.token,res.id,res.roles[0],res.username)
-        this.router.navigate([""])
+        let direction:string = "/dashboard/custumer"
+        if (this.authService.isMANAGER) {
+          direction = "/dashboard/manager"
+
+        }
         Notify.success('Connexion établie');
+        this.router.navigate([direction])
+
       }
 
 

@@ -45,8 +45,6 @@ const routes: Routes = [
 
     {
       path: 'customer',children:[
-        { path: '**', redirectTo: '/not-found', pathMatch: 'full' },
-        { path: '', redirectTo: '/home', pathMatch: 'full' },
         {
           path: 'home',
           component: HomeCustomerComponent,
@@ -108,11 +106,9 @@ const routes: Routes = [
             {
               path: 'homeManager',
               component: HomeManagerComponent,
-
             },
 
-            { path: '**', redirectTo: '/home', pathMatch: 'full' },
-            { path: '', redirectTo: '/home', pathMatch: 'full' },
+
 
             {
               path: 'reclamationList',
