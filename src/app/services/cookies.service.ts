@@ -5,6 +5,9 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root',
 })
 export class CookiesService {
+  public static ROLE_CUSTOMER:string="ROLE_USER"
+  public static ROLE_MANAGER:string="ROLE_MANAGER"
+
   constructor(private myCookies: CookieService) {}
   createToken(token: string): void {
     this.myCookies.set('_token', token);

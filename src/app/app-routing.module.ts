@@ -44,6 +44,14 @@ const routes: Routes = [
 
     {
       path: 'customer',children:[
+        { path: '**', redirectTo: '/not-found', pathMatch: 'full' },
+        { path: '', redirectTo: '/home', pathMatch: 'full' },
+        {
+          path: 'home',
+          component: HomeCustomerComponent,
+       /*   canActivate: [GuardAuthenticateGuard],
+          data: { role: 'ROLE_USER' },*/
+        },
         {
           path: 'detailReclamation',
           component: DetailReclamationComponent,
@@ -96,7 +104,9 @@ const routes: Routes = [
 
         {
           path: 'manager',children:[
-
+            { path: '**', redirectTo: '/home', pathMatch: 'full' },
+            { path: '', redirectTo: '/home', pathMatch: 'full' },
+        
             {
               path: 'reclamationList',
               component: ReclamationListComponent,
