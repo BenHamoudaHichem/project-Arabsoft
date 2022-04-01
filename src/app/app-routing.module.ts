@@ -15,7 +15,6 @@ import { DetailTeamComponent } from './components/manager/detail-team/detail-tea
 import { InterventionListComponent } from './components/manager/intervention-list/intervention-list.component';
 import { MaterialListComponent } from './components/manager/material-list/material-list.component';
 import { ReclamationListComponent } from './components/manager/reclamation-list/reclamation-list.component';
-import { SelectManagerComponent } from './components/manager/select-manager/select-manager.component';
 import { SubscribeMembreComponent } from './components/manager/subscribe-membre/subscribe-membre.component';
 import { TeamListComponent } from './components/manager/team-list/team-list.component';
 import { UpdateInterventionComponent } from './components/manager/update-intervention/update-intervention.component';
@@ -91,8 +90,8 @@ const routes: Routes = [
           data: { role: 'ROLE_USER' ,},*/
         },
         {
-          path: 'customer/home',
-          component: HomeCustomerComponent,
+          path: 'manager/home',
+          component: HomeManagerComponent,
          /* canActivate: [GuardAuthenticateGuard],
           data: { role: 'ROLE_USER' ,},*/
         },
@@ -156,12 +155,7 @@ const routes: Routes = [
     /*canActivate: [GuardAuthenticateGuard],
     data: { role: 'ROLE_MANAGER' },*/
   },
-  {
-    path: 'manager/selectTeamManager',
-    component: SelectManagerComponent,
-   /* canActivate: [GuardAuthenticateGuard],
-    data: { role: 'ROLE_MANAGER' },*/
-  },
+  
 
   {
     path: 'manager/detailTeam',

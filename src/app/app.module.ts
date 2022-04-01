@@ -26,7 +26,6 @@ import { MaterialListComponent } from './components/manager/material-list/materi
 import { ReclamationListComponent } from './components/manager/reclamation-list/reclamation-list.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { SelectManagerComponent } from './components/manager/select-manager/select-manager.component';
 import { DashboardAdminComponent } from './components/public/dashboard-admin/dashboard-admin.component';
 import { CookieService } from 'ngx-cookie-service';
 import { HomeCustomerComponent } from './components/customer/home-customer/home-customer.component';
@@ -62,7 +61,6 @@ HomeComponentPage,
     TeamListComponent,
     MaterialListComponent,
     ReclamationListComponent,
-    SelectManagerComponent,
     DashboardAdminComponent,
     HomeCustomerComponent,
 

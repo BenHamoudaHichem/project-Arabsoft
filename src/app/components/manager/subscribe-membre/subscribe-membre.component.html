@@ -1,202 +1,237 @@
+
 <section class="h-100">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-
-      <div class="card  card-registration my-4">
-
-
-        <div class="col">
-          <div class="card-body text-black">
-
-            <div class="logo">
-              <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px"
-                  style="text-align: center;" /></span>
-              <span class="mb-5 text-uppercase">Inscrivez un employé dans le domaine</span>
-            </div>
-            <form [formGroup]="addCustomerForm" (ngSubmit)="Inscrire()" novalidate>
-              <div class="row">
-
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <label class="form-label" for="firstName">Nom</label>
-                    <input type="text" formControlName="firstName" data-rule="required"
-                      class="form-control form-control-lg" />
-                    <!--FisrtName errors-->
-                    <p class="ErrorMsg" *ngIf="!firstName?.valid && (firstName?.dirty ||firstName?.touched)">
-                      Nom est obligatoire
-                    </p>
-                    <p *ngIf="firstName?.errors?.['pattern']" class="ErrorMsg"> vous devez entrez au minimun deux
-                      caractéres</p>
-                    <!------------>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <label class="form-label" for="Prénom">Prénom</label>
-
-                    <input type="text" formControlName="lastNamme" class="form-control form-control-lg" />
-                    <!--FisrtName errors-->
-                    <p class="ErrorMsg" *ngIf="!lastNamme?.valid && (lastNamme?.dirty ||lastNamme?.touched)">
-                      Nom est obligatoire
-                    </p>
-                    <p *ngIf="lastNamme?.errors?.['pattern']" class="ErrorMsg"> vous devez entrez au minimun deux
-                      caractéres</p>
-                    <!------------>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <label class="form-label" for="cin">Numéro de télèphone</label>
-                    <input type="number" formControlName="tel" class="form-control form-control-lg" />
-                    <!--Tel errors-->
-                    <p class="ErrorMsg" *ngIf="!tel?.valid && (tel?.dirty ||tel?.touched)">
-                      Ce champs est obligatoire
-                    </p>
-                    <p *ngIf="tel?.errors?.['pattern']" class="ErrorMsg">Entrez 8 chiffres</p>
-                    <!------------>
-
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <label class="form-label" for="email">Identifiant</label>
-                    <input type="email" formControlName="identifier" class="form-control form-control-lg" />
-                    <!--identifier errors-->
-                    <p class="ErrorMsg" *ngIf="!identifier?.valid && (identifier?.dirty ||identifier?.touched)">
-                      Ce champs est obligatoire
-                    </p>
-                    <p *ngIf="identifier?.errors?.['email']" class="ErrorMsg">structure de email : foulen@foulen</p>
-                    <!------------>
-                  </div>
-
-                </div>
-              </div>
-
-
-              <fieldset>
-                <legend>
-                  Adresse
-                </legend>
-                <div class="row">
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                      <label class="form-label" for="pays">Pays</label>
-                      <input type="text" formControlName="country" class="form-control form-control-lg" />
-                      <!--Country errors-->
-                      <p class="ErrorMsg" *ngIf="!street?.valid && (street?.dirty ||street?.touched)">
-                        ce champ est obligatoire
-                      </p>
-
-                      <!------------>
-                    </div>
-                  </div>
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                      <label class="form-label" for="city">Ville</label>
-
-                      <input type="text" formControlName="city" class="form-control form-control-lg" />
-
-                      <!--Ville errors-->
-                      <p class="ErrorMsg" *ngIf="!city?.valid && (city?.dirty ||city?.touched)">
-                        ce champ est obligatoire
-                      </p>
-
-                      <!------------>
-                    </div>
-
-                  </div>
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                      <label class="form-label" for="code postal">Code postal</label>
-
-                      <input type="text" formControlName="zipCode" class="form-control form-control-lg" />
-
-                      <!--Zip code errors-->
-                      <p class="ErrorMsg" *ngIf="!zipCode?.valid && (zipCode?.dirty ||zipCode?.touched)">
-                        ce champ est obligatoire
-                      </p>
-
-                      <!------------>
-                    </div>
-                  </div>
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                      <label class="form-label" for="state">Gouvernorat</label>
-
-                      <input type="text" formControlName="state" class="form-control form-control-lg" />
-
-                      <!--Zip code errors-->
-                      <p class="ErrorMsg" *ngIf="!state?.valid && (state?.dirty ||state?.touched)">
-                        ce champ est obligatoire
-                      </p>
-
-                      <!------------>
-                    </div>
-                  </div>
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                      <label class="form-label" for="Rue">Rue</label>
-                      <input type="text" formControlName="street" class="form-control form-control-lg" />
-                      <!--Street errors-->
-                      <p class="ErrorMsg" *ngIf="!street?.valid && (street?.dirty ||street?.touched)">
-                        ce champ est obligatoire
-                      </p>
-
-                      <!------------>
-                    </div>
-                  </div>
-
-                </div>
-              </fieldset>
-
-
-
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <label class="form-label" for="form3Example1m">Mot de passe</label>
-                    <input type="password" formControlName="password" class="form-control form-control-lg" />
-                    <!--Ville errors-->
-                    <p class="ErrorMsg" *ngIf="!password?.valid && (password?.dirty ||password?.touched)">
-                      ce champ est obligatoire
-                    </p>
-                    <p *ngIf="password?.errors?.['pattern']" class="ErrorMsg">vous devez entrez au minimun 8
-                      caractéres</p>
-
-                    <!------------>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <label class="form-label" for="form3Example1n">Confirmer le mot de passe</label>
-
-                    <input type="password" formControlName="confirm_password" class="form-control form-control-lg" />
-                    <p class="ErrorMsg"
-                      *ngIf="!confirm_password?.valid && (confirm_password?.dirty ||confirm_password?.touched)">
-                      ce champ est obligatoire
-                    </p>
-                    <p *ngIf="addCustomerForm.hasError('ConfirmedValidator')" class="ErrorMsg">not matched</p>
-                  </div>
-
-                </div>
-              </div>
-
-
-              <div class="d-flex justify-content-end pt-3">
-                <button class="bn632-hover bn24" type="submit" role="button"
-                  [disabled]="!addCustomerForm.valid">INSCRIRE</button>
-              </div>
-
-            </form>
+  <div class="container">
+    <span>
+      <img
+        src="assets/images/gest.png"
+        alt="Sample photo"
+        height="60px"
+        width="100px"
+        style="text-align: center"
+      />
+    </span>
+    <div class="title">inscrivez un employé dans le domaine</div>
+    <div class="content">
+      <form [formGroup]="addCustomerForm" (ngSubmit)="Inscrire()" novalidate>
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Nom</span>
+            <input
+              type="text"
+              formControlName="firstName"
+              placeholder="Entrez votre nom"
+              data-rule="required"
+            />
+            <!--FisrtName errors-->
+            <p
+              class="ErrorMsg"
+              *ngIf="
+                !firstName?.valid && (firstName?.dirty || firstName?.touched)
+              "
+            >
+              Nom est obligatoire
+            </p>
+            <p *ngIf="firstName?.errors?.['pattern']" class="ErrorMsg">
+              vous devez entrez au minimun deux caractéres
+            </p>
+            <!------------>
+          </div>
+          <div class="input-box">
+            <span class="details">Prénom</span>
+            <input
+              type="text"
+              formControlName="lastNamme"
+              placeholder="Entrez votre prénom"
+            />
+            <!--FisrtName errors-->
+            <p
+              class="ErrorMsg"
+              *ngIf="
+                !lastNamme?.valid && (lastNamme?.dirty || lastNamme?.touched)
+              "
+            >
+              Nom est obligatoire
+            </p>
+            <p *ngIf="lastNamme?.errors?.['pattern']" class="ErrorMsg">
+              vous devez entrez au minimun deux caractéres
+            </p>
+            <!------------>
+          </div>
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input
+              type="email"
+              formControlName="identifier"
+              placeholder="Entrez votre  Email"
+            />
+            <!--identifier errors-->
+            <p
+              class="ErrorMsg"
+              *ngIf="
+                !identifier?.valid && (identifier?.dirty || identifier?.touched)
+              "
+            >
+              Ce champs est obligatoire
+            </p>
+            <p *ngIf="identifier?.errors?.['email']" class="ErrorMsg">
+              structure de email : foulen@foulen
+            </p>
+            <!------------>
           </div>
 
+          <div class="input-box">
+            <span class="details">Telephone</span>
+            <input
+              type="number"
+              formControlName="tel"
+              placeholder="Entrez votre numéro de télephone"
+            />
+            <!--Tel errors-->
+            <p
+              class="ErrorMsg"
+              *ngIf="!tel?.valid && (tel?.dirty || tel?.touched)"
+            >
+              Ce champs est obligatoire
+            </p>
+            <p *ngIf="tel?.errors?.['pattern']" class="ErrorMsg">
+              Entrez 8 chiffres
+            </p>
+            <!------------>
+          </div>
+          <div class="input-box">
+            <span class="details">Pays</span>
+            <input type="text" formControlName="country" placeholder="Pays" />
+            <!--Country errors-->
+            <p
+              class="ErrorMsg"
+              *ngIf="!counrty?.valid && (counrty?.dirty || counrty?.touched)"
+            >
+              ce champ est obligatoire
+            </p>
+
+            <!------------>
+          </div>
+          <div class="input-box">
+            <span class="details">Ville</span>
+            <input type="text" formControlName="city" placeholder="Ville" />
+
+            <!--Ville errors-->
+            <p
+              class="ErrorMsg"
+              *ngIf="!city?.valid && (city?.dirty || city?.touched)"
+            >
+              ce champ est obligatoire
+            </p>
+
+            <!------------>
+          </div>
+          <div class="input-box">
+            <span class="details">Code postal</span>
+            <input
+              type="text"
+              formControlName="zipCode"
+              placeholder="code postal"
+            />
+
+            <!--Zip code errors-->
+            <p
+              class="ErrorMsg"
+              *ngIf="!zipCode?.valid && (zipCode?.dirty || zipCode?.touched)"
+            >
+              ce champ est obligatoire
+            </p>
+
+            <!------------>
+          </div>
+          <div class="input-box">
+            <span class="details">Gouvernorat</span>
+            <input
+              type="text"
+              formControlName="state"
+              placeholder="Gouvernorat"
+            />
+
+            <!--Zip code errors-->
+            <p
+              class="ErrorMsg"
+              *ngIf="!state?.valid && (state?.dirty || state?.touched)"
+            >
+              ce champ est obligatoire
+            </p>
+
+            <!------------>
+          </div>
+          <div class="input-box">
+            <span class="details">Rue</span>
+            <input type="text" formControlName="street" placeholder="Rue" />
+            <!--Street errors-->
+            <p
+              class="ErrorMsg"
+              *ngIf="!street?.valid && (street?.dirty || street?.touched)"
+            >
+              ce champ est obligatoire
+            </p>
+
+            <!------------>
+          </div>
+          <div class="input-box">
+            <span class="details">Password</span>
+            <input
+              type="password"
+              formControlName="password"
+              placeholder="Entrez votre Mot de passe"
+            />
+            <!--pwd errors-->
+            <p
+              class="ErrorMsg"
+              *ngIf="!password?.valid && (password?.dirty || password?.touched)"
+            >
+              ce champ est obligatoire
+            </p>
+            <p *ngIf="password?.errors?.['pattern']" class="ErrorMsg">
+              vous devez entrez au minimun 8 caractéres
+            </p>
+
+            <!------------>
+          </div>
+          <div class="input-box">
+            <span class="details">Confirm Password</span>
+            <input
+              type="password"
+              formControlName="confirm_password"
+              placeholder="Confirmer votre mot de passe"
+            />
+            <p
+              class="ErrorMsg"
+              *ngIf="
+                !confirm_password?.valid &&
+                (confirm_password?.dirty || confirm_password?.touched)
+              "
+            >
+              ce champ est obligatoire
+            </p>
+            <p
+              *ngIf="addCustomerForm.hasError('ConfirmedValidator')"
+              class="ErrorMsg"
+            >
+              not matched
+            </p>
+          </div>
         </div>
-      </div>
+
+        <div class="d-flex justify-content-end pt-3">
+          <button
+            class="bn632-hover bn24"
+            type="submit"
+            role="button"
+            [disabled]="!addCustomerForm.valid"
+          >
+            INSCRIRE
+          </button>
+        </div>
+
+      </form>
     </div>
   </div>
-
-
 </section>
+

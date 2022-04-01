@@ -2,11 +2,12 @@
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col">
-        <div class="card card-registration my-4 ">
+        <div class="card ">
           <div class="logo">
-            <div class="card-title text-center">
-              <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
-              <span class="mb-5 text-uppercase">ajouter un materiel</span>
+            <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
+
+            <div class="card-title">
+              <span class="title">ajouter un materiel</span>
             </div>
           </div>
           <form [formGroup]="formAddMaterials" (ngSubmit)="addMaterial()">
@@ -92,7 +93,7 @@
                           <input type="text" formControlName="country" placeholder="Pays"
                             class="form-control form-control-lg" />
                           <!--Country errors-->
-                          <p class="ErrorMsg" *ngIf="!street?.valid && (street?.dirty ||street?.touched)">
+                          <p class="ErrorMsg" *ngIf="!counrty?.valid && (counrty?.dirty ||counrty?.touched)">
                             ce champ est obligatoire
                           </p>
 

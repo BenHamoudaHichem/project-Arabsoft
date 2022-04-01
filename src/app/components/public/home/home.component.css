@@ -1,12 +1,10 @@
 main {
-  /*    background: -webkit-linear-gradient(to left, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
-  /* background: linear-gradient(to left, #2C5364, #203A43, #0F2027);*/
 
   background-color: #813867;
   background-image: linear-gradient(315deg, #813867 0%, #ebebeb 74%);
   height: 100%;
   width: 100%;
-}
+}span{font-style: italic;}
 
 ul {
   display: block;

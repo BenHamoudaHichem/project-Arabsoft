@@ -8,20 +8,23 @@
   <div class="left">
     <ul>
       <li class="menu-heading">Dashboards</li>
-      <li>
+      <li *ngIf="isCustumer">
         <a data-toggle="tab " routerLink="/dashboard/customer/home"
           ><i class="fa fa-home fa-lg"></i> Acceuil</a
         >
       </li>
-
-      <li class="active">
-        <a
-          data-toggle="tab"
-          routerLink="/dashboard/customer/customerProfil"
+      <li *ngIf="isManager">
+        <a data-toggle="tab " routerLink="/dashboard/manager/home"
+          ><i class="fa fa-home fa-lg"></i> Acceuil</a
+        >
+      </li>
+      <li class="active" *ngIf="isCustumer">
+        <a data-toggle="tab" routerLink="/dashboard/customer/customerProfil"
           ><i class="fa fa-street-view fa-lg"></i> User Profile</a
         >
       </li>
-      <li>
+
+      <li *ngIf="isManager">
         <a href="#submenu5" class="dropdown-toggle" data-bs-toggle="collapse">
           <i class="fa fa-users-cog"></i> Agents</a
         >
@@ -54,7 +57,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li *ngIf="isManager">
         <a href="#submenu2" class="dropdown-toggle" data-bs-toggle="collapse">
           <i class="fa fa-users"></i>Equipes</a
         >
@@ -81,7 +84,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li *ngIf="isManager">
         <a href="#submenu3" class="dropdown-toggle" data-bs-toggle="collapse">
           <i class="fa fa-building"></i>Interventions</a
         >
@@ -108,7 +111,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li *ngIf="isManager">
         <a href="#submenu4" class="dropdown-toggle" data-bs-toggle="collapse">
           <i class="fa fa-boxes"></i>Materiels</a
         >
@@ -144,7 +147,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li *ngIf="isManager">
         <a
           data-toggle="tab "
           [routerLink]="['/dashboard/manager/reclamationList']"
@@ -217,22 +220,24 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
+        <a class="nav-link"><span>Hichem Ben HAMMOUDA</span> </a>
 
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-              <a class="nav-link active">Hichem Ben HAMMOUDA </a>
+         <li class="nav-item" >
+              <a class="nav-link" routerLink="/dashboard/customer/home"><span>Accueil</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
+              <a class="nav-link" routerLink="/dashboard/manager/home"><span>Dashboards</span>
+              </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
+              <a class="nav-link" routerLink="/dashboard/customer/customerProfil"> <span>Profil</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="/dashboard/customer/home"><span>Réclamer</span></a>
             </li>
-            <li class="nav-item dropdown">
+            <!--<li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
                 data-bs-toggle="dropdown"
@@ -249,7 +254,7 @@
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Separated link</a>
               </div>
-            </li>
+            </li>-->
           </ul>
           <form class="d-flex">
             <div class="form-group col-md-9">

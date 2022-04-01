@@ -51,20 +51,21 @@
         </div>
       </div>
       <div class="col-md-8">
-        <div class="card mb-3">
+        <div class="card">
           <div class="card-body">
             <form class="form" [formGroup]="updateForm" (ngSubmit)="Update()">
+              <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px"
+                style="text-align: center;" /></span>
               <div class="logo">
-                <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px"
-                    style="text-align: center;" /></span>
-                <span class="mb-5 text-uppercase">Editer votre profil</span>
+
+                <span class="title">Editer votre profil</span>
               </div>
 
               <div class="form-outline">
                 <label class="form-label" for="firstName">Nom</label>
                 <div class="relative">
                   <input type="text" formControlName="firstName" data-rule="required"
-                    class="form-control form-control-lg" />
+                    class="form-control" />
                   <i class="fa fa-user"></i>
                 </div>
               </div>
@@ -72,21 +73,21 @@
                 <label class="form-label" for="Prénom">Prénom</label>
 
                 <div class="relative">
-                  <input type="text" formControlName="lastNamme" class="form-control form-control-lg" />
+                  <input type="text" formControlName="lastNamme" class="form-control  " />
                   <i class="fa fa-user"></i>
                 </div>
               </div>
               <div class="form-outline">
                 <label class="form-label" for="cin">Numéro de télèphone</label>
                 <div class="relative">
-                  <input type="number" formControlName="tel" class="form-control form-control-lg" />
+                  <input type="number" formControlName="tel" class="form-control  " />
                   <i class="fa fa-phone"></i>
                 </div>
               </div>
               <div class="form-outline">
                 <label class="form-label" for="email">Email</label>
                 <div class="relative">
-                  <input type="email" formControlName="identifier" class="form-control form-control-lg" />
+                  <input type="email" formControlName="identifier" class="form-control  " />
                   <i class="fa fa-envelope"></i>
                 </div>
               </div>
@@ -98,7 +99,7 @@
                       <div class="form-outline">
                         <label class="form-label" for="pays">Pays</label>
                         <div class="relative">
-                          <input type="text" formControlName="country" class="form-control form-control-lg" />
+                          <input type="text" formControlName="country" class="form-control  " />
                           <i class="fa fa-css3"></i>
                         </div>
                         <!--Country error-->
@@ -116,7 +117,7 @@
                         <label class="form-label" for="city">Ville</label>
 
                         <div class="relative">
-                          <input type="text" formControlName="city" class="form-control form-control-lg" />
+                          <input type="text" formControlName="city" class="form-control  " />
                           <i class="fa fa-css3"></i>
                         </div>
 
@@ -132,7 +133,7 @@
                         <label class="form-label" for="code postal">Code postal</label>
 
                         <div class="relative">
-                          <input type="text" formControlName="zipCode" class="form-control form-control-lg" />
+                          <input type="text" formControlName="zipCode" class="form-control  " />
                           <i class="fa fa-css3"></i>
                         </div>
 
@@ -152,7 +153,7 @@
                         <label class="form-label" for="state">Gouvernorat</label>
 
                         <div class="relative">
-                          <input type="text" formControlName="state" class="form-control form-control-lg" />
+                          <input type="text" formControlName="state" class="form-control  " />
                           <i class="fa fa-css3"></i>
                         </div>
 
@@ -170,7 +171,7 @@
                       <div class="form-outline">
                         <label class="form-label" for="Rue">Rue</label>
                         <div class="relative">
-                          <input type="text" formControlName="street" class="form-control form-control-lg" />
+                          <input type="text" formControlName="street" class="form-control  " />
                           <i class="fa fa-css3"></i>
                         </div>
                         <!--Street errors-->
@@ -189,7 +190,7 @@
               <div class="form-outline">
                 <label class="form-label" for="form3Example1m">Mot de passe</label>
                 <div class="relative">
-                  <input type="password" formControlName="password" class="form-control form-control-lg" />
+                  <input type="password" formControlName="password" class="form-control  " />
                   <i class="fa fa-lock"></i>
                 </div>
                 <!--pwd errors--->
@@ -208,7 +209,7 @@
                 <label class="form-label" for="form3Example1n">Confirmer le mot de passe</label>
 
                 <div class="relative">
-                  <input type="password" formControlName="confirm_password" class="form-control form-control-lg" />
+                  <input type="password" formControlName="confirm_password" class="form-control  " />
                   <i class="fa fa-lock"></i>
                 </div>
 

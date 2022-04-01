@@ -4,10 +4,11 @@
       <div class="col">
         <div class="card card-registration my-4">
           <div class="logo">
-            <div class="card-title text-center">
-              <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
+            <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
 
-              <span class="mb-5 text-uppercase">Créer une intervention</span>
+            <div class="card-title">
+
+              <span class="title">Créer une intervention</span>
             </div>
           </div>
           <form [formGroup]="createInterventionForm" (ngSubmit)="Creer()" novalidate>

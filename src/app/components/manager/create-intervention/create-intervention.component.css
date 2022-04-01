@@ -8,49 +8,78 @@ font-family: "Poppins", sans-serif;
 }
 
 
+select{
 
-fieldset {
+  border: 2px solid #9b59b6 !important;
 
-  border: 2px solid #ccc;
-}
 
-input,textarea,select{
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+
   margin: 10px 0px;
   width: 70%;
+  background-color: #f6f6f6;
 
-  outline: none;
+  border: 2px solid #9b59b6;
+  outline: 0;
+  box-shadow: none !important;
+
   padding: 10px 5px;
   background-color: #f6f6f6;
 }
 
 
-.logo {
-  margin-top: 20px;
-}
-.logo span,
-.logo span img {
-  font-size: 25px;
-  color: #0d8aa7;
-}
-
-.login-text h1 {
-  font-size: 25px;
-}
-.login-text p {
-  font-size: 15px;
-  color: #000000b2;
-}
-.extra-line {
-  font-size: 15px;
-  font-weight: 600;
-}
-.extra-line a {
-  color: #0095b6;
-}
 button
 {
   margin-top: 50px;
  margin-right: 30%;
 }
+.card {
+  border-radius: 30px;
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.15);
+ 
+  padding: 25px 30px;
+}
 
+.title{
+
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: 500;
+  position: relative;
+}
+.title::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 110px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+.form-control{
+
+  border: 2px solid #9b59b6 !important;
+
+
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+
+  margin: 10px 0px;
+  width: 70%;
+  background-color: #f6f6f6;
+
+  border: 2px solid #9b59b6;
+  outline: 0;
+  box-shadow: none;
+
+  padding: 10px 5px;
+  background-color: #f6f6f6;}
 

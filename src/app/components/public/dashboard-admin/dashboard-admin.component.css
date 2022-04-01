@@ -1,3 +1,19 @@
+
+
+.nav-link {
+  padding: 20px;
+  letter-spacing: 2px;
+  font-size: 20px;
+  font-weight: bolder;
+}
+span {
+  color: rgba(37, 32, 32, 0.884);
+
+}
+
+
+.me-auto{margin-left: auto !important;}
+
 /* Custom scrollbar */
 .main ::-webkit-scrollbar {
   width: 10px;

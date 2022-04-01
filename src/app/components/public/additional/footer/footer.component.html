@@ -1,5 +1,5 @@
 <footer class="footer-section">
-  <div class="container">
+  <div class="container" *ngIf="!check()">
       <div class="footer-cta pt-5 pb-5">
           <div class="row">
               <div class="col-xl-4 col-md-4 mb-30">
@@ -39,7 +39,7 @@
                       <a href="#"><img src="/assets/images/gest.png" height="30px" width="30px" class="img-fluid" alt="logo"></a>
                   </div>-->
                   <div class="footer-text">
-                     
+
                   </div>
                   <div class="footer-social-icon">
                       <span>Follow us</span>
@@ -55,11 +55,9 @@
                           <h3>Plan de notre sitet</h3>
                       </div>
                       <ul>
-                          <li><a href="#">****</a></li>
-                          <li><a href="#">****</a></li>
-                          <li><a href="#">****</a></li>
-
-                          <li><a href="#">****</a></li>
+                          <li><a href="#">Gestion des solutions</a></li>
+                          <li><a href="#">Affection des équipes</a></li>
+                 
 
                       </ul>
                   </div>
@@ -69,12 +67,10 @@
                       <div class="footer-widget-heading">
                           <h3>Contactez nous</h3>
                       </div>
-                      <div class="footer-text mb-25">
-                          <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
-                      </div>
+
                       <div class="subscribe-form">
                           <form action="#">
-                              <input type="text" placeholder="Email Address">
+                              <input type="text" placeholder="Addresse email ">
                               <button><i class="fab fa-telegram-plane"></i></button>
                           </form>
                       </div>
@@ -83,7 +79,7 @@
           </div>
       </div>
   </div>
- <!-- <div class="copyright-area">
+<div class="copyright-area" *ngIf="check()">
       <div class="container">
           <div class="row">
               <div class="col-xl-6 col-lg-6 text-center text-lg-left">
@@ -104,5 +100,5 @@
               </div>
           </div>
       </div>
-  </div>-->
+  </div>
 </footer>

@@ -22,7 +22,9 @@
 /***________   message validation ________****/
 
 .ErrorMsg {
+  margin-top: 5px;
   font-size: small;
+  letter-spacing: 1px;
   color: red;
 }
 a {

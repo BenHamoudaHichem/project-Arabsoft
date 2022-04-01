@@ -1,72 +1,113 @@
-
-<section class="min-h-100 bg-light " style="min-height: 100vh;">
+<section class="h-100">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col">
         <div class="card card-registration my-4">
           <div class="logo">
-            <div class="card-title text-center">
-              <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
+            <span
+              ><img
+                src="assets/images/gest.png"
+                alt="Sample photo"
+                height="60px"
+                width="100px"
+            /></span>
+
+            <div class="title">
               <span class="mb-5 text-uppercase">Créer une reclamation</span>
             </div>
           </div>
-          <form [formGroup]="reclamationForm" (ngSubmit)="sendDemand()" novalidate>
+          <form
+            [formGroup]="reclamationForm"
+            (ngSubmit)="sendDemand()"
+            novalidate
+          >
             <div class="row g-0">
-              <div class="col-xl-6  d-xl-block">
+              <div class="col-xl-6 d-xl-block">
                 <div class="card-body p-md-5 text-black">
                   <div class="form-outline">
                     <label class="form-label" for="form3Example1n">Titre</label>
 
-                    <input type="text" id="form3Example1n" class="form-control form-control-lg"
-                      placeholder="Entrez le titre de reclamation" formControlName="title" />
+                    <input
+                      type="text"
+                      id="form3Example1n"
+                      class="form-control form-control-lg"
+                      placeholder="Entrez le titre de reclamation"
+                      formControlName="title"
+                    />
                     <!--Error Title-->
-                    <p *ngIf="(Title?.touched|| Title?.dirty ) && !Title?.valid" class="ErrorMsg"> Ce champ est
-                      obligatoire</p>
-                    <p *ngIf="Title?.errors?.['pattern']" class="ErrorMsg"> vous devez entrez au minimun deux
-                      caractéres</p>
+                    <p
+                      *ngIf="(Title?.touched || Title?.dirty) && !Title?.valid"
+                      class="ErrorMsg"
+                    >
+                      Ce champ est obligatoire
+                    </p>
+                    <p *ngIf="Title?.errors?.['pattern']" class="ErrorMsg">
+                      vous devez entrez au minimun deux caractéres
+                    </p>
                     <!----------->
-
-
-
                   </div>
                   <div class="form-outline">
-                    <label class="form-label" for="form3Example1n">Désignation</label>
+                    <label class="form-label" for="form3Example1n"
+                      >Désignation</label
+                    >
 
-                    <textarea id="form3Example1n" class="form-control form-control-lg" placeholder="Ecrivez ..."
-                      rows="6" formControlName="description"></textarea>
+                    <textarea
+                      id="form3Example1n"
+                      class="form-control form-control-lg"
+                      placeholder="Ecrivez ..."
+                      rows="6"
+                      formControlName="description"
+                    ></textarea>
                     <!--Error Description-->
-                    <p *ngIf="(Description?.touched|| Description?.dirty ) && !Description?.valid" class="ErrorMsg">
-                      Ce champ est obligatoire</p>
-                    <p *ngIf="Description?.errors?.['minlength']" class="ErrorMsg"> vous devez entrez au minimun 4
-                      caractéres</p>
+                    <p
+                      *ngIf="
+                        (Description?.touched || Description?.dirty) &&
+                        !Description?.valid
+                      "
+                      class="ErrorMsg"
+                    >
+                      Ce champ est obligatoire
+                    </p>
+                    <p
+                      *ngIf="Description?.errors?.['minlength']"
+                      class="ErrorMsg"
+                    >
+                      vous devez entrez au minimun 4 caractéres
+                    </p>
                     <!----------->
-
-
                   </div>
                 </div>
               </div>
               <div class="col-xl-6">
                 <div class="card-body p-md-5 text-black">
-              <!--    <div class="form-outline">
+                  <!--    <div class="form-outline">
                     <label class="form-label"> A quelle date</label>
                     <input type="date" class="form-control form-control-lg" formControlName="createdAt">-->
-                    <!--Error Date-
+                  <!--Error Date-
                     <p *ngIf="(createdAt?.touched|| createdAt?.dirty ) && !createdAt?.valid" class="ErrorMsg"> Ce
                       champ est obligatoire</p>
                     </div>
       --------->
 
-
                   <fieldset>
-
                     <div class="row">
                       <div class="col-md-6 mb-4">
                         <div class="form-outline">
                           <label class="form-label" for="pays">Pays</label>
-                          <input type="text" formControlName="country" placeholder="Pays"
-                            class="form-control form-control-lg" />
+                          <input
+                            type="text"
+                            formControlName="country"
+                            placeholder="Pays"
+                            class="form-control form-control-lg"
+                          />
                           <!--Country errors-->
-                          <p class="ErrorMsg" *ngIf="!counrty?.valid && (counrty?.dirty ||counrty?.touched)">
+                          <p
+                            class="ErrorMsg"
+                            *ngIf="
+                              !counrty?.valid &&
+                              (counrty?.dirty || counrty?.touched)
+                            "
+                          >
                             ce champ est obligatoire
                           </p>
 
@@ -77,27 +118,20 @@
                         <div class="form-outline">
                           <label class="form-label" for="city">Ville</label>
 
-                          <input type="text" formControlName="city" placeholder="Ville"
-                            class="form-control form-control-lg" />
+                          <input
+                            type="text"
+                            formControlName="city"
+                            placeholder="Ville"
+                            class="form-control form-control-lg"
+                          />
 
                           <!--Ville errors-->
-                          <p class="ErrorMsg" *ngIf="!city?.valid && (city?.dirty ||city?.touched)">
-                            ce champ est obligatoire
-                          </p>
-
-                          <!------------>
-                        </div>
-
-                      </div>
-                      <div class="col-md-6 mb-4">
-                        <div class="form-outline">
-                          <label class="form-label" for="code postal">Code postal</label>
-
-                          <input type="text" formControlName="zipCode" placeholder="code postal"
-                            class="form-control form-control-lg" />
-
-                          <!--Zip code errors-->
-                          <p class="ErrorMsg" *ngIf="!zipCode?.valid && (zipCode?.dirty ||zipCode?.touched)">
+                          <p
+                            class="ErrorMsg"
+                            *ngIf="
+                              !city?.valid && (city?.dirty || city?.touched)
+                            "
+                          >
                             ce champ est obligatoire
                           </p>
 
@@ -106,13 +140,51 @@
                       </div>
                       <div class="col-md-6 mb-4">
                         <div class="form-outline">
-                          <label class="form-label" for="state">Gouvernorat</label>
+                          <label class="form-label" for="code postal"
+                            >Code postal</label
+                          >
 
-                          <input type="text" formControlName="state" placeholder="Gouvernorat"
-                            class="form-control form-control-lg" />
+                          <input
+                            type="text"
+                            formControlName="zipCode"
+                            placeholder="code postal"
+                            class="form-control form-control-lg"
+                          />
 
                           <!--Zip code errors-->
-                          <p class="ErrorMsg" *ngIf="!state?.valid && (state?.dirty ||state?.touched)">
+                          <p
+                            class="ErrorMsg"
+                            *ngIf="
+                              !zipCode?.valid &&
+                              (zipCode?.dirty || zipCode?.touched)
+                            "
+                          >
+                            ce champ est obligatoire
+                          </p>
+
+                          <!------------>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="state"
+                            >Gouvernorat</label
+                          >
+
+                          <input
+                            type="text"
+                            formControlName="state"
+                            placeholder="Gouvernorat"
+                            class="form-control form-control-lg"
+                          />
+
+                          <!--Zip code errors-->
+                          <p
+                            class="ErrorMsg"
+                            *ngIf="
+                              !state?.valid && (state?.dirty || state?.touched)
+                            "
+                          >
                             ce champ est obligatoire
                           </p>
 
@@ -122,23 +194,36 @@
                       <div class="col-md-6 mb-4">
                         <div class="form-outline">
                           <label class="form-label" for="Rue">Rue</label>
-                          <input type="text" formControlName="street" placeholder="Rue"
-                            class="form-control form-control-lg" />
+                          <input
+                            type="text"
+                            formControlName="street"
+                            placeholder="Rue"
+                            class="form-control form-control-lg"
+                          />
                           <!--Street errors-->
-                          <p class="ErrorMsg" *ngIf="!street?.valid && (street?.dirty ||street?.touched)">
+                          <p
+                            class="ErrorMsg"
+                            *ngIf="
+                              !street?.valid &&
+                              (street?.dirty || street?.touched)
+                            "
+                          >
                             ce champ est obligatoire
                           </p>
 
                           <!------------>
                         </div>
                       </div>
-
                     </div>
                   </fieldset>
                   <div class="d-flex justify-content-end pt-3">
-                   <button class="bn632-hover bn24"type="submit" [disabled]="!reclamationForm.valid">Reclamer</button>
-
-
+                    <button
+                      class="bn632-hover bn24"
+                      type="submit"
+                      [disabled]="!reclamationForm.valid"
+                    >
+                      Reclamer
+                    </button>
                   </div>
                 </div>
               </div>

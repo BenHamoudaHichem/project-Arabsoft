@@ -1,76 +1,129 @@
-
 <section class="h-100">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="row">
         <div class="col-8">
           <div class="logo">
-            <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
+            <span
+              ><img
+                src="assets/images/gest.png"
+                alt="Sample photo"
+                height="60px"
+                width="100px"
+            /></span>
             <span class="mb-5 text-uppercase">Les reclamations </span>
           </div>
           <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
               <a [routerLink]="['/customer/reclamationList']" routerLinkActive>
-                <button (click)="showAll()" class="nav-link active " id="nav-home-tab" data-bs-toggle="tab"
-                  data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                <button
+                  (click)="showAll()"
+                  class="nav-link active"
+                  id="nav-home-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#nav-home"
+                  type="button"
+                  role="tab"
+                  aria-controls="nav-home"
+                  aria-selected="true"
+                >
                   Tous
                 </button>
               </a>
-              <a [routerLink]="['/customer/reclamationList']" routerLinkActive [queryParams]="{ status: 'rejected'}">
-                <button class="nav-link" (click)="showByStatus()" id="nav-profile-tab" data-bs-toggle="tab"
-                  data-bs-target="#nav-profile" type="button" role="tab" aria-selected="false">
-                  <i class="fa fa-ban" aria-hidden="true" style="color: red;"></i>
+              <a
+                [routerLink]="['/dashboard/customer/reclamationList']"
+                routerLinkActive
+                [queryParams]="{ status: 'rejected' }"
+              >
+                <button
+                  class="nav-link"
+                  (click)="showByStatus()"
+                  id="nav-profile-tab"
+                  data-bs-toggle="tab"
+                  data-bs-target="#nav-profile"
+                  type="button"
+                  role="tab"
+                  aria-selected="false"
+                >
+                  <i
+                    class="fa fa-ban"
+                    aria-hidden="true"
+                    style="color: red"
+                  ></i>
                   Rejeté
-                </button></a>
+                </button></a
+              >
             </div>
           </nav>
           <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-
+            <div
+              class="tab-pane fade show active"
+              id="nav-home"
+              role="tabpanel"
+              aria-labelledby="nav-home-tab"
+            >
               <div class="card" *ngFor="let reclamation of demandList">
                 <div class="card-body">
-                  <h5 class="card-title"> {{reclamation.title}}</h5>
-                  <p class="card-text"> <i class="fas fa-map-marker-alt"> {{reclamation.location}</i> </p>
-                  <p class="card-text"><i class="fas fa-calendar-alt"></i>
-                    {{reclamation.createdAt}}
+                  <h5 class="card-title">{{ reclamation.title }}</h5>
+                  <p class="card-text">
+                    <i class="fas fa-map-marker-alt">
+                      {{reclamation.location}</i
+                    >
+                  </p>
+                  <p class="card-text">
+                    <i class="fas fa-calendar-alt"></i>
+                    {{ reclamation.createdAt }}
                   </p>
                   <div class="d-flex justify-content-end pt-3">
-
-                    <a [routerLink]="['/customer/detailReclamation']" [queryParams]="{id:reclamation.id}"
-                      queryParamsHandling="merge"> <button>Consulter</button></a>
-
+                    <a
+                      [routerLink]="['/dashboard/customer/detailReclamation']"
+                      [queryParams]="{ id: reclamation.id }"
+                      queryParamsHandling="merge"
+                    >
+                      <button>Consulter</button></a
+                    >
                   </div>
                 </div>
               </div>
 
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title"> Titre de reclamation</h5>
-                  <p class="card-text"> <i class="fas fa-map-marker-alt"></i> rue de falten</p>
-                  <p class="card-text"><i class="fas fa-calendar-alt"></i>
+                  <h5 class="card-title">Titre de reclamation</h5>
+                  <p class="card-text">
+                    <i class="fas fa-map-marker-alt"></i> rue de falten
+                  </p>
+                  <p class="card-text">
+                    <i class="fas fa-calendar-alt"></i>
                     date 20/02/2022
                   </p>
                   <div class="d-flex justify-content-end pt-3">
-
-                    <a [routerLink]="['/customer/detailReclamation']" [queryParams]="{id:'reclamation.id'}"
-                      queryParamsHandling="merge"> <button class="bn9"><span>Consulter</span></button></a>
-
+                    <a
+                      [routerLink]="['/dashboard/customer/detailReclamation']"
+                      [queryParams]="{ id: 'reclamation.id' }"
+                      queryParamsHandling="merge"
+                    >
+                      <button class="bn9"><span>Consulter</span></button></a
+                    >
                   </div>
                 </div>
               </div>
-
-
             </div>
 
             <!--nav 2-->
 
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-              <p class="text-center "> pas des interventions en attente en ce moment</p>
+            <div
+              class="tab-pane fade"
+              id="nav-profile"
+              role="tabpanel"
+              aria-labelledby="nav-profile-tab"
+            >
+              <p class="text-center">
+                pas des interventions en attente en ce moment
+              </p>
             </div>
           </div>
         </div>
         <div class="col-4">
-
           <div class="row mb-4">
             <app-filtre></app-filtre>
           </div>
