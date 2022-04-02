@@ -70,7 +70,7 @@ export class CreateInterventionComponent implements OnInit {
     });
     this.allCategory();
     this.getMaterials();
-    this.getOneInterventions();
+
     this.getInterventions();
 
     this.dropdownSettings = {
