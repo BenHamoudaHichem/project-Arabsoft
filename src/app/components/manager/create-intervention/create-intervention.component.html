@@ -79,6 +79,15 @@
                     <!----------->
                   </div>
                   <div class="form-outline">
+                    <label class="form-label">Interventions</label>
+
+                    <select  class="form-select">
+                      <option *ngFor="let item of interventionList" formControlName="intervention" [value]="item.id">{{item.title}}</option>
+                    </select>
+                    <!--Error category-->
+
+                  </div>
+                  <div class="form-outline">
                     <label class="form-label"> Materiels</label>
 
                     <ng-multiselect-dropdown formControlName="Materiel" [placeholder]="'Selectionner materiels'"

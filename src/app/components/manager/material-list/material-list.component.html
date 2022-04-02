@@ -37,6 +37,8 @@
                   <div class="d-flex justify-content-end pt-3">
                     <a [routerLink]="['/dashboard/manager/detailMaterial']" [queryParams]="{id:'material.id'}"
                       queryParamsHandling="merge"> <button class="bn9" role="button"><span>Consulter</span></button></a>
+                      <a [routerLink]="['/dashboard/manager/updateMaterial']" [queryParams]="{id:'material.id'}"
+                      queryParamsHandling="merge"> <button class="bn9" role="button"><span>Mettre à jour</span></button></a>
 
 
                   </div>
@@ -53,6 +55,8 @@
                     <a [routerLink]="['/dashboard/manager/detailMaterial']" [queryParams]="{id:material.id}"
                       queryParamsHandling="merge"> <button class="bn9" role="button"><span>Consulter</span></button></a>
 
+                      <a [routerLink]="['/dashboard/manager/updateMaterial']" [queryParams]="{id:material.id}"
+                      queryParamsHandling="merge"> <button class="bn9" role="button"><span>Mettre à jour</span></button></a>
 
                   </div>
                 </div>

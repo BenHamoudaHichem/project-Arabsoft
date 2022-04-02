@@ -6,8 +6,6 @@ export interface IDemand {
   description: string;
   address:Address
   createdAt: Date;
-
-
   status: string;
   user: string;
 }

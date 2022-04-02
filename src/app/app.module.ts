@@ -29,7 +29,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardAdminComponent } from './components/public/dashboard-admin/dashboard-admin.component';
 import { CookieService } from 'ngx-cookie-service';
 import { HomeCustomerComponent } from './components/customer/home-customer/home-customer.component';
-import { UpdateInterventionComponent } from './components/manager/update-intervention/update-intervention.component';
 import { GuardAuthenticateGuard } from './services/guard-authenticate.guard';
 import { DetailMaterialComponent } from './components/manager/detail-material/detail-material.component';
 import { DetailTeamComponent } from './components/manager/detail-team/detail-team.component';
@@ -39,6 +38,8 @@ import { NotFoundComponent } from './components/public/not-found/not-found.compo
 import { CustomerProfilComponent } from './components/customer/customer-profil/customer-profil.component';
 import { EditProfilComponent } from './components/customer/edit-profil/edit-profil.component';
 import { HomeManagerComponent } from './components/manager/home-manager/home-manager.component';
+import { UpdateMaterialComponent } from './components/manager/update-material/update-material.component';
+import { ExpiredSessionComponent } from './components/public/expired-session/expired-session.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,8 +64,6 @@ HomeComponentPage,
     ReclamationListComponent,
     DashboardAdminComponent,
     HomeCustomerComponent,
-
-    UpdateInterventionComponent,
     DetailMaterialComponent,
     DetailTeamComponent,
     FiltreComponent,
@@ -73,6 +72,8 @@ HomeComponentPage,
     CustomerProfilComponent,
     EditProfilComponent,
     HomeManagerComponent,
+    UpdateMaterialComponent,
+    ExpiredSessionComponent,
   ],
   imports: [
     BrowserModule,

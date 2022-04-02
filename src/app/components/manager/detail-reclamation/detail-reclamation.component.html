@@ -43,7 +43,7 @@
           <div class="card-footer">
             <div class="d-flex justify-content-center ">
               <button class="bn632-hover bn28">Rejeter</button>
-              <button class="bn632-hover bn22" routerLink="/manager/createIntervention">accepter</button>
+            <a [queryParams]="{id:demand.id}" queryParamsHandling="merge" routerLink="/dashboard/manager/createIntervention">  <button class="bn632-hover bn22" >accepter</button></a>
 
             </div>
           </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 declare const hich:any;
 @Component({
@@ -8,12 +9,15 @@ declare const hich:any;
 })
 export class DashboardAdminComponent implements OnInit {
 
-  constructor(private authService:AuthenticateService) { }
+  constructor(private authService:AuthenticateService,private route:Router) { }
 
   ngOnInit(): void {
 
   }
-  public get isCustumer():boolean
+  checkIsHere()
+{
+  return this.route.url.includes('List')
+}  public get isCustumer():boolean
   {
     return this.authService.isCustumer
   }

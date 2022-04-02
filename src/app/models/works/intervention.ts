@@ -6,11 +6,14 @@ export class Intervention {
     protected title: string,
     protected description: string,
     protected category: Category,
+    protected startedAt: Date,
+    protected status: string,
+    protected demandList:{id:string}[],
     protected team:string,
     protected createdAt: Date,
-    protected startedAt: Date,
     protected materials:Material[]
   ) {}
+
 
 
   public getTeam(): string {

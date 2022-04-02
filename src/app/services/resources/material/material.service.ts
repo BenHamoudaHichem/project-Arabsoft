@@ -88,6 +88,20 @@ export class EquipmentService {
       );
   }
 
+  updateStatus(id: string,status:string) {
+    let headers = {
+      headers: new HttpHeaders({
+        Authorization: `Berear${this.authService.getToken()}`,
+        'Access-Control-Allow-Origin': '*',
+      }),
+    };
+
+    return this.http.post(
+      `${this.apiURL}?id=${id}&status=${status}`,
+ 
+      headers
+    );
+  }
   update(material: Material) {
     let headers = {
       headers: new HttpHeaders({

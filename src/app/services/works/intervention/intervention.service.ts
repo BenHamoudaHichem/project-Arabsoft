@@ -14,7 +14,7 @@ export class InterventionService {
       Authorization: `Berear${this.authService.getToken()}`,
     }),
   };
-  private apiURL = 'http://127.0.0.1:8080/gestintern';
+  private apiURL = 'http://127.0.0.1:8080';
 
   constructor(
     private http: HttpClient,
@@ -27,10 +27,12 @@ export class InterventionService {
           id: intervention.id,
           title: intervention.title,
           description: intervention.description,
-          createdAt: intervention.createdAt,
+          category: intervention.category,
           startedAt: intervention.startedAt,
           status: intervention.status,
-          category: intervention.category,
+          demandList:intervention.demandList,
+          team:intervention.team,
+          createdAt: intervention.createdAt,
           materials:intervention.materials
         }));
       })
@@ -39,17 +41,19 @@ export class InterventionService {
 
 
   interventionPerStatus(status:string): Observable<IIntervention[]> {
-    return this.http.get<IIntervention[]>(`${this.apiURL}/interventions/${status}`).pipe(
+    return this.http.get<IIntervention[]>(`${this.apiURL}/interventions?status=${status}`).pipe(
       map((intervention: IIntervention[]) => {
         return intervention.map((intervention) => ({
-          id: intervention.id,
-          title: intervention.title,
-          description: intervention.description,
-          createdAt: intervention.createdAt,
-          startedAt: intervention.startedAt,
-          status: intervention.status,
-          category: intervention.category,
-          materials:intervention.materials
+    id: intervention.id,
+    title: intervention.title,
+    description: intervention.description,
+    category: intervention.category,
+    startedAt: intervention.startedAt,
+    status: intervention.status,
+    demandList:intervention.demandList,
+    team:intervention.team,
+    createdAt: intervention.createdAt,
+    materials:intervention.materials
         }));
       })
     );
@@ -59,7 +63,7 @@ export class InterventionService {
     var d = JSON.stringify(intervention);
     console.log(d)
     return this.http.post<Intervention>(
-      `${this.apiURL}/createIntervention`,
+      `${this.apiURL}/interventions`,
       d,
       this.headers
     );
@@ -67,7 +71,7 @@ export class InterventionService {
 
   showIntervention(id: string): Observable<IIntervention> {
     return this.http
-      .get<IIntervention>(`${this.apiURL}/intervention/${id}`, this.headers)
+      .get<IIntervention>(`${this.apiURL}/intervention?id=${id}`, this.headers)
       .pipe(
         map((intervention: IIntervention) => {
           return intervention;

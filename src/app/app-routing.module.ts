@@ -17,7 +17,6 @@ import { MaterialListComponent } from './components/manager/material-list/materi
 import { ReclamationListComponent } from './components/manager/reclamation-list/reclamation-list.component';
 import { SubscribeMembreComponent } from './components/manager/subscribe-membre/subscribe-membre.component';
 import { TeamListComponent } from './components/manager/team-list/team-list.component';
-import { UpdateInterventionComponent } from './components/manager/update-intervention/update-intervention.component';
 import { AboutUsComponent } from './components/public/about-us/about-us.component';
 import { ContactUSComponent } from './components/public/contact-us/contact-us.component';
 import { DashboardAdminComponent } from './components/public/dashboard-admin/dashboard-admin.component';
@@ -28,6 +27,7 @@ import { RegisterComponent } from './components/public/register/register.compone
 import { GuardAuthenticateGuard } from './services/guard-authenticate.guard';
 import { CreateReclamationComponent } from './components/customer/create-reclamation/create-reclamation.component';
 import { HomeManagerComponent } from './components/manager/home-manager/home-manager.component';
+import { UpdateMaterialComponent } from './components/manager/update-material/update-material.component';
 const routes: Routes = [
 
   { path: 'home', component: HomeComponentPage },
@@ -48,12 +48,7 @@ const routes: Routes = [
        /*   canActivate: [GuardAuthenticateGuard],
           data: { role: 'ROLE_USER' },*/
         },
-        {
-          path: 'customer/detailReclamation',
-          component: DetailReclamationComponent,
-       /*   canActivate: [GuardAuthenticateGuard],
-          data: { role: 'ROLE_USER' },*/
-        },
+
         {
           path: 'customer/createReclamation',
           component: CreateReclamationComponent,
@@ -128,6 +123,11 @@ const routes: Routes = [
           component: AddMaterialsComponent,
          /* canActivate: [GuardAuthenticateGuard],
           data: { role: 'ROLE_MANAGER' ,},*/
+        }, {
+          path: 'manager/detailReclamation',
+          component: DetailReclamationComponent,
+       /*   canActivate: [GuardAuthenticateGuard],
+          data: { role: 'ROLE_USER' },*/
         },
 
         {
@@ -149,14 +149,14 @@ const routes: Routes = [
     data: { role: 'ROLE_MANAGER' },*/
   },
 
-  {
-    path: 'manager/updateIntervention',
-    component: UpdateInterventionComponent,
-    /*canActivate: [GuardAuthenticateGuard],
-    data: { role: 'ROLE_MANAGER' },*/
-  },
   
 
+  {
+    path: 'manager/updateMaterial',
+    component: UpdateMaterialComponent,
+  /*canActivate: [GuardAuthenticateGuard],
+    data: { role: 'ROLE_MANAGER' },*/
+  },
   {
     path: 'manager/detailTeam',
     component: DetailTeamComponent,

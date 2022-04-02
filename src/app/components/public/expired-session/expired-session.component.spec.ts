@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UpdateInterventionComponent } from './update-intervention.component';
+import { ExpiredSessionComponent } from './expired-session.component';
 
-describe('UpdateInterventionComponent', () => {
-  let component: UpdateInterventionComponent;
-  let fixture: ComponentFixture<UpdateInterventionComponent>;
+describe('ExpiredSessionComponent', () => {
+  let component: ExpiredSessionComponent;
+  let fixture: ComponentFixture<ExpiredSessionComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UpdateInterventionComponent ]
+      declarations: [ ExpiredSessionComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UpdateInterventionComponent);
+    fixture = TestBed.createComponent(ExpiredSessionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

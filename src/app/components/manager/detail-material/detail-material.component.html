@@ -1,5 +1,4 @@
 
-
 <section class="min-h-100">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -30,6 +29,7 @@
             <div class="col-xl-6">
               <div class="card-body p-md-5 text-black">
                 <h5 class="card-title">Status</h5>
+            
                 <p class="card-text"> {{material.status}}</p>
                 <h5 class="card-title">Localisation</h5>
                 <p class="card-text"> {{material.address}}</p>
@@ -43,7 +43,9 @@
             </div>
 
           </div>
-
+          <div class="d-flex justify-content-end pt-3">
+            <button (click)="changeStatus()" class="bn632-hover bn24"type="submit"  role="button">{{btn}}</button>
+        </div>
 
         </div>
       </div>

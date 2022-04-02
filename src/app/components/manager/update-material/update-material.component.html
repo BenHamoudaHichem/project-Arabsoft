@@ -7,10 +7,10 @@
             <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
 
             <div class="card-title">
-              <span class="title">ajouter un materiel</span>
+              <span class="title">Mettre à jour le materiel</span>
             </div>
           </div>
-          <form [formGroup]="formAddMaterials" (ngSubmit)="addMaterial()">
+          <form [formGroup]="formupdateMaterials" (ngSubmit)="updateMaterial()">
             <div class="row g-0">
               <div class="col-xl-6  d-xl-block">
                 <div class="card-body p-md-5 text-black">
@@ -155,7 +155,7 @@
                   </fieldset>
 
                   <div class="d-flex justify-content-end pt-3">
-                      <button class="bn632-hover bn24"type="submit" role="button" [disabled]="!formAddMaterials.valid">Ajouter</button>
+                      <button class="bn632-hover bn24"type="submit" role="button" [disabled]="!formupdateMaterials.valid">Mettre à jour</button>
                   </div>
                 </div>
               </div>

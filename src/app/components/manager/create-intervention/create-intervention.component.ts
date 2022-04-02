@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ErrorHandler, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Notify, Report } from 'notiflix';
 import { Intervention } from 'src/app/models/works/intervention';
 import { CategoryService } from 'src/app/services/category/category.service';
@@ -12,6 +12,7 @@ import { ITeam } from 'src/app/services/resources/team/iteam';
 import { TeamService } from 'src/app/services/resources/team/team.service';
 import { Confirmed } from 'src/app/services/validation/Confirmed';
 import { DateValidation } from 'src/app/services/validation/DateValidation';
+import { IIntervention } from 'src/app/services/works/intervention/iintervention';
 import { InterventionService } from 'src/app/services/works/intervention/intervention.service';
 
 @Component({
@@ -21,16 +22,20 @@ import { InterventionService } from 'src/app/services/works/intervention/interve
 })
 export class CreateInterventionComponent implements OnInit {
   createInterventionForm!: FormGroup;
+  demandList: any = [];
   categoryList!: ICategory[];
+  interventionList!: IIntervention[];
   materialsList!: IMaterial[];
   teamList!: ITeam[];
+  idParam!: string;
   constructor(
     private formBuilder: FormBuilder,
     private interventionService: InterventionService,
     private categoryService: CategoryService,
     private teamService: TeamService,
     private materialService: EquipmentService,
-    private router:Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.createInterventionForm = this.formBuilder.group(
       {
@@ -45,6 +50,7 @@ export class CreateInterventionComponent implements OnInit {
         category: ['', [Validators.required]],
         date: ['', [Validators.required]],
         team: ['', [Validators.required]],
+        intervention: [''],
         Materiel: ['', [Validators.required]],
       },
       {
@@ -58,8 +64,14 @@ export class CreateInterventionComponent implements OnInit {
 
   dropdownSettings!: {};
   ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      this.idParam = params['id'];
+      console.log(this.idParam);
+    });
     this.allCategory();
     this.getMaterials();
+    this.getOneInterventions();
+    this.getInterventions();
 
     this.dropdownSettings = {
       singleSelection: false,
@@ -108,29 +120,49 @@ export class CreateInterventionComponent implements OnInit {
   }
 
   Creer() {
-    // console.log(this.createInterventionForm.value);
+    // console.log(this.createInterventionForm.value)
 
     let intervention = new Intervention(
       this.title?.value,
       this.description?.value,
       this.category?.value,
-      this.team?.value,
       this.date?.value,
+      '',
+      this.demandList.push({ id: this.idParam }),
+      this.team?.value,
+
       this.date?.value,
       this.Materiel?.value
     );
-
+    console.log(this.demandList);
     //console.log(intervention);
     this.interventionService.create(intervention).subscribe((data: any) => {
       console.log(data);
-
-      Report.success('Notification','Intervention crée','OK');
-this.router.navigate(['/manager/interventionList'])
+      if (data.status == true) {
+        Report.success('Notification', data.message, 'OK');
+        this.router.navigate(['/dashboard/manager/interventionList']);
+      } else {
+        Report.success('Notification', data.message, 'OK');
+      }
     }),
       (error: HttpErrorResponse) => {
         Report.failure('Erreur', error.message, 'Ok');
       };
   }
+
+  getInterventions() {
+    this.interventionService.all().subscribe((res: IIntervention[]) => {
+      this.interventionList = res;
+    }),
+      (error: HttpErrorResponse) => {
+        Report.failure('erreur getting interventions', error.message, 'ok');
+      };
+  }
+
+  get intervention() {
+    return this.createInterventionForm.get('intervention');
+  }
+
   get title() {
     return this.createInterventionForm.get('title');
   }
@@ -148,5 +180,18 @@ this.router.navigate(['/manager/interventionList'])
   }
   get Materiel() {
     return this.createInterventionForm.get('Materiel');
+  }
+
+  getOneInterventions() {
+    this.interventionService
+      .showIntervention(this.intervention?.value)
+      .subscribe((res: IIntervention) => {
+        this.title?.setValue(res.title);
+        this.description?.setValue(res.description);
+        this.date?.setValue(res.startedAt);
+        this.category?.setValue(res.category);
+        this.Materiel?.setValue(res.materials);
+        this.team?.setValue(res.team);
+      });
   }
 }

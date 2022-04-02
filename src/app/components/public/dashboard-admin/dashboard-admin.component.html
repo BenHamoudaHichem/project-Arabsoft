@@ -13,6 +13,7 @@
           ><i class="fa fa-home fa-lg"></i> Acceuil</a
         >
       </li>
+
       <li *ngIf="isManager">
         <a data-toggle="tab " routerLink="/dashboard/manager/home"
           ><i class="fa fa-home fa-lg"></i> Acceuil</a
@@ -22,6 +23,8 @@
         <a data-toggle="tab" routerLink="/dashboard/customer/customerProfil"
           ><i class="fa fa-street-view fa-lg"></i> User Profile</a
         >
+      </li>      <li *ngIf="isCustumer">
+        <a class="nav-link" data-toggle="tab" routerLink="/dashboard/customer/createReclamation"><i class="fa fa-edit"></i> Réclamer</a>
       </li>
 
       <li *ngIf="isManager">
@@ -84,6 +87,7 @@
           </li>
         </ul>
       </li>
+
       <li *ngIf="isManager">
         <a href="#submenu3" class="dropdown-toggle" data-bs-toggle="collapse">
           <i class="fa fa-building"></i>Interventions</a
@@ -202,13 +206,6 @@
       "
     >
       <div class="container-fluid">
-        <img
-          src="assets/images/hichem.jpg"
-          width="80px"
-          height="80px"
-          style="border-radius: 50%"
-          alt=""
-        />
         <button
           class="navbar-toggler"
           type="button"
@@ -220,24 +217,25 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="nav-link"><span>Hichem Ben HAMMOUDA</span> </a>
+        <img
+        src="assets/images/icon.png"
+        alt="INTERVENT"
+        height="60px"
+        width="100px"
+        style="text-align: center"
+      />
+  <a class="navbar-brand" >ARAB INTERVENT</a>
 
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav me-auto">
-         <li class="nav-item" >
-              <a class="nav-link" routerLink="/dashboard/customer/home"><span>Accueil</span></a>
+         <li *ngIf="isCustumer" class="nav-item" >
+              <a class="nav-link"  routerLink="/dashboard/customer/home"><span>Accueil</span></a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/dashboard/manager/home"><span>Dashboards</span>
+            <li *ngIf="isManager" class="nav-item" >
+              <a class="nav-link" routerLink="/dashboard/manager/home"><span>Accueil</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" routerLink="/dashboard/customer/customerProfil"> <span>Profil</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/dashboard/customer/home"><span>Réclamer</span></a>
-            </li>
-            <!--<li class="nav-item dropdown">
+                <!--<li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
                 data-bs-toggle="dropdown"
@@ -256,7 +254,7 @@
               </div>
             </li>-->
           </ul>
-          <form class="d-flex">
+          <form class="d-flex" *ngIf="checkIsHere()">
             <div class="form-group col-md-9">
               <input
                 id="exampleFormControlInput5"

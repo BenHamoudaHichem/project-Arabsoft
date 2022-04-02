@@ -12,6 +12,15 @@ span {
 }
 
 
+.navbar-brand{
+  background: -webkit-linear-gradient(120deg, #286288, #662680);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  font-size: 35px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
 .me-auto{margin-left: auto !important;}
 
 /* Custom scrollbar */
