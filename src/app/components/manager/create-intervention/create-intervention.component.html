@@ -62,7 +62,7 @@
                     <label class="form-label">Categorie</label>
 
                     <select formControlName="category" class="form-select">
-                      <option *ngFor="let item of categoryList" [value]="item.eCategory">{{item.eCategory}}</option>
+                      <option *ngFor="let item of categoryList" [value]="item.name">{{item.name}}</option>
                     </select>
                     <!--Error category-->
                     <p *ngIf="(category?.touched|| category?.dirty ) && !category?.valid" class="ErrorMsg"> Ce champ est

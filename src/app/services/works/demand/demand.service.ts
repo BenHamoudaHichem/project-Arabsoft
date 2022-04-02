@@ -14,7 +14,7 @@ export class DemandService {
       Authorization: `Berear${this.authService.getToken()}`,
     }),
   };
-  private apiURL = 'http://127.0.0.1:8080';
+  private apiURL = 'http://127.0.0.1:8080/demands';
 
   constructor(
     private http: HttpClient,
@@ -24,7 +24,7 @@ export class DemandService {
 //Get all
 
   all(): Observable<IDemand[]> {
-    return this.http.get<IDemand[]>(`${this.apiURL}/demandes`).pipe(
+    return this.http.get<IDemand[]>(`${this.apiURL}`).pipe(
       map((demandes: IDemand[]) => {
         return demandes.map((demandes) => ({
           id: demandes.id,
@@ -42,7 +42,7 @@ export class DemandService {
   //Get all by status
 
   allByStatus( status:string): Observable<IDemand[]> {
-    return this.http.get<IDemand[]>(`${this.apiURL}/demandes?status=${status}`).pipe(
+    return this.http.get<IDemand[]>(`${this.apiURL}?status=${status}`).pipe(
       map((demandes: IDemand[]) => {
         return demandes.map((demandes) => ({
           id: demandes.id,
@@ -64,7 +64,7 @@ export class DemandService {
   create(demande: Demand) {
     var d = JSON.stringify(demande);
     console.log(d);
-    return this.http.post(`${this.apiURL}/createDemande`, d, this.headers);
+    return this.http.post(`${this.apiURL}`, d, this.headers);
   }
 
 
@@ -72,7 +72,7 @@ export class DemandService {
 
   showDemande(id: string): Observable<IDemand> {
     return this.http
-      .get<IDemand>(`${this.apiURL}/demande/${id}`, this.headers)
+      .get<IDemand>(`${this.apiURL}/${id}`, this.headers)
       .pipe(
         map((demand: IDemand) => {
           return demand;

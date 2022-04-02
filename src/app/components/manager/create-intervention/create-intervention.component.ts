@@ -10,7 +10,6 @@ import { IMaterial } from 'src/app/services/resources/material/imaterial';
 import { EquipmentService } from 'src/app/services/resources/material/material.service';
 import { ITeam } from 'src/app/services/resources/team/iteam';
 import { TeamService } from 'src/app/services/resources/team/team.service';
-import { Confirmed } from 'src/app/services/validation/Confirmed';
 import { DateValidation } from 'src/app/services/validation/DateValidation';
 import { IIntervention } from 'src/app/services/works/intervention/iintervention';
 import { InterventionService } from 'src/app/services/works/intervention/intervention.service';

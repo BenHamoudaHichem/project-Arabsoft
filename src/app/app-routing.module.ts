@@ -45,8 +45,8 @@ const routes: Routes = [
         {
           path: 'customer/home',
           component: HomeCustomerComponent,
-       /*   canActivate: [GuardAuthenticateGuard],
-          data: { role: 'ROLE_USER' },*/
+         canActivate: [GuardAuthenticateGuard],
+          data: { role: 'ROLE_USER' },
         },
 
         {
@@ -66,7 +66,7 @@ const routes: Routes = [
           data: { role: 'ROLE_USER' ,},*/
         },
         {
-          path: 'home',
+          path: 'customer/home',
           component: HomeCustomerComponent,
          /* canActivate: [GuardAuthenticateGuard],
           data: { role: 'ROLE_USER' ,},*/
@@ -149,7 +149,7 @@ const routes: Routes = [
     data: { role: 'ROLE_MANAGER' },*/
   },
 
-  
+
 
   {
     path: 'manager/updateMaterial',
@@ -190,14 +190,17 @@ const routes: Routes = [
   },
   { path: 'not-found', component: NotFoundComponent },
 
-  { path: '**', redirectTo: 'dashboard/not-found', pathMatch: 'full' },
-  { path: '', redirectTo: 'dashboard/not-found', pathMatch: 'full' },
+  { path: '**', redirectTo: '/dashboard/not-found', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard/not-found', pathMatch: 'full' },
 
       ]
     },
 
+
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+
+
 { path: '**', redirectTo: '/not-found', pathMatch: 'full' },
-  { path: '', redirectTo: '/not-found', pathMatch: 'full' },
 ];
 
 @NgModule({

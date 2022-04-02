@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class CategoryService {
-  private apiURL = 'http://127.0.0.1:8080/api';
+  private apiURL = 'http://127.0.0.1:8080/api/categories';
 
   constructor(
     private http: HttpClient,
@@ -21,10 +21,10 @@ export class CategoryService {
   ) {}
 
   all(): Observable<ICategory[]> {
-    return this.http.get<ICategory[]>(`${this.apiURL}/categories`).pipe(
+    return this.http.get<ICategory[]>(`${this.apiURL}`).pipe(
       map((cat: ICategory[]) => {
         return cat.map((cat) => ({
-          eCategory: cat.eCategory,
+          name: cat.name,
         }));
       })
     );

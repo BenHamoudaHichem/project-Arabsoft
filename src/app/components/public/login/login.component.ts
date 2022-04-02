@@ -15,13 +15,13 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   constructor(private formBuilder: FormBuilder,private authService : AuthenticateService,private router:Router) {
     this.loginForm = this.formBuilder.group({
-      identifier: ['', [Validators.required, Validators.email]],
+      identifier: ['', [Validators.required]],
       password: ['', [Validators.required]],
     });
   }
   ngOnInit(): void {}
 
-  Login() {
+  try_login() {
     console.log(this.Identifier?.value, this.Password?.value);
      this.authService.login(this.Identifier?.value,this.Password?.value).subscribe((res:any)=>{
 

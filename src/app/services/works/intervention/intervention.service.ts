@@ -71,7 +71,7 @@ export class InterventionService {
 
   showIntervention(id: string): Observable<IIntervention> {
     return this.http
-      .get<IIntervention>(`${this.apiURL}/intervention?id=${id}`, this.headers)
+      .get<IIntervention>(`${this.apiURL}/interventions/${id}`, this.headers)
       .pipe(
         map((intervention: IIntervention) => {
           return intervention;

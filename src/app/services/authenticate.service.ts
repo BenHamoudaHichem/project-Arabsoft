@@ -16,7 +16,7 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class AuthenticateService {
-  private apiURL = 'http://127.0.0.1:8000';
+  private apiURL = 'http://127.0.0.1:8080/api/auth';
   constructor(private http: HttpClient, private router: Router,private cookies:CookiesService) {}
 
 
@@ -41,15 +41,6 @@ export class AuthenticateService {
     );
   }
 
-  get userByToken(): string {
-    let infos: any;
-    try {
-      infos = jwtDecode(this.getToken());
-      return infos.sub;
-    } catch (error) {
-      return '';
-    }
-  }
 
   get isLogin(): boolean {
     return this.getToken() !== null;

@@ -1,3 +1,3 @@
 export interface ICategory {
-  eCategory: string;
+  name: string;
 }
