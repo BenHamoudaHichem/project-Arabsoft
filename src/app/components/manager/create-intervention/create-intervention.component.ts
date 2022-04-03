@@ -191,6 +191,8 @@ export class CreateInterventionComponent implements OnInit {
         this.category?.setValue(res.category);
         this.Materiel?.setValue(res.materials);
         this.team?.setValue(res.team);
-      });
-  }
+      }),
+      (error:HttpErrorResponse)=>
+      {Report.failure('Erreur',error.message,'OK')  }
+}
 }

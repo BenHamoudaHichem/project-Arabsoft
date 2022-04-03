@@ -1,39 +1,53 @@
 
 .green-contact-form {
-  width: 700px;
+  width: 600px;
   margin:0 auto;
-  border-radius:10px;
+
 
 }
 
 /****************************/
 
-.container{
 
-  text-align: center;
-}
-input,textarea{  margin: 10px 0px;
+
+  .title{
+    font-size: 25px;
+    font-weight: 500;
+    position: relative;
+  }
+  .card {
+    border-radius: 30px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.15);
+
+    padding: 25px 30px;
+  }
+  .title::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 200px;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  }
+
+.form-control{
+
+  border: 2px solid #9b59b6 !important;
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+
+  margin: 10px 0px;
   width: 100%;
-
-  outline: none;
-  padding: 10px 5px;
   background-color: #f6f6f6;
-}
 
+  border: 2px solid #9b59b6;
+  outline: 0;
+  box-shadow: none;
 
-.logo {
-  margin-bottom: 20px;
-}
-.logo span,
-.logo span img {
-  font-size: 25px;
-  color: #0d8aa7;
-}
-
-.login-text h1 {
-  font-size: 25px;
-}
-.login-text p {
-  font-size: 15px;
-  color: #000000b2;
-}
+  padding: 10px 5px;
+  background-color: #f6f6f6;}
