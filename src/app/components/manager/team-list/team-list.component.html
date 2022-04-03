@@ -38,8 +38,8 @@
 
 
                   <div class="d-flex justify-content-end pt-3">
-                    <a [routerLink]="['/dashboard/manager/detailTeam']" [queryParams]="{id:team.id}"
-                      queryParamsHandling="merge"><button class="bn9"><span>Consulter</span></button></a>
+                    <a [routerLink]="['/dashboard/manager/detailTeam',team.id]"
+                    routerLinkActive="router-link-active"><button class="bn9"><span>Consulter</span></button></a>
 
                   </div>
                 </div>

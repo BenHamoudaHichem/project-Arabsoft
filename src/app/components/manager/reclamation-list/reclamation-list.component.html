@@ -38,8 +38,8 @@
                     {{ reclamation.createdAt }}
                   </p>
                   <div class="d-flex justify-content-end pt-3">
-                    <a [routerLink]="['/dashboard/manager/detailReclamation']" [queryParams]="{ id: reclamation.id }"
-                      queryParamsHandling="merge">
+                    <a [routerLink]="['/dashboard/manager/detailReclamation', reclamation.id]" routerLinkActive="router-link-active"
+                     >
                       <button>Consulter</button></a>
                   </div>
                 </div>
@@ -56,8 +56,8 @@
                     date 20/02/2022
                   </p>
                   <div class="d-flex justify-content-end pt-3">
-                    <a [routerLink]="['/dashboard/manager/detailReclamation']" [queryParams]="{ id: 'reclamation.id' }"
-                      queryParamsHandling="merge">
+                    <a routerLinkActive="router-link-active" [routerLink]="['/dashboard/manager/detailReclamation','kkkk']"
+                      >
                       <button class="bn9"><span>Consulter</span></button></a>
                   </div>
                 </div>

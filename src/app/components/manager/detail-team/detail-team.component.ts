@@ -18,9 +18,9 @@ export class DetailTeamComponent implements OnInit {
     private teamService: TeamService,
     private route: ActivatedRoute
   ) {
-    this.route.queryParams.subscribe(params=>{this.id=params["id"]; console.log(this.id)} )
-    console.log(this.id)
-    this.showTeams(this.id);
+
+    if(this.route.snapshot.paramMap.has("id")){
+    this.showTeams(String(this.route.snapshot.paramMap.get("id")));}
   }
 
   ngOnInit(): void {}

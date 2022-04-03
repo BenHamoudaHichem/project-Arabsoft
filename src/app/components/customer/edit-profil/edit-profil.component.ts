@@ -17,7 +17,7 @@ import { IUser } from 'src/app/services/user/iuser';
 })
 export class EditProfilComponent implements OnInit {
   updateForm!: FormGroup;
-  id!: string;
+
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
@@ -69,7 +69,7 @@ export class EditProfilComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.id != null) {
+    if (this.cookies.getIdentifier!= null) {
       this.showUser();
     }else{
       Report.warning('Error','Erreur de chargement de la page, aucun identifiant à étè detecté',"OK")
@@ -77,8 +77,8 @@ export class EditProfilComponent implements OnInit {
   }
 
   showUser() {
-    this.id = this.cookies.getIdentifier;
-    this.userService.getUser(this.id).subscribe((res: IUser) => {
+
+    this.userService.getUser(this.cookies.getIdentifier).subscribe((res: IUser) => {
       this.firstName?.setValue(res.firstName),
         this.lastNamme?.setValue(res.lastName),
         this.tel?.setValue(res.tel),
@@ -104,7 +104,7 @@ export class EditProfilComponent implements OnInit {
       new Location(1, 1)
     );
     let user = new User(
-      this.id,
+      this.cookies.getIdentifier,
       String(this.firstName?.value),
       String(this.lastNamme?.value),
       String(this.identifier?.value),
@@ -114,7 +114,7 @@ export class EditProfilComponent implements OnInit {
       ['']
     );
     console.log(user);
-    this.userService.update(user).subscribe((res: any) => {
+    this.userService.update(user,this.cookies.getIdentifier).subscribe((res: any) => {
       Report.success("Notification de modification", res.message, "D'accord");
       this.router.navigateByUrl('/customer/customerProfil');
     }),

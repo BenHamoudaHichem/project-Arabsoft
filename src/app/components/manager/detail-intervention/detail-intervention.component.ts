@@ -19,9 +19,7 @@ export class DetailInterventionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params=>{this.id=params["id"]; console.log(this.id)} )
-
-    this.showDetail(this.id);
+    this.showDetail(String(this.route.snapshot.paramMap.get('id')));
   }
 
   // showDetail

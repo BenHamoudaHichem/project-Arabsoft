@@ -20,7 +20,7 @@ export class UserService {
     private authService: AuthenticateService
   ) { }
   all(): Observable<IUser[]> {
-    return this.http.get<IUser[]>(`${this.apiURL}/users`).pipe(
+    return this.http.get<IUser[]>(`${this.apiURL}`).pipe(
       map((users: IUser[]) => {
         return users.map((user) => ({
           id: user.id,
@@ -37,7 +37,7 @@ role:user.role
 
 
   allByRole(): Observable<IUser[]> {
-    return this.http.get<IUser[]>(`${this.apiURL}/users?role=ROLE_MANAGER`).pipe(
+    return this.http.get<IUser[]>(`${this.apiURL}?role=ROLE_MANAGER`).pipe(
       map((users: IUser[]) => {
         return users.map((user) => ({
           id: user.id,
@@ -66,7 +66,7 @@ role:user.role
 
   getUser(id: string): Observable<IUser> {
     return this.http
-      .get<IUser>(`${this.apiURL}/intervention/${id}`, httpOptions)
+      .get<IUser>(`${this.apiURL}/${id}`, httpOptions)
       .pipe(
         map((user: IUser) => {
           return user;
@@ -74,10 +74,10 @@ role:user.role
       );
   }
 
-  getName(id: number) {
-    return this.http.get<User[]>(`${this.apiURL}/username/${id}`);
+  getName(name: string) {
+    return this.http.get<User[]>(`${this.apiURL}/${name}`);
   }
-  update(user: User) {
+  update(user: User,id:string) {
     let headers = {
       headers: new HttpHeaders({
         Authorization: `Bearer ${this.authService.getToken}`,
@@ -86,7 +86,7 @@ role:user.role
     };
 
     return this.http.put(
-      `${this.apiURL}/user?_method=PUT`,
+      `${this.apiURL}/${id}`,
       JSON.stringify(user),
       headers
     );

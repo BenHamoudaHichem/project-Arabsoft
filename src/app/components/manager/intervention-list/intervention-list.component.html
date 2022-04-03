@@ -11,14 +11,14 @@
           </div>
           <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <a [routerLink]="['/manager/interventionList']" [queryParams]="{ status: 'EN_COURS'} " routerLinkActive>
+              <a [routerLink]="['/dashboard/manager/interventionList']" [queryParams]="{ status: 'EN_COURS'} " routerLinkActive>
                 <button (click)="showPerStatus()" class="nav-link active " id="nav-home-tab" data-bs-toggle="tab"
                   data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
 
                   <i style="color: rgb(49, 158, 82);" class=" fa-lg fas fa-sync fa-spin"></i>
                   En cours
                 </button></a>
-              <a [routerLink]="['/manager/interventionList']" [queryParams]="{ status: 'EN_ATTENTE'} " routerLinkActive>
+              <a [routerLink]="['/dashboard/manager/interventionList']" [queryParams]="{ status: 'EN_ATTENTE'} " routerLinkActive>
 
                 <button (click)="showPerStatus()" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
                   data-bs-target="#nav-profile" type="button" role="tab" aria-selected="false">
@@ -86,7 +86,7 @@
                   <div class="d-flex justify-content-end pt-3">
 
 
-                    <a routerLink="/dashboard/manager/detailIntervention" [queryParams]="{id:int.id}" queryParamsHandling="merge">
+                    <a [routerLink]="['/dashboard/manager/detailIntervention',int.id]" routerLinkActive="router-link-active">
                       <button class="bn9" role="button"> <span>Consulter</span></button>
                     </a>
                   </div>

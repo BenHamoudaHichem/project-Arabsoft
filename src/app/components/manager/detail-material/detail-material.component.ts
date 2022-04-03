@@ -20,11 +20,7 @@ export class DetailMaterialComponent implements OnInit {
     private serviceMaterial: EquipmentService,
     private route: ActivatedRoute
   ) {
-    this.route.queryParams.subscribe((params) => {
-      this.id = params['id'];
-      console.log(this.id);
-    });
-    this.serviceMaterial.showMaterial(this.id).subscribe((m: IMaterial) => {
+      this.serviceMaterial.showMaterial(String(this.route.snapshot.paramMap.get("id"))).subscribe((m: IMaterial) => {
       this.material = m;
       if (this.material.status == 'en panne') {
         this.btn == 'materiel reparé';

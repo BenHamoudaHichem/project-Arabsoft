@@ -17,9 +17,11 @@ export class DetailReclamationComponent implements OnInit {
     private demandService: DemandService,
     private route: ActivatedRoute
   ) {
-    this.route.queryParams.subscribe(params=>{this.id=params["id"]; console.log(this.id)} )
-    console.log(this.id)
-    this.showDetail(this.id);
+    this.route.snapshot.paramMap.get("id");
+    console.log(String(this.route.snapshot.paramMap.get("id")))
+    if(this.route.snapshot.paramMap.has("id"))
+   { this.showDetail(String(this.route.snapshot.paramMap.get("id")));}
+
   }
 
   ngOnInit(): void {}

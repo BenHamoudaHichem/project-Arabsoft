@@ -13,14 +13,14 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class TeamService {
-  private apiURL = 'http://127.0.0.1:8080';
+  private apiURL = 'http://127.0.0.1:8080/api/teams';
 
   constructor(
     private http: HttpClient,
     private authService: AuthenticateService
   ) {}
   all(): Observable<ITeam[]> {
-    return this.http.get<ITeam[]>(`${this.apiURL}/teams`).pipe(
+    return this.http.get<ITeam[]>(`${this.apiURL}`).pipe(
       map((team: ITeam[]) => {
         return team.map((team) => ({
           id: team.id,
@@ -33,7 +33,7 @@ export class TeamService {
   }
 
   getTeam(id: string): Observable<ITeam> {
-    return this.http.get<ITeam>(`${this.apiURL}/team/${id}`, httpOptions).pipe(
+    return this.http.get<ITeam>(`${this.apiURL}/${id}`, httpOptions).pipe(
       map((demand: ITeam) => {
         return demand;
       })
@@ -41,15 +41,15 @@ export class TeamService {
   }
   create(team: Team) {
     return this.http.post(
-      `${this.apiURL}/addTeam`,
+      `${this.apiURL}`,
       JSON.stringify(team),
       httpOptions
     );
   }
   getName(name: string) {
-    return this.http.get<ITeam[]>(`${this.apiURL}/teams/${name}`);
+    return this.http.get<ITeam[]>(`${this.apiURL}/${name}`);
   }
-  update(team: Team) {
+  update(team: Team,id:string) {
     let headers = {
       headers: new HttpHeaders({
         Authorization: `Bearer ${this.authService.getToken}`,
@@ -58,7 +58,7 @@ export class TeamService {
     };
 
     return this.http.post(
-      `${this.apiURL}/team?_method=PUT`,
+      `${this.apiURL}/${id}`,
       JSON.stringify(team),
       headers
     );

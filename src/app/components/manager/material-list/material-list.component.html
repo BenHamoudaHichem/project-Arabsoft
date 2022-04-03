@@ -10,12 +10,12 @@
           </div>
           <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <a [routerLink]="['/manager/materialList']" routerLinkActive>
+              <a [routerLink]="['/dashboard/manager/materialList']" routerLinkActive>
                 <button (click)="showAll()" class="nav-link active " id="nav-home-tab" data-bs-toggle="tab"
                   data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
                   Tous
                 </button></a>
-              <a [routerLink]="['/manager/materialList']" routerLinkActive [queryParams]="{ status: 'DISPONIBLE'}">
+              <a [routerLink]="['/dashboard/manager/materialList']" routerLinkActive [queryParams]="{ status: 'DISPONIBLE'}">
                 <button (click)="showByStatus()" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
                   data-bs-target="#nav-profile" type="button" role="tab" aria-selected="false">
 
@@ -35,10 +35,10 @@
 
 
                   <div class="d-flex justify-content-end pt-3">
-                    <a [routerLink]="['/dashboard/manager/detailMaterial']" [queryParams]="{id:'material.id'}"
-                      queryParamsHandling="merge"> <button class="bn9" role="button"><span>Consulter</span></button></a>
-                      <a [routerLink]="['/dashboard/manager/updateMaterial']" [queryParams]="{id:'material.id'}"
-                      queryParamsHandling="merge"> <button class="bn9" role="button"><span>Mettre à jour</span></button></a>
+                    <a [routerLink]="['/dashboard/manager/detailMaterial','ff']"
+                    routerLinkActive="router-link-active"><button class="bn9" role="button"><span>Consulter</span></button></a>
+                      <a [routerLink]="['/dashboard/manager/updateMaterial']"
+                      routerLinkActive="router-link-active"> <button class="bn9" role="button"><span>Mettre à jour</span></button></a>
 
 
                   </div>
@@ -52,11 +52,11 @@
 
 
                   <div class="d-flex justify-content-end pt-3">
-                    <a [routerLink]="['/dashboard/manager/detailMaterial']" [queryParams]="{id:material.id}"
-                      queryParamsHandling="merge"> <button class="bn9" role="button"><span>Consulter</span></button></a>
+                    <a [routerLink]="['/dashboard/manager/detailMaterial',material.id]"
+                   routerLinkActive="router-link-active"> <button class="bn9" role="button"><span>Consulter</span></button></a>
 
-                      <a [routerLink]="['/dashboard/manager/updateMaterial']" [queryParams]="{id:material.id}"
-                      queryParamsHandling="merge"> <button class="bn9" role="button"><span>Mettre à jour</span></button></a>
+                      <a [routerLink]="['/dashboard/manager/updateMaterial',material.id]"
+                      routerLinkActive="router-link-active"> <button class="bn9" role="button"><span>Mettre à jour</span></button></a>
 
                   </div>
                 </div>
