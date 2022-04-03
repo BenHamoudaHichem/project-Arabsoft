@@ -12,6 +12,7 @@ export class InterventionService {
   headers = {
     headers: new HttpHeaders({
       Authorization: `Bearer ${this.authService.getToken}`,
+      "Content-Type":"application/json"
     }),
   };
   private apiURL = 'http://127.0.0.1:8080/api/interventions';

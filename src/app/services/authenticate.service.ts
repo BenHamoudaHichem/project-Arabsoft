@@ -79,6 +79,10 @@ export class AuthenticateService {
     this.cookies.deleteAll
   }
 
+  public get authentificatorId():string
+  {
+    return this.cookies.getIdentifier
+  }
 
 
   redirectIfNotAuth() {

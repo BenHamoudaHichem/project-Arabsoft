@@ -71,7 +71,7 @@
           <div class="text-center mb-5">
             <h3>Liste des contrats d’abonnements</h3>
           </div>
-          <div class="card mb-3">
+          <div class="card mb-3" *ngFor="let item of this.getDemands">
             <div class="card-body">
               <div class="d-flex flex-column flex-lg-row">
                 <span class="avatar avatar-text rounded-3 me-4 mb-2">FD</span>
@@ -88,41 +88,8 @@
               </div>
             </div>
           </div>
-          <div class="card mb-3">
-            <div class="card-body">
-              <div class="d-flex flex-column flex-lg-row">
-                <span class="avatar avatar-text rounded-3 me-4 mb-2">FD</span>
-                <div class="row flex-fill">
-                  <div class="col-sm-5">
-                    <h4 class="h5">reclamation</h4>
-                    <span>Status</span> : <span>accepté</span>
-                  </div>
-                  <div class="col-sm-4 py-2">20/20/2002</div>
-                  <div class="col-sm-3 text-lg-end">
-                    <button  class="bn9"> <span>Voir details</span></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card mb-3">
-            <div class="card-body">
-              <div class="d-flex flex-column flex-lg-row">
-                <span class="avatar avatar-text rounded-3 me-4 mb-2">FD</span>
-                <div class="row flex-fill">
-                  <div class="col-sm-5">
-                    <h4 class="h5">reclamation</h4>
-                    <span>Status</span> : <span>accepté</span>
-                  </div>
-                  <div class="col-sm-4 py-2">20/20/2002</div>
-                  <div class="col-sm-3 text-lg-end">
-                    <button  class="bn9"> <span>Voir details</span></button>
 
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+  
         </div>
       </div>
       <!-- / column -->

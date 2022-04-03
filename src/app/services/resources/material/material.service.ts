@@ -4,17 +4,18 @@ import { map, Observable } from 'rxjs';
 import { Material } from 'src/app/models/resources/Material';
 import { AuthenticateService } from '../../authenticate.service';
 import { IMaterial } from './imaterial';
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  }),
-};
+
 @Injectable({
   providedIn: 'root',
 })
 export class EquipmentService {
   private apiURL = 'http://127.0.0.1:8080/api/materials';
-
+  private httpOptions = {
+    headers: new HttpHeaders({
+      "Authorization": `Bearer ${this.authService.getToken}`,
+      'Content-Type': 'application/json',
+    }),
+  };
   constructor(
     private http: HttpClient,
     private authService: AuthenticateService
@@ -71,14 +72,14 @@ export class EquipmentService {
     return this.http.post(
       `${this.apiURL}`,
       JSON.stringify(equipment),
-      httpOptions
+      this.httpOptions
     );
   }
 
 
   showMaterial(id: string): Observable<IMaterial> {
     return this.http
-      .get<IMaterial>(`${this.apiURL}/${id}`, httpOptions)
+      .get<IMaterial>(`${this.apiURL}/${id}`, this.httpOptions)
       .pipe(
         map((material: IMaterial) => {
           return material;

@@ -11,10 +11,11 @@ import { Demand } from 'src/app/models/works/demand';
 export class DemandService {
   headers = {
     headers: new HttpHeaders({
-      Authorization: `Bearer ${this.authService.getToken}`,
+      "Authorization": `Bearer ${this.authService.getToken}`,
+      "Content-Type":"application/json"
     }),
   };
-  private apiURL = 'http://127.0.0.1:8080/demands';
+  private apiURL = 'http://127.0.0.1:8080/api/demands';
 
   constructor(
     private http: HttpClient,
@@ -62,9 +63,8 @@ export class DemandService {
 //Create demand
 
   create(demande: Demand) {
-    var d = JSON.stringify(demande);
-    console.log(d);
-    return this.http.post(`${this.apiURL}`, d, this.headers);
+
+    return this.http.post(`${this.apiURL}`, JSON.stringify(demande), this.headers);
   }
 
 
@@ -78,5 +78,22 @@ export class DemandService {
           return demand;
         })
       );
+  }  allByCustomer(id:string): Observable<IDemand[]> {
+    return this.http.get<IDemand[]>(`${this.apiURL}?user=${id}`).pipe(
+      map((demandes: IDemand[]) => {
+        return demandes.map((demandes) => ({
+          id: demandes.id,
+          title: demandes.title,
+          description: demandes.description,
+          address: demandes.address,
+          createdAt: demandes.createdAt,
+          status: demandes.status,
+          user: demandes.user,
+
+        }));
+      })
+    );
   }
+
+
 }
