@@ -8,6 +8,7 @@ import { UserService } from 'src/app/services/user/user.service';
 import { Confirmed } from 'src/app/services/validation/Confirmed';
 import { Location } from 'src/app/models/Location';
 import { Report } from 'notiflix';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -19,7 +20,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private authService:AuthenticateService
   ) {
     this.registerForm = this.formBuilder.group(
       {
@@ -65,7 +67,12 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if(this.authService.isLogin)
+    {
+      this.router.navigate(['/dashboard/not-found'])
+    }
+  }
   Register() {
     let adresse = new Address(
       String(this.zipCode?.value),

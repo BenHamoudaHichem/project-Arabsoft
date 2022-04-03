@@ -80,7 +80,7 @@ role:user.role
   update(user: User) {
     let headers = {
       headers: new HttpHeaders({
-        Authorization: `Berear${this.authService.getToken()}`,
+        Authorization: `Bearer ${this.authService.getToken}`,
         'Access-Control-Allow-Origin': '*',
       }),
     };

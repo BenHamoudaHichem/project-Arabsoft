@@ -25,29 +25,32 @@ export class AuthenticateService {
     return  this.http.post(`${this.apiURL}/login`,{ identifier: email, password: password },httpOptions)
   }
 
-  logout() {
+  public get logout() {
     let options = {
       headers: new HttpHeaders({
         'Authorization': `Bearer ${this.getToken}`,
       }),
     };
-    let token = this.getToken();
-    this.removeToken();
+    let token = this.getToken;
 
-    return this.http.post(
+    return this.http.get(
       `${this.apiURL}/logout`,
-      { token: token },
-      httpOptions
+      options
     );
   }
 
 
   get isLogin(): boolean {
-    return this.getToken() !== null;
+    return this.getToken !== null;
   }
   //Token service
-  getToken() {
-    return this.cookies.getToken!;
+  public get getToken() {
+    if (this.cookies.getToken)
+    {
+      return this.cookies.getToken!;
+
+    }
+    return null;
   }
 
   get isCustumer():boolean
@@ -71,14 +74,15 @@ export class AuthenticateService {
     this.cookies.addUserRole(role)
     this.cookies.addUsername(username)
   }
-
-  removeToken() {
-    this.cookies.deleteAll()
+  onLogoutSucess()
+  {
+    this.cookies.deleteAll
   }
+
+
 
   redirectIfNotAuth() {
     Report.warning("Connexion perdu",'Vous devez reconnecter Session expirée',"Je compris");
-    this.removeToken();
     this.router.navigate(['/login']);
   }
 }

@@ -13,14 +13,14 @@ const httpOptions = {
   providedIn: 'root',
 })
 export class EquipmentService {
-  private apiURL = 'http://127.0.0.1:8080/api';
+  private apiURL = 'http://127.0.0.1:8080/api/materials';
 
   constructor(
     private http: HttpClient,
     private authService: AuthenticateService
   ) {}
   all(): Observable<IMaterial[]> {
-    return this.http.get<IMaterial[]>(`${this.apiURL}/materials`).pipe(
+    return this.http.get<IMaterial[]>(`${this.apiURL}`).pipe(
       map((equipment: IMaterial[]) => {
         return equipment.map((equipment) => ({
           id: equipment.id,
@@ -35,7 +35,7 @@ export class EquipmentService {
   }
   materialPerStatus(status: string): Observable<IMaterial[]> {
     return this.http
-      .get<IMaterial[]>(`${this.apiURL}/materials/${status}`)
+      .get<IMaterial[]>(`${this.apiURL}?status=${status}`)
       .pipe(
         map((equipment: IMaterial[]) => {
           return equipment.map((equipment) => ({
@@ -51,7 +51,7 @@ export class EquipmentService {
   }
   materialStatusOn(): Observable<IMaterial[]> {
     return this.http
-      .get<IMaterial[]>(`${this.apiURL}/materials?status=DISPONIBLE`)
+      .get<IMaterial[]>(`${this.apiURL}?status=DISPONIBLE`)
       .pipe(
         map((equipment: IMaterial[]) => {
           return equipment.map((equipment) => ({
@@ -69,18 +69,16 @@ export class EquipmentService {
     console.log(JSON.stringify(equipment));
 
     return this.http.post(
-      `${this.apiURL}/addMaterial`,
+      `${this.apiURL}`,
       JSON.stringify(equipment),
       httpOptions
     );
   }
-  getName(id: string) {
-    return this.http.get<Material[]>(`${this.apiURL}/material/${id}`);
-  }
+
 
   showMaterial(id: string): Observable<IMaterial> {
     return this.http
-      .get<IMaterial>(`${this.apiURL}/material/${id}`, httpOptions)
+      .get<IMaterial>(`${this.apiURL}/${id}`, httpOptions)
       .pipe(
         map((material: IMaterial) => {
           return material;
@@ -88,30 +86,17 @@ export class EquipmentService {
       );
   }
 
-  updateStatus(id: string,status:string) {
+
+  update(id:string,material: Material) {
     let headers = {
       headers: new HttpHeaders({
-        Authorization: `Berear${this.authService.getToken()}`,
+        Authorization: `Bearer ${this.authService.getToken}`,
         'Access-Control-Allow-Origin': '*',
       }),
     };
 
-    return this.http.post(
-      `${this.apiURL}?id=${id}&status=${status}`,
- 
-      headers
-    );
-  }
-  update(material: Material) {
-    let headers = {
-      headers: new HttpHeaders({
-        Authorization: `Berear${this.authService.getToken()}`,
-        'Access-Control-Allow-Origin': '*',
-      }),
-    };
-
-    return this.http.post(
-      `${this.apiURL}/material?_method=PUT`,
+    return this.http.put(
+      `${this.apiURL}/${id}`,
       JSON.stringify(material),
       headers
     );

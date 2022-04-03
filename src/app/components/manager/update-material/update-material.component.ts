@@ -60,6 +60,7 @@ export class UpdateMaterialComponent implements OnInit {
       this.materialService
         .showMaterial(this.id)
         .subscribe((data: IMaterial) => {
+          this.material=data
           this.name?.setValue(data.name);
           this.description?.setValue(data.description);
           this.dateOfPurshase?.setValue(data.dateOfPurshase);
@@ -82,15 +83,14 @@ updateMaterial() {
       new Location(1, 1)
     );
     //  console.log(location)
-    let material = new Material(
+    let newMaterial = new Material(
       String(this.name?.value),
       String(this.description?.value),
       address,
       this.dateOfPurshase?.value,
       String(this.status?.value)
     );
-    console.log(material);
-    this.materialService.update(material).subscribe((data:any) => {
+    this.materialService.update(this.material.id,newMaterial).subscribe((data:any) => {
       console.log(data);
       if(data.status)
       {Notify.success('Materiel est modifié avec succès');

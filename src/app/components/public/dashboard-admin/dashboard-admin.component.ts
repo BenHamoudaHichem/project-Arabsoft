@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 declare const hich:any;
 @Component({
@@ -15,6 +16,7 @@ export class DashboardAdminComponent implements OnInit {
 
   }
   checkIsHere()
+
 {
   return this.route.url.includes('List')
 }  public get isCustumer():boolean
@@ -24,5 +26,22 @@ export class DashboardAdminComponent implements OnInit {
   public get isManager():boolean
   {
     return this.authService.isMANAGER
+  }
+  onLogout()
+  {
+    this.authService.logout.subscribe((res:any)=>{
+      if (res.status) {
+        this.authService.onLogoutSucess
+        Report.success(
+          "Notification de déconnexion",res.message,"D'accord"
+          )
+          this.route.navigate(['/home'])
+
+      } else {
+        Report.warning(
+          "Notification de déconnexion",res.message,"D'accord"
+          )
+      }
+    },error=>{this.route.navigate(['/home'])})
   }
 }

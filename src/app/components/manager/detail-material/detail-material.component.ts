@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Notify, Report } from 'notiflix';
+import { Material } from 'src/app/models/resources/Material';
 import { IMaterial } from 'src/app/services/resources/material/imaterial';
 import { EquipmentService } from 'src/app/services/resources/material/material.service';
 
@@ -42,10 +43,14 @@ export class DetailMaterialComponent implements OnInit {
   ngOnInit(): void {}
 
   changeStatus() {
+    let newMaterial:Material=new Material(this.material.name,this.material.description,this.material.address
+      ,this.material.dateOfPurshase,this.material.status)
     if (this.btn == 'materiel reparé') {
-      this.status = 'en bonne condition';
+
+
+      newMaterial.setStatus('Functional')
       this.serviceMaterial
-        .updateStatus(this.id, this.status)
+        .update(this.material.id, newMaterial)
         .subscribe((data: any) => {
           if (data.status) {
             Notify.info(data.message);
@@ -59,9 +64,10 @@ export class DetailMaterialComponent implements OnInit {
       return;
     }
     if (this.btn == 'mettre en panne') {
-      this.status = 'materiel en panne';
+      newMaterial.setStatus('Broken_down')
+
       this.serviceMaterial
-        .updateStatus(this.id, this.status)
+        .update(this.material.id, newMaterial)
         .subscribe((data: any) => {
           if (data.status) {
             Notify.info(data.message);

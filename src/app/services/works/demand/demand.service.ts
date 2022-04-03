@@ -11,7 +11,7 @@ import { Demand } from 'src/app/models/works/demand';
 export class DemandService {
   headers = {
     headers: new HttpHeaders({
-      Authorization: `Berear${this.authService.getToken()}`,
+      Authorization: `Bearer ${this.authService.getToken}`,
     }),
   };
   private apiURL = 'http://127.0.0.1:8080/demands';

@@ -52,7 +52,7 @@ export class TeamService {
   update(team: Team) {
     let headers = {
       headers: new HttpHeaders({
-        Authorization: `Berear${this.authService.getToken()}`,
+        Authorization: `Bearer ${this.authService.getToken}`,
         'Access-Control-Allow-Origin': '*',
       }),
     };

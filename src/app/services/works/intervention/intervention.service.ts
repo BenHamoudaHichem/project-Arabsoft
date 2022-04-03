@@ -11,17 +11,17 @@ import { IIntervention } from './iintervention';
 export class InterventionService {
   headers = {
     headers: new HttpHeaders({
-      Authorization: `Berear${this.authService.getToken()}`,
+      Authorization: `Bearer ${this.authService.getToken}`,
     }),
   };
-  private apiURL = 'http://127.0.0.1:8080';
+  private apiURL = 'http://127.0.0.1:8080/api/interventions';
 
   constructor(
     private http: HttpClient,
     private authService: AuthenticateService
   ) {}
   all(): Observable<IIntervention[]> {
-    return this.http.get<IIntervention[]>(`${this.apiURL}/interventions`).pipe(
+    return this.http.get<IIntervention[]>(`${this.apiURL}`).pipe(
       map((intervention: IIntervention[]) => {
         return intervention.map((intervention) => ({
           id: intervention.id,
@@ -63,7 +63,7 @@ export class InterventionService {
     var d = JSON.stringify(intervention);
     console.log(d)
     return this.http.post<Intervention>(
-      `${this.apiURL}/interventions`,
+      `${this.apiURL}`,
       d,
       this.headers
     );
@@ -71,7 +71,7 @@ export class InterventionService {
 
   showIntervention(id: string): Observable<IIntervention> {
     return this.http
-      .get<IIntervention>(`${this.apiURL}/interventions/${id}`, this.headers)
+      .get<IIntervention>(`${this.apiURL}/${id}`, this.headers)
       .pipe(
         map((intervention: IIntervention) => {
           return intervention;

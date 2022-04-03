@@ -19,7 +19,12 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
     });
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if(this.authService.isLogin)
+    {
+      this.router.navigate(['/dashboard/not-found'])
+    }
+  }
 
   try_login() {
     console.log(this.Identifier?.value, this.Password?.value);
@@ -27,10 +32,10 @@ export class LoginComponent implements OnInit {
 
       if (!res.status) {
 
-        this.authService.onLoginSucces(res.token,res.id,res.roles[0],res.username)
-        let direction:string = "/dashboard/custumer"
+        this.authService.onLoginSucces(res.token,res.username,res.id,res.roles[0])
+        let direction:string = "/dashboard/custumer/home"
         if (this.authService.isMANAGER) {
-          direction = "/dashboard/manager"
+          direction = "/dashboard/manager/home"
 
         }
         Notify.success('Connexion établie');
@@ -43,7 +48,7 @@ export class LoginComponent implements OnInit {
     }),(error: HttpErrorResponse) => {
       Report.warning(
         "Notification de connexion",error.message,"D'accord"
-        );
+        )
     };
    // Report.warning('Echec','Veuillez verifier votre adresse ou mot de passe','OK');
   }

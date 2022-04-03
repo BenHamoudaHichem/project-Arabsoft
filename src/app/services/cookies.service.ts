@@ -16,6 +16,7 @@ export class CookiesService {
     return this.myCookies.get('_token');
   }
 
+  
   get getIdentifier(): string {
     return this.myCookies.get('_id');
   }
