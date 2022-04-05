@@ -4,16 +4,16 @@ export class Team {
   constructor(
 
     private name: string,
-    private manager: string,
-    private members: User[]
+    private manager: {id:string},
+    private members: {id:string}[]
   ) {}
 
 
 
-  public getManager(): string {
+  public getManager():  {id:string} {
     return this.manager;
   }
-  public setManager(value: string): void {
+  public setManager(value:  {id:string}): void {
     this.manager = value;
   }
 
@@ -23,10 +23,10 @@ export class Team {
   public setName(value: string): void {
     this.name = value;
   }
-  public getMembers(): User[] {
+  public getMembers(): {id:string}[] {
     return this.members;
   }
-  public setMembers(value: User[]): void {
+  public setMembers(value: {id:string}[]): void {
     this.members = value;
   }
 }

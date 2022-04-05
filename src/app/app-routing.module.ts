@@ -40,57 +40,53 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'propos', component: AboutUsComponent },
   { path: 'contact', component: ContactUSComponent },
-
-
   { path: 'dashboard', component: DashboardAdminComponent,children:[
  /*
  * Role customer*
   */
-
-
         {
           path: 'customer/home',
           component: HomeCustomerComponent,
-          canActivate: [GuardAuthenticateGuard],
-          data: { role: roles.customer },
+
+
         },
 
         {
           path: 'customer/createReclamation',
           component: CreateReclamationComponent,
-           canActivate: [GuardAuthenticateGuard],
-          data: { role: roles.customer },
+
+
         },
         {
           path: 'customer/customerProfil',
           component: CustomerProfilComponent,
-           canActivate: [GuardAuthenticateGuard],
-          data: { role: roles.customer },
+
+
         },
         {
           path: 'customer/editProfil',
           component: EditProfilComponent,
-           canActivate: [GuardAuthenticateGuard],
-          data: { role: roles.customer },
+
+
         },
         {
           path: 'customer/home',
           component: HomeCustomerComponent,
-           canActivate: [GuardAuthenticateGuard],
-          data: { role: roles.customer },
+
+
         },
 
         {
           path: 'customer/reclamation/:id',
           component: ShowReclamationComponent,
-           canActivate: [GuardAuthenticateGuard],
-          data: { role: roles.customer },
+
+
         },
         {
           path: 'customer/editProfil',
           component: EditProfilComponent,
-           canActivate: [GuardAuthenticateGuard],
-          data: { role: roles.customer },
+
+
         },
         {
           path: 'customer',
@@ -108,70 +104,70 @@ const routes: Routes = [
         {
           path: 'manager/home',
           component: HomeManagerComponent,
-           canActivate: [GuardAuthenticateGuard],
-          data: { role: roles.manager },
+
+
         },
             {
               path: 'manager/reclamationList',
               component: ReclamationListComponent,
-               canActivate: [GuardAuthenticateGuard],
-              data: { role: roles.manager },
+
+
 
             },
             {
               path: 'manager/subscribeMembre',
               component: SubscribeMembreComponent,
-               canActivate: [GuardAuthenticateGuard],
-              data: { role: roles.manager },
+
+
             },
             {
               path: 'manager/addTeam',
               component: AddTeamComponent,
-               canActivate: [GuardAuthenticateGuard],
-              data: { role: roles.manager },
+
+
             },
             {
               path: 'manager/interventionList',
               component: InterventionListComponent,
-               canActivate: [GuardAuthenticateGuard],
-              data: { role: roles.manager },
+
+
             },
 
         {
           path: 'manager/materialList',
           component: MaterialListComponent,
-           canActivate: [GuardAuthenticateGuard],
-          data: { role: roles.manager },
+
+
         },
         {
           path: 'manager/addMaterial',
           component: AddMaterialsComponent,
-           canActivate: [GuardAuthenticateGuard],
-          data: { role: roles.manager },
+
+
         }, {
           path: 'manager/detailReclamation/:id',
           component: DetailReclamationComponent,
-           canActivate: [GuardAuthenticateGuard],
-          data: { role: roles.manager },
+
+
         },
 
         {
           path: 'manager/detailIntervention/:id',
           component: DetailInterventionComponent,
-           canActivate: [GuardAuthenticateGuard],
-          data: { role: roles.manager },
+
+
         },
   {
     path: 'manager/createIntervention/:id',
     component: CreateInterventionComponent,
-  canActivate: [GuardAuthenticateGuard],
-    data: { role: roles.manager },
+
+
   },
   {
     path: 'manager/detailMaterial/:id',
     component: DetailMaterialComponent,
-    canActivate: [GuardAuthenticateGuard],
-    data: { role: roles.manager },
+
+
   },
 
 
@@ -179,39 +175,39 @@ const routes: Routes = [
   {
     path: 'manager/updateMaterial',
     component: UpdateMaterialComponent,
-     canActivate: [GuardAuthenticateGuard],
-    data: { role: roles.manager },
+
+
   },
   {
     path: 'manager/detailTeam/:id',
     component: DetailTeamComponent,
-     canActivate: [GuardAuthenticateGuard],
-    data: { role: roles.manager },
+
+
   },
   {
     path: 'manager/teamList',
     component: TeamListComponent,
-     canActivate: [GuardAuthenticateGuard],
-    data: { role: roles.manager },
+
+
   },
   {
     path: 'manager/demandList',
     component: ReclamationListComponent,
-     canActivate: [GuardAuthenticateGuard],
-          data: { role: roles.manager },
+
+
   },
   {
     path: 'manager/fileMembersUpload',
     component: AddFileMembersComponent,
-     canActivate: [GuardAuthenticateGuard],
-    data: { role: roles.manager },
+
+
   },
 
   {
     path: 'manager/fileMaterialsUpload',
     component: AddFileMaterialsComponent,
-     canActivate: [GuardAuthenticateGuard],
-    data: { role: roles.manager },
+
+
   },
    /*
    * End manager

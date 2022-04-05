@@ -75,8 +75,9 @@ export class AddTeamComponent implements OnInit {
   }
 
   onItemSelect(item: any) {
-    this.selectedlist.push(item);
+    this.selectedlist.push({id:item.id});
     console.log(this.selectedlist);
+    return this.selectedlist
   }
   onSelectAll(items: any) {
     console.log(items);
@@ -92,7 +93,7 @@ export class AddTeamComponent implements OnInit {
 */
 
   AddTeam() {
-    let team = new Team(String(this.titre?.value),String(this.manager?.value), this.membres?.value);
+    let team = new Team(String(this.titre?.value),{id:String(this.manager?.value)}, this.selectedlist);
     console.log(team);
   /*  this.teamService.create(team).subscribe((data: any) => {
       console.log(data);
