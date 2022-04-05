@@ -76,7 +76,7 @@ export class AuthenticateService {
   }
   onLogoutSucess()
   {
-    this.cookies.deleteAll
+    this.cookies.deleteAll()
   }
 
   public get authentificatorId():string

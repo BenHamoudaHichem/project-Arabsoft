@@ -10,14 +10,14 @@ export class User {
     private address: Address,
     private tel: string,
 
-    private role: string[]
+    private roles: string[]
   ) {}
 
-  public getRole(): string[] {
-    return this.role;
+  public getRoles(): string[] {
+    return this.roles;
   }
-  public setRole(value: string[]): void {
-    this.role = value;
+  public setRoles(value: string[]): void {
+    this.roles = value;
   }
 
   public getId(): string {

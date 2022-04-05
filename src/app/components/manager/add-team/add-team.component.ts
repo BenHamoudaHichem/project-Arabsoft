@@ -28,11 +28,13 @@ export class AddTeamComponent implements OnInit {
     private userService: UserService,
     private router: Router
   ) {
+    this.getAllUsers()
     this.teamForm = this.formBuilder.group({
       titre: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
       manager:['',Validators.required],
       membres: ['', Validators.required],
-    });
+    })
+
   }
 
   selectedItems: { item_id: number; item_text: string }[] = [];
@@ -60,9 +62,10 @@ export class AddTeamComponent implements OnInit {
       itemsShowLimit: 10,
       allowSearchFilter: true,
     };
+    console.log(this.users)
   }
   getAllUsers() {
-    this.userService.allByRole().subscribe((users: IUser[]) => {
+    this.userService.allByRole("member").subscribe((users: IUser[]) => {
       this.users = users;
       console.log(this.users);
     }),
@@ -91,11 +94,11 @@ export class AddTeamComponent implements OnInit {
   AddTeam() {
     let team = new Team(String(this.titre?.value),String(this.manager?.value), this.membres?.value);
     console.log(team);
-    this.teamService.create(team).subscribe((data: any) => {
+  /*  this.teamService.create(team).subscribe((data: any) => {
       console.log(data);
       Notify.success('Equipe crée avec succès');
       this.router.navigate(['/manager/teamList']);
-    });
+    });*/
   }
   get titre() {
     return this.teamForm.get('titre');

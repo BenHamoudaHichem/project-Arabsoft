@@ -16,7 +16,7 @@ export class CookiesService {
     return this.myCookies.get('_token');
   }
 
-  
+
   get getIdentifier(): string {
     return this.myCookies.get('_id');
   }
@@ -37,7 +37,7 @@ export class CookiesService {
   addUserId(id: string): void {
     this.myCookies.set('_id', id);
   }
-  deleteAll(): void {
-    this.myCookies.deleteAll();
+  deleteAll() {
+    this.myCookies.deleteAll('/', 'localhost', false, 'Lax');
   }
 }

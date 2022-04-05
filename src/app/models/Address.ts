@@ -10,42 +10,46 @@ export class Address {
     private location:Location
   ) {}
 
-  public getLocation(): Location {
+  public get Location(): Location {
     return this.location;
   }
   public setLocation(value: Location): void {
     this.location = value;
   }
 
-  public getCity(): string {
+  public get City(): string {
     return this.city;
   }
-  public setCity(value: string): void {
+  public set City(value: string) {
     this.city = value;
   }
 
-  public getStreet(): string {
+  public get Street(): string {
     return this.street;
   }
-  public setStreet(value: string): void {
+  public set Street(value: string) {
     this.street = value;
   }
-  public getZipCode(): string {
+  public get ZipCode(): string {
     return this.zipCode;
   }
-  public setZipCode(value: string): void {
+  public set ZipCode(value: string) {
     this.zipCode = value;
   }
-  public getState(): string {
+  public get State(): string {
     return this.state;
   }
-  public setState(value: string): void {
+  public set State(value: string) {
     this.state = value;
   }
-  public getCountry(): string {
+  public get Country(): string {
     return this.country;
   }
-  public setCountry(value: string): void {
+  public set Country(value: string) {
     this.country = value;
   }
+  public get toString(): string {
+    return this.country;
+  }
+
 }

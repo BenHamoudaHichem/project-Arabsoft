@@ -82,10 +82,10 @@ export class EditProfilComponent implements OnInit {
       this.firstName?.setValue(res.firstName),
         this.lastNamme?.setValue(res.lastName),
         this.tel?.setValue(res.tel),
-        this.counrty?.setValue(res.address.getCountry());
-      this.city?.setValue(res.address.getCity()),
-        this.street?.setValue(res.address.getStreet()),
-        this.state?.setValue(res.address.getState()),
+        this.counrty?.setValue(res.address.Country);
+      this.city?.setValue(res.address.City),
+        this.street?.setValue(res.address.Street),
+        this.state?.setValue(res.address.State),
         this.password?.setValue(res.password),
         this.confirmPassword?.setValue(res.password);
     }),

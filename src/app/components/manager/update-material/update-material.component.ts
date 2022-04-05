@@ -64,11 +64,11 @@ export class UpdateMaterialComponent implements OnInit {
           this.name?.setValue(data.name);
           this.description?.setValue(data.description);
           this.dateOfPurshase?.setValue(data.dateOfPurshase);
-          this.city?.setValue(data.address.getCity);
-          this.counrty?.setValue(data.address.getCountry);
-          this.street?.setValue(data.address.setStreet);
-          this.zipCode?.setValue(data.address.getZipCode);
-          this.state?.setValue(data.address.setState);
+          this.city?.setValue(data.address.City);
+          this.counrty?.setValue(data.address.Country);
+          this.street?.setValue(data.address.Street);
+          this.zipCode?.setValue(data.address.ZipCode);
+          this.state?.setValue(data.address.State);
           this.status?.setValue(data.status);
         });
     }

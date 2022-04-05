@@ -30,14 +30,14 @@ export class UserService {
           password: user.password,
           address: user.address,
           tel: user.tel,
-role:user.role
+roles:user.roles
       })
     );
   }))}
 
 
-  allByRole(): Observable<IUser[]> {
-    return this.http.get<IUser[]>(`${this.apiURL}?role=ROLE_MANAGER`).pipe(
+  allByRole(role:string): Observable<IUser[]> {
+    return this.http.get<IUser[]>(`${this.apiURL}?role=${role}`).pipe(
       map((users: IUser[]) => {
         return users.map((user) => ({
           id: user.id,
@@ -47,7 +47,7 @@ role:user.role
           password: user.password,
           address: user.address,
           tel: user.tel,
-role:user.role
+          roles:user.roles
       })
     );
   }))}

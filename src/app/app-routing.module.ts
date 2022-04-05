@@ -28,6 +28,7 @@ import { GuardAuthenticateGuard } from './services/guard-authenticate.guard';
 import { CreateReclamationComponent } from './components/customer/create-reclamation/create-reclamation.component';
 import { HomeManagerComponent } from './components/manager/home-manager/home-manager.component';
 import { UpdateMaterialComponent } from './components/manager/update-material/update-material.component';
+import { ShowReclamationComponent } from './components/customer/show-reclamation/show-reclamation.component';
 const roles={"customer":"ROLE_USER",
 "manager":"ROLE_MANAGER"}
 const routes: Routes = [
@@ -80,8 +81,8 @@ const routes: Routes = [
         },
 
         {
-          path: 'customer/customerProfil',
-          component: CustomerProfilComponent,
+          path: 'customer/reclamation/:id',
+          component: ShowReclamationComponent,
            canActivate: [GuardAuthenticateGuard],
           data: { role: roles.customer },
         },

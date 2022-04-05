@@ -40,6 +40,7 @@ import { EditProfilComponent } from './components/customer/edit-profil/edit-prof
 import { HomeManagerComponent } from './components/manager/home-manager/home-manager.component';
 import { UpdateMaterialComponent } from './components/manager/update-material/update-material.component';
 import { ExpiredSessionComponent } from './components/public/expired-session/expired-session.component';
+import { ShowReclamationComponent } from './components/customer/show-reclamation/show-reclamation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,6 +75,7 @@ HomeComponentPage,
     HomeManagerComponent,
     UpdateMaterialComponent,
     ExpiredSessionComponent,
+    ShowReclamationComponent,
   ],
   imports: [
     BrowserModule,

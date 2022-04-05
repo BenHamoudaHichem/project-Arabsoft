@@ -8,5 +8,5 @@ export interface IUser {
   password: string;
   address: Address;
   tel: string;
-  role: string[];
+  roles: string[];
 }

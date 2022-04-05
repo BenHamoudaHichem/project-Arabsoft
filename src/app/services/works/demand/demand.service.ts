@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { AuthenticateService } from '../../authenticate.service';
 import { IDemand } from './idemand';
 import { map } from 'rxjs/operators';
@@ -16,10 +16,12 @@ export class DemandService {
     }),
   };
   private apiURL = 'http://127.0.0.1:8080/api/demands';
+  public data$ = new Subject<boolean>()
 
   constructor(
     private http: HttpClient,
     private authService: AuthenticateService
+
   ) {}
 
 //Get all
@@ -78,8 +80,9 @@ export class DemandService {
           return demand;
         })
       );
-  }  allByCustomer(id:string): Observable<IDemand[]> {
-    return this.http.get<IDemand[]>(`${this.apiURL}?user=${id}`).pipe(
+  }
+  allByCustomer(id:string): Observable<IDemand[]> {
+    return this.http.get<IDemand[]>(`${this.apiURL}/user/${id}`).pipe(
       map((demandes: IDemand[]) => {
         return demandes.map((demandes) => ({
           id: demandes.id,

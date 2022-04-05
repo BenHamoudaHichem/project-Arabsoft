@@ -72,19 +72,18 @@ export class SubscribeMembreComponent implements OnInit {
       String(this.password?.value),
       adresse,
       String(this.tel?.value),
-
-      ['']
+      ['member']
     );
     console.log(user);
     this.userService.create(user).subscribe((res: any) => {
       Report.success(
-        "Notification d'inscription",res.message,"D'accord"
+        "Notification d'affectation",res.message,"D'accord"
         );
-      this.router.navigateByUrl('/login');
+      this.router.navigate(['dashboard/login']);
     }),
       (error: HttpErrorResponse) => {
         Report.warning(
-          "Notification d'inscription",error.message,"D'accord"
+          "Notification d'affectation",error.message,"D'accord"
           );
       };
   }

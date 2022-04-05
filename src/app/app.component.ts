@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Loading } from 'notiflix';
 
 @Component({
   selector: 'app-root',
@@ -24,4 +25,5 @@ export class AppComponent {
   checkHome() {
     return this.route.url == '/home';
   }
+  
 }
