@@ -1,4 +1,5 @@
 import { Address } from "src/app/models/Address";
+import { User } from "src/app/models/user";
 
 export interface IDemand {
   id: string
@@ -7,5 +8,5 @@ export interface IDemand {
   address:Address
   createdAt: Date
   status: string
-  user: string
+  user: User
 }

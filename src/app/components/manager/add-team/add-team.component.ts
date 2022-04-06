@@ -32,7 +32,7 @@ export class AddTeamComponent implements OnInit {
   ) {
     this.getAllUsers()
     this.teamForm = this.formBuilder.group({
-      titre: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
+      titre: ['', [Validators.required, Validators.pattern('^[a-zA-Z1-9 ]{2,}$')]],
       manager:['',Validators.required],
       membres: ['', Validators.required],
     })
@@ -107,11 +107,11 @@ export class AddTeamComponent implements OnInit {
     let team = new Team(String(this.titre?.value),new Dbref(this.manager?.value[0].id),
     this.selectedlist);
 
-  /*  this.teamService.create(team).subscribe((data: any) => {
+    this.teamService.create(team).subscribe((data: any) => {
       console.log(data);
       Notify.success('Equipe crée avec succès');
-      this.router.navigate(['/manager/teamList']);
-    });*/
+      this.router.navigate(['/dashboard/manager/teamList']);
+    });
   }
   get titre() {
     return this.teamForm.get('titre');

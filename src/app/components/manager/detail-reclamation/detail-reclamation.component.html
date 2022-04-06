@@ -1,51 +1,52 @@
-<section class="h-100">
-  <div class="header">
-    <h1>Info demande</h1>
-    <h1>{{ demand.title }}</h1>
 
-    <hr />
-  </div>
-  <div class="row1-container">
-    <div class="box box-down cyan">
-      <h2>Lieu</h2>
+<div class="main-container">
+  <div class="heading">
+    <h1 class="heading__title">Detail de la demande</h1>
+    <p class="heading__credits">
+      {{'Cette de mande est crée par le client '+ demand.user.getfirstName()+' '+demand.user.getlastNamme()}}</p>
+      <p class="heading__credits">
+        Depuis {{demand.createdAt | date:'yyyy-MM-dd'}} à {{demand.createdAt | date:'HH:mm'}} </p>
 
-      <p>
-        Rue : {{ demand.address.Street }} <br />Ville :
-        {{ demand.address.City }} <br />Gouvernorat :
-        {{ demand.address.State }} <br />Pays : {{ demand.address.Country }}
+    </div>
+  <div class="cards">
+    <div class="card card-3">
+      <div class="card__icon"><i class="fas fa-heading"></i></div>
+
+      <h2 class="card__title">{{demand.title}}</h2>
+      <p class="card__apply">
+        <a class="card__link" href="#">Apply Now <i class="fas fa-arrow-right"></i></a>
       </p>
-      <img
-        src="https://assets.codepen.io/2301174/icon-team-builder.svg"
-        alt=""
-      />
     </div>
+    <div class="card card-3">
+      <div class="card__icon"><i class="far fa-comment-alt"></i></div>
 
-    <div class="box red">
-      <h2>Votre description</h2>
-      <p>{{ demand.description }}</p>
-      <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="" />
+      <h2 class="card__title">{{demand.description}}.</h2>
+      <p class="card__apply">
+        <a class="card__link" href="#">Apply Now <i class="fas fa-arrow-right"></i></a>
+      </p>
     </div>
+    <div class="card card-3">
+      <div class="card__icon"><i class="fas fa-map-marker-alt"></i></div>
 
-    <div class="box box-down blue">
-      <h2>Date de publication</h2>
-      <p>{{ demand.createdAt | date: "yyyy-MM-dd" }}</p>
-      <img src="https://assets.codepen.io/2301174/icon-calculator.svg" alt="" />
+      <h2 class="card__title">  <h2>Lieu</h2>
+
+      <p>Rue : {{demand.address.Street}}
+        <br>Ville : {{demand.address.City}}
+        <br>Gouvernorat : {{demand.address.State}}
+        <br>Pays : {{demand.address.Country}}
+      </p></h2>
+      <p class="card__apply">
+        <a class="card__link" href="#">Apply Now <i class="fas fa-arrow-right"></i></a>
+      </p>
+    </div>
+    <div class="card card-3">
+      <div class="card__icon"><i class="far fa-question-circle"></i></div>
+
+
+      <h2 class="card__title">{{status}}</h2>
+      <p class="card__apply">
+        <a class="card__link" href="#">Apply Now <i class="fas fa-arrow-right"></i></a>
+      </p>
     </div>
   </div>
-  <div class="row2-container">
-    <div class="box orange">
-      <div class="d-flex justify-content-center">
-        <a
-          routerLinkActive="router-link-active"
-          [routerLink]="['/dashboard/manager/']"
-        >
-          <button class="bn632-hover bn28">Rejeter</button></a
-        >
-
-        <a routerLinkActive="router-link-active"
-          [routerLink]="['/dashboard/manager/createIntervention',demand.id]">
-          <button class="bn632-hover bn22">accepter</button></a>
-      </div>
-    </div>
-  </div>
-</section>
+</div>

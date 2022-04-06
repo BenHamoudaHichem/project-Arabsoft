@@ -33,6 +33,18 @@ export class TeamService {
       })
     );
   }
+  findByStatus(status:string): Observable<ITeam[]> {
+    return this.http.get<ITeam[]>(`${this.apiURL}?status=${status}`).pipe(
+      map((team: ITeam[]) => {
+        return team.map((team) => ({
+          id: team.id,
+          name: team.name,
+          manager: team.manager,
+          members: team.members,
+        }));
+      })
+    );
+  }
 
   getTeam(id: string): Observable<ITeam> {
     return this.http.get<ITeam>(`${this.apiURL}/${id}`, this.httpOptions).pipe(
