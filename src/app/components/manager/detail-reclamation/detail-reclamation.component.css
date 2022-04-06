@@ -20,7 +20,8 @@ body {
 }
 
 .heading__title {
-  font-weight: 600;
+  font-weight: 550;
+  text-transform: uppercase;
 }
 
 .heading__credits {
@@ -32,6 +33,7 @@ body {
 
 .heading__link {
   text-decoration: none;
+
 }
 
 .heading__credits .heading__link {
