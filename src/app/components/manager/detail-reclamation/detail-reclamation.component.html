@@ -1,93 +1,46 @@
 
-<<<<<<< Updated upstream
-    <div class="main-container">
-      <div class="heading">
-        <h1 class="heading__title">Detail de la demande</h1>
-        <p class="heading__credits">
-          {{'Cette de mande est crée par le client '+ demand.user.getfirstName()+' '+demand.user.getlastNamme()}}</p>
-          <p class="heading__credits">
-            Depuis {{demand.createdAt | date:'yyyy-MM-dd'}} à {{demand.createdAt | date:'HH:mm'}} </p>
-=======
 <div class="main-container">
   <div class="heading">
     <h1 class="heading__title">Detail de la demande</h1>
-
     <p class="heading__credits">
-
       {{'Cette de mande est crée par le client '+ demand.user.getfirstName()+' '+demand.user.getlastNamme()}}</p>
       <p class="heading__credits">
         Depuis {{demand.createdAt | date:'yyyy-MM-dd'}} à {{demand.createdAt | date:'HH:mm'}} </p>
->>>>>>> Stashed changes
 
-        </div>
-        <button class="button-88-pushable" role="button" (click)="accept()">
-          <span class="button-88-shadow"></span>
-          <span class="button-88-edge"></span>
-          <span class="button-88-front text">
-            Accepter
-          </span>
-        </button>
-        <button class="button-82-pushable" role="button">
-          <span class="button-82-shadow"></span>
-          <span class="button-82-edge"></span>
-          <span class="button-82-front text">
-            Ignorer
-          </span>
-        </button>
-      <div class="cards">
-        <div class="card card-3">
-          <div class="card__icon"><i class="fas fa-heading"></i></div>
+    </div>
+  <div class="cards">
+    <div class="card card-3">
+      <div class="card__icon"><i class="fas fa-heading"></i></div>
 
-          <h2 class="card__title">{{demand.title}}</h2>
+      <h2 class="card__title">{{demand.title}}</h2>
 
-        </div>
-        <div class="card card-3">
-          <div class="card__icon"><i class="far fa-comment-alt"></i></div>
+    </div>
+    <div class="card card-3">
+      <div class="card__icon"><i class="far fa-comment-alt"></i></div>
 
-<<<<<<< Updated upstream
-          <h2 class="card__title">{{demand.description}}.</h2>
-=======
       <h2 class="card__title">{{demand.description}}.</h2>
 
     </div>
     <div class="card card-3">
       <div class="card__icon"><i class="fas fa-map-marker-alt"></i></div>
->>>>>>> Stashed changes
 
-        </div>
-        <div class="card card-3">
-          <div class="card__icon"><i class="fas fa-map-marker-alt"></i></div>
+      <h2 class="card__title">  <h2>Lieu</h2>
 
-          <h2 class="card__title">  <h2>Lieu</h2>
-
-          <p>Rue : {{demand.address.Street}}
-            <br>Ville : {{demand.address.City}}
-            <br>Gouvernorat : {{demand.address.State}}
-            <br>Pays : {{demand.address.Country}}
-          </p></h2>
-
-        </div>
-        <div class="card card-3">
-          <div class="card__icon"><i class="far fa-question-circle"></i></div>
-
-
-          <h2 class="card__title">{{status}}</h2>
-          <p class="card__apply">
-            <a class="card__link" href="#">Apply Now <i class="fas fa-arrow-right"></i></a>
-          </p>
-        </div>
-
-      </div>
+      <p>Rue : {{demand.address.Street}}
+        <br>Ville : {{demand.address.City}}
+        <br>Gouvernorat : {{demand.address.State}}
+        <br>Pays : {{demand.address.Country}}
+      </p></h2>
 
     </div>
+    <div class="card card-3">
+      <div class="card__icon"><i class="far fa-question-circle"></i></div>
 
 
-<<<<<<< Updated upstream
-=======
-  </div>
-  <div class="d-flex justify-content-center">
-    <a class="bn31-2" href="/"><span class="bn31-2span">Refuser</span></a> <strong>OR</strong> <a class="bn31" routerLink=""><span class="bn31span">accepter</span></a>
-
+      <h2 class="card__title">{{status}}</h2>
+      <p class="card__apply">
+        <a class="card__link" href="#">Apply Now <i class="fas fa-arrow-right"></i></a>
+      </p>
+    </div>
   </div>
 </div>
->>>>>>> Stashed changes

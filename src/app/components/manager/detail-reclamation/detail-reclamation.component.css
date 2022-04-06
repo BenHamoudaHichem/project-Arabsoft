@@ -135,7 +135,6 @@ div{ text-align: justify;
     justify-content: center;
   }
 }
-<<<<<<< Updated upstream
 /*---*/
 
 
@@ -347,79 +346,4 @@ uuu
 
 .button-88-pushable:focus:not(:focus-visible) {
   outline: none;
-=======
-
-/* btn*/
-.bn31 {
-  background-image: linear-gradient(to right, #3da597 0%, #00a950 100%);
-  border-radius: 40px;
-  box-sizing: border-box;
-  color: #00a84f;
-  display: block;
-  height: 50px;
-  font-size: 1.6em;
-  padding: 4px;
-  position: relative;
-  text-decoration: none;
-  text-transform: uppercase;
-  width: 7em;
-  z-index: 2;
-}
-
-.bn31:hover {
-  color: #fff;
-}
-
-.bn31 .bn31span {
-  align-items: center;
-  background: #fff;
-  border-radius: 40px;
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  transition: background 0.5s ease;
-  width: 100%;
-}
-
-.bn31:hover .bn31span {
-  background: transparent;
-}
-
-
-
-
-.bn31-2 {
-  background-image: linear-gradient(to right, #e64e4e 0%, #f00e0e 100%);
-  border-radius: 40px;
-  box-sizing: border-box;
-  color: #e72f2f;
-  display: block;
-  height: 50px;
-  font-size: 1.6em;
-  padding: 4px;
-  text-transform: uppercase;
-  position: relative;
-  text-decoration: none;
-  width: 7em;
-  z-index: 2;
-}
-
-.bn31-2:hover {
-  color: #fff;
-}
-
-.bn31-2 .bn31-2span {
-  align-items: center;
-  background: #fff;
-  border-radius: 40px;
-  display: flex;
-  justify-content: center;
-  height: 100%;
-  transition: background 0.5s ease;
-  width: 100%;
-}
-
-.bn31-2:hover .bn31-2span {
-  background: transparent;
->>>>>>> Stashed changes
 }
