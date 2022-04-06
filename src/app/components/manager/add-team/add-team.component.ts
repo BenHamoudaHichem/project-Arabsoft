@@ -2,7 +2,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { plainToClass, plainToInstance } from 'class-transformer';
 import { Notify, Report } from 'notiflix';
+import { Dbref } from 'src/app/models/dbref';
 import { Team } from 'src/app/models/resources/team';
 import { User } from 'src/app/models/user';
 import { ITeam } from 'src/app/services/resources/team/iteam';
@@ -16,8 +18,8 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./add-team.component.css'],
 })
 export class AddTeamComponent implements OnInit {
-  teamForm!: FormGroup;
-  selectedlist: any[] = [];
+  teamForm!: FormGroup
+  selectedlist: Dbref[] = [];
   users!: IUser[];
   dropdownSettings!: {};
   dropdownSettings2!: {};
@@ -75,11 +77,15 @@ export class AddTeamComponent implements OnInit {
   }
 
   onItemSelect(item: any) {
-    this.selectedlist.push(item);
+    this.selectedlist.push(new Dbref(item.id));
     console.log(this.selectedlist);
   }
   onSelectAll(items: any) {
-    console.log(items);
+    items.forEach( (item:any) => {
+      this.selectedlist.push(new Dbref(item.id));
+    });
+
+
   } /*
   onRemove(item:any)
   {
@@ -92,7 +98,13 @@ export class AddTeamComponent implements OnInit {
 */
 
   AddTeam() {
-    let team = new Team(String(this.titre?.value),String(this.manager?.value), this.membres?.value);
+    let myManager:Dbref
+    myManager=new Dbref(this.manager?.value[0].id)
+    console.log("mm : "+this.manager?.value[0].id)
+    console.log("dd : "+this.selectedlist)
+
+    let team = new Team(String(this.titre?.value),new Dbref(this.manager?.value[0].id),
+    this.selectedlist);
     console.log(team);
   /*  this.teamService.create(team).subscribe((data: any) => {
       console.log(data);

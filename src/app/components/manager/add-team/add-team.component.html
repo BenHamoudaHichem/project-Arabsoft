@@ -31,7 +31,7 @@
 
                     <ng-multiselect-dropdown [placeholder]="'Selectionner un chef d\'Equipe'"
                       [settings]="dropdownSettings2" [data]="users" formControlName="manager"
-                      (onSelect)="onItemSelect($event)" class=" form-control-lg">
+                       class=" form-control-lg">
                     </ng-multiselect-dropdown>
                     <!--Error manager-->
                     <p *ngIf="(manager?.touched|| manager?.dirty ) && !manager?.valid" class="ErrorMsg"> Ce champ est
