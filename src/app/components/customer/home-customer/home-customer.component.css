@@ -184,6 +184,19 @@ Button
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 .card__icon {
   background: linear-gradient(to top, #4136f1, #8643ff);
   background-clip: text;
@@ -199,6 +212,12 @@ Button
   margin-top: 30px;
   display: block;
 }
+.scrollist {
+  overflow:scroll;
+  max-height: 300px;
+ min-width: 500px;
+
+ }
 
 h2{
   text-transform: uppercase;
