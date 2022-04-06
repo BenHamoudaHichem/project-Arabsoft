@@ -1,100 +1,96 @@
 <section class="min-h-100">
-
   <!------ Include the above in your HEAD tag ---------->
 
   <div class="container emp-profile">
     <form method="post">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-img">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog" alt=""/>
-                    <div class="file btn btn-lg btn-primary">
-                        Change Photo
-                        <input type="file" name="file"/>
-                    </div>
-                </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="profile-img">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+              alt=""
+            />
+            <div class="file btn btn-lg btn-primary">
+              Change Photo
+              <input type="file" name="file" />
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="profile-head">
+            <h2>BEN HAMMOUDA HICHEM</h2>
+            <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+            <h6>
+              <p class="proile-rating">Client / Member</p>
+            </h6>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <a [routerLink]="['/dashboard/customer/editProfil', user.id]"
+            ><button class="bn30" role="button">
+              <i class="fa fa-edit"></i>
+
+              Editer le profil
+            </button>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="profile-work"></div>
+        </div>
+        <div class="col-md-8">
+          <div class="row"></div>
+          <div class="row">
+            <div class="col-md-6">
+              <label><i class="fas fa-user"></i> &nbsp; Nom et Prénom</label>
             </div>
             <div class="col-md-6">
-                <div class="profile-head">
-                            <h2>
-                              BEN HAMMOUDA HICHEM
-
-                            </h2>
-                            <h2> {{user.firstName}} {{user.lastName}}</h2>
-                            <h6>
-                              <p class="proile-rating">Client / Member</p>
-                            </h6>
-
-
-                </div>
+              <p>Kshiti Ghelani</p>
+              <p>{{ user.firstName }} {{ user.lastName }}</p>
             </div>
-            <div class="col-md-2">
-              <button    class="bn30"role="button"><i class="fa fa-edit"></i>
-
-                Editer le profil
-
-            </button>          </div>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-md-6">
+              <label> <i class="fas fa-envelope"></i> &nbsp; Email</label>
+            </div>
+            <div class="col-md-6">
+              <p>hichembenhamouda11@gmail.com</p>
+              <p>{{ user.identifier }}</p>
+            </div>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-md-6">
+              <label
+                ><i class="fas fa-phone-alt"></i> &nbsp; Télephone
+                <i class="fa fa-phone-rotary"></i
+              ></label>
+            </div>
+            <div class="col-md-6">
+              <p>123 456 7890</p>
+              <p>{{ user.tel }}</p>
+            </div>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-md-6">
+              <label
+                ><i class="fas fa-map-marker-alt"></i> &nbsp; Adresse</label
+              >
+            </div>
+            <div class="col-md-6">
+              <p>
+                Rue : {{ user.address.Street }} <br />
+                <br />Ville : {{ user.address.City }} <br />
+                <br />Gouvernorat : {{ user.address.State }} <br />
+                <br />Pays : {{ user.address.Country }}
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-work">
-
-                </div>
-            </div>
-            <div class="col-md-8">
-                        <div class="row">
-
-
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label><i class="fas fa-user"></i> &nbsp; Nom et Prénom</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Kshiti Ghelani</p>
-                                       <p> {{user.firstName}} {{user.lastName}}</p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>
-                                          <i class="fas fa-envelope"></i> &nbsp; Email</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>hichembenhamouda11@gmail.com</p>
-                                        <p>   {{user.identifier}}
-                                        </p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label><i class="fas fa-phone-alt"></i> &nbsp; Télephone <i class="fa fa-phone-rotary"></i></label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>123 456 7890</p>
-                                        <p>   {{user.tel}}
-                                        </p>
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label><i class="fas fa-map-marker-alt"></i> &nbsp; Adresse</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                      <p>Rue : {{user.address.Street}} <br>
-                                        <br>Ville : {{user.address.City}} <br>
-                                        <br>Gouvernorat : {{user.address.State}} <br>
-                                        <br>Pays : {{user.address.Country}}
-                                    </div>
-                                </div>
-                    </div>
-
-                </div>
-
+      </div>
     </form>
   </div>
-
-  </section>
+</section>
