@@ -41,6 +41,7 @@ import { HomeManagerComponent } from './components/manager/home-manager/home-man
 import { UpdateMaterialComponent } from './components/manager/update-material/update-material.component';
 import { ExpiredSessionComponent } from './components/public/expired-session/expired-session.component';
 import { ShowReclamationComponent } from './components/customer/show-reclamation/show-reclamation.component';
+
 @NgModule({
   declarations: [
     AppComponent,
