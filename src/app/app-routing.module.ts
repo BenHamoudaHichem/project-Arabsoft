@@ -158,7 +158,7 @@ const routes: Routes = [
 
         },
   {
-    path: 'manager/createIntervention/:id',
+    path: 'manager/createIntervention',
     component: CreateInterventionComponent,
 
 

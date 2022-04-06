@@ -3,6 +3,7 @@ import { Component, ErrorHandler, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Notify, Report } from 'notiflix';
+import { Dbref } from 'src/app/models/dbref';
 import { Intervention } from 'src/app/models/works/intervention';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { ICategory } from 'src/app/services/category/icategory';
@@ -26,7 +27,7 @@ export class CreateInterventionComponent implements OnInit {
   interventionList!: IIntervention[];
   materialsList!: IMaterial[];
   teamList!: ITeam[];
-  idParam!: string;
+  idDemand!: string;
   constructor(
     private formBuilder: FormBuilder,
     private interventionService: InterventionService,
@@ -63,10 +64,7 @@ export class CreateInterventionComponent implements OnInit {
 
   dropdownSettings!: {};
   ngOnInit() {
-    this.route.queryParams.subscribe((params) => {
-      this.idParam = params['id'];
-      console.log(this.idParam);
-    });
+    this.idDemand=localStorage.getItem("_id")!
     this.allCategory();
     this.getMaterials();
 
@@ -127,7 +125,7 @@ export class CreateInterventionComponent implements OnInit {
       this.category?.value,
       this.date?.value,
       '',
-      this.demandList.push({ id: this.idParam }),
+      this.demandList.push(new Dbref(this.idDemand)),
       this.team?.value,
 
       this.date?.value,

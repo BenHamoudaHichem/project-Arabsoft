@@ -8,6 +8,7 @@ import { Address } from 'src/app/models/Address';
 import { User } from 'src/app/models/user';
 import { DemandService } from 'src/app/services/works/demand/demand.service';
 import { IDemand } from 'src/app/services/works/demand/idemand';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-detail-reclamation',
@@ -19,7 +20,8 @@ export class DetailReclamationComponent implements OnInit {
   id!: string;
   constructor(
     private demandService: DemandService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router:Router
   ) {
     this.route.snapshot.paramMap.get("id");
     console.log(String(this.route.snapshot.paramMap.get("id")))
@@ -64,5 +66,10 @@ return 0
     }
 
     return 1
+  }
+  accept()
+  {
+    localStorage.setItem("_id",this.demand.id)
+    this.router.navigate(["/dashboard/manager/createIntervention"])
   }
 }
