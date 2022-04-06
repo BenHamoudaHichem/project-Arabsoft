@@ -18,5 +18,4 @@ export class Team {
   public setName(value: string): void {
     this.name = value;
   }
-
 }

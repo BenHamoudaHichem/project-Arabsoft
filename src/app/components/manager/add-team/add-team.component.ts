@@ -79,6 +79,7 @@ export class AddTeamComponent implements OnInit {
   onItemSelect(item: any) {
     this.selectedlist.push(new Dbref(item.id));
     console.log(this.selectedlist);
+    return this.selectedlist
   }
   onSelectAll(items: any) {
     items.forEach( (item:any) => {
@@ -105,7 +106,7 @@ export class AddTeamComponent implements OnInit {
 
     let team = new Team(String(this.titre?.value),new Dbref(this.manager?.value[0].id),
     this.selectedlist);
-    console.log(team);
+
   /*  this.teamService.create(team).subscribe((data: any) => {
       console.log(data);
       Notify.success('Equipe crée avec succès');

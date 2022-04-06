@@ -1,54 +1,50 @@
-
-
 <section class="h-100">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col">
-        <div class="card card-registration my-4">
-          <div class="logo">
-            <div class="card-title text-center">
-              <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
-              <span class="mb-5 text-uppercase">Reclamation {{demand.title}} </span>
-            </div>
-          </div>
+  <div class="header">
+    <h1>Info demande</h1>
+    <h1>{{ demand.title }}</h1>
 
-          <div class="row g-2">
+    <hr />
+  </div>
+  <div class="row1-container">
+    <div class="box box-down cyan">
+      <h2>Lieu</h2>
 
-            <div class="col-xl-6  d-xl-block">
-              <div class="card-body p-md-5 text-black">
-                <h5 class="card-title">Description</h5>
+      <p>
+        Rue : {{ demand.address.Street }} <br />Ville :
+        {{ demand.address.City }} <br />Gouvernorat :
+        {{ demand.address.State }} <br />Pays : {{ demand.address.Country }}
+      </p>
+      <img
+        src="https://assets.codepen.io/2301174/icon-team-builder.svg"
+        alt=""
+      />
+    </div>
 
-                <p class="card-text">{{demand.description}}.</p>
+    <div class="box red">
+      <h2>Votre description</h2>
+      <p>{{ demand.description }}</p>
+      <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="" />
+    </div>
 
+    <div class="box box-down blue">
+      <h2>Date de publication</h2>
+      <p>{{ demand.createdAt | date: "yyyy-MM-dd" }}</p>
+      <img src="https://assets.codepen.io/2301174/icon-calculator.svg" alt="" />
+    </div>
+  </div>
+  <div class="row2-container">
+    <div class="box orange">
+      <div class="d-flex justify-content-center">
+        <a
+          routerLinkActive="router-link-active"
+          [routerLink]="['/dashboard/manager/']"
+        >
+          <button class="bn632-hover bn28">Rejeter</button></a
+        >
 
-              </div>
-
-            </div>
-            <div class="col-xl-6">
-              <div class="card-body p-md-5 text-black">
-
-
-
-                <h5 class="card-title">Publié à</h5>
-                <p class="card-text">{{demand.createdAt}}</p>
-                <h5 class="card-title">Lieu</h5>
-                <p class="card-text">{{demand.address.ZipCode}} ,{{demand.address.Street}},{{demand.address.City}}, {{demand.address.State}}, {{demand.address.Country}}</p>
-
-
-              </div>
-
-            </div>
-
-          </div>
-          <div class="card-footer">
-            <div class="d-flex justify-content-center ">
-              <button class="bn632-hover bn28">Rejeter</button>
-            <a  routerLinkActive="router-link-active" [routerLink]="['/dashboard/manager/createIntervention',demand.id]">  <button class="bn632-hover bn22" >accepter</button></a>
-
-            </div>
-          </div>
-
-        </div>
+        <a routerLinkActive="router-link-active"
+          [routerLink]="['/dashboard/manager/createIntervention',demand.id]">
+          <button class="bn632-hover bn22">accepter</button></a>
       </div>
     </div>
   </div>
