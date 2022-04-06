@@ -1,77 +1,139 @@
 
 
-<section class="light">
-	<div class="container py-2">
-		<div class="h1 text-center text-dark" id="pageHeaderTitle">Nos interventions</div>
+<section class="min-h-100">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="row">
+        <div class="col-8">
+          <div class="logo">
+            <span><img src="assets/images/icon.png" alt="Sample photo" height="60px" width="100px" /></span>
+            <span class="mb-5 text-uppercase">Les interventions </span>
+          </div>
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a [routerLink]="['/dashboard/manager/interventionList']" [queryParams]="{ status: 'EN_COURS'} " routerLinkActive>
+                <button (click)="showPerStatus()" class="nav-link active " id="nav-home-tab" data-bs-toggle="tab"
+                  data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
 
-		<article class="postcard light blue">
-			<a class="postcard__img_link" href="#">
-				<img class="postcard__img" src="
-        https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Image Title" />
-			</a>
-			<div class="postcard__text t-dark">
-				<h1 class="postcard__title blue"><a href="#">Intervention title Title</a></h1>
-				<div class="postcard__subtitle small">
-					<time datetime="2020-05-25 12:00:00">
-						<i class="fas fa-calendar-alt mr-2"></i>Mon, May 25th 2020
-					</time>
-				</div>
-				<div class="postcard__bar"></div>
-				<div class="postcard__preview-txt">(description)Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius! Ducimus nemo accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero. Eveniet ipsam adipisci illo iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!</div>
-				<ul class="postcard__tagbox">
-					<li class="tag__item"><i class="fas fa-info-circle"></i>Afficher details</li>
-					<li class="tag__item play blue">
-						<a href="#"><i class="fas fa-door-closed"></i>Cloturer</a>
-					</li>
-				</ul>
-			</div>
-		</article>
-    <article class="postcard light blue">
-			<a class="postcard__img_link" href="#">
-				<img class="postcard__img" src="
-        https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Image Title" />
-			</a>
-			<div class="postcard__text t-dark">
-				<h1 class="postcard__title blue"><a href="#">Podcast Title</a></h1>
-				<div class="postcard__subtitle small">
-					<time datetime="2020-05-25 12:00:00">
-						<i class="fas fa-calendar-alt mr-2"></i>Mon, May 25th 2020
-					</time>
-				</div>
-				<div class="postcard__bar"></div>
-				<div class="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius! Ducimus nemo accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero. Eveniet ipsam adipisci illo iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!</div>
-				<ul class="postcard__tagbox">
-					<li class="tag__item"><i class="fas fa-tag mr-2"></i>Podcast</li>
-					<li class="tag__item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
-					<li class="tag__item play blue">
-						<a href="#"><i class="fas fa-play mr-2"></i>Play Episode</a>
-					</li>
-				</ul>
-			</div>
-		</article>
-    <article class="postcard light blue">
-			<a class="postcard__img_link" href="#">
-				<img class="postcard__img" src="
-        https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Image Title" />
-			</a>
-			<div class="postcard__text t-dark">
-				<h1 class="postcard__title blue"><a href="#">Podcast Title</a></h1>
-				<div class="postcard__subtitle small">
-					<time datetime="2020-05-25 12:00:00">
-						<i class="fas fa-calendar-alt mr-2"></i>Mon, May 25th 2020
-					</time>
-				</div>
-				<div class="postcard__bar"></div>
-				<div class="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius! Ducimus nemo accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero. Eveniet ipsam adipisci illo iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!</div>
-				<ul class="postcard__tagbox">
-					<li class="tag__item"><i class="fas fa-tag mr-2"></i>Podcast</li>
-					<li class="tag__item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
-					<li class="tag__item play blue">
-						<a href="#"><i class="fas fa-play mr-2"></i>Play Episode</a>
-					</li>
-				</ul>
-			</div>
-		</article>
+                  <i style="color: rgb(49, 158, 82);" class=" fa-lg fas fa-sync fa-spin"></i>
+                  En cours
+                </button></a>
+              <a [routerLink]="['/dashboard/manager/interventionList']" [queryParams]="{ status: 'EN_ATTENTE'} " routerLinkActive>
 
-	</div>
+                <button (click)="showPerStatus()" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+                  data-bs-target="#nav-profile" type="button" role="tab" aria-selected="false">
+                  <i class=" fa-lg  fas fa-spinner " style="color: rgb(255, 30, 30);"></i>
+                  En attente
+                </button></a>
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+
+
+
+              <section class="light">
+                <div class="container py-2">
+                  <div class="h1 text-center text-dark" id="pageHeaderTitle">Nos interventions</div>
+
+                  <article class="postcard light blue">
+                    <a class="postcard__img_link" href="#">
+                      <img class="postcard__img" src="
+                      https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Image Title" />
+                    </a>
+                    <div class="postcard__text t-dark">
+                      <h1 class="postcard__title blue"><a href="#">Intervention title Title</a></h1>
+                      <div class="postcard__subtitle small">
+                        <time datetime="2020-05-25 12:00:00">
+                          <i class="fas fa-calendar-alt mr-2"></i>Mon, May 25th 2020
+                        </time>
+                      </div>
+                      <div class="postcard__bar"></div>
+                      <div class="postcard__preview-txt">(description)Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius! Ducimus nemo accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero. Eveniet ipsam adipisci illo iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!</div>
+                      <ul class="postcard__tagbox">
+                        <li class="tag__item"><i class="fas fa-info-circle"></i>Afficher details</li>
+                        <li class="tag__item play blue">
+                          <a href="#"><i class="fas fa-door-closed"></i>Cloturer</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </article>
+                  <article class="postcard light blue">
+                    <a class="postcard__img_link" href="#">
+                      <img class="postcard__img" src="
+                      https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Image Title" />
+                    </a>
+                    <div class="postcard__text t-dark">
+                      <h1 class="postcard__title blue"><a href="#">Podcast Title</a></h1>
+                      <div class="postcard__subtitle small">
+                        <time datetime="2020-05-25 12:00:00">
+                          <i class="fas fa-calendar-alt mr-2"></i>Mon, May 25th 2020
+                        </time>
+                      </div>
+                      <div class="postcard__bar"></div>
+                      <div class="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius! Ducimus nemo accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero. Eveniet ipsam adipisci illo iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!</div>
+                      <ul class="postcard__tagbox">
+                        <li class="tag__item"><i class="fas fa-tag mr-2"></i>Podcast</li>
+                        <li class="tag__item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
+                        <li class="tag__item play blue">
+                          <a href="#"><i class="fas fa-play mr-2"></i>Play Episode</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </article>
+                  <article class="postcard light blue">
+                    <a class="postcard__img_link" href="#">
+                      <img class="postcard__img" src="
+                      https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Image Title" />
+                    </a>
+                    <div class="postcard__text t-dark">
+                      <h1 class="postcard__title blue"><a href="#">Podcast Title</a></h1>
+                      <div class="postcard__subtitle small">
+                        <time datetime="2020-05-25 12:00:00">
+                          <i class="fas fa-calendar-alt mr-2"></i>Mon, May 25th 2020
+                        </time>
+                      </div>
+                      <div class="postcard__bar"></div>
+                      <div class="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius! Ducimus nemo accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero. Eveniet ipsam adipisci illo iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!</div>
+                      <ul class="postcard__tagbox">
+                        <li class="tag__item"><i class="fas fa-tag mr-2"></i>Podcast</li>
+                        <li class="tag__item"><i class="fas fa-clock mr-2"></i>55 mins.</li>
+                        <li class="tag__item play blue">
+                          <a href="#"><i class="fas fa-play mr-2"></i>Play Episode</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </article>
+
+                </div>
+              </section>
+
+
+
+            </div>
+
+            <!--nav 2-->
+
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+              <p class="text-center "> pas des interventions en attente en ce moment</p>
+
+
+            </div>
+          </div>
+        </div>
+        <div class="col-4">
+
+          <div class="row mb-4">
+
+
+
+
+
+            <app-filtre></app-filtre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
