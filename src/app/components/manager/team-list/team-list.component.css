@@ -1,109 +1,324 @@
-.card
-{
-margin-top: 10px;
-border: 1 black;
-}
-select{
-  width: 150%;
-  background-color: #f6f6f6;
+.light {
+  background-color: #8989bb;
+  background-image: linear-gradient(315deg, #8989bb 0%, #a5a4cb 74%);
 }
 
-fieldset {
-  border-radius: 10px 10px 0px 0px;
-  border: 2px solid #ccc;
+.nav-link {
+  color: rgb(0, 0, 0);
 
-  margin-top: 90px;
-  width: 90%;
-  margin-left: 60px;
+ font-size: larger;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+
 }
-img {
-  border-radius: 50%;
+
+
+
+/* Cards */
+.postcard {
+  flex-wrap: wrap;
+  display: flex;
+  box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.66);
+  border-radius: 10px;
+  margin: 0 0 2rem 0;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+}
+
+.postcard.dark {
+  background-color: #b9aed3;
+}
+
+.postcard .t-dark {
+  color: #18151f;
+}
+
+.postcard a {
+  color: inherit;
+}
+
+.postcard h1,
+.postcard .h1 {
+  margin-bottom: 1rem;
+  font-weight: 300;
+
+}
+
+.postcard .small {
+  font-size: 20px;
+}
+
+.postcard .postcard__title {
+  font-size: 1.7rem;
+}
+
+.postcard .postcard__img {
+  max-height: 180px;
+  width: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
+.postcard .postcard__img_link {
+  display: contents;
+}
+
+.postcard .postcard__bar {
+  width: 70px;
+  height: 20px;
+  margin: 5px 0;
+  border-radius: 8px;
+  background-color: #070505;
+  transition: width 0.2s ease;
+}
+
+.postcard .postcard__text {
+  padding: 1.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.postcard .postcard__preview-txt {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: justify;
+  font-size: 18px;
+  height: 100%;
+}
+
+.postcard .postcard__tagbox {
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 14px;
+  padding: 0;
+  justify-content: center;
+}
+
+.postcard .postcard__tagbox .tag__item {
+  display: inline-block;
+  background: rgba(240, 233, 233, 0.4);
+  border-radius: 6px;
+  padding: 2.5px 10px;
+  margin: 0 5px 5px 0;
+  cursor: default;
+  user-select: none;
+  font-size: 17px;
+  transition: background-color 0.3s;
+}
+
+.postcard .postcard__tagbox .tag__item:hover {
+  background: rgba(102, 95, 95, 0.8);
+}
+
+.postcard:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /*	 background-image: linear-gradient(-70deg, #424242, transparent 50%);*/
+  opacity: 1;
+  border-radius: 10px;
+}
+
+.postcard:hover .postcard__bar {
+  width: 100px;
+}
+
+@media screen and (min-width: 769px) {
+  .postcard {
+    flex-wrap: inherit;
   }
 
-.btn_pg{
+  .postcard .postcard__title {
+    font-size: 2rem;
+    margin-left:10px;
+  }
 
- text-align: end;
- margin-top: 190px;
+  .postcard .postcard__tagbox {
+    justify-content: start;
+  }
 
+  .postcard .postcard__img {
+    max-width: 300px;
+    max-height: 100%;
+    transition: transform 0.3s ease;
+  }
+
+  .postcard .postcard__text {
+    padding: 3rem;
+    width: 100%;
+  }
+
+  .postcard .media.postcard__text:before {
+    content: "";
+    position: absolute;
+    display: block;
+    background: #19181b;
+    top: -20%;
+    height: 130%;
+    width: 55px;
+  }
+
+  .postcard:hover .postcard__img {
+    transform: scale(1.1);
+  }
+
+  .postcard:nth-child(2n+1) {
+    flex-direction: row;
+  }
+
+  .postcard:nth-child(2n+0) {
+    flex-direction: row-reverse;
+  }
+
+  .postcard:nth-child(2n+1) .postcard__text::before {
+    left: -12px !important;
+    transform: rotate(4deg);
+  }
+
+  .postcard:nth-child(2n+0) .postcard__text::before {
+    right: -12px !important;
+    transform: rotate(-4deg);
+  }
 }
 
-.nav-link{color: rgb(0, 0, 0);
-height: 50px;
-width: 410px;}
-/* ________Radio _________*/
+@media screen and (min-width: 1024px) {
+  .postcard__text {
+    padding: 2rem 3.5rem;
+  }
 
-.radio {
-  --border-radius: 50%;
+  .postcard__text:before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: -20%;
+    height: 130%;
+    width: 55px;
+  }
 
-  padding: 5px;
+
+  .postcard.light .postcard__text:before {
+    background: #272929;
+  }
 }
 
-.checkbox {
-  --border-radius: 0;
-
-  padding: 5px;
+/* COLORS */
+.postcard .postcard__tagbox .green.play:hover {
+  background: #79dd09;
+  color: black;
 }
 
-.radio input[type="radio"], .checkbox input[type="checkbox"] {
-  display: none;
+.green .postcard__title:hover {
+  color: #79dd09;
 }
 
-.radio label, .checkbox label {
-  position: relative;
-
-  display: inline-block;
-
-  width: 20px;
-  height: 20px;
-
-  border: 3px solid black;
-  border-radius: var(--border-radius);
-
-  box-sizing: border-box;
+.green .postcard__bar {
+  background-color: #79dd09;
 }
 
-.radio label::before, .checkbox label::before {
-  content: "";
-
-  position: absolute;
-  left: 50%;
-  top: 50%;
-
-  width: 10px;
-  height: 10px;
-
-  border-radius: var(--border-radius);
-
-  background-color: transparent;
-
-  transform: translate(-50%, -50%);
-
-  transition: background-color 0.25s;
+.green::before {
+  background-image: linear-gradient(-30deg, rgba(121, 221, 9, 0.1), transparent 50%);
 }
 
-.radio :checked ~ label::before, .checkbox :checked ~ label::before {
-  background-color: grey;
+.green:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(121, 221, 9, 0.1), transparent 50%);
 }
 
-.radio span, .checkbox span {
-  color: grey;
-
-  vertical-align: top;
-
-  transition: color 0.25s;
+.postcard .postcard__tagbox .blue.play:hover {
+  background: #0076bd;
 }
 
-.radio :checked ~ span, .checkbox :checked ~ span {
-  color: rgb(228, 184, 42);
+.blue .postcard__title:hover {
+  color: #0076bd;
 }
 
-.card:hover {
-
-  box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
-  top: -4px;
-  border: 1px solid #cccccc;
-
+.blue .postcard__bar {
+  background-color: #0076bd;
 }
 
+.blue::before {
+  background-image: linear-gradient(-30deg, rgba(0, 118, 189, 0.1), transparent 50%);
+}
 
+.blue:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(0, 118, 189, 0.1), transparent 50%);
+}
 
+.postcard .postcard__tagbox .red.play:hover {
+  background: #bd150b;
+}
+
+.red .postcard__title:hover {
+  color: #bd150b;
+}
+
+.red .postcard__bar {
+  background-color: #bd150b;
+}
+
+.red::before {
+  background-image: linear-gradient(-30deg, rgba(189, 21, 11, 0.1), transparent 50%);
+}
+
+.red:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(189, 21, 11, 0.1), transparent 50%);
+}
+
+.postcard .postcard__tagbox .yellow.play:hover {
+  background: #bdbb49;
+  color: black;
+}
+
+.yellow .postcard__title:hover {
+  color: #bdbb49;
+}
+
+.yellow .postcard__bar {
+  background-color: #bdbb49;
+}
+
+.yellow::before {
+  background-image: linear-gradient(-30deg, rgba(189, 187, 73, 0.1), transparent 50%);
+}
+
+.yellow:nth-child(2n)::before {
+  background-image: linear-gradient(30deg, rgba(189, 187, 73, 0.1), transparent 50%);
+}
+
+@media screen and (min-width: 769px) {
+  .green::before {
+    background-image: linear-gradient(-80deg, rgba(121, 221, 9, 0.1), transparent 50%);
+  }
+
+  .green:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(121, 221, 9, 0.1), transparent 50%);
+  }
+
+  .blue::before {
+    background-image: linear-gradient(-80deg, rgba(0, 118, 189, 0.1), transparent 50%);
+  }
+
+  .blue:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(0, 118, 189, 0.1), transparent 50%);
+  }
+
+  .red::before {
+    background-image: linear-gradient(-80deg, rgba(189, 21, 11, 0.1), transparent 50%);
+  }
+
+  .red:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(189, 21, 11, 0.1), transparent 50%);
+  }
+
+  .yellow::before {
+    background-image: linear-gradient(-80deg, rgba(189, 187, 73, 0.1), transparent 50%);
+  }
+
+  .yellow:nth-child(2n)::before {
+    background-image: linear-gradient(80deg, rgba(189, 187, 73, 0.1), transparent 50%);
+  }
+}
