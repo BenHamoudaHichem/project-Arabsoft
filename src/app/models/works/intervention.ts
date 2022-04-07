@@ -1,25 +1,26 @@
 import { Category } from '../Category';
+import { Dbref } from '../dbref';
 import { Material } from '../resources/Material';
 
 export class Intervention {
   constructor(
     protected title: string,
     protected description: string,
-    protected category: Category,
+    protected category: Dbref,
     protected startedAt: Date,
     protected status: string,
-    protected demandList:{id:string}[],
-    protected team:string,
+    protected demandList:Dbref[],
+    protected team:Dbref,
     protected createdAt: Date,
-    protected materials:Material[]
+    protected materials:Dbref[]
   ) {}
 
 
 
-  public getTeam(): string {
+  public getTeam(): Dbref {
     return this.team;
   }
-  public setTeam(value: string): void {
+  public setTeam(value: Dbref): void {
     this.team = value;
   }
 
@@ -37,10 +38,10 @@ export class Intervention {
     this.description = value;
   }
 
-  public getCategory(): Category {
+  public getCategory(): Dbref {
     return this.category;
   }
-  public setCategory(value: Category): void {
+  public setCategory(value: Dbref): void {
     this.category = value;
   }
 

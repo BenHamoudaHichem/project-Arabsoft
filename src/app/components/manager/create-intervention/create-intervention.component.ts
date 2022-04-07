@@ -22,12 +22,11 @@ import { InterventionService } from 'src/app/services/works/intervention/interve
 })
 export class CreateInterventionComponent implements OnInit {
   createInterventionForm!: FormGroup;
-  demandList: any = [];
+  demandList: Dbref[]=[];
   categoryList!: ICategory[];
   interventionList!: IIntervention[];
   materialsList!: IMaterial[];
   teamList!: ITeam[];
-  idDemand!: string;
   constructor(
     private formBuilder: FormBuilder,
     private interventionService: InterventionService,
@@ -64,12 +63,11 @@ export class CreateInterventionComponent implements OnInit {
 
   dropdownSettings!: {};
   ngOnInit() {
-    this.idDemand=localStorage.getItem("_id")!
+    this.demandList= new Array(new Dbref(localStorage.getItem("_id")!),)
     this.allCategory();
     this.getMaterials();
 
     this.allTeam()
-    this.getInterventions();
 
     this.dropdownSettings = {
       singleSelection: false,
@@ -98,7 +96,7 @@ export class CreateInterventionComponent implements OnInit {
       };
   }
   getMaterials() {
-    this.materialService.materialStatusOn().subscribe((data: IMaterial[]) => {
+    this.materialService.all().subscribe((data: IMaterial[]) => {
       this.materialsList = data;
       console.log(this.materialsList);
     }),
@@ -117,24 +115,25 @@ export class CreateInterventionComponent implements OnInit {
       };
   }
 
-  Creer() {
+  create() {
     // console.log(this.createInterventionForm.value)
-
+    console.log((this.Materiel?.value))
+    Array.from(this.Materiel?.value as IMaterial[],x=>x.id)
     let intervention = new Intervention(
       this.title?.value,
       this.description?.value,
       this.category?.value,
       this.date?.value,
       '',
-      this.demandList.push(new Dbref(this.idDemand)),
-      this.team?.value,
+      this.demandList,
+      new Dbref(this.team?.value)
+      ,
 
-      this.date?.value,
-      this.Materiel?.value
+      this.date?.value,//this.Materiel?.value
+      Array.from(this.Materiel?.value as any[],x=>new Dbref(x.id))
     );
-    console.log(this.demandList);
-    //console.log(intervention);
-    this.interventionService.create(intervention).subscribe((data: any) => {
+    console.log(intervention);
+  /*  this.interventionService.create(intervention).subscribe((data: any) => {
       console.log(data);
       if (data.status == true) {
         Report.success('Notification', data.message, 'OK');
@@ -145,16 +144,16 @@ export class CreateInterventionComponent implements OnInit {
     }),
       (error: HttpErrorResponse) => {
         Report.failure('Erreur', error.message, 'Ok');
-      };
+      };*/
   }
 
-  getInterventions() {
+  getInterventions() {/*
     this.interventionService.all().subscribe((res: IIntervention[]) => {
       this.interventionList = res;
     }),
       (error: HttpErrorResponse) => {
         Report.failure('erreur getting interventions', error.message, 'ok');
-      };
+      };*/
   }
 
   get intervention() {

@@ -23,8 +23,8 @@ export class TeamService {
   ) {}
   all(): Observable<ITeam[]> {
     return this.http.get<ITeam[]>(`${this.apiURL}`).pipe(
-      map((team: ITeam[]) => {
-        return team.map((team) => ({
+      map((teams: ITeam[]) => {
+        return teams.map((team) => ({
           id: team.id,
           name: team.name,
           manager: team.manager,

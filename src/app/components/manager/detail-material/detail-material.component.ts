@@ -40,7 +40,7 @@ export class DetailMaterialComponent implements OnInit {
 
   changeStatus() {
     let newMaterial:Material=new Material(this.material.name,this.material.description,this.material.address
-      ,this.material.dateOfPurshase,this.material.status)
+      ,this.material.dateOfPurchase,this.material.status)
     if (this.btn == 'materiel reparé') {
 
 

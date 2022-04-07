@@ -5,6 +5,6 @@ export interface IMaterial {
   name: string;
   description: string;
   address: Address;
-  dateOfPurshase: Date;
+  dateOfPurchase: Date;
   status: string;
 }

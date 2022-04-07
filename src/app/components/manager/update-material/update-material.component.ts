@@ -63,7 +63,7 @@ export class UpdateMaterialComponent implements OnInit {
           this.material=data
           this.name?.setValue(data.name);
           this.description?.setValue(data.description);
-          this.dateOfPurshase?.setValue(data.dateOfPurshase);
+          this.dateOfPurshase?.setValue(data.dateOfPurchase);
           this.city?.setValue(data.address.City);
           this.counrty?.setValue(data.address.Country);
           this.street?.setValue(data.address.Street);

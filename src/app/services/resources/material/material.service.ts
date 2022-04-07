@@ -22,14 +22,15 @@ export class EquipmentService {
   ) {}
   all(): Observable<IMaterial[]> {
     return this.http.get<IMaterial[]>(`${this.apiURL}`).pipe(
-      map((equipment: IMaterial[]) => {
-        return equipment.map((equipment) => ({
-          id: equipment.id,
-          name: equipment.name,
-          description: equipment.description,
-          dateOfPurshase: equipment.dateOfPurshase,
-          address: equipment.address,
-          status: equipment.status,
+      map((materials: IMaterial[]) => {
+        return materials.map((material) => ({
+          id: material.id,
+          name: material.name,
+          description: material.description,
+          dateOfPurchase: material.dateOfPurchase,
+
+          status: material.status,
+          address: material.address,
         }));
       })
     );
@@ -43,29 +44,14 @@ export class EquipmentService {
             id: equipment.id,
             name: equipment.name,
             description: equipment.description,
-            dateOfPurshase: equipment.dateOfPurshase,
+            dateOfPurchase: equipment.dateOfPurchase,
             address: equipment.address,
             status: equipment.status,
           }));
         })
       );
   }
-  materialStatusOn(): Observable<IMaterial[]> {
-    return this.http
-      .get<IMaterial[]>(`${this.apiURL}?status=DISPONIBLE`)
-      .pipe(
-        map((equipment: IMaterial[]) => {
-          return equipment.map((equipment) => ({
-            id: equipment.id,
-            name: equipment.name,
-            description: equipment.description,
-            dateOfPurshase: equipment.dateOfPurshase,
-            address: equipment.address,
-            status: equipment.status,
-          }));
-        })
-      );
-  }
+
   create(equipment: Material) {
     console.log(JSON.stringify(equipment));
 

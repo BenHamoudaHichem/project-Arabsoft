@@ -41,7 +41,6 @@ export class DetailTeamComponent implements OnInit {
       this.team.manager=plainToClass(User,res.manager)
       this.team.members=Array.from(res.members,x=> plainToClass(User,x))
 
-      console.log(this.team)
     }),(error:HttpErrorResponse)=>{
       Report.warning('Erreur',error.message,'OK')
     };
