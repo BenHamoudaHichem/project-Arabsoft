@@ -12,6 +12,7 @@ export class InterventionService {
   headers = {
     headers: new HttpHeaders({
       Authorization: `Bearer ${this.authService.getToken}`,
+      "Access-Control-Allow-Headers":"Content-Type",
       "Content-Type":"application/json"
     }),
   };
@@ -61,11 +62,10 @@ export class InterventionService {
   }
 
   create(intervention: Intervention): Observable<Intervention> {
-    var d = JSON.stringify(intervention);
-    console.log(d)
+
     return this.http.post<Intervention>(
       `${this.apiURL}`,
-      d,
+      JSON.stringify(intervention),
       this.headers
     );
   }

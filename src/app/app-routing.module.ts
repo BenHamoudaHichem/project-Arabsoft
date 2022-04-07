@@ -145,7 +145,7 @@ const routes: Routes = [
         component: DetailInterventionComponent,
       },
       {
-        path: 'manager/createIntervention',
+        path: 'manager/createIntervention/:id',
         component: CreateInterventionComponent,
       },
       {

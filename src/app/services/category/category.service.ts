@@ -25,6 +25,7 @@ export class CategoryService {
     return this.http.get<ICategory[]>(`${this.apiURL}`).pipe(
       map((cat: ICategory[]) => {
         return cat.map((cat) => ({
+          id:cat.id,
           name: cat.name,
         }));
       })

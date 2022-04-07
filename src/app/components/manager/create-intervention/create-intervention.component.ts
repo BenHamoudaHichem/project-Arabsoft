@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ErrorHandler, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import moment from 'moment';
 import { Notify, Report } from 'notiflix';
 import { Dbref } from 'src/app/models/dbref';
 import { Intervention } from 'src/app/models/works/intervention';
@@ -11,6 +12,7 @@ import { IMaterial } from 'src/app/services/resources/material/imaterial';
 import { EquipmentService } from 'src/app/services/resources/material/material.service';
 import { ITeam } from 'src/app/services/resources/team/iteam';
 import { TeamService } from 'src/app/services/resources/team/team.service';
+import { Associatif } from 'src/app/services/types/associatif';
 import { DateValidation } from 'src/app/services/validation/DateValidation';
 import { IIntervention } from 'src/app/services/works/intervention/iintervention';
 import { InterventionService } from 'src/app/services/works/intervention/intervention.service';
@@ -27,6 +29,7 @@ export class CreateInterventionComponent implements OnInit {
   interventionList!: IIntervention[];
   materialsList!: IMaterial[];
   teamList!: ITeam[];
+  statusList:Associatif[]=[{key:'En attente',value:"Waiting"},{key:'En cours',value:'In_Progress'}]
   constructor(
     private formBuilder: FormBuilder,
     private interventionService: InterventionService,
@@ -63,7 +66,7 @@ export class CreateInterventionComponent implements OnInit {
 
   dropdownSettings!: {};
   ngOnInit() {
-    this.demandList = new Array(new Dbref(localStorage.getItem('_id')!));
+    this.demandList = new Array(new Dbref(this.route.snapshot.paramMap.get('id')!));
     this.allCategory();
     this.getMaterials();
 
@@ -122,7 +125,7 @@ export class CreateInterventionComponent implements OnInit {
     let intervention = new Intervention(
       this.title?.value,
       this.description?.value,
-      this.category?.value,
+      new Dbref(this.category?.value),
       this.date?.value,
       this.status?.value,
       this.demandList,
@@ -131,7 +134,7 @@ export class CreateInterventionComponent implements OnInit {
       Array.from(this.Materiel?.value as any[], (x) => new Dbref(x.id))
     );
     console.log(intervention);
-    /*  this.interventionService.create(intervention).subscribe((data: any) => {
+      this.interventionService.create(intervention).subscribe((data: any) => {
       console.log(data);
       if (data.status == true) {
         Report.success('Notification', data.message, 'OK');
@@ -142,7 +145,7 @@ export class CreateInterventionComponent implements OnInit {
     }),
       (error: HttpErrorResponse) => {
         Report.failure('Erreur', error.message, 'Ok');
-      };*/
+      }
   }
 
   getInterventions() {
@@ -195,5 +198,11 @@ export class CreateInterventionComponent implements OnInit {
       (error: HttpErrorResponse) => {
         Report.failure('Erreur', error.message, 'OK');
       };
+  }
+  chechIsNow(){
+    if(this.status?.value==this.statusList[1].value)
+    {
+      this.date?.setValue(moment(new Date()).format('yyyy-MM-DD'))
+    }
   }
 }

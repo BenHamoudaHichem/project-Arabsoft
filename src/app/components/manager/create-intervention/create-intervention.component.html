@@ -30,15 +30,12 @@
                   </div>
                   <div class="form-outline">
                     <label class="form-label">Status</label>
-                    <select formControlName="status" class="form-select" required>
-                      <option selected disabled>
-Selectionner le status                      </option>
-                      <option value="Waiting">
-                        En attente
+                    <select formControlName="status" class="form-select" (change)="chechIsNow()" required>
+                      <option selected disabled>Selectionner le status  </option>
+                      <option *ngFor="let item of statusList" [value]="item.value">
+                        {{item.key}}
                       </option>
-                      <option value="In_Progress">
-                        En cours
-                      </option>
+
                     </select>
                     <!--Error category-->
                     <p *ngIf="
@@ -89,7 +86,7 @@ Selectionner le status                      </option>
                     <select formControlName="category" class="form-select">
                       <option *ngIf="categoryList == null">aucun categorie</option>
 
-                      <option *ngFor="let item of categoryList" [value]="item.name">
+                      <option *ngFor="let item of categoryList" [value]="item.id">
                         {{ item.name }}
                       </option>
                     </select>
