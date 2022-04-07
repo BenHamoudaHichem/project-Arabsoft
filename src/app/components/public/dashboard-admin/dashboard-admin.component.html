@@ -37,7 +37,8 @@
           data-bs-parent="#menu"
         >
           <li>
-            <a data-toggle="tab" class="text-light"
+
+              <a data-toggle="tab" class="text-light" routerLink="/dashboard/manager/agentList"
               ><i class="fa fa-list"></i> Liste des agents</a
             >
           </li>
@@ -112,6 +113,12 @@
               [routerLink]="['/dashboard/manager/createIntervention']"
               ><i class="fa fa-plus-circle"></i> Nouvel intervention</a
             >
+          </li> <li >
+            <a
+              data-toggle="tab "
+              [routerLink]="['/dashboard/manager/categorylist']"
+              ><i class="fa fa-clipboard-list"></i> Categories</a
+            >
           </li>
         </ul>
       </li>
@@ -158,13 +165,7 @@
           ><i class="fa fa-clipboard-list"></i> Demandes</a
         >
       </li>
-      <li *ngIf="isManager">
-        <a
-          data-toggle="tab "
-          [routerLink]="['/dashboard/manager/categorylist']"
-          ><i class="fa fa-clipboard-list"></i> Categories</a
-        >
-      </li>
+
 
       <li class="menu-heading">Pages</li>
 

@@ -33,6 +33,9 @@ background-image: linear-gradient(315deg, #9ab5e1 0%, #f39fdc 74%);
 .postcard .t-dark {
   color: #18151f;
 }
+.postcard .t-white {
+  color: #d3c8ee;
+}
 .postcard a {
   color: inherit;
 }
@@ -93,6 +96,19 @@ background-image: linear-gradient(315deg, #9ab5e1 0%, #f39fdc 74%);
   cursor: default;
   user-select: none;
   transition: background-color 0.3s;
+}
+.postcard .postcard__tagbox .tag__itemMember{
+  display: inline-block;
+  background: rgba(59, 56, 56, 0.4);
+  border-radius: 6px;
+  padding: 2.5px 10px;
+  margin: 0 5px 5px 0;
+  cursor: default;
+  user-select: none;
+  transition: background-color 0.3s;
+}
+.postcard .postcard__tagbox .tag__itemMember:hover {
+  background: rgba(32, 30, 30, 0.8);
 }
 .postcard .postcard__tagbox .tag__item:hover {
   background: rgba(83, 83, 83, 0.8);

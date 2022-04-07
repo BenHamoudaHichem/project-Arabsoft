@@ -42,6 +42,7 @@ import { UpdateMaterialComponent } from './components/manager/update-material/up
 import { ExpiredSessionComponent } from './components/public/expired-session/expired-session.component';
 import { ShowReclamationComponent } from './components/customer/show-reclamation/show-reclamation.component';
 import { CategoryComponent } from './components/manager/category/category.component';
+import { MembersListComponent } from './components/manager/members-list/members-list.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ HomeComponentPage,
     ExpiredSessionComponent,
     ShowReclamationComponent,
     CategoryComponent,
+    MembersListComponent,
   ],
   imports: [
     BrowserModule,

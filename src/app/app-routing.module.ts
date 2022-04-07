@@ -30,6 +30,7 @@ import { HomeManagerComponent } from './components/manager/home-manager/home-man
 import { UpdateMaterialComponent } from './components/manager/update-material/update-material.component';
 import { ShowReclamationComponent } from './components/customer/show-reclamation/show-reclamation.component';
 import { CategoryComponent } from './components/manager/category/category.component';
+import { MembersListComponent } from './components/manager/members-list/members-list.component';
 const roles={"customer":"ROLE_USER",
 "manager":"ROLE_MANAGER"}
 const routes: Routes = [
@@ -130,6 +131,12 @@ const routes: Routes = [
             {
               path: 'manager/interventionList',
               component: InterventionListComponent,
+
+
+            },
+            {
+              path: 'manager/agentList',
+              component: MembersListComponent,
 
 
             },

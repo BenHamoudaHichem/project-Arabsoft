@@ -6,19 +6,39 @@
         <div class="card card-registration my-4">
           <div class="logo">
             <div class="card-title text-center">
-              <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
-              <span class="mb-5 text-uppercase"> material {{material.name}}</span>
+
+              <h1 class="mb-5 text-uppercase"> Detail materiel </h1>
             </div>
           </div>
 
           <div class="row g-2">
 
+
+
             <div class="col-xl-6  d-xl-block">
               <div class="card-body p-md-5 text-black">
-                <h5 class="card-title">Description</h5>
+
+                <h3 class="card-title"><i class="fas fa-list-alt"></i>&nbsp;Désignation</h3>
+
+                <p class="card-text">
+                  {{material.name}}
+
+                </p>
+                <p class="card-text">
+                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias accusamus, placeat repellat odio, veniam voluptates inventore cupiditate quo perferendis alias maxime earum recusandae distinctio expedita facilis dolor nihil omnis quis!
+
+                </p>
+              </div>
+
+              <div class="card-body p-md-5 text-black">
+                <h3 class="card-title"><i class="fas fa-info-circle"></i>&nbsp;Description</h3>
 
                 <p class="card-text">
                   {{material.description}}
+
+                </p>
+                <p class="card-text">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aspernatur quis deserunt quisquam asperiores similique. Repudiandae corrupti cumque est vitae voluptatem eaque ab architecto ex iste rem? Nisi distinctio illum vero!
 
                 </p>
 
@@ -28,14 +48,27 @@
             </div>
             <div class="col-xl-6">
               <div class="card-body p-md-5 text-black">
-                <h5 class="card-title">Status</h5>
+                <h3 class="card-title"><i class="fas fa-question-circle"></i> &nbsp;Status</h3>
 
                 <p class="card-text"> {{material.status}}</p>
-                <h5 class="card-title">Localisation</h5>
-                <p class="card-text"> {{material.address}}</p>
-                <h5 class="card-title">Date d'achat</h5>
+                <p class="card-text">  IS ON</p>
+                <h3 class="card-title"><i class="fas fa-map-marker-alt"></i>&nbsp;Localisation</h3>
+                <p class="card-text">Rue : {{material.address.Street}}
+                  <br>Ville : {{material.address.City}}
+                  <br>Gouvernorat : {{material.address.State}}
+                  <br>Pays : {{material.address.Country}}
+                </p>
+
+                <p class="card-text">Rue : material.address.Street
+                  <br>Ville :material.address.City
+                  <br>Gouvernorat : material.address.State
+                  <br>Pays : material.address.Country
+                </p>
+                <h3 class="card-title"><i class="fas fa-calendar-check"></i>&nbsp;Date d'achat</h3>
                 <p class="card-text">
                   {{material.dateOfPurchase}}</p>
+                  <p class="card-text">
+                21/54/50254</p>
 
 
               </div>

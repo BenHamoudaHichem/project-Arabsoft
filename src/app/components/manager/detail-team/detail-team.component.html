@@ -14,7 +14,7 @@
 <i class="fa fa-user-cog"></i>
           {{team.manager.getfirstName() + team.manager.getlastName()}} : chef d'équipe </a></h1>
 				<div class="postcard__subtitle small">
-				<i class="fa fa-phone">{{team.manager.getTel()}} </i>
+				<i class="fa fa-phone">&nbsp;{{team.manager.getTel()}} </i>
 				</div>
 				<div class="postcard__bar"></div>
 				<ul class="postcard__tagbox">
@@ -33,16 +33,16 @@
           alt="Image Title"
         />
       </a>
-      <div class="postcard__text t-dark">
+      <div class="postcard__text t-white">
         <h1 class="postcard__title blue">
-          <a href="#"><i class="fa fa-user"></i>Model membre</a>
+          <a href="#"><i class="fa fa-user-circle"></i>Model membre</a>
         </h1>
         <div class="postcard__subtitle small">
-          <i class="fa fa-phone"></i>21524668
+          <i class="fa fa-phone"></i>&nbsp;21524668
 				</div>
 				<div class="postcard__bar"></div>
 				<ul class="postcard__tagbox">
-					<li class="tag__item"><i class="fas fa-info-circle"></i>Afficher details</li>
+					<li class="tag__itemMember"><i class="fas fa-info-circle"></i>Afficher details</li>
 				</ul>
 			</div>
 		</article>
@@ -53,10 +53,10 @@
         https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Image Title" />
 			</a>
 			<div class="postcard__text t-dark">
-				<h1 class="postcard__title blue"><a href="#"><i class="fa fa-user"></i>{{item.getfirstName()+item.getlastName()}}</a></h1>
+				<h1 class="postcard__title blue"><a href="#"><i class="fa fa-user-circle"></i>{{item.getfirstName()+item.getlastName()}}</a></h1>
 				<div class="postcard__subtitle small">
 
-						<i class="fa fa-phone"></i>{{item.getTel()}}
+						<i class="fa fa-phone"></i> &nbsp; {{item.getTel()}}
 
 				</div>
 				<div class="postcard__bar"></div>
@@ -76,10 +76,10 @@
           alt="Image Title"
         />
       </a>
-      <div class="postcard__text t-dark">
+      <div class="postcard__text t-white">
         <h1 class="postcard__title blue">
           <a href="#"
-            ><i class="fa fa-user"></i>{{ item.getfirstName() }}
+            ><i class="fa fa-user"></i> &nbsp; {{ item.getfirstName() }}
             {{ item.getlastName() }}</a
           >
         </h1>
@@ -88,7 +88,7 @@
         </div>
         <div class="postcard__bar"></div>
         <ul class="postcard__tagbox">
-          <li class="tag__item">
+          <li class="tag__itemtag__itemMember">
             <a
               [routerLink]="[
                 '/dashboard/customer/customerProfil',
