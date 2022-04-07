@@ -146,7 +146,7 @@ export class CreateInterventionComponent implements OnInit {
       this.title?.value,
       this.description?.value,
       new Dbref(this.category?.value),
-      new Address('','','','','',new Location(0,0)),
+      new Address(this.zipCode?.value,this.street?.value,this.city?.value,this.state?.value,this.counrty?.value,new Location(0,0)),
       this.date?.value,
       this.status?.value,
       this.demandList,
