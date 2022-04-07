@@ -43,6 +43,7 @@ import { ExpiredSessionComponent } from './components/public/expired-session/exp
 import { ShowReclamationComponent } from './components/customer/show-reclamation/show-reclamation.component';
 import { CategoryComponent } from './components/manager/category/category.component';
 import { MembersListComponent } from './components/manager/members-list/members-list.component';
+import { CustomerListComponent } from './components/manager/customer-list/customer-list.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ HomeComponentPage,
     ShowReclamationComponent,
     CategoryComponent,
     MembersListComponent,
+    CustomerListComponent,
   ],
   imports: [
     BrowserModule,

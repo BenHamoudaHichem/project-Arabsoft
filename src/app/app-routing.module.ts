@@ -135,6 +135,12 @@ const routes: Routes = [
 
             },
             {
+              path: 'manager/userProfil/:id',
+              component: CustomerProfilComponent,
+
+
+            },
+            {
               path: 'manager/agentList',
               component: MembersListComponent,
 
