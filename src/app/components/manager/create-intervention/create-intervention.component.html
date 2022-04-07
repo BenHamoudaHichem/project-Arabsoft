@@ -64,9 +64,11 @@
               </div>
               <div class="col-xl-6">
                 <div class="card-body p-md-5 text-black">
-                  <div class="form-outline" *ngIf="categoryList != null">
+                  <div class="form-outline">
                     <label class="form-label">Categorie</label>
                     <select formControlName="category" class="form-select">
+                      <option *ngIf="categoryList == null">aucun categorie</option>
+
                       <option *ngFor="let item of categoryList" [value]="item.name">
                         {{ item.name }}
                       </option>
@@ -80,15 +82,15 @@
                     </p>
                   </div>
                   <div *ngIf="categoryList == null">
-                    <span class="nullMessage">Pas de categorie pour le moment</span>
-                    <br />
+
                     <a class="nullValueLink" routerLink="/dashboard/manager/categorylist">Ajouter une categorie
                     </a>
                   </div>
-                  <div class="form-outline" *ngIf="teamList != null">
+                  <div class="form-outline">
                     <label class="form-label">Equipe</label>
                     <select formControlName="team" class="form-select" aria-label="Default select example">
-                      <option *ngFor="let item of teamList" [value]="item.id">
+                    <option *ngIf="teamList == null">Pas de équipe pour le moment</option>
+                      <option  *ngFor="let item of teamList" [value]="item.id">
                         {{ item.name }}
                       </option>
                     </select>
@@ -99,13 +101,13 @@
                     <!----------->
                   </div>
                   <div *ngIf="teamList == null">
-                    <span class="nullMessage">Pas d'équipe pour le moment</span>
-                    <br />
+
+
                     <a class="nullValueLink" routerLink="/dashboard/manager/addTeam">Ajouter une équipe
                     </a>
                   </div>
 
-                  <div class="form-outline" *ngIf="materialsList != null">
+                  <div class="form-outline">
                     <label class="form-label"> Materiels</label>
 
                     <ng-multiselect-dropdown formControlName="Materiel" [placeholder]="'Selectionner materiels'"
@@ -120,8 +122,7 @@
                     </p>
                   </div>
                   <div *ngIf="materialsList == null">
-                    <span class="nullMessage">Pas de materiel pour le moment</span>
-                    <br />
+                     
                     <a class="nullValueLink" routerLink="/dashboard/manager/addMaterial">Ajouter un materiel
                     </a>
                   </div>

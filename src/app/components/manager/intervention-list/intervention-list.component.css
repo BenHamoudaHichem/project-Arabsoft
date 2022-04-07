@@ -1,9 +1,13 @@
 
- .dark {
-	 background: #110f16;
-}
- .light {
-	 background: #f3f5f7;
+ .light {background-color: #8989bb;
+  background-image: linear-gradient(315deg, #8989bb 0%, #a5a4cb 74%);
+  }
+
+.nav-link{color: rgb(0, 0, 0);
+  height: 50px;
+  font-size: larger;
+  margin-bottom: 20px;
+  width: 630px;
 }
  a, a:hover {
 	 text-decoration: none;
@@ -29,9 +33,7 @@
  .postcard.dark {
 	 background-color: #18151f;
 }
- .postcard.light {
-	 background-color: #e1e5ea;
-}
+
  .postcard .t-dark {
 	 color: #18151f;
 }
