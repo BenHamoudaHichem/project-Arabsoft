@@ -61,27 +61,6 @@
                     </p>
                   </div>
                   <div class="form-outline">
-                    <label class="form-label">Désignation</label>
-
-                    <textarea formControlName="description" class="form-control form-control-lg"
-                      placeholder="Ecrivez ..." rows="6"></textarea>
-                    <!--Error description-->
-                    <p *ngIf="
-                        (description?.touched || description?.dirty) &&
-                        !description?.valid
-                      " class="ErrorMsg">
-                      Ce champ est obligatoire
-                    </p>
-                    <p *ngIf="description?.errors?.['pattern']" class="ErrorMsg">
-                      vous devez entrez au minimun dix caractéres
-                    </p>
-                    <!----------->
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-6">
-                <div class="card-body p-md-5 text-black">
-                  <div class="form-outline">
                     <label class="form-label">Categorie</label>
                     <select formControlName="category" class="form-select">
                       <option *ngIf="categoryList == null">aucun categorie</option>
@@ -123,6 +102,109 @@
                     <a class="nullValueLink" routerLink="/dashboard/manager/addTeam">Ajouter une équipe
                     </a>
                   </div>
+
+                  <div class="form-outline">
+                    <label class="form-label">Désignation</label>
+
+                    <textarea formControlName="description" class="form-control form-control-lg"
+                      placeholder="Ecrivez ..." rows="6"></textarea>
+                    <!--Error description-->
+                    <p *ngIf="
+                        (description?.touched || description?.dirty) &&
+                        !description?.valid
+                      " class="ErrorMsg">
+                      Ce champ est obligatoire
+                    </p>
+                    <p *ngIf="description?.errors?.['pattern']" class="ErrorMsg">
+                      vous devez entrez au minimun dix caractéres
+                    </p>
+                    <!----------->
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6">
+                <div class="card-body p-md-5 text-black">
+
+                  <fieldset>
+                    <legend>
+                     Localisation
+                    </legend>
+                    <div class="row">
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="pays">Pays</label>
+                          <input type="text" formControlName="country" placeholder="Pays"
+                            class="form-control form-control-lg" />
+                          <!--Country errors-->
+                          <p class="ErrorMsg" *ngIf="!counrty?.valid && (counrty?.dirty ||counrty?.touched)">
+                            ce champ est obligatoire
+                          </p>
+
+                          <!------------>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="city">Ville</label>
+
+                          <input type="text" formControlName="city" placeholder="Ville"
+                            class="form-control form-control-lg" />
+
+                          <!--Ville errors-->
+                          <p class="ErrorMsg" *ngIf="!city?.valid && (city?.dirty ||city?.touched)">
+                            ce champ est obligatoire
+                          </p>
+
+                          <!------------>
+                        </div>
+
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="code postal">Code postal</label>
+
+                          <input type="text" formControlName="zipCode" placeholder="code postal"
+                            class="form-control form-control-lg" />
+
+                          <!--Zip code errors-->
+                          <p class="ErrorMsg" *ngIf="!zipCode?.valid && (zipCode?.dirty ||zipCode?.touched)">
+                            ce champ est obligatoire
+                          </p>
+
+                          <!------------>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="state">Gouvernorat</label>
+
+                          <input type="text" formControlName="state" placeholder="Gouvernorat"
+                            class="form-control form-control-lg" />
+
+                          <!--Zip code errors-->
+                          <p class="ErrorMsg" *ngIf="!state?.valid && (state?.dirty ||state?.touched)">
+                            ce champ est obligatoire
+                          </p>
+
+                          <!------------>
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="Rue">Rue</label>
+                          <input type="text" formControlName="street" placeholder="Rue"
+                            class="form-control form-control-lg" />
+                          <!--Street errors-->
+                          <p class="ErrorMsg" *ngIf="!street?.valid && (street?.dirty ||street?.touched)">
+                            ce champ est obligatoire
+                          </p>
+
+                          <!------------>
+                        </div>
+                      </div>
+
+                    </div>
+                  </fieldset>
 
                   <div class="form-outline">
                     <label class="form-label"> Materiels</label>

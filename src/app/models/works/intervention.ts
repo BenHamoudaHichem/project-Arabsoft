@@ -1,3 +1,4 @@
+import { Address } from '../Address';
 import { Category } from '../Category';
 import { Dbref } from '../dbref';
 import { Material } from '../resources/Material';
@@ -7,6 +8,7 @@ export class Intervention {
     protected title: string,
     protected description: string,
     protected category: Dbref,
+    protected address:Address,
     protected startedAt: Date,
     protected status: string,
     protected demandList:Dbref[],
@@ -23,6 +25,14 @@ export class Intervention {
   public setTeam(value: Dbref): void {
     this.team = value;
   }
+
+  public getAddress(): Address {
+    return this.address;
+  }
+  public setAddress(value: Address): void {
+    this.address = value;
+  }
+
 
   public getTitle(): string {
     return this.title;

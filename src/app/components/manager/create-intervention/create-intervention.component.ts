@@ -4,7 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import moment from 'moment';
 import { Notify, Report } from 'notiflix';
+import { Address } from 'src/app/models/Address';
 import { Dbref } from 'src/app/models/dbref';
+import { Location } from 'src/app/models/Location';
 import { Intervention } from 'src/app/models/works/intervention';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { ICategory } from 'src/app/services/category/icategory';
@@ -54,6 +56,24 @@ export class CreateInterventionComponent implements OnInit {
         status: ['', [Validators.required]],
         team: ['', [Validators.required]],
         Materiel: ['', [Validators.required]],
+        state: [
+          '',
+          [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+        ],
+        city: [
+          '',
+          [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+        ],
+        street: [
+          '',
+          [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+        ],
+        country: [
+          '',
+          [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+        ],
+        zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
+
       },
       {
         validators: DateValidation.DateConfirmation(
@@ -126,6 +146,7 @@ export class CreateInterventionComponent implements OnInit {
       this.title?.value,
       this.description?.value,
       new Dbref(this.category?.value),
+      new Address('','','','','',new Location(0,0)),
       this.date?.value,
       this.status?.value,
       this.demandList,
@@ -183,6 +204,23 @@ export class CreateInterventionComponent implements OnInit {
   get status() {
     return this.createInterventionForm.get('status');
   }
+
+  get city() {
+    return this.createInterventionForm.get('city');
+  }
+  get state() {
+    return this.createInterventionForm.get('state');
+  }
+  get street() {
+    return this.createInterventionForm.get('street');
+  }
+  get counrty() {
+    return this.createInterventionForm.get('country');
+  }
+  get zipCode() {
+    return this.createInterventionForm.get('zipCode');
+  }
+
 
   getOneInterventions() {
     this.interventionService
