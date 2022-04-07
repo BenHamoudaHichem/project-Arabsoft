@@ -29,6 +29,26 @@
                     <!----------->
                   </div>
                   <div class="form-outline">
+                    <label class="form-label">Status</label>
+                    <select formControlName="status" class="form-select" required>
+                      <option selected disabled>
+Selectionner le status                      </option>
+                      <option value="Waiting">
+                        En attente
+                      </option>
+                      <option value="In_Progress">
+                        En cours
+                      </option>
+                    </select>
+                    <!--Error category-->
+                    <p *ngIf="
+                        (status?.touched || status?.dirty) &&
+                        !status?.valid
+                      " class="ErrorMsg">
+                      Ce champ est obligatoire
+                    </p>
+                  </div>
+                  <div class="form-outline">
                     <label class="form-label"> A quelle date</label>
 
                     <input type="date" formControlName="date" class="form-control form-control-lg" name="" id="" />
@@ -122,7 +142,7 @@
                     </p>
                   </div>
                   <div *ngIf="materialsList == null">
-                     
+
                     <a class="nullValueLink" routerLink="/dashboard/manager/addMaterial">Ajouter un materiel
                     </a>
                   </div>
