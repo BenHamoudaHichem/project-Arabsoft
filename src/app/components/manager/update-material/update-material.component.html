@@ -30,8 +30,7 @@
                   <div class="form-outline">
                     <label class="form-label">Etat</label>
                       <select formControlName="status" class="form-select">
-                        <option  value="En panne">En panne</option>
-                        <option value="En bonne condition">En bonne condition</option>
+                        <option *ngFor="let item of this.statusList" [value]="item.value">{{item.key}}</option>
                       </select>
                       <!--Error name-->
                       <p *ngIf="(status?.touched|| status?.dirty ) && !(status?.valid) "class="ErrorMsg"> Ce champ est obligatoire</p>

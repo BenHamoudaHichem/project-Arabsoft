@@ -1,4 +1,3 @@
-import { MapsAPILoader } from '@agm/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -9,6 +8,10 @@ import { Material } from 'src/app/models/resources/Material';
 import { EquipmentService } from 'src/app/services/resources/material/material.service';
 import { Location } from 'src/app/models/Location';
 import { IMaterial } from 'src/app/services/resources/material/imaterial';
+import moment from 'moment';
+import { plainToClass } from 'class-transformer';
+import { Associatif } from 'src/app/services/types/associatif';
+
 
 @Component({
   selector: 'app-update-material',
@@ -16,6 +19,7 @@ import { IMaterial } from 'src/app/services/resources/material/imaterial';
   styleUrls: ['./update-material.component.css'],
 })
 export class UpdateMaterialComponent implements OnInit {
+  public statusList:Associatif[]=[]
   id!: string;
   formupdateMaterials!: FormGroup;
   material!: IMaterial;
@@ -46,30 +50,45 @@ export class UpdateMaterialComponent implements OnInit {
       ],
       zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
     });
+    this.statusList.push({key:"Fonctionnel",value:"Functional"})
+    this.statusList.push({key:"En panne",value:"Broken_down"})
+    this.statusList.push({key:"Hors service",value:"Expired"})
+    this.statusList.push({key:"Volé",value:"Stoled"})
+
   }
+
 
   ngOnInit() {
     this.show();
   }
   show() {
-    this.ActivatedRoute.queryParams.subscribe((params) => {
-      this.id = params['id'];
-      console.log(this.id);
-    });
+    this.id=this.ActivatedRoute.snapshot.paramMap.get("id")!
+
+
+
     if (this.id != null) {
       this.materialService
         .showMaterial(this.id)
         .subscribe((data: IMaterial) => {
           this.material=data
+          this.material.address=plainToClass(Address,data.address)
+
+          console.log(this.material)
+
           this.name?.setValue(data.name);
           this.description?.setValue(data.description);
-          this.dateOfPurshase?.setValue(data.dateOfPurchase);
-          this.city?.setValue(data.address.City);
+          this.dateOfPurshase?.setValue(moment(data.dateOfPurchase).format('yyyy-MM-DD'));
+          this.city?.setValue(this.material.address.City);
           this.counrty?.setValue(data.address.Country);
           this.street?.setValue(data.address.Street);
           this.zipCode?.setValue(data.address.ZipCode);
           this.state?.setValue(data.address.State);
-          this.status?.setValue(data.status);
+          this.statusList.forEach(element => {
+            if (element.value==this.material.status) {
+              this.status?.setValue(element.value);
+            }
+          });
+        //  this.status?.setValue(data.status);
         });
     }
   }
@@ -128,4 +147,5 @@ updateMaterial() {
   get zipCode() {
     return this.formupdateMaterials.get('zipCode');
   }
+
 }

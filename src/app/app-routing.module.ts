@@ -174,7 +174,7 @@ const routes: Routes = [
 
 
   {
-    path: 'manager/updateMaterial',
+    path: 'manager/updateMaterial/:id',
     component: UpdateMaterialComponent,
 
 

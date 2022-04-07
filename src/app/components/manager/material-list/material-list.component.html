@@ -27,23 +27,7 @@
           <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title"> <img height="70px" width="70px"
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRthZcF6C12-eMC0JrJdv4CWO40-emM4BBFlw&usqp=CAU"
-                      alt=""> materiel modele static</h5>
-
-
-                  <div class="d-flex justify-content-end pt-3">
-                    <a [routerLink]="['/dashboard/manager/detailMaterial','ff']"
-                    routerLinkActive="router-link-active"><button class="bn9" role="button"><span>Consulter</span></button></a>
-                      <a [routerLink]="['/dashboard/manager/updateMaterial']"
-                      routerLinkActive="router-link-active"> <button class="bn9" role="button"><span>Mettre à jour</span></button></a>
-
-
-                  </div>
-                </div>
-              </div>
+          
               <div *ngFor="let material of materialList" class="card">
                 <div class="card-body">
                   <h5 class="card-title"> <img height="70px" width="70px"
