@@ -2,12 +2,12 @@
 <section class="min-h-100">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="row">
-        <div class="col-8">
-          <div class="logo">
-            <span><img src="assets/images/icon.png" alt="Sample photo" height="60px" width="100px" /></span>
-            <span class="mb-5 text-uppercase">Les materiels </span>
-          </div>
+      <div class="logo">
+        <h1 class="mb-5 text-center text-uppercase">
+          <span><img src="assets/images/icon.png" alt="Sample photo" height="60px" width="100px" /></span>
+          Les materiéls
+        </h1>
+      </div>
           <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
               <a [routerLink]="['/dashboard/manager/materialList']" routerLinkActive>
@@ -27,8 +27,13 @@
           <div class="tab-content" id="nav-tabContent">
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
+<<<<<<< Updated upstream
           
               <div *ngFor="let material of materialList" class="card">
+=======
+
+         <!---->     <div *ngFor="let material of materialList" class="card">
+>>>>>>> Stashed changes
                 <div class="card-body">
                   <h5 class="card-title"> <img height="70px" width="70px"
                       src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRthZcF6C12-eMC0JrJdv4CWO40-emM4BBFlw&usqp=CAU"
@@ -56,11 +61,8 @@
         </div>
         <div class="col-4">
 
-          <div class="row mb-4">
-            <app-filtre></app-filtre>
-          </div>
+
         </div>
       </div>
-    </div>
-  </div>
+
 </section>
