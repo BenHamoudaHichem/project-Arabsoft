@@ -44,6 +44,7 @@ import { ShowReclamationComponent } from './components/customer/show-reclamation
 import { CategoryComponent } from './components/manager/category/category.component';
 import { MembersListComponent } from './components/manager/members-list/members-list.component';
 import { CustomerListComponent } from './components/manager/customer-list/customer-list.component';
+import { DetailsCustomerComponent } from './components/manager/details-customer/details-customer.component';
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ HomeComponentPage,
     CategoryComponent,
     MembersListComponent,
     CustomerListComponent,
+    DetailsCustomerComponent,
   ],
   imports: [
     BrowserModule,

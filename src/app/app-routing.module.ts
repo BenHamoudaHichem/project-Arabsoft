@@ -31,6 +31,8 @@ import { UpdateMaterialComponent } from './components/manager/update-material/up
 import { ShowReclamationComponent } from './components/customer/show-reclamation/show-reclamation.component';
 import { CategoryComponent } from './components/manager/category/category.component';
 import { MembersListComponent } from './components/manager/members-list/members-list.component';
+import { CustomerListComponent } from './components/manager/customer-list/customer-list.component';
+import { DetailsCustomerComponent } from './components/manager/details-customer/details-customer.component';
 const roles={"customer":"ROLE_USER",
 "manager":"ROLE_MANAGER"}
 const routes: Routes = [
@@ -134,18 +136,22 @@ const routes: Routes = [
 
 
             },
-            {
-              path: 'manager/userProfil/:id',
-              component: CustomerProfilComponent,
 
+            {path: 'manager/agentList',
+              component: MembersListComponent,},
+              {
+                path: 'manager/userProfil/:id',
+                component: CustomerProfilComponent,
+              },
+              {
+                path: 'manager/customerList',
+                component: CustomerListComponent,
+              },
+              {
+                path: 'manager/detailCustomer/:id',
+                component: DetailsCustomerComponent,
+              },
 
-            },
-            {
-              path: 'manager/agentList',
-              component: MembersListComponent,
-
-
-            },
 
         {
           path: 'manager/materialList',
