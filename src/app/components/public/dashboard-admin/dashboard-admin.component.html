@@ -158,6 +158,13 @@
           ><i class="fa fa-clipboard-list"></i> Demandes</a
         >
       </li>
+      <li *ngIf="isManager">
+        <a
+          data-toggle="tab "
+          [routerLink]="['/dashboard/manager/categorylist']"
+          ><i class="fa fa-clipboard-list"></i> Categories</a
+        >
+      </li>
 
       <li class="menu-heading">Pages</li>
 

@@ -1,10 +1,10 @@
 export class Category {
-  constructor(private eCategory: string) {}
- 
-  public geteCategory(): string {
-    return this.eCategory;
+  constructor(private name: string) {}
+
+  public getNameCategory(): string {
+    return this.name;
   }
-  public seteCategory(value: string): void {
-    this.eCategory = value;
+  public setNameCategory(value: string): void {
+    this.name = value;
   }
 }

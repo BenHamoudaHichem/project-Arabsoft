@@ -1,0 +1,181 @@
+
+ .card {
+	 background: #fff;
+	 border-radius: 4px;
+	 box-shadow: 0px 5px 10px rgba(34, 35, 58, 0.5);
+	 max-width: 700px;
+margin-top: 20px;
+	 display: inline-block;
+	 flex-direction: row;
+	 border-radius: 25px;
+	 position: relative;
+}
+ .card h3{
+	 margin: 0;
+
+}
+
+ .card .desc {
+	 padding: 0.5rem 1rem;
+	 font-size: 12px;
+}
+ .card .actions {
+	 display: grid;
+	 grid-template-columns: repeat(3, 1fr);
+	 align-items: center;
+	 padding: 0.5rem 1rem;
+}
+ .card svg {
+	 width: 70px;
+	 height: 70px;
+	 margin: 0 auto;
+}
+ .img-avatar {
+	 width: 70px;
+	 height: 70px;
+	 position: absolute;
+	 border-radius: 50%;
+	 border: 6px solid white;
+	 background-image: linear-gradient(-60deg, #ffffff 0%, #ffffff 100%);
+	 top: -5px;
+	 left: 120px;
+}
+ .card-text {
+	 display: grid;
+	 grid-template-columns: 1fr 2fr;
+}
+ .title-total {
+	 padding: 2em 1em 1em 1.5em;
+}
+ path {
+	 fill: white;
+}
+ .img-portada {
+	 width: 100%;
+}
+ .portada {
+	 width: 100%;
+	 height: 100%;
+	 border-top-left-radius: 20px;
+	 border-bottom-left-radius: 20px;
+	 background-image: url("https://www.expert-chantier.fr/assets/components/phpthumbof/cache/Ouvrier.f0e06343dbddff9666ef083d1ba8f9d4.jpg");
+	 background-position: bottom center;
+	 background-size: cover;
+}
+ button {
+	 border: none;
+	 background: none;
+	 font-size: 24px;
+	 color: #8bc34a;
+	 cursor: pointer;
+	 transition: 0.5s;
+}
+
+
+
+
+/*
+intervention notif
+
+*/
+
+ .card2 {
+  margin-top: 20px;
+  background: #fff;
+  width: 500px;
+box-shadow: none;
+border: 0;
+  display: inline;
+  flex-direction: row;
+  align-items: center;
+ }
+ .span {
+  text-align: center;
+  background: linear-gradient(to top, #4136f1, #8643ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+font-size: 25px;
+
+ }
+ .cd {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 10px;
+  text-transform: uppercase;
+ }
+ .card__list {
+  list-style: none;
+  margin-top: 20px;
+  width: 100%;
+  overflow: hidden;
+ }
+
+
+ .form-group{ margin: 20px 0 12px 0;}
+ .form-control {
+   background-color: #f6f6f6;
+width: 70%;
+   border: 2px solid #9b59b6;
+   outline: 0;
+   box-shadow: none;
+ }
+
+
+
+ @media  (max-width: 640px) {
+  .row {
+    display: grid;
+    clear:both;
+    grid-template-columns: auto;
+
+  }
+}
+
+.bn30 {
+  border: 2em;
+  cursor: pointer;
+  outline: none;
+  font-size: 15px;
+  -webkit-transform: translate(0);
+  transform: translate(0);
+  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+  padding: 0.6em 2em;
+  border-radius: 65px;
+  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.438);
+  -webkit-transition: box-shadow 0.25s;
+  transition: box-shadow 0.25s;
+  color: rgb(216, 214, 214);
+ }
+
+ .bn30 .text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+ }
+
+ .bn30:after {
+  content: "";
+  border-radius: 18px;
+  position: absolute;
+  margin: 4px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  background: transparent;
+
+ }
+
+ .bn30:hover {
+  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+  box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
+ }
+
+ .bn30:hover .text {
+  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+ }
+
+

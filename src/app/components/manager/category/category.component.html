@@ -1,0 +1,93 @@
+<div class="container py-5 h-100">
+  <div class="row">
+    <div class="col-8">
+      <h1 class="text-uppercase text-center">Les categories</h1>
+      <div class="card" *ngFor="let item of listCategorie">
+        <div class="card-text">
+          <div class="portada"></div>
+          <div class="title-total">
+            <h3>{{ item.name }}</h3>
+
+            <div class="actions">
+              <button>NB intervention</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-text">
+          <div class="portada"></div>
+          <div class="title-total">
+            <h3>Morgan Sweeney</h3>
+
+            <div class="actions">
+              <button>NB intervention</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-text">
+          <div class="portada"></div>
+          <div class="title-total">
+            <h3>Morgan Sweeney</h3>
+
+            <div class="actions">
+              <button>NB intervention</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-text">
+          <div class="portada"></div>
+          <div class="title-total">
+            <h3>Morgan Sweeney</h3>
+
+            <div class="actions">
+              <button>NB intervention</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="row mb-4">
+        <div class="card card2">
+          <h2 class="card-title span text-uppercase">
+            Vous avez besoins d'ajouter une autre categorie?
+          </h2>
+
+          <h2 class="card-title cd">Ajouter une categorie</h2>
+
+          <form [formGroup]="categorieForm" (ngSubmit)="addCategorie()">
+            <div class="form-group">
+              <label for="categorie">Nom de la categorie</label>
+
+              <input
+                type="text"
+                formControlName="categorie"
+                class="form-control"
+                placeholder="categorie"
+              />
+              <p
+                class="ErrorMsg"
+                *ngIf="
+                  !categorie?.valid && (categorie?.dirty || categorie?.touched)
+                "
+              >
+                Ce champs est obligatoire
+              </p>
+              <p *ngIf="categorie?.errors?.['pattern']" class="ErrorMsg">
+                Ce champ accepte que l'alphabet
+              </p>
+            </div>
+            <div class="d-flex justify-content-end">
+              <button type="submit" class="bn30">Ajouter</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

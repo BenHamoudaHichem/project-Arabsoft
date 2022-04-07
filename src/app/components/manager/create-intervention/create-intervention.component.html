@@ -7,13 +7,12 @@
             <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
 
             <div class="card-title">
-
               <span class="title">Créer une intervention</span>
             </div>
           </div>
           <form [formGroup]="createInterventionForm" (ngSubmit)="Creer()" novalidate>
             <div class="row g-0">
-              <div class="col-xl-6  d-xl-block">
+              <div class="col-xl-6 d-xl-block">
                 <div class="card-body p-md-5 text-black">
                   <div class="form-outline">
                     <label class="form-label">Titre</label>
@@ -21,22 +20,28 @@
                     <input type="text" formControlName="title" class="form-control form-control-lg"
                       placeholder="Entrez le nom de materiel" />
                     <!--Error Title-->
-                    <p *ngIf="(title?.touched|| title?.dirty ) && !title?.valid" class="ErrorMsg"> Ce champ est
-                      obligatoire</p>
-                    <p *ngIf="title?.errors?.['pattern']" class="ErrorMsg"> vous devez entrez au minimun deux
-                      caractéres</p>
+                    <p *ngIf="(title?.touched || title?.dirty) && !title?.valid" class="ErrorMsg">
+                      Ce champ est obligatoire
+                    </p>
+                    <p *ngIf="title?.errors?.['pattern']" class="ErrorMsg">
+                      vous devez entrez au minimun deux caractéres
+                    </p>
                     <!----------->
                   </div>
                   <div class="form-outline">
                     <label class="form-label"> A quelle date</label>
 
-                    <input type="date" formControlName="date" class="form-control form-control-lg" name="" id="">
+                    <input type="date" formControlName="date" class="form-control form-control-lg" name="" id="" />
 
-                    <p *ngIf="(date?.touched|| date?.dirty ) && !date?.valid" class="ErrorMsg"> Ce champ est
-                      obligatoire</p>
+                    <p *ngIf="(date?.touched || date?.dirty) && !date?.valid" class="ErrorMsg">
+                      Ce champ est obligatoire
+                    </p>
 
-                    <p *ngIf="createInterventionForm.hasError('DateConfirmation')" class="ErrorMsg"> date choisi est
-                      incorrecte </p>
+                    <p *ngIf="
+                        createInterventionForm.hasError('DateConfirmation')
+                      " class="ErrorMsg">
+                      date choisi est incorrecte
+                    </p>
                   </div>
                   <div class="form-outline">
                     <label class="form-label">Désignation</label>
@@ -44,66 +49,87 @@
                     <textarea formControlName="description" class="form-control form-control-lg"
                       placeholder="Ecrivez ..." rows="6"></textarea>
                     <!--Error description-->
-                    <p *ngIf="(description?.touched|| description?.dirty ) && !description?.valid" class="ErrorMsg"> Ce
-                      champ est
-                      obligatoire</p>
-                    <p *ngIf="description?.errors?.['pattern']" class="ErrorMsg"> vous devez entrez au minimun dix
-                      caractéres</p>
+                    <p *ngIf="
+                        (description?.touched || description?.dirty) &&
+                        !description?.valid
+                      " class="ErrorMsg">
+                      Ce champ est obligatoire
+                    </p>
+                    <p *ngIf="description?.errors?.['pattern']" class="ErrorMsg">
+                      vous devez entrez au minimun dix caractéres
+                    </p>
                     <!----------->
                   </div>
                 </div>
               </div>
               <div class="col-xl-6">
                 <div class="card-body p-md-5 text-black">
-
-
-
-                  <div class="form-outline">
+                  <div class="form-outline" *ngIf="categoryList != null">
                     <label class="form-label">Categorie</label>
-
                     <select formControlName="category" class="form-select">
-                      <option *ngFor="let item of categoryList" [value]="item.name">{{item.name}}</option>
+                      <option *ngFor="let item of categoryList" [value]="item.name">
+                        {{ item.name }}
+                      </option>
                     </select>
                     <!--Error category-->
-                    <p *ngIf="(category?.touched|| category?.dirty ) && !category?.valid" class="ErrorMsg"> Ce champ est
-                      obligatoire</p>
+                    <p *ngIf="
+                        (category?.touched || category?.dirty) &&
+                        !category?.valid
+                      " class="ErrorMsg">
+                      Ce champ est obligatoire
+                    </p>
                   </div>
-                  <div class="form-outline">
+                  <div *ngIf="categoryList == null">
+                    <span class="nullMessage">Pas de categorie pour le moment</span>
+                    <br />
+                    <a class="nullValueLink" routerLink="/dashboard/manager/categorylist">Ajouter une categorie
+                    </a>
+                  </div>
+                  <div class="form-outline" *ngIf="teamList != null">
                     <label class="form-label">Equipe</label>
                     <select formControlName="team" class="form-select" aria-label="Default select example">
-                      <option *ngFor="let item of teamList" [value]="item.id"> {{item.name}} </option>
+                      <option *ngFor="let item of teamList" [value]="item.id">
+                        {{ item.name }}
+                      </option>
                     </select>
                     <!--Error team-->
-                    <p *ngIf="(team?.touched|| team?.dirty ) && !team?.valid" class="ErrorMsg"> Ce champ est
-                      obligatoire</p>
+                    <p *ngIf="(team?.touched || team?.dirty) && !team?.valid" class="ErrorMsg">
+                      Ce champ est obligatoire
+                    </p>
                     <!----------->
                   </div>
-                  <div class="form-outline">
-                    <label class="form-label">Interventions</label>
-
-                    <select  class="form-select" (change)="getOneInterventions()">
-                      <option  *ngFor="let item of interventionList" formControlName="intervention" [value]="item.id">{{item.title}}</option>
-                    </select>
-                    <!--Error category-->
-
+                  <div *ngIf="teamList == null">
+                    <span class="nullMessage">Pas d'équipe pour le moment</span>
+                    <br />
+                    <a class="nullValueLink" routerLink="/dashboard/manager/addTeam">Ajouter une équipe
+                    </a>
                   </div>
-                  <div class="form-outline">
+
+                  <div class="form-outline" *ngIf="materialsList != null">
                     <label class="form-label"> Materiels</label>
 
                     <ng-multiselect-dropdown formControlName="Materiel" [placeholder]="'Selectionner materiels'"
                       [settings]="dropdownSettings" [data]="materialsList" (onSelect)="onItemSelect($event)"
-                      (onSelectAll)="onSelectAll($event)" class=" form-control-lg">
+                      (onSelectAll)="onSelectAll($event)" class="form-control-lg">
                     </ng-multiselect-dropdown>
-                    <p *ngIf="(Materiel?.touched|| Materiel?.dirty ) && !Materiel?.valid" class="ErrorMsg"> Ce champ est
-                      obligatoire</p>
-
+                    <p *ngIf="
+                        (Materiel?.touched || Materiel?.dirty) &&
+                        !Materiel?.valid
+                      " class="ErrorMsg">
+                      Ce champ est obligatoire
+                    </p>
+                  </div>
+                  <div *ngIf="materialsList == null">
+                    <span class="nullMessage">Pas de materiel pour le moment</span>
+                    <br />
+                    <a class="nullValueLink" routerLink="/dashboard/manager/addMaterial">Ajouter un materiel
+                    </a>
                   </div>
                   <div class="d-flex justify-content-end pt-3">
-
                     <button class="bn632-hover bn24" type="submit" role="button"
-                      [disabled]="createInterventionForm.invalid">Créer</button>
-
-
+                      [disabled]="createInterventionForm.invalid">
+                      Créer
+                    </button>
                   </div>
                 </div>
               </div>
