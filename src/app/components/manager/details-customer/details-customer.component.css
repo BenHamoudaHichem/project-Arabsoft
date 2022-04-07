@@ -1,4 +1,4 @@
-.card {
+.card1 {
   border-radius: 15px;
   box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.15);
   padding: 25px 30px;
@@ -6,7 +6,7 @@
 .cd{
   border-radius: none;
 }
-.card{
+.card1{
   background-color: #d9d9d9;
   background-image: linear-gradient(315deg, #d9d9d9 0%, #f6f2f2 74%);
 }
@@ -61,6 +61,8 @@ background-color: #000000;
    }
 
   h2{
+    font-size: 15px;
+
     text-transform: uppercase;
 
 
