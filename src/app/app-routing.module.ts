@@ -29,6 +29,7 @@ import { CreateReclamationComponent } from './components/customer/create-reclama
 import { HomeManagerComponent } from './components/manager/home-manager/home-manager.component';
 import { UpdateMaterialComponent } from './components/manager/update-material/update-material.component';
 import { ShowReclamationComponent } from './components/customer/show-reclamation/show-reclamation.component';
+import { CategoryComponent } from './components/manager/category/category.component';
 const roles={"customer":"ROLE_USER",
 "manager":"ROLE_MANAGER"}
 const routes: Routes = [
@@ -206,6 +207,13 @@ const routes: Routes = [
   {
     path: 'manager/fileMaterialsUpload',
     component: AddFileMaterialsComponent,
+
+
+  },
+
+  {
+    path: 'manager/categorylist',
+    component: CategoryComponent,
 
 
   },

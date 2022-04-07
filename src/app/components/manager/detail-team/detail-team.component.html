@@ -1,8 +1,8 @@
-
-
 <section class="light">
-	<div class="container py-2">
-		<div class="h1 text-center text-dark" id="pageHeaderTitle">{{team.name}}</div>
+  <div class="container py-2">
+    <div class="h1 text-center text-dark" id="pageHeaderTitle">
+      Details de l'équipe :{{ team.name }}
+    </div>
 
 		<article class="postcard dark">
 			<a class="postcard__img_link" href="#">
@@ -25,13 +25,19 @@
 		</article>
 
     <article class="postcard light">
-			<a class="postcard__img_link" href="#">
-				<img class="postcard__img" src="
-        https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Image Title" />
-			</a>
-			<div class="postcard__text t-dark">
-				<h1 class="postcard__title blue"><a href="#"><i class="fa fa-user"></i>Model membre</a></h1>
-				<div class="postcard__subtitle small">
+      <a class="postcard__img_link" href="#">
+        <img
+          class="postcard__img"
+          src="
+        https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
+          alt="Image Title"
+        />
+      </a>
+      <div class="postcard__text t-dark">
+        <h1 class="postcard__title blue">
+          <a href="#"><i class="fa fa-user"></i>Model membre</a>
+        </h1>
+        <div class="postcard__subtitle small">
           <i class="fa fa-phone"></i>21524668
 				</div>
 				<div class="postcard__bar"></div>
@@ -61,5 +67,39 @@
 		</article>
 
 
-	</div>
+    <article class="postcard light" *ngFor="let item of team.members">
+      <a class="postcard__img_link" href="#">
+        <img
+          class="postcard__img"
+          src="
+        https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
+          alt="Image Title"
+        />
+      </a>
+      <div class="postcard__text t-dark">
+        <h1 class="postcard__title blue">
+          <a href="#"
+            ><i class="fa fa-user"></i>{{ item.getfirstName() }}
+            {{ item.getlastName() }}</a
+          >
+        </h1>
+        <div class="postcard__subtitle small">
+          <i class="fa fa-phone"></i>{{ item.getTel() }}
+        </div>
+        <div class="postcard__bar"></div>
+        <ul class="postcard__tagbox">
+          <li class="tag__item">
+            <a
+              [routerLink]="[
+                '/dashboard/customer/customerProfil',
+                item.getId()
+              ]"
+              routerLinkActive="active"
+              ><i class="fas fa-info-circle"></i>Afficher details</a
+            >
+          </li>
+        </ul>
+      </div>
+    </article>
+  </div>
 </section>
