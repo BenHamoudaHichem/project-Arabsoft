@@ -1,89 +1,128 @@
-
 <section class="min-h-100">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="row">
-        <div class="col-8">
-          <div class="logo">
-            <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
-            <span class="mb-5 text-uppercase">Les équipes </span>
-          </div>
-          <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <button (click)="showAll()" class="nav-link active " id="nav-home-tab" data-bs-toggle="tab"
-                data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
-
-
-
-
-                Tous
-
-              </button>
-              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
-                type="button" role="tab" aria-selected="false">
-
-
-                Disponible
-              </button>
-            </div>
-          </nav>
-          <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-
-              <div *ngFor="let team of teamList" class="card">
-                <div class="card-body">
-
-                  <h5>{{team.name}} </h5>
-                  <p> {{team.manager.getfirstName()}} </p>
-                  <p> {{'Il ya '+team.members.length + ' membres dans cette équipe'}} </p>
-
-
-                  <div class="d-flex justify-content-end pt-3">
-                    <a [routerLink]="['/dashboard/manager/detailTeam',team.id]"
-                    routerLinkActive="router-link-active"><button class="bn9"><span>Consulter</span></button></a>
-
-                  </div>
-                </div>
-              </div>
-
-
-            </div>
-
-            <!--nav 2-->
-
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-              <div *ngFor="let team of teamList" class="card">
-                <div class="card-body">
-
-                  <h5>{{team.name}} </h5>
-                  <p> {{team.manager.getfirstName()}} </p>
-                  <p> {{'Il ya '+team.members.length + ' membres dans cette équipe'}} </p>
-
-
-                  <div class="d-flex justify-content-end pt-3">
-                    <a [routerLink]="['/dashboard/manager/detailTeam',team.id]"
-                    routerLinkActive="router-link-active"><button class="bn9"><span>Consulter</span></button></a>
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="logo">
+        <h1 class="mb-5 text-center text-uppercase">
+          <span><img src="assets/images/icon.png" alt="Sample photo" height="60px" width="100px" /></span>
+          Les équipes
+        </h1>
+      </div>
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button (click)="showAll()" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+            data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+            Tous
+          </button>
+          <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button"
+            role="tab" aria-selected="false">
+            Disponible
+          </button>
         </div>
-        <div class="col-4">
-          <div class="row mb-4">
-
-            <!--    <div class=" form-group col-md-9">
-              <input id="exampleFormControlInput5" type="search" placeholder="Chercher..."
-                class="form-control rounded-pill p-2" />
+      </nav>
+      <!--End nav-->
+      <!--Start content-->
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <article class="postcard light" *ngFor="let team of teamList">
+            <a class="postcard__img_link" routerLinkActive="router-link-active"
+              [routerLink]="['/dashboard/manager/detailTeam', team.id]">
+              <img class="postcard__img"
+                src="
+                        https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
+                alt="Image Title" />
+            </a>
+            <div class="postcard__text t-dark">
+              <h1 class="postcard__title blue">
+                <i class="fa fa-users-cog"></i>{{ team.name }}
+              </h1>
+              <div class="postcard__subtitle small">
+                <i class="fas fa-user-circle"></i>
+                Chef d'équipe:
+                <strong> {{ team.manager.getfirstName() }} </strong>
+              </div>
+              <div class="postcard__bar"></div>
+              <div class="postcard__preview-txt">
+                <p>
+                  <i class="fa fa-users"></i> Il ya
+                  {{ team.members.length }} legend dans cette équipe
+                </p>
+              </div>
+              <ul class="postcard__tagbox">
+                <li class="tag__item">
+                  <a routerLinkActive="router-link-active" [routerLink]="['/dashboard/manager/detailTeam', team.id]"><i
+                      class="fas fa-info-circle"></i>Afficher details</a>
+                </li>
+              </ul>
             </div>
+          </article>
 
-            <div class="form-group  col-md-3">
-              <a href="/"><button class="bn30"><i class="fa fa-search"></i></button></a>
+          <article class="postcard light">
+            <a class="postcard__img_link" [routerLink]="['/dashboard/manager/detailIntervention']">
+              <img class="postcard__img"
+                src="
+          https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
+                alt="Image Title" />
+            </a>
+            <div class="postcard__text t-dark">
+              <h1 class="postcard__title blue">
+                <i class="fa fa-users-cog"></i>Equipe de Hichemeeet
+              </h1>
+              <div class="postcard__subtitle small">
+                <i class="fas fa-user-circle"></i>
+                Chef d'équipe: <strong>Mohsen</strong>
+              </div>
+              <div class="postcard__bar"></div>
+              <div class="postcard__preview-txt">
+                <p>
+                  <i class="fa fa-users"></i> 'Il ya 1 legend dans cette
+                  équipe': MOHSEN
+                </p>
+              </div>
+              <ul class="postcard__tagbox">
+                <li class="tag__item">
+                  <a [routerLink]="['/dashboard/manager/detailTeam', 'fff']"><i class="fas fa-info-circle"></i>Afficher
+                    details</a>
+                </li>
+              </ul>
             </div>
--->
-         <app-filtre></app-filtre>
-          </div>
+          </article>
+        </div>
+
+        <!--content 2-->
+
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <article class="postcard light" *ngFor="let team of teamList">
+            <a class="postcard__img_link" routerLinkActive="router-link-active"
+              [routerLink]="['/dashboard/manager/detailTeam', team.id]">
+              <img class="postcard__img"
+                src="
+                        https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
+                alt="Image Title" />
+            </a>
+            <div class="postcard__text t-dark">
+              <h1 class="postcard__title blue">
+                <i class="fa fa-users-cog"></i>{{ team.name }}
+              </h1>
+              <div class="postcard__subtitle small">
+                <i class="fas fa-user-circle"></i>
+                Chef d'équipe:
+                <strong> {{ team.manager.getfirstName() }} </strong>
+              </div>
+              <div class="postcard__bar"></div>
+              <div class="postcard__preview-txt">
+                <p>
+                  <i class="fa fa-users"></i> Il ya
+                  {{ team.members.length }} legend dans cette équipe
+                </p>
+              </div>
+              <ul class="postcard__tagbox">
+                <li class="tag__item">
+                  <a routerLinkActive="router-link-active" [routerLink]="['/dashboard/manager/detailTeam', team.id]"><i
+                      class="fas fa-info-circle"></i>Afficher details</a>
+                </li>
+              </ul>
+            </div>
+          </article>
         </div>
       </div>
     </div>
