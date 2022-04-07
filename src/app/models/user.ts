@@ -34,7 +34,7 @@ export class User {
     this.firstName = value;
   }
 
-  public getlastNamme(): string {
+  public getlastName(): string {
     return this.lastName;
   }
   public setlastNamme(value: string): void {

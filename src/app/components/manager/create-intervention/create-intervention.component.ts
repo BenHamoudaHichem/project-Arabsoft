@@ -68,6 +68,7 @@ export class CreateInterventionComponent implements OnInit {
     this.allCategory();
     this.getMaterials();
 
+    this.allTeam()
     this.getInterventions();
 
     this.dropdownSettings = {

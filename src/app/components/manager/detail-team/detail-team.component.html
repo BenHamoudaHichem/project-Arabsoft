@@ -12,7 +12,7 @@
 			<div class="postcard__text t-dark">
 				<h1 class="postcard__title blue"><a href="#">
 <i class="fa fa-user-cog"></i>
-          {{team.manager.getfirstName()}}  {{team.manager.getlastNamme()}} : chef d'équipe </a></h1>
+          {{team.manager.getfirstName() + team.manager.getlastName()}} : chef d'équipe </a></h1>
 				<div class="postcard__subtitle small">
 				<i class="fa fa-phone">{{team.manager.getTel()}} </i>
 				</div>
@@ -41,13 +41,13 @@
 			</div>
 		</article>
 
- <article class="postcard light" *ngFor="let item of team.members"  >
+ <article class="postcard light" *ngFor="let item of this.team.members"  >
 			<a class="postcard__img_link" href="#">
 				<img class="postcard__img" src="
         https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Image Title" />
 			</a>
 			<div class="postcard__text t-dark">
-				<h1 class="postcard__title blue"><a href="#"><i class="fa fa-user"></i>{{item.getfirstName()}} {{item.getlastNamme()}}</a></h1>
+				<h1 class="postcard__title blue"><a href="#"><i class="fa fa-user"></i>{{item.getfirstName()+item.getlastName()}}</a></h1>
 				<div class="postcard__subtitle small">
 
 						<i class="fa fa-phone"></i>{{item.getTel()}}

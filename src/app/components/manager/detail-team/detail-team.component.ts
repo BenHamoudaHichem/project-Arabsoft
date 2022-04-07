@@ -1,7 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { plainToClass } from 'class-transformer';
 import { Report } from 'notiflix';
+import { Address } from 'src/app/models/Address';
+import { User } from 'src/app/models/user';
 import { ITeam } from 'src/app/services/resources/team/iteam';
 import { TeamService } from 'src/app/services/resources/team/team.service';
 
@@ -23,13 +26,22 @@ export class DetailTeamComponent implements OnInit {
     this.showTeams(String(this.route.snapshot.paramMap.get("id")));}
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.team.members[0])
+  }
 
 
 // showDetail
   showTeams(id:string) {
-    this.teamService.getTeam(id).subscribe((ID:ITeam)=>{
-      this.team=ID;
+
+    this.teamService.getTeam(id).subscribe((res:ITeam)=>{
+      this.team=res
+
+
+      this.team.manager=plainToClass(User,res.manager)
+      this.team.members=Array.from(res.members,x=> plainToClass(User,x))
+
+      console.log(this.team)
     }),(error:HttpErrorResponse)=>{
       Report.warning('Erreur',error.message,'OK')
     };
