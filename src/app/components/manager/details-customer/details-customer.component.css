@@ -1,0 +1,83 @@
+.card {
+  border-radius: 15px;
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.15);
+  padding: 25px 30px;
+}
+.cd{
+  border-radius: none;
+}
+.card{
+  background-color: #d9d9d9;
+  background-image: linear-gradient(315deg, #d9d9d9 0%, #f6f2f2 74%);
+}
+.card-text{font-size: 20px;
+
+ }
+h3{
+  background-color: #000000;
+  background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  font-size: 35px;
+}
+img{border-radius: 50%;}
+h1{
+text-transform: uppercase;
+  font-size: 37px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+background-color: #000000;
+  background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
+
+  margin-top: 25px;
+  display: block;}
+
+
+
+
+
+
+  .card__icon {
+    background: linear-gradient(to top, #4136f1, #8643ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
+
+  .card__title {
+    text-transform: uppercase;
+    font-size: 25px;
+    font-weight: 600;
+    margin-top: 20px;
+    display: block;
+  }
+  .scrollist {
+    overflow:scroll;
+    max-height: 300px;
+   min-width: 500px;
+
+   }
+
+  h2{
+    text-transform: uppercase;
+
+
+  }
+
+  .Status {
+    font-size: 18px;
+    color: #fb0098;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+  }
+  .calendar {
+    color: #4b41f1;
+  }
+
+  .card__list-item__info span.request {
+    color: #f16641;
+  }

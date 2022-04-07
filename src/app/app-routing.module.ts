@@ -33,10 +33,8 @@ import { CategoryComponent } from './components/manager/category/category.compon
 import { MembersListComponent } from './components/manager/members-list/members-list.component';
 import { CustomerListComponent } from './components/manager/customer-list/customer-list.component';
 import { DetailsCustomerComponent } from './components/manager/details-customer/details-customer.component';
-const roles={"customer":"ROLE_USER",
-"manager":"ROLE_MANAGER"}
+const roles = { customer: 'ROLE_USER', manager: 'ROLE_MANAGER' };
 const routes: Routes = [
-
   { path: 'home', component: HomeComponentPage },
   { path: 'admin', component: DashboardAdminComponent },
   { path: 'not-found', component: NotFoundComponent },
@@ -44,60 +42,49 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'propos', component: AboutUsComponent },
   { path: 'contact', component: ContactUSComponent },
-  { path: 'dashboard', component: DashboardAdminComponent,children:[
- /*
- * Role customer*
-  */
-        {
-          path: 'customer/home',
-          component: HomeCustomerComponent,
+  {
+    path: 'dashboard',
+    component: DashboardAdminComponent,
+    children: [
+      /*
+       * Role customer*
+       */
+      {
+        path: 'customer/home',
+        component: HomeCustomerComponent,
+      },
 
+      {
+        path: 'customer/createReclamation',
+        component: CreateReclamationComponent,
+      },
+      {
+        path: 'customer/customerProfil',
+        component: CustomerProfilComponent,
+      },
+      {
+        path: 'customer/editProfil',
+        component: EditProfilComponent,
+      },
+      {
+        path: 'customer/home',
+        component: HomeCustomerComponent,
+      },
 
-        },
-
-        {
-          path: 'customer/createReclamation',
-          component: CreateReclamationComponent,
-
-
-        },
-        {
-          path: 'customer/customerProfil',
-          component: CustomerProfilComponent,
-
-
-        },
-        {
-          path: 'customer/editProfil',
-          component: EditProfilComponent,
-
-
-        },
-        {
-          path: 'customer/home',
-          component: HomeCustomerComponent,
-
-
-        },
-
-        {
-          path: 'customer/reclamation/:id',
-          component: ShowReclamationComponent,
-
-
-        },
-        {
-          path: 'customer/editProfil',
-          component: EditProfilComponent,
-
-
-        },
-        {
-          path: 'customer',
-          redirectTo: '/dashboard/customer/home', pathMatch: 'full' ,
-
-        },
-         /*
+      {
+        path: 'customer/reclamation/:id',
+        component: ShowReclamationComponent,
+      },
+      {
+        path: 'customer/editProfil',
+        component: EditProfilComponent,
+      },
+      {
+        path: 'customer',
+        redirectTo: '/dashboard/customer/home',
+        pathMatch: 'full',
+      },
+      /*
          * End customer
 
          *
@@ -105,159 +92,113 @@ const routes: Routes = [
          *
          * */
 
-        {
-          path: 'manager/home',
-          component: HomeManagerComponent,
+      {
+        path: 'manager/home',
+        component: HomeManagerComponent,
+      },
+      {
+        path: 'manager/reclamationList',
+        component: ReclamationListComponent,
+      },
+      {
+        path: 'manager/subscribeMembre',
+        component: SubscribeMembreComponent,
+      },
+      {
+        path: 'manager/addTeam',
+        component: AddTeamComponent,
+      },
+      {
+        path: 'manager/interventionList',
+        component: InterventionListComponent,
+      },
 
+      { path: 'manager/agentList', component: MembersListComponent },
+      {
+        path: 'manager/userProfil/:id',
+        component: CustomerProfilComponent,
+      },
+      {
+        path: 'manager/customerList',
+        component: CustomerListComponent,
+      },
+      {
+        path: 'manager/detailCustomer/:id',
+        component: DetailsCustomerComponent,
+      },
 
-        },
-            {
-              path: 'manager/reclamationList',
-              component: ReclamationListComponent,
+      {
+        path: 'manager/materialList',
+        component: MaterialListComponent,
+      },
+      {
+        path: 'manager/addMaterial',
+        component: AddMaterialsComponent,
+      },
+      {
+        path: 'manager/detailReclamation/:id',
+        component: DetailReclamationComponent,
+      },
 
+      {
+        path: 'manager/detailIntervention/:id',
+        component: DetailInterventionComponent,
+      },
+      {
+        path: 'manager/createIntervention',
+        component: CreateInterventionComponent,
+      },
+      {
+        path: 'manager/detailMaterial/:id',
+        component: DetailMaterialComponent,
+      },
 
+      {
+        path: 'manager/updateMaterial/:id',
+        component: UpdateMaterialComponent,
+      },
+      {
+        path: 'manager/detailTeam/:id',
+        component: DetailTeamComponent,
+      },
+      {
+        path: 'manager/teamList',
+        component: TeamListComponent,
+      },
+      {
+        path: 'manager/demandList',
+        component: ReclamationListComponent,
+      },
+      {
+        path: 'manager/fileMembersUpload',
+        component: AddFileMembersComponent,
+      },
 
-            },
-            {
-              path: 'manager/subscribeMembre',
-              component: SubscribeMembreComponent,
+      {
+        path: 'manager/fileMaterialsUpload',
+        component: AddFileMaterialsComponent,
+      },
 
+      {
+        path: 'manager/categorylist',
+        component: CategoryComponent,
+      },
+      /*
+       * End manager
+       *
+       *
+       */
 
-            },
-            {
-              path: 'manager/addTeam',
-              component: AddTeamComponent,
+      { path: 'not-found', component: NotFoundComponent },
 
-
-            },
-            {
-              path: 'manager/interventionList',
-              component: InterventionListComponent,
-
-
-            },
-
-            {path: 'manager/agentList',
-              component: MembersListComponent,},
-              {
-                path: 'manager/userProfil/:id',
-                component: CustomerProfilComponent,
-              },
-              {
-                path: 'manager/customerList',
-                component: CustomerListComponent,
-              },
-              {
-                path: 'manager/detailCustomer/:id',
-                component: DetailsCustomerComponent,
-              },
-
-
-        {
-          path: 'manager/materialList',
-          component: MaterialListComponent,
-
-
-        },
-        {
-          path: 'manager/addMaterial',
-          component: AddMaterialsComponent,
-
-
-        }, {
-          path: 'manager/detailReclamation/:id',
-          component: DetailReclamationComponent,
-
-
-        },
-
-        {
-          path: 'manager/detailIntervention/:id',
-          component: DetailInterventionComponent,
-
-
-        },
-  {
-    path: 'manager/createIntervention',
-    component: CreateInterventionComponent,
-
-
-  },
-  {
-    path: 'manager/detailMaterial/:id',
-    component: DetailMaterialComponent,
-
-
-  },
-
-
-
-  {
-    path: 'manager/updateMaterial/:id',
-    component: UpdateMaterialComponent,
-
-
-  },
-  {
-    path: 'manager/detailTeam/:id',
-    component: DetailTeamComponent,
-
-
-  },
-  {
-    path: 'manager/teamList',
-    component: TeamListComponent,
-
-
-  },
-  {
-    path: 'manager/demandList',
-    component: ReclamationListComponent,
-
-
-  },
-  {
-    path: 'manager/fileMembersUpload',
-    component: AddFileMembersComponent,
-
-
+      { path: '**', redirectTo: '/dashboard/not-found', pathMatch: 'full' },
+      { path: '', redirectTo: '/dashboard/not-found', pathMatch: 'full' },
+    ],
   },
 
-  {
-    path: 'manager/fileMaterialsUpload',
-    component: AddFileMaterialsComponent,
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 
-
-  },
-
-  {
-    path: 'manager/categorylist',
-    component: CategoryComponent,
-
-
-  },
-   /*
-   * End manager
-   *
-   *
-   */
-
-
-
-
-  { path: 'not-found', component: NotFoundComponent },
-
-  { path: '**', redirectTo: '/dashboard/not-found', pathMatch: 'full' },
-  { path: '', redirectTo: '/dashboard/not-found', pathMatch: 'full' },
-
-      ]
-    },
-
-
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
-
-
-{ path: '**', redirectTo: '/not-found', pathMatch: 'full' },
+  { path: '**', redirectTo: '/not-found', pathMatch: 'full' },
 ];
 
 @NgModule({
