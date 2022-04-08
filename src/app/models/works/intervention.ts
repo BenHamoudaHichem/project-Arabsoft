@@ -10,11 +10,10 @@ export class Intervention {
     protected category: Dbref,
     protected address:Address,
     protected startedAt: Date,
-    protected status: string,
+    protected materials:Dbref[],
     protected demandList:Dbref[],
     protected team:Dbref,
-    protected createdAt: Date,
-    protected materials:Dbref[]
+    protected status: string
   ) {}
 
 
@@ -55,12 +54,6 @@ export class Intervention {
     this.category = value;
   }
 
-  public getCreatedAt(): Date {
-    return this.createdAt;
-  }
-  public setCreatedAt(value: Date): void {
-    this.createdAt = value;
-  }
 
   public getStartedAt(): Date {
     return this.startedAt;
