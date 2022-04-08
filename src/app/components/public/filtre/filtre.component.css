@@ -1,31 +1,7 @@
-
-select{
-  width: 150%;
-  background-color: #f6f6f6;
+input,select{
+  width: 70%;
 }
 
-fieldset {
-  border-radius: 10px 10px 0px 0px;
-  border: 2px solid #ccc;
-
-  margin-top: 90px;
-  width: 90%;
-  margin-left: 60px;
-}
-img {
-  border-radius: 50%;
-  }
-
-.btn_pg{
-
- text-align: end;
- margin-top: 190px;
-
-}
-
-.nav-link{color: rgb(0, 0, 0);
-height: 50px;
-width: 410px;}
 /* ________Radio _________*/
 
 .radio {
@@ -33,7 +9,7 @@ width: 410px;}
 
   padding: 5px;
 }
-
+ 
 .checkbox {
   --border-radius: 0;
 
@@ -92,13 +68,3 @@ width: 410px;}
 .radio :checked ~ span, .checkbox :checked ~ span {
   color: rgb(228, 184, 42);
 }
-
-.card:hover {
-
-  box-shadow: 0px 4px 8px rgba(38, 38, 38, 0.2);
-  top: -4px;
-  border: 1px solid #cccccc;
-
-}
-
-

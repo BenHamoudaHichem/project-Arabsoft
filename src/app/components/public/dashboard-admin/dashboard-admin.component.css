@@ -13175,3 +13175,123 @@ fieldset:disabled .btn {
 .list-group-item.disabled:hover {
   color: #5c507c;
 }
+
+
+
+
+
+/* ________Radio _________*/
+
+.radio {
+  --border-radius: 50%;
+
+  padding: 5px;
+}
+
+.checkbox {
+  --border-radius: 0;
+
+  padding: 5px;
+}
+
+.radio input[type="radio"], .checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.radio label, .checkbox label {
+  position: relative;
+
+  display: inline-block;
+
+  width: 20px;
+  height: 20px;
+
+  border: 3px solid black;
+  border-radius: var(--border-radius);
+
+  box-sizing: border-box;
+}
+
+.radio label::before, .checkbox label::before {
+  content: "";
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+
+  width: 10px;
+  height: 10px;
+
+  border-radius: var(--border-radius);
+
+  background-color: transparent;
+
+  transform: translate(-50%, -50%);
+
+  transition: background-color 0.25s;
+}
+
+.radio :checked ~ label::before, .checkbox :checked ~ label::before {
+  background-color: grey;
+}
+
+.radio span, .checkbox span {
+  color: grey;
+
+  vertical-align: top;
+
+  transition: color 0.25s;
+}
+
+.radio :checked ~ span, .checkbox :checked ~ span {
+  color: rgb(228, 184, 42);
+}
+
+
+
+.bn30 {
+  border: 2em;
+  cursor: pointer;
+  outline: none;
+  font-size: 13px;
+  -webkit-transform: translate(0);
+  transform: translate(0);
+  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+  padding: 0.6em 2em;
+  border-radius: 65px;
+  box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.438);
+  -webkit-transition: box-shadow 0.25s;
+  transition: box-shadow 0.25s;
+ margin-top: 15px;
+  color: #fff !important;
+}
+
+.bn30 .text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(45deg, #4568dc, #b06ab3);
+}
+
+.bn30:after {
+  content: "";
+  border-radius: 18px;
+  position: absolute;
+  margin: 4px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  background: transparent;
+
+}
+
+.bn30:hover {
+  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+  box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
+}
+
+.bn30:hover .text {
+  background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
+}
