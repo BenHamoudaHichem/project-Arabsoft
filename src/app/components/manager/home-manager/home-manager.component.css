@@ -293,7 +293,7 @@ intervention notif
 
 */
 .scrollist {
- overflow:scroll;
+ overflow-y:scroll;
  height: 400px;
  width: 500px;
 
