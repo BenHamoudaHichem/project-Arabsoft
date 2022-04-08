@@ -2,11 +2,14 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ErrorHandler, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { plainToClass } from 'class-transformer';
 import moment from 'moment';
 import { Notify, Report } from 'notiflix';
+import { finalize } from 'rxjs';
 import { Address } from 'src/app/models/Address';
 import { Dbref } from 'src/app/models/dbref';
 import { Location } from 'src/app/models/Location';
+import { User } from 'src/app/models/user';
 import { Intervention } from 'src/app/models/works/intervention';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { ICategory } from 'src/app/services/category/icategory';
@@ -16,6 +19,8 @@ import { ITeam } from 'src/app/services/resources/team/iteam';
 import { TeamService } from 'src/app/services/resources/team/team.service';
 import { Associatif } from 'src/app/services/types/associatif';
 import { DateValidation } from 'src/app/services/validation/DateValidation';
+import { DemandService } from 'src/app/services/works/demand/demand.service';
+import { IDemand } from 'src/app/services/works/demand/idemand';
 import { IIntervention } from 'src/app/services/works/intervention/iintervention';
 import { InterventionService } from 'src/app/services/works/intervention/intervention.service';
 
@@ -26,6 +31,7 @@ import { InterventionService } from 'src/app/services/works/intervention/interve
 })
 export class CreateInterventionComponent implements OnInit {
   createInterventionForm!: FormGroup;
+  currentDemand!:IDemand
   demandList: Dbref[] = [];
   categoryList!: ICategory[];
   interventionList!: IIntervention[];
@@ -37,6 +43,7 @@ export class CreateInterventionComponent implements OnInit {
     private interventionService: InterventionService,
     private categoryService: CategoryService,
     private teamService: TeamService,
+    private demandService :DemandService,
     private materialService: EquipmentService,
     private router: Router,
     private route: ActivatedRoute
@@ -86,12 +93,24 @@ export class CreateInterventionComponent implements OnInit {
 
   dropdownSettings!: {};
   ngOnInit() {
+
     this.demandList = new Array(new Dbref(this.route.snapshot.paramMap.get('id')!));
     this.allCategory();
     this.getMaterials();
 
     this.allTeam();
-
+    this.demandService.showDemande(this.route.snapshot.paramMap.get('id')!).pipe(finalize(()=>this.currentDemand.title===undefined)).subscribe((res:IDemand)=>{
+      this.currentDemand=res as IDemand;
+      this.currentDemand.address=plainToClass(Address,res.address)
+      this.state?.setValue(this.currentDemand.address.State)
+      this.zipCode?.setValue(this.currentDemand.address.ZipCode)
+      this.city?.setValue(this.currentDemand.address.City)
+      this.street?.setValue(this.currentDemand.address.Street)
+      this.counrty?.setValue(this.currentDemand.address.Country)
+      this.currentDemand.user=plainToClass(User,res.user)
+    }),(error:HttpErrorResponse)=>{
+      Report.warning('Erreur',error.message,'OK')
+    };
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',
@@ -147,12 +166,11 @@ export class CreateInterventionComponent implements OnInit {
       this.description?.value,
       new Dbref(this.category?.value),
       new Address(this.zipCode?.value,this.street?.value,this.city?.value,this.state?.value,this.counrty?.value,new Location(0,0)),
-      this.date?.value,
-      this.status?.value,
+      plainToClass(Date,moment(this.date?.value).format("DD-MM-yyyy")),
+      Array.from(this.Materiel?.value as any[], (x) => new Dbref(x.id)),
       this.demandList,
       new Dbref(this.team?.value),
-      this.date?.value, //this.Materiel?.value
-      Array.from(this.Materiel?.value as any[], (x) => new Dbref(x.id))
+      this.status?.value
     );
     console.log(intervention);
       this.interventionService.create(intervention).subscribe((data: any) => {

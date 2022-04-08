@@ -12,7 +12,6 @@ export class InterventionService {
   headers = {
     headers: new HttpHeaders({
       Authorization: `Bearer ${this.authService.getToken}`,
-      "Access-Control-Allow-Headers":"Content-Type",
       "Content-Type":"application/json"
     }),
   };
