@@ -56,7 +56,7 @@ main {
   /* Sections are stacked one above the other */
   main {
     grid-template:
-      "name" 3em "avatar" auto "about" auto "posts" auto;
+      "name"3em "avatar"auto "about"auto "posts"auto;
   }
 
   main .avatar {
@@ -74,7 +74,7 @@ main {
 
   main {
     grid-template:
-      "avatar name" 3em "avatar posts" calc(350px - 3em) "about  posts" auto / 2fr 3fr;
+      "avatar name"3em "avatar posts"calc(350px - 3em) "about  posts"auto / 2fr 3fr;
     grid-column-gap: 4em;
   }
 }
@@ -147,7 +147,7 @@ main .posts {
   border-radius: 5px;
   display: grid;
   grid-template:
-    "thumbnail author" 1.25em "thumbnail time" 1.25em "thumbnail content" auto / 80px auto;
+    "thumbnail author"1.25em "thumbnail time"1.25em "thumbnail content"auto / 80px auto;
   grid-column-gap: 1em;
 }
 
@@ -204,8 +204,8 @@ h4 {
 }
 
 .profile .profile-header {
-  background-color: #fad0c4;
-  background-image: linear-gradient(315deg, #fad0c4 0%, #f1a7f1 74%);
+  background-color: #f9c5d1;
+  background-image: linear-gradient(315deg, #f9c5d1 0%, #9795ef 74%);
   display: flex;
   flex: 1;
   padding: 30px;
