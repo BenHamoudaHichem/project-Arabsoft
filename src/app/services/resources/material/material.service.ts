@@ -75,17 +75,12 @@ export class EquipmentService {
 
 
   update(id:string,material: Material) {
-    let headers = {
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${this.authService.getToken}`,
-        'Access-Control-Allow-Origin': '*',
-      }),
-    };
+
 
     return this.http.put(
       `${this.apiURL}/${id}`,
       JSON.stringify(material),
-      headers
+      this.httpOptions
     );
   }
 }

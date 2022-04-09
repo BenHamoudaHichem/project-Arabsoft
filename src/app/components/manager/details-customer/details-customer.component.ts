@@ -1,9 +1,14 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { plainToClass } from 'class-transformer';
 import { Report } from 'notiflix';
+import { Address } from 'src/app/models/Address';
+import { User } from 'src/app/models/user';
 import { IUser } from 'src/app/services/user/iuser';
 import { UserService } from 'src/app/services/user/user.service';
+import { DemandService } from 'src/app/services/works/demand/demand.service';
+import { IDemand } from 'src/app/services/works/demand/idemand';
 
 @Component({
   selector: 'app-details-customer',
@@ -12,26 +17,52 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class DetailsCustomerComponent implements OnInit {
 user!:IUser
-  constructor(private route:ActivatedRoute,private userService:UserService) {
-    this.route.snapshot.paramMap.get('id');
-    console.log(String(this.route.snapshot.paramMap.get('id')));
+demandList!:IDemand[]
+  constructor(private route:ActivatedRoute,private userService:UserService,private demandService:DemandService) {
 
-this.showUser() }
+
+this.showUser()
+this.showDemads() }
 
   ngOnInit(): void {
 
+  }
+
+
+  showDemads()
+  {
+    this.demandService.allByCustomer(String(this.route.snapshot.paramMap.get('id'))).subscribe((res:IDemand[])=>{
+      this.demandList=res
+
+      console.log(this.demandList)
+
+    })
   }
 
 showUser(){
   this.userService.getUser(String(this.route.snapshot.paramMap.get('id')))
   .subscribe((data: IUser) => {
     this.user = data;
+    this.user.address=plainToClass(Address,data.address)
     console.log(this.user);
   }),
   (error: HttpErrorResponse) => {
     Report.failure('Error getting user', error.message, 'OK');
   };
 }
+
+ status(demand:IDemand):string{
+  let res = "Acceptée"
+  if (demand.status=="In_Progress") {
+    res="nous sommes en train d'étudier cette réclamation"
+  }
+  if (demand.status=="Refused") {
+    res="Malheureusement on ne peut pas accepter votre réclamation"
+  }
+
+  return res
+}
+
 }
 
 

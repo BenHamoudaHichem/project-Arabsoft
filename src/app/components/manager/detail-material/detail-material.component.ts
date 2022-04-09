@@ -1,7 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { plainToClass } from 'class-transformer';
 import { Notify, Report } from 'notiflix';
+import { Address } from 'src/app/models/Address';
 import { Material } from 'src/app/models/resources/Material';
 import { IMaterial } from 'src/app/services/resources/material/imaterial';
 import { EquipmentService } from 'src/app/services/resources/material/material.service';
@@ -16,17 +18,21 @@ export class DetailMaterialComponent implements OnInit {
   status = 'panne';
   material!: IMaterial;
   id!: string;
+  textEnPanne:string="Ce materiel est reparé ?"
+  textFonctionnel:string="Ce materiel est en panne ?"
   constructor(
     private serviceMaterial: EquipmentService,
     private route: ActivatedRoute
   ) {
       this.serviceMaterial.showMaterial(String(this.route.snapshot.paramMap.get("id"))).subscribe((m: IMaterial) => {
       this.material = m;
-      if (this.material.status == 'en panne') {
-        this.btn == 'materiel reparé';
+      this.material.address=plainToClass(Address,this.material.address)
+      console.log(this.material)
+      if (this.material.status == 'Broken_down') {
+        this.btn = this.textEnPanne
       }
-      if (this.material.status == 'en bonne condtion') {
-        this.btn == 'mettre en panne';
+      if (this.material.status == 'Functional') {
+        this.btn = this.textFonctionnel
       }
     }),
       (error: HttpErrorResponse) => {
@@ -41,7 +47,7 @@ export class DetailMaterialComponent implements OnInit {
   changeStatus() {
     let newMaterial:Material=new Material(this.material.name,this.material.description,this.material.address
       ,this.material.dateOfPurchase,this.material.status)
-    if (this.btn == 'materiel reparé') {
+    if (this.btn == this.textEnPanne) {
 
 
       newMaterial.setStatus('Functional')
@@ -56,10 +62,10 @@ export class DetailMaterialComponent implements OnInit {
           Report.failure('erreur', error.message, 'ok');
         };
 
-      this.btn = 'mettre en panne';
+      this.btn = this.textFonctionnel;
       return;
     }
-    if (this.btn == 'mettre en panne') {
+    if (this.btn == this.textFonctionnel) {
       newMaterial.setStatus('Broken_down')
 
       this.serviceMaterial
@@ -73,7 +79,7 @@ export class DetailMaterialComponent implements OnInit {
           Report.failure('erreur', error.message, 'ok');
         };
 
-      this.btn = 'materiel reparé';
+      this.btn = this.textEnPanne;
       return;
     }
   }

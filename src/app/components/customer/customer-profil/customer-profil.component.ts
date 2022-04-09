@@ -36,7 +36,7 @@ export class CustomerProfilComponent implements OnInit {
       this.userService
         .getUser(this.cookiesServices.getIdentifier)
         .subscribe((data: IUser) => {
-          this.user = data;
+          this.user = (data);
           console.log(this.user);
         }),
         (error: HttpErrorResponse) => {
@@ -47,5 +47,5 @@ export class CustomerProfilComponent implements OnInit {
   isProfilUser() {
  return this.cookiesServices.getIdentifier ==this.route.snapshot.paramMap.get('id') || (this.cookiesServices.getIdentifier!=null && this.router.url.includes('customer'))
   }
- 
+
 }

@@ -74,9 +74,6 @@ roles:user.roles
       );
   }
 
-  getName(name: string) {
-    return this.http.get<User[]>(`${this.apiURL}/${name}`);
-  }
   update(user: User,id:string) {
     let headers = {
       headers: new HttpHeaders({
@@ -91,4 +88,19 @@ roles:user.roles
       headers
     );
   }
+  agents(): Observable<IUser[]> {
+    return this.http.get<IUser[]>(`${this.apiURL}?role=tm&role2=member`).pipe(
+      map((users: IUser[]) => {
+        return users.map((user) => ({
+          id: user.id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          identifier: user.identifier,
+          password: user.password,
+          address: user.address,
+          tel: user.tel,
+          roles:user.roles
+      })
+    );
+  }))}
 }

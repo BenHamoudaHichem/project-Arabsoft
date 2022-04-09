@@ -9,17 +9,16 @@
         <div class="profile-info">
           <div class="profile-img">
             <img src="https://img.freepik.com/photos-gratuite/photo-gros-plan-jeune-homme-affaires-prospere-costume-noir_171337-9509.jpg?w=2000" height="150px" width="150px"/>
-            <h4>Foulen ben foulen</h4>
            <h4> {{user.firstName}} {{user.lastName}}</h4>
           </div>
            <div class="actions">
             <div class="about">
               <ul>
-                <li><h3> <i class="fa fa-envelope-open-text"></i></h3> <span class="about-value">hichel@kdkkdk.com</span></li>
-                <li><h3> <i class="fa fa-phone"></i></h3> <span class="about-value">(+216) 21524668</span>
+                <li><h3> <i class="fa fa-envelope-open-text"></i></h3> <span class="about-value">{{user.identifier}}</span></li>
+                <li><h3> <i class="fa fa-phone"></i></h3>
                  <span class="about-value">(+216)  {{user.tel}}</span>
                 </li>
-                <li><h3> <i class="fa fa-map-marker-alt"></i>  </h3><span class="about-value">2087,rue de boustan ,Tunis,Tunisie</span><br>
+                <li><h3> <i class="fa fa-map-marker-alt"></i>  </h3>
                   <span class="about-value"> {{user.address.ZipCode}},{{user.address.Street}},{{user.address.City}},{{user.address.State}},{{user.address.Country}}
                   </span>
                 </li>
@@ -36,24 +35,13 @@
   </div>
   <div class="posts">
 
-    <article class="post">
+    <article class="post" *ngFor="let item of demandList">
       <div class="thumbnail"></div>
-      <strong class="author">Reclamation de rerefence 1</strong>
-      <small class="time calendar"> <i class="fa fa-calendar-check"></i> Date: <time>25/21/2021</time></small>
-      <span class="content status">  <i class="fa fa-info-circle"></i> Status: en cours</span>
+      <strong class="author">{{item.title}}</strong>
+      <small class="time calendar"> <i class="fa fa-calendar-check"></i> Date: <time>{{item.createdAt | date:'dd-MM-yyyy'}}</time></small>
+      <span class="content status">  <i class="fa fa-info-circle"></i> {{status(item)}}</span>
     </article>
-    <article class="post">
-      <div class="thumbnail"></div>
-      <strong class="author">Reclamation de rerefence 1</strong>
-      <small class="time calendar"> <i class="fa fa-calendar-check"></i> Date: <time>25/21/2021</time></small>
-      <span class="content status">  <i class="fa fa-info-circle"></i> Status: Rejeté</span>
-    </article>
-    <article class="post">
-      <div class="thumbnail"></div>
-      <strong class="author">Reclamation de rerefence 1</strong>
-      <small class="time calendar"> <i class="fa fa-calendar-check"></i> Date: <time>25/21/2021</time></small>
-      <span class="content status">  <i class="fa fa-info-circle"></i> Status: en attente</span>
-    </article>
+
 
 
   </div>

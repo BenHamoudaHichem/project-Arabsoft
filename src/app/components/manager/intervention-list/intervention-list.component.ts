@@ -1,6 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { plainToClass } from 'class-transformer';
+import { Category } from 'src/app/models/Category';
 import { IIntervention } from 'src/app/services/works/intervention/iintervention';
 import { InterventionService } from 'src/app/services/works/intervention/intervention.service';
 
@@ -13,21 +15,25 @@ export class InterventionListComponent implements OnInit {
   interventionList!: IIntervention[];
   status!:string
   constructor(private serviceIntervention: InterventionService,private route:ActivatedRoute) {
-    this.showPerStatus()
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.showPerStatus('In_Progress')
+  }
 
   //Interventions
-  showPerStatus()
+  showPerStatus(status:string)
   {
-    this.route.queryParams.subscribe(params=>{this.status=params["status"]; console.log(this.status)} )
-
-    this.serviceIntervention.interventionPerStatus(this.status).subscribe((II: IIntervention[]) => {
-      this.interventionList = II;
+    this.serviceIntervention.interventionPerStatus(status).subscribe((res: IIntervention[]) => {
+      console.log(res)
+      this.interventionList = res;
+      this.interventionList.forEach(e=>{
+        e.category=plainToClass(Category,e.category)
+      })
     }),
       (error: HttpErrorResponse) => {
         alert(error.message);
       };
   }
+
 }

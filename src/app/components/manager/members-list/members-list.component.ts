@@ -18,7 +18,7 @@ export class MembersListComponent implements OnInit {
   }
 
   showAll() {
-    this.UserService.all().subscribe((res: IUser[]) => {
+    this.UserService.agents().subscribe((res: IUser[]) => {
       console.log(res);
       this.usersList = res;
     }),
@@ -27,7 +27,7 @@ export class MembersListComponent implements OnInit {
       };
   }
   showManagers(){
-    this.UserService.allByRole('IS_MANAGER').subscribe((res: IUser[])=>{
+    this.UserService.allByRole('tm').subscribe((res: IUser[])=>{
       console.log(res)
       this.usersList=res;
     }),(error:HttpErrorResponse)=>{
@@ -35,11 +35,21 @@ export class MembersListComponent implements OnInit {
   };
 }
 showMembers(){
-  this.UserService.allByRole('IS_MEMBER').subscribe((res: IUser[])=>{
+  this.UserService.allByRole('member').subscribe((res: IUser[])=>{
     console.log(res)
     this.usersList=res;
   }),(error:HttpErrorResponse)=>{
     Report.failure('Error getting manager',error.message,'OK');
 };
 }
+convertRole(roles:any[]):string
+{
+    if (roles[0].name =="ROLE_TEAMMANAGER") {
+      return "Chef d'équipe"
+
+    }
+
+  return 'Employée'
+}
+
 }
