@@ -14,10 +14,12 @@ export class MembersListComponent implements OnInit {
   constructor(private UserService: UserService) {}
 
   ngOnInit(): void {
-    this.showAll();
+  //  this.showAll();
+    this.showMembers();
+    this.showTManagers();
   }
 
-  showAll() {
+  /*showAll() {
     this.UserService.all().subscribe((res: IUser[]) => {
       console.log(res);
       this.usersList = res;
@@ -25,21 +27,21 @@ export class MembersListComponent implements OnInit {
       (error: HttpErrorResponse) => {
         Report.failure('Erreur', error.message, 'OK');
       };
-  }
-  showManagers(){
-    this.UserService.allByRole('IS_MANAGER').subscribe((res: IUser[])=>{
+  }*/
+  showTManagers(){
+    this.UserService.allByRole('tm').subscribe((res: IUser[])=>{
       console.log(res)
       this.usersList=res;
     }),(error:HttpErrorResponse)=>{
-      Report.failure('Error getting manager',error.message,'OK');
+      Report.failure('Error getting team manager',error.message,'OK');
   };
 }
 showMembers(){
-  this.UserService.allByRole('IS_MEMBER').subscribe((res: IUser[])=>{
+  this.UserService.allByRole('member').subscribe((res: IUser[])=>{
     console.log(res)
     this.usersList=res;
   }),(error:HttpErrorResponse)=>{
-    Report.failure('Error getting manager',error.message,'OK');
+    Report.failure('Error getting members',error.message,'OK');
 };
 }
 }
