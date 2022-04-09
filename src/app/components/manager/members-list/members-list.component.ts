@@ -26,4 +26,20 @@ export class MembersListComponent implements OnInit {
         Report.failure('Erreur', error.message, 'OK');
       };
   }
+  showManagers(){
+    this.UserService.allByRole('IS_MANAGER').subscribe((res: IUser[])=>{
+      console.log(res)
+      this.usersList=res;
+    }),(error:HttpErrorResponse)=>{
+      Report.failure('Error getting manager',error.message,'OK');
+  };
+}
+showMembers(){
+  this.UserService.allByRole('IS_MEMBER').subscribe((res: IUser[])=>{
+    console.log(res)
+    this.usersList=res;
+  }),(error:HttpErrorResponse)=>{
+    Report.failure('Error getting manager',error.message,'OK');
+};
+}
 }

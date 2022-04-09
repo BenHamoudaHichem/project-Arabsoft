@@ -1,85 +1,320 @@
-.card1 {
-  border-radius: 15px;
-  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.15);
-  padding: 25px 30px;
-}
-.cd{
-  border-radius: none;
-}
-.card1{
-  background-color: #d9d9d9;
-  background-image: linear-gradient(315deg, #d9d9d9 0%, #f6f2f2 74%);
-}
-.card-text{font-size: 20px;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
- }
-h3{
-  background-color: #000000;
+* {
+  box-sizing: border-box;
+}
+
+/** Site header is simple and doesn't change much **/
+header {
+  width: 100%;
+  /* --content-width is set within the media queries below */
+  padding: 1em calc(50% - var(--content-width) / 2);
+
+  background: darkslateblue;
+  color: white;
+
+}
+
+header h1,
+header h2 {
+  display: inline;
+
+}
+
+header h1 {
+  margin: 0 1em;
+  font-size: 1.5em;
+  margin-right: .25em;
+}
+
+header h2 {
+  margin: 0 .25em;
+  font-size: 1em;
+  font-style: italic;
+}
+
+
+/** Responsive main layout **/
+
+/* Constant properties */
+main {
+  width: 90%;
+  min-height: 90vh;
+  max-width: var(--content-width);
+  margin: 2em auto;
+  padding: 1em;
+
+  display: grid;
+}
+
+/* Single-column narrow layout */
+@media(max-width: 800px) {
+  body {
+    --content-width: 500px;
+  }
+
+  /* Sections are stacked one above the other */
+  main {
+    grid-template:
+      "name"3em "avatar"auto "about"auto "posts"auto;
+  }
+
+  main .avatar {
+    width: 100%;
+    height: 90vw;
+    max-height: calc(var(--content-width) * .85);
+  }
+}
+
+/* Two-column wide layout */
+@media(min-width: 801px) {
+  body {
+    --content-width: 1024px;
+  }
+
+  main {
+    grid-template:
+      "avatar name"3em "avatar posts"calc(350px - 3em) "about  posts"auto / 2fr 3fr;
+    grid-column-gap: 4em;
+  }
+}
+
+
+/** Style the content areas and attach each to its named grid-area **/
+
+/* User's name */
+main .display-name {
+  grid-area: name;
+  margin: 0;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.titre {
+  text-align: center;
+  text-transform: capitalize;
   background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
   font-size: 35px;
 }
-img{border-radius: 50%;}
-h1{
-text-transform: uppercase;
-  font-size: 37px;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-background-color: #000000;
-  background-image: linear-gradient(147deg, #000000 0%, #04619f 74%);
 
-  margin-top: 25px;
-  display: block;}
+/* Picture */
+main .avatar {
+  grid-area: avatar;
+  overflow: hidden;
+}
+
+main .avatar img {
+  width: 30%;
+  border-radius: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* About section */
+ul {
+  list-style-type: none;
+}
+
+main .about {
+
+  grid-area: about;
+  margin-top: -90px;
+}
+
+main .about h3 {
+  display: inline;
+  font-size: 18px;
+  margin-right: .5em;
+}
+
+/* Recent Posts section */
+main .posts {
+  grid-area: posts;
+}
+
+/* individual posts have an internal grid as well */
+.post {
+  background: #fff;
+  border-left: 10px solid #333;
+  padding: 0.5em;
+  box-shadow: 0 1.5em 2.5em -0.5em rgba(0, 0, 0, .1);
+  margin-bottom: 1em;
+  min-height: 100px;
+  border-radius: 5px;
+  display: grid;
+  grid-template:
+    "thumbnail author"1.25em "thumbnail time"1.25em "thumbnail content"auto / 80px auto;
+  grid-column-gap: 1em;
+}
+
+.post:hover {
+
+  background-color: rgb(234, 233, 243);
+}
+
+/* Attach each content block to its grid area */
+.post .author {
+  grid-area: author;
+}
+
+.post .time {
+  grid-area: time;
+}
+
+.post .content {
+  grid-area: content;
+}
+
+.post .thumbnail {
+  grid-area: thumbnail;
+}
+
+/* Further styling */
+.post .thumbnail img {
+  height: 100px;
+}
 
 
 
 
 
 
-  .card__icon {
-    background: linear-gradient(to top, #4136f1, #8643ff);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    display: inline-block;
+
+
+
+
+
+/**********/
+h4 {
+  margin-top: 20px;
+}
+
+.profile {
+  background: white;
+  height: 80vh;
+  padding: 30px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.profile .profile-header {
+  background-color: #f9c5d1;
+  background-image: linear-gradient(315deg, #f9c5d1 0%, #9795ef 74%);
+  display: flex;
+  flex: 1;
+  padding: 30px;
+  flex-direction: column;
+  border: 60px solid #333;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-radius: 0 0 30%;
+  box-shadow: 3px 5px 7px 3px #777;
+}
+
+.profile .profile-header .profile-info {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  align-self: space-around;
+  flex-direction: column;
+}
+
+.profile .profile-header .profile-info .profile-img {
+  justify-content: center;
+  align-self: center;
+
+
+
+}
+
+.profile .profile-header .profile-info .profile-img img {
+  border: 3px solid #fff;
+  box-shadow: 0px 4px 4px 5px #888;
+  border-radius: 50%;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  margin-top: -50px;
+}
+
+.profile .profile-header .profile-info .profile-img .status {
+  background: #eee;
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  display: flex;
+  position: relative;
+  top: -60px;
+  right: -195px;
+  border: 3px solid white;
+}
+
+.profile .profile-header .profile-info .profile-img .status.active {
+  background: green;
+}
+
+.profile .profile-header .profile-info .profile-username {
+  justify-content: center;
+  align-self: center;
+  font-size: 35px;
+  letter-spacing: 3px;
+  color: white;
+}
+
+.profile .profile-header .profile-info .profile-skill {
+  justify-content: center;
+  align-self: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #efefef;
+  margin-top: -30px;
+}
+
+.profile .profile-header .actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.profile .profile-header .actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  background: #fff;
+  font-weight: 600;
+  font-size: 23px;
+  margin: 0 5px;
+}
+
+.resposive {
+  width: 30vw;
+  min-width: 500px;
+}
+
+@media only screen and (max-width: 800px) {
+  .resposive {
+    width: 100vw;
   }
-
-  .card__title {
-    text-transform: uppercase;
-    font-size: 25px;
-    font-weight: 600;
-    margin-top: 20px;
-    display: block;
-  }
-  .scrollist {
-    overflow:scroll;
-    max-height: 300px;
-   min-width: 500px;
-
-   }
-
-  h2{
-    font-size: 15px;
-
-    text-transform: uppercase;
+}
 
 
-  }
 
-  .Status {
-    font-size: 18px;
-    color: #fb0098;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
+.status {
+  font-size: 14px;
+  color: #fc8dca;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 
-  }
-  .calendar {
-    color: #4b41f1;
-  }
+}
 
-  .card__list-item__info span.request {
-    color: #f16641;
-  }
+.calendar {
+  color: #4b41f1;
+}
