@@ -20,12 +20,14 @@ status!:string
 
   ngOnInit(): void {
 
+    console.log(this.demandList)
   }
 
   //Demands
   showAll() {
     this.serviceDemand.all().subscribe((ID: IDemand[]) => {
       this.demandList = ID;
+      console.log(this.demandList)
     }),
       (error: HttpErrorResponse) => {
         alert(error.message);

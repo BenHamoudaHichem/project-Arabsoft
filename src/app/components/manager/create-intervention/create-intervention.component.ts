@@ -79,7 +79,7 @@ export class CreateInterventionComponent implements OnInit {
           '',
           [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
         ],
-        zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
+        zipCode: ['', [Validators.required, Validators.pattern('^[0-9 -]{4,}$')]],
 
       },
       {
@@ -94,10 +94,12 @@ export class CreateInterventionComponent implements OnInit {
   dropdownSettings!: {};
   ngOnInit() {
 
+
     this.demandList = new Array(new Dbref(this.route.snapshot.paramMap.get('id')!));
     this.allCategory();
     this.getMaterials();
 
+    console.log(this.categoryList)
     this.allTeam();
     this.demandService.showDemande(this.route.snapshot.paramMap.get('id')!).pipe(finalize(()=>this.currentDemand.title===undefined)).subscribe((res:IDemand)=>{
       this.currentDemand=res as IDemand;
@@ -166,13 +168,14 @@ export class CreateInterventionComponent implements OnInit {
       this.description?.value,
       new Dbref(this.category?.value),
       new Address(this.zipCode?.value,this.street?.value,this.city?.value,this.state?.value,this.counrty?.value,new Location(0,0)),
-      plainToClass(Date,moment(this.date?.value).format("DD-MM-yyyy")),
-      Array.from(this.Materiel?.value as any[], (x) => new Dbref(x.id)),
+      moment(this.date?.value).format("DD-MM-yyyy"),
       this.demandList,
+      Array.from(this.Materiel?.value as any[], (x) => new Dbref(x.id)),
+
       new Dbref(this.team?.value),
       this.status?.value
     );
-    console.log(intervention);
+    console.log(JSON.stringify(intervention));
       this.interventionService.create(intervention).subscribe((data: any) => {
       console.log(data);
       if (data.status == true) {
@@ -195,10 +198,6 @@ export class CreateInterventionComponent implements OnInit {
       (error: HttpErrorResponse) => {
         Report.failure('erreur getting interventions', error.message, 'ok');
       };*/
-  }
-
-  get intervention() {
-    return this.createInterventionForm.get('intervention');
   }
 
   get title() {
@@ -240,21 +239,6 @@ export class CreateInterventionComponent implements OnInit {
   }
 
 
-  getOneInterventions() {
-    this.interventionService
-      .showIntervention(this.intervention?.value)
-      .subscribe((res: IIntervention) => {
-        this.title?.setValue(res.title);
-        this.description?.setValue(res.description);
-        this.date?.setValue(res.startedAt);
-        this.category?.setValue(res.category);
-        this.Materiel?.setValue(res.materials);
-        this.team?.setValue(res.team);
-      }),
-      (error: HttpErrorResponse) => {
-        Report.failure('Erreur', error.message, 'OK');
-      };
-  }
   chechIsNow(){
     if(this.status?.value==this.statusList[1].value)
     {
