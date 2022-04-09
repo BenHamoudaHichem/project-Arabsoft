@@ -113,7 +113,7 @@ const routes: Routes = [
         component: InterventionListComponent,
       },
 
-      { path: 'manager/agentList', component: MembersListComponent },
+      { path: 'manager/employeeList', component: MembersListComponent },
       {
         path: 'manager/userProfil/:id',
         component: CustomerProfilComponent,

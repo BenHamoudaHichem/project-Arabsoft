@@ -5,70 +5,61 @@
         <div class="card card-registration my-4">
           <div class="logo">
             <div class="card-title text-center">
-
-              <h1 class="mb-5 text-uppercase"> Detail reclamation </h1>
+              <h1 class="mb-5 text-uppercase">Detail reclamation</h1>
             </div>
           </div>
 
           <div class="row g-2">
-
-
-
-            <div class="col-xl-6  d-xl-block">
+            <div class="col-xl-6 d-xl-block">
               <div class="card-body p-md-5 text-black">
-
-                <h3 class="card-title"><i class="fas fa-list-alt"></i>&nbsp;Désignation</h3>
+                <h3 class="card-title">
+                  <i class="fas fa-list-alt"></i>&nbsp;Désignation
+                </h3>
 
                 <p class="card-text">
                   {{ demand.title }}
-
                 </p>
-
               </div>
               <div class="card-body p-md-5 text-black">
-
-                <h3 class="card-title"><i class="fa fa-calendar"></i>&nbsp;Date d'envoi</h3>
+                <h3 class="card-title">
+                  <i class="fa fa-calendar"></i>&nbsp;Date d'envoi
+                </h3>
 
                 <p class="card-text">
                   {{ demand.createdAt }}
-
                 </p>
-
               </div>
 
               <div class="card-body p-md-5 text-black">
-                <h3 class="card-title"><i class="fas fa-info-circle"></i>&nbsp;Description</h3>
+                <h3 class="card-title">
+                  <i class="fas fa-info-circle"></i>&nbsp;Description
+                </h3>
 
                 <p class="card-text">
                   {{ demand.description }}
-
                 </p>
-
-
-
               </div>
-
             </div>
             <div class="col-xl-6">
               <div class="card-body p-md-5 text-black">
-                <h3 class="card-title"><i class="fas fa-question-circle"></i> &nbsp;Status</h3>
+                <h3 class="card-title">
+                  <i class="fas fa-question-circle"></i> &nbsp;Status
+                </h3>
 
-                <p class="card-text"> {{status}}</p>
-</div>
-<div class="card-body p-md-5 text-black">
-                <h3 class="card-title"><i class="fas fa-map-marker-alt"></i>&nbsp;Localisation</h3>
-                <p class="card-text">Rue : {{demand.address.Street}}
-                  <br>Ville : {{demand.address.City}}
-                  <br>Gouvernorat : {{demand.address.State}}
-                  <br>Pays : {{demand.address.Country}}
-                </p>
-
-
-
+                <p class="card-text">{{ status }}</p>
               </div>
-
+              <div class="card-body p-md-5 text-black">
+                <h3 class="card-title">
+                  <i class="fas fa-map-marker-alt"></i>&nbsp;Localisation
+                </h3>
+                <p class="card-text">
+                  Rue : {{ demand.address.Street }} <br />Ville :
+                  {{ demand.address.City }} <br />Gouvernorat :
+                  {{ demand.address.State }} <br />Pays :
+                  {{ demand.address.Country }}
+                </p>
+              </div>
             </div>
-
           </div>
 
           <div class="d-flex justify-content-center">
@@ -81,16 +72,17 @@
                 </svg></span>
             </button>
             &nbsp; &nbsp;
-          <a [routerLink]="['/dashboard/manager/createIntervention',demand.id]" routerLinkActive="router-link-active" >
-            <button class="green">
-            <span class="text">Accepter</span><span class="iconG">
-              <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 52 52">
-                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
-                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
-              </svg>
-            </span>
-          </button
-          ></a>
+            <a [routerLink]="[
+                '/dashboard/manager/createIntervention',
+                demand.id
+              ]" routerLinkActive="router-link-active">
+              <button class="green">
+                <span class="text">Accepter</span><span class="iconG">
+                  <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 52 52">
+                    <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                    <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                  </svg>
+                </span></button></a>
           </div>
         </div>
       </div>

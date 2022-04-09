@@ -1,5 +1,3 @@
-
-
 /* HEADING */
 
 @media (max-width: 1600px) {
@@ -7,27 +5,29 @@
     justify-content: center;
   }
 }
+
 /*---*/
 
 /*
 uuu
 */
 
-/*************/
+/*****Buttoms ********/
 /* From cssbuttons.io */
 button {
   width: 160px;
-  height: 70px!important;
+  height: 70px !important;
   cursor: pointer;
   display: flex;
   align-items: center;
   background: red;
   border: none;
   border-radius: 5px;
-  box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
   background: #e62222;
- }
- .green {
+}
+
+.green {
   width: 150px;
   height: 50px;
   cursor: pointer;
@@ -36,21 +36,22 @@ button {
   background: #7ac142;
   border: none;
   border-radius: 5px;
-  box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
- }
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+}
 
- button, button span {
+button,
+button span {
   transition: 200ms;
- }
+}
 
- button .text {
+button .text {
   transform: translateX(35px);
   color: white;
-text-transform: uppercase;
+  text-transform: uppercase;
   font-size: 15px;
- }
+}
 
- button .icon {
+button .icon {
   position: absolute;
   border-left: 1px solid #c41b1b;
   transform: translateX(110px);
@@ -59,57 +60,60 @@ text-transform: uppercase;
   display: flex;
   align-items: center;
   justify-content: center;
- }
- button .iconG {
+}
+
+button .iconG {
   position: absolute;
   border-left: 1px solid #6b8657;
   transform: translateX(110px);
- 
+
   display: flex;
   align-items: center;
   justify-content: center;
- }
+}
 
- button svg {
+button svg {
   width: 30px;
   fill: #eee;
- }
+}
 
- button:hover {
+button:hover {
   background: #ff3636;
- }
- .green:hover {
+}
+
+.green:hover {
   background: #7ac142;
- }
+}
 
- button:hover .text {
+button:hover .text {
   color: transparent;
- }
+}
 
- button:hover .icon {
+button:hover .icon {
   width: 150px;
   border-left: none;
   transform: translateX(0);
- }
- button:hover .iconG {
+}
+
+button:hover .iconG {
   width: 150px;
   border-left: none;
   transform: translateX(0);
- }
+}
 
- button:focus {
+button:focus {
   outline: none;
- }
+}
 
- button:active .icon svg {
+button:active .icon svg {
   transform: scale(0.8);
- }
+}
 
 
 
 
 
- /********/
+/********/
 
 .checkmark {
   width: 100;
@@ -122,6 +126,7 @@ text-transform: uppercase;
   box-shadow: inset 0px 0px 0px #ffffff;
   animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
 }
+
 .checkmark__circle {
   stroke-dasharray: 100;
   stroke-dashoffset: 100;
@@ -131,30 +136,41 @@ text-transform: uppercase;
   fill: none;
   animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
 }
+
 .checkmark__check {
   transform-origin: 60% 60%;
   stroke-dasharray: 100%;
   stroke-dashoffset: 100%;
   animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
 }
+
 @keyframes stroke {
   100% {
     stroke-dashoffset: 0;
- }
+  }
 }
+
 @keyframes scale {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: none;
- }
+  }
+
   50% {
     transform: scale3d(1.1, 1.1, 1);
- }
+  }
 }
+
 @keyframes fill {
   100% {
     box-shadow: inset 0px 0px 0px 30px #7ac142;
- }
+  }
 }
+
+
+
+/*****Card ********/
 .card {
   border-radius: 30px;
   box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.15);
@@ -162,8 +178,13 @@ text-transform: uppercase;
   padding: 25px 30px;
 }
 
-.card-text{font-size: 20px;}
-h3{  background: -webkit-linear-gradient(120deg, #71b7e6, #bd9dca);
+.card-text {
+  font-size: 20px;
+}
+
+
+h3 {
+  background: -webkit-linear-gradient(120deg, #71b7e6, #bd9dca);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
@@ -171,50 +192,3 @@ h3{  background: -webkit-linear-gradient(120deg, #71b7e6, #bd9dca);
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 
-
- /********/
-
-.checkmark {
-  width: 100;
-  height: 100;
-  border-radius: 50%;
-  display: block;
-  stroke-width: 10;
-  stroke: #fff;
-  stroke-miterlimit: 10;
-  box-shadow: inset 0px 0px 0px #ffffff;
-  animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
-}
-.checkmark__circle {
-  stroke-dasharray: 300;
-  stroke-dashoffset: 300;
-  stroke-width: 100;
-  stroke-miterlimit: 10;
-  stroke: #7ac142;
-  fill: none;
-  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
-}
-.checkmark__check {
-  transform-origin: 60% 60%;
-  stroke-dasharray: 100%;
-  stroke-dashoffset: 100%;
-  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
-}
-@keyframes stroke {
-  100% {
-    stroke-dashoffset: 0;
- }
-}
-@keyframes scale {
-  0%, 100% {
-    transform: none;
- }
-  50% {
-    transform: scale3d(1.1, 1.1, 1);
- }
-}
-@keyframes fill {
-  100% {
-    box-shadow: inset 0px 0px 0px 30px #7ac142;
- }
-}

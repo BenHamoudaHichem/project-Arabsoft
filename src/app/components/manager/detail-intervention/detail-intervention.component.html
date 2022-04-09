@@ -3,18 +3,24 @@
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col">
         <div class="card card-registration my-4">
-          <div class="logo">
-            <div class="card-title text-center">
-              <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
-              <span class="mb-5 text-uppercase"> Intervention {{intervention.title}}</span>
-            </div>
-          </div>
+            <h1 class="text-center text-uppercase "> Detail intervention</h1>
 
           <div class="row g-2">
 
             <div class="col-xl-6  d-xl-block">
               <div class="card-body p-md-5 text-black">
-                <h5 class="card-title">Description</h5>
+                <h3 class="card-title"> <i class="fa fa-list"></i> &nbsp; Désignation</h3>
+
+                <p class="card-text">
+                  {{intervention.title}}
+                </p>
+              </div>
+              <div class="card-body p-md-5 text-black">
+                <h3 class="card-title"> <i class="fa fa-exclamation-circle"></i> &nbsp;Status</h3>
+                <p class="card-text"> {{intervention.status}}</p>
+                </div>
+              <div class="card-body p-md-5 text-black">
+                <h3 class="card-title"> <i class="fa fa-info-circle"></i> &nbsp;Description</h3>
 
                 <p class="card-text">
                   {{intervention.description}}
@@ -26,15 +32,18 @@
 
             </div>
             <div class="col-xl-6">
-              <div class="card-body p-md-5 text-black">
-                <h5 class="card-title">Status</h5>
-                <p class="card-text"> {{intervention.status}}</p>
-                <h5 class="card-title">Categorie</h5>
+
+                <div class="card-body p-md-5 text-black">
+                <h3 class="card-title"> <i class="fa fa-info"></i>&nbsp; Categorie</h3>
                 <p class="card-text"> {{intervention.category.getNameCategory()}}</p>
-                <h5 class="card-title">Date debut</h5>
+                </div>
+                <div class="card-body p-md-5 text-black">
+                <h3 class="card-title"> <i class="fa fa-calendar-alt"></i> &nbsp;Date debut</h3>
                 <p class="card-text">
                   {{intervention.startedAt}}</p>
-                <h5 class="card-title">Date d'acceptation</h5>
+                  </div>
+                  <div class="card-body p-md-5 text-black">
+                <h3 class="card-title"> <i class="fa fa-calendar-check"></i>&nbsp; Date d'acceptation</h3>
                 <p class="card-text">
                   {{intervention.createdAt}}
                 </p>
