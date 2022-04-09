@@ -56,7 +56,7 @@ main {
   /* Sections are stacked one above the other */
   main {
     grid-template:
-      "name"3em "avatar"auto "about"auto "posts"auto;
+      "name" 3em "avatar" auto "about" auto "posts" auto;
   }
 
   main .avatar {
@@ -74,7 +74,7 @@ main {
 
   main {
     grid-template:
-      "avatar name"3em "avatar posts"calc(350px - 3em) "about  posts"auto / 2fr 3fr;
+      "avatar name" 3em "avatar posts" calc(350px - 3em) "about  posts" auto / 2fr 3fr;
     grid-column-gap: 4em;
   }
 }
@@ -146,8 +146,7 @@ main .posts {
   min-height: 100px;
   border-radius: 5px;
   display: grid;
-  grid-template:
-    "thumbnail author"1.25em "thumbnail time"1.25em "thumbnail content"auto / 80px auto;
+  grid-template:"thumbnail author" 1.25em "thumbnail time" 1.25em "thumbnail content" auto / 80px auto;
   grid-column-gap: 1em;
 }
 

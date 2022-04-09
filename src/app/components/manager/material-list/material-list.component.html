@@ -12,12 +12,13 @@
           <a [routerLink]="['/dashboard/manager/materialList']" routerLinkActive>
             <button (click)="showAll()" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
               data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
-              Tous
+              <i class="fas fa-list"></i> Tous
             </button></a>
           <a [routerLink]="['/dashboard/manager/materialList']" routerLinkActive
             [queryParams]="{ status: 'DISPONIBLE' }">
             <button (click)="showByStatus()" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
               data-bs-target="#nav-profile" type="button" role="tab" aria-selected="false">
+              <i class="fa fa-spinner" aria-hidden="true"></i>
               Disponible
             </button></a>
         </div>

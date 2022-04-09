@@ -6,3 +6,13 @@
 
   padding: 25px 30px;
 }
+
+h3 {
+  background: -webkit-linear-gradient(120deg, #71b7e6, #bd9dca);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  font-size: 35px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+}
+
