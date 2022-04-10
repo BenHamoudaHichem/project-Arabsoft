@@ -18,6 +18,10 @@ export class ConfigurationService {
   };
   public init()
   {
+    if (!this.authService.isLogin) {
+
+      return null
+    }
 
     return new Promise((resolve, reject) => {
       this.http
@@ -35,7 +39,7 @@ export class ConfigurationService {
               this.router.navigate(['/dashboard/manager/home'])
             }
           } else {
-          
+
             Report.warning("Connexion","Vous devez rconnecter","D'accord")
             this.authService.onLogoutSucess()
             this.router.navigate(['/login'])
