@@ -2,6 +2,7 @@ import { Address } from 'src/app/models/Address';
 import { Category } from 'src/app/models/Category';
 import { Material } from 'src/app/models/resources/Material';
 import { Team } from 'src/app/models/resources/team';
+import { ITeam } from '../../resources/team/iteam';
 
 export interface IIntervention {
   id: string;
@@ -12,7 +13,7 @@ export interface IIntervention {
     startedAt: Date,
     status: string,
     demandList:{id:string}[],
-    team:Team,
+    team:ITeam,
     createdAt: Date,
-    materials:Material[]
+    materialList:Material[]
 }

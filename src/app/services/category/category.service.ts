@@ -32,7 +32,7 @@ export class CategoryService {
       })
     );
   }
- 
+
 
   findInterventionsByCategory(id:string): Observable<IIntervention[]> {
     return this.http.get<IIntervention[]>(`${this.apiURL}/${id}/interventions`).pipe(
@@ -48,7 +48,7 @@ export class CategoryService {
     demandList:int.demandList,
     team:int.team,
     createdAt: int.createdAt,
-    materials:int.materials
+    materialList:int.materialList
         }));
       })
     );

@@ -35,7 +35,7 @@ export class InterventionService {
           demandList:intervention.demandList,
           team:intervention.team,
           createdAt: intervention.createdAt,
-          materials:intervention.materials
+          materialList:intervention.materialList
         }));
       })
     );
@@ -56,7 +56,7 @@ export class InterventionService {
     demandList:intervention.demandList,
     team:intervention.team,
     createdAt: intervention.createdAt,
-    materials:intervention.materials
+    materialList:intervention.materialList
         }));
       })
     );
