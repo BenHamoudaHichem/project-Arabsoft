@@ -45,6 +45,7 @@ import { CategoryComponent } from './components/manager/category/category.compon
 import { MembersListComponent } from './components/manager/members-list/members-list.component';
 import { CustomerListComponent } from './components/manager/customer-list/customer-list.component';
 import { DetailsCustomerComponent } from './components/manager/details-customer/details-customer.component';
+import { DetailCategoryComponent } from './components/manager/detail-category/detail-category.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ HomeComponentPage,
     MembersListComponent,
     CustomerListComponent,
     DetailsCustomerComponent,
+    DetailCategoryComponent,
   ],
   imports: [
     BrowserModule,

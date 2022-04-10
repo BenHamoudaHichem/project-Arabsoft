@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col"></div>
+  <div class="col-6">
+    <h1 class="text-uppercase text-center">
+      Les interventions liés à cette categorie
+    </h1>
+    <h5 *ngIf="interventionList != null">
+      Il ya <span>{{ interventionList.length }} </span> interventions dans cette
+      catégorie
+    </h5>
+
+    <hr />
+    <div class="posts">
+      <article class="post text-uppercase" *ngFor="let item of interventionList">
+        <div class="thumbnail"></div>
+        <strong class="author text-uppercase">{{ item.title }}</strong>
+
+        <small class="time calendar">
+          <i class="fa fa-calendar-check"></i> Date de debut: &nbsp;
+          <time>{{ item.startedAt }}</time></small>
+        <span class="content team">
+          <i class="fa fa-users"></i> {{ item.team.getName() }}</span>
+      </article>
+      <article class="post">
+        <div class="thumbnail"></div>
+        <strong class="author text-uppercase">titre intervention</strong>
+
+        <small class="time calendar">
+          <i class="fa fa-calendar-check"></i> Date de debut: &nbsp;<time>21/20/2015</time></small>
+        <span class="content team">
+          <i class="fa fa-users"></i> equipe #1)</span>
+      </article>
+    </div>
+  </div>
+  <div class="col"></div>
+</div>

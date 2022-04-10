@@ -33,6 +33,7 @@ import { CategoryComponent } from './components/manager/category/category.compon
 import { MembersListComponent } from './components/manager/members-list/members-list.component';
 import { CustomerListComponent } from './components/manager/customer-list/customer-list.component';
 import { DetailsCustomerComponent } from './components/manager/details-customer/details-customer.component';
+import { DetailCategoryComponent } from './components/manager/detail-category/detail-category.component';
 const roles = { customer: 'ROLE_USER', manager: 'ROLE_MANAGER' };
 const routes: Routes = [
   { path: 'home', component: HomeComponentPage },
@@ -113,7 +114,9 @@ const routes: Routes = [
         component: InterventionListComponent,
       },
 
-      { path: 'manager/employeeList', component: MembersListComponent },
+      { path: 'manager/employeeList',
+       component: MembersListComponent },
+
       {
         path: 'manager/userProfil/:id',
         component: CustomerProfilComponent,
@@ -182,6 +185,10 @@ const routes: Routes = [
       {
         path: 'manager/categorylist',
         component: CategoryComponent,
+      },
+      {
+        path: 'manager/detailCategory/:id',
+        component: DetailCategoryComponent,
       },
       /*
        * End manager

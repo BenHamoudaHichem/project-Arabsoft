@@ -150,6 +150,8 @@ main .posts {
   grid-column-gap: 1em;
 }
 
+.time{  line-height: 40px!important;}
+.status{  line-height: 60px!important;}
 .post:hover {
 
   background-color: rgb(234, 233, 243);

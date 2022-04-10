@@ -9,7 +9,6 @@ export class User {
     private password: string,
     private address: Address,
     private tel: string,
-
     private roles: string[]
   ) {}
 
