@@ -21,6 +21,7 @@ export class HomeManagerComponent implements OnInit {
   constructor(private homeLoaderService:HomeLoaderService,private teamService:TeamService ) {
     this.homeLoaderService.loadHomeForManager().subscribe((res:IHomeManager)=>{
       this.infos=res
+      console.log(this.infos)
     })
   }
 

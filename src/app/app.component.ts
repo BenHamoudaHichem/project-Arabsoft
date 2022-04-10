@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RoutesRecognized } from '@angular/router';
 import { Loading } from 'notiflix';
+import { filter, pairwise } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { Loading } from 'notiflix';
 export class AppComponent {
   constructor(private route: Router) {
     this.checkRoutr();
+
   }
   w = false;
   title = 'appGestInerventions';
@@ -25,5 +27,5 @@ export class AppComponent {
   checkHome() {
     return this.route.url == '/home';
   }
-  
+
 }
