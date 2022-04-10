@@ -16,7 +16,6 @@ export class DemandService {
     }),
   };
   private apiURL = 'http://127.0.0.1:8080/api/demands';
-  public data$ = new Subject<boolean>()
 
   constructor(
     private http: HttpClient,
