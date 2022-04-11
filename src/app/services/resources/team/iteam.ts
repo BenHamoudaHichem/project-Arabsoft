@@ -5,4 +5,5 @@ export interface ITeam {
 name: string;
   manager: User;
   members: User[];
+  status :string
 }

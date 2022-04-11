@@ -22,6 +22,7 @@ export class CategoryComponent implements OnInit {
   }
 get categorie(){return this.categorieForm.get('categorie')}
   ngOnInit(): void {
+    this.getAll()
   }
 
 

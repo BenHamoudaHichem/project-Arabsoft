@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
@@ -7,8 +7,8 @@ import { CookieService } from 'ngx-cookie-service';
 export class CookiesService {
   public static ROLE_CUSTOMER:string="ROLE_USER"
   public static ROLE_MANAGER:string="ROLE_MANAGER"
-
   constructor(private myCookies: CookieService) {}
+
   createToken(token: string): void {
     this.myCookies.set('_token', token);
   }
@@ -39,5 +39,9 @@ export class CookiesService {
   }
   deleteAll() {
     this.myCookies.deleteAll('/', 'localhost', false, 'Lax');
+  }
+  static init()
+  {
+
   }
 }

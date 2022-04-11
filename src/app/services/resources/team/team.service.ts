@@ -29,6 +29,7 @@ export class TeamService {
           name: team.name,
           manager: team.manager,
           members: team.members,
+          status:team.status
         }));
       })
     );
@@ -41,6 +42,7 @@ export class TeamService {
           name: team.name,
           manager: team.manager,
           members: team.members,
+          status:team.status
         }));
       })
     );
