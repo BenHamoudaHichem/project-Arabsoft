@@ -37,21 +37,13 @@ import { DetailCategoryComponent } from './components/manager/detail-category/de
 import { RedirectGuard } from './services/redirect.guard';
 const roles = { customer: 'ROLE_USER', manager: 'ROLE_MANAGER' };
 const routes: Routes = [
-  { path: 'home', component: HomeComponentPage, canActivate: [RedirectGuard] },
+  { path: 'home', component: HomeComponentPage,canActivate:[RedirectGuard]},
   { path: 'admin', component: DashboardAdminComponent },
   { path: 'not-found', component: NotFoundComponent },
-  { path: 'login', component: LoginComponent, canActivate: [RedirectGuard] },
-  {
-    path: 'register',
-    component: RegisterComponent,
-    canActivate: [RedirectGuard],
-  },
-  { path: 'propos', component: AboutUsComponent, canActivate: [RedirectGuard] },
-  {
-    path: 'contact',
-    component: ContactUSComponent,
-    canActivate: [RedirectGuard],
-  },
+  { path: 'login', component: LoginComponent ,canActivate:[RedirectGuard]},
+  { path: 'register', component: RegisterComponent ,canActivate:[RedirectGuard]},
+  { path: 'propos', component: AboutUsComponent,canActivate:[RedirectGuard] },
+  { path: 'contact', component: ContactUSComponent ,canActivate:[RedirectGuard]},
   {
     path: 'dashboard',
     component: DashboardAdminComponent,
@@ -62,6 +54,10 @@ const routes: Routes = [
       {
         path: 'customer/home',
         component: HomeCustomerComponent,
+        canActivate:[GuardAuthenticateGuard],
+         data: {
+          roles: customer
+        }
       },
 
       {
@@ -123,7 +119,8 @@ const routes: Routes = [
         component: InterventionListComponent,
       },
 
-      { path: 'manager/employeeList', component: MembersListComponent },
+      { path: 'manager/employeeList',
+       component: MembersListComponent },
 
       {
         path: 'manager/userProfil/:id',
