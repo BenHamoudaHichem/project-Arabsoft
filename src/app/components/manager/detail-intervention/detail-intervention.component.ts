@@ -31,7 +31,7 @@ this.status='En cours'
     if(this.intervention.status=='Waiting'){
       this.status='En attente'
     }
-    
+
   }
 
   // showDetail
