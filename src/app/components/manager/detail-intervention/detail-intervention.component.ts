@@ -2,6 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Report } from 'notiflix';
+import { User } from 'src/app/models/user';
+import { ITeam } from 'src/app/services/resources/team/iteam';
 import { IIntervention } from 'src/app/services/works/intervention/iintervention';
 import { InterventionService } from 'src/app/services/works/intervention/intervention.service';
 
@@ -13,6 +15,8 @@ import { InterventionService } from 'src/app/services/works/intervention/interve
 export class DetailInterventionComponent implements OnInit {
   id!: string;
   intervention!: IIntervention;
+  status!:string
+  ITeam!:User[]
   constructor(
     private interventionService: InterventionService,
     private route: ActivatedRoute
@@ -20,6 +24,14 @@ export class DetailInterventionComponent implements OnInit {
 
   ngOnInit(): void {
     this.showDetail(String(this.route.snapshot.paramMap.get('id')));
+    if(this.intervention.status=='In_Progress')
+    {
+this.status='En cours'
+    }
+    if(this.intervention.status=='Waiting'){
+      this.status='En attente'
+    }
+    
   }
 
   // showDetail
@@ -28,6 +40,8 @@ export class DetailInterventionComponent implements OnInit {
       .showIntervention(id)
       .subscribe((II: IIntervention) => {
         this.intervention = II;
+
+
       }),
       (error: HttpErrorResponse) => {
         Report.warning('Erreur', error.message, 'OK');
@@ -35,4 +49,6 @@ export class DetailInterventionComponent implements OnInit {
         console.log(error.message);
       };
   }
+
+
 }

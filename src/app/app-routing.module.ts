@@ -34,15 +34,16 @@ import { MembersListComponent } from './components/manager/members-list/members-
 import { CustomerListComponent } from './components/manager/customer-list/customer-list.component';
 import { DetailsCustomerComponent } from './components/manager/details-customer/details-customer.component';
 import { DetailCategoryComponent } from './components/manager/detail-category/detail-category.component';
+import { RedirectGuard } from './services/redirect.guard';
 const roles = { customer: 'ROLE_USER', manager: 'ROLE_MANAGER' };
 const routes: Routes = [
-  { path: 'home', component: HomeComponentPage },
+  { path: 'home', component: HomeComponentPage,canActivate:[RedirectGuard]},
   { path: 'admin', component: DashboardAdminComponent },
   { path: 'not-found', component: NotFoundComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'propos', component: AboutUsComponent },
-  { path: 'contact', component: ContactUSComponent },
+  { path: 'login', component: LoginComponent ,canActivate:[RedirectGuard]},
+  { path: 'register', component: RegisterComponent ,canActivate:[RedirectGuard]},
+  { path: 'propos', component: AboutUsComponent,canActivate:[RedirectGuard] },
+  { path: 'contact', component: ContactUSComponent ,canActivate:[RedirectGuard]},
   {
     path: 'dashboard',
     component: DashboardAdminComponent,

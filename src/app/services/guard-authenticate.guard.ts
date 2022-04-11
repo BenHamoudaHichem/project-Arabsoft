@@ -27,7 +27,6 @@ export class GuardAuthenticateGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot):boolean {
 
     if (this.authService.isLogin) {
-
       return this.cookies.getRole.includes(route.data['role']);
 
     }

@@ -47,6 +47,7 @@ import { CustomerListComponent } from './components/manager/customer-list/custom
 import { DetailsCustomerComponent } from './components/manager/details-customer/details-customer.component';
 import { DetailCategoryComponent } from './components/manager/detail-category/detail-category.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
