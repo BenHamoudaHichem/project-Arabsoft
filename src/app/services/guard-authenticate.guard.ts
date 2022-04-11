@@ -22,17 +22,20 @@ export class GuardAuthenticateGuard implements CanActivate {
   constructor(
     private authService: AuthenticateService,
     private cookies: CookiesService,
-    private _router: Router
+    private router: Router
   ) {}
-  canActivate(route: ActivatedRouteSnapshot):boolean {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    const currentUser = this.authService.getUsername;
+    if (currentUser) {
+        if (route.data['roles'] && route.data['roles'].indexOf(this.cookies.getRole) === -1) {
+            this.router.navigate(['/dashboard/not-found']);
+            return false;
+        }
 
-    if (this.authService.isLogin) {
-      return this.cookies.getRole.includes(route.data['role']);
-
+        return true;
     }
-    console.log('not loging');
-    this._router.navigate(['/login']);
-    return false;
 
-  }
+    this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });
+    return false
+}
 }

@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, RoutesRecognized } from '@angular/router';
-import { Loading } from 'notiflix';
-import { filter, pairwise } from 'rxjs';
+
 
 @Component({
   selector: 'app-root',
@@ -9,23 +7,9 @@ import { filter, pairwise } from 'rxjs';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor(private route: Router) {
-    this.checkRoutr();
+  constructor() {
 
-  }
-  w = false;
-  title = 'appGestInerventions';
-  checkRoutr() {
-    return (
-      this.route.url.includes('/manager') ||
-      this.route.url.includes('/customer')
-    );
-  }
-  Exist() {
-    return this.route.url == '/home';
-  }
-  checkHome() {
-    return this.route.url == '/home';
+
   }
 
 }

@@ -12,13 +12,8 @@ export class HomeComponentPage implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit(): void {
-    this.router.events
-    .pipe(filter((evt: any) => evt instanceof RoutesRecognized), pairwise())
-    .subscribe((events: RoutesRecognized[]) => {
-      console.log('previous url', events[0].urlAfterRedirects);
-      console.log('current url', events[1].urlAfterRedirects);
-    });
-    
+   
+
   }
 
   toLoginPage(){

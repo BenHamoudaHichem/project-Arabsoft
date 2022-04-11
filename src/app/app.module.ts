@@ -46,7 +46,6 @@ import { MembersListComponent } from './components/manager/members-list/members-
 import { CustomerListComponent } from './components/manager/customer-list/customer-list.component';
 import { DetailsCustomerComponent } from './components/manager/details-customer/details-customer.component';
 import { DetailCategoryComponent } from './components/manager/detail-category/detail-category.component';
-import { ConfigurationService } from './services/configuration/configuration.service';
 
 
 @NgModule({
@@ -102,16 +101,9 @@ HomeComponentPage,
       libraries: ['places']
    })
   ],
-  providers: [/*{
-    provide: APP_INITIALIZER,
-    useFactory: configurationProviderFactory,
-    multi: true,
-    deps: [ConfigurationService]
-  },*/CookieService,GuardAuthenticateGuard],
+  providers: [CookieService,GuardAuthenticateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
  }
- export function configurationProviderFactory(configService: ConfigurationService) {
-  return () => configService.init();
-}
+

@@ -5,7 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root',
 })
 export class CookiesService {
-  public static ROLE_CUSTOMER:string="ROLE_USER"
+  public static ROLE_CUSTOMER:string="ROLE_CUSTOMER"
   public static ROLE_MANAGER:string="ROLE_MANAGER"
   constructor(private myCookies: CookieService) {}
 

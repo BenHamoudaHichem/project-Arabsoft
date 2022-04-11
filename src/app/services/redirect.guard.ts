@@ -20,13 +20,13 @@ export class RedirectGuard implements CanActivate {
   canActivate(): boolean {
     if (this.authService.isLogin && this.authService.isCustumer) {
       this._router.navigate(['/dashboard/customer/home']);
-      return true;
+      return false;
     }
 
     if (this.authService.isLogin && this.authService.isMANAGER) {
       this._router.navigate(['/dashboard/manager/home']);
-      return true;
+      return false;
     }
-    return false;
+    return true;
   }
 }
