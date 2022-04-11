@@ -16,7 +16,7 @@ export class DetailInterventionComponent implements OnInit {
   id!: string;
   intervention!: IIntervention;
   status!:string
-  ITeam!:User[]
+  ITeam!:ITeam[]
   constructor(
     private interventionService: InterventionService,
     private route: ActivatedRoute
@@ -31,7 +31,7 @@ this.status='En cours'
     if(this.intervention.status=='Waiting'){
       this.status='En attente'
     }
-    
+
   }
 
   // showDetail

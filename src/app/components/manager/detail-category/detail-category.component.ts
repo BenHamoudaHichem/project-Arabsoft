@@ -28,10 +28,7 @@ this.interventionList.forEach(element => {
   element.team.members.forEach(m => {
     m=plainToClass(User,m)
   });
-  element.materialList.forEach(material => {
-    material=plainToClass(Material,material)
-
-  });
+  
 
 });
     }),

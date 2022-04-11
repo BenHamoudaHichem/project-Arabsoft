@@ -102,12 +102,12 @@ HomeComponentPage,
       libraries: ['places']
    })
   ],
-  providers: [{
+  providers: [/*{
     provide: APP_INITIALIZER,
     useFactory: configurationProviderFactory,
     multi: true,
     deps: [ConfigurationService]
-  },CookieService,GuardAuthenticateGuard],
+  },*/CookieService,GuardAuthenticateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {
