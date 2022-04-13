@@ -27,7 +27,7 @@
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.css"],
-            "scripts": ["src/assets/js/sidebar.js"]
+            "scripts": []
           },
           "configurations": {
             "production": {

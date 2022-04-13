@@ -1,0 +1,128 @@
+{
+  "titles": {
+    "log": "login",
+    "register": "register",
+    "home": "home",
+    "profil": "profil",
+    "add_emp": "subscribe member",
+    "add_inter": "create an intervention",
+    "add_material": "add material",
+    "add_demand": "send a claim",
+    "add_team": "add team",
+    "add_category": "add category",
+    "update_material": "update material",
+    "update_pro": "update profil",
+    "materials": "materials",
+    "employees": "employees",
+    "customers": "customers",
+    "intervention": "interventions",
+    "categories": "categories",
+    "demands": {
+      "title": "claims",
+      "title_home": "list of subscription contracts"
+    },
+    "detail_demand": "requests sent",
+    "detail_inter": {
+      "title": "detail of the intervention",
+      "demands": "requests affected",
+      "members": "members of {members} ",
+      "materials": "materials used",
+      "table": {
+        "nom": "member name",
+        "role": "role",
+        "phone": "phone",
+        "action": "action"
+      }
+    },
+    "detail_team": "team detail",
+    "detail_category": "category detail"
+  },
+  "buttons": {
+    "consult": "show ",
+    "consult_members": "show members",
+    "consult_details": "show details",
+    "create": "create",
+    "add": "add",
+    "edit": "edit",
+    "all": "all",
+    "available": "available",
+    "accept": "accept",
+    "dismiss": "dismiss"
+  },
+  "input": {
+    "titles": {
+      "title": "title",
+      "status": "status",
+      "which_date": "which date",
+      "category": "category",
+      "team": "team",
+      "add_tm": "add a team manager",
+      "add_mbrs": "add members",
+      "description": "description",
+      "materials": "materials",
+      "purchase_date": "date of purchase",
+      "firstname": "firstname",
+      "lastname": "lastname",
+      "identifier": "identifier",
+      "password": "password",
+      "confirm_password": "confirm password",
+      "tel": "phone",
+      "email": "email"
+    },
+    "msg": {
+      "intervention": "enter the intervention name",
+      "demand": "enter the title of claim",
+      "material": "enter the material name",
+      "mat_select": "select materials",
+      "firstname": "enter your firstname",
+      "lastname": "enter your lastname",
+      "identifier": "enter your identifier",
+      "tel": "(+216) __ ___ ___",
+      "email": "enter your email",
+      "category": "enter category name",
+      "team": "enter the team name",
+      "tm_select": "select team manager",
+      "designation": "write..."
+    }
+  },
+  "location": {
+    "title": "location",
+    "country": "country",
+    "city": "city",
+    "postal_code": "postal code",
+    "governorate": "governorate",
+    "street": "street"
+  },
+  "status": {
+    "title": "status",
+    "in_progress": "in_progress",
+    "wating": "wating",
+    "broken": "is broken",
+    "is_on": "in good shape"
+  },
+  "cards": {
+    "green": "applications accepted",
+    "red": "rejected applications",
+    "bleu": "notifications",
+    "white": "applications in progress"
+  },
+  "variabls": {
+    "title": "{title}",
+    "startedat_inter": "{started_at}",
+    "status": "{status}",
+    "category_inter": "{category}",
+    "description_inter": "{description}",
+    "firstname": "{firstname}",
+    "lastname": "{lastname}",
+    "identifier": "{identifier}",
+    "password": "{password}",
+    "confirm_password": "{confirm_password}",
+    "tel": "{phone}",
+    "country": "{country}",
+    "city": "{city}",
+    "postal_code": "{postal_code}",
+    "governorate": "{governorate}",
+    "street": "{street}",
+    "description": "{description}"
+  }
+}

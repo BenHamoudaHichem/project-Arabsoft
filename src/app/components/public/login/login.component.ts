@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
         "Notification de connexion",error.message,"D'accord"
         )
     };
-   // Report.warning('Echec','Veuillez verifier votre adresse ou mot de passe','OK');
+//  Report.warning('Echec','Veuillez verifier votre adresse ou mot de passe','OK');
   }
 
   get Identifier() {
