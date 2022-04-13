@@ -1,8 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { plainToClass } from 'class-transformer';
 import { Report } from 'notiflix';
+import { Address } from 'src/app/models/Address';
+import { Category } from 'src/app/models/Category';
+import { Material } from 'src/app/models/resources/Material';
 import { User } from 'src/app/models/user';
+import { Demand } from 'src/app/models/works/demand';
 import { ITeam } from 'src/app/services/resources/team/iteam';
 import { IIntervention } from 'src/app/services/works/intervention/iintervention';
 import { InterventionService } from 'src/app/services/works/intervention/intervention.service';
@@ -38,8 +43,29 @@ this.status='En cours'
   showDetail(id: string) {
     this.interventionService
       .showIntervention(id)
-      .subscribe((II: IIntervention) => {
-        this.intervention = II;
+      .subscribe((res: IIntervention) => {
+        this.intervention = res
+        this.intervention.address= plainToClass(Address,this.intervention.address)
+
+        this.intervention.team.manager=plainToClass(User,this.intervention.team.manager)
+        this.intervention.team.members.forEach(element => {
+          element=plainToClass(User,element)
+        });
+        this.intervention.demandList.forEach(element => {
+
+          element.user=plainToClass(User,element.user)
+          element.user.setAddress(plainToClass(Address,element.user.getAddress()))
+          element.address=plainToClass(Address,element.address)
+        });
+
+        this.intervention.materialList.forEach(element => {
+          element.address=plainToClass(Address,element.address)
+        });
+
+
+
+        this.intervention.category=plainToClass(Category,this.intervention.category)
+
 
 
       }),

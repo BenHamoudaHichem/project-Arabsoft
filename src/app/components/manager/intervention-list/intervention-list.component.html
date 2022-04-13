@@ -8,14 +8,14 @@
       </div>
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <a [routerLink]="['/dashboard/manager/interventionList']" [queryParams]="{ status: 'In_Progress' }"
+          <a
             routerLinkActive>
             <button (click)="showPerStatus('In_Progress')" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
               data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
               <i class="fa-lg fas fa-sync fa-spin"></i>
               En cours
             </button></a>
-          <a [routerLink]="['/dashboard/manager/interventionList']" [queryParams]="{ status: 'Waiting' }"
+          <a 
             routerLinkActive>
             <button (click)="showPerStatus('Waiting')" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
               data-bs-target="#nav-profile" type="button" role="tab" aria-selected="false">

@@ -197,7 +197,7 @@
             <td
               class="responsive-table__body__text responsive-table__body__text--types"
             >
-              {{ intervention.team.manager.getTel }}
+              {{ intervention.team.manager.getTel() }}
             </td>
             <td
               class="responsive-table__body__text responsive-table__body__text--types"
@@ -210,7 +210,7 @@
               <a
                 [routerLink]="[
                   '/dashboard/manager/userProfil',
-                  intervention.team.manager.getId
+                  intervention.team.manager.getId()
                 ]"
                 ><button class="bn30">Consulter les details</button></a
               >

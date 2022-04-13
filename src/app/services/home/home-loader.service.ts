@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { AuthenticateService } from '../authenticate.service';
+import { IHomeCustomer } from './ihome-customer';
 import { IHomeManager } from './ihome-manager';
 
 @Injectable({
@@ -28,6 +29,15 @@ export class HomeLoaderService {
     return this.http.get<IHomeManager>(`${this.apiURL}/manager`)
     .pipe(
       map((iHomeManager: IHomeManager) => {
+        return iHomeManager;
+      })
+    )
+  }
+  loadHomeForCustomer():Observable<IHomeCustomer>
+  {
+    return this.http.get<IHomeCustomer>(`${this.apiURL}/customer`)
+    .pipe(
+      map((iHomeManager: IHomeCustomer) => {
         return iHomeManager;
       })
     )

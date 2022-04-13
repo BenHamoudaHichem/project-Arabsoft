@@ -18,11 +18,12 @@ export class HomeManagerComponent implements OnInit {
 
   infos!:IHomeManager
   teamList!:ITeam[]
-  constructor(private homeLoaderService:HomeLoaderService,private teamService:TeamService ) {
+  constructor(private homeLoaderService:HomeLoaderService,private teamService:TeamService ,private authService:AuthenticateService) {
     this.homeLoaderService.loadHomeForManager().subscribe((res:IHomeManager)=>{
       this.infos=res
       console.log(this.infos)
     })
+    console.log(this.authService.isLogin)
   }
 
   ngOnInit(): void {

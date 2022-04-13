@@ -25,37 +25,7 @@
       </nav>
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-          <article class="postcard light">
-            <a class="postcard__img_link" routerLinkActive="router-link-active"
-              [routerLink]="['/dashboard/manager/detailMaterial']">
-              <img class="postcard__img"
-                src="
-                            https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
-                alt="Image Title" />
-            </a>
-            <div class="postcard__text t-dark">
-              <h1 class="postcard__title blue">NOM</h1>
-
-              <div class="postcard__subtitle small">
-                Chef d'équipe: <strong>Mohsen</strong>
-              </div>
-                            <div class="postcard__subtitle small">
-                              Status: <strong>gggggggggsds</strong>
-                            </div>                            <div class="postcard__bar"></div>
-
-              <ul class="postcard__tagbox">
-
-                <li class="tag__item">
-                  <a routerLinkActive="router-link-active" [routerLink]="['/dashboard/manager/detailMaterial','ffffff']"><i
-                      class="fas fa-info-circle"></i>Afficher details</a>
-                </li>
-                <li class="tag__item">
-                  <a routerLinkActive="router-link-active" [routerLink]="['/dashboard/manager/updateMaterial','hhh']"><i
-                      class="fas fa-info-circle"></i>Mettre à jour</a>
-                </li>
-              </ul>
-            </div>
-          </article>
+        
           <article class="postcard light" *ngFor="let material of materialList">
             <a class="postcard__img_link" routerLinkActive="router-link-active"
               [routerLink]="['/dashboard/manager/detailMaterial', material.id]">

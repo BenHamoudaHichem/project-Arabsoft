@@ -1,10 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import jwtDecode from 'jwt-decode';
+
 import { Report } from 'notiflix';
-import { Observable } from 'rxjs';
+import { lastValueFrom, map, Observable } from 'rxjs';
 import { CookiesService } from './cookies.service';
+import { IUser } from './user/iuser';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -17,7 +18,10 @@ const httpOptions = {
 })
 export class AuthenticateService {
   private apiURL = 'http://127.0.0.1:8080/api/auth';
-  constructor(private http: HttpClient, private router: Router,private cookies:CookiesService) {}
+  constructor(private http: HttpClient, private router: Router,private cookies:CookiesService) {
+
+   // this.doCheck()
+  }
 
 
   public  login(email: string, password: string) {
@@ -40,9 +44,13 @@ export class AuthenticateService {
   }
 
 
-  get isLogin(): boolean {
-    return this.getToken !== null;
+
+  public get isLogin() : boolean {
+    return (this.getToken != null &&this.getToken != undefined)
   }
+
+
+
   //Token service
   public get getToken() {
     if (this.cookies.getToken)
@@ -53,14 +61,6 @@ export class AuthenticateService {
     return null;
   }
 
-  get isCustumer():boolean
-  {
-    return this.cookies.getRole==CookiesService.ROLE_CUSTOMER
-  }
-  get isMANAGER():boolean
-  {
-    return this.cookies.getRole==CookiesService.ROLE_MANAGER
-  }
 
 
   get getUsername():string{
@@ -89,4 +89,22 @@ export class AuthenticateService {
     Report.warning("Connexion perdu",'Vous devez reconnecter Session expirée',"Je compris");
     this.router.navigate(['/login']);
   }
+  public get checkUser() : Observable<any> {
+    return this.http.get<any>(`${this.apiURL}/current`,httpOptions).pipe(
+      map((user: any) => {
+        return user;
+      })
+    )
+  }
+
+
+  get isCustumer():boolean
+  {
+    return this.cookies.getRole==CookiesService.ROLE_CUSTOMER
+  }
+  get isMANAGER():boolean
+  {
+    return this.cookies.getRole==CookiesService.ROLE_MANAGER
+  }
+
 }
