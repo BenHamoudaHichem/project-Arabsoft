@@ -97,9 +97,10 @@
             </p>
             <!------------>
           </div>
+
           <div class="input-box">
             <span class="details">Pays</span>
-            <input type="text" formControlName="country" placeholder="Pays" />
+            <input type="text" [disabled]="true" formControlName="country"  value="Tunisie" />
             <!--Country errors-->
             <p
               class="ErrorMsg"
@@ -111,8 +112,27 @@
             <!------------>
           </div>
           <div class="input-box">
+            <span class="details">Gouvernorat</span>
+        <select formControlName="state">
+          <option  value="">hjjjjj</option>
+        </select>
+
+            <!--Zip code errors-->
+            <p
+              class="ErrorMsg"
+              *ngIf="!state?.valid && (state?.dirty || state?.touched)"
+            >
+              ce champ est obligatoire
+            </p>
+
+            <!------------>
+          </div>
+          <div class="input-box">
             <span class="details">Ville</span>
-            <input type="text" formControlName="city" placeholder="Ville" />
+            <select   formControlName="city">
+              <option value="">vvvvvv</option>
+            </select>
+
 
             <!--Ville errors-->
             <p
@@ -142,24 +162,7 @@
 
             <!------------>
           </div>
-          <div class="input-box">
-            <span class="details">Gouvernorat</span>
-            <input
-              type="text"
-              formControlName="state"
-              placeholder="Gouvernorat"
-            />
 
-            <!--Zip code errors-->
-            <p
-              class="ErrorMsg"
-              *ngIf="!state?.valid && (state?.dirty || state?.touched)"
-            >
-              ce champ est obligatoire
-            </p>
-
-            <!------------>
-          </div>
           <div class="input-box">
             <span class="details">Rue</span>
             <input type="text" formControlName="street" placeholder="Rue" />
@@ -173,6 +176,7 @@
 
             <!------------>
           </div>
+         
           <div class="input-box">
             <span class="details">Password</span>
             <input
@@ -229,7 +233,7 @@
           </button>
         </div>
 
-       
+
       </form>
     </div>
   </div>
