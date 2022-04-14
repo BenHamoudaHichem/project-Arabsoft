@@ -54,7 +54,8 @@ export class AddMaterialsComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {this.counrty?.setValue('Tunisie')
+}
 
   addMaterial() {
     let address = new Address(

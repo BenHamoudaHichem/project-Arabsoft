@@ -68,6 +68,8 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.counrty?.setValue('Tunisie')
+
     if(this.authService.isLogin)
     {
       this.router.navigate(['/dashboard/not-found'])

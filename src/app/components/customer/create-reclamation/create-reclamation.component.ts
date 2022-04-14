@@ -96,5 +96,6 @@ export class CreateReclamationComponent implements OnInit {
   get zipCode() {
     return this.reclamationForm.get('zipCode');
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {this.counrty?.setValue('Tunisie')
+}
 }

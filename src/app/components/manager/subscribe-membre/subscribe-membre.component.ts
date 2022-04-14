@@ -54,7 +54,8 @@ export class SubscribeMembreComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {this.counrty?.setValue('Tunisie')
+}
   Inscrire() {
     let adresse = new Address(
       String(this.zipCode?.value),

@@ -30,6 +30,7 @@ import { InterventionService } from 'src/app/services/works/intervention/interve
   styleUrls: ['./create-intervention.component.css'],
 })
 export class CreateInterventionComponent implements OnInit {
+  Tunisie='Tunisie'
   createInterventionForm!: FormGroup;
   currentDemand!:IDemand
   demandList: Dbref[] = [];
@@ -93,7 +94,7 @@ export class CreateInterventionComponent implements OnInit {
 
   dropdownSettings!: {};
   ngOnInit() {
-
+this.counrty?.setValue('Tunisie')
 
     this.demandList = new Array(new Dbref(this.route.snapshot.paramMap.get('id')!));
     this.allCategory();
