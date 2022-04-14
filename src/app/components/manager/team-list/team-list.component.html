@@ -4,19 +4,19 @@
 
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="logo">
-        <h1 class="mb-5 text-center text-uppercase">
-          Les équipes
+        <h1 class="mb-5 text-center text-uppercase" translate>
+        titles.teams_list
         </h1>
       </div>
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
           <button (click)="showAll()" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
-            data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
-            Tous
+            data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" translate>
+           buttons.all
           </button>
-          <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button"
+          <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" translate
             role="tab" aria-selected="false">
-            Disponible
+            buttons.available
           </button>
         </div>
       </nav>
@@ -38,20 +38,21 @@
               </h1>
               <div class="postcard__subtitle small">
                 <i class="fas fa-user-circle"></i>
-                Chef d'équipe:
+                input.titles.tm
                 <strong> {{ team.manager.getfirstName() }} </strong>
               </div>
               <div class="postcard__bar"></div>
               <div class="postcard__preview-txt">
-                <p>
-                  <i class="fa fa-users"></i> Il ya
-                  {{ team.members.length }} legend dans cette équipe
+                <p [translate]="'input.msg.msg_tm'" [translateParams]="members: team.members.length "
+                >
+                  <i class="fa fa-users"></i>
+
                 </p>
               </div>
               <ul class="postcard__tagbox">
                 <li class="tag__item">
-                  <a routerLinkActive="router-link-active" [routerLink]="['/dashboard/manager/detailTeam', team.id]"><i
-                      class="fas fa-info-circle"></i>Afficher details</a>
+                  <a routerLinkActive="router-link-active" [routerLink]="['/dashboard/manager/detailTeam', team.id]" translate><i
+                      class="fas fa-info-circle"></i>   buttons.consult_details </a>
                 </li>
               </ul>
             </div>
@@ -76,20 +77,21 @@
               </h1>
               <div class="postcard__subtitle small">
                 <i class="fas fa-user-circle"></i>
-                Chef d'équipe:
+                input.titles.tm
                 <strong> {{ team.manager.getfirstName() }} </strong>
               </div>
               <div class="postcard__bar"></div>
               <div class="postcard__preview-txt">
-                <p>
-                  <i class="fa fa-users"></i> Il ya
-                  {{ team.members.length }} legend dans cette équipe
+                <p [translate]="'input.msg.msg_tm'" [translateParams]="members: team.members.length "
+                >
+                  <i class="fa fa-users"></i>
+
                 </p>
               </div>
               <ul class="postcard__tagbox">
                 <li class="tag__item">
-                  <a routerLinkActive="router-link-active" [routerLink]="['/dashboard/manager/detailTeam', team.id]"><i
-                      class="fas fa-info-circle"></i>Afficher details</a>
+                  <a routerLinkActive="router-link-active" [routerLink]="['/dashboard/manager/detailTeam', team.id]" translate><i
+                      class="fas fa-info-circle"></i>   buttons.consult_details </a>
                 </li>
               </ul>
             </div>

@@ -1,7 +1,7 @@
 <div class="container py-5 h-100">
   <div class="row">
     <div class="col-8">
-      <h1 class="text-uppercase text-center">Lesss categories</h1>
+      <h1 class="text-uppercase text-center" translate>titles.categories</h1>
       <div class="card" *ngFor="let item of listCategorie">
         <div class="card-text">
           <div class="portada"></div>
@@ -21,36 +21,33 @@
     <div class="col-4">
       <div class="row mb-4">
         <div class="card card2">
-          <h2 class="card-title span text-uppercase">
-            Vous avez besoins d'ajouter une autre categorie?
+          <h2 class="card-title span text-uppercase" translate>
+           titles.cat_question
           </h2>
 
-          <h2 class="card-title cd">Ajouter une categorie</h2>
+          <h2 class="card-title cd" translate>titles.add_category</h2>
 
           <form [formGroup]="categorieForm" (ngSubmit)="addCategorie()">
             <div class="form-group">
-              <label for="categorie">Nom de la categorie</label>
+              <label for="categorie" translate>input.titles.title</label>
 
               <input
                 type="text"
                 formControlName="categorie"
                 class="form-control"
-                placeholder="categorie"
+                placeholder="{{'input.msg.category'|translate}}"
               />
               <p
                 class="ErrorMsg"
-                *ngIf="
-                  !categorie?.valid && (categorie?.dirty || categorie?.touched)
-                "
+                *ngIf="!categorie?.valid && (categorie?.dirty || categorie?.touched)
+                " translate
               >
-                Ce champs est obligatoire
+                errors.req_error
               </p>
-              <p *ngIf="categorie?.errors?.['pattern']" class="ErrorMsg">
-                Ce champ accepte que l'alphabet
-              </p>
+
             </div>
             <div class="d-flex justify-content-start">
-              <button type="submit" class="bn30">Ajouter</button>
+              <button type="submit" class="bn30" translate>buttons.add</button>
             </div>
           </form>
         </div>

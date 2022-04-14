@@ -1,13 +1,14 @@
 <div class="row">
   <div class="col"></div>
   <div class="col-6">
-    <h1 class="text-uppercase text-center">
-      Les interventions liés à cette categorie
+    <h1 class="text-uppercase text-center" translate>
+      titles.detail_category
     </h1>
     <h5 *ngIf="interventionList != null">
-      Il ya <span>{{ interventionList.length }} </span> interventions dans cette
-      catégorie
+      {{ 'input.msg.msg_interv' | translate:{'interventionList':' interventionList.length'} }}
     </h5>
+    <!--OR-->
+    <h5  *ngIf="interventionList != null" [translate]="'input.msg.msg_interv'" [translateParams]="{interventionList: interventionList.length}"></h5>
 
     <hr />
     <div class="posts">
@@ -15,21 +16,13 @@
         <div class="thumbnail"></div>
         <strong class="author text-uppercase">{{ item.title }}</strong>
 
-        <small class="time calendar">
-          <i class="fa fa-calendar-check"></i> Date de debut: &nbsp;
+        <small class="time calendar" translate>
+          <i class="fa fa-calendar-check"></i> titles.started_at: &nbsp;
           <time>{{ item.startedAt }}</time></small>
         <span class="content team">
           <i class="fa fa-users"></i> {{ item.team.name }}</span>
       </article>
-      <article class="post">
-        <div class="thumbnail"></div>
-        <strong class="author text-uppercase">titre intervention</strong>
 
-        <small class="time calendar">
-          <i class="fa fa-calendar-check"></i> Date de debut: &nbsp;<time>21/20/2015</time></small>
-        <span class="content team">
-          <i class="fa fa-users"></i> equipe #1)</span>
-      </article>
     </div>
   </div>
   <div class="col"></div>

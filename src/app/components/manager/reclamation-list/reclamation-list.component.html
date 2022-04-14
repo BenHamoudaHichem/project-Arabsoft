@@ -2,25 +2,24 @@
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="logo">
-        <h1 class="mb-5 text-center text-uppercase">
-
-          Les reclamations
+        <h1 class="mb-5 text-center text-uppercase" translate>
+         titles.demands.title
         </h1>
       </div>
           <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
               <a [routerLink]="['/customer/reclamationList']" routerLinkActive>
                 <button (click)="showAll()" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
-                  data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
-                  <i class="fas fa-list"></i>   Tous
+                  data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" translate>
+                  <i class="fas fa-list"></i>   buttons.all
                 </button>
               </a>
               <a [routerLink]="['/dashboard/customer/reclamationList']" routerLinkActive
                 [queryParams]="{ status: 'rejected' }">
                 <button class="nav-link" (click)="showByStatus()" id="nav-profile-tab" data-bs-toggle="tab"
-                  data-bs-target="#nav-profile" type="button" role="tab" aria-selected="false">
+                  data-bs-target="#nav-profile" type="button" role="tab" aria-selected="false" translate>
                   <i class="fa fa-ban" aria-hidden="true" ></i>
-                  Rejeté
+                  buttons.dismiss
                 </button></a>
             </div>
           </nav>
@@ -40,10 +39,17 @@
                   <div class="d-flex justify-content-end pt-3">
                     <a [routerLink]="['/dashboard/manager/detailReclamation', reclamation.id]" routerLinkActive="router-link-active"
                      >
-                      <button>Consulter</button></a>
+                      <button translate>buttons.consult_details</button></a>
                   </div>
                 </div>
               </div>
+
+
+            </div>
+
+            <!--nav 2-->
+
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
               <article class="postcard light"  *ngFor="let reclamation of demandList">
                 <a class="postcard__img_link" [routerLink]="['/dashboard/manager/detailReclamation','jjjj']">
                   <img class="postcard__img"
@@ -67,21 +73,12 @@
                   </div>
                   <ul class="postcard__tagbox">
                     <li class="tag__item">
-                      <a [routerLink]="['/dashboard/manager/detailReclamation', reclamation.id]" routerLinkActive="router-link-active"><i class="fas fa-info-circle"></i>Afficher
-                        details</a>
+                      <a [routerLink]="['/dashboard/manager/detailReclamation', reclamation.id]" routerLinkActive="router-link-active" translate><i class="fas fa-info-circle"></i>
+                        buttons.consult_details</a>
                     </li>
                   </ul>
                 </div>
               </article>
-          
-            </div>
-
-            <!--nav 2-->
-
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-              <p class="text-center">
-                pas des interventions en attente en ce moment
-              </p>
             </div>
           </div>
         </div>

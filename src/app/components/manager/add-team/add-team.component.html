@@ -7,7 +7,7 @@
             <div class="card-title">
               <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
             </div>
-            <span class="title">ajouter une Equipe</span>
+            <span class="title" translate> titles.add_team </span>
 
           </div>
           <form [formGroup]="teamForm" (ngSubmit)="AddTeam()">
@@ -15,27 +15,28 @@
               <div class="col-xl-6 d-xl-block">
                 <div class="card-body p-md-5 text-black">
                   <div class="form-outline">
-                    <label class="form-label" for="form3Example1n">Titre</label>
+                    <label class="form-label" for="form3Example1n" translate>input.titles.title</label>
 
-                    <input type="text" placeholder="Entrez le nom d'équipe" class="form-control form-control-lg"
+                    <input type="text" placeholder="{{'input.msg.material'|translate}}" class="form-control form-control-lg"
                       formControlName="titre" />
                     <!--Error Title-->
-                    <p *ngIf="(titre?.touched|| titre?.dirty ) && !titre?.valid" class="ErrorMsg"> Ce champ est
-                      obligatoire</p>
-                    <p *ngIf="titre?.errors?.['pattern']" class="ErrorMsg"> vous devez entrez au minimun deux
-                      caractéres</p>
+                    <p *ngIf="(titre?.touched|| titre?.dirty ) && !titre?.valid" class="ErrorMsg" translate>
+                      errors.req_error</p>
+                    <p *ngIf="titre?.errors?.['pattern']" class="ErrorMsg" translate>
+errors.alph_2error
+                    </p>
                     <!----------->
                   </div>
                   <div class="form-outline">
-                    <label class="form-label"> Ajouter un chef d'équipe</label>
+                    <label class="form-label" translate > input.titles.add_tm</label>
 
-                    <ng-multiselect-dropdown [placeholder]="'Selectionner un chef d\'Equipe'"
+                    <ng-multiselect-dropdown [placeholder]="'input.msg.tm_select'|translate"
                       [settings]="dropdownSettings2" [data]="users" formControlName="manager"
                        class=" form-control-lg">
                     </ng-multiselect-dropdown>
                     <!--Error manager-->
-                    <p *ngIf="(manager?.touched|| manager?.dirty ) && !manager?.valid" class="ErrorMsg"> Ce champ est
-                      obligatoire</p>
+                    <p *ngIf="(manager?.touched|| manager?.dirty ) && !manager?.valid" class="ErrorMsg" translate>
+                      errors.req_error</p>
                     <!----------->
 
                   </div>
@@ -45,19 +46,19 @@
               <div class="col-xl-6">
                 <div class="card-body p-md-5 text-black">
                   <div class="form-outline">
-                    <label class="form-label"> Ajouter des membres</label>
+                    <label class="form-label" translate> input.titles.add_mbrs</label>
 
-                    <ng-multiselect-dropdown [placeholder]="'Selectionner membres'" [settings]="dropdownSettings"
+                    <ng-multiselect-dropdown [placeholder]="'input.msg.mm_select'|translate" [settings]="dropdownSettings"
                       [data]="users" formControlName="membres" (onSelect)="onItemSelect($event)"
                       (onSelectAll)="onSelectAll($event)" class=" form-control-lg">
                     </ng-multiselect-dropdown>
                     <!--Error membres-->
-                    <p *ngIf="(membres?.touched|| membres?.dirty ) && !membres?.valid" class="ErrorMsg"> Ce champ est
-                      obligatoire</p>
+                    <p *ngIf="(membres?.touched|| membres?.dirty ) && !membres?.valid" class="ErrorMsg" translate>
+                      errors.req_error</p>
                     <!----------->
                     <span class="extra-line">
 
-                      <a [routerLink]="['/manager/subscribeMembre']"> Ajouter un employé</a>
+ <a [routerLink]="['dashboard/manager/subscribeMembre']" translate> titles.add_emp</a>
                     </span>
 
                   </div>
@@ -67,7 +68,7 @@
                   <div class="d-flex justify-content-end pt-3">
 
 
-                    <button class="bn632-hover bn24" type="submit" >Ajouter</button>
+                    <button class="bn632-hover bn24" type="submit" translate >buttons.add</button>
 
                   </div>
                 </div>

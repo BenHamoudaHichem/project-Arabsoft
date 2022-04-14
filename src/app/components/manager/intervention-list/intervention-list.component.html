@@ -2,8 +2,8 @@
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="logo">
-        <h1 class="mb-5 text-center text-uppercase">
-          Les interventions
+        <h1 class="mb-5 text-center text-uppercase" translate>
+         titles.intervention
         </h1>
       </div>
       <nav>
@@ -11,16 +11,16 @@
           <a
             routerLinkActive>
             <button (click)="showPerStatus('In_Progress')" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
-              data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+              data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" translate>
               <i class="fa-lg fas fa-sync fa-spin"></i>
-              En cours
+             buttons.in_prog
             </button></a>
           <a
             routerLinkActive>
             <button (click)="showPerStatus('Waiting')" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
               data-bs-target="#nav-profile" type="button" role="tab" aria-selected="false">
               <i class="fa-lg fas fa-spinner"></i>
-              En attente
+            buttons.Waiting
             </button></a>
         </div>
       </nav>
@@ -56,10 +56,10 @@
                     <a [routerLink]="[
                         '/dashboard/manager/detailIntervention',
                         item.id
-                      ]"><i class="fas fa-info-circle"></i>Afficher details</a>
+                      ]" translate  ><i class="fas fa-info-circle"></i>buttons.consult_details</a>
                   </li>
                   <li class="tag__item play blue">
-                    <a href="#"><i class="fas fa-door-closed"></i>Cloturer</a>
+                    <a href="#" translate ><i class="fas fa-door-closed"></i>buttons.close</a>
                   </li>
                 </ul>
               </div>
@@ -70,9 +70,43 @@
         <!--nav 2-->
 
         <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" *ngIf="this.interventionList===[]">
-          <p class="text-center">
-            pas des interventions en attente en ce moment
-          </p>
+          <article class="postcard light" *ngFor="let item of interventionList">
+            <a class="postcard__img_link" [routerLink]="[
+                '/dashboard/manager/detailIntervention',
+                item.id
+              ]">
+              <img class="postcard__img"
+                src="
+                    https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
+                alt="Image Title" />
+            </a>
+            <div class="postcard__text t-dark">
+              <h1 class="postcard__title blue">
+                <a href="#"> {{ item.title }} </a>
+              </h1>
+              <div class="postcard__subtitle small">
+                <time datetime="2020-05-25 12:00:00">
+                  <i class="fas fa-calendar-alt mr-2"></i>
+                  {{ item.createdAt | date:'dd-MM-yyyy'}}
+                </time>
+              </div>
+              <div class="postcard__bar"></div>
+              <div class="postcard__preview-txt">
+                {{ item.category.getNameCategory() }}
+              </div>
+              <ul class="postcard__tagbox">
+                <li class="tag__item">
+                  <a [routerLink]="[
+                      '/dashboard/manager/detailIntervention',
+                      item.id
+                    ]" translate><i class="fas fa-info-circle"></i>buttons.consult_details</a>
+                </li>
+                <li class="tag__item play blue">
+                  <a href="#" translate><i class="fas fa-door-closed"></i>buttons.close</a>
+                </li>
+              </ul>
+            </div>
+          </article>
         </div>
       </div>
     </div>

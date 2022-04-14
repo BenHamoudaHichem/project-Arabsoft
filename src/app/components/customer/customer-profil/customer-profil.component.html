@@ -10,9 +10,9 @@
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
               alt=""
             />
-            <div class="file btn btn-lg btn-primary"  *ngIf="isProfilUser()">
-              Change Photo
-              <input type="file" name="file" />
+            <div class="file btn btn-lg btn-primary"  *ngIf="isProfilUser()"translate>
+              titles.up_photo
+                           <input type="file" name="file" />
             </div>
           </div>
         </div>
@@ -26,10 +26,10 @@
         </div>
         <div class="col-md-2" *ngIf="isProfilUser()">
           <a [routerLink]="['/dashboard/customer/editProfil', user.id]"
-            ><button class="bn30" role="button">
+            ><button class="bn30" role="button" translate>
               <i class="fa fa-edit"></i>
 
-              Editer le profil
+            titles.update_pro
             </button>
           </a>
         </div>
@@ -42,7 +42,7 @@
           <div class="row"></div>
           <div class="row">
             <div class="col-md-6">
-              <label><i class="fas fa-user"></i> &nbsp; Nom et Prénom</label>
+              <label translate><i class="fas fa-user"></i>  input.titles.fullname  </label>
             </div>
             <div class="col-md-6">
               <p>{{ user.firstName }} {{ user.lastName }}</p>
@@ -51,7 +51,7 @@
           <hr />
           <div class="row">
             <div class="col-md-6">
-              <label> <i class="fas fa-envelope"></i> &nbsp; Email</label>
+              <label translate> <i class="fas fa-envelope"></i> &nbsp;input.titles.email</label>
             </div>
             <div class="col-md-6">
               <p>{{ user.identifier }}</p>
@@ -60,8 +60,8 @@
           <hr />
           <div class="row">
             <div class="col-md-6">
-              <label
-                ><i class="fas fa-phone-alt"></i> &nbsp; Télephone
+              <label translate
+                ><i class="fas fa-phone-alt"></i> &nbsp; input.titles.tel
                 <i class="fa fa-phone-rotary"></i
               ></label>
             </div>
@@ -72,16 +72,16 @@
           <hr />
           <div class="row">
             <div class="col-md-6">
-              <label
-                ><i class="fas fa-map-marker-alt"></i> &nbsp; Adresse</label
+              <label translate
+                ><i class="fas fa-map-marker-alt"></i> &nbsp; input.titles.Address</label
               >
             </div>
             <div class="col-md-6">
-              <p>
-                Rue : {{ user.address.Street }} <br />
-                <br />Ville : {{ user.address.City }} <br />
-                <br />Gouvernorat : {{ user.address.State }} <br />
-                <br />Pays : {{ user.address.Country }}
+              <p >
+                <span translate>location.street</span> : {{ user.address.Street }} <br />
+                <br />   <span translate>location.city</span>  : {{ user.address.City }} <br />
+                <br />   <span translate>location.governorate</span>  : {{ user.address.State }} <br />
+                <br />   <span translate>location.country</span>  : {{ user.address.Country }}
               </p>
             </div>
           </div>

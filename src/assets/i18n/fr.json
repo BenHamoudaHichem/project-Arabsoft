@@ -8,28 +8,32 @@
     "add_inter": "Créer une intervention",
     "add_material": "Ajouter un materiel",
     "add_demand": "CRÉER UNE RECLAMATION",
-    "add_team": "add team",
+    "add_team": "Ajouter  une équipe",
     "add_category": "Ajouter une catégorie",
     "update_material": "Mettre à jour le matériel",
     "update_pro": "Mettre à jour les coordonnés de profil",
     "materials": "matériels",
     "materials_list": "Liste des materieles",
-    "new_material":"Nouvel matériel",
-
+    "new_material": "Nouvel matériel",
+    "interv_in": "interventios en cours",
+    "up_photo": "Changer Photo",
+    "Date": "Date de publication",
+    "cat_question": "Vous avez besoins d'ajouter une autre categorie?",
     "teams": "Equipes",
     "teams_list": "Liste des Equipes",
-    "new_team":"Nouveau équipe",
-
+    "team_det": " Details de {{ name }}",
+    "new_team": "Nouveau équipe",
+    "started_at": "Date de debut",
     "employees": "Employées",
     "employees_list": "Liste des employées",
     "customers": "Clients",
     "intervention": "Interventions",
     "interventions_list": "Liste des Interventions",
-    "new_inter":"Nouvelle Intervention",
-
+    "new_inter": "Nouvelle Intervention",
     "categories": "Categories",
     "demands": {
       "title": "Demandes",
+      "detail": "detail demande",
       "title_home": "Liste des contrats d'abonnements"
     },
     "detail_demand": "Les demandes envoyées",
@@ -45,23 +49,28 @@
         "action": "Action"
       }
     },
+    "detail_mat": "Detail du materiel",
     "detail_team": "Detail de l'équipe",
     "detail_category": "detail de la categorie",
-    "up":"Telecharger un fichier"
+    "up": "Telecharger un fichier"
   },
   "buttons": {
     "consult": "afficher",
     "consult_all": "afficher tous",
-
     "consult_members": "afficher les membres",
     "consult_details": "afficher les details",
     "create": "Créer",
     "add": "ajouter",
     "edit": "editer",
     "all": "Tous",
+    "send": "envoyer",
     "available": "Disponible",
     "accept": "accepter",
-    "dismiss": "rejeter"
+    "dismiss": "rejeter",
+    "in_prog": "En cours",
+    "Waiting": "  En attente",
+    "close": "Cloturer",
+    "members": "Membres"
   },
   "input": {
     "titles": {
@@ -73,10 +82,12 @@
       "add_tm": "ajouter un chef d'équipe",
       "add_mbrs": "ajouter des membres",
       "description": "Description",
-      "matériels": "matériels",
+      "materials": "matériels",
       "purchase_date": "date d'achat",
       "firstname": "Nom",
       "lastname": "Prénom",
+      "fullname": "Nom et Prénom",
+      "Address": "Adresse",
       "identifier": "identifiant",
       "password": "Mot de passe",
       "confirm_password": "confirmer le mot de passe",
@@ -95,6 +106,10 @@
       "email": "Entrer votre email",
       "category": "Entrer le nom de categorie",
       "team": "Entrer le nom d'équipe",
+      "tm": "Chef d'équipe ",
+      "msg_tm": "Il ya {{ members }} membres dans cette équipe",
+      "mm_select": "Selectionner les membres",
+      "msg_interv": "Il ya {{ interventionList }} interventions dans cette catégorie",
       "tm_select": "Selectionner un chef d'équipe",
       "designation": "Ecrivez..."
     }
@@ -104,7 +119,7 @@
     "country": "Pays",
     "city": "Ville",
     "postal_code": "Code postal",
-    "governorate": "Gouvernorat",
+    "governorate": "state",
     "street": "Rue"
   },
   "status": {
@@ -138,5 +153,18 @@
     "governorate": "{governorate}",
     "street": "{street}",
     "description": "{description}"
+  },
+  "errors": {
+    "alph_2error": "vous devez entrez au minimun deux caractéres",
+    "alph_8error": "vous devez entrez au minimun 8 caractéres",
+    "alph_4error": "vous devez entrez au minimun 4 caractéres",
+    "req_error": "Ce champs est obligatoire",
+    "email_patt": "structure de email : foulen@foulen",
+    "error_chiff": "Entrez 8 chiffres",
+    "error_confirm": "les 2 mots de passe ne sont pas identiques",
+    "alph_error": "Ce champ accepte que l'alphabet",
+    "date_error": "La date choisi est incorrecte",
+    "null_cat": "aucun categorie",
+    "null_team": "Pas de équipe pour le moment"
   }
 }

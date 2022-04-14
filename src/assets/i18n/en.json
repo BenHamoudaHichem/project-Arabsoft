@@ -14,22 +14,29 @@
     "update_pro": "update profil",
     "materials": "materials",
     "materials_list": "materials list",
-    "new_material":"New material",
+    "new_material": "New material",
     "teams": "teams",
     "teams_list": "teams list",
-"new_team":"New team",
+    "new_team": "New team",
+    "team_det": " details of {{ name }}",
     "employees": "employees",
     "employees_list": " employees List",
     "customers": "customers",
     "intervention": "interventions",
     "interventions_list": "Interventions List",
-    "new_inter":"New Intervention",
-
+    "new_inter": "New Intervention",
+    "up_photo": "Change Photo",
+    "Date": "Publication date",
+    "started_at": "started at",
+    "cat_question": "Need to add another category?",
     "categories": "categories",
     "demands": {
       "title": "claims",
+      "detail": "claims detail",
       "title_home": "list of subscription contracts"
     },
+    "detail_mat": " materiel Detail",
+    "interv_in": "intervention in progress",
     "detail_demand": "requests sent",
     "detail_inter": {
       "title": "detail of the intervention",
@@ -45,12 +52,12 @@
     },
     "detail_team": "team detail",
     "detail_category": "category detail",
-    "up":"Upload file"
+    "up": "Upload file"
   },
   "buttons": {
     "consult": "show ",
     "consult_all": "show all",
-
+    "send": "send",
     "consult_members": "show members",
     "consult_details": "show details",
     "create": "create",
@@ -59,7 +66,11 @@
     "all": "all",
     "available": "available",
     "accept": "accept",
-    "dismiss": "dismiss"
+    "dismiss": "dismiss",
+    "in_prog": "In progress",
+    "Waiting": "Waiting",
+    "close": "Close",
+    "members": "Members"
   },
   "input": {
     "titles": {
@@ -69,17 +80,20 @@
       "category": "category",
       "team": "team",
       "add_tm": "add a team manager",
+      "tm": "team manager",
       "add_mbrs": "add members",
       "description": "description",
       "materials": "materials",
       "purchase_date": "date of purchase",
       "firstname": "firstname",
       "lastname": "lastname",
+      "fullname": "fullName",
       "identifier": "identifier",
       "password": "password",
       "confirm_password": "confirm password",
       "tel": "phone",
-      "email": "email"
+      "email": "email",
+      "Address": "Address"
     },
     "msg": {
       "intervention": "enter the intervention name",
@@ -93,7 +107,10 @@
       "email": "enter your email",
       "category": "enter category name",
       "team": "enter the team name",
-      "tm_select": "select team manager",
+      "tm_select": "select t      eam manager",
+      "mm_select": "select members",
+      "msg_interv": "There are {{ interventionList }} interventions in this category",
+      "msg_tm": "There are {{ members }} members in this team",
       "designation": "write..."
     }
   },
@@ -101,13 +118,13 @@
     "title": "location",
     "country": "country",
     "city": "city",
-    "postal_code": "postal code",
-    "governorate": "governorate",
+    "postal_code": "Zip code",
+    "governorate": "state",
     "street": "street"
   },
   "status": {
     "title": "status",
-    "in_progress": "in_progress",
+    "in_progress": "in progress",
     "wating": "wating",
     "broken": "is broken",
     "is_on": "in good shape"
@@ -136,5 +153,18 @@
     "governorate": "{governorate}",
     "street": "{street}",
     "description": "{description}"
+  },
+  "errors": {
+    "alph_2error": "you must enter at least two characters",
+    "alph_8error": "you must enter at least 8 characters",
+    "alph_4error": "you must enter at least 4 characters",
+    "req_error": "This field is required",
+    "email_patt": "email structure: foulen@foulen",
+    "error_chiff": "Enter 8 digits",
+    "error_confirm": "not matched",
+    "alph_error": "This field only accepts the alphabet",
+    "date_error": "The chosen date is incorrect",
+    "null_cat": "no category",
+    "null_team": "No team at the moment"
   }
 }

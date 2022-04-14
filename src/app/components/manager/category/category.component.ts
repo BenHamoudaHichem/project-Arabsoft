@@ -17,7 +17,7 @@ export class CategoryComponent implements OnInit {
   listCategorie!:ICategory[]
   constructor(private formBuilder: FormBuilder,private router:Router,private categorieService:CategoryService) {
     this.categorieForm = this.formBuilder.group({
-      categorie: ['', [Validators.required,Validators.pattern('^[a-zA-Z ]')]],
+      categorie: ['', [Validators.required]],
     });
   }
 get categorie(){return this.categorieForm.get('categorie')}

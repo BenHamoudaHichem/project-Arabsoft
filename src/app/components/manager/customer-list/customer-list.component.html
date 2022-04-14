@@ -2,8 +2,8 @@
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="logo">
-        <h1 class="mb-5 text-center text-uppercase">
-          Les clients
+        <h1 class="mb-5 text-center text-uppercase" translate>
+         titles.customers
         </h1>
       </div>
 
@@ -38,8 +38,9 @@
               </div>
               <ul class="postcard__tagbox">
                 <li class="tag__item">
-                  <a [routerLink]="['/dashboard/manager/detailCustomer', item.id]"><i class="fas fa-info-circle"></i>Afficher
-                    details</a>
+                  <a [routerLink]="['/dashboard/manager/detailCustomer', item.id]" translate><i class="fas fa-info-circle" ></i>
+                 buttons.consult_details
+                  </a>
                 </li>
               </ul>
             </div>

@@ -7,7 +7,7 @@
           <div class="logo">
             <div class="card-title text-center">
 
-              <h1 class="mb-5 text-uppercase"> Detail materiel </h1>
+              <h1 class="mb-5 text-uppercase" translate> titles.detail_mat  </h1>
             </div>
           </div>
 
@@ -18,7 +18,7 @@
             <div class="col-xl-6  d-xl-block">
               <div class="card-body p-md-5 text-black">
 
-                <h3 class="card-title"><i class="fas fa-list-alt"></i>&nbsp;Désignation</h3>
+                <h3 class="card-title" translate><i class="fas fa-list-alt"></i>&nbsp;input.titles.title</h3>
 
                 <p class="card-text">
                   {{material.name}}
@@ -28,7 +28,7 @@
               </div>
 
               <div class="card-body p-md-5 text-black">
-                <h3 class="card-title"><i class="fas fa-info-circle"></i>&nbsp;Description</h3>
+                <h3 class="card-title" translate><i class="fas fa-info-circle"></i>&nbsp;input.titles.description</h3>
 
                 <p class="card-text">
                   {{material.description}}
@@ -42,16 +42,22 @@
             </div>
             <div class="col-xl-6">
               <div class="card-body p-md-5 text-black">
-                <h3 class="card-title"><i class="fas fa-question-circle"></i> &nbsp;Status</h3>
+                <h3 class="card-title" translate><i class="fas fa-question-circle"></i> &nbsp;status.titles</h3>
 
                 <p class="card-text"> {{material.status}}</p>
-                <p class="card-text">  IS ON</p>
-                <h3 class="card-title"><i class="fas fa-map-marker-alt"></i>&nbsp;Localisation</h3>
-                <p class="card-text">Rue : {{material.address.Street}}
-                  <br>Ville : {{material.address.City}}
-                  <br>Gouvernorat : {{material.address.State}}
-                  <br>Pays : {{material.address.Country}}
-                </p>
+                <h3 class="card-title" translate><i class="fas fa-map-marker-alt"></i>&nbsp;location.title</h3>
+                <p class="card-text">
+
+                    <span translate>location.street
+                    : {{ material.address.Street }}</span>
+                     <br />
+                    <br />   <span translate>location.city</span>  : {{ material.address.City }} <br />
+                    <br />   <span translate>location.governorate</span>  : {{ material.address.State }} <br />
+                    <br />   <span translate>location.country</span>  : {{ material.address.Country }}
+                  </p>
+
+
+                  <h3 class="card-title" translate><i class="fas fa-calendar-check"></i>&nbsp;input.titles.purchase_date</h3>
 
                 <p class="card-text">
                   {{material.dateOfPurchase}}</p>

@@ -1,7 +1,6 @@
 <section class="light">
   <div class="container py-2">
-    <div class="h1 text-center text-dark" id="pageHeaderTitle">
-      Details de l'équipe :<b>{{ team.name }}</b>
+    <div class="h1 text-center text-dark" id="pageHeaderTitle"   [translate]="'titles.team_det'" [translateParams]="name:team.name">
     </div>
 
 		<article class="postcard dark">
@@ -10,15 +9,15 @@
         https://st.depositphotos.com/1154952/3949/i/600/depositphotos_39491135-stock-photo-hand-of-architect-working-on.jpg?fbclid=IwAR3bKwuP2rP6iBnTAQlmThDXfJLse-bcVdpFA3uZTaX7sA8jkY-TZypeVrc" alt="Image Title" />
 			</a>
 			<div class="postcard__text t-dark">
-				<h1 class="postcard__title blue"><a href="#">
+				<h1 class="postcard__title blue"><a href="#" translate>
 <i class="fa fa-user-cog"></i>
-Chef d'équipe :  {{team.manager.getfirstName() +' '+ team.manager.getlastName()}}  </a></h1>
+input.msg.tm :  {{team.manager.getfirstName() +' '+ team.manager.getlastName()}}  </a></h1>
 				<div class="postcard__subtitle small">
 				<i class="fa fa-phone">&nbsp;{{team.manager.getTel()}} </i>
 				</div>
 				<div class="postcard__bar"></div>
 				<ul class="postcard__tagbox">
-					<li class="tag__item"><i class="fas fa-info-circle"></i>Afficher details</li>
+					<li class="tag__item" translate><i class="fas fa-info-circle"></i>buttons.consult_details</li>
 
 				</ul>
 			</div>
@@ -39,7 +38,7 @@ Chef d'équipe :  {{team.manager.getfirstName() +' '+ team.manager.getlastName()
 				</div>
 				<div class="postcard__bar"></div>
 				<ul class="postcard__tagbox">
-					<li class="tag__item"> <a [routerLink]="['/dashboard/customer/customerProfil',item.getId()]" routerLinkActive="active"><i class="fas fa-info-circle"></i>Afficher details</a> </li>
+					<li class="tag__item"> <a [routerLink]="['/dashboard/customer/customerProfil',item.getId()]" routerLinkActive="active" translate><i class="fas fa-info-circle"></i>buttons.consult_details</a> </li>
 				</ul>
 			</div>
 		</article>

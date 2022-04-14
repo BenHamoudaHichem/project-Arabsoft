@@ -2,23 +2,23 @@
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="logo">
-        <h1 class="mb-5 text-center text-uppercase">
+        <h1 class="mb-5 text-center text-uppercase" translate>
 
-          Les agents
+         titles.employees
         </h1>
       </div>
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
           <a >
             <button  (click)="showTManagers()" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
-              data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
-             <i class="fa fa-user-shield"></i> Chefs d'équipes
+              data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" translate>
+             <i class="fa fa-user-shield"></i> input.titles.tm
             </button></a>
           <a
          >
             <button  (click)="showMembers()" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
               data-bs-target="#nav-profile" type="button" role="tab" aria-selected="false">
-          <i class="fa fa-users"></i>    Membres
+          <i class="fa fa-users"></i>    buttons.membres
             </button></a>
         </div>
       </nav>
@@ -43,7 +43,7 @@
               </div>
               <div class="postcard__subtitle small">
                 <i class="fas fa-user-circle"></i>
-               <strong>Role: {{convertRole(item.roles)}}</strong>
+               <strong translate>title.detail_inter.table.role   {{convertRole(item.roles)}}</strong>
               </div>
               <div class="postcard__bar"></div>
               <div class="postcard__preview-txt">
@@ -51,8 +51,8 @@
               </div>
               <ul class="postcard__tagbox">
                 <li class="tag__item">
-                  <a [routerLink]="['/dashboard/manager/userProfil', item.id]"><i class="fas fa-info-circle"></i>Afficher
-                    details</a>
+                  <a [routerLink]="['/dashboard/manager/userProfil', item.id]" translate><i class="fas fa-info-circle"></i>
+                    buttons.consult_details</a>
                 </li>
               </ul>
             </div>
@@ -66,7 +66,7 @@
             <a class="postcard__img_link" [routerLink]="['/dashboard/manager/userProfil',item.id]">
               <img class="postcard__img"
                 src="
-                https://wallpapercave.com/wp/wp7728120.jpg"
+                https://wallpaperaccess.com/full/4321838.jpg"
                 alt="Image Title" />
             </a>
             <div class="postcard__text t-dark">
@@ -80,7 +80,7 @@
               </div>
               <div class="postcard__subtitle small">
                 <i class="fas fa-user-circle"></i>
-               <strong>Role: {{convertRole(item.roles)}}</strong>
+               <strong translate>title.detail_inter.table.role   {{convertRole(item.roles)}}</strong>
               </div>
               <div class="postcard__bar"></div>
               <div class="postcard__preview-txt">
@@ -88,8 +88,8 @@
               </div>
               <ul class="postcard__tagbox">
                 <li class="tag__item">
-                  <a [routerLink]="['/dashboard/manager/userProfil', item.id]"><i class="fas fa-info-circle"></i>Afficher
-                    details</a>
+                  <a [routerLink]="['/dashboard/manager/userProfil', item.id]" translate><i class="fas fa-info-circle"></i>
+                    buttons.consult_details</a>
                 </li>
               </ul>
             </div>

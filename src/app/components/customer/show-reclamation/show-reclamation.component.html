@@ -6,33 +6,33 @@
 </div>
 <div class="row1-container">
   <div class="box box-down cyan">
-    <h2>Lieu</h2>
-
-    <p>Rue : {{demand.address.Street}}
-      <br>Ville : {{demand.address.City}}
-      <br>Gouvernorat : {{demand.address.State}}
-      <br>Pays : {{demand.address.Country}}
+    <h2 translate>location.title</h2>
+    <p >
+      <span translate>location.street</span> : {{ demand.address.Street }} <br />
+      <br />   <span translate>location.city</span>  : {{ demand.address.City }} <br />
+      <br />   <span translate>location.governorate</span>  : {{ demand.address.State }} <br />
+      <br />   <span translate>location.country</span>  : {{ demand.address.Country }}
     </p>
     <img src="https://assets.codepen.io/2301174/icon-team-builder.svg" alt="">
 
   </div>
 
   <div class="box red">
-    <h2>Votre description</h2>
+    <h2 translate >input.titles.description</h2>
     <p>{{demand.description}}</p>
     <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">
 
   </div>
 
   <div class="box box-down blue">
-    <h2>Date de publication</h2>
+    <h2 translate> titles.Date </h2>
     <p>{{demand.createdAt | date:'yyyy-MM-dd'}}</p>
     <img src="https://assets.codepen.io/2301174/icon-calculator.svg" alt="">
   </div>
 </div>
 <div class="row2-container">
   <div class="box orange">
-    <h2>Status de cette demande</h2>
+    <h2 translate>status.title  </h2>
     <p>{{status}}</p>
     <i *ngIf="icon == 2"class="fas fa-spinner fa-pulse" style="font-size: 50px;"></i>
     <i *ngIf="icon == 0"class="fa fa-ban" aria-hidden="true" style="font-size: 50px;"></i>
