@@ -62,7 +62,8 @@ export class AddMaterialsComponent implements OnInit {
     this.collectStates()
   }
 
-  ngOnInit() {}
+  ngOnInit() {this.counrty?.setValue('Tunisie')
+}
 
   addMaterial() {
     let address = new Address(

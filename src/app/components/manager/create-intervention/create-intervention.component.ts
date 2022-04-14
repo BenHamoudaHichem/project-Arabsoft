@@ -102,7 +102,7 @@ export class CreateInterventionComponent implements OnInit {
 
   dropdownSettings!: {};
   ngOnInit() {
-
+this.counrty?.setValue('Tunisie')
 
     this.demandList = new Array(new Dbref(this.route.snapshot.paramMap.get('id')!));
     this.allCategory();
