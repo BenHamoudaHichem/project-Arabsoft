@@ -15,7 +15,7 @@
               <i class="fa-lg fas fa-sync fa-spin"></i>
               En cours
             </button></a>
-          <a 
+          <a
             routerLinkActive>
             <button (click)="showPerStatus('Waiting')" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
               data-bs-target="#nav-profile" type="button" role="tab" aria-selected="false">
@@ -69,7 +69,7 @@
 
         <!--nav 2-->
 
-        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" *ngIf="this.interventionList===[]">
           <p class="text-center">
             pas des interventions en attente en ce moment
           </p>

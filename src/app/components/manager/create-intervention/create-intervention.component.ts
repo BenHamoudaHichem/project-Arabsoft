@@ -11,6 +11,7 @@ import { Dbref } from 'src/app/models/dbref';
 import { Location } from 'src/app/models/Location';
 import { User } from 'src/app/models/user';
 import { Intervention } from 'src/app/models/works/intervention';
+import { AddressService } from 'src/app/services/address/address.service';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { ICategory } from 'src/app/services/category/icategory';
 import { IMaterial } from 'src/app/services/resources/material/imaterial';
@@ -30,6 +31,8 @@ import { InterventionService } from 'src/app/services/works/intervention/interve
   styleUrls: ['./create-intervention.component.css'],
 })
 export class CreateInterventionComponent implements OnInit {
+  states!:string[]
+  cities!:string[]
   createInterventionForm!: FormGroup;
   currentDemand!:IDemand
   demandList: Dbref[] = [];
@@ -45,6 +48,7 @@ export class CreateInterventionComponent implements OnInit {
     private teamService: TeamService,
     private demandService :DemandService,
     private materialService: EquipmentService,
+    private addressService:AddressService,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -89,6 +93,11 @@ export class CreateInterventionComponent implements OnInit {
         ),
       }
     );
+    this.counrty?.setValue("Tunisie")
+
+    this.city?.disable()
+    this.collectStates()
+
   }
 
   dropdownSettings!: {};
@@ -199,7 +208,26 @@ export class CreateInterventionComponent implements OnInit {
         Report.failure('erreur getting interventions', error.message, 'ok');
       };*/
   }
+  collectStates()
+  {
 
+    this.addressService.allTNStates.subscribe((res:string[])=>{
+      this.states=res
+    })
+  }
+  collectCitiesBystates(state:string)
+  {
+    this.addressService.allTNCitiesByState(state).subscribe((res:string[])=>{
+      this.cities=res
+    })
+  }
+  loadCities(){
+    if (this.city?.disabled) {
+      this.city?.enable()
+    }
+
+    this.collectCitiesBystates(this.state?.value)
+  }
   get title() {
     return this.createInterventionForm.get('title');
   }

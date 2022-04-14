@@ -9,6 +9,7 @@ import { Confirmed } from 'src/app/services/validation/Confirmed';
 import { Location } from 'src/app/models/Location';
 import { Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
+import { AddressService } from 'src/app/services/address/address.service';
 @Component({
   selector: 'app-register',
   templateUrl:'./register.component.html',
@@ -16,12 +17,14 @@ import { AuthenticateService } from 'src/app/services/authenticate.service';
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
-
+  states!:string[]
+  cities!:string[]
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
     private router: Router,
-    private authService:AuthenticateService
+    private authService:AuthenticateService,
+    private addressService:AddressService
   ) {
     this.registerForm = this.formBuilder.group(
       {
@@ -39,7 +42,7 @@ export class RegisterComponent implements OnInit {
           '',
           [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{8,}$')],
         ],
-        confirm_password: ['', [Validators.required]],
+        confirm_password: ['Tunisie', [Validators.required]],
         state: [
           '',
           [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
@@ -65,6 +68,11 @@ export class RegisterComponent implements OnInit {
         ),
       }
     );
+
+    this.counrty?.setValue("Tunisie")
+    this.city?.disable()
+    this.collectStates()
+
   }
 
   ngOnInit(): void {
@@ -108,6 +116,26 @@ export class RegisterComponent implements OnInit {
       (error: HttpErrorResponse) => {
         Report.warning("Notification d'inscription", error.message, "D'accord");
       };
+  }
+  collectStates()
+  {
+
+    this.addressService.allTNStates.subscribe((res:string[])=>{
+      this.states=res
+    })
+  }
+  collectCitiesBystates(state:string)
+  {
+    this.addressService.allTNCitiesByState(state).subscribe((res:string[])=>{
+      this.cities=res
+    })
+  }
+  loadCities(){
+    if (this.city?.disabled) {
+      this.city?.enable()
+    }
+
+    this.collectCitiesBystates(this.state?.value)
   }
   get state() {
     return this.registerForm.get('state');

@@ -10,6 +10,7 @@ import { Confirmed } from 'src/app/services/validation/Confirmed';
 import { Location } from 'src/app/models/Location';
 import { CookiesService } from 'src/app/services/cookies.service';
 import { IUser } from 'src/app/services/user/iuser';
+import { AddressService } from 'src/app/services/address/address.service';
 @Component({
   selector: 'app-edit-profil',
   templateUrl: './edit-profil.component.html',
@@ -17,10 +18,12 @@ import { IUser } from 'src/app/services/user/iuser';
 })
 export class EditProfilComponent implements OnInit {
   updateForm!: FormGroup;
-
+  states!:string[]
+  cities!:string[]
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
+    private addressService:AddressService,
     private router: Router,
     private cookies: CookiesService
   ) {
@@ -65,7 +68,11 @@ export class EditProfilComponent implements OnInit {
           'confirm_password'
         ),
       }
-    );
+    )
+    this.counrty?.setValue("Tunisie")
+
+    this.city?.disable()
+    this.collectStates()
   }
 
   ngOnInit(): void {
@@ -121,6 +128,27 @@ export class EditProfilComponent implements OnInit {
       (error: HttpErrorResponse) => {
         Report.warning("Erreur de modification", error.message, "D'accord");
       };
+  }
+
+  collectStates()
+  {
+
+    this.addressService.allTNStates.subscribe((res:string[])=>{
+      this.states=res
+    })
+  }
+  collectCitiesBystates(state:string)
+  {
+    this.addressService.allTNCitiesByState(state).subscribe((res:string[])=>{
+      this.cities=res
+    })
+  }
+  loadCities(){
+    if (this.city?.disabled) {
+      this.city?.enable()
+    }
+
+    this.collectCitiesBystates(this.state?.value)
   }
   get state() {
     return this.updateForm.get('state');

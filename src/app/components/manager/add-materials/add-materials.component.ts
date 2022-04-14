@@ -8,6 +8,7 @@ import { Address } from 'src/app/models/Address';
 import { Location } from 'src/app/models/Location';
 
 import { Material } from 'src/app/models/resources/Material';
+import { AddressService } from 'src/app/services/address/address.service';
 import { EquipmentService } from 'src/app/services/resources/material/material.service';
 
 @Component({
@@ -17,10 +18,13 @@ import { EquipmentService } from 'src/app/services/resources/material/material.s
 })
 export class AddMaterialsComponent implements OnInit {
   formAddMaterials!: FormGroup;
-
+  states!:string[]
+  cities!:string[]
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private formBuilder: FormBuilder,
+    private addressService:AddressService,
+
     private materialService: EquipmentService,
     private router: Router
   ) {
@@ -52,6 +56,10 @@ export class AddMaterialsComponent implements OnInit {
       zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
 
     });
+    this.counrty?.setValue("Tunisie")
+
+    this.city?.disable()
+    this.collectStates()
   }
 
   ngOnInit() {}
@@ -83,7 +91,26 @@ export class AddMaterialsComponent implements OnInit {
         Report.warning('Erreur', error.message, 'OK');
       };
   }
+  collectStates()
+  {
 
+    this.addressService.allTNStates.subscribe((res:string[])=>{
+      this.states=res
+    })
+  }
+  collectCitiesBystates(state:string)
+  {
+    this.addressService.allTNCitiesByState(state).subscribe((res:string[])=>{
+      this.cities=res
+    })
+  }
+  loadCities(){
+    if (this.city?.disabled) {
+      this.city?.enable()
+    }
+
+    this.collectCitiesBystates(this.state?.value)
+  }
   get name() {
     return this.formAddMaterials.get('name');
   }

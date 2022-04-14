@@ -11,6 +11,7 @@ import { IMaterial } from 'src/app/services/resources/material/imaterial';
 import moment from 'moment';
 import { plainToClass } from 'class-transformer';
 import { Associatif } from 'src/app/services/types/associatif';
+import { AddressService } from 'src/app/services/address/address.service';
 
 
 @Component({
@@ -23,10 +24,13 @@ export class UpdateMaterialComponent implements OnInit {
   id!: string;
   formupdateMaterials!: FormGroup;
   material!: IMaterial;
+  states!:string[]
+  cities!:string[]
   constructor(
     private ActivatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private materialService: EquipmentService,
+    private addressService:AddressService,
     private router: Router
   ) {
     this.formupdateMaterials = this.formBuilder.group({
@@ -50,11 +54,14 @@ export class UpdateMaterialComponent implements OnInit {
       ],
       zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
     });
+    this.counrty?.setValue("Tunisie")
     this.statusList.push({key:"Fonctionnel",value:"Functional"})
     this.statusList.push({key:"En panne",value:"Broken_down"})
     this.statusList.push({key:"Hors service",value:"Expired"})
     this.statusList.push({key:"Volé",value:"Stoled"})
 
+    this.city?.disable()
+    this.collectStates()
   }
 
 
@@ -119,7 +126,26 @@ updateMaterial() {
         Report.warning('Erreur', error.message, 'OK');
       };
   }
+  collectStates()
+  {
 
+    this.addressService.allTNStates.subscribe((res:string[])=>{
+      this.states=res
+    })
+  }
+  collectCitiesBystates(state:string)
+  {
+    this.addressService.allTNCitiesByState(state).subscribe((res:string[])=>{
+      this.cities=res
+    })
+  }
+  loadCities(){
+    if (this.city?.disabled) {
+      this.city?.enable()
+    }
+
+    this.collectCitiesBystates(this.state?.value)
+  }
   get name() {
     return this.formupdateMaterials.get('name');
   }

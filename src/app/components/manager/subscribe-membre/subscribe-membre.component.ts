@@ -8,6 +8,7 @@ import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
 import { Confirmed } from 'src/app/services/validation/Confirmed';
 import { Location } from 'src/app/models/Location';
+import { AddressService } from 'src/app/services/address/address.service';
 @Component({
   selector: 'app-subscribe-membre',
   templateUrl: './subscribe-membre.component.html',
@@ -15,11 +16,14 @@ import { Location } from 'src/app/models/Location';
 })
 export class SubscribeMembreComponent implements OnInit {
 
-  addCustomerForm!: FormGroup;
+  addCustomerForm!: FormGroup
+  states!:string[]
+  cities!:string[]
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
+    private addressService:AddressService,
     private router: Router
   ) {
     this.addCustomerForm = this.formBuilder.group(
@@ -52,6 +56,10 @@ export class SubscribeMembreComponent implements OnInit {
         ),
       }
     );
+    this.counrty?.setValue("Tunisie")
+
+    this.city?.disable()
+    this.collectStates()
   }
 
   ngOnInit(): void {}
@@ -86,6 +94,27 @@ export class SubscribeMembreComponent implements OnInit {
           "Notification d'affectation",error.message,"D'accord"
           );
       };
+  }
+
+  collectStates()
+  {
+
+    this.addressService.allTNStates.subscribe((res:string[])=>{
+      this.states=res
+    })
+  }
+  collectCitiesBystates(state:string)
+  {
+    this.addressService.allTNCitiesByState(state).subscribe((res:string[])=>{
+      this.cities=res
+    })
+  }
+  loadCities(){
+    if (this.city?.disabled) {
+      this.city?.enable()
+    }
+
+    this.collectCitiesBystates(this.state?.value)
   }
   get state() {
     return this.addCustomerForm.get('state');

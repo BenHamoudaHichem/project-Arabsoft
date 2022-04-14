@@ -24,6 +24,7 @@ export class InterventionListComponent implements OnInit {
   //Interventions
   showPerStatus(status:string)
   {
+    this.interventionList=[]
     this.serviceIntervention.interventionPerStatus(status).subscribe((res: IIntervention[]) => {
       console.log(res)
       this.interventionList = res;

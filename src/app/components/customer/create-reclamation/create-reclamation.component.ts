@@ -6,6 +6,7 @@ import { Notify, Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
 import { Location } from 'src/app/models/Location';
 import { Demand } from 'src/app/models/works/demand';
+import { AddressService } from 'src/app/services/address/address.service';
 import { CookiesService } from 'src/app/services/cookies.service';
 import { DemandService } from 'src/app/services/works/demand/demand.service';
 
@@ -17,10 +18,13 @@ import { DemandService } from 'src/app/services/works/demand/demand.service';
 export class CreateReclamationComponent implements OnInit {
   reclamationForm!: FormGroup;
   id!: string;
+  states!:string[]
+  cities!:string[]
   constructor(
     private formBuilder: FormBuilder,
     private demandeService: DemandService,
     private router: Router,
+    private addressService:AddressService,
     private cookiesServices: CookiesService
   ) {
     this.reclamationForm = this.formBuilder.group({
@@ -38,6 +42,11 @@ export class CreateReclamationComponent implements OnInit {
       ],
       zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{4,}$')]],
     });
+    this.counrty?.setValue("Tunisie")
+
+    this.city?.disable()
+    this.collectStates()
+
   }
 
   sendDemand() {
@@ -67,7 +76,26 @@ export class CreateReclamationComponent implements OnInit {
         Report.failure('Erreur', error.message, "D'accord");
       };
   }
+  collectStates()
+  {
 
+    this.addressService.allTNStates.subscribe((res:string[])=>{
+      this.states=res
+    })
+  }
+  collectCitiesBystates(state:string)
+  {
+    this.addressService.allTNCitiesByState(state).subscribe((res:string[])=>{
+      this.cities=res
+    })
+  }
+  loadCities(){
+    if (this.city?.disabled) {
+      this.city?.enable()
+    }
+
+    this.collectCitiesBystates(this.state?.value)
+  }
   get Title() {
     return this.reclamationForm.get('title');
   }

@@ -130,7 +130,7 @@
                         <div class="form-outline">
                           <label class="form-label" for="pays">Pays</label>
                           <input name="value" type="text"
-value="Tunisie" [readonly]="true"
+                          [readonly]="true"
                             formControlName="country"
                             class="form-control form-control-lg"
                           />
@@ -153,9 +153,8 @@ value="Tunisie" [readonly]="true"
                           <label class="form-label" for="state"
                             >Gouvernorat</label
                           >
-
-                          <select  formControlName="Gouvernorat">
-                            <option  value="">hjjjjj</option>
+                          <select formControlName="state" (change)="loadCities()">
+                            <option *ngFor="let item of states"  [value]="item">{{item}}</option>
                           </select>
 
                           <!--Zip code errors-->
@@ -175,11 +174,9 @@ value="Tunisie" [readonly]="true"
                       <div class="col-md-6 mb-4">
                         <div class="form-outline">
                           <label class="form-label">Ville</label><br>
-
-
-                            <select formControlName="city">
-                              <option  value="">hjjjjj</option>
-                            </select>
+                          <select   formControlName="city">
+                            <option *ngFor="let item of cities" [value]="item">{{item}}</option>
+                          </select>
 
                           <!--Ville errors-->
                           <p

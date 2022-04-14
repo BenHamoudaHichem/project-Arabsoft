@@ -119,8 +119,8 @@
           </div>
           <div class="input-box">
             <span class="details">Gouvernorat</span>
-        <select formControlName="state">
-          <option  value="">hjjjjj</option>
+        <select formControlName="state" (change)="loadCities()">
+          <option *ngFor="let item of states"  [value]="item">{{item}}</option>
         </select>
 
             <!--Zip code errors-->
@@ -136,7 +136,7 @@
           <div class="input-box">
             <span class="details">Ville</span>
             <select   formControlName="city">
-              <option value="">vvvvvv</option>
+              <option *ngFor="let item of cities" [value]="item">{{item}}</option>
             </select>
 
 
