@@ -2,20 +2,29 @@
   "titles": {
     "log": "login",
     "register": "register",
-    "home": "home",
-    "profil": "profil",
+    "home": "Home",
+    "profil": "Profil",
     "add_emp": "subscribe member",
     "add_inter": "create an intervention",
     "add_material": "add material",
-    "add_demand": "send a claim",
+    "add_demand": "Send a claim",
     "add_team": "add team",
     "add_category": "add category",
     "update_material": "update material",
     "update_pro": "update profil",
     "materials": "materials",
+    "materials_list": "materials list",
+    "new_material":"New material",
+    "teams": "teams",
+    "teams_list": "teams list",
+"new_team":"New team",
     "employees": "employees",
+    "employees_list": " employees List",
     "customers": "customers",
     "intervention": "interventions",
+    "interventions_list": "Interventions List",
+    "new_inter":"New Intervention",
+
     "categories": "categories",
     "demands": {
       "title": "claims",
@@ -35,10 +44,13 @@
       }
     },
     "detail_team": "team detail",
-    "detail_category": "category detail"
+    "detail_category": "category detail",
+    "up":"Upload file"
   },
   "buttons": {
     "consult": "show ",
+    "consult_all": "show all",
+
     "consult_members": "show members",
     "consult_details": "show details",
     "create": "create",

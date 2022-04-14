@@ -1,5 +1,6 @@
 
-
+li{  text-transform: capitalize;
+}
 .nav-link {
   padding: 20px;
   letter-spacing: 2px;

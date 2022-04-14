@@ -1,0 +1,142 @@
+{
+  "titles": {
+    "log": "CONNECTEZ VOUS À VOTRE ESPACE",
+    "register": "INSCRIVEZ VOUS A NOTRE SITE",
+    "home": "Acceuil",
+    "profil": "profil",
+    "add_emp": "Inscrivez un membre dans le domaines",
+    "add_inter": "Créer une intervention",
+    "add_material": "Ajouter un materiel",
+    "add_demand": "CRÉER UNE RECLAMATION",
+    "add_team": "add team",
+    "add_category": "Ajouter une catégorie",
+    "update_material": "Mettre à jour le matériel",
+    "update_pro": "Mettre à jour les coordonnés de profil",
+    "materials": "matériels",
+    "materials_list": "Liste des materieles",
+    "new_material":"Nouvel matériel",
+
+    "teams": "Equipes",
+    "teams_list": "Liste des Equipes",
+    "new_team":"Nouveau équipe",
+
+    "employees": "Employées",
+    "employees_list": "Liste des employées",
+    "customers": "Clients",
+    "intervention": "Interventions",
+    "interventions_list": "Liste des Interventions",
+    "new_inter":"Nouvelle Intervention",
+
+    "categories": "Categories",
+    "demands": {
+      "title": "Demandes",
+      "title_home": "Liste des contrats d'abonnements"
+    },
+    "detail_demand": "Les demandes envoyées",
+    "detail_inter": {
+      "title": "Detail de l'intervention",
+      "demands": "Les demandes affectées",
+      "members": "Les membres {members} ",
+      "matériels": "Les matériels utilisés",
+      "table": {
+        "nom": "Nom & Prénom",
+        "role": "Role",
+        "phone": "Telephone",
+        "action": "Action"
+      }
+    },
+    "detail_team": "Detail de l'équipe",
+    "detail_category": "detail de la categorie",
+    "up":"Telecharger un fichier"
+  },
+  "buttons": {
+    "consult": "afficher",
+    "consult_all": "afficher tous",
+
+    "consult_members": "afficher les membres",
+    "consult_details": "afficher les details",
+    "create": "Créer",
+    "add": "ajouter",
+    "edit": "editer",
+    "all": "Tous",
+    "available": "Disponible",
+    "accept": "accepter",
+    "dismiss": "rejeter"
+  },
+  "input": {
+    "titles": {
+      "title": "Titre",
+      "status": "status",
+      "which_date": "à quelle date ",
+      "category": "Catégorie",
+      "team": "Equipe",
+      "add_tm": "ajouter un chef d'équipe",
+      "add_mbrs": "ajouter des membres",
+      "description": "Description",
+      "matériels": "matériels",
+      "purchase_date": "date d'achat",
+      "firstname": "Nom",
+      "lastname": "Prénom",
+      "identifier": "identifiant",
+      "password": "Mot de passe",
+      "confirm_password": "confirmer le mot de passe",
+      "tel": "Telephone",
+      "email": "Email"
+    },
+    "msg": {
+      "intervention": "Entrer le nom de l'intervention",
+      "demand": "Entrer le titre de demandes",
+      "material": "Entrer le titre de materiel",
+      "mat_select": "Selectionner les matériels",
+      "firstname": "Entrer votre nom",
+      "lastname": "Entrer votre prénom",
+      "identifier": "Entrer votre identifiant",
+      "tel": "(+216) __ ___ ___",
+      "email": "Entrer votre email",
+      "category": "Entrer le nom de categorie",
+      "team": "Entrer le nom d'équipe",
+      "tm_select": "Selectionner un chef d'équipe",
+      "designation": "Ecrivez..."
+    }
+  },
+  "location": {
+    "title": "Localisation",
+    "country": "Pays",
+    "city": "Ville",
+    "postal_code": "Code postal",
+    "governorate": "Gouvernorat",
+    "street": "Rue"
+  },
+  "status": {
+    "title": "status",
+    "in_progress": "En cours",
+    "wating": "En attente",
+    "broken": "En panne",
+    "is_on": "En bonne condition"
+  },
+  "cards": {
+    "green": "Demandes acceptés",
+    "red": "Demandes rejetés",
+    "bleu": "Notifications",
+    "white": "Demandes en cours"
+  },
+  "variabls": {
+    "title": "{title}",
+    "startedat_inter": "{started_at}",
+    "status": "{status}",
+    "category_inter": "{category}",
+    "description_inter": "{description}",
+    "firstname": "{firstname}",
+    "lastname": "{lastname}",
+    "identifier": "{identifier}",
+    "password": "{password}",
+    "confirm_password": "{confirm_password}",
+    "tel": "{phone}",
+    "country": "{country}",
+    "city": "{city}",
+    "postal_code": "{postal_code}",
+    "governorate": "{governorate}",
+    "street": "{street}",
+    "description": "{description}"
+  }
+}

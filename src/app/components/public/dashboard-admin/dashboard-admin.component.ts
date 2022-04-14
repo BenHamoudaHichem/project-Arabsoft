@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 declare const hich:any;
@@ -10,7 +11,7 @@ declare const hich:any;
 })
 export class DashboardAdminComponent implements OnInit {
 
-  constructor(private authService:AuthenticateService,private route:Router) { }
+  constructor(private authService:AuthenticateService,private route:Router,public  translate:TranslateService) { }
 
   ngOnInit(): void {
 
@@ -46,5 +47,9 @@ export class DashboardAdminComponent implements OnInit {
       this.authService.onLogoutSucess()
       this.route.navigate(['/home'])
     })
+  }
+ //Switch language
+  translateLanguageTo(lang: string) {
+    this.translate.use(lang);
   }
 }

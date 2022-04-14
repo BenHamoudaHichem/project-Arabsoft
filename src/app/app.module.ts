@@ -25,7 +25,7 @@ import { TeamListComponent } from './components/manager/team-list/team-list.comp
 import { MaterialListComponent } from './components/manager/material-list/material-list.component';
 import { ReclamationListComponent } from './components/manager/reclamation-list/reclamation-list.component';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DashboardAdminComponent } from './components/public/dashboard-admin/dashboard-admin.component';
 import { CookieService } from 'ngx-cookie-service';
 import { HomeCustomerComponent } from './components/customer/home-customer/home-customer.component';
@@ -47,7 +47,11 @@ import { CustomerListComponent } from './components/manager/customer-list/custom
 import { DetailsCustomerComponent } from './components/manager/details-customer/details-customer.component';
 import { DetailCategoryComponent } from './components/manager/detail-category/detail-category.component';
 
-
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+export function httpTranslateLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -99,7 +103,14 @@ HomeComponentPage,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCYYC0LjtQyFdL2PfLbUymRPuBjKlMtvcs',
       libraries: ['places']
-   })
+   }),
+   TranslateModule.forRoot({
+    loader: {
+      provide: TranslateLoader,
+      useFactory: httpTranslateLoaderFactory,
+      deps: [HttpClient]
+    }
+  })
   ],
   providers: [CookieService,GuardAuthenticateGuard],
   bootstrap: [AppComponent]

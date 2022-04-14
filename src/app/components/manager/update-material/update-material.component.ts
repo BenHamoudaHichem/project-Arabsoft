@@ -69,6 +69,7 @@ export class UpdateMaterialComponent implements OnInit {
     this.show();
   }
   show() {
+    this.counrty?.setValue('Tunisie')
     this.id=this.ActivatedRoute.snapshot.paramMap.get("id")!
 
 

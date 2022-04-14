@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { lastValueFrom } from 'rxjs';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { HomeLoaderService } from 'src/app/services/home/home-loader.service';
@@ -16,7 +17,7 @@ export class HomeCustomerComponent implements OnInit {
 
   private demands:IDemand[]=[]
   dataHome!:IHomeCustomer
-  constructor(private homeService:HomeLoaderService,private demandService:DemandService,private userService:UserService,private authService:AuthenticateService) {
+  constructor(private homeService:HomeLoaderService,private demandService:DemandService,private userService:UserService,private authService:AuthenticateService,public translate:TranslateService) {
     this.demandService.allByCustomer(this.authService.authentificatorId).subscribe((res:IDemand[])=>{
       this.demands=res
     })

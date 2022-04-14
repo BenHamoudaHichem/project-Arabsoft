@@ -1,28 +1,30 @@
 <div class="row">
   <div class="col-8">
+
+
     <a href="#" class="data-card accept">
       <h3>  <i class="fa fa-check-circle my-icon"></i>
-        {{dataHome.countCurrentAcceptedDemands}}</h3>
-      <h4>Demandes acceptés </h4>
-      <span class="link-text">
-        Consulter tous <i class="fa fa-arrow-right"></i>
+ {{dataHome.countCurrentAcceptedDemands}}</h3>
+      <h4 translate>cards.green</h4>
+      <span translate class="link-text">
+      buttons.consult_all <i class="fa fa-arrow-right"></i>
 
       </span>
     </a>
     <a href="#" class="data-card rejected">
       <h3> <i class="fa fa-minus-circle"></i>
         {{dataHome.countCurrentRefusedDemands}}</h3>
-      <h4>Demandes rejetés</h4>
-      <span class="link-text">
-        Consulter tous
+      <h4 translate>cards.red</h4>
+      <span translate class="link-text">
+        buttons.consult_all
         <i class="fa fa-arrow-right"></i>
       </span>
     </a>
     <a href="#" class="data-card info">
       <h3>  <i class="fa fa-envelope my-icon"></i>1200</h3>
-      <h4>Notification </h4>
-      <span class="link-text">
-        Consulter tous
+      <h4 translate>cards.bleu </h4>
+      <span translate class="link-text">
+        buttons.consult_all
         <i class="fa fa-arrow-right"></i>
       </span>
     </a>
@@ -30,10 +32,10 @@
       <h3>
         <i class="fa fa-spinner"></i>
         {{dataHome.countCurrentdDemands}}</h3>
-      <h4>
-        Demandes en cours</h4>
-      <span class="link-text">
-        Consulter tous
+      <h4  translate>
+         cards.white </h4>
+      <span translate class="link-text">
+       buttons.consult_all
         <i class="fa fa-arrow-right"></i>
       </span>
     </a>
@@ -43,8 +45,11 @@
 
     <div class="container">
     <div class="mb-5">
-      <span class="card__title"> <i class="fa fa-clipboard-list"></i> Liste des contrats d’abonnements</span>
+      <span class="card__title"
+      translate><i class="fa fa-clipboard-list"></i> titles.demands.title_home</span>
     </div>
+
+ 
     <div class="overflow-hidden">
       <div class="scrollist">
        <div class="card mb-3"  *ngFor="let item of this.getDemands" >
@@ -54,14 +59,14 @@
             <div class="row flex-fill">
               <div class="col-sm-5">
                 <h2>{{item.title}}</h2>
-                <span class="Status">Status</span> : <span>{{item.status}}</span>
+                <span class="Status" translate>status.title</span> : <span>{{item.status}}</span>
               </div>
               <div class="col-sm-4 py-2 calendar">
                 <i class="fa fa-calendar fa-lg"></i>
                 {{item.createdAt | date:'yyyy-MM-dd'}}</div>
               <div class="col-sm-3 text-lg-end">
                 <a routerLink="/dashboard/customer/reclamation/{{item.id}}">
-                  <button  class="bn30"> <span>Voir details</span></button>
+                  <button  class="bn30"> <span translate> buttons.consult_details</span></button>
                 </a>
               </div>
             </div>
