@@ -43,6 +43,8 @@
       "demands": "Les demandes affectées",
       "members": "Les membres {members} ",
       "matériels": "Les matériels utilisés",
+      "team":"responsible team : {{team.name}}",
+
       "table": {
         "nom": "Nom & Prénom",
         "role": "Role",

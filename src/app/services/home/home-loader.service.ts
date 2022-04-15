@@ -26,7 +26,7 @@ export class HomeLoaderService {
 
   loadHomeForManager():Observable<IHomeManager>
   {
-    return this.http.get<IHomeManager>(`${this.apiURL}/manager`)
+    return this.http.get<IHomeManager>(`${this.apiURL}/manager`,this.headers)
     .pipe(
       map((iHomeManager: IHomeManager) => {
         return iHomeManager;
@@ -35,7 +35,7 @@ export class HomeLoaderService {
   }
   loadHomeForCustomer():Observable<IHomeCustomer>
   {
-    return this.http.get<IHomeCustomer>(`${this.apiURL}/customer`)
+    return this.http.get<IHomeCustomer>(`${this.apiURL}/customer`,this.headers)
     .pipe(
       map((iHomeManager: IHomeCustomer) => {
         return iHomeManager;

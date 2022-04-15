@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, Inject, Injector, NgModule } from '@angular/core';
+import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, Inject, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -46,13 +46,33 @@ import { MembersListComponent } from './components/manager/members-list/members-
 import { CustomerListComponent } from './components/manager/customer-list/customer-list.component';
 import { DetailsCustomerComponent } from './components/manager/details-customer/details-customer.component';
 import { DetailCategoryComponent } from './components/manager/detail-category/detail-category.component';
-
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+
+
 export function httpTranslateLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 @NgModule({
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgMultiSelectDropDownModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCYYC0LjtQyFdL2PfLbUymRPuBjKlMtvcs',
+      libraries: ['places']
+   }),
+   TranslateModule.forRoot({
+    loader: {
+      provide: TranslateLoader,
+      useFactory: httpTranslateLoaderFactory,
+      deps: [HttpClient]
+    }
+  })
+  ],
   declarations: [
     AppComponent,
 HomeComponentPage,
@@ -93,25 +113,9 @@ HomeComponentPage,
     DetailsCustomerComponent,
     DetailCategoryComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgMultiSelectDropDownModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCYYC0LjtQyFdL2PfLbUymRPuBjKlMtvcs',
-      libraries: ['places']
-   }),
-   TranslateModule.forRoot({
-    loader: {
-      provide: TranslateLoader,
-      useFactory: httpTranslateLoaderFactory,
-      deps: [HttpClient]
-    }
-  })
-  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+],
   providers: [CookieService,GuardAuthenticateGuard],
   bootstrap: [AppComponent]
 })

@@ -136,7 +136,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <select class="nav-link" #selLang (change)="translateLanguageTo(selLang.value)">
+              <select class="nav-link" id="selLang" #selLang (change)="translateLanguageTo(selLang.value)">
                 <option *ngFor="let language of translate.getLangs()" [value]="language">{{ language }}</option>
               </select>
             </li>

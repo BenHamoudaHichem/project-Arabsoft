@@ -49,8 +49,8 @@
                 <br />   <span translate>location.governorate</span>  : {{ intervention.address.State }} <br />
                 <br />   <span translate>location.country</span>  : {{ intervention.address.Country }}
               </p>
-            <h2 class="card__title">
-              <i class="fas fa-th-list"></i> &nbsp;input.titles.description
+            <h2 class="card__title" translate>
+              <i class="fas fa-th-list"></i> &nbsp; input.titles.description
             </h2>
 
             <p class="card__text">
@@ -63,7 +63,7 @@
     <div class="mb-5">
       <span class="card__title">
         <i class="fa fa-users"></i>
-        [translate]="'titles.detail_inter.members'" [translateParams]="members: intervention.team.name"
+        {{'titles.detail_inter.team'| translate:intervention}}
        </span>
     </div>
     <!-- Responsive Table Section -->
@@ -213,8 +213,8 @@
                   '/dashboard/manager/userProfil',
                   intervention.team.manager.getId()
                 ]"
-                ><button class="bn30">Consulter les details</button></a
-              >
+                >
+                <button class="bn30"><span translate>buttons.consult_details</span></button></a>
             </td>
           </tr>
 
@@ -302,18 +302,20 @@
                   fill="#dd636e"
                 />
               </svg>
-              {{ membre.getfirstName }}&nbsp;{{ membre.getlastName }}
+              {{ membre.getfirstName() + ' '+membre.getlastName() }}
             </td>
             <td
-              class="responsive-table__body__text responsive-table__body__text--types"
-            >
-              Membre
-            </td>
+            class="responsive-table__body__text responsive-table__body__text--types">
+            {{ membre.getTel() }}
+          </td>
             <td
-              class="responsive-table__body__text responsive-table__body__text--country"
-            >
-              <a [routerLink]="['/dashboard/manager/userProfil', membre.getId]"
-                ><button class="bn30">Consulter les details</button></a
+            class="responsive-table__body__text responsive-table__body__text--types">
+            Membre
+          </td>
+            <td
+              class="responsive-table__body__text responsive-table__body__text--country">
+              <a [routerLink]="['/dashboard/manager/userProfil', membre.getId()]"
+                ><button class="bn30" translate>buttons.consult_details</button></a
               >
             </td>
           </tr>
@@ -355,7 +357,7 @@
                       material.id
                     ]"
                   >
-                    <button class="bn30" translate><span> buttons.consult_details</span></button>
+                    <button class="bn30"><span translate> buttons.consult_details</span></button>
                   </a>
                 </div>
               </div>
@@ -409,13 +411,12 @@
                 [routerLink]="[
                   '/dashboard/manager/detailReclamation',
                   demand.id
-                ]"
-              >
-                <button class="bn30" translate><span>buttons.consult</span></button></a
+                ]">
+                <button class="bn30"><span translate>buttons.consult_details</span></button></a
               >
             </div>
           </li>
-          <hr />
+          <hr/>
         </ul>
       </div>
     </div>

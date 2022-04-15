@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { plainToClass } from 'class-transformer';
+import { plainToClass, plainToInstance } from 'class-transformer';
 import { Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
 import { Category } from 'src/app/models/Category';
@@ -48,9 +48,7 @@ this.status='En cours'
         this.intervention.address= plainToClass(Address,this.intervention.address)
 
         this.intervention.team.manager=plainToClass(User,this.intervention.team.manager)
-        this.intervention.team.members.forEach(element => {
-          element=plainToClass(User,element)
-        });
+        this.intervention.team.members=Array.from(res.team.members,x=> plainToClass(User,x))
         this.intervention.demandList.forEach(element => {
 
           element.user=plainToClass(User,element.user)

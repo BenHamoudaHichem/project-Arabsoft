@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import { DefaultLangChangeEvent, DEFAULT_LANGUAGE, MissingTranslationHandler, TranslateService } from '@ngx-translate/core';
 import { Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 declare const hich:any;
@@ -11,7 +12,9 @@ declare const hich:any;
 })
 export class DashboardAdminComponent implements OnInit {
 
-  constructor(private authService:AuthenticateService,private route:Router,public  translate:TranslateService) { }
+  constructor(private authService:AuthenticateService,private route:Router,public  translate:TranslateService) {
+    this.translateLanguageTo(translate.defaultLang)
+  }
 
   ngOnInit(): void {
 
@@ -39,17 +42,24 @@ export class DashboardAdminComponent implements OnInit {
           this.route.navigate(['/home'])
 
       } else {
+        this.route.navigate(['/home'])
         Report.warning(
           "Notification de déconnexion",res.message,"D'accord"
           )
       }
     },error=>{
       this.authService.onLogoutSucess()
-      this.route.navigate(['/home'])
+      this.route.ngOnDestroy()
+      Report.warning(
+        "Notification de déconnexion",error.message,"D'accord"
+        )
+
     })
   }
  //Switch language
   translateLanguageTo(lang: string) {
     this.translate.use(lang);
+
+
   }
 }
