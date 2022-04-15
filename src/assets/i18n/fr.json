@@ -53,7 +53,9 @@
     "detail_mat": "Detail du materiel",
     "detail_team": "Detail de l'équipe",
     "detail_category": "detail de la categorie",
-    "up": "Telecharger un fichier"
+    "up": "Telecharger un fichier",
+
+    "choose_file":"Choisir une fichier"
   },
   "buttons": {
     "consult": "afficher",

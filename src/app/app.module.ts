@@ -49,6 +49,7 @@ import { DetailCategoryComponent } from './components/manager/detail-category/de
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { UpdatePasswordComponent } from './components/public/update-password/update-password.component';
 export function httpTranslateLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -92,6 +93,7 @@ HomeComponentPage,
     CustomerListComponent,
     DetailsCustomerComponent,
     DetailCategoryComponent,
+    UpdatePasswordComponent,
   ],
   imports: [
     BrowserModule,

@@ -53,7 +53,8 @@
     },
     "detail_team": "team detail",
     "detail_category": "category detail",
-    "up": "Upload file"
+    "up": "Upload file",
+    "choose_file":"Choose file"
   },
   "buttons": {
     "consult": "show ",

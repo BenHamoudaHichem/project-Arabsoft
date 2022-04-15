@@ -10,10 +10,11 @@ declare const hich:any;
   styleUrls: ['./dashboard-admin.component.css']
 })
 export class DashboardAdminComponent implements OnInit {
-
+tb!:any[]
   constructor(private authService:AuthenticateService,private route:Router,public  translate:TranslateService) { }
 
   ngOnInit(): void {
+   
 
   }
   checkIsHere()
