@@ -36,6 +36,7 @@ import { DetailsCustomerComponent } from './components/manager/details-customer/
 import { DetailCategoryComponent } from './components/manager/detail-category/detail-category.component';
 import { RedirectGuard } from './services/redirect.guard';
 import { AuthGuard } from './services/auth.guard';
+import { UpdatePasswordComponent } from './components/public/update-password/update-password.component';
 const roles = { customer: 'ROLE_CUSTOMER', manager: 'ROLE_MANAGER' };
 const routes: Routes = [
   { path: 'home', component: HomeComponentPage,canActivate:[RedirectGuard]},
@@ -55,6 +56,14 @@ const routes: Routes = [
       {
         path: 'customer/home',
         component: HomeCustomerComponent,
+       /* canActivate:[GuardAuthenticateGuard],
+         data: {
+          roles: roles.customer
+        }*/
+      },
+      {
+        path: 'customer/changePassword',
+        component: UpdatePasswordComponent,
        /* canActivate:[GuardAuthenticateGuard],
          data: {
           roles: roles.customer

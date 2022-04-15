@@ -3,6 +3,7 @@
     "log": "login",
     "logout":"Sign out",
     "register": "register",
+    "update_Pass":"Change your password",
     "home": "Home",
     "profil": "Profil",
     "add_emp": "subscribe member",
@@ -65,6 +66,8 @@
     "create": "create",
     "add": "add",
     "edit": "edit",
+    "change": "change",
+
     "all": "all",
     "available": "available",
     "accept": "accept",
@@ -95,7 +98,10 @@
       "confirm_password": "confirm password",
       "tel": "phone",
       "email": "email",
-      "Address": "Address"
+      "Address": "Address",
+      "old_pass":"old password",
+      "new_pass":"new password"
+
     },
     "msg": {
       "intervention": "enter the intervention name",
