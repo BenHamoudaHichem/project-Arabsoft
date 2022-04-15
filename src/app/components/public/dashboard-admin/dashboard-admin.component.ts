@@ -20,7 +20,7 @@ export class DashboardAdminComponent implements OnInit {
 
 {
   return this.route.url.includes('List')
-}  public get isCustumer():boolean
+}  public get isCustomer():boolean
   {
     return this.authService.isCustumer
   }

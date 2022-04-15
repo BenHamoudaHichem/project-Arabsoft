@@ -1,6 +1,7 @@
 {
   "titles": {
     "log": "CONNECTEZ VOUS À VOTRE ESPACE",
+    "logout":"Déconnecter",
     "register": "INSCRIVEZ VOUS A NOTRE SITE",
     "home": "Acceuil",
     "profil": "profil",

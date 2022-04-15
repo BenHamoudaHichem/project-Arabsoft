@@ -4,24 +4,25 @@
   <div class="left">
     <ul>
       <li class="menu-heading">Dashboards</li>
-      <li>
+      <li *ngIf="isCustomer">
         <a data-toggle="tab " routerLink="/dashboard/customer/home"><i class="fa fa-home fa-lg"></i> {{'titles.home'|translate}}</a>
       </li>
 
-      <li>
+      <li  *ngIf="isManager">
         <a data-toggle="tab " routerLink="/dashboard/manager/home"><i class="fa fa-home fa-lg"></i> {{'titles.home'|translate}}</a>
       </li>
-      <li class="active">
+      <li class="active" *ngIf="isCustomer">
         <a data-toggle="tab" routerLink="/dashboard/customer/customerProfil"><i class="fa fa-street-view fa-lg"></i>
           {{'titles.profil'|translate}} </a>
       </li>
-      <li>
+      <li *ngIf="isCustomer">
         <a data-toggle="tab" routerLink="/dashboard/customer/createReclamation"><i class="fa fa-edit"></i>  {{'titles.add_demand'|translate}}</a>
       </li>
 
-      <li>
+      <li  *ngIf="isManager">
         <a href="#submenu5" class="dropdown-toggle" data-bs-toggle="collapse">
-          <i class="fa fa-users-cog"></i>    {{'titles.employees'|translate}}</a>
+          <i class="fa fa-users-cog"></i>
+              {{'titles.employees'|translate}}</a>
         <ul class="dropdown-menu-dark collapse text-small" id="submenu5" data-bs-parent="#menu">
           <li>
 
@@ -38,7 +39,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li  *ngIf="isManager">
         <a href="#submenu2" class="dropdown-toggle" data-bs-toggle="collapse">
           <i class="fa fa-users"></i>{{'titles.teams'|translate}}</a>
         <ul class="dropdown-menu-dark collapse text-small" id="submenu2" data-bs-parent="#menu">
@@ -53,7 +54,7 @@
         </ul>
       </li>
 
-      <li>
+      <li  *ngIf="isManager">
         <a href="#submenu3" class="dropdown-toggle" data-bs-toggle="collapse">
           <i class="fa fa-building"></i>{{'titles.intervention'|translate}} </a>
         <ul class="dropdown-menu-dark collapse text-small" id="submenu3" data-bs-parent="#menu">
@@ -71,7 +72,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li  *ngIf="isManager">
         <a href="#submenu4" class="dropdown-toggle" data-bs-toggle="collapse">
           <i class="fa fa-boxes"></i>{{'titles.materials'|translate}}</a>
         <ul class="dropdown-menu-dark collapse text-small" id="submenu4" data-bs-parent="#menu">
@@ -89,10 +90,10 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li  *ngIf="isManager">
         <a data-toggle="tab " [routerLink]="['/dashboard/manager/customerList']"><i class="fa fa-users"></i> Clients</a>
       </li>
-      <li>
+      <li  *ngIf="isManager">
         <a data-toggle="tab " [routerLink]="['/dashboard/manager/reclamationList']"><i class="fa fa-clipboard-list"></i>
           {{'titles.demands.title'|translate}}  </a>
       </li>
@@ -105,10 +106,10 @@
         <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
           data-bs-toggle="dropdown" aria-expanded="false">
           <img src="https://github.com/mdo.png" alt="hugenerd" width="50" height="50" class="rounded-circle" />
-          <span class="d-none d-sm-inline mx-1">Hichem</span>
+          <span class="d-none d-sm-inline mx-1"> </span>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-          <li><a class="dropdown-item" (click)="onLogout()">Sign out</a></li>
+          <li> <a class="dropdown-item text-light"  (click)="onLogout()" translate>titles.logout </a></li>
         </ul>
       </div>
     </ul>
@@ -127,10 +128,10 @@
 
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav me-auto">
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isCustomer">
               <a class="nav-link" routerLink="/dashboard/customer/home"><span>{{'titles.home'|translate}}</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="isManager" >
               <a class="nav-link" routerLink="/dashboard/manager/home"><span>{{'titles.home'|translate}}</span>
               </a>
             </li>

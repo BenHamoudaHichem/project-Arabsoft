@@ -1,6 +1,7 @@
 {
   "titles": {
     "log": "login",
+    "logout":"Sign out",
     "register": "register",
     "home": "Home",
     "profil": "Profil",

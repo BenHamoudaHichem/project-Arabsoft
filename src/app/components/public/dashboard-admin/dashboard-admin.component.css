@@ -103,8 +103,8 @@ span {
 .left ul .menu-heading {
   opacity: 0;
   padding: 10px 5px 10px 10px;
-  color: #b3b300;
-  font-size: smaller;
+  color: #383830;
+  font-size: 30px;
   border-bottom: 1px solid #2b3443;
   transition: all 0.5s;
 }
