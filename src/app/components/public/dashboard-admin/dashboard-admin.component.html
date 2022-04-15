@@ -106,10 +106,14 @@
         <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
           data-bs-toggle="dropdown" aria-expanded="false">
           <img src="https://github.com/mdo.png" alt="hugenerd" width="50" height="50" class="rounded-circle" />
-          <span class="d-none d-sm-inline mx-1"> </span>
+          <span class="d-none d-sm-inline mx-1">{{username}}  </span>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+          <li *ngIf="isCustomer"> <a class="dropdown-item text-light" routerLink="/dashboard/customer/changePassword"   translate>titles.update_Pass </a></li>
+          <li *ngIf="isManager"> <a class="dropdown-item text-light" routerLink="/dashboard/manager/changePassword"   translate>titles.update_Pass </a></li>
+
           <li> <a class="dropdown-item text-light"  (click)="onLogout()" translate>titles.logout </a></li>
+
         </ul>
       </div>
     </ul>

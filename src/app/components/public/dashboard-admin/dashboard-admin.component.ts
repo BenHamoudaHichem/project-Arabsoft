@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
+import { CookiesService } from 'src/app/services/cookies.service';
 declare const hich:any;
 @Component({
   selector: 'app-dashboard-admin',
@@ -11,10 +12,10 @@ declare const hich:any;
 })
 export class DashboardAdminComponent implements OnInit {
 tb!:any[]
-  constructor(private authService:AuthenticateService,private route:Router,public  translate:TranslateService) { }
+  constructor(private authService:AuthenticateService,private route:Router,public  translate:TranslateService,private cookies:CookiesService) { }
 
   ngOnInit(): void {
-   
+
 
   }
   checkIsHere()
@@ -52,5 +53,9 @@ tb!:any[]
  //Switch language
   translateLanguageTo(lang: string) {
     this.translate.use(lang);
+
   }
-}
+  public get username():string{
+    return this.cookies.getUsername
+  }
+  }

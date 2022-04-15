@@ -136,6 +136,14 @@ const routes: Routes = [
         }*/
       },
       {
+        path: 'manager/changePassword',
+        component: UpdatePasswordComponent,
+       /* canActivate:[GuardAuthenticateGuard],
+         data: {
+          roles: roles.customer
+        }*/
+      },
+      {
         path: 'manager/reclamationList',
         component: ReclamationListComponent,
         /*canActivate:[GuardAuthenticateGuard],

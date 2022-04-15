@@ -3,7 +3,7 @@
     "log": "login",
     "logout":"Sign out",
     "register": "register",
-    "update_Pass":"Change your password",
+    "update_Pass":"Change password",
     "home": "Home",
     "profil": "Profil",
     "add_emp": "subscribe member",
