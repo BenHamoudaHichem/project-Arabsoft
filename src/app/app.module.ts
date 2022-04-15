@@ -47,9 +47,8 @@ import { CustomerListComponent } from './components/manager/customer-list/custom
 import { DetailsCustomerComponent } from './components/manager/details-customer/details-customer.component';
 import { DetailCategoryComponent } from './components/manager/detail-category/detail-category.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { UpdatePasswordComponent } from './components/public/update-password/update-password.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-
-
 export function httpTranslateLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -112,6 +111,7 @@ HomeComponentPage,
     CustomerListComponent,
     DetailsCustomerComponent,
     DetailCategoryComponent,
+    UpdatePasswordComponent,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

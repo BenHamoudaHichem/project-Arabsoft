@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { DefaultLangChangeEvent, DEFAULT_LANGUAGE, MissingTranslationHandler, TranslateService } from '@ngx-translate/core';
 import { Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
+import { CookiesService } from 'src/app/services/cookies.service';
 declare const hich:any;
 @Component({
   selector: 'app-dashboard-admin',
@@ -17,6 +18,7 @@ export class DashboardAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
 
   }
   checkIsHere()
@@ -60,6 +62,8 @@ export class DashboardAdminComponent implements OnInit {
   translateLanguageTo(lang: string) {
     this.translate.use(lang);
 
-
   }
-}
+  public get username():string{
+    return this.authService.getUsername
+  }
+  }

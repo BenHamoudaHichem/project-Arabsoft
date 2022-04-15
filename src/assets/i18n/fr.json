@@ -3,6 +3,7 @@
     "log": "CONNECTEZ VOUS À VOTRE ESPACE",
     "logout":"Déconnecter",
     "register": "INSCRIVEZ VOUS A NOTRE SITE",
+    "update_Pass":"Modifier votre mot de passe",
     "home": "Acceuil",
     "profil": "profil",
     "add_emp": "Inscrivez un membre dans le domaines",
@@ -55,7 +56,9 @@
     "detail_mat": "Detail du materiel",
     "detail_team": "Detail de l'équipe",
     "detail_category": "detail de la categorie",
-    "up": "Telecharger un fichier"
+    "up": "Telecharger un fichier",
+
+    "choose_file":"Choisir une fichier"
   },
   "buttons": {
     "consult": "afficher",
@@ -65,6 +68,8 @@
     "create": "Créer",
     "add": "ajouter",
     "edit": "editer",
+    "change": "changer",
+
     "all": "Tous",
     "send": "envoyer",
     "available": "Disponible",
@@ -95,7 +100,10 @@
       "password": "Mot de passe",
       "confirm_password": "confirmer le mot de passe",
       "tel": "Telephone",
-      "email": "Email"
+      "email": "Email",
+      "old_pass":"ancien mot de passe",
+      "new_pass":"Nouveau mot de passe"
+
     },
     "msg": {
       "intervention": "Entrer le nom de l'intervention",

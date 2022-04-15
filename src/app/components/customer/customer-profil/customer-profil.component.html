@@ -12,10 +12,13 @@
             />
             <div class="file btn btn-lg btn-primary"  *ngIf="isProfilUser()"translate>
               titles.up_photo
-                           <input type="file" name="file" />
+              <input type="file" name="file" />
             </div>
+
+
           </div>
         </div>
+
         <div class="col-md-6">
           <div class="profile-head">
             <h2>{{ user.firstName }} {{ user.lastName }}</h2>
@@ -25,14 +28,14 @@
           </div>
         </div>
         <div class="col-md-2" *ngIf="isProfilUser()">
-          <a [routerLink]="['/dashboard/customer/editProfil', user.id]"
+          <a routerLink='/dashboard/customer/editProfil'
             ><button class="bn30" role="button" translate>
               <i class="fa fa-edit"></i>
-
             titles.update_pro
             </button>
           </a>
         </div>
+
       </div>
       <div class="row">
         <div class="col-md-4">

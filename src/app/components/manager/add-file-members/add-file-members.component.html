@@ -3,22 +3,21 @@
   <div class="container d-flex justify-content-center">
     <div class="card shadow" style="position: relative; margin-top: 100px; width: 400px; height:  400px;">
       <div class="card-body">
-           <h2 class="text-center text-uppercase">Telecharger fichier membres </h2>
+           <h2 class="text-center text-uppercase" translate>titles.up</h2>
 
 
 
         <div class="custom-file text-center">
-          <label for="">Ajouter un fichier</label>
         <input type="file" class="custom-file__input" id="field-upload" name="upload"(change)="upload($event)" required>
-        <label *ngIf="output==''" class="custom-file__label" for="field-upload">Choose file</label>
+        <label *ngIf="output==''" class="custom-file__label" for="field-upload" translate>titles.choose_file</label>
         <label *ngIf="output!=''" class="custom-file__label" for="field-upload">{{output}}</label>
-        <p *ngIf="typeFile!=''" >Le fichier est de type {{typeFile}}</p>
+        <p *ngIf="typeFile!=''" > {{typeFile}}</p>
         </div>
 <div class="d-flex justify-content-center pt-3">
 
-  <button class="bn30" role="button">
+  <button class="bn30" role="button" translate>
 
-      Ajouter
+      buttons.add
 
   </button>
   </div>

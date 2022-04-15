@@ -43,6 +43,9 @@ export class LoginComponent implements OnInit {
         Notify.success('Bienvenue '+res.username);
         return
       }
+      else{
+        Report.failure('Erreur',res.status,'OK');
+      }
 
 
 
