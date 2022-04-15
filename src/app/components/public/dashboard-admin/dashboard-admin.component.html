@@ -140,9 +140,29 @@
               </a>
             </li>
             <li class="nav-item">
-              <select class="nav-link" id="selLang" #selLang (change)="translateLanguageTo(selLang.value)">
-                <option *ngFor="let language of translate.getLangs()" [value]="language">{{ language }}</option>
-              </select>
+            
+            </li>
+            <li class="nav-item dropdown dropdown-mega position-static">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside">Options</a>
+              <div class="dropdown-menu shadow" style="float: right;">
+                <div class="mega-content px-4">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-12 col-sm-4 col-md-3 py-4">
+                        <h5>Langues:</h5>
+                        <div class="list-group">
+                          <img class="long" (click)="translateLanguageTo('en')" src="https://media.istockphoto.com/vectors/united-kingdom-flag-realistic-waving-union-jack-vector-id1251660737?k=20&m=1251660737&s=612x612&w=0&h=Hd3fVDhA3KUaefIawI9jcyTFL7M_YZwO6wBxTu8bVxE=" alt="" >
+                          <img class="long" (click)="translateLanguageTo('fr')" src="https://i0.wp.com/www.respectability.org/wp-content/uploads/2015/01/france-flag.jpg?ssl=1" alt="">
+
+                        </div>
+                      </div>
+
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
             </li>
           </ul>
 

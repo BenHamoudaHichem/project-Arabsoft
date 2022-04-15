@@ -13301,3 +13301,16 @@ fieldset:disabled .btn {
   letter-spacing: 2px;
   font-size: 20px;
   font-weight: bolder;}
+
+   .long{
+    width: 50px;
+    height: 30px;
+    margin-top: 5px;
+    border-radius: 20%;
+    cursor: pointer;
+
+  }
+  .long:hover{
+    width: 55px;
+    height: 35px;
+  }
