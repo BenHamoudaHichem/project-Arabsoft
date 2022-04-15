@@ -5,16 +5,14 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root',
 })
 export class CookiesService {
-  public static ROLE_CUSTOMER:string="ROLE_CUSTOMER"
-  public static ROLE_MANAGER:string="ROLE_MANAGER"
+  public static ROLE_CUSTOMER: string = 'ROLE_CUSTOMER';
+  public static ROLE_MANAGER: string = 'ROLE_MANAGER';
   constructor(private myCookies: CookieService) {
-   try {
-
-    this.getIdentifier
-   } catch (error) {
-     console.log("rrrrr")
-
-   }
+    try {
+      this.getIdentifier;
+    } catch (error) {
+      console.log('error get identifier');
+    }
   }
 
   createToken(token: string): void {
@@ -24,6 +22,9 @@ export class CookiesService {
     return this.myCookies.get('_token');
   }
 
+  get TranslateLanguage(): string {
+    return this.myCookies.get('_lang');
+  }
 
   get getIdentifier(): string {
     return this.myCookies.get('_id');
@@ -39,6 +40,9 @@ export class CookiesService {
   addUserRole(role: string): void {
     this.myCookies.set('_role', role);
   }
+  addTranslateLanguage(lang: string): void {
+    this.myCookies.set('_lang', lang);
+  }
   addUsername(name: string): void {
     this.myCookies.set('_username', name);
   }
@@ -48,8 +52,5 @@ export class CookiesService {
   deleteAll() {
     this.myCookies.deleteAll('/', 'localhost', false, 'Lax');
   }
-  static init()
-  {
-
-  }
+  static init() {}
 }

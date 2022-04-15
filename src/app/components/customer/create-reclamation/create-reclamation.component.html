@@ -83,6 +83,7 @@
                         <div class="form-outline">
                           <label class="form-label" for="state" translate> location.governorate
                           </label>
+                          <br>
 
                           <select formControlName="state" (change)="loadCities()">
                             <option *ngFor="let item of states" [value]="item">{{item}}</option>

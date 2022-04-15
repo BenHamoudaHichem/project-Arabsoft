@@ -130,7 +130,7 @@
     "country": "Pays",
     "city": "Ville",
     "postal_code": "Code postal",
-    "governorate": "state",
+    "governorate": "governorat",
     "street": "Rue"
   },
   "status": {

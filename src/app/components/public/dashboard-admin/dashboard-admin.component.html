@@ -4,22 +4,22 @@
   <div class="left">
     <ul>
       <li class="menu-heading">Dashboards</li>
-      <li *ngIf="isCustomer">
+      <li  >
         <a data-toggle="tab " routerLink="/dashboard/customer/home"><i class="fa fa-home fa-lg"></i> {{'titles.home'|translate}}</a>
       </li>
 
-      <li  *ngIf="isManager">
+      <li   >
         <a data-toggle="tab " routerLink="/dashboard/manager/home"><i class="fa fa-home fa-lg"></i> {{'titles.home'|translate}}</a>
       </li>
-      <li class="active" *ngIf="isCustomer">
+      <li class="active"  >
         <a data-toggle="tab" routerLink="/dashboard/customer/customerProfil"><i class="fa fa-street-view fa-lg"></i>
           {{'titles.profil'|translate}} </a>
       </li>
-      <li *ngIf="isCustomer">
+      <li  >
         <a data-toggle="tab" routerLink="/dashboard/customer/createReclamation"><i class="fa fa-edit"></i>  {{'titles.add_demand'|translate}}</a>
       </li>
 
-      <li  *ngIf="isManager">
+      <li   >
         <a href="#submenu5" class="dropdown-toggle" data-bs-toggle="collapse">
           <i class="fa fa-users-cog"></i>
               {{'titles.employees'|translate}}</a>
@@ -39,7 +39,7 @@
           </li>
         </ul>
       </li>
-      <li  *ngIf="isManager">
+      <li   >
         <a href="#submenu2" class="dropdown-toggle" data-bs-toggle="collapse">
           <i class="fa fa-users"></i>{{'titles.teams'|translate}}</a>
         <ul class="dropdown-menu-dark collapse text-small" id="submenu2" data-bs-parent="#menu">
@@ -54,7 +54,7 @@
         </ul>
       </li>
 
-      <li  *ngIf="isManager">
+      <li   >
         <a href="#submenu3" class="dropdown-toggle" data-bs-toggle="collapse">
           <i class="fa fa-building"></i>{{'titles.intervention'|translate}} </a>
         <ul class="dropdown-menu-dark collapse text-small" id="submenu3" data-bs-parent="#menu">
@@ -72,7 +72,7 @@
           </li>
         </ul>
       </li>
-      <li  *ngIf="isManager">
+      <li   >
         <a href="#submenu4" class="dropdown-toggle" data-bs-toggle="collapse">
           <i class="fa fa-boxes"></i>{{'titles.materials'|translate}}</a>
         <ul class="dropdown-menu-dark collapse text-small" id="submenu4" data-bs-parent="#menu">
@@ -90,10 +90,10 @@
           </li>
         </ul>
       </li>
-      <li  *ngIf="isManager">
+      <li   >
         <a data-toggle="tab " [routerLink]="['/dashboard/manager/customerList']"><i class="fa fa-users"></i> Clients</a>
       </li>
-      <li  *ngIf="isManager">
+      <li   >
         <a data-toggle="tab " [routerLink]="['/dashboard/manager/reclamationList']"><i class="fa fa-clipboard-list"></i>
           {{'titles.demands.title'|translate}}  </a>
       </li>
@@ -109,8 +109,8 @@
           <span class="d-none d-sm-inline mx-1">{{username}}  </span>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-          <li *ngIf="isCustomer"> <a class="dropdown-item text-light" routerLink="/dashboard/customer/changePassword"   translate>titles.update_Pass </a></li>
-          <li *ngIf="isManager"> <a class="dropdown-item text-light" routerLink="/dashboard/manager/changePassword"   translate>titles.update_Pass </a></li>
+          <li  > <a class="dropdown-item text-light" routerLink="/dashboard/customer/changePassword"   translate>titles.update_Pass </a></li>
+          <li  > <a class="dropdown-item text-light" routerLink="/dashboard/manager/changePassword"   translate>titles.update_Pass </a></li>
 
           <li> <a class="dropdown-item text-light"  (click)="onLogout()" translate>titles.logout </a></li>
 
@@ -132,19 +132,19 @@
 
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav me-auto">
-            <li class="nav-item" *ngIf="isCustomer">
+            <li class="nav-item"  >
               <a class="nav-link" routerLink="/dashboard/customer/home"><span>{{'titles.home'|translate}}</span></a>
             </li>
-            <li class="nav-item" *ngIf="isManager" >
+            <li class="nav-item"   >
               <a class="nav-link" routerLink="/dashboard/manager/home"><span>{{'titles.home'|translate}}</span>
               </a>
             </li>
             <li class="nav-item">
-            
+
             </li>
             <li class="nav-item dropdown dropdown-mega position-static">
               <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside">Options</a>
-              <div class="dropdown-menu shadow" style="float: right;">
+              <div class="dropdown-menu shadow" style="margin-right: auto;margin-left: auto;">
                 <div class="mega-content px-4">
                   <div class="container-fluid">
                     <div class="row">

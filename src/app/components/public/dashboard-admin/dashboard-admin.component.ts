@@ -13,7 +13,7 @@ declare const hich:any;
 })
 export class DashboardAdminComponent implements OnInit {
 
-  constructor(private authService:AuthenticateService,private route:Router,public  translate:TranslateService) {
+  constructor(private authService:AuthenticateService,private route:Router,public  translate:TranslateService,private cookies:CookiesService) {
     this.translateLanguageTo(translate.defaultLang)
   }
 
@@ -60,7 +60,10 @@ export class DashboardAdminComponent implements OnInit {
   }
  //Switch language
   translateLanguageTo(lang: string) {
+
     this.translate.use(lang);
+    this.cookies.addTranslateLanguage(lang)
+
 
   }
   public get username():string{
