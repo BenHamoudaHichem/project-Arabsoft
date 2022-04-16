@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/user/user.service';
 import { Confirmed } from 'src/app/services/validation/Confirmed';
 import { Location } from 'src/app/models/Location';
 import { AddressService } from 'src/app/services/address/address.service';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 @Component({
   selector: 'app-subscribe-membre',
   templateUrl: './subscribe-membre.component.html',
@@ -24,7 +25,8 @@ export class SubscribeMembreComponent implements OnInit {
     private formBuilder: FormBuilder,
     private userService: UserService,
     private addressService:AddressService,
-    private router: Router
+    private router: Router,
+    private AuthenticateService:AuthenticateService
   ) {
     this.addCustomerForm = this.formBuilder.group(
       {
@@ -91,9 +93,15 @@ export class SubscribeMembreComponent implements OnInit {
       this.router.navigate(['dashboard/login']);
     }),
       (error: HttpErrorResponse) => {
-        Report.warning(
-          "Notification d'affectation",error.message,"D'accord"
-          );
+        if(error.status==401){
+          this.AuthenticateService.redirectIfNotAuth()
+
+        } else{
+          Report.warning(
+            "Notification d'affectation",error.message,"D'accord"
+            );
+        }
+
       };
   }
 

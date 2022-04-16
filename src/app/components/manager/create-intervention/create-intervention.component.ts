@@ -12,6 +12,7 @@ import { Location } from 'src/app/models/Location';
 import { User } from 'src/app/models/user';
 import { Intervention } from 'src/app/models/works/intervention';
 import { AddressService } from 'src/app/services/address/address.service';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { ICategory } from 'src/app/services/category/icategory';
 import { IMaterial } from 'src/app/services/resources/material/imaterial';
@@ -50,7 +51,8 @@ export class CreateInterventionComponent implements OnInit {
     private materialService: EquipmentService,
     private addressService:AddressService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private AuthenticateService:AuthenticateService
   ) {
     this.createInterventionForm = this.formBuilder.group(
       {
@@ -120,7 +122,13 @@ this.counrty?.setValue('Tunisie')
       this.counrty?.setValue(this.currentDemand.address.Country)
       this.currentDemand.user=plainToClass(User,res.user)
     }),(error:HttpErrorResponse)=>{
-      Report.warning('Erreur',error.message,'OK')
+      if(error.status==401){
+        this.AuthenticateService.redirectIfNotAuth()
+
+      } else{
+        Report.failure('Erreur', error.message,'OK')
+
+      }
     };
     this.dropdownSettings = {
       singleSelection: false,
@@ -164,8 +172,13 @@ this.counrty?.setValue('Tunisie')
       console.log(this.categoryList);
     }),
       (errors: HttpErrorResponse) => {
-        Report.failure('erreur getting categories', errors.message, 'Ok');
-      };
+        if(errors.status==401){
+          this.AuthenticateService.redirectIfNotAuth()
+
+        } else{
+          Report.failure('Erreur', errors.message,'OK')
+
+        }          };
   }
 
   create() {
@@ -195,8 +208,13 @@ this.counrty?.setValue('Tunisie')
       }
     }),
       (error: HttpErrorResponse) => {
-        Report.failure('Erreur', error.message, 'Ok');
-      }
+        if(error.status==401){
+          this.AuthenticateService.redirectIfNotAuth()
+
+        } else{
+          Report.failure('Erreur', error.message,'OK')
+
+        }          }
   }
 
   getInterventions() {

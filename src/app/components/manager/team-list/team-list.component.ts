@@ -1,8 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { plainToClass } from 'class-transformer';
+import { Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
 import { User } from 'src/app/models/user';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { ITeam } from 'src/app/services/resources/team/iteam';
 import { TeamService } from 'src/app/services/resources/team/team.service';
 
@@ -14,7 +16,8 @@ import { TeamService } from 'src/app/services/resources/team/team.service';
 export class TeamListComponent implements OnInit {
 
   teamList!: ITeam[];
-  constructor(private serviceTeam: TeamService) {
+  constructor(private serviceTeam: TeamService,private AuthenticateService:AuthenticateService) {
+
     this.showAll();
   }
 
@@ -40,8 +43,13 @@ export class TeamListComponent implements OnInit {
 
     }),
       (error: HttpErrorResponse) => {
-        alert(error.message);
-      };
+        if(error.status==401){
+          this.AuthenticateService.redirectIfNotAuth()
+
+        } else{
+          Report.failure('Erreur', error.message,'OK')
+
+        }        };
   }
   showAvailable(){
     this.serviceTeam.findByStatus("Available").subscribe((IT: ITeam[]) => {
@@ -61,7 +69,12 @@ export class TeamListComponent implements OnInit {
 
     }),
       (error: HttpErrorResponse) => {
-        alert(error.message);
-      };
+        if(error.status==401){
+          this.AuthenticateService.redirectIfNotAuth()
+
+        } else{
+          Report.failure('Erreur', error.message,'OK')
+
+        }        };
 }
 }

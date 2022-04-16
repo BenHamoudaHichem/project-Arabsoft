@@ -11,6 +11,7 @@ import { Location } from 'src/app/models/Location';
 import { CookiesService } from 'src/app/services/cookies.service';
 import { IUser } from 'src/app/services/user/iuser';
 import { AddressService } from 'src/app/services/address/address.service';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 @Component({
   selector: 'app-edit-profil',
   templateUrl: './edit-profil.component.html',
@@ -25,7 +26,7 @@ export class EditProfilComponent implements OnInit {
     private userService: UserService,
     private addressService:AddressService,
     private router: Router,
-    private cookies: CookiesService
+    private cookies: CookiesService,private AuthenticateService:AuthenticateService
   ) {
     this.updateForm = this.formBuilder.group(
       {
@@ -97,8 +98,10 @@ export class EditProfilComponent implements OnInit {
         this.confirmPassword?.setValue(res.password);
     }),
       (error: HttpErrorResponse) => {
-        Report.warning('Error', error.message, 'OK');
-      };
+        if(error.status==401){
+          this.AuthenticateService.redirectIfNotAuth()
+
+        }      };
   }
 
   Update() {
@@ -126,8 +129,10 @@ export class EditProfilComponent implements OnInit {
       this.router.navigateByUrl('/customer/customerProfil');
     }),
       (error: HttpErrorResponse) => {
-        Report.warning("Erreur de modification", error.message, "D'accord");
-      };
+        if(error.status==401){
+          this.AuthenticateService.redirectIfNotAuth()
+
+        }   };
   }
 
   collectStates()

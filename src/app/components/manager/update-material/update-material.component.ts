@@ -12,6 +12,7 @@ import moment from 'moment';
 import { plainToClass } from 'class-transformer';
 import { Associatif } from 'src/app/services/types/associatif';
 import { AddressService } from 'src/app/services/address/address.service';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 
 
 @Component({
@@ -31,7 +32,8 @@ export class UpdateMaterialComponent implements OnInit {
     private formBuilder: FormBuilder,
     private materialService: EquipmentService,
     private addressService:AddressService,
-    private router: Router
+    private router: Router,
+    private AuthenticateService:AuthenticateService
   ) {
     this.formupdateMaterials = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
@@ -124,8 +126,13 @@ updateMaterial() {
       this.router.navigate(['manager/materialList']);}else{Notify.failure(data.message)}
     }),
       (error: HttpErrorResponse) => {
-        Report.warning('Erreur', error.message, 'OK');
-      };
+        if(error.status==401){
+          this.AuthenticateService.redirectIfNotAuth()
+
+        } else{
+          Report.failure('Erreur', error.message,'OK')
+
+        }         };
   }
   collectStates()
   {

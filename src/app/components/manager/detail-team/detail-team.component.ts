@@ -5,6 +5,7 @@ import { plainToClass } from 'class-transformer';
 import { Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
 import { User } from 'src/app/models/user';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { ITeam } from 'src/app/services/resources/team/iteam';
 import { TeamService } from 'src/app/services/resources/team/team.service';
 
@@ -19,7 +20,8 @@ export class DetailTeamComponent implements OnInit {
   id!: string;
   constructor(
     private teamService: TeamService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private AuthenticateService:AuthenticateService
   ) {
 
     if(this.route.snapshot.paramMap.has("id")){
@@ -42,7 +44,12 @@ export class DetailTeamComponent implements OnInit {
       this.team.members=Array.from(res.members,x=> plainToClass(User,x))
 
     }),(error:HttpErrorResponse)=>{
-      Report.warning('Erreur',error.message,'OK')
-    };
+      if(error.status==401){
+        this.AuthenticateService.redirectIfNotAuth()
+
+      } else{
+        Report.failure('Erreur', error.message,'OK')
+
+      }      };
   }
 }

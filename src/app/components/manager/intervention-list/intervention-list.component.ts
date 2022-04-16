@@ -2,7 +2,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { plainToClass } from 'class-transformer';
+import { Report } from 'notiflix';
 import { Category } from 'src/app/models/Category';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { IIntervention } from 'src/app/services/works/intervention/iintervention';
 import { InterventionService } from 'src/app/services/works/intervention/intervention.service';
 
@@ -14,7 +16,9 @@ import { InterventionService } from 'src/app/services/works/intervention/interve
 export class InterventionListComponent implements OnInit {
   interventionList!: IIntervention[];
   status!:string
-  constructor(private serviceIntervention: InterventionService,private route:ActivatedRoute) {
+  constructor(private serviceIntervention: InterventionService,
+    private route:ActivatedRoute,
+    private AuthenticateService:AuthenticateService) {
   }
 
   ngOnInit(): void {
@@ -33,8 +37,13 @@ export class InterventionListComponent implements OnInit {
       })
     }),
       (error: HttpErrorResponse) => {
-        alert(error.message);
-      };
+        if(error.status==401){
+          this.AuthenticateService.redirectIfNotAuth()
+
+        } else{
+          Report.failure('Erreur', error.message,'OK')
+
+        }         };
   }
 
 }

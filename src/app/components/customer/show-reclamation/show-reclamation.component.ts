@@ -5,6 +5,7 @@ import { plainToClass } from 'class-transformer';
 import { Loading, Report } from 'notiflix';
 import { finalize } from 'rxjs';
 import { Address } from 'src/app/models/Address';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { DemandService } from 'src/app/services/works/demand/demand.service';
 import { IDemand } from 'src/app/services/works/demand/idemand';
 
@@ -19,7 +20,8 @@ export class ShowReclamationComponent implements OnInit {
 
   constructor(
     private demandService: DemandService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private AuthenticateService:AuthenticateService
   ) {
     this.route.snapshot.paramMap.get("id");
     console.log(String(this.route.snapshot.paramMap.get("id")))
@@ -42,7 +44,10 @@ export class ShowReclamationComponent implements OnInit {
       this.demand.address=plainToClass(Address,res.address)
       console.log((this.demand.address))
     }),(error:HttpErrorResponse)=>{
-      Report.warning('Erreur',error.message,'OK')
+      if(error.status==401){
+        this.AuthenticateService.redirectIfNotAuth()
+
+      }
     };
   }
   get status():string{

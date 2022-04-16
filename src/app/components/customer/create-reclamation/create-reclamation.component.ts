@@ -75,9 +75,11 @@ export class CreateReclamationComponent implements OnInit {
       this.router.navigate(['/customer/detailReclamation']);
     }),
       (error: HttpErrorResponse) => {
-        Report.failure('Erreur', error.message, "D'accord");
         if(error.status==401){
-          this.AuthenticateService.redirectIfNotAuth
+          this.AuthenticateService.redirectIfNotAuth()
+
+        }else{
+          Report.failure('Erreur', error.message,'OK')
 
         }
       };

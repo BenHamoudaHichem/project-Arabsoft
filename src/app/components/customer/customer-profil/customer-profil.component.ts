@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Report } from 'notiflix';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { CookiesService } from 'src/app/services/cookies.service';
 import { IUser } from 'src/app/services/user/iuser';
 import { UserService } from 'src/app/services/user/user.service';
@@ -13,10 +14,13 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class CustomerProfilComponent implements OnInit {
   user!: IUser;
+
   constructor(
     private cookiesServices: CookiesService,
     private userService: UserService,
-    private route: ActivatedRoute,private router:Router
+    private route: ActivatedRoute,
+    private router: Router,
+    private AuthenticateService: AuthenticateService
   ) {}
 
   ngOnInit(): void {
@@ -30,22 +34,34 @@ export class CustomerProfilComponent implements OnInit {
           console.log(this.user);
         }),
         (error: HttpErrorResponse) => {
-          Report.failure('Error getting user', error.message, 'OK');
+          if (error.status == 401) {
+            this.AuthenticateService.redirectIfNotAuth();
+          } else {
+            Report.failure('Erreur', error.message, 'OK');
+          }
         };
     } else {
       this.userService
         .getUser(this.cookiesServices.getIdentifier)
         .subscribe((data: IUser) => {
-          this.user = (data);
+          this.user = data;
           console.log(this.user);
         }),
         (error: HttpErrorResponse) => {
-          Report.failure('Error getting user', error.message, 'OK');
+          if (error.status == 401) {
+            this.AuthenticateService.redirectIfNotAuth();
+          } else {
+            Report.failure('Erreur', error.message, 'OK');
+          }
         };
     }
   }
   isProfilUser() {
- return this.cookiesServices.getIdentifier ==this.route.snapshot.paramMap.get('id') || (this.cookiesServices.getIdentifier!=null && this.router.url.includes('customer'))
+    return (
+      this.cookiesServices.getIdentifier ==
+        this.route.snapshot.paramMap.get('id') ||
+      (this.cookiesServices.getIdentifier != null &&
+        this.router.url.includes('customer'))
+    );
   }
-
 }

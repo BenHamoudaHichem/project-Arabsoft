@@ -9,6 +9,7 @@ import { Location } from 'src/app/models/Location';
 
 import { Material } from 'src/app/models/resources/Material';
 import { AddressService } from 'src/app/services/address/address.service';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { EquipmentService } from 'src/app/services/resources/material/material.service';
 
 @Component({
@@ -26,7 +27,8 @@ export class AddMaterialsComponent implements OnInit {
     private addressService:AddressService,
 
     private materialService: EquipmentService,
-    private router: Router
+    private router: Router,
+    private AuthenticateService:AuthenticateService
   ) {
     this.formAddMaterials = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
@@ -89,8 +91,14 @@ export class AddMaterialsComponent implements OnInit {
       this.router.navigate(['manager/materialList']);
     }),
       (error: HttpErrorResponse) => {
-        Report.warning('Erreur', error.message, 'OK');
-      };
+        if(error.status==401){
+          this.AuthenticateService.redirectIfNotAuth()
+
+        }else{
+          Report.failure('Erreur', error.message,'OK')
+
+        }
+              };
   }
   collectStates()
   {
