@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Notify, Report } from 'notiflix';
-import { lastValueFrom, of } from 'rxjs';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { HTMLEscape } from 'src/app/services/validation/HTMLEscapeChars';
 
