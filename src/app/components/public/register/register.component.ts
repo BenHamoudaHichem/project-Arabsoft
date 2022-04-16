@@ -46,6 +46,7 @@ export class RegisterComponent implements OnInit {
           [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{8,}$')],
         ],
         confirm_password: ['Tunisie', [Validators.required]],
+        captcha: ['', [Validators.required]],
         state: [
           '',
           [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],

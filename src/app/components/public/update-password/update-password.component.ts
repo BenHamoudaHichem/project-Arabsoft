@@ -23,6 +23,7 @@ export class UpdatePasswordComponent implements OnInit {
           [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{8,}$')],
         ],
         old_password: ['', [Validators.required]],
+        captcha: ['', [Validators.required]],
       },
       {
         Validators: Confirmed.ConfirmedValidator(
