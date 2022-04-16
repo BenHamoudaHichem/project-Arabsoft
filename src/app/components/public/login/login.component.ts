@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Notify, Report } from 'notiflix';
 import { lastValueFrom, of } from 'rxjs';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
+import { HTMLEscape } from 'src/app/services/validation/HTMLEscapeChars';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +28,8 @@ export class LoginComponent implements OnInit {
   }
 
   try_login() {
-    console.log(this.Identifier?.value, this.Password?.value);
+
+    console.log(HTMLEscape.escapeMethod(this.Identifier?.value), this.Password?.value);
      this.authService.login(this.Identifier?.value,this.Password?.value).subscribe((res:any)=>{
 
       if (!res.status) {
