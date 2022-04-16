@@ -1,11 +1,9 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DefaultLangChangeEvent, DEFAULT_LANGUAGE, MissingTranslationHandler, TranslateService } from '@ngx-translate/core';
 import { Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
-import { CookiesService } from 'src/app/services/cookies.service';
-declare const hich:any;
+
 @Component({
   selector: 'app-dashboard-admin',
   templateUrl: './dashboard-admin.component.html',
@@ -13,7 +11,7 @@ declare const hich:any;
 })
 export class DashboardAdminComponent implements OnInit {
 
-  constructor(private authService:AuthenticateService,private route:Router,public  translate:TranslateService,private cookies:CookiesService) {
+  constructor(private authService:AuthenticateService,private route:Router,public  translate:TranslateService) {
     this.translateLanguageTo(translate.defaultLang)
   }
 
@@ -60,10 +58,7 @@ export class DashboardAdminComponent implements OnInit {
   }
  //Switch language
   translateLanguageTo(lang: string) {
-
     this.translate.use(lang);
-    this.cookies.addTranslateLanguage(lang)
-
 
   }
   public get username():string{
