@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 
 @Component({
   selector: 'app-root',
@@ -7,10 +8,13 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  constructor(public translate: TranslateService) {
+  constructor(public translate: TranslateService,@Inject(SESSION_STORAGE) private storage: StorageService) {
     // Register translation languages
     translate.addLangs(['en', 'fr']);
     // Set default language
-    translate.setDefaultLang('en');
+    storage.set("Lang",storage.get("Lang") || window.navigator.language)
+    translate.setDefaultLang(storage.get("Lang"));
+
+
   }
 }

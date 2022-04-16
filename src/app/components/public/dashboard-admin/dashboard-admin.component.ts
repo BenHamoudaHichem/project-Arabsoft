@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DefaultLangChangeEvent, DEFAULT_LANGUAGE, MissingTranslationHandler, TranslateService } from '@ngx-translate/core';
+import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 
@@ -11,8 +12,8 @@ import { AuthenticateService } from 'src/app/services/authenticate.service';
 })
 export class DashboardAdminComponent implements OnInit {
 
-  constructor(private authService:AuthenticateService,private route:Router,public  translate:TranslateService) {
-    this.translateLanguageTo(translate.defaultLang)
+  constructor(private authService:AuthenticateService,private route:Router,public  translate:TranslateService,@Inject(SESSION_STORAGE) private storage: StorageService) {
+
   }
 
   ngOnInit(): void {
@@ -58,7 +59,10 @@ export class DashboardAdminComponent implements OnInit {
   }
  //Switch language
   translateLanguageTo(lang: string) {
-    this.translate.use(lang);
+
+    this.storage.set("Lang",lang)
+    this.translate.use(this.storage.get("Lang"));
+
 
   }
   public get username():string{
