@@ -5,6 +5,8 @@ ul {
 .footer-section {
 background: #141415;
 position: relative;
+margin-bottom: 0;
+
 }
 .footer-cta {
 border-bottom: 1px solid #373636;
@@ -138,6 +140,7 @@ transform: rotate(-6deg);
 .copyright-area{
 background: #202020;
 padding: 25px 0;
+margin-bottom: 0;
 }
 .copyright-text p {
 margin: 0;
