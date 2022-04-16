@@ -10,13 +10,13 @@
       <!--End nav-->
       <!--Start content-->
       <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-
-
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+        aria-labelledby="nav-home-tab">
 
 
           <article class="postcard light" *ngFor="let item of usersList" >
-            <a class="postcard__img_link" [routerLink]="['/dashboard/manager/userProfil',item.id]">
+            <a class="postcard__img_link"
+            [routerLink]="['/dashboard/manager/userProfil',item.id]">
               <img class="postcard__img"
                 src="
                 https://wallpaperaccess.com/full/237583.jpg"

@@ -8,6 +8,7 @@ import { Location } from 'src/app/models/Location';
 import { Demand } from 'src/app/models/works/demand';
 import { AddressService } from 'src/app/services/address/address.service';
 import { CookiesService } from 'src/app/services/cookies.service';
+import {  AuthenticateService} from 'src/app/services/authenticate.service'
 import { DemandService } from 'src/app/services/works/demand/demand.service';
 
 @Component({
@@ -25,7 +26,8 @@ export class CreateReclamationComponent implements OnInit {
     private demandeService: DemandService,
     private router: Router,
     private addressService:AddressService,
-    private cookiesServices: CookiesService
+    private cookiesServices: CookiesService,
+    private AuthenticateService:AuthenticateService
   ) {
     this.reclamationForm = this.formBuilder.group({
       title: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
@@ -74,6 +76,10 @@ export class CreateReclamationComponent implements OnInit {
     }),
       (error: HttpErrorResponse) => {
         Report.failure('Erreur', error.message, "D'accord");
+        if(error.status==401){
+          this.AuthenticateService.redirectIfNotAuth
+
+        }
       };
   }
   collectStates()

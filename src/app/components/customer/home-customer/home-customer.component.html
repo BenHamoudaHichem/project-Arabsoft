@@ -49,13 +49,13 @@
       translate><i class="fa fa-clipboard-list"></i> titles.demands.title_home</span>
     </div>
 
- 
+
     <div class="overflow-hidden">
       <div class="scrollist">
-       <div class="card mb-3"  *ngFor="let item of this.getDemands" >
+       <div class="card mb-3"  *ngFor="let item of this.getDemands; let i=index">
         <div class="card-body">
           <div class="d-flex flex-column flex-lg-row">
-            <span class="avatar avatar-text rounded-3 me-4 mb-2">FD</span>
+            <span class="avatar avatar-text rounded-3 me-4 mb-2">{{i+1}}</span>
             <div class="row flex-fill">
               <div class="col-sm-5">
                 <h2>{{item.title}}</h2>

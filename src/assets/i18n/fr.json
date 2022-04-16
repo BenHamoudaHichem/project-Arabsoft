@@ -44,7 +44,7 @@
       "demands": "Les demandes affectées",
       "members": "Les membres {members} ",
       "matériels": "Les matériels utilisés",
-      "team":"responsible team : {{team.name}}",
+      "team":" équipe responsable  : {{team.name}}",
 
       "table": {
         "nom": "Nom & Prénom",
@@ -122,7 +122,8 @@
       "mm_select": "Selectionner les membres",
       "msg_interv": "Il ya {{ interventionList }} interventions dans cette catégorie",
       "tm_select": "Selectionner un chef d'équipe",
-      "designation": "Ecrivez..."
+      "designation": "Ecrivez...",
+      "member":"membre"
     }
   },
   "location": {

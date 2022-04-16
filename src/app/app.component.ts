@@ -13,7 +13,7 @@ export class AppComponent {
     // Register translation languages
     translate.addLangs(['en', 'fr']);
     // Set default language
-    translate.setDefaultLang('en');
+  //  translate.setDefaultLang('en');
     let browserLang = translate.getBrowserLang();
     translate.use(browserLang ? browserLang : 'en');
     console.log(this.getCurrentLang());

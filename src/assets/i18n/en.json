@@ -1,9 +1,9 @@
 {
   "titles": {
     "log": "login",
-    "logout":"Sign out",
+    "logout": "Sign out",
     "register": "register",
-    "update_Pass":"Change password",
+    "update_Pass": "Change password",
     "home": "Home",
     "profil": "Profil",
     "add_emp": "subscribe member",
@@ -45,7 +45,7 @@
       "demands": "requests affected",
       "members": "members of {members} ",
       "materials": "materials used",
-      "team":"responsible team : {{team.name}}",
+      "team": "responsible team : {{team.name}}",
       "table": {
         "nom": "member name",
         "role": "role",
@@ -56,7 +56,7 @@
     "detail_team": "team detail",
     "detail_category": "category detail",
     "up": "Upload file",
-    "choose_file":"Choose file"
+    "choose_file": "Choose file"
   },
   "buttons": {
     "consult": "show ",
@@ -100,9 +100,8 @@
       "tel": "phone",
       "email": "email",
       "Address": "Address",
-      "old_pass":"old password",
-      "new_pass":"new password"
-
+      "old_pass": "old password",
+      "new_pass": "new password"
     },
     "msg": {
       "intervention": "enter the intervention name",
@@ -120,7 +119,8 @@
       "mm_select": "select members",
       "msg_interv": "There are {{ interventionList }} interventions in this category",
       "msg_tm": "There are {{ members }} members in this team",
-      "designation": "write..."
+      "designation": "write...",
+      "member": "member"
     }
   },
   "location": {
