@@ -13,8 +13,9 @@ export class AppComponent {
     translate.addLangs(['en', 'fr']);
     // Set default language
     storage.set("Lang",storage.get("Lang") || window.navigator.language)
-    translate.setDefaultLang(storage.get("Lang"));
+    translate.use(storage.get("Lang"));
 
 
+    console.log(window.navigator.language)
   }
 }

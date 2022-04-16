@@ -13,6 +13,7 @@ import { AuthenticateService } from 'src/app/services/authenticate.service';
 export class DashboardAdminComponent implements OnInit {
 
   constructor(private authService:AuthenticateService,private route:Router,public  translate:TranslateService,@Inject(SESSION_STORAGE) private storage: StorageService) {
+    this.translate.use(this.storage.get("Lang"));
 
   }
 
@@ -35,24 +36,19 @@ export class DashboardAdminComponent implements OnInit {
   onLogout()
   {
     this.authService.logout.subscribe((res:any)=>{
-      if (res.status) {
-        this.authService.onLogoutSucess()
-        Report.success(
-          "Notification de déconnexion",res.message,"D'accord"
-          )
-          this.route.navigate(['/home'])
 
-      } else {
-        this.route.navigate(['/home'])
-        Report.warning(
-          "Notification de déconnexion",res.message,"D'accord"
-          )
+        this.authService.onLogoutSucess()
+
+          Report.success(
+            "Notification de déconnexion","Au revoir","D'accord"
+            )
+
       }
-    },error=>{
+    ,error=>{
       this.authService.onLogoutSucess()
-      this.route.ngOnDestroy()
-      Report.warning(
-        "Notification de déconnexion",error.message,"D'accord"
+      this.route.navigate(['/home'])
+      Report.success(
+        "Notification de déconnexion","Au revoir","D'accord"
         )
 
     })
@@ -61,8 +57,8 @@ export class DashboardAdminComponent implements OnInit {
   translateLanguageTo(lang: string) {
 
     this.storage.set("Lang",lang)
-    this.translate.use(this.storage.get("Lang"));
 
+    this.translate.use(this.storage.get("Lang"));
 
   }
   public get username():string{
