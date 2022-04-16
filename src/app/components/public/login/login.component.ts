@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   try_login() {
 
     console.log(HTMLEscape.escapeMethod(this.Identifier?.value), this.Password?.value);
-     this.authService.login(this.Identifier?.value,this.Password?.value).subscribe((res:any)=>{
+     this.authService.login(HTMLEscape.escapeMethod(this.Identifier?.value),HTMLEscape.escapeMethod(this.Password?.value)).subscribe((res:any)=>{
 
       if (!res.status) {
 

@@ -13,7 +13,7 @@ import { plainToClass } from 'class-transformer';
 import { Associatif } from 'src/app/services/types/associatif';
 import { AddressService } from 'src/app/services/address/address.service';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
-
+import { HTMLEscape } from 'src/app/services/validation/HTMLEscapeChars';
 
 @Component({
   selector: 'app-update-material',
@@ -21,19 +21,19 @@ import { AuthenticateService } from 'src/app/services/authenticate.service';
   styleUrls: ['./update-material.component.css'],
 })
 export class UpdateMaterialComponent implements OnInit {
-  public statusList:Associatif[]=[]
+  public statusList: Associatif[] = [];
   id!: string;
   formupdateMaterials!: FormGroup;
   material!: IMaterial;
-  states!:string[]
-  cities!:string[]
+  states!: string[];
+  cities!: string[];
   constructor(
     private ActivatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     private materialService: EquipmentService,
-    private addressService:AddressService,
+    private addressService: AddressService,
     private router: Router,
-    private AuthenticateService:AuthenticateService
+    private AuthenticateService: AuthenticateService
   ) {
     this.formupdateMaterials = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
@@ -56,103 +56,103 @@ export class UpdateMaterialComponent implements OnInit {
       ],
       zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
     });
-    this.counrty?.setValue("Tunisie")
-    this.statusList.push({key:"Fonctionnel",value:"Functional"})
-    this.statusList.push({key:"En panne",value:"Broken_down"})
-    this.statusList.push({key:"Hors service",value:"Expired"})
-    this.statusList.push({key:"Volé",value:"Stoled"})
+    this.counrty?.setValue('Tunisie');
+    this.statusList.push({ key: 'Fonctionnel', value: 'Functional' });
+    this.statusList.push({ key: 'En panne', value: 'Broken_down' });
+    this.statusList.push({ key: 'Hors service', value: 'Expired' });
+    this.statusList.push({ key: 'Volé', value: 'Stoled' });
 
-    this.city?.disable()
-    this.collectStates()
+    this.city?.disable();
+    this.collectStates();
   }
-
 
   ngOnInit() {
     this.show();
   }
   show() {
-    this.counrty?.setValue('Tunisie')
-    this.id=this.ActivatedRoute.snapshot.paramMap.get("id")!
-
-
+    this.counrty?.setValue('Tunisie');
+    this.id = this.ActivatedRoute.snapshot.paramMap.get('id')!;
 
     if (this.id != null) {
       this.materialService
         .showMaterial(this.id)
         .subscribe((data: IMaterial) => {
-          this.material=data
-          this.material.address=plainToClass(Address,data.address)
+          this.material = data;
+          this.material.address = plainToClass(Address, data.address);
 
-          console.log(this.material)
+          console.log(this.material);
 
           this.name?.setValue(data.name);
           this.description?.setValue(data.description);
-          this.dateOfPurshase?.setValue(moment(data.dateOfPurchase).format('yyyy-MM-DD'));
+          this.dateOfPurshase?.setValue(
+            moment(data.dateOfPurchase).format('yyyy-MM-DD')
+          );
           this.city?.setValue(this.material.address.City);
           this.counrty?.setValue(data.address.Country);
           this.street?.setValue(data.address.Street);
           this.zipCode?.setValue(data.address.ZipCode);
           this.state?.setValue(data.address.State);
-          this.statusList.forEach(element => {
-            if (element.value==this.material.status) {
+          this.statusList.forEach((element) => {
+            if (element.value == this.material.status) {
               this.status?.setValue(element.value);
             }
           });
-        //  this.status?.setValue(data.status);
+          //  this.status?.setValue(data.status);
         });
     }
   }
-updateMaterial() {
+  updateMaterial() {
     let address = new Address(
-      this.zipCode?.value,
-      this.street?.value,
-      this.city?.value,
-      this.state?.value,
-      this.counrty?.value,
+      HTMLEscape.escapeMethod(this.zipCode?.value),
+      HTMLEscape.escapeMethod(this.street?.value),
+      HTMLEscape.escapeMethod(this.city?.value),
+      HTMLEscape.escapeMethod(this.state?.value),
+      HTMLEscape.escapeMethod(this.counrty?.value),
       new Location(1, 1)
     );
     //  console.log(location)
     let newMaterial = new Material(
-      String(this.name?.value),
-      String(this.description?.value),
+      HTMLEscape.escapeMethod(String(this.name?.value)),
+      HTMLEscape.escapeMethod(String(this.description?.value)),
       address,
       this.dateOfPurshase?.value,
-      String(this.status?.value)
+      HTMLEscape.escapeMethod(String(this.status?.value))
     );
-    this.materialService.update(this.material.id,newMaterial).subscribe((data:any) => {
-      console.log(data);
-      if(data.status)
-      {Notify.success('Materiel est modifié avec succès');
-      this.router.navigate(['manager/materialList']);}else{Notify.failure(data.message)}
-    }),
+    this.materialService
+      .update(this.material.id, newMaterial)
+      .subscribe((data: any) => {
+        console.log(data);
+        if (data.status) {
+          Notify.success('Materiel est modifié avec succès');
+          this.router.navigate(['manager/materialList']);
+        } else {
+          Notify.failure(data.message);
+        }
+      }),
       (error: HttpErrorResponse) => {
-        if(error.status==401){
-          this.AuthenticateService.redirectIfNotAuth()
-
-        } else{
-          Report.failure('Erreur', error.message,'OK')
-
-        }         };
+        if (error.status == 401) {
+          this.AuthenticateService.redirectIfNotAuth();
+        } else {
+          Report.failure('Erreur', error.message, 'OK');
+        }
+      };
   }
-  collectStates()
-  {
-
-    this.addressService.allTNStates.subscribe((res:string[])=>{
-      this.states=res
-    })
+  collectStates() {
+    this.addressService.allTNStates.subscribe((res: string[]) => {
+      this.states = res;
+    });
   }
-  collectCitiesBystates(state:string)
-  {
-    this.addressService.allTNCitiesByState(state).subscribe((res:string[])=>{
-      this.cities=res
-    })
+  collectCitiesBystates(state: string) {
+    this.addressService.allTNCitiesByState(state).subscribe((res: string[]) => {
+      this.cities = res;
+    });
   }
-  loadCities(){
+  loadCities() {
     if (this.city?.disabled) {
-      this.city?.enable()
+      this.city?.enable();
     }
 
-    this.collectCitiesBystates(this.state?.value)
+    this.collectCitiesBystates(this.state?.value);
   }
   get name() {
     return this.formupdateMaterials.get('name');
@@ -181,5 +181,4 @@ updateMaterial() {
   get zipCode() {
     return this.formupdateMaterials.get('zipCode');
   }
-
 }

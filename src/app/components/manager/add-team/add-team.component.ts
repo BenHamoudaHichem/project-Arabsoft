@@ -12,6 +12,7 @@ import { ITeam } from 'src/app/services/resources/team/iteam';
 import { TeamService } from 'src/app/services/resources/team/team.service';
 import { IUser } from 'src/app/services/user/iuser';
 import { UserService } from 'src/app/services/user/user.service';
+import { HTMLEscape } from 'src/app/services/validation/HTMLEscapeChars';
 
 @Component({
   selector: 'app-add-team',
@@ -103,7 +104,7 @@ export class AddTeamComponent implements OnInit {
     console.log("mm : "+this.manager?.value[0].id)
     console.log("dd : "+this.selectedlist)
 
-    let team = new Team(String(this.titre?.value),new Dbref(this.manager?.value[0].id),
+    let team = new Team( HTMLEscape.escapeMethod(String(this.titre?.value)),new Dbref(this.manager?.value[0].id),
     this.selectedlist);
 
     this.teamService.create(team).subscribe((data: any) => {

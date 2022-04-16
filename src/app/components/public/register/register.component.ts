@@ -10,6 +10,7 @@ import { Location } from 'src/app/models/Location';
 import { Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { AddressService } from 'src/app/services/address/address.service';
+import { HTMLEscape } from 'src/app/services/validation/HTMLEscapeChars';
 @Component({
   selector: 'app-register',
   templateUrl:'./register.component.html',
@@ -85,21 +86,21 @@ export class RegisterComponent implements OnInit {
   }
   Register() {
     let adresse = new Address(
-      String(this.zipCode?.value),
-      String(this.street?.value),
-      String(this.city?.value),
-      String(this.state?.value),
-      String(this.counrty?.value),
+      HTMLEscape.escapeMethod(String(this.zipCode?.value)),
+      HTMLEscape.escapeMethod(String(this.street?.value)),
+      HTMLEscape.escapeMethod(String(this.city?.value)),
+      HTMLEscape.escapeMethod(String(this.state?.value)),
+      HTMLEscape.escapeMethod(String(this.counrty?.value)),
       new Location(1, 1)
     );
     let user = new User(
       '',
-      String(this.firstName?.value),
-      String(this.lastNamme?.value),
-      String(this.identifier?.value),
-      String(this.password?.value),
+      HTMLEscape.escapeMethod(String(this.firstName?.value)),
+      HTMLEscape.escapeMethod(String(this.lastNamme?.value)),
+      HTMLEscape.escapeMethod(String(this.identifier?.value)),
+      HTMLEscape.escapeMethod(String(this.password?.value)),
       adresse,
-      String(this.tel?.value),
+      HTMLEscape.escapeMethod(String(this.tel?.value)),
 
       ['']
     );

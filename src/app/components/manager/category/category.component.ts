@@ -7,6 +7,7 @@ import{Category} from 'src/app/models/Category';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { ICategory } from 'src/app/services/category/icategory';
+import { HTMLEscape } from 'src/app/services/validation/HTMLEscapeChars';
 
 @Component({
   selector: 'app-category',
@@ -28,7 +29,7 @@ get categorie(){return this.categorieForm.get('categorie')}
   }
 
 
-  addCategorie(){let categorie=new Category(String(this.categorie?.value))
+  addCategorie(){let categorie=new Category( HTMLEscape.escapeMethod(String(this.categorie?.value)))
 this.categorieService.create(categorie).subscribe((res: any) => {
   if(res.status==true)
   {
