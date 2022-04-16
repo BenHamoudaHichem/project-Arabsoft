@@ -54,8 +54,9 @@
       "msg_interv": "There are {{ interventionList }} interventions in this category",
       "msg_tm": "There are {{ members }} members in this team",
       "team": "enter the team name",
+      "tm": "team manager",
       "tel": "(+216) __ ___ ___",
-      "tm_select": "select t      eam manager"
+      "tm_select": "select team manager"
     },
     "titles": {
       "add_mbrs": "add members",

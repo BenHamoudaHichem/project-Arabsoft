@@ -78,6 +78,8 @@
 			"status": "status",
 			"team": "equipe",
 			"tel": "telephone",
+      "tm": "chef d'équipe ",
+
 			"title": "titre",
 			"which_date": "à quelle date "
 		}
