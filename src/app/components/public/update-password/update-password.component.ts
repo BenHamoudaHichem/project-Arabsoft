@@ -5,10 +5,12 @@ import { Confirmed } from 'src/app/services/validation/Confirmed';
 @Component({
   selector: 'app-update-password',
   templateUrl: './update-password.component.html',
-  styleUrls: ['./update-password.component.css']
+  styleUrls: ['./update-password.component.css'],
 })
 export class UpdatePasswordComponent implements OnInit {
-  formUpdatePassword!:FormGroup
+  public captchaResolved: boolean = false;
+  siteKey = '6LcOuyYTAAAAAHTjFuqhA52fmfJ_j5iFk5PsfXaU';
+  formUpdatePassword!: FormGroup;
   constructor(private formBuilder: FormBuilder) {
     this.formUpdatePassword = this.formBuilder.group(
       {
@@ -29,20 +31,25 @@ export class UpdatePasswordComponent implements OnInit {
         ),
       }
     );
-
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+  changePassword() {
+    console.log(this.formUpdatePassword.value);
   }
-changePassword(){
-  console.log(this.formUpdatePassword.value)
-}
-
+  checkCaptcha(captchaResponse: string) {
+    console.log(
+      (this.captchaResolved =
+        captchaResponse && captchaResponse.length > 0 ? true : false)
+    );
+  }
   get confirm_new_password() {
     return this.formUpdatePassword.get('confirm_new_password');
-  }get old_password() {
+  }
+  get old_password() {
     return this.formUpdatePassword.get('old_password');
-  }get new_password() {
+  }
+  get new_password() {
     return this.formUpdatePassword.get('new_password');
   }
 }

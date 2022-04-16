@@ -49,6 +49,8 @@ import { DetailCategoryComponent } from './components/manager/detail-category/de
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { UpdatePasswordComponent } from './components/public/update-password/update-password.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { RecaptchaModule,RecaptchaFormsModule } from "ng-recaptcha";
+
 export function httpTranslateLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -71,6 +73,8 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
+    RecaptchaModule,
+    RecaptchaFormsModule
   ],
   declarations: [
     AppComponent,

@@ -225,6 +225,9 @@
               not matched
             </p>
           </div>
+          <div class="input-box">
+          <re-captcha (resolved)="checkCaptcha($event)" [siteKey]="siteKey" formControlName="captcha"
+          ></re-captcha></div>
         </div>
 
         <div class="d-flex justify-content-end pt-3">

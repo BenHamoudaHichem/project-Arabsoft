@@ -25,6 +25,7 @@
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.2",
     "ng-multiselect-dropdown": "^0.3.8",
+    "ng-recaptcha": "^9.0.0",
     "ngx-cookie-service": "^13.1.2",
     "ngx-toaster": "^1.0.1",
     "ngx-webstorage-service": "^5.0.0",

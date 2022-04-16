@@ -13,19 +13,21 @@ import { AddressService } from 'src/app/services/address/address.service';
 import { HTMLEscape } from 'src/app/services/validation/HTMLEscapeChars';
 @Component({
   selector: 'app-register',
-  templateUrl:'./register.component.html',
+  templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
-  states!:string[]
-  cities!:string[]
+  states!: string[];
+  cities!: string[];
+  public captchaResolved: boolean = false;
+  siteKey = '6LcOuyYTAAAAAHTjFuqhA52fmfJ_j5iFk5PsfXaU';
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
     private router: Router,
-    private authService:AuthenticateService,
-    private addressService:AddressService
+    private authService: AuthenticateService,
+    private addressService: AddressService
   ) {
     this.registerForm = this.formBuilder.group(
       {
@@ -70,18 +72,16 @@ export class RegisterComponent implements OnInit {
       }
     );
 
-    this.counrty?.setValue("Tunisie")
-    this.city?.disable()
-    this.collectStates()
-
+    this.counrty?.setValue('Tunisie');
+    this.city?.disable();
+    this.collectStates();
   }
 
   ngOnInit(): void {
-    this.counrty?.setValue('Tunisie')
+    this.counrty?.setValue('Tunisie');
 
-    if(this.authService.isLogin)
-    {
-      this.router.navigate(['/dashboard/not-found'])
+    if (this.authService.isLogin) {
+      this.router.navigate(['/dashboard/not-found']);
     }
   }
   Register() {
@@ -106,12 +106,9 @@ export class RegisterComponent implements OnInit {
     );
     console.log(user);
     this.userService.create(user).subscribe((res: any) => {
-      if(res.status==true)
-      {
+      if (res.status == true) {
         Report.success("Notification d'inscription", res.message, "D'accord");
-
-      }
-      else{
+      } else {
         Report.warning("Notification d'inscription", res.message, "D'accord");
       }
       this.router.navigateByUrl('/login');
@@ -120,25 +117,28 @@ export class RegisterComponent implements OnInit {
         Report.warning("Notification d'inscription", error.message, "D'accord");
       };
   }
-  collectStates()
-  {
-
-    this.addressService.allTNStates.subscribe((res:string[])=>{
-      this.states=res
-    })
+  collectStates() {
+    this.addressService.allTNStates.subscribe((res: string[]) => {
+      this.states = res;
+    });
   }
-  collectCitiesBystates(state:string)
-  {
-    this.addressService.allTNCitiesByState(state).subscribe((res:string[])=>{
-      this.cities=res
-    })
+  collectCitiesBystates(state: string) {
+    this.addressService.allTNCitiesByState(state).subscribe((res: string[]) => {
+      this.cities = res;
+    });
   }
-  loadCities(){
+  loadCities() {
     if (this.city?.disabled) {
-      this.city?.enable()
+      this.city?.enable();
     }
 
-    this.collectCitiesBystates(this.state?.value)
+    this.collectCitiesBystates(this.state?.value);
+  }
+  checkCaptcha(captchaResponse: string) {
+    console.log(
+      (this.captchaResolved =
+        captchaResponse && captchaResponse.length > 0 ? true : false)
+    );
   }
   get state() {
     return this.registerForm.get('state');
