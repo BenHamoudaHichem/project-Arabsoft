@@ -6,6 +6,7 @@ li{  text-transform: capitalize;
   letter-spacing: 2px;
   font-size: 20px;
   font-weight: bolder;
+  cursor: pointer;
 }
 span {
   color: rgba(37, 32, 32, 0.884);
