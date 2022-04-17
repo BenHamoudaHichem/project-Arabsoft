@@ -13305,17 +13305,35 @@ fieldset:disabled .btn {
   font-size: 20px;
   font-weight: bolder;}
 
+  .globe:hover{
+    border: solid 2px;
+    border-color: #f1f2f6;
+
+
+  }
    .long{
-    width: 50px;
-    height: 30px;
+    width: 56px;
+    height: 36px;
     margin-top: 5px;
     border-radius: 20%;
-    cursor: auto;
+    cursor: pointer;
 
 
   }
+
   .long:hover{
-    width: 55px;
-    height: 35px;
+    width: 60px;
+    height: 40px;
   }
+  .bgColor{
+    background-color: #f6f6f6;
+    border-radius:0 15% 15% 15% ;
 
+
+
+   }
+
+  .ml-auto .dropdown-menu {
+    left: auto !important;
+    right: 0px;
+}

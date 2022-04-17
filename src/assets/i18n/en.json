@@ -91,6 +91,11 @@
     "street": "street",
     "title": "location"
   },
+  "lng": {
+    "title": "choose a language ",
+    "en": "English",
+    "fr": "French"
+  },
   "status": {
     "broken": "is broken",
     "in_progress": "in progress",

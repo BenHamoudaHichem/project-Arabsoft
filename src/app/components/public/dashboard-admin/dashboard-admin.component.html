@@ -5,33 +5,36 @@
     <ul>
       <li class="menu-heading">Dashboards</li>
       <li *ngIf="isCustomer">
-        <a data-toggle="tab " routerLink="/dashboard/customer/home"><i class="fa fa-home fa-lg"></i> {{'titles.home'|translate}}</a>
+        <a data-toggle="tab " routerLink="/dashboard/customer/home"><i class="fa fa-home fa-lg"></i>
+          {{'titles.home'|translate}}</a>
       </li>
 
-      <li  *ngIf="isManager">
-        <a data-toggle="tab " routerLink="/dashboard/manager/home"><i class="fa fa-home fa-lg"></i> {{'titles.home'|translate}}</a>
+      <li *ngIf="isManager">
+        <a data-toggle="tab " routerLink="/dashboard/manager/home"><i class="fa fa-home fa-lg"></i>
+          {{'titles.home'|translate}}</a>
       </li>
       <li class="active" *ngIf="isCustomer">
         <a data-toggle="tab" routerLink="/dashboard/customer/customerProfil"><i class="fa fa-street-view fa-lg"></i>
           {{'titles.profil'|translate}} </a>
       </li>
       <li *ngIf="isCustomer">
-        <a data-toggle="tab" routerLink="/dashboard/customer/createReclamation"><i class="fa fa-edit"></i>  {{'titles.add_demand'|translate}}</a>
+        <a data-toggle="tab" routerLink="/dashboard/customer/createReclamation"><i class="fa fa-edit"></i>
+          {{'titles.add_demand'|translate}}</a>
       </li>
 
-      <li  *ngIf="isManager">
+      <li *ngIf="isManager">
         <a href="#submenu5" class="dropdown-toggle" data-bs-toggle="collapse">
           <i class="fa fa-users-cog"></i>
-              {{'titles.employees'|translate}}</a>
+          {{'titles.employees'|translate}}</a>
         <ul class="dropdown-menu-dark collapse text-small" id="submenu5" data-bs-parent="#menu">
           <li>
 
             <a data-toggle="tab" class="text-light" routerLink="/dashboard/manager/employeeList"><i
-                class="fa fa-list"></i>  {{'titles.employees_list'|translate}}</a>
+                class="fa fa-list"></i> {{'titles.employees_list'|translate}}</a>
           </li>
           <li>
             <a data-toggle="tab" class="text-light" [routerLink]="['/dashboard/manager/subscribeMembre']"><i
-                class="fa fa-user-cog"></i>  {{'titles.add_emp'|translate}}  </a>
+                class="fa fa-user-cog"></i> {{'titles.add_emp'|translate}} </a>
           </li>
           <li>
             <a data-toggle="tab" class="text-light" [routerLink]="['/dashboard/manager/fileMembersUpload']"><i
@@ -39,7 +42,7 @@
           </li>
         </ul>
       </li>
-      <li  *ngIf="isManager">
+      <li *ngIf="isManager">
         <a href="#submenu2" class="dropdown-toggle" data-bs-toggle="collapse">
           <i class="fa fa-users"></i>{{'titles.teams'|translate}}</a>
         <ul class="dropdown-menu-dark collapse text-small" id="submenu2" data-bs-parent="#menu">
@@ -54,7 +57,7 @@
         </ul>
       </li>
 
-      <li  *ngIf="isManager">
+      <li *ngIf="isManager">
         <a href="#submenu3" class="dropdown-toggle" data-bs-toggle="collapse">
           <i class="fa fa-building"></i>{{'titles.intervention'|translate}} </a>
         <ul class="dropdown-menu-dark collapse text-small" id="submenu3" data-bs-parent="#menu">
@@ -72,7 +75,7 @@
           </li>
         </ul>
       </li>
-      <li  *ngIf="isManager">
+      <li *ngIf="isManager">
         <a href="#submenu4" class="dropdown-toggle" data-bs-toggle="collapse">
           <i class="fa fa-boxes"></i>{{'titles.materials'|translate}}</a>
         <ul class="dropdown-menu-dark collapse text-small" id="submenu4" data-bs-parent="#menu">
@@ -90,29 +93,29 @@
           </li>
         </ul>
       </li>
-      <li  *ngIf="isManager">
-        <a data-toggle="tab " [routerLink]="['/dashboard/manager/customerList']" translate><i class="fa fa-users"></i> titles.customers</a>
+      <li *ngIf="isManager">
+        <a data-toggle="tab " [routerLink]="['/dashboard/manager/customerList']" translate><i class="fa fa-users"></i>
+          titles.customers</a>
       </li>
-      <li  *ngIf="isManager">
+      <li *ngIf="isManager">
         <a data-toggle="tab " [routerLink]="['/dashboard/manager/reclamationList']"><i class="fa fa-clipboard-list"></i>
-          {{'titles.demands.title'|translate}}  </a>
+          {{'titles.demands.title'|translate}} </a>
       </li>
-
-
-
 
       <!--     !!!!!  LOGOUTTTTTT !!!! -->
       <div class="dropdown pb-4">
         <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
           data-bs-toggle="dropdown" aria-expanded="false">
           <img src="https://github.com/mdo.png" alt="hugenerd" width="50" height="50" class="rounded-circle" />
-          <span class="d-none d-sm-inline mx-1">{{username}}  </span>
+          <span class="d-none d-sm-inline mx-1">{{username}} </span>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-          <li *ngIf="isCustomer"> <a class="dropdown-item text-light" routerLink="/dashboard/customer/changePassword"   translate>titles.update_pass </a></li>
-          <li *ngIf="isManager"> <a class="dropdown-item text-light" routerLink="/dashboard/manager/changePassword"   translate>titles.update_pass </a></li>
+          <li *ngIf="isCustomer"> <a class="dropdown-item text-light" routerLink="/dashboard/customer/changePassword"
+              translate>titles.update_pass </a></li>
+          <li *ngIf="isManager"> <a class="dropdown-item text-light" routerLink="/dashboard/manager/changePassword"
+              translate>titles.update_pass </a></li>
 
-          <li> <a class="dropdown-item text-light"  (click)="onLogout()" translate>titles.logout </a></li>
+          <li> <a class="dropdown-item text-light" (click)="onLogout()" translate>titles.logout </a></li>
 
         </ul>
       </div>
@@ -135,25 +138,37 @@
             <li class="nav-item" *ngIf="isCustomer">
               <a class="nav-link" routerLink="/dashboard/customer/home"><span>{{'titles.home'|translate}}</span></a>
             </li>
-            <li class="nav-item" *ngIf="isManager" >
+            <li class="nav-item" *ngIf="isManager">
               <a class="nav-link" routerLink="/dashboard/manager/home"><span>{{'titles.home'|translate}}</span>
               </a>
             </li>
             <li class="nav-item">
 
             </li>
-            <li class="nav-item dropdown dropdown-mega position-static">
-              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside"><img src="assets/images/language.png" title="select language" height="50px" width="50px"  alt=""></a>
-              <div class="dropdown-menu shadow" style="float: right;">
+            <li class="nav-item dropdown dropdown-mega position-static ml-auto">
+              <a class="nav-link dropdown-toggle " href="#" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                <img
+                  class="globe" src="assets/images/language.png" title="{{'lng.title'|translate}}" height="40px" width="40px"
+                  alt="language"></a>
+              <div class="dropdown-menu shadow bgColor border-0">
                 <div class="mega-content px-4">
                   <div class="container-fluid">
                     <div class="row">
-                      <div class="col-12 col-sm-4  ">
-
+                      <div class="col-12 col-sm-4  p-md-5">
+                        <strong translate> lng.title </strong>
                         <div class="list-group">
-                          <img class="long" (click)="translateLanguageTo('en')" src="https://media.istockphoto.com/vectors/united-kingdom-flag-realistic-waving-union-jack-vector-id1251660737?k=20&m=1251660737&s=612x612&w=0&h=Hd3fVDhA3KUaefIawI9jcyTFL7M_YZwO6wBxTu8bVxE=" alt="" >
-                          <img class="long" (click)="translateLanguageTo('fr')" src="https://i0.wp.com/www.respectability.org/wp-content/uploads/2015/01/france-flag.jpg?ssl=1" alt="">
-
+                          <span translate>
+                            <img class="long" (click)="translateLanguageTo('en')"
+                              src="https://media.istockphoto.com/vectors/united-kingdom-flag-realistic-waving-union-jack-vector-id1251660737?k=20&m=1251660737&s=612x612&w=0&h=Hd3fVDhA3KUaefIawI9jcyTFL7M_YZwO6wBxTu8bVxE="
+                              alt="">
+                            lng.en
+                          </span>
+                          <span translate>
+                            <img class="long" (click)="translateLanguageTo('fr')"
+                              src="https://i0.wp.com/www.respectability.org/wp-content/uploads/2015/01/france-flag.jpg?ssl=1"
+                              alt="">
+                            lng.fr
+                          </span>
                         </div>
                       </div>
 
