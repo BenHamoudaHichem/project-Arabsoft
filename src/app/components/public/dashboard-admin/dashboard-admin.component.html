@@ -109,8 +109,8 @@
           <span class="d-none d-sm-inline mx-1">{{username}}  </span>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-          <li *ngIf="isCustomer"> <a class="dropdown-item text-light" routerLink="/dashboard/customer/changePassword"   translate>titles.update_Pass </a></li>
-          <li *ngIf="isManager"> <a class="dropdown-item text-light" routerLink="/dashboard/manager/changePassword"   translate>titles.update_Pass </a></li>
+          <li *ngIf="isCustomer"> <a class="dropdown-item text-light" routerLink="/dashboard/customer/changePassword"   translate>titles.update_pass </a></li>
+          <li *ngIf="isManager"> <a class="dropdown-item text-light" routerLink="/dashboard/manager/changePassword"   translate>titles.update_pass </a></li>
 
           <li> <a class="dropdown-item text-light"  (click)="onLogout()" translate>titles.logout </a></li>
 
