@@ -8,6 +8,7 @@ import { Category } from 'src/app/models/Category';
 import { Material } from 'src/app/models/resources/Material';
 import { User } from 'src/app/models/user';
 import { Demand } from 'src/app/models/works/demand';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { ITeam } from 'src/app/services/resources/team/iteam';
 import { IIntervention } from 'src/app/services/works/intervention/iintervention';
 import { InterventionService } from 'src/app/services/works/intervention/intervention.service';
@@ -24,6 +25,7 @@ export class DetailInterventionComponent implements OnInit {
   ITeam!:ITeam[]
   constructor(
     private interventionService: InterventionService,
+    private AuthenticateService:AuthenticateService,
     private route: ActivatedRoute
   ) {}
 
@@ -68,9 +70,13 @@ this.status='En cours'
 
       }),
       (error: HttpErrorResponse) => {
-        Report.warning('Erreur', error.message, 'OK');
+        if(error.status==401){
+          this.AuthenticateService.redirectIfNotAuth()
 
-        console.log(error.message);
+        } else{
+          Report.failure('Erreur', error.message,'OK')
+
+        }
       };
   }
 

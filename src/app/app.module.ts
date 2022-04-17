@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, Inject, Injector, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -24,7 +24,7 @@ import { DetailInterventionComponent } from './components/manager/detail-interve
 import { TeamListComponent } from './components/manager/team-list/team-list.component';
 import { MaterialListComponent } from './components/manager/material-list/material-list.component';
 import { ReclamationListComponent } from './components/manager/reclamation-list/reclamation-list.component';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { DashboardAdminComponent } from './components/public/dashboard-admin/dashboard-admin.component';
 import { CookieService } from 'ngx-cookie-service';
@@ -49,7 +49,8 @@ import { DetailCategoryComponent } from './components/manager/detail-category/de
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { UpdatePasswordComponent } from './components/public/update-password/update-password.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { RecaptchaModule } from 'ng-recaptcha';
+import { RecaptchaModule,RecaptchaFormsModule } from "ng-recaptcha";
+
 export function httpTranslateLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -76,7 +77,7 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
   ],
   declarations: [
     AppComponent,
-HomeComponentPage,
+    HomeComponentPage,
     AboutUsComponent,
     RegisterComponent,
     LoginComponent,
@@ -115,12 +116,8 @@ HomeComponentPage,
     DetailCategoryComponent,
     UpdatePasswordComponent,
   ],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-],
-  providers: [CookieService,GuardAuthenticateGuard],
-  bootstrap: [AppComponent]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [CookieService, GuardAuthenticateGuard],
+  bootstrap: [AppComponent],
 })
-export class AppModule {
- }
-
+export class AppModule {}

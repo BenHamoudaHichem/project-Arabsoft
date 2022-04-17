@@ -12,6 +12,7 @@ import { Location } from 'src/app/models/Location';
 import { User } from 'src/app/models/user';
 import { Intervention } from 'src/app/models/works/intervention';
 import { AddressService } from 'src/app/services/address/address.service';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { ICategory } from 'src/app/services/category/icategory';
 import { IMaterial } from 'src/app/services/resources/material/imaterial';
@@ -20,6 +21,7 @@ import { ITeam } from 'src/app/services/resources/team/iteam';
 import { TeamService } from 'src/app/services/resources/team/team.service';
 import { Associatif } from 'src/app/services/types/associatif';
 import { DateValidation } from 'src/app/services/validation/DateValidation';
+import { HTMLEscape } from 'src/app/services/validation/HTMLEscapeChars';
 import { DemandService } from 'src/app/services/works/demand/demand.service';
 import { IDemand } from 'src/app/services/works/demand/idemand';
 import { IIntervention } from 'src/app/services/works/intervention/iintervention';
@@ -50,7 +52,8 @@ export class CreateInterventionComponent implements OnInit {
     private materialService: EquipmentService,
     private addressService:AddressService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private AuthenticateService:AuthenticateService
   ) {
     this.createInterventionForm = this.formBuilder.group(
       {
@@ -120,7 +123,13 @@ this.counrty?.setValue('Tunisie')
       this.counrty?.setValue(this.currentDemand.address.Country)
       this.currentDemand.user=plainToClass(User,res.user)
     }),(error:HttpErrorResponse)=>{
-      Report.warning('Erreur',error.message,'OK')
+      if(error.status==401){
+        this.AuthenticateService.redirectIfNotAuth()
+
+      } else{
+        Report.failure('Erreur', error.message,'OK')
+
+      }
     };
     this.dropdownSettings = {
       singleSelection: false,
@@ -164,8 +173,13 @@ this.counrty?.setValue('Tunisie')
       console.log(this.categoryList);
     }),
       (errors: HttpErrorResponse) => {
-        Report.failure('erreur getting categories', errors.message, 'Ok');
-      };
+        if(errors.status==401){
+          this.AuthenticateService.redirectIfNotAuth()
+
+        } else{
+          Report.failure('Erreur', errors.message,'OK')
+
+        }          };
   }
 
   create() {
@@ -173,10 +187,18 @@ this.counrty?.setValue('Tunisie')
     console.log(this.Materiel?.value);
     Array.from(this.Materiel?.value as IMaterial[], (x) => x.id);
     let intervention = new Intervention(
-      this.title?.value,
-      this.description?.value,
+      HTMLEscape.escapeMethod(this.title?.value),
+      HTMLEscape.escapeMethod(this.description?.value),
       new Dbref(this.category?.value),
-      new Address(this.zipCode?.value,this.street?.value,this.city?.value,this.state?.value,this.counrty?.value,new Location(0,0)),
+      new Address(
+        HTMLEscape.escapeMethod(this.zipCode?.value),
+        HTMLEscape.escapeMethod(this.street?.value)
+        ,
+        HTMLEscape.escapeMethod(this.city?.value)
+        ,
+        HTMLEscape.escapeMethod(this.state?.value),
+        HTMLEscape.escapeMethod(this.counrty?.value),
+        new Location(0,0)),
       moment(this.date?.value).format("DD-MM-yyyy"),
       this.demandList,
       Array.from(this.Materiel?.value as any[], (x) => new Dbref(x.id)),
@@ -195,8 +217,13 @@ this.counrty?.setValue('Tunisie')
       }
     }),
       (error: HttpErrorResponse) => {
-        Report.failure('Erreur', error.message, 'Ok');
-      }
+        if(error.status==401){
+          this.AuthenticateService.redirectIfNotAuth()
+
+        } else{
+          Report.failure('Erreur', error.message,'OK')
+
+        }          }
   }
 
   getInterventions() {

@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { plainToClass } from 'class-transformer';
+import { Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
 import { User } from 'src/app/models/user';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
@@ -18,7 +19,10 @@ export class HomeManagerComponent implements OnInit {
 
   infos!:IHomeManager
   teamList!:ITeam[]
-  constructor(private homeLoaderService:HomeLoaderService,private teamService:TeamService ,private authService:AuthenticateService) {
+  constructor(private homeLoaderService:HomeLoaderService,
+    private teamService:TeamService ,
+    private authService:AuthenticateService
+    ) {
     this.homeLoaderService.loadHomeForManager().subscribe((res:IHomeManager)=>{
       this.infos=res
       console.log(this.infos)
@@ -48,8 +52,13 @@ export class HomeManagerComponent implements OnInit {
 
     }),
       (error: HttpErrorResponse) => {
-        alert(error.message);
-      };
+        if(error.status==401){
+          this.authService.redirectIfNotAuth()
+
+        } else{
+          Report.failure('Erreur', error.message,'OK')
+
+        }      };
   }
   displayStatus(status:string):string
   {

@@ -2,7 +2,7 @@
 
 span {
   letter-spacing: 2px;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: bolder;
 }
 
@@ -13,12 +13,11 @@ span {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
-  font-size: 35px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+  font-size: 30px;
 }
 .navbar-nav > li {
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 
 .mr-auto {
@@ -41,4 +40,12 @@ i {
   -webkit-text-fill-color: transparent;
 
 
+}
+@media (max-width: 1000px){
+i{
+  display: none;
+}
+span{
+  font-size: 15px;
+}
 }

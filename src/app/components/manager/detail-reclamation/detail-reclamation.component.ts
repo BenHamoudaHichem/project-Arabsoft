@@ -9,6 +9,7 @@ import { User } from 'src/app/models/user';
 import { DemandService } from 'src/app/services/works/demand/demand.service';
 import { IDemand } from 'src/app/services/works/demand/idemand';
 import { Router } from '@angular/router';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 
 @Component({
   selector: 'app-detail-reclamation',
@@ -21,7 +22,8 @@ export class DetailReclamationComponent implements OnInit {
   constructor(
     private demandService: DemandService,
     private route: ActivatedRoute,
-    private router:Router
+    private router:Router,
+    private AuthenticateService:AuthenticateService
   ) {
     this.route.snapshot.paramMap.get("id");
     console.log(String(this.route.snapshot.paramMap.get("id")))
@@ -41,8 +43,13 @@ showDetail(id:string) {
    this.demand.user=plainToClass(User,res.user)
    console.log((this.demand))
  }),(error:HttpErrorResponse)=>{
-   Report.warning('Erreur',error.message,'OK')
- };
+  if(error.status==401){
+    this.AuthenticateService.redirectIfNotAuth()
+
+  } else{
+    Report.failure('Erreur', error.message,'OK')
+
+  }      };
 }
 
   get status():string{

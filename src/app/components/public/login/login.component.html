@@ -14,7 +14,7 @@
                 style="text-align: center"
               />
             </span>
-            <div class="title">{{'titles.log'|translate}}</div>
+            <div class="title" translate>titles.log</div>
 
             <form [formGroup]="loginForm" (ngSubmit)="try_login()" novalidate>
               <div class="form-group required">
@@ -60,7 +60,8 @@
                   }}
                 </p>
               </div>
-
+              <re-captcha (resolved)="checkCaptcha($event)" [siteKey]="siteKey" formControlName="captcha"
+               ></re-captcha>
               <div class="d-flex justify-content-end pt-3">
                 <button
                   class="bn632-hover bn24"

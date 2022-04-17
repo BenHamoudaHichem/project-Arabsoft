@@ -9,7 +9,9 @@ import { Location } from 'src/app/models/Location';
 
 import { Material } from 'src/app/models/resources/Material';
 import { AddressService } from 'src/app/services/address/address.service';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { EquipmentService } from 'src/app/services/resources/material/material.service';
+import { HTMLEscape } from 'src/app/services/validation/HTMLEscapeChars';
 
 @Component({
   selector: 'app-add-materials',
@@ -26,7 +28,8 @@ export class AddMaterialsComponent implements OnInit {
     private addressService:AddressService,
 
     private materialService: EquipmentService,
-    private router: Router
+    private router: Router,
+    private AuthenticateService:AuthenticateService
   ) {
     this.formAddMaterials = this.formBuilder.group({
       name: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
@@ -67,20 +70,20 @@ export class AddMaterialsComponent implements OnInit {
 
   addMaterial() {
     let address = new Address(
-      this.zipCode?.value,
-      this.street?.value,
-      this.city?.value,
-      this.state?.value,
-      this.counrty?.value,
+      HTMLEscape.escapeMethod(this.zipCode?.value),
+      HTMLEscape.escapeMethod(this.street?.value),
+      HTMLEscape.escapeMethod(this.city?.value),
+      HTMLEscape.escapeMethod(this.state?.value),
+      HTMLEscape.escapeMethod(this.counrty?.value),
       new Location(1, 1)
     );
     //  console.log(location)
     let material = new Material(
-      String(this.name?.value),
-      String(this.description?.value),
+      HTMLEscape.escapeMethod(String(this.name?.value)),
+      HTMLEscape.escapeMethod(String(this.description?.value)),
       address,
       this.dateOfPurshase?.value,
-      String(this.status?.value)
+      HTMLEscape.escapeMethod( String(this.status?.value))
     );
     console.log(material);
     this.materialService.create(material).subscribe((data) => {
@@ -89,8 +92,14 @@ export class AddMaterialsComponent implements OnInit {
       this.router.navigate(['manager/materialList']);
     }),
       (error: HttpErrorResponse) => {
-        Report.warning('Erreur', error.message, 'OK');
-      };
+        if(error.status==401){
+          this.AuthenticateService.redirectIfNotAuth()
+
+        }else{
+          Report.failure('Erreur', error.message,'OK')
+
+        }
+              };
   }
   collectStates()
   {

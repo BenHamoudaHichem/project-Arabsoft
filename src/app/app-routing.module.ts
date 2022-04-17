@@ -39,13 +39,29 @@ import { AuthGuard } from './services/auth.guard';
 import { UpdatePasswordComponent } from './components/public/update-password/update-password.component';
 const roles = { customer: 'ROLE_CUSTOMER', manager: 'ROLE_MANAGER' };
 const routes: Routes = [
-  { path: 'home', component: HomeComponentPage,canActivate:[RedirectGuard]},
-  { path: 'admin', component: DashboardAdminComponent ,canActivate:[RedirectGuard]},
-  { path: 'not-found', component: NotFoundComponent ,canActivate:[RedirectGuard]},
-  { path: 'login', component: LoginComponent ,canActivate:[RedirectGuard]},
-  { path: 'register', component: RegisterComponent ,canActivate:[RedirectGuard]},
-  { path: 'propos', component: AboutUsComponent,canActivate:[RedirectGuard]},
-  { path: 'contact', component: ContactUSComponent ,canActivate:[RedirectGuard]},
+  { path: 'home', component: HomeComponentPage, canActivate: [RedirectGuard] },
+  {
+    path: 'admin',
+    component: DashboardAdminComponent,
+    canActivate: [RedirectGuard],
+  },
+  {
+    path: 'not-found',
+    component: NotFoundComponent,
+    canActivate: [RedirectGuard],
+  },
+  { path: 'login', component: LoginComponent, canActivate: [RedirectGuard] },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [RedirectGuard],
+  },
+  { path: 'propos', component: AboutUsComponent, canActivate: [RedirectGuard] },
+  {
+    path: 'contact',
+    component: ContactUSComponent,
+    canActivate: [RedirectGuard],
+  },
   {
     path: 'dashboard',
     component: DashboardAdminComponent,
@@ -56,7 +72,7 @@ const routes: Routes = [
       {
         path: 'customer/home',
         component: HomeCustomerComponent,
-       /* canActivate:[GuardAuthenticateGuard],
+        /* canActivate:[GuardAuthenticateGuard],
          data: {
           roles: roles.customer
         }*/
@@ -64,7 +80,7 @@ const routes: Routes = [
       {
         path: 'customer/changePassword',
         component: UpdatePasswordComponent,
-       /* canActivate:[GuardAuthenticateGuard],
+        /* canActivate:[GuardAuthenticateGuard],
          data: {
           roles: roles.customer
         }*/
@@ -74,7 +90,7 @@ const routes: Routes = [
         path: 'customer/createReclamation',
         component: CreateReclamationComponent,
 
-   /*     canActivate:[GuardAuthenticateGuard],
+        /*     canActivate:[GuardAuthenticateGuard],
          data: {
           roles: roles.customer
         }*/
@@ -83,7 +99,7 @@ const routes: Routes = [
         path: 'customer/customerProfil',
         component: CustomerProfilComponent,
 
-     /*   canActivate:[GuardAuthenticateGuard],
+        /*   canActivate:[GuardAuthenticateGuard],
          data: {
           roles: roles.customer
         }*/
@@ -92,13 +108,12 @@ const routes: Routes = [
         path: 'customer/editProfil',
         component: EditProfilComponent,
       },
-
 
       {
         path: 'customer/reclamation/:id',
         component: ShowReclamationComponent,
 
-      /*  canActivate:[GuardAuthenticateGuard],
+        /*  canActivate:[GuardAuthenticateGuard],
          data: {
           roles: roles.customer
         }*/
@@ -107,7 +122,7 @@ const routes: Routes = [
         path: 'customer/editProfil',
         component: EditProfilComponent,
 
-      /*  canActivate:[GuardAuthenticateGuard],
+        /*  canActivate:[GuardAuthenticateGuard],
          data: {
           roles: roles.customer
         }*/
@@ -116,8 +131,6 @@ const routes: Routes = [
         path: 'customer',
         redirectTo: '/dashboard/customer/home',
         pathMatch: 'full',
-
-
       },
       /*
          * End customer
@@ -130,7 +143,7 @@ const routes: Routes = [
       {
         path: 'manager/home',
         component: HomeManagerComponent,
-       /* canActivate:[GuardAuthenticateGuard],
+        /* canActivate:[GuardAuthenticateGuard],
          data: {
           roles: roles.manager
         }*/
@@ -138,7 +151,7 @@ const routes: Routes = [
       {
         path: 'manager/changePassword',
         component: UpdatePasswordComponent,
-       /* canActivate:[GuardAuthenticateGuard],
+        /* canActivate:[GuardAuthenticateGuard],
          data: {
           roles: roles.customer
         }*/
@@ -154,7 +167,7 @@ const routes: Routes = [
       {
         path: 'manager/subscribeMembre',
         component: SubscribeMembreComponent,
-       /* canActivate:[GuardAuthenticateGuard],
+        /* canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
        }*/
@@ -162,7 +175,7 @@ const routes: Routes = [
       {
         path: 'manager/addTeam',
         component: AddTeamComponent,
-      /*  canActivate:[GuardAuthenticateGuard],
+        /*  canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
        }*/
@@ -170,24 +183,25 @@ const routes: Routes = [
       {
         path: 'manager/interventionList',
         component: InterventionListComponent,
-       /* canActivate:[GuardAuthenticateGuard],
+        /* canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
        }*/
       },
 
-      { path: 'manager/employeeList',
-       component: MembersListComponent,
-     /*  canActivate:[GuardAuthenticateGuard],
+      {
+        path: 'manager/employeeList',
+        component: MembersListComponent,
+        /*  canActivate:[GuardAuthenticateGuard],
        data: {
         roles: roles.manager
-      } */},
-
+      } */
+      },
 
       {
         path: 'manager/userProfil/:id',
         component: CustomerProfilComponent,
-       /* canActivate:[GuardAuthenticateGuard],
+        /* canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
        }*/
@@ -195,7 +209,7 @@ const routes: Routes = [
       {
         path: 'manager/customerList',
         component: CustomerListComponent,
-     /*   canActivate:[GuardAuthenticateGuard],
+        /*   canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
        }*/
@@ -203,7 +217,7 @@ const routes: Routes = [
       {
         path: 'manager/detailCustomer/:id',
         component: DetailsCustomerComponent,
-     /*   canActivate:[GuardAuthenticateGuard],
+        /*   canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
        }*/
@@ -212,7 +226,7 @@ const routes: Routes = [
       {
         path: 'manager/materialList',
         component: MaterialListComponent,
-      /*  canActivate:[GuardAuthenticateGuard],
+        /*  canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
        }*/
@@ -220,7 +234,7 @@ const routes: Routes = [
       {
         path: 'manager/addMaterial',
         component: AddMaterialsComponent,
-     /*  canActivate:[GuardAuthenticateGuard],
+        /*  canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
        }*/
@@ -228,7 +242,7 @@ const routes: Routes = [
       {
         path: 'manager/detailReclamation/:id',
         component: DetailReclamationComponent,
-       /* canActivate:[GuardAuthenticateGuard],
+        /* canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
        }*/
@@ -237,7 +251,7 @@ const routes: Routes = [
       {
         path: 'manager/detailIntervention/:id',
         component: DetailInterventionComponent,
-     /*   canActivate:[GuardAuthenticateGuard],
+        /*   canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
        }*/
@@ -245,7 +259,7 @@ const routes: Routes = [
       {
         path: 'manager/createIntervention/:id',
         component: CreateInterventionComponent,
-     /*   canActivate:[GuardAuthenticateGuard],
+        /*   canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
        }*/
@@ -253,7 +267,7 @@ const routes: Routes = [
       {
         path: 'manager/detailMaterial/:id',
         component: DetailMaterialComponent,
-       /* canActivate:[GuardAuthenticateGuard],
+        /* canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
        }*/
@@ -262,7 +276,7 @@ const routes: Routes = [
       {
         path: 'manager/updateMaterial/:id',
         component: UpdateMaterialComponent,
-      /*  canActivate:[GuardAuthenticateGuard],
+        /*  canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
        }*/
@@ -270,7 +284,7 @@ const routes: Routes = [
       {
         path: 'manager/detailTeam/:id',
         component: DetailTeamComponent,
-       /* canActivate:[GuardAuthenticateGuard],
+        /* canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
        }*/
@@ -278,7 +292,7 @@ const routes: Routes = [
       {
         path: 'manager/teamList',
         component: TeamListComponent,
-       /* canActivate:[GuardAuthenticateGuard],
+        /* canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
        }*/
@@ -286,7 +300,7 @@ const routes: Routes = [
       {
         path: 'manager/demandList',
         component: ReclamationListComponent,
-       /* canActivate:[GuardAuthenticateGuard],
+        /* canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
        }*/
@@ -331,7 +345,11 @@ const routes: Routes = [
        *
        */
 
-      { path: 'not-found', component: NotFoundComponent,canActivate:[AuthGuard] },
+      {
+        path: 'not-found',
+        component: NotFoundComponent,
+        canActivate: [AuthGuard],
+      },
 
       { path: '**', redirectTo: '/dashboard/not-found', pathMatch: 'full' },
       { path: '', redirectTo: '/dashboard/not-found', pathMatch: 'full' },

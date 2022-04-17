@@ -5,6 +5,7 @@ import { plainToClass } from 'class-transformer';
 import { Notify, Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
 import { Material } from 'src/app/models/resources/Material';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { IMaterial } from 'src/app/services/resources/material/imaterial';
 import { EquipmentService } from 'src/app/services/resources/material/material.service';
 
@@ -22,7 +23,8 @@ export class DetailMaterialComponent implements OnInit {
   textFonctionnel:string="Ce materiel est en panne ?"
   constructor(
     private serviceMaterial: EquipmentService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private AuthenticateService:AuthenticateService
   ) {
       this.serviceMaterial.showMaterial(String(this.route.snapshot.paramMap.get("id"))).subscribe((m: IMaterial) => {
       this.material = m;
@@ -36,9 +38,13 @@ export class DetailMaterialComponent implements OnInit {
       }
     }),
       (error: HttpErrorResponse) => {
-        Report.warning('Erreur', error.message, 'OK');
+        if(error.status==401){
+          this.AuthenticateService.redirectIfNotAuth()
 
-        console.log(error.message);
+        } else{
+          Report.failure('Erreur', error.message,'OK')
+
+        }
       };
   }
 
@@ -59,8 +65,13 @@ export class DetailMaterialComponent implements OnInit {
           }
         }),
         (error: HttpErrorResponse) => {
-          Report.failure('erreur', error.message, 'ok');
-        };
+          if(error.status==401){
+            this.AuthenticateService.redirectIfNotAuth()
+
+          } else{
+            Report.failure('Erreur', error.message,'OK')
+
+          }        };
 
       this.btn = this.textFonctionnel;
       return;
@@ -76,8 +87,13 @@ export class DetailMaterialComponent implements OnInit {
           }
         }),
         (error: HttpErrorResponse) => {
-          Report.failure('erreur', error.message, 'ok');
-        };
+          if(error.status==401){
+            this.AuthenticateService.redirectIfNotAuth()
+
+          } else{
+            Report.failure('Erreur', error.message,'OK')
+
+          }        };
 
       this.btn = this.textEnPanne;
       return;

@@ -4,8 +4,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Report } from 'notiflix';
 import{Category} from 'src/app/models/Category';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { ICategory } from 'src/app/services/category/icategory';
+import { HTMLEscape } from 'src/app/services/validation/HTMLEscapeChars';
 
 @Component({
   selector: 'app-category',
@@ -15,7 +17,8 @@ import { ICategory } from 'src/app/services/category/icategory';
 export class CategoryComponent implements OnInit {
   categorieForm!:FormGroup
   listCategorie!:ICategory[]
-  constructor(private formBuilder: FormBuilder,private router:Router,private categorieService:CategoryService) {
+  constructor(private formBuilder: FormBuilder,private router:Router,
+    private AuthenticateService:AuthenticateService,private categorieService:CategoryService) {
     this.categorieForm = this.formBuilder.group({
       categorie: ['', [Validators.required]],
     });
@@ -26,7 +29,7 @@ get categorie(){return this.categorieForm.get('categorie')}
   }
 
 
-  addCategorie(){let categorie=new Category(String(this.categorie?.value))
+  addCategorie(){let categorie=new Category( HTMLEscape.escapeMethod(String(this.categorie?.value)))
 this.categorieService.create(categorie).subscribe((res: any) => {
   if(res.status==true)
   {
@@ -38,15 +41,26 @@ this.categorieService.create(categorie).subscribe((res: any) => {
   this.router.navigateByUrl('/dashboard/manager/categorylist');
 }),
   (error: HttpErrorResponse) => {
-    Report.warning("Notification d'ajout", error.message, "D'accord");
-  };
+    if(error.status==401){
+      this.AuthenticateService.redirectIfNotAuth()
+
+    }else{
+      Report.failure('Erreur', error.message,'OK')
+
+    }      };
 }
 
 getAll(){this.categorieService.all().subscribe((res:ICategory[])=>{
 this.listCategorie=res
 },
 (error: HttpErrorResponse) => {
- Report.failure('Erreur', error.message,'OK')
+ if(error.status==401){
+  this.AuthenticateService.redirectIfNotAuth()
+
+}else{
+  Report.failure('Erreur', error.message,'OK')
+
+}
 })}
   }
 

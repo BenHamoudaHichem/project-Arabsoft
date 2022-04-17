@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Report } from 'notiflix';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { IUser } from 'src/app/services/user/iuser';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -12,7 +13,8 @@ import { UserService } from 'src/app/services/user/user.service';
 export class CustomerListComponent implements OnInit {
 
   usersList!: IUser[];
-  constructor(private UserService: UserService) {}
+  constructor(private UserService: UserService,private  AuthenticateService:AuthenticateService) {}
+
 
   ngOnInit(): void {
     this.showAll();
@@ -24,8 +26,13 @@ export class CustomerListComponent implements OnInit {
       this.usersList = res;
     }),
       (error: HttpErrorResponse) => {
-        Report.failure('Erreur', error.message, 'OK');
-      };
+        if(error.status==401){
+          this.AuthenticateService.redirectIfNotAuth()
+
+        } else{
+          Report.failure('Erreur', error.message,'OK')
+
+        }      };
   }
 }
 

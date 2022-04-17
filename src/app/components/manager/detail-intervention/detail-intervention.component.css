@@ -206,12 +206,10 @@ li{display: block;
    border-radius: 0.5em;
    margin-top: 20px;
    background: #fff;
-   width: 500px;
    padding: 33px 17px 30px 17px;
    box-shadow: 0 1.5em 2.5em -0.5em rgba(0, 0, 0, .1);
 
-   display: flex;
-   flex-direction: column;
+   display: block;
 
    align-items: center;
   }
@@ -392,7 +390,6 @@ li{display: block;
   .scrollist {
     overflow-y:scroll;
     max-height: 400px;
-   min-width: 500px;
 
    }
 

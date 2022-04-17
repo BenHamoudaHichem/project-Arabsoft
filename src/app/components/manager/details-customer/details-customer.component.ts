@@ -5,6 +5,7 @@ import { plainToClass } from 'class-transformer';
 import { Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
 import { User } from 'src/app/models/user';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { IUser } from 'src/app/services/user/iuser';
 import { UserService } from 'src/app/services/user/user.service';
 import { DemandService } from 'src/app/services/works/demand/demand.service';
@@ -18,7 +19,11 @@ import { IDemand } from 'src/app/services/works/demand/idemand';
 export class DetailsCustomerComponent implements OnInit {
 user!:IUser
 demandList!:IDemand[]
-  constructor(private route:ActivatedRoute,private userService:UserService,private demandService:DemandService) {
+  constructor(private route:ActivatedRoute,
+    private userService:UserService,
+    private demandService:DemandService,
+    private AuthenticateService:AuthenticateService
+    ) {
 
 
 this.showUser()
@@ -47,8 +52,13 @@ showUser(){
     console.log(this.user);
   }),
   (error: HttpErrorResponse) => {
-    Report.failure('Error getting user', error.message, 'OK');
-  };
+    if(error.status==401){
+      this.AuthenticateService.redirectIfNotAuth()
+
+    } else{
+      Report.failure('Erreur', error.message,'OK')
+
+    }    };
 }
 
  status(demand:IDemand):string{

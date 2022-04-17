@@ -10,6 +10,7 @@ import { AddressService } from 'src/app/services/address/address.service';
 import { CookiesService } from 'src/app/services/cookies.service';
 import {  AuthenticateService} from 'src/app/services/authenticate.service'
 import { DemandService } from 'src/app/services/works/demand/demand.service';
+import { HTMLEscape } from 'src/app/services/validation/HTMLEscapeChars';
 
 @Component({
   selector: 'app-create-reclamation',
@@ -54,16 +55,16 @@ export class CreateReclamationComponent implements OnInit {
   sendDemand() {
     this.id = this.cookiesServices.getIdentifier;
     let adresse = new Address(
-      String(this.zipCode?.value),
-      String(this.street?.value),
-      String(this.city?.value),
-      String(this.state?.value),
-      String(this.counrty?.value),
+      HTMLEscape.escapeMethod(String(this.zipCode?.value)),
+      HTMLEscape.escapeMethod(String(this.street?.value)),
+      HTMLEscape.escapeMethod(String(this.city?.value)),
+      HTMLEscape.escapeMethod(String(this.state?.value)),
+      HTMLEscape.escapeMethod(String(this.counrty?.value)),
       new Location(1, 1)
     );
     let demand = new Demand(
-      String(this.Title?.value),
-      String(this.Description?.value),
+      HTMLEscape.escapeMethod(String(this.Title?.value)),
+      HTMLEscape.escapeMethod(String(this.Description?.value)),
       adresse,
       new Date(),
       'In_Progress',
@@ -75,9 +76,11 @@ export class CreateReclamationComponent implements OnInit {
       this.router.navigate(['/customer/detailReclamation']);
     }),
       (error: HttpErrorResponse) => {
-        Report.failure('Erreur', error.message, "D'accord");
         if(error.status==401){
-          this.AuthenticateService.redirectIfNotAuth
+          this.AuthenticateService.redirectIfNotAuth()
+
+        }else{
+          Report.failure('Erreur', error.message,'OK')
 
         }
       };

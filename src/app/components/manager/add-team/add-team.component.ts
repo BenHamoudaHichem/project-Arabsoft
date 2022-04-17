@@ -7,10 +7,12 @@ import { Notify, Report } from 'notiflix';
 import { Dbref } from 'src/app/models/dbref';
 import { Team } from 'src/app/models/resources/team';
 import { User } from 'src/app/models/user';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { ITeam } from 'src/app/services/resources/team/iteam';
 import { TeamService } from 'src/app/services/resources/team/team.service';
 import { IUser } from 'src/app/services/user/iuser';
 import { UserService } from 'src/app/services/user/user.service';
+import { HTMLEscape } from 'src/app/services/validation/HTMLEscapeChars';
 
 @Component({
   selector: 'app-add-team',
@@ -28,7 +30,9 @@ export class AddTeamComponent implements OnInit {
     private formBuilder: FormBuilder,
     private teamService: TeamService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private AuthenticateService:AuthenticateService
+
   ) {
     this.getAllUsers()
     this.teamForm = this.formBuilder.group({
@@ -72,8 +76,13 @@ export class AddTeamComponent implements OnInit {
       console.log(this.users);
     }),
       (error: HttpErrorResponse) => {
-        Report.failure('Error getting members', error.message, 'OK');
-      };
+        if(error.status==401){
+          this.AuthenticateService.redirectIfNotAuth()
+
+        }else{
+          Report.failure('Erreur', error.message,'OK')
+
+        }      };
   }
 
   onItemSelect(item: any) {
@@ -87,16 +96,7 @@ export class AddTeamComponent implements OnInit {
     });
 
 
-  } /*
-  onRemove(item:any)
-  {
-  this.new=  this.selectedlist.filter( i => i.id == item.id)
-    this.teams=this.new
-    console.log("Remove___________")
-    console.log(this.teams)
   }
-
-*/
 
   AddTeam() {
     let myManager:Dbref
@@ -104,14 +104,22 @@ export class AddTeamComponent implements OnInit {
     console.log("mm : "+this.manager?.value[0].id)
     console.log("dd : "+this.selectedlist)
 
-    let team = new Team(String(this.titre?.value),new Dbref(this.manager?.value[0].id),
+    let team = new Team( HTMLEscape.escapeMethod(String(this.titre?.value)),new Dbref(this.manager?.value[0].id),
     this.selectedlist);
 
     this.teamService.create(team).subscribe((data: any) => {
       console.log(data);
       Notify.success('Equipe crée avec succès');
       this.router.navigate(['/dashboard/manager/teamList']);
-    });
+    }),(
+      error:HttpErrorResponse
+    )=>{   if(error.status==401){
+      this.AuthenticateService.redirectIfNotAuth()
+
+    }else{
+      Report.failure('Erreur', error.message,'OK')
+
+    }}
   }
   get titre() {
     return this.teamForm.get('titre');

@@ -17,8 +17,8 @@
           <a
          >
             <button  (click)="showMembers()" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
-              data-bs-target="#nav-profile" type="button" role="tab" aria-selected="false">
-          <i class="fa fa-users"></i>    buttons.membres
+              data-bs-target="#nav-profile" type="button" role="tab" aria-selected="false"  translate>
+          <i class="fa fa-users"></i>    buttons.members
             </button></a>
         </div>
       </nav>
@@ -43,7 +43,8 @@
               </div>
               <div class="postcard__subtitle small">
                 <i class="fas fa-user-circle"></i>
-               <strong translate>title.detail_inter.table.role   {{convertRole(item.roles)}}</strong>
+                <strong translate>title.detail_inter.table.role</strong>
+               <strong >{{convertRole(item.roles)}}</strong>
               </div>
               <div class="postcard__bar"></div>
               <div class="postcard__preview-txt">
@@ -80,7 +81,7 @@
               </div>
               <div class="postcard__subtitle small">
                 <i class="fas fa-user-circle"></i>
-               <strong translate>title.detail_inter.table.role   {{convertRole(item.roles)}}</strong>
+               <strong translate>title.detail_inter.table.role </strong> <strong>  {{convertRole(item.roles)}}</strong>
               </div>
               <div class="postcard__bar"></div>
               <div class="postcard__preview-txt">

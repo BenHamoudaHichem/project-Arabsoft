@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Report } from 'notiflix';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { DemandService } from 'src/app/services/works/demand/demand.service';
 import { IDemand } from 'src/app/services/works/demand/idemand';
 
@@ -14,7 +15,9 @@ import { IDemand } from 'src/app/services/works/demand/idemand';
 export class ReclamationListComponent implements OnInit {
 status!:string
   demandList!: IDemand[];
-  constructor(private serviceDemand: DemandService,private route:ActivatedRoute) {
+  constructor(private serviceDemand: DemandService,
+    private route:ActivatedRoute,
+    private AuthenticateService:AuthenticateService) {
     this.showAll();
   }
 
@@ -30,8 +33,13 @@ status!:string
       console.log(this.demandList)
     }),
       (error: HttpErrorResponse) => {
-        alert(error.message);
-      };
+        if(error.status==401){
+          this.AuthenticateService.redirectIfNotAuth()
+
+        } else{
+          Report.failure('Erreur', error.message,'OK')
+
+        }         };
   }
   showByStatus(){
     this.route.queryParams.subscribe(params=>{this.status=params["status"]; console.log(this.status)} )
@@ -40,8 +48,13 @@ status!:string
       this.demandList=ID
     }),
     (error: HttpErrorResponse) => {
-      Report.warning('Erreur',error.message,"OK")
-    };
+      if(error.status==401){
+        this.AuthenticateService.redirectIfNotAuth()
+
+      } else{
+        Report.failure('Erreur', error.message,'OK')
+
+      }       };
   }
 
 
