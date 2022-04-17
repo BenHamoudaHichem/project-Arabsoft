@@ -1,12 +1,14 @@
 
 li{  text-transform: capitalize;
+
+
 }
+.dropdown-item {cursor: pointer;}
 .nav-link {
   padding: 20px;
   letter-spacing: 2px;
   font-size: 20px;
   font-weight: bolder;
-  cursor: pointer;
 }
 span {
   color: rgba(37, 32, 32, 0.884);
@@ -13308,10 +13310,12 @@ fieldset:disabled .btn {
     height: 30px;
     margin-top: 5px;
     border-radius: 20%;
-    cursor: pointer;
+    cursor: auto;
+
 
   }
   .long:hover{
     width: 55px;
     height: 35px;
   }
+

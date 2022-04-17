@@ -5,18 +5,10 @@
 
   font-family: "Poppins", sans-serif;
 }
-a {
-  color: #333;
-}
-a:hover {
-  color: #9b59b6;
-  text-decoration: none;
-}
 
 .form-group{ margin: 20px 0 12px 0;}
 .form-control {
   background-color: #f6f6f6;
-
   border: 2px solid #9b59b6;
   outline: 0;
   box-shadow: none;
@@ -31,28 +23,107 @@ a:hover {
   color: #0095b6;
 }
 
-.card {
-  height: 600px;
-  margin-bottom: 40px;
+/**********/
+h4 {
+  margin-top: 20px;
   text-transform: uppercase;
-  width: 80%;
-  background-color: #fff;
-  padding: 25px 30px;
-  border-radius: 30px;
-  box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.15);
 }
-.title{
-  font-size: 25px;
-  font-weight: 500;
+
+.profile {
+  background: white;
+  height: 80vh;
+  padding: 30px;
+  overflow: hidden;
+margin-right: auto;
+margin-left: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile .profile-header {
+  background-color: #d8dede;
+  background-image: linear-gradient(315deg, #d8dede 0%, #e5bdf6 74%);
+  display: flex;
+  flex: 1;
+  padding: 30px;
+  flex-direction: column;
+  border: 60px solid #333;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-radius: 15% 0 15%;
+  box-shadow: 3px 5px 7px 3px #777;
+}
+
+.profile .profile-header .profile-info {
+  display: flex;
+  flex: 1;
+  justify-content: space-around;
+  align-self: space-around;
+  flex-direction: column;
+}
+
+.profile .profile-header .profile-info .profile-img {
+  justify-content: center;
+  align-self: center;
+
+}
+
+.profile .profile-header .profile-info .profile-img img {
+  border: 3px solid #fff;
+  box-shadow: 0px 4px 4px 5px #888;
+  border-radius: 50%;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  margin-top: -50px;
+}
+
+.profile .profile-header .profile-info .profile-img .status {
+  background: #eee;
+  height: 22px;
+  width: 22px;
+  border-radius: 50%;
+  display: flex;
   position: relative;
+  top: -60px;
+  right: -195px;
+  border: 3px solid white;
 }
-.title::before{
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 3px;
-  width: 110px;
-  border-radius: 5px;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+*
+.profile .profile-header .profile-info .profile-username {
+  justify-content: center;
+  align-self: center;
+  font-size: 35px;
+  letter-spacing: 3px;
+  color: white;
+}
+
+.profile .profile-header .profile-info .profile-skill {
+  justify-content: center;
+  align-self: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #efefef;
+  margin-top: -30px;
+}
+
+.profile .profile-header .actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+
+
+.resposive {
+  width: 20vw;
+  min-width: 500px;
+}
+
+@media only screen and (max-width: 800px) {
+  .resposive {
+    width: 60vw;
+  }
 }

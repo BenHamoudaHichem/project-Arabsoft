@@ -61,7 +61,7 @@
     "titles": {
       "add_mbrs": "add members",
       "add_tm": "add a team manager",
-      "Address": "Address",
+      "address": "Address",
       "category": "category",
       "confirm_password": "confirm password",
       "description": "description",
@@ -138,7 +138,7 @@
     "interv_in": "intervention in progress",
     "intervention": "interventions",
     "interventions_list": "Interventions List",
-    "log": "login",
+    "log": "log in to your space",
     "logout": "Sign out",
     "materials": "materials",
     "materials_list": "materials list",
