@@ -52,6 +52,8 @@ span {
   background-image: linear-gradient(to bottom, #9182c4, #d8aed3, #ebd9dd);
   position: fixed;
   transition: all 0.5s;
+
+
 }
 .left:hover {
   width: 200px;

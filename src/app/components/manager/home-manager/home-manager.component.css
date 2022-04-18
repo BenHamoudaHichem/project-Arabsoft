@@ -340,6 +340,7 @@ intervention notif
 */
 .scrollist {
   overflow-y: scroll;
+  max-height: 200px;
 }
 
 .card__icon {
@@ -357,7 +358,7 @@ intervention notif
   font-weight: 700;
   margin-top: 10px;
   text-transform: uppercase;
- 
+
 }
 .category{
   margin-top: 10px;
@@ -370,21 +371,14 @@ intervention notif
 }
 
 .card__list-item {
-  display: flex;
-  align-items: center;
+  display: inline-block;
+
 
 
 }
 
 .card__list-item:not(:last-child) {
   margin-bottom: 40px;
-}
-
-.card__list-item img {
-  height: 68px;
-  width: 68px;
-  border-radius: 16px;
-  object-fit: cover;
 }
 
 .card__list-item__info {
@@ -412,18 +406,4 @@ intervention notif
 .card__list-item__info span::before {
   font-size: 18px;
   margin-right: 5px;
-}
-
-.intervention {
-
-  border-radius: 0.5em;
-  margin-top: 20px;
-  background: #fff;
-  padding: 33px 17px 30px 17px;
-  box-shadow: 0 1.5em 2.5em -0.5em rgba(0, 0, 0, .1);
-
-  display: block;
-
-  align-items: center;
-
 }
