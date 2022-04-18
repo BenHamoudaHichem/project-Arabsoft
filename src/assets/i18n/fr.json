@@ -118,7 +118,7 @@
     "customers": "clients",
     "date": "date de publication",
     "demands": {
-      "detail": "detail demande",
+      "detail": "detail de demande",
       "title": "demandes",
       "title_home": "liste des contrats d'abonnements"
     },
