@@ -78,7 +78,7 @@ roles:user.roles
     let headers = {
       headers: new HttpHeaders({
         Authorization: `Bearer ${this.authService.getToken}`,
-        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
       }),
     };
 

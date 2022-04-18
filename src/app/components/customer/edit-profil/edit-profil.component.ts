@@ -13,6 +13,7 @@ import { IUser } from 'src/app/services/user/iuser';
 import { AddressService } from 'src/app/services/address/address.service';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { HTMLEscape } from 'src/app/services/validation/HTMLEscapeChars';
+import { plainToClass } from 'class-transformer';
 @Component({
   selector: 'app-edit-profil',
   templateUrl: './edit-profil.component.html',
@@ -41,11 +42,7 @@ export class EditProfilComponent implements OnInit {
         ],
         tel: ['', [Validators.required, , Validators.pattern('^[0-9]{8}$')]],
         identifier: ['', [Validators.required, Validators.minLength(8)]],
-        password: [
-          '',
-          [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{8,}$')],
-        ],
-        confirm_password: ['', [Validators.required]],
+       
         state: [
           '',
           [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
@@ -64,12 +61,7 @@ export class EditProfilComponent implements OnInit {
         ],
         zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
       },
-      {
-        Validators: Confirmed.ConfirmedValidator(
-          'password',
-          'confirm_password'
-        ),
-      }
+
     )
     this.counrty?.setValue("Tunisie")
 
@@ -88,15 +80,17 @@ export class EditProfilComponent implements OnInit {
   showUser() {
 
     this.userService.getUser(this.cookies.getIdentifier).subscribe((res: IUser) => {
+      res.address=plainToClass(Address,res.address)
       this.firstName?.setValue(res.firstName),
         this.lastNamme?.setValue(res.lastName),
         this.tel?.setValue(res.tel),
         this.counrty?.setValue(res.address.Country);
-      this.city?.setValue(res.address.City),
-        this.street?.setValue(res.address.Street),
         this.state?.setValue(res.address.State),
-        this.password?.setValue(res.password),
-        this.confirmPassword?.setValue(res.password);
+        this.loadCities()
+      this.city?.setValue(res.address.City),
+        this.street?.setValue(res.address.Street)
+
+
     }),
       (error: HttpErrorResponse) => {
         if(error.status==401){
@@ -119,7 +113,7 @@ export class EditProfilComponent implements OnInit {
       HTMLEscape.escapeMethod(String(this.firstName?.value)),
       HTMLEscape.escapeMethod(String(this.lastNamme?.value)),
       HTMLEscape.escapeMethod(String(this.identifier?.value)),
-      HTMLEscape.escapeMethod(String(this.password?.value)),
+      "",
       adresse,
       HTMLEscape.escapeMethod(String(this.tel?.value)),
       ['']
@@ -169,12 +163,7 @@ export class EditProfilComponent implements OnInit {
   get identifier() {
     return this.updateForm.get('identifier');
   }
-  get confirmPassword() {
-    return this.updateForm.get('confirm_password');
-  }
-  get password() {
-    return this.updateForm.get('password');
-  }
+
   get city() {
     return this.updateForm.get('city');
   }

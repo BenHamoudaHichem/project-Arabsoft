@@ -62,7 +62,7 @@
                   <div class="form-outline">
                     <label class="form-label" translate>input.titles.category</label>
                     <select formControlName="category" class="form-select">
-                      <option *ngIf="categoryList == null" translate>errors.null_cat</option>
+                      <option *ngIf="categoryList.length==0" translate>errors.null_cat</option>
 
                       <option *ngFor="let item of categoryList" [value]="item.id">
                         {{ item.name }}
@@ -75,16 +75,17 @@
                       " class="ErrorMsg" translate>
                       errors.req_error
                     </p>
-                  </div>
-                  <div *ngIf="categoryList == null">
+                    <div *ngIf="categoryList.length==0">
 
-                    <a class="nullValueLink" routerLink="/dashboard/manager/categorylist" translate>titles.add_category
-                    </a>
+                      <a class="nullValueLink" routerLink="/dashboard/manager/categorylist" translate>titles.add_category
+                      </a>
+                    </div>
                   </div>
+
                   <div class="form-outline">
                     <label class="form-label" translate>input.titles.team</label>
-                    <select formControlName="team" class="form-select" aria-label="Default select example">
-                    <option *ngIf="teamList == null" translate>errors.null_team</option>
+                    <select formControlName="team" class="form-select" aria-label="Default select example" >
+                    <option *ngIf="teamList.length==0" translate>errors.null_team</option>
                       <option  *ngFor="let item of teamList" [value]="item.id">
                         {{ item.name }}
                       </option>
@@ -94,13 +95,12 @@
                       errors.req_error
                     </p>
                     <!----------->
+                    <div *ngIf="teamList.length==0">
+                      <a class="nullValueLink" routerLink="/dashboard/manager/addTeam" translate>titles.add_team
+                      </a>
+                    </div>
                   </div>
-                  <div *ngIf="teamList == null">
 
-
-                    <a class="nullValueLink" routerLink="/dashboard/manager/addTeam" translate>titles.add_team
-                    </a>
-                  </div>
 
                   <div class="form-outline">
                     <label class="form-label" translate>input.titles.description</label>
@@ -256,12 +256,13 @@
                       " class="ErrorMsg">
                       errors.req_error
                     </p>
-                  </div>
-                  <div *ngIf="materialsList == null">
+                    <div *ngIf="materialsList.length==0">
 
-                    <a class="nullValueLink" routerLink="/dashboard/manager/addMaterial" translate>titles.add_material
-                    </a>
+                      <a class="nullValueLink" routerLink="/dashboard/manager/addMaterial" translate>titles.add_material
+                      </a>
+                    </div>
                   </div>
+
                   <div class="d-flex justify-content-end pt-3">
                     <button class="bn632-hover bn24" type="submit" role="button"
                       [disabled]="createInterventionForm.invalid" translate>

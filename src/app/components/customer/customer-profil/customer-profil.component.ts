@@ -1,7 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { plainToClass } from 'class-transformer';
 import { Report } from 'notiflix';
+import { Address } from 'src/app/models/Address';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { CookiesService } from 'src/app/services/cookies.service';
 import { IUser } from 'src/app/services/user/iuser';
@@ -31,6 +33,7 @@ export class CustomerProfilComponent implements OnInit {
         .getUser(String(this.route.snapshot.paramMap.get('id')))
         .subscribe((data: IUser) => {
           this.user = data;
+          this.user.address=plainToClass(Address,data.address)
           console.log(this.user);
         }),
         (error: HttpErrorResponse) => {
@@ -45,6 +48,8 @@ export class CustomerProfilComponent implements OnInit {
         .getUser(this.cookiesServices.getIdentifier)
         .subscribe((data: IUser) => {
           this.user = data;
+          this.user.address=plainToClass(Address,data.address)
+
           console.log(this.user);
         }),
         (error: HttpErrorResponse) => {

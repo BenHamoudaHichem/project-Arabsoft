@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
       password: ['', [Validators.required]],
       captcha: ['', [Validators.required]],
     });
+    this.captcha?.setValue(false)
   }
   ngOnInit(): void {
     if (this.authService.isLogin) {
@@ -74,6 +75,11 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
+  public get captcha()  {
+    return this.loginForm.get('captcha');
+  }
+
+
   getErrorMessage(key: any) {
     if (this.loginForm.controls[key].errors?.['required']) {
       return 'Vous devez saisir votre ' + key;
@@ -82,6 +88,7 @@ export class LoginComponent implements OnInit {
   }
 
   checkCaptcha(captchaResponse: string) {
+    this.captcha?.setValue(captchaResponse && captchaResponse.length > 0 ? true : false)
     console.log(
       (this.captchaResolved =
         captchaResponse && captchaResponse.length > 0 ? true : false)

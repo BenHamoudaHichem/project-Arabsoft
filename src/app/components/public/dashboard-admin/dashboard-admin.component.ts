@@ -38,6 +38,7 @@ export class DashboardAdminComponent implements OnInit {
     this.authService.logout.subscribe((res:any)=>{
 
         this.authService.onLogoutSucess()
+        this.route.navigate(['/home'])
 
           Report.success(
             "Notification de déconnexion","Au revoir","D'accord"

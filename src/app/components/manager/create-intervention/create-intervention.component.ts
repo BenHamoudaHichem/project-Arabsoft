@@ -38,10 +38,10 @@ export class CreateInterventionComponent implements OnInit {
   createInterventionForm!: FormGroup;
   currentDemand!:IDemand
   demandList: Dbref[] = [];
-  categoryList!: ICategory[];
+  categoryList: ICategory[]=[]
   interventionList!: IIntervention[];
   materialsList!: IMaterial[];
-  teamList!: ITeam[];
+  teamList: ITeam[]=[];
   statusList:Associatif[]=[{key:'En attente',value:"Waiting"},{key:'En cours',value:'In_Progress'}]
   constructor(
     private formBuilder: FormBuilder,
@@ -116,6 +116,7 @@ this.counrty?.setValue('Tunisie')
     this.demandService.showDemande(this.route.snapshot.paramMap.get('id')!).pipe(finalize(()=>this.currentDemand.title===undefined)).subscribe((res:IDemand)=>{
       this.currentDemand=res as IDemand;
       this.currentDemand.address=plainToClass(Address,res.address)
+      console.log(this.currentDemand)
       this.state?.setValue(this.currentDemand.address.State)
       this.zipCode?.setValue(this.currentDemand.address.ZipCode)
       this.city?.setValue(this.currentDemand.address.City)

@@ -74,6 +74,7 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     }
   }),
   RecaptchaModule,
+  RecaptchaFormsModule
   ],
   declarations: [
     AppComponent,
