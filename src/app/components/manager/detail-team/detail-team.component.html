@@ -3,13 +3,17 @@
    <!-- <div class="h1 text-center text-dark" id="pageHeaderTitle"   [translate]="'titles.team_det'" [translateParams]="{name:'team.name'}">
     </div>
 -->
-		<article class="postcard dark">
-			<a class="postcard__img_link" href="#">
+<h1 class="mb-5 text-center text-uppercase" translate>
+
+  titles.team_detail
+    </h1>
+<article class="postcard dark">
+			<a class="postcard__img_link">
 				<img class="postcard__img" src="
         https://st.depositphotos.com/1154952/3949/i/600/depositphotos_39491135-stock-photo-hand-of-architect-working-on.jpg?fbclid=IwAR3bKwuP2rP6iBnTAQlmThDXfJLse-bcVdpFA3uZTaX7sA8jkY-TZypeVrc" alt="Image Title" />
 			</a>
 			<div class="postcard__text t-dark">
-				<h1 class="postcard__title blue"><a href="#" translate>
+				<h1 class="postcard__title blue"><a  translate>
 <i class="fa fa-user-cog"></i>
 input.msg.tm :  {{team.manager.getfirstName() +' '+ team.manager.getlastName()}}  </a></h1>
 				<div class="postcard__subtitle small">
@@ -17,7 +21,7 @@ input.msg.tm :  {{team.manager.getfirstName() +' '+ team.manager.getlastName()}}
 				</div>
 				<div class="postcard__bar"></div>
 				<ul class="postcard__tagbox">
-					<li class="tag__item" translate><i class="fas fa-info-circle"></i>buttons.consult_details</li>
+					<li class="tag__item"  ><a [routerLink]="['/dashboard/manager/userProfil',team.manager.getId()]" routerLinkActive="router-Link-Active" translate ><i class="fas fa-info-circle"></i>buttons.consult_details</a></li>
 
 				</ul>
 			</div>
@@ -38,7 +42,7 @@ input.msg.tm :  {{team.manager.getfirstName() +' '+ team.manager.getlastName()}}
 				</div>
 				<div class="postcard__bar"></div>
 				<ul class="postcard__tagbox">
-					<li class="tag__item"> <a [routerLink]="['/dashboard/customer/customerProfil',item.getId()]" routerLinkActive="active" translate><i class="fas fa-info-circle"></i>buttons.consult_details</a> </li>
+					<li class="tag__item"> <a [routerLink]="['/dashboard/manager/userProfil',item.getId()]" routerLinkActive="router-Link-Active" translate><i class="fas fa-info-circle"></i>buttons.consult_details</a> </li>
 				</ul>
 			</div>
 		</article>

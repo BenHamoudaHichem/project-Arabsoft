@@ -18,7 +18,7 @@ button {
   width: 160px;
   height: 70px !important;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   background: red;
   border: none;
@@ -41,7 +41,7 @@ button {
 
 button,
 button span {
-  transition: 200ms;
+  transition: 100ms;
 }
 
 button .text {
@@ -134,11 +134,9 @@ button:active .icon svg {
   stroke-miterlimit: 10;
   stroke: #7ac142;
   fill: none;
-  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
 }
 
 .checkmark__check {
-  transform-origin: 60% 60%;
   stroke-dasharray: 100%;
   stroke-dashoffset: 100%;
   animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
@@ -189,6 +187,31 @@ h3 {
   -webkit-text-fill-color: transparent;
 
   font-size: 35px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
+  text-transform: capitalize;
+  }
+
+span
+{text-transform: capitalize;
 }
 
+@media (max-width:567px) {
+button{
+  display: block;
+  width: 80px;
+  height: 30px !important;
+}
+.green{
+  display: block;
+  width: 80px;
+  height: 30px !important;
+}
+button:hover .text {
+  color: #fff;
+}
+
+svg {
+  visibility:  hidden!important;
+}
+button .iconG {visibility: hidden};
+button .icon {visibility: hidden};
+}
