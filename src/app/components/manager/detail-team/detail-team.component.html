@@ -21,7 +21,7 @@ input.msg.tm :  {{team.manager.getfirstName() +' '+ team.manager.getlastName()}}
 				</div>
 				<div class="postcard__bar"></div>
 				<ul class="postcard__tagbox">
-					<li class="tag__item"  ><a [routerLink]="['/dashboard/manager/userProfil',team.manager.getId()]"translate ><i class="fas fa-info-circle"></i>buttons.consult_details</a></li>
+					<li class="tag__item"  ><a [routerLink]="['/dashboard/manager/userProfil',team.manager.getId()]" routerLinkActive="router-Link-Active" translate ><i class="fas fa-info-circle"></i>buttons.consult_details</a></li>
 
 				</ul>
 			</div>
@@ -42,7 +42,7 @@ input.msg.tm :  {{team.manager.getfirstName() +' '+ team.manager.getlastName()}}
 				</div>
 				<div class="postcard__bar"></div>
 				<ul class="postcard__tagbox">
-					<li class="tag__item"> <a [routerLink]="['/dashboard/manager/userProfil',item.getId()]" routerLinkActive="active" translate><i class="fas fa-info-circle"></i>buttons.consult_details</a> </li>
+					<li class="tag__item"> <a [routerLink]="['/dashboard/manager/userProfil',item.getId()]" routerLinkActive="router-Link-Active" translate><i class="fas fa-info-circle"></i>buttons.consult_details</a> </li>
 				</ul>
 			</div>
 		</article>
