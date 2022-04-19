@@ -22,7 +22,7 @@
 }
 
 /***________   message validation ________****/
-input,label{text-transform: capitalize;}
+label{text-transform: capitalize;}
 .ErrorMsg {
   margin-top: 5px;
   font-size: small;
