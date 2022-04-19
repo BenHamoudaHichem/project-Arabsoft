@@ -70,6 +70,14 @@ export class InterventionService {
       this.headers
     );
   }
+  update(intervention: Intervention,id:String): Observable<Intervention> {
+
+    return this.http.put<Intervention>(
+      `${this.apiURL}/${id}`,
+      JSON.stringify(intervention),
+      this.headers
+    );
+  }
 
   showIntervention(id: string): Observable<IIntervention> {
     return this.http

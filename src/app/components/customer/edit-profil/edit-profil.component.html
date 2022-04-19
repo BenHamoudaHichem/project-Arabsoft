@@ -134,49 +134,8 @@
 
 
 
-          <div class="input-box">
-            <span class="details" translate> input.titles.password </span>
-            <input
-              type="password"
-              formControlName="password"
-              placeholder="{{'input.titles.password'|translate}}"
-            />
-            <!--pwd errors-->
-            <p
-              class="ErrorMsg"
-              *ngIf="!password?.valid && (password?.dirty || password?.touched)"
-            translate >
-             errors.req_error
-            </p>
-            <p *ngIf="password?.errors?.['pattern']" class="ErrorMsg" translate>
-             errors.alph_8error
-            </p>
 
-            <!------------>
-          </div>
-          <div class="input-box">
-            <span class="details " translate>input.titles.confirm_password</span>
-            <input
-              type="password"
-              formControlName="confirm_password"
-              placeholder="{{'input.titles.confirm_password'|translate}}"
-            />
-            <p
-              class="ErrorMsg"
-              *ngIf="
-                !confirm_password?.valid &&
-                (confirm_password?.dirty || confirm_password?.touched)
-              "
-            >
-              ce champ est obligatoire
-            </p>
-            <p
-              *ngIf="updateForm.hasError('ConfirmedValidator')"
-              class="ErrorMsg"
-            >
-              not matched
-            </p>
-          </div>
+
 
         </div>
 

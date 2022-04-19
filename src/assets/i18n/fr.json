@@ -166,7 +166,11 @@
     "update_material": "mettre à jour le matériel",
     "update_pass": "modifier votre mot de passe",
     "update_pro": "mettre à jour le profil",
+    "update_int": "mettre à jour l'intervention",
+
     "update_team": "mettre à jour l'équipe"
+
+
 
   }
 }

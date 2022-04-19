@@ -181,10 +181,6 @@ export class EditProfilComponent implements OnInit {
   get zipCode() {
     return this.updateForm.get('zipCode');
   }
-  get confirm_password() {
-    return this.updateForm.get('confirm_password');
-  }
-  get password() {
-    return this.updateForm.get('password');
-  }
+
+  
 }
