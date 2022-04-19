@@ -61,23 +61,23 @@ export class UpdateMaterialComponent implements OnInit {
     this.statusList.push({ key: 'En panne', value: 'Broken_down' });
     this.statusList.push({ key: 'Hors service', value: 'Expired' });
     this.statusList.push({ key: 'Volé', value: 'Stoled' });
-
-    this.city?.disable();
-    this.collectStates();
+    this.id = this.ActivatedRoute.snapshot.paramMap.get('id')!;
+    //this.city?.disable();
+    //this.collectStates();
   }
 
   ngOnInit() {
     this.show();
+    console.log(this.id);
+
   }
   show() {
     this.counrty?.setValue('Tunisie');
-    this.id = this.ActivatedRoute.snapshot.paramMap.get('id')!;
+
 
     if (this.id != null) {
-      this.materialService
-        .showMaterial(this.id)
-        .subscribe((data: IMaterial) => {
-          this.material = data;
+      this.materialService.showMaterial(this.id).subscribe((data: IMaterial) => {
+         // this.material = plainToClass(Material,data) ;
           this.material.address = plainToClass(Address, data.address);
 
           console.log(this.material);
@@ -87,11 +87,14 @@ export class UpdateMaterialComponent implements OnInit {
           this.dateOfPurshase?.setValue(
             moment(data.dateOfPurchase).format('yyyy-MM-DD')
           );
-          this.city?.setValue(this.material.address.City);
           this.counrty?.setValue(data.address.Country);
+
+          this.state?.setValue(data.address.State);
+
+          this.city?.setValue(this.material.address.City);
+
           this.street?.setValue(data.address.Street);
           this.zipCode?.setValue(data.address.ZipCode);
-          this.state?.setValue(data.address.State);
           this.statusList.forEach((element) => {
             if (element.value == this.material.status) {
               this.status?.setValue(element.value);

@@ -28,6 +28,7 @@ export class TeamListComponent implements OnInit {
   showAll() {
     this.serviceTeam.all().subscribe((IT: ITeam[]) => {
       this.teamList = IT
+
       this.teamList.forEach(item => {
         item.manager=plainToClass(User,item.manager)
 
@@ -35,6 +36,7 @@ export class TeamListComponent implements OnInit {
         item.members.forEach(subItem => {
           subItem=plainToClass(User,subItem)
           subItem.setAddress(plainToClass(Address,subItem.getAddress()))
+
 
         });
       });

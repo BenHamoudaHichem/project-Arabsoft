@@ -28,8 +28,7 @@
           <article class="postcard light" *ngFor="let item of usersList" >
             <a class="postcard__img_link" [routerLink]="['/dashboard/manager/userProfil',item.id]">
               <img class="postcard__img"
-                src="
-                https://wallpaperaccess.com/full/4321838.jpg"
+                [src]="image"
                 alt="Image Title" />
             </a>
             <div class="postcard__text t-dark">
@@ -66,8 +65,7 @@
           <article class="postcard light" *ngFor="let item of usersList" >
             <a class="postcard__img_link" [routerLink]="['/dashboard/manager/userProfil',item.id]">
               <img class="postcard__img"
-                src="
-                https://wallpaperaccess.com/full/4321838.jpg"
+                [src]="image"
                 alt="Image Title" />
             </a>
             <div class="postcard__text t-dark">

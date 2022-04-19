@@ -12,15 +12,19 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class MembersListComponent implements OnInit {
   usersList!: IUser[];
+  image!:string
+
   constructor(private UserService: UserService,private AuthenticateService:AuthenticateService) {}
 
   ngOnInit(): void {
+    this.image="https://wallpaperaccess.com/full/4321838.jpg"
+
    this.showAll();
-    this.showMembers();
-    this.showTManagers();
+
   }
 
   showAll() {
+
     this.UserService.agents().subscribe((res: IUser[]) => {
       console.log(res);
       this.usersList = res;
@@ -30,6 +34,8 @@ export class MembersListComponent implements OnInit {
       };
   }
   showTManagers(){
+    this.image="https://png.pngtree.com/background/20210711/original/pngtree-creative-synthetic-double-exposure-city-business-minimalist-background-picture-image_1115148.jpg"
+
     this.UserService.allByRole('tm').subscribe((res: IUser[])=>{
       console.log(res)
       this.usersList=res;
@@ -44,6 +50,8 @@ export class MembersListComponent implements OnInit {
   };
 }
 showMembers(){
+  this.image="https://wallpaperaccess.com/full/4321838.jpg"
+
   this.UserService.allByRole('member').subscribe((res: IUser[])=>{
     console.log(res)
     this.usersList=res;

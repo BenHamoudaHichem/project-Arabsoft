@@ -31,13 +31,7 @@ export class DetailInterventionComponent implements OnInit {
 
   ngOnInit(): void {
     this.showDetail(String(this.route.snapshot.paramMap.get('id')));
-    if(this.intervention.status=='In_Progress')
-    {
-this.status='En cours'
-    }
-    if(this.intervention.status=='Waiting'){
-      this.status='En attente'
-    }
+
 
   }
 
@@ -48,7 +42,13 @@ this.status='En cours'
       .subscribe((res: IIntervention) => {
         this.intervention = res
         this.intervention.address= plainToClass(Address,this.intervention.address)
-
+        if(this.intervention.status=='In_Progress')
+        {
+    this.status='En cours'
+        }
+        if(this.intervention.status=='Waiting'){
+          this.status='En attente'
+        }
         this.intervention.team.manager=plainToClass(User,this.intervention.team.manager)
         this.intervention.team.members=Array.from(res.team.members,x=> plainToClass(User,x))
         this.intervention.demandList.forEach(element => {

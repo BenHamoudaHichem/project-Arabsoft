@@ -34,17 +34,14 @@ export class LoginComponent implements OnInit {
   }
 
   try_login() {
-    console.log(
-      HTMLEscape.escapeMethod(this.Identifier?.value),
-      this.Password?.value
-    );
+
     this.authService
       .login(
         HTMLEscape.escapeMethod(this.Identifier?.value),
         HTMLEscape.escapeMethod(this.Password?.value)
       )
       .subscribe((res: any) => {
-        if (!res.status) {
+        if (res.token) {
           this.authService.onLoginSucces(
             res.token,
             res.username,
@@ -59,11 +56,12 @@ export class LoginComponent implements OnInit {
           Notify.success('Bienvenue ' + res.username);
           return;
         } else {
-          Report.failure('Erreur', res.status, 'OK');
+          Report.failure('Erreur', "invalide login", 'OK');
         }
       }),
       (error: HttpErrorResponse) => {
-        Report.warning('Notification de connexion', error.message, "D'accord");
+        console.log(error.message)
+        Report.warning('Notification de connexion', "invalide login", "D'accord");
       };
     //  Report.warning('Echec','Veuillez verifier votre adresse ou mot de passe','OK');
   }

@@ -42,6 +42,7 @@ export class MaterialListComponent implements OnInit {
       .materialPerStatus(this.status)
       .subscribe((res: IMaterial[]) => {
         this.materialList = res;
+        console.log(res.length)
       }),
       (error: HttpErrorResponse) => {
         if(error.status==401){

@@ -14,7 +14,7 @@
             data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" translate>
            buttons.all
           </button>
-          <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" translate
+          <button (click)="showAvailable()" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" translate
             role="tab" aria-selected="false">
             buttons.available
           </button>
@@ -28,8 +28,7 @@
             <a class="postcard__img_link" routerLinkActive="router-link-active"
               [routerLink]="['/dashboard/manager/detailTeam', team.id]">
               <img class="postcard__img"
-                src="
-                        https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
+                src="https://wallpaperaccess.com/full/1393442.jpg"
                 alt="Image Title" />
             </a>
             <div class="postcard__text t-dark">
@@ -71,8 +70,7 @@
             <a class="postcard__img_link" routerLinkActive="router-link-active"
               [routerLink]="['/dashboard/manager/detailTeam', team.id]">
               <img class="postcard__img"
-                src="
-                        https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
+                src="https://wallpaperaccess.com/full/1393442.jpg"
                 alt="Image Title" />
             </a>
             <div class="postcard__text t-dark">

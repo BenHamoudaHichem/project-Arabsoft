@@ -38,10 +38,14 @@ export class HomeManagerComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {this.showPerStatus('In_Progress')}
-  TeamsArray() {
+  ngOnInit(): void
+  {this.showPerStatus('In_Progress')
+  this.getTeams()
+}
+  getTeams() {
     this.teamService.all().subscribe((IT: ITeam[]) => {
       this.teamList = IT;
+      console.log(this.teamList)
       this.teamList.forEach((item) => {
         item.manager = plainToClass(User, item.manager);
 

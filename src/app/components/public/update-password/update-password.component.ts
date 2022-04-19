@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Report } from 'notiflix';
+import { AuthenticateService } from 'src/app/services/authenticate.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { Confirmed } from 'src/app/services/validation/Confirmed';
 
 @Component({
@@ -11,7 +14,7 @@ export class UpdatePasswordComponent implements OnInit {
   public captchaResolved: boolean = false;
   siteKey = '6LcOuyYTAAAAAHTjFuqhA52fmfJ_j5iFk5PsfXaU';
   formUpdatePassword!: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,private userService:UserService,private authService:AuthenticateService) {
     this.formUpdatePassword = this.formBuilder.group(
       {
         confirm_new_password: [
@@ -35,15 +38,33 @@ export class UpdatePasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-  changePassword() {
-    console.log(this.formUpdatePassword.value);
-  }
+
   checkCaptcha(captchaResponse: string) {
     console.log(
       (this.captchaResolved =
         captchaResponse && captchaResponse.length > 0 ? true : false)
     );
   }
+
+  changePassword()
+  {
+    let passwordRequest:any={id:this.authService.authentificatorId,oldPassword:String(this.old_password?.value),newPassword:String(this.new_password?.value)}
+
+    this.userService.changePassword(passwordRequest).subscribe((res:any)=>{
+      if (res.status==true) {
+
+        Report.success("Changer Mot de passe", res.message,"D'accord")
+      } else {
+
+        Report.failure("Changer Mot de passe", res.message,"D'accord")
+
+      }
+    })
+  }
+
+
+
+
   get confirm_new_password() {
     return this.formUpdatePassword.get('confirm_new_password');
   }

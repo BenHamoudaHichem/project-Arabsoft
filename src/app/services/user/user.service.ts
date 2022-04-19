@@ -103,4 +103,21 @@ roles:user.roles
       })
     );
   }))}
+
+
+  changePassword(passwordRequest:any)
+  {
+    let headers = {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.authService.getToken}`,
+        'Content-Type': 'application/json',
+      }),
+    };
+
+    return this.http.put(
+      `http://127.0.0.1:8080/api/services/password/change`,
+      JSON.stringify(passwordRequest),
+      headers
+    );
+  }
 }
