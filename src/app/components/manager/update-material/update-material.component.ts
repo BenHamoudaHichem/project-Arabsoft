@@ -127,7 +127,7 @@ export class UpdateMaterialComponent implements OnInit {
         console.log(data);
         if (data.status) {
           Notify.success('Materiel est modifié avec succès');
-          this.router.navigate(['manager/materialList']);
+          this.router.navigate(['/dashboard/manager/detailMaterial',this.material.id]);
         } else {
           Notify.failure(data.message);
         }

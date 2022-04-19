@@ -9,6 +9,10 @@
 h3{  background: -webkit-linear-gradient(120deg, #71b7e6, #bd9dca);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
+text-transform: capitalize;
   font-size: 35px;
+}
+span
+{
+  text-transform:capitalize ;
 }
