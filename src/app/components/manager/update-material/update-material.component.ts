@@ -61,7 +61,6 @@ export class UpdateMaterialComponent implements OnInit {
     this.statusList.push({ key: 'En panne', value: 'Broken_down' });
     this.statusList.push({ key: 'Hors service', value: 'Expired' });
     this.statusList.push({ key: 'Volé', value: 'Stoled' });
-
     this.city?.disable();
     this.collectStates();
   }
