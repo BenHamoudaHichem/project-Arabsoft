@@ -1,14 +1,21 @@
+
 <section class="h-100">
   <div class="container">
     <span>
-      <img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" style="text-align: center" />
+      <img
+        src="assets/images/gest.png"
+        alt="Sample photo"
+        height="60px"
+        width="100px"
+        style="text-align: center"
+      />
     </span>
     <div class="title" translate>titles.update_pro</div>
     <div class="content">
       <form [formGroup]="updateForm" (ngSubmit)="Update()" novalidate>
         <div class="user-details">
           <div class="input-box">
-            <span class="details" translate>input.titles.firstname</span>
+           <span class="details" translate>input.titles.firstname</span>
             <input type="text" formControlName="firstName" placeholder="{{'input.msg.firstname'| translate}}"
               data-rule="required" />
             <!--FisrtName errors-->
@@ -22,7 +29,8 @@
             </p>
             <!------------>
           </div>
-          <div class="input-box">
+
+ <div class="input-box">
             <span class="details" translate>input.titles.lastname</span>
             <input type="text" formControlName="lastNamme" placeholder="{{'input.msg.lastname'| translate}}" />
             <!--FisrtName errors-->
@@ -124,20 +132,70 @@
             <!------------>
           </div>
 
+
+
+          <div class="input-box">
+            <span class="details" translate> input.titles.password </span>
+            <input
+              type="password"
+              formControlName="password"
+              placeholder="{{'input.titles.password'|translate}}"
+            />
+            <!--pwd errors-->
+            <p
+              class="ErrorMsg"
+              *ngIf="!password?.valid && (password?.dirty || password?.touched)"
+            translate >
+             errors.req_error
+            </p>
+            <p *ngIf="password?.errors?.['pattern']" class="ErrorMsg" translate>
+             errors.alph_8error
+            </p>
+
+            <!------------>
+          </div>
+          <div class="input-box">
+            <span class="details " translate>input.titles.confirm_password</span>
+            <input
+              type="password"
+              formControlName="confirm_password"
+              placeholder="{{'input.titles.confirm_password'|translate}}"
+            />
+            <p
+              class="ErrorMsg"
+              *ngIf="
+                !confirm_password?.valid &&
+                (confirm_password?.dirty || confirm_password?.touched)
+              "
+            >
+              ce champ est obligatoire
+            </p>
+            <p
+              *ngIf="updateForm.hasError('ConfirmedValidator')"
+              class="ErrorMsg"
+            >
+              not matched
+            </p>
+          </div>
+
         </div>
 
         <div class="d-flex justify-content-end pt-3">
-          <button class="bn632-hover bn24" type="submit" role="button" [disabled]="!updateForm.valid" translate>
+          <button
+            class="bn632-hover bn24"
+            type="submit"
+            role="button"
+            [disabled]="!updateForm.valid"
+         translate>
             buttons.edit
-          </button>
-
+     </button>
         </div>
 
-
-      </form>
-      <span class="extra-line">
-        <a routerLink="/dashboard/customer/changePassword" translate>titles.update_Pass  </a>
+          <span class="extra-line">
+        <a routerLink="/dashboard/customer/changePassword" translate>titles.update_pass  </a>
       </span>
+      </form>
     </div>
   </div>
 </section>
+

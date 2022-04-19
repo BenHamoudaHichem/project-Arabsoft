@@ -12,13 +12,22 @@
           <div class="row g-2">
             <div class="col-xl-6 d-xl-block">
               <div class="card-body p-md-5 text-black">
-                <h3 class="card-title" translate>
-                  <i class="fas fa-list-alt"></i>&nbsp;input.titles.title
-                </h3>
+              <h3 class="card-title" translate>
+                <i class="fas fa-list-alt"></i>&nbsp;input.titles.title
+              </h3>
 
-                <p class="card-text">
-                  {{ demand.title }}
-                </p>
+              <p class="card-text">
+                {{ demand.title }}
+              </p>
+              </div>
+              <div class="card-body p-md-5 text-black">
+              <h3 class="card-title" translate>
+                <i class="fas fa-user"></i>&nbsp;input.titles.sender
+              </h3>
+
+              <p class="card-text">
+                {{ demand.user.getfirstName() }} {{demand.user.getlastName()}}
+              </p>
               </div>
               <div class="card-body p-md-5 text-black">
                 <h3 class="card-title" translate>

@@ -37,6 +37,7 @@ import { DetailCategoryComponent } from './components/manager/detail-category/de
 import { RedirectGuard } from './services/redirect.guard';
 import { AuthGuard } from './services/auth.guard';
 import { UpdatePasswordComponent } from './components/public/update-password/update-password.component';
+import { UpdateTeamComponent } from './components/manager/update-team/update-team.component';
 const roles = { customer: 'ROLE_CUSTOMER', manager: 'ROLE_MANAGER' };
 const routes: Routes = [
   { path: 'home', component: HomeComponentPage, canActivate: [RedirectGuard] },
@@ -272,10 +273,17 @@ const routes: Routes = [
          roles: roles.manager
        }*/
       },
-
       {
         path: 'manager/updateMaterial/:id',
         component: UpdateMaterialComponent,
+        /*  canActivate:[GuardAuthenticateGuard],
+        data: {
+         roles: roles.manager
+       }*/
+      },
+      {
+        path: 'manager/updateTeam/:id',
+        component: UpdateTeamComponent,
         /*  canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager

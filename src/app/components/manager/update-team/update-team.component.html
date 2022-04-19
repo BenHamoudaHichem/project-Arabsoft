@@ -1,0 +1,81 @@
+<section class="h-100 ">
+  <div class="container py-5">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col">
+        <div class="card card-registration my-4">
+          <div class="logo">
+            <div class="card-title">
+              <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
+            </div>
+            <span class="title" translate> titles.update_team </span>
+
+          </div>
+          <form [formGroup]="teamForm" (ngSubmit)="UpdateTeam()">
+            <div class="row g-0">
+              <div class="col-xl-6 d-xl-block">
+                <div class="card-body p-md-5 text-black">
+                  <div class="form-outline">
+                    <label class="form-label" for="form3Example1n" translate>input.titles.title</label>
+
+                    <input type="text" placeholder="{{'input.msg.material'|translate}}"
+                      class="form-control form-control-lg" formControlName="titre" />
+                    <!--Error Title-->
+                    <p *ngIf="(titre?.touched|| titre?.dirty ) && !titre?.valid" class="ErrorMsg" translate>
+                      errors.req_error</p>
+                    <p *ngIf="titre?.errors?.['pattern']" class="ErrorMsg" translate>
+                      errors.alph_2error
+                    </p>
+                    <!----------->
+                  </div>
+                  <div class="form-outline">
+                    <label class="form-label" translate> input.titles.add_tm</label>
+
+                    <ng-multiselect-dropdown [placeholder]="'input.msg.tm_select'|translate"
+                      [settings]="dropdownSettings2" [data]="users" formControlName="manager" class=" form-control-lg">
+                    </ng-multiselect-dropdown>
+                    <!--Error manager-->
+                    <p *ngIf="(manager?.touched|| manager?.dirty ) && !manager?.valid" class="ErrorMsg" translate>
+                      errors.req_error</p>
+                    <!----------->
+
+                  </div>
+
+                </div>
+              </div>
+              <div class="col-xl-6">
+                <div class="card-body p-md-5 text-black">
+                  <div class="form-outline">
+                    <label class="form-label" translate> input.titles.add_mbrs</label>
+
+                    <ng-multiselect-dropdown [placeholder]="'input.msg.mm_select'|translate"
+                      [settings]="dropdownSettings" [data]="users" formControlName="membres"
+                      (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)" class=" form-control-lg">
+                    </ng-multiselect-dropdown>
+                    <!--Error membres-->
+                    <p *ngIf="(membres?.touched|| membres?.dirty ) && !membres?.valid" class="ErrorMsg" translate>
+                      errors.req_error</p>
+                    <!----------->
+                    <span class="extra-line">
+
+                      <a [routerLink]="['/dashboard/manager/subscribeMembre']" translate> titles.add_emp</a>
+                    </span>
+
+                  </div>
+
+
+
+                  <div class="d-flex justify-content-end pt-3">
+
+
+                    <button class="bn632-hover bn24" type="submit" translate>buttons.edit</button>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

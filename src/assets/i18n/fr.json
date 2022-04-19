@@ -81,7 +81,8 @@
       "tm": "Chef d'équipe ",
 
       "title": "Titre",
-      "which_date": "A quelle date "
+      "which_date": "A quelle date ",
+      "sender":"L'expéditeur"
     }
   },
   "location": {
@@ -164,6 +165,8 @@
     "up_photo": "changer photo",
     "update_material": "mettre à jour le matériel",
     "update_pass": "modifier votre mot de passe",
-    "update_pro": "mettre à jour le profil"
+    "update_pro": "mettre à jour le profil",
+    "update_team": "mettre à jour l'équipe"
+
   }
 }

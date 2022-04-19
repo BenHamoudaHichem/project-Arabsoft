@@ -28,7 +28,8 @@ export class EditProfilComponent implements OnInit {
     private userService: UserService,
     private addressService:AddressService,
     private router: Router,
-    private cookies: CookiesService,private AuthenticateService:AuthenticateService
+    private cookies: CookiesService,
+    private AuthenticateService:AuthenticateService
   ) {
     this.updateForm = this.formBuilder.group(
       {
@@ -42,7 +43,7 @@ export class EditProfilComponent implements OnInit {
         ],
         tel: ['', [Validators.required, , Validators.pattern('^[0-9]{8}$')]],
         identifier: ['', [Validators.required, Validators.minLength(8)]],
-       
+
         state: [
           '',
           [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
@@ -182,5 +183,8 @@ export class EditProfilComponent implements OnInit {
   }
   get confirm_password() {
     return this.updateForm.get('confirm_password');
+  }
+  get password() {
+    return this.updateForm.get('password');
   }
 }
