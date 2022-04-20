@@ -233,9 +233,15 @@ export class UpdateInterventionComponent implements OnInit {
         this.state?.setValue(res.address.State);
         this.counrty?.setValue(res.address.Country);
       }),
+      
       (error: HttpErrorResponse) => {
-        Report.failure('erreur', error.message, 'ok');
-      };
+        if(error.status==401){
+          this.AuthenticateService.redirectIfNotAuth()
+
+        } else{
+          Report.failure('Erreur', error.message,'OK')
+
+        }    };
   }
   collectStates() {
     this.addressService.allTNStates.subscribe((res: string[]) => {

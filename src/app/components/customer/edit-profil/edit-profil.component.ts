@@ -97,7 +97,10 @@ export class EditProfilComponent implements OnInit {
         if(error.status==401){
           this.AuthenticateService.redirectIfNotAuth()
 
-        }      };
+        }else{
+          Report.failure('Erreur', error.message,'OK')
+
+        }     };
   }
 
   Update() {
@@ -128,7 +131,10 @@ export class EditProfilComponent implements OnInit {
         if(error.status==401){
           this.AuthenticateService.redirectIfNotAuth()
 
-        }   };
+        }else{
+          Report.failure('Erreur', error.message,'OK')
+
+        }}
   }
 
   collectStates()
@@ -182,5 +188,5 @@ export class EditProfilComponent implements OnInit {
     return this.updateForm.get('zipCode');
   }
 
-  
+
 }

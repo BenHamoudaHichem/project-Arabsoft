@@ -41,7 +41,16 @@ this.showDemads() }
 
       console.log(this.demandList)
 
-    })
+    }),
+    
+  (error: HttpErrorResponse) => {
+    if(error.status==401){
+      this.AuthenticateService.redirectIfNotAuth()
+
+    } else{
+      Report.failure('Erreur', error.message,'OK')
+
+    }    };
   }
 
 showUser(){
