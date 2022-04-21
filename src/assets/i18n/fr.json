@@ -16,7 +16,10 @@
     "in_prog": "En cours",
     "members": "Membres",
     "send": "Envoyer",
-    "waiting": "En attente"
+    "waiting": "En attente",
+    "register":"Inscrire",
+    "connect":"connecter"
+
   },
   "cards": {
     "bleu": "Notifications",
@@ -39,24 +42,26 @@
   },
   "input": {
     "msg": {
-      "category": " Entrer le nom de categorie",
-      "demand": " Entrer le titre de demandes",
-      "designation": "ecrivez...",
-      "email": " Entrer votre email",
-      "firstname": " Entrer votre nom",
-      "identifier": " Entrer votre identifiant",
-      "intervention": " Entrer le nom de l'intervention",
-      "lastname": " Entrer votre prénom",
+      "category": " Entrez le nom de categorie",
+      "demand": " Entrez le titre de demandes",
+      "designation": "Ecrivez...",
+      "email": " Entrez votre email",
+      "firstname": " Entrez votre nom",
+      "identifier": " Entrez votre identifiant",
+      "intervention": " Entrez le nom de l'intervention",
+      "lastname": " Entrez votre prénom",
+      "password":"Entrez votre mot de passe",
+
       "mat_select": "selectionner les matériels",
-      "material": " Entrer le titre de materiel",
+      "material": " Entrez le titre de materiel",
       "member": "Membre",
       "mm_select": "Selectionner les membres",
       "msg_interv": "Il ya {{ interventionlist }} interventions dans cette catégorie",
       "msg_tm": "Il ya {{ members }} membres dans cette équipe",
-      "team": " Entrer le nom d'équipe",
+      "team": " Entrez le nom d'équipe",
       "tel": "(+216) __ ___ ___",
       "tm": "Chef d'équipe ",
-      "tm_select": "Selectionner un chef d'équipe"
+      "tm_select": "Selectionnez un chef d'équipe"
     },
     "titles": {
       "add_mbrs": "Ajouter des membres",
@@ -168,9 +173,42 @@
     "update_pro": "mettre à jour le profil",
     "update_int": "mettre à jour l'intervention",
 
-    "update_team": "mettre à jour l'équipe"
+    "update_team": "mettre à jour l'équipe",
+    "subscribe":"Inscrivez vous à notre site"
+  },
+  "navbar":{
+    "home":"Accueil",
+    "contact":"Contactez-nous",
+    "log":"Connexion",
+    "join_us":"Joignez-nous",
+    "about_us":"A propos de nous"
+  },
+  "home":{
+    "title":"Bienvenue à ARAB INTERVENT",
+    "title_":"Decouvrez notre site web",
+  "btn_h":"Rejoignez-nous",
+  "btn_hover":"Profitez de nos services",
+  "info":"ARAB INTERVENT s’est spécialisée à la distribution de solutions de gestion pour le secteur public"
+  },
+
+  "about":{
+    "title":"A PROPOS DE NOUS ?",
+    "info":"GestIntern est une plate-forme numérique responsable à l'affectation des demandes des interventions du client à des équipes expertes, nous offrons des espaces sur notre site pour :",
+    "info_customer":""
 
 
-
-  }
+  },
+"contact":{},
+"footer":{
+  "find_us":"Trouvez nous",
+  "call_us":"Appelez-nous",
+  "mail_us":"Envoyez-nous un e-mail",
+  "follow_us":"Suivez nous",
+  "plan":"Plan de notre site ",
+  "contact":"Contactez-nous"
+},
+"links":{
+  "link_log":"Vous avez dejà un compte?",
+  "link_register":"Créer un nouveau compte"
+}
 }

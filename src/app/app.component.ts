@@ -12,7 +12,12 @@ export class AppComponent {
     // Register translation languages
     translate.addLangs(['en', 'fr']);
     // Set default language
-    storage.set("Lang",storage.get("Lang") || window.navigator.language)
+    if(window.navigator.language.length>2){
+   let windowLang= window.navigator.language.substr(0,2).toLowerCase();
+   storage.set("Lang",storage.get("Lang") || windowLang)
+  }
+  else{
+    storage.set("Lang",storage.get("Lang") || window.navigator.language.toLowerCase())}
     translate.use(storage.get("Lang"));
 
 

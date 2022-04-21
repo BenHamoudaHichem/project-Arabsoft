@@ -4,6 +4,7 @@ span {
   letter-spacing: 2px;
   font-size: 15px;
   font-weight: bolder;
+  text-transform: uppercase;
 }
 
 
@@ -28,7 +29,7 @@ i {
 }
 
 
-.nav-link {
+.nav-link .dropdown-toggle {
   color: rgba(53, 49, 49, 0.87);
   padding: 20px;
 }
@@ -48,4 +49,29 @@ i{
 span{
   font-size: 15px;
 }
+}
+.long{
+  width: 56px;
+  height: 36px;
+  margin-top: 5px;
+  border-radius: 20%;
+  cursor: pointer;
+
+
+}
+
+.long:hover{
+  width: 60px;
+  height: 40px;
+}
+.bgColor{
+  background-color: #f6f6f68a;
+
+
+
+ }
+
+.ml-auto .dropdown-menu {
+  left: auto !important;
+  right: 0px;
 }

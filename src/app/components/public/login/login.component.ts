@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   ) {
     this.loginForm = this.formBuilder.group({
       identifier: ['', [Validators.required]],
-      password: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{8,}$')]],
       captcha: ['', [Validators.required]],
     });
     this.captcha?.setValue(false)
@@ -78,12 +78,7 @@ export class LoginComponent implements OnInit {
   }
 
 
-  getErrorMessage(key: any) {
-    if (this.loginForm.controls[key].errors?.['required']) {
-      return 'Vous devez saisir votre ' + key;
-    }
-    return 'Email mal saisie ';
-  }
+
 
   checkCaptcha(captchaResponse: string) {
     this.captcha?.setValue(captchaResponse && captchaResponse.length > 0 ? true : false)
