@@ -198,7 +198,13 @@
 
 
   },
-"contact":{},
+"contact":{
+  "title":"Contactez Nous",
+  "name":"Entrez votre nom",
+  "email":" Entrez votre email",
+  "phone":"Entrez votre numéro de telephone",
+  "description":"Ecrivez"
+},
 "footer":{
   "find_us":"Trouvez nous",
   "call_us":"Appelez-nous",

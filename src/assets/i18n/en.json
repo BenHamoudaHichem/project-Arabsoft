@@ -191,7 +191,13 @@
     "title":"ABOUT US ?",
     "info":"GestIntern is a digital platform responsible for assigning customer intervention requests to expert teams, we offer spaces on our site for:"
   },
-"contact":{},
+  "contact":{
+    "title":"Contact us",
+    "name":"Enter your name",
+    "email":" Enter you email",
+    "phone":"Enter your phone number",
+    "description":"write...."
+  },
 "footer":{
   "find_us":"Find Us",
   "call_us":"Call Us",
