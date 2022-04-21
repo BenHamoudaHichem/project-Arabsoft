@@ -163,9 +163,14 @@ this.counrty?.setValue('Tunisie')
       this.materialsList = data;
       console.log(this.materialsList);
     }),
-      (errors: HttpErrorResponse) => {
-        Report.failure('erreur getting materials', errors.message, 'Ok');
-      };
+      (error: HttpErrorResponse) => {
+        if(error.status==401){
+          this.AuthenticateService.redirectIfNotAuth()
+
+        }else{
+          Report.failure('Erreur', error.message,'OK')
+
+        }}
   }
 
   allCategory() {

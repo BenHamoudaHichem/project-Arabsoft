@@ -47,6 +47,9 @@ export class ShowReclamationComponent implements OnInit {
       if(error.status==401){
         this.AuthenticateService.redirectIfNotAuth()
 
+      }else{
+        Report.failure('Erreur', error.message,'OK')
+
       }
     };
   }

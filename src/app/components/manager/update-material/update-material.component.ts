@@ -101,7 +101,15 @@ export class UpdateMaterialComponent implements OnInit {
             }
           });
           //  this.status?.setValue(data.status);
-        });
+        }),
+        (error: HttpErrorResponse) => {
+          if (error.status == 401) {
+            this.AuthenticateService.redirectIfNotAuth();
+          } else {
+            Report.failure('Erreur', error.message, 'OK');
+          }
+        };
+  
     }
   }
   updateMaterial() {

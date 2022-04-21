@@ -93,9 +93,14 @@ export class UpdateTeamComponent implements OnInit {
         this.membres?.setValue(res.members);
         //      this.membres?.setValue(Array.from(res.members,x=> plainToClass(User,x)))
       }),
-      (errors: HttpErrorResponse) => {
-        Report.failure('Erreur', errors.message, 'OK');
+      (error: HttpErrorResponse) => {
+        if (error.status == 401) {
+          this.AuthenticateService.redirectIfNotAuth();
+        } else {
+          Report.failure('Erreur', error.message, 'OK');
+        }
       };
+  
   }
 
   UpdateTeam() {

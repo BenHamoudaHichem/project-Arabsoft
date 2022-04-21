@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Report } from 'notiflix';
@@ -14,7 +15,7 @@ export class UpdatePasswordComponent implements OnInit {
   public captchaResolved: boolean = false;
   siteKey = '6LcOuyYTAAAAAHTjFuqhA52fmfJ_j5iFk5PsfXaU';
   formUpdatePassword!: FormGroup;
-  constructor(private formBuilder: FormBuilder,private userService:UserService,private authService:AuthenticateService) {
+  constructor(private formBuilder: FormBuilder,private userService:UserService,private AuthenticateService:AuthenticateService) {
     this.formUpdatePassword = this.formBuilder.group(
       {
         confirm_new_password: [
@@ -48,7 +49,7 @@ export class UpdatePasswordComponent implements OnInit {
 
   changePassword()
   {
-    let passwordRequest:any={id:this.authService.authentificatorId,oldPassword:String(this.old_password?.value),newPassword:String(this.new_password?.value)}
+    let passwordRequest:any={id:this.AuthenticateService.authentificatorId,oldPassword:String(this.old_password?.value),newPassword:String(this.new_password?.value)}
 
     this.userService.changePassword(passwordRequest).subscribe((res:any)=>{
       if (res.status==true) {
@@ -59,7 +60,15 @@ export class UpdatePasswordComponent implements OnInit {
         Report.failure("Changer Mot de passe", res.message,"D'accord")
 
       }
-    })
+    }),
+    (error: HttpErrorResponse) => {
+      if(error.status==401){
+        this.AuthenticateService.redirectIfNotAuth()
+
+      }else{
+        Report.failure('Erreur', error.message,'OK')
+      }
+      }
   }
 
 
