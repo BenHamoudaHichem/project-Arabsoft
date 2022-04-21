@@ -182,9 +182,13 @@
     "about_us":"About Us"
   },
   "home":{
-    "title":"welcome to ARAB INTERVENT",
+    "title":"Welcome to ARAB INTERVENT",
     "title_":"Check out our web site",
-    "info":"ARAB INTERVENT specializes in the distribution of management solutions for the public sector"
+    "info":"ARAB INTERVENT specializes in the distribution of management solutions for the public sector",
+
+    "btn_h":"Join us",
+    "btn_hover":"Enjoy our services"
+
   },
 
   "about":{
