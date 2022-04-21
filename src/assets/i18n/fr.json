@@ -214,6 +214,9 @@
   "contact":"Contactez-nous"
 },
 "links":{
+  "arabsoft":"Companie arabsoft",
+"sector":"secteur public",
+"customers":"nos clients",
   "link_log":"Vous avez dejà un compte?",
   "link_register":"Créer un nouveau compte"
 }

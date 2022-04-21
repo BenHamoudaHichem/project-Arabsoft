@@ -185,7 +185,6 @@
     "title":"Welcome to ARAB INTERVENT",
     "title_":"Check out our web site",
     "info":"ARAB INTERVENT specializes in the distribution of management solutions for the public sector",
-
     "btn_h":"Join us",
     "btn_hover":"Enjoy our services"
 
@@ -210,7 +209,9 @@
   "plan":"Plan of our web site",
   "contact":"Contact Us"
 },
-"links":{
+"links":{"arabsoft":"Company arabsoft",
+"sector":"Public sector",
+"customers":"Our customers",
   "link_log":"Already have an account?",
   "link_register":"Create a new account"
 
