@@ -112,7 +112,7 @@ this.counrty?.setValue('Tunisie')
     this.getMaterials();
 
     console.log(this.categoryList)
-    this.allTeam();
+    this.Teams();
     this.demandService.showDemande(this.route.snapshot.paramMap.get('id')!).pipe(finalize(()=>this.currentDemand.title===undefined)).subscribe((res:IDemand)=>{
       this.currentDemand=res as IDemand;
       this.currentDemand.address=plainToClass(Address,res.address)
@@ -147,19 +147,30 @@ this.counrty?.setValue('Tunisie')
   }
   onSelectAll(items: any) {
     console.log(JSON.stringify(items));
+
   }
 
-  allTeam() {
-    this.teamService.all().subscribe((data: ITeam[]) => {
+  Teams() {
+    this.teamService.findByStatus("Available").subscribe((data: ITeam[]) => {
       this.teamList = data;
       console.log(this.teamList);
+      this.teamList.forEach(item => {
+        item.manager=plainToClass(User,item.manager)
+
+        item.manager.setAddress(plainToClass(Address,item.manager.getAddress()))
+        item.members.forEach(subItem => {
+          subItem=plainToClass(User,subItem)
+          subItem.setAddress(plainToClass(Address,subItem.getAddress()))
+
+        });
+      });
     }),
       (errors: HttpErrorResponse) => {
         Report.failure('erreur getting Teams', errors.message, 'Ok');
       };
   }
   getMaterials() {
-    this.materialService.all().subscribe((data: IMaterial[]) => {
+    this.materialService.materialPerStatus("Available").subscribe((data: IMaterial[]) => {
       this.materialsList = data;
       console.log(this.materialsList);
     }),

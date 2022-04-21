@@ -137,21 +137,38 @@ export class UpdateInterventionComponent implements OnInit {
   }
 
   allTeam() {
-    this.teamService.all().subscribe((data: ITeam[]) => {
+    this.teamService.findByStatus("Available").subscribe((data: ITeam[]) => {
       this.teamList = data;
       console.log(this.teamList);
+      this.teamList.forEach(item => {
+        item.manager=plainToClass(User,item.manager)
+
+        item.manager.setAddress(plainToClass(Address,item.manager.getAddress()))
+        item.members.forEach(subItem => {
+          subItem=plainToClass(User,subItem)
+          subItem.setAddress(plainToClass(Address,subItem.getAddress()))
+
+        });
+      });
     }),
       (errors: HttpErrorResponse) => {
-        Report.failure('erreur getting Teams', errors.message, 'Ok');
-      };
+        if (errors.status == 401) {
+          this.AuthenticateService.redirectIfNotAuth();
+        } else {
+          Report.failure('Erreur', errors.message, 'OK');
+        }      };
   }
   getMaterials() {
-    this.materialService.all().subscribe((data: IMaterial[]) => {
+    this.materialService.materialPerStatus("Available").subscribe((data: IMaterial[]) => {
       this.materialsList = data;
       console.log(this.materialsList);
     }),
       (errors: HttpErrorResponse) => {
-        Report.failure('erreur getting materials', errors.message, 'Ok');
+        if (errors.status == 401) {
+          this.AuthenticateService.redirectIfNotAuth();
+        } else {
+          Report.failure('Erreur', errors.message, 'OK');
+        }
       };
   }
 
@@ -233,7 +250,7 @@ export class UpdateInterventionComponent implements OnInit {
         this.state?.setValue(res.address.State);
         this.counrty?.setValue(res.address.Country);
       }),
-      
+
       (error: HttpErrorResponse) => {
         if(error.status==401){
           this.AuthenticateService.redirectIfNotAuth()
