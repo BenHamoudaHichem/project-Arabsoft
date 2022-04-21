@@ -5,6 +5,7 @@ import { Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { Confirmed } from 'src/app/services/validation/Confirmed';
+import { CAPTCHA_KEY } from 'src/app/services/properties';
 
 @Component({
   selector: 'app-update-password',
@@ -13,7 +14,7 @@ import { Confirmed } from 'src/app/services/validation/Confirmed';
 })
 export class UpdatePasswordComponent implements OnInit {
   public captchaResolved: boolean = false;
-  siteKey = '6LcOuyYTAAAAAHTjFuqhA52fmfJ_j5iFk5PsfXaU';
+  siteKey = CAPTCHA_KEY;
   formUpdatePassword!: FormGroup;
   constructor(private formBuilder: FormBuilder,private userService:UserService,private AuthenticateService:AuthenticateService) {
     this.formUpdatePassword = this.formBuilder.group(

@@ -6,7 +6,6 @@ import { Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
-import { Confirmed } from 'src/app/services/validation/Confirmed';
 import { Location } from 'src/app/models/Location';
 import { CookiesService } from 'src/app/services/cookies.service';
 import { IUser } from 'src/app/services/user/iuser';

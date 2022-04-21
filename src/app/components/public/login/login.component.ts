@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Notify, Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { HTMLEscape } from 'src/app/services/validation/HTMLEscapeChars';
+import { CAPTCHA_KEY } from 'src/app/services/properties';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ import { HTMLEscape } from 'src/app/services/validation/HTMLEscapeChars';
 })
 export class LoginComponent implements OnInit {
   public captchaResolved: boolean = false;
-  siteKey = '6LcOuyYTAAAAAHTjFuqhA52fmfJ_j5iFk5PsfXaU';
+  siteKey = CAPTCHA_KEY;
   loginForm!: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
