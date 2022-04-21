@@ -11,6 +11,7 @@ import { Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { AddressService } from 'src/app/services/address/address.service';
 import { HTMLEscape } from 'src/app/services/validation/HTMLEscapeChars';
+import { CAPTCHA_KEY } from 'src/app/services/properties';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -21,7 +22,7 @@ export class RegisterComponent implements OnInit {
   states!: string[];
   cities!: string[];
   public captchaResolved: boolean = false;
-  siteKey = '6LcOuyYTAAAAAHTjFuqhA52fmfJ_j5iFk5PsfXaU';
+  siteKey = CAPTCHA_KEY;
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,

@@ -52,6 +52,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { RecaptchaModule,RecaptchaFormsModule } from "ng-recaptcha";
 import { UpdateTeamComponent } from './components/manager/update-team/update-team.component';
 import { UpdateInterventionComponent } from './components/manager/update-intervention/update-intervention.component';
+import { AESEncoderService } from './services/aesencoder.service';
 
 export function httpTranslateLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -122,7 +123,7 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     UpdateInterventionComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [CookieService, GuardAuthenticateGuard],
+  providers: [CookieService, GuardAuthenticateGuard,AESEncoderService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

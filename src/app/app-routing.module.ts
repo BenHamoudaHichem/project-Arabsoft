@@ -74,37 +74,37 @@ const routes: Routes = [
       {
         path: 'customer/home',
         component: HomeCustomerComponent,
-        /* canActivate:[GuardAuthenticateGuard],
+         canActivate:[GuardAuthenticateGuard],
          data: {
           roles: roles.customer
-        }*/
+        }
       },
       {
         path: 'customer/changePassword',
         component: UpdatePasswordComponent,
-        /* canActivate:[GuardAuthenticateGuard],
+         canActivate:[GuardAuthenticateGuard],
          data: {
           roles: roles.customer
-        }*/
+        }
       },
 
       {
         path: 'customer/createReclamation',
         component: CreateReclamationComponent,
 
-        /*     canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
          data: {
           roles: roles.customer
-        }*/
+        }
       },
       {
         path: 'customer/customerProfil',
         component: CustomerProfilComponent,
 
-        /*   canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
          data: {
           roles: roles.customer
-        }*/
+        }
       },
       {
         path: 'customer/editProfil',
@@ -115,19 +115,19 @@ const routes: Routes = [
         path: 'customer/reclamation/:id',
         component: ShowReclamationComponent,
 
-        /*  canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
          data: {
           roles: roles.customer
-        }*/
+        }
       },
       {
         path: 'customer/editProfil',
         component: EditProfilComponent,
 
-        /*  canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
          data: {
           roles: roles.customer
-        }*/
+        }
       },
       {
         path: 'customer',
@@ -145,216 +145,216 @@ const routes: Routes = [
       {
         path: 'manager/home',
         component: HomeManagerComponent,
-        /* canActivate:[GuardAuthenticateGuard],
+         canActivate:[GuardAuthenticateGuard],
          data: {
           roles: roles.manager
-        }*/
+        }
       },
       {
         path: 'manager/changePassword',
         component: UpdatePasswordComponent,
-        /* canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
          data: {
           roles: roles.customer
-        }*/
+        }
       },
       {
         path: 'manager/reclamationList',
         component: ReclamationListComponent,
-        /*canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
       {
         path: 'manager/subscribeMembre',
         component: SubscribeMembreComponent,
-        /* canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
       {
         path: 'manager/addTeam',
         component: AddTeamComponent,
-        /*  canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
       {
         path: 'manager/interventionList',
         component: InterventionListComponent,
-        /* canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
 
       {
         path: 'manager/employeeList',
         component: MembersListComponent,
-        /*  canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
        data: {
         roles: roles.manager
-      } */
+      }
       },
 
       {
         path: 'manager/userProfil/:id',
         component: CustomerProfilComponent,
-        /* canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
       {
         path: 'manager/customerList',
         component: CustomerListComponent,
-        /*   canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
       {
         path: 'manager/detailCustomer/:id',
         component: DetailsCustomerComponent,
-        /*   canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
 
       {
         path: 'manager/materialList',
         component: MaterialListComponent,
-        /*  canActivate:[GuardAuthenticateGuard],
+       canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
       {
         path: 'manager/addMaterial',
         component: AddMaterialsComponent,
-        /*  canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
       {
         path: 'manager/detailReclamation/:id',
         component: DetailReclamationComponent,
-        /* canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
 
       {
         path: 'manager/detailIntervention/:id',
         component: DetailInterventionComponent,
-        /*   canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
       {
         path: 'manager/createIntervention/:id',
         component: CreateInterventionComponent,
-        /*   canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
       {
         path: 'manager/updateIntervention/:id',
         component: UpdateInterventionComponent,
-        /*   canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
       {
         path: 'manager/detailMaterial/:id',
         component: DetailMaterialComponent,
-        /* canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
       {
         path: 'manager/updateMaterial/:id',
         component: UpdateMaterialComponent,
-        /*  canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
       {
         path: 'manager/updateTeam/:id',
         component: UpdateTeamComponent,
-        /*  canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
       {
         path: 'manager/detailTeam/:id',
         component: DetailTeamComponent,
-        /* canActivate:[GuardAuthenticateGuard],
+         canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
       {
         path: 'manager/teamList',
         component: TeamListComponent,
-        /* canActivate:[GuardAuthenticateGuard],
+         canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
       {
         path: 'manager/demandList',
         component: ReclamationListComponent,
-        /* canActivate:[GuardAuthenticateGuard],
+         canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
       {
         path: 'manager/fileMembersUpload',
         component: AddFileMembersComponent,
-        /*canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
 
       {
         path: 'manager/fileMaterialsUpload',
         component: AddFileMaterialsComponent,
-        /*canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
 
       {
         path: 'manager/categorylist',
         component: CategoryComponent,
-        /*canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
       {
         path: 'manager/detailCategory/:id',
         component: DetailCategoryComponent,
-        /*canActivate:[GuardAuthenticateGuard],
+        canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-       }*/
+       }
       },
       /*
        * End manager
