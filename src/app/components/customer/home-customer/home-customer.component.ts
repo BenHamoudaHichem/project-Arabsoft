@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { lastValueFrom } from 'rxjs';
+
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { HomeLoaderService } from 'src/app/services/home/home-loader.service';
 import { IHomeCustomer } from 'src/app/services/home/ihome-customer';
@@ -23,6 +23,10 @@ export class HomeCustomerComponent implements OnInit {
     })
     this.homeService.loadHomeForCustomer().subscribe((res:IHomeCustomer)=>{
       this.dataHome=res
+    },error=>{
+      if(error.code==401){
+        this.authService.redirectIfNotAuth()
+      }
     })
 
   }

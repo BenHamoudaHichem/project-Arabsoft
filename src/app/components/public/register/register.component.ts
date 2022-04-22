@@ -180,4 +180,57 @@ export class RegisterComponent implements OnInit {
   get confirm_password() {
     return this.registerForm.get('confirm_password');
   }
+  check()
+{
+ Object.keys(this.registerForm.controls).forEach(key => {
+   if (this.registerForm.get(key)!.errors) {
+   console.log(this.registerForm.get(key)!.errors)
+    if(this.registerForm.get(key)!.errors!.hasOwnProperty('required'))
+    {
+      Report.failure(key,"Champs obligatoire","D'accord")
+    }
+    if(this.registerForm.get(key)!.errors!.hasOwnProperty('pattern'))
+    {
+      let stringAlpha:string=" des lettres alphabétiques "
+      let stringdigit:string=" des chiffres "
+      let stringMin:string=" au minimum "
+      let stringMax:string=" au maximum "
+      let stringOperation:string=String(this.registerForm.get(key)!.errors!["pattern"].requiredPattern)
+      console.log(stringOperation);
+
+      let res:string=""
+      if(stringOperation.indexOf("a-z")!=-1)
+      {
+        res="Ce champs doit contenir"
+        res=res+stringAlpha
+      }
+      if(stringOperation.indexOf("0-9")!=-1){
+        if(res.length==0){res="Ce champs doit contenir"
+      res=res+ stringdigit}else{
+
+        res=res+"et"+stringdigit
+      }
+    }
+
+      if (stringOperation.includes("{")) {
+        let min:number=Number(stringOperation.substring(
+          stringOperation.indexOf("{")+1,
+          stringOperation.indexOf(",")
+        ))
+        res=res.concat("avec un taille de "+min+stringMin)
+        if ((Number(stringOperation.substring(stringOperation.indexOf(",")+1,stringOperation.indexOf("}")))!==0)) {
+          let max:number=Number(stringOperation.substring(
+            stringOperation.indexOf(",")+1,
+            stringOperation.indexOf("}")
+          ))
+          res=res.concat("et de "+max+stringMax)
+        }
+      }
+
+      Report.failure(key,res,"D'accord")
+    }
+
+   }
+})
+}
 }

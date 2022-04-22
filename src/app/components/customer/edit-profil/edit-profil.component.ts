@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
@@ -60,7 +60,7 @@ export class EditProfilComponent implements OnInit {
           '',
           [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
         ],
-        zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
+        zipCode: ['', [Validators.required, Validators.pattern('^[0-9 -]{4}$')]],
       },
 
     )
@@ -188,5 +188,57 @@ export class EditProfilComponent implements OnInit {
     return this.updateForm.get('zipCode');
   }
 
+check()
+{
+ Object.keys(this.updateForm.controls).forEach(key => {
+   if (this.updateForm.get(key)!.errors) {
+   console.log(this.updateForm.get(key)!.errors)
+    if(this.updateForm.get(key)!.errors!.hasOwnProperty('required'))
+    {
+      Report.failure(key,"Champs obligatoire","D'accord")
+    }
+    if(this.updateForm.get(key)!.errors!.hasOwnProperty('pattern'))
+    {
+      let stringAlpha:string=" des lettres alphabétiques "
+      let stringdigit:string=" des chiffres "
+      let stringMin:string=" au minimum "
+      let stringMax:string=" au maximum "
+      let stringOperation:string=String(this.updateForm.get(key)!.errors!["pattern"].requiredPattern)
+      console.log(stringOperation);
 
+      let res:string=""
+      if(stringOperation.indexOf("a-z")!=-1)
+      {
+        res="Ce champs doit contenir"
+        res=res+stringAlpha
+      }
+      if(stringOperation.indexOf("0-9")!=-1){
+        if(res.length==0){res="Ce champs doit contenir"
+      res=res+ stringdigit}else{
+
+        res=res+"et"+stringdigit
+      }
+    }
+
+      if (stringOperation.includes("{")) {
+        let min:number=Number(stringOperation.substring(
+          stringOperation.indexOf("{")+1,
+          stringOperation.indexOf(",")
+        ))
+        res=res.concat("avec un taille de "+min+stringMin)
+        if ((Number(stringOperation.substring(stringOperation.indexOf(",")+1,stringOperation.indexOf("}")))!==0)) {
+          let max:number=Number(stringOperation.substring(
+            stringOperation.indexOf(",")+1,
+            stringOperation.indexOf("}")
+          ))
+          res=res.concat("et de "+max+stringMax)
+        }
+      }
+
+      Report.failure(key,res,"D'accord")
+    }
+
+   }
+})
+}
 }

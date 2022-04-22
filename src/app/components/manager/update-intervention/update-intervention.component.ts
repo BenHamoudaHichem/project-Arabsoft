@@ -2,14 +2,11 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { plainToClass } from 'class-transformer';
 import moment from 'moment';
 import { Report } from 'notiflix';
-import { finalize } from 'rxjs';
 import { Address } from 'src/app/models/Address';
 import { Dbref } from 'src/app/models/dbref';
 import { Location } from 'src/app/models/Location';
-import { User } from 'src/app/models/user';
 import { Intervention } from 'src/app/models/works/intervention';
 import { AddressService } from 'src/app/services/address/address.service';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
@@ -233,7 +230,7 @@ export class UpdateInterventionComponent implements OnInit {
         this.state?.setValue(res.address.State);
         this.counrty?.setValue(res.address.Country);
       }),
-      
+
       (error: HttpErrorResponse) => {
         if(error.status==401){
           this.AuthenticateService.redirectIfNotAuth()
@@ -303,4 +300,57 @@ export class UpdateInterventionComponent implements OnInit {
       this.date?.setValue(moment(new Date()).format('yyyy-MM-DD'));
     }
   }
+  check()
+{
+ Object.keys(this.UpdateInterventionForm.controls).forEach(key => {
+   if (this.UpdateInterventionForm.get(key)!.errors) {
+   console.log(this.UpdateInterventionForm.get(key)!.errors)
+    if(this.UpdateInterventionForm.get(key)!.errors!.hasOwnProperty('required'))
+    {
+      Report.failure(key,"Champs obligatoire","D'accord")
+    }
+    if(this.UpdateInterventionForm.get(key)!.errors!.hasOwnProperty('pattern'))
+    {
+      let stringAlpha:string=" des lettres alphabétiques "
+      let stringdigit:string=" des chiffres "
+      let stringMin:string=" au minimum "
+      let stringMax:string=" au maximum "
+      let stringOperation:string=String(this.UpdateInterventionForm.get(key)!.errors!["pattern"].requiredPattern)
+      console.log(stringOperation);
+
+      let res:string=""
+      if(stringOperation.indexOf("a-z")!=-1)
+      {
+        res="Ce champs doit contenir"
+        res=res+stringAlpha
+      }
+      if(stringOperation.indexOf("0-9")!=-1){
+        if(res.length==0){res="Ce champs doit contenir"
+      res=res+ stringdigit}else{
+
+        res=res+"et"+stringdigit
+      }
+    }
+
+      if (stringOperation.includes("{")) {
+        let min:number=Number(stringOperation.substring(
+          stringOperation.indexOf("{")+1,
+          stringOperation.indexOf(",")
+        ))
+        res=res.concat("avec un taille de "+min+stringMin)
+        if ((Number(stringOperation.substring(stringOperation.indexOf(",")+1,stringOperation.indexOf("}")))!==0)) {
+          let max:number=Number(stringOperation.substring(
+            stringOperation.indexOf(",")+1,
+            stringOperation.indexOf("}")
+          ))
+          res=res.concat("et de "+max+stringMax)
+        }
+      }
+
+      Report.failure(key,res,"D'accord")
+    }
+
+   }
+})
+}
 }
