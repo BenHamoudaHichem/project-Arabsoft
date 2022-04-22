@@ -237,7 +237,7 @@ li {
   right: 0;
   bottom: 0;
   color: #1f2e4d;
-  content: attr(data-attr-span);
+  content: attr(data-span);
   width: 0%;
   height: 100%;
   background: white;
