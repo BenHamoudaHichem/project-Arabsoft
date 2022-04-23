@@ -6,7 +6,7 @@
       <div class="profile-header">
         <div class="profile-info">
           <div class="profile-img">
-            <h4 translate> inscrivez vous a notre site</h4>
+            <h4 translate> titles.subscribe</h4>
           </div>
           <div class="actions">
             <div class="about">
@@ -15,195 +15,153 @@
                 <div class="scroll">
 
                 <form [formGroup]="registerForm" (ngSubmit)="Register()" novalidate>
-                  <div class="user-details">
-                    <div class="input-box">
-                      <span class="details">Nom</span>
-                      <input
-                        type="text"
-                        formControlName="firstName"
-                        placeholder="Entrez votre nom"
-                        data-rule="required"
-                      />
-                      <!--FisrtName errors-->
-                      <p
-                        class="ErrorMsg"
-                        *ngIf="
-                          !firstName?.valid && (firstName?.dirty || firstName?.touched)
-                        "
-                      >
-                        Nom est obligatoire
-                      </p>
-                      <p *ngIf="firstName?.errors?.['pattern']" class="ErrorMsg">
-                        vous devez entrez au minimun deux caractéres
-                      </p>
-                      <!------------>
-                    </div>
-                    <div class="input-box">
-                      <span class="details">Prénom</span>
-                      <input
-                        type="text"
-                        formControlName="lastNamme"
-                        placeholder="Entrez votre prénom"
-                      />
-                      <!--FisrtName errors-->
-                      <p
-                        class="ErrorMsg"
-                        *ngIf="
-                          !lastNamme?.valid && (lastNamme?.dirty || lastNamme?.touched)
-                        "
-                      >
-                        Nom est obligatoire
-                      </p>
-                      <p *ngIf="lastNamme?.errors?.['pattern']" class="ErrorMsg">
-                        vous devez entrez au minimun deux caractéres
-                      </p>
-                      <!------------>
-                    </div>
-                    <div class="input-box">
-                      <span class="details">Email</span>
-                      <input
-                        type="email"
-                        formControlName="identifier"
-                        placeholder="Entrez votre  Email"
-                      />
-                      <!--identifier errors-->
-                      <p
-                        class="ErrorMsg"
-                        *ngIf="
-                          !identifier?.valid && (identifier?.dirty || identifier?.touched)
-                        "
-                      >
-                        Ce champs est obligatoire
-                      </p>
-                      <p *ngIf="identifier?.errors?.['email']" class="ErrorMsg">
-                        structure de email : foulen@foulen
-                      </p>
-                      <!------------>
-                    </div>
+                    <div class="user-details">
+                      <div class="input-box">
+                       <span class="details" translate>input.titles.firstname</span>
+                        <input type="text" formControlName="firstName" placeholder="{{'input.msg.firstname'| translate}}"
+                          data-rule="required" />
+                        <!--FisrtName errors-->
+                        <p class="ErrorMsg" *ngIf="
+                            !firstName?.valid && (firstName?.dirty || firstName?.touched)
+                          " translate>
+                          errors.req_error
+                        </p>
+                        <p translate *ngIf="firstName?.errors?.['pattern']" class="ErrorMsg" translate>
+                          errors.alph_error
+                        </p>
+                        <!------------>
+                      </div>
 
-                    <div class="input-box">
-                      <span class="details">Telephone</span>
-                      <input
-                        type="number"
-                        formControlName="tel"
-                        placeholder="Entrez votre numéro de télephone"
-                      />
-                      <!--Tel errors-->
-                      <p
-                        class="ErrorMsg"
-                        *ngIf="!tel?.valid && (tel?.dirty || tel?.touched)"
-                      >
-                        Ce champs est obligatoire
-                      </p>
-                      <p *ngIf="tel?.errors?.['pattern']" class="ErrorMsg">
-                        Entrez 8 chiffres
-                      </p>
-                      <!------------>
-                    </div>
-                    <div class="input-box">
-                      <span class="details">Pays</span>
-                      <input type="text"  [readonly]="true" formControlName="country"  value="Tunisie" />
-                      <!--Country errors-->
-                      <p
-                        class="ErrorMsg"
-                        *ngIf="!counrty?.valid && (counrty?.dirty || counrty?.touched)"
-                      >
-                        ce champ est obligatoire
-                      </p>
+             <div class="input-box">
+                        <span class="details" translate>input.titles.lastname</span>
+                        <input type="text" formControlName="lastNamme" placeholder="{{'input.msg.lastname'| translate}}" />
+                        <!--FisrtName errors-->
+                        <p class="ErrorMsg" *ngIf="
+                            !lastNamme?.valid && (lastNamme?.dirty || lastNamme?.touched)
+                          " translate>
+                          errors.req_error
+                        </p>
+                        <p *ngIf="lastNamme?.errors?.['pattern']" class="ErrorMsg" translate>
+                          errors.alph_error
+                        </p>
+                        <!------------>
+                      </div>
+                      <div class="input-box">
+                        <span class="details" translate>input.titles.email</span>
+                        <input type="email" formControlName="identifier" placeholder="{{'input.msg.email'| translate}}" />
+                        <!--identifier errors-->
+                        <p class="ErrorMsg" *ngIf="
+                            !identifier?.valid && (identifier?.dirty || identifier?.touched)
+                          " translate>
+                          errors.req_error
+                        </p>
+                        <p *ngIf="identifier?.errors?.['email']" class="ErrorMsg" translate>
+                          errors.email_patt
+                        </p>
+                        <!------------>
+                      </div>
 
-                      <!------------>
-                    </div>
-                    <div class="input-box">
-                      <span class="details">Gouvernorat</span>
-                  <select formControlName="state" (change)="loadCities()">
-                    <option *ngFor="let item of states"  [value]="item">{{item}}</option>
-                  </select>
+                      <div class="input-box">
+                        <span class="details" translate>input.titles.tel</span>
+                        <input type="number" formControlName="tel" placeholder="{{'input.titles.tel'|translate}}" />
+                        <!--Tel errors-->
+                        <p class="ErrorMsg" *ngIf="!tel?.valid && (tel?.dirty || tel?.touched)" translate>
+                          errors.req_error
+                        </p>
+                        <p *ngIf="tel?.errors?.['pattern']" class="ErrorMsg" translate>
+                          errors.error_chiff
+                        </p>
+                        <!------------>
+                      </div>
 
-                      <!--Zip code errors-->
-                      <p
-                        class="ErrorMsg"
-                        *ngIf="!state?.valid && (state?.dirty || state?.touched)"
-                      >
-                        ce champ est obligatoire
-                      </p>
+                      <div class="input-box">
+                        <span class="details" translate>location.country</span>
+                        <input type="text" [disabled]="true" formControlName="country" value="Tunisie" />
+                        <!--Country errors-->
+                        <p class="ErrorMsg" *ngIf="!counrty?.valid && (counrty?.dirty || counrty?.touched)" translate>
+                          errors.req_error
+                        </p>
 
-                      <!------------>
-                    </div>
-                    <div class="input-box">
-                      <span class="details">Ville</span>
-                      <select   formControlName="city">
-                        <option *ngFor="let item of cities" [value]="item">{{item}}</option>
-                      </select>
+                        <!------------>
+                      </div>
+                      <div class="input-box">
+                        <span class="details" translate>location.governorate</span>
+                        <select formControlName="state" (change)="loadCities()">
+                          <option *ngFor="let item of states" [value]="item">{{item}}</option>
+                        </select>
+
+                        <!--Zip code errors-->
+                        <p class="ErrorMsg" *ngIf="!state?.valid && (state?.dirty || state?.touched)" translate>
+                          errors.req_error
+                        </p>
+
+                        <!------------>
+                      </div>
+                      <div class="input-box">
+                        <span class="details" translate>location.city</span>
+                        <select formControlName="city">
+                          <option *ngFor="let item of cities" [value]="item">{{item}}</option>
+                        </select>
 
 
-                      <!--Ville errors-->
-                      <p
-                        class="ErrorMsg"
-                        *ngIf="!city?.valid && (city?.dirty || city?.touched)"
-                      >
-                        ce champ est obligatoire
-                      </p>
+                        <!--Ville errors-->
+                        <p class="ErrorMsg" *ngIf="!city?.valid && (city?.dirty || city?.touched)" translate>
+                          errors.req_error
+                        </p>
 
-                      <!------------>
-                    </div>
-                    <div class="input-box">
-                      <span class="details">Code postal</span>
-                      <input
-                        type="text"
-                        formControlName="zipCode"
-                        placeholder="code postal"
-                      />
+                        <!------------>
+                      </div>
+                      <div class="input-box">
+                        <span class="details" translate>location.postal_code</span>
+                        <input type="text" formControlName="zipCode" placeholder="{{'location.postal_code'|translate}}" />
 
-                      <!--Zip code errors-->
-                      <p
-                        class="ErrorMsg"
-                        *ngIf="!zipCode?.valid && (zipCode?.dirty || zipCode?.touched)"
-                      >
-                        ce champ est obligatoire
-                      </p>
+                        <!--Zip code errors-->
+                        <p class="ErrorMsg" *ngIf="!zipCode?.valid && (zipCode?.dirty || zipCode?.touched)" translate>
+                          errors.req_error
+                        </p>
 
-                      <!------------>
-                    </div>
+                        <!------------>
+                      </div>
 
-                    <div class="input-box">
-                      <span class="details">Rue</span>
-                      <input type="text" formControlName="street" placeholder="Rue" />
-                      <!--Street errors-->
-                      <p
-                        class="ErrorMsg"
-                        *ngIf="!street?.valid && (street?.dirty || street?.touched)"
-                      >
-                        ce champ est obligatoire
-                      </p>
+                      <div class="input-box">
+                        <span class="details" translate>location.street</span>
+                        <input type="text" formControlName="street" placeholder="{{'location.street'|translate}}" />
+                        <!--Street errors-->
+                        <p class="ErrorMsg" *ngIf="!street?.valid && (street?.dirty || street?.touched)" translate>
+                          errors.req_error
+                        </p>
 
-                      <!------------>
-                    </div>
-                    <div class="input-box">
-                      <span class="details">Password</span>
+                        <!------------>
+                      </div>
+
+
+
+             <div class="input-box">
+                      <span class="details" translate>input.titles.password</span>
                       <input
                         type="password"
                         formControlName="password"
-                        placeholder="Entrez votre Mot de passe"
+                        placeholder="{{'input.titles.password'|translate}}"
                       />
                       <!--pwd errors-->
                       <p
                         class="ErrorMsg"
                         *ngIf="!password?.valid && (password?.dirty || password?.touched)"
-                      >
-                        ce champ est obligatoire
-                      </p>
-                      <p *ngIf="password?.errors?.['pattern']" class="ErrorMsg">
-                        vous devez entrez au minimun 8 caractéres
+                     translate >
+                      errors.req_error
+                    </p>
+                      <p *ngIf="password?.errors?.['pattern']" class="ErrorMsg" translate>
+errors.alph_8error
                       </p>
 
                       <!------------>
                     </div>
                     <div class="input-box">
-                      <span class="details">Confirm Password</span>
+                      <span class="details" translate>input.titles.confirm_password</span>
                       <input
                         type="password"
                         formControlName="confirm_password"
-                        placeholder="Confirmer votre mot de passe"
+                        placeholder="{{'input.titles.confirm_password'| translate}}"
                       />
                       <p
                         class="ErrorMsg"
@@ -211,15 +169,14 @@
                           !confirm_password?.valid &&
                           (confirm_password?.dirty || confirm_password?.touched)
                         "
-                      >
-                        ce champ est obligatoire
+                     translate >
+                      errors.req_error
                       </p>
                       <p
                         *ngIf="registerForm.hasError('ConfirmedValidator')"
                         class="ErrorMsg"
-                      >
-                        not matched
-                      </p>
+                     translate >
+errors.error_confirm                     </p>
                     </div>
                     <div class="input-box">
                     <re-captcha (resolved)="checkCaptcha($event)" [siteKey]="siteKey" formControlName="captcha"
@@ -232,14 +189,15 @@
                       type="submit"
                       role="button"
                       [disabled]="!registerForm.valid"
-                    >
-                      INSCRIRE
+                   translate >
+                      buttons.register
                     </button>
                   </div>
 
                   <span class="extra-line">
-                    <a routerLink="/login">Vous avez dejà un compte? </a>
+                    <a routerLink="/login" translate>links.link_log </a>
                   </span>
+
                 </form>
               </div>
             </div>

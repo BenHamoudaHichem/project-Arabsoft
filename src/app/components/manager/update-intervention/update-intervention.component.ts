@@ -2,11 +2,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { plainToClass } from 'class-transformer';
 import moment from 'moment';
 import { Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
 import { Dbref } from 'src/app/models/dbref';
 import { Location } from 'src/app/models/Location';
+import { User } from 'src/app/models/user';
 import { Intervention } from 'src/app/models/works/intervention';
 import { AddressService } from 'src/app/services/address/address.service';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
@@ -134,21 +136,38 @@ export class UpdateInterventionComponent implements OnInit {
   }
 
   allTeam() {
-    this.teamService.all().subscribe((data: ITeam[]) => {
+    this.teamService.findByStatus("Available").subscribe((data: ITeam[]) => {
       this.teamList = data;
       console.log(this.teamList);
+      this.teamList.forEach(item => {
+        item.manager=plainToClass(User,item.manager)
+
+        item.manager.setAddress(plainToClass(Address,item.manager.getAddress()))
+        item.members.forEach(subItem => {
+          subItem=plainToClass(User,subItem)
+          subItem.setAddress(plainToClass(Address,subItem.getAddress()))
+
+        });
+      });
     }),
       (errors: HttpErrorResponse) => {
-        Report.failure('erreur getting Teams', errors.message, 'Ok');
-      };
+        if (errors.status == 401) {
+          this.AuthenticateService.redirectIfNotAuth();
+        } else {
+          Report.failure('Erreur', errors.message, 'OK');
+        }      };
   }
   getMaterials() {
-    this.materialService.all().subscribe((data: IMaterial[]) => {
+    this.materialService.materialPerStatus("Available").subscribe((data: IMaterial[]) => {
       this.materialsList = data;
       console.log(this.materialsList);
     }),
       (errors: HttpErrorResponse) => {
-        Report.failure('erreur getting materials', errors.message, 'Ok');
+        if (errors.status == 401) {
+          this.AuthenticateService.redirectIfNotAuth();
+        } else {
+          Report.failure('Erreur', errors.message, 'OK');
+        }
       };
   }
 

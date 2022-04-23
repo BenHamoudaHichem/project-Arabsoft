@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DefaultLangChangeEvent, DEFAULT_LANGUAGE, MissingTranslationHandler, TranslateService } from '@ngx-translate/core';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
-import { Report } from 'notiflix';
+import Notiflix, { Notify, Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 
 @Component({
@@ -38,19 +38,21 @@ export class DashboardAdminComponent implements OnInit {
     this.authService.logout.subscribe((res:any)=>{
 
         this.authService.onLogoutSucess()
+        Notify.success(
+          "Au revoir"
+            )
         this.route.navigate(['/home'])
 
-          Report.success(
-            "Notification de déconnexion","Au revoir","D'accord"
-            )
+
 
       }
     ,error=>{
       this.authService.onLogoutSucess()
+      Notify.success(
+        "Au revoir"
+          )
       this.route.navigate(['/home'])
-      Report.success(
-        "Notification de déconnexion","Au revoir","D'accord"
-        )
+
 
     })
   }

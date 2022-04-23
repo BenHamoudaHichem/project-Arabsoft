@@ -18,28 +18,54 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" routerLink="/home" ><i class="fa fa-home">&nbsp;&nbsp; </i><span>ACCEUIL</span> </a>
+              <a class="nav-link" routerLink="/home" ><i class="fa fa-home">&nbsp;&nbsp; </i><span translate> navbar.home </span> </a>
             </li>
             <li class="nav-item " *ngIf="!checkPropos()">
-              <a class="nav-link" routerLink="/propos"><i class="fa fa-bars">&nbsp;&nbsp; </i> <span>A PROPOS DE NOUS</span></a>
+              <a class="nav-link" routerLink="/propos"><i class="fa fa-bars">&nbsp;&nbsp; </i> <span translate>navbar.about_us</span></a>
             </li>
             <li class="nav-item" *ngIf="!checkContct()">
-              <a class="nav-link" routerLink="/contact"><i class="fa fa-envelope">&nbsp;&nbsp; </i><span>CONTACTEZ NOUS</span></a>
+              <a class="nav-link" routerLink="/contact"><i class="fa fa-envelope">&nbsp;&nbsp; </i><span translate>navbar.contact</span></a>
             </li>
             <li class="nav-item" *ngIf="!checkLogin()">
-              <a class="nav-link" routerLink="/login"><i class="fa fa-user">&nbsp; &nbsp;</i><span>CONNEXION</span>
+              <a class="nav-link" routerLink="/login"><i class="fa fa-user">&nbsp; &nbsp;</i><span translate>navbar.log</span>
                 </a>
             </li><li class="nav-item" *ngIf="!checkRegister()">
-              <a class="nav-link" routerLink="/register"><i class="fa fa-user-plus">&nbsp;</i><span>REJOIGNEZ-NOUS</span></a>
+              <a class="nav-link" routerLink="/register"><i class="fa fa-user-plus">&nbsp;</i><span translate>navbar.join_us</span></a>
             </li>
-            <!-- <li class="nav-item">
-
-
-            <img
+      <li class="nav-item dropdown dropdown-mega position-static ml-auto">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+                 <img
               class="globe" src="assets/images/globe.png" title="{{'lng.title'|translate}}" height="50px" width="50px"
-              alt="language">
+              alt="language"></a>
+              <div class="dropdown-menu shadow bgColor border-0">
+                <div class="mega-content px-4">
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-12  md-5">
+                        <strong translate> lng.title </strong>
+                        <div class="list-group">
+                          <span translate>
+                            <img class="long" (click)="translateLanguageTo('en')"
+                              src="https://media.istockphoto.com/vectors/united-kingdom-flag-realistic-waving-union-jack-vector-id1251660737?k=20&m=1251660737&s=612x612&w=0&h=Hd3fVDhA3KUaefIawI9jcyTFL7M_YZwO6wBxTu8bVxE="
+                              alt="">
+                            lng.en
+                          </span>
+                          <span translate>
+                            <img class="long" (click)="translateLanguageTo('fr')"
+                              src="https://i0.wp.com/www.respectability.org/wp-content/uploads/2015/01/france-flag.jpg?ssl=1"
+                              alt="">
+                            lng.fr
+                          </span>
+                        </div>
+                      </div>
 
-            </li>-->
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
 
           </ul>
 

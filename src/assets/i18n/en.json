@@ -16,7 +16,9 @@
     "in_prog": "In progress",
     "members": "Members",
     "send": "Send",
-    "waiting": "Waiting"
+    "waiting": "Waiting",
+    "register":"Register",
+    "connect":"connect"
   },
   "cards": {
     "bleu": "notifications",
@@ -47,6 +49,7 @@
       "identifier": "Enter your identifier",
       "intervention": "Enter the intervention name",
       "lastname": "Enter your lastname",
+      "password":"Enter your password",
       "mat_select": "Select materials",
       "material": "Enter the material name",
       "member": "Member",
@@ -93,7 +96,7 @@
     "title": "location"
   },
   "lng": {
-    "title": "choose a language ",
+    "title": "Choose A Language ",
     "en": "English",
     "fr": "French"
   },
@@ -165,7 +168,53 @@
     "update_int": "Update intervention",
 
     "update_pro": "Update profil",
-    "update_team": "Update team"
+    "update_team": "Update team",
+    "subscribe":"Subscribe to our web site"
 
-  }
+
+  },
+
+  "navbar":{
+    "home":"Home",
+    "contact":"Contact Us",
+    "log":"login",
+    "join_us":"Join Us",
+    "about_us":"About Us"
+  },
+  "home":{
+    "title":"Welcome to ARAB INTERVENT",
+    "title_":"Check out our web site",
+    "info":"ARAB INTERVENT specializes in the distribution of management solutions for the public sector",
+    "btn_h":"Join us",
+    "btn_hover":"Enjoy our services"
+
+  },
+
+  "about":{
+    "title":"ABOUT US ?",
+    "info":"GestIntern is a digital platform responsible for assigning customer intervention requests to expert teams, we offer spaces on our site for:"
+  },
+  "contact":{
+    "title":"Contact us",
+    "name":"Enter your name",
+    "email":" Enter you email",
+    "phone":"Enter your phone number",
+    "description":"write...."
+  },
+"footer":{
+  "find_us":"Find Us",
+  "call_us":"Call Us",
+  "mail_us":"Mail Us",
+  "follow_us":"Follow Us",
+  "plan":"Plan of our web site",
+  "contact":"Contact Us"
+},
+"links":{"arabsoft":"Company arabsoft",
+"sector":"Public sector",
+"customers":"Our customers",
+  "link_log":"Already have an account?",
+  "link_register":"Create a new account"
+
+}
+
 }
