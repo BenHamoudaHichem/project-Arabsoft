@@ -53,6 +53,8 @@ import { RecaptchaModule,RecaptchaFormsModule } from "ng-recaptcha";
 import { UpdateTeamComponent } from './components/manager/update-team/update-team.component';
 import { UpdateInterventionComponent } from './components/manager/update-intervention/update-intervention.component';
 import { AESEncoderService } from './services/aesencoder.service';
+import { NgApexchartsModule } from 'ng-apexcharts';
+import { DemandPerYearComponent } from './components/chart/demand-per-year/demand-per-year.component';
 
 export function httpTranslateLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -64,6 +66,7 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     NgMultiSelectDropDownModule,
     HttpClientModule,
     FormsModule,
+    NgApexchartsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCYYC0LjtQyFdL2PfLbUymRPuBjKlMtvcs',
@@ -121,6 +124,7 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     UpdatePasswordComponent,
     UpdateTeamComponent,
     UpdateInterventionComponent,
+    DemandPerYearComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [CookieService, GuardAuthenticateGuard,AESEncoderService],
