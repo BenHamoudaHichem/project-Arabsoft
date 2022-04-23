@@ -86,6 +86,7 @@ export class AuthenticateService {
 
 
   redirectIfNotAuth() {
+    this.onLogoutSucess()
     Report.warning("Connexion perdu",'Vous devez reconnecter Session expirée',"Je compris");
     this.router.navigate(['/login']);
   }

@@ -24,7 +24,8 @@ export class HomeCustomerComponent implements OnInit {
     this.homeService.loadHomeForCustomer().subscribe((res:IHomeCustomer)=>{
       this.dataHome=res
     },error=>{
-      if(error.code==401){
+
+      if(error.status==401){
         this.authService.redirectIfNotAuth()
       }
     })
