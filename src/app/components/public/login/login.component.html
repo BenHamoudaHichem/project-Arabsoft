@@ -5,7 +5,7 @@
       <div class="profile-header">
         <div class="profile-info">
           <div class="profile-img">
-            <h4 translate> titles.log </h4> 
+            <h4 translate> titles.log </h4>
           </div>
           <div class="actions">
             <div class="about">
@@ -39,7 +39,7 @@
                 </div>
                 <re-captcha (resolved)="checkCaptcha($event)" [siteKey]="siteKey" formControlName="captcha">
                 </re-captcha>
-                <div class="d-flex justify-content-end pt-3">
+                <div class="d-flex justify-content-end pt-3"(mouseout)="check()">
                   <button class="bn632-hover bn24" type="submit" role="button" [disabled]="!loginForm.valid" translate>
                     buttons.connect
                   </button>
