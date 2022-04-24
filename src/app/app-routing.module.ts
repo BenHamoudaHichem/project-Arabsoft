@@ -155,7 +155,7 @@ const routes: Routes = [
         component: UpdatePasswordComponent,
         canActivate:[GuardAuthenticateGuard],
          data: {
-          roles: roles.customer
+          roles: roles.manager
         }
       },
       {

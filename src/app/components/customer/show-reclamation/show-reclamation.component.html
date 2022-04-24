@@ -1,16 +1,17 @@
-<div class="header">
-  <h1>{{demand.title}}</h1>
+<div class="header" >
+  <h1 class="text-uppercase" > {{demand.title}} </h1>
 
   <hr>
 </div>
 <div class="row1-container">
   <div class="box box-down cyan">
     <h2 translate>location.title</h2>
+    <br>
     <p >
-      <span translate>location.street</span> : {{ demand.address.Street }} <br />
-      <br />   <span translate>location.city</span>  : {{ demand.address.City }} <br />
-      <br />   <span translate>location.governorate</span>  : {{ demand.address.State }} <br />
-      <br />   <span translate>location.country</span>  : {{ demand.address.Country }}
+      <strong translate>location.street</strong> : {{ demand.address.Street }} <br />
+      <br />   <strong translate>location.city</strong>  : {{ demand.address.City }} <br />
+      <br />   <strong translate>location.governorate</strong>  : {{ demand.address.State }} <br />
+      <br />   <strong translate>location.country</strong>  : {{ demand.address.Country }}
     </p>
     <img src="https://assets.codepen.io/2301174/icon-team-builder.svg" alt="">
 
@@ -32,7 +33,7 @@
 <div class="row2-container">
   <div class="box orange">
     <h2 translate>status.title  </h2>
-    <p>{{status}}</p>
+    <p >{{status}}</p>
     <i *ngIf="icon == 2"class="fas fa-spinner fa-pulse" style="font-size: 50px;"></i>
     <i *ngIf="icon == 0"class="fa fa-ban" aria-hidden="true" style="font-size: 50px;"></i>
     <i *ngIf="icon == 1" class="fa-solid fa-triangle-person-digging fa-beat-fade" style="font-size: 50px;"></i>

@@ -3,7 +3,7 @@
     <span>
       <img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" style="text-align: center" />
     </span>
-    <div class="title" translate>titles.update_pro</div>
+    <div class="title" translate>titles.add_emp</div>
     <div class="content">
       <form [formGroup]="addCustomerForm" (ngSubmit)="Inscrire()" novalidate>
         <div class="user-details">
@@ -153,8 +153,8 @@
         </div>
 
         <div class="d-flex justify-content-end pt-3">
-          <button class="bn632-hover bn24" type="submit" role="button" [disabled]="!addCustomerForm.valid" translate>
-            buttons.edit
+          <button class="bn632-hover bn24" type="submit" role="button" translate>
+            buttons.register
           </button>
         </div>
 

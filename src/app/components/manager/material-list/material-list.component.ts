@@ -28,9 +28,14 @@ export class MaterialListComponent implements OnInit {
     this.serviceMaterial.all().subscribe((IM: IMaterial[]) => {
       this.materialList = IM;
     }),
-      (error: HttpErrorResponse) => {
-        Report.warning('Erreur', error.message, 'OK');
-      };
+    (error: HttpErrorResponse) => {
+      if(error.status==401){
+        this.AuthenticateService.redirectIfNotAuth()
+
+      } else{
+        Report.failure('Erreur', error.message,'OK')
+
+      }         };
   }
   showByStatus() {
     this.route.queryParams.subscribe((params) => {

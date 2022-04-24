@@ -1,7 +1,7 @@
 
 
 <main>
-  <h3 class="display-name"  translate> <i class="fa fa-list-alt" translate></i>
+  <h3 class="display-name text-uppercase"  translate> <i class="fa fa-list-alt" translate></i>
     titles.detail_demand</h3>
 
   <div>
@@ -38,9 +38,9 @@
 
     <article class="post" *ngFor="let item of demandList">
       <div class="thumbnail"></div>
-      <strong class="author">{{item.title}}</strong>
-      <small class="time calendar"> <i class="fa fa-calendar-check"></i> <time>{{item.createdAt | date:'dd-MM-yyyy'}}</time></small>
-      <span class="content status">  <i class="fa fa-info-circle"></i> {{status(item)}}</span>
+      <strong class="author text-uppercase">{{item.title}}</strong>
+      <small class="time calendar"> <i class="fa fa-calendar-check"></i> &nbsp;<time>{{item.createdAt | date:'dd-MM-yyyy'}}</time></small>
+      <span class="content status">  <i class="fa fa-info-circle"></i>&nbsp; {{status(item)}}</span>
     </article>
 
 

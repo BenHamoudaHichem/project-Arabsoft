@@ -19,7 +19,7 @@ export class MembersListComponent implements OnInit {
   ngOnInit(): void {
     this.image="https://wallpaperaccess.com/full/4321838.jpg"
 
-   this.showAll();
+this.showTManagers()
 
   }
 
@@ -72,7 +72,7 @@ convertRole(roles:any[]):string
 
     }
 
-  return 'Employée'
+  return 'Employé(e)'
 }
 
 }

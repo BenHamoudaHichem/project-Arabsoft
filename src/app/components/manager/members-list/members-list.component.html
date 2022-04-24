@@ -24,7 +24,6 @@
       </nav>
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-
           <article class="postcard light" *ngFor="let item of usersList" >
             <a class="postcard__img_link" [routerLink]="['/dashboard/manager/userProfil',item.id]">
               <img class="postcard__img"
@@ -41,8 +40,8 @@
                <strong>(+216) {{item.tel}} </strong>
               </div>
               <div class="postcard__subtitle small">
-                <i class="fas fa-user-circle"></i>
-                <strong translate>titles.detail_inter.table.role</strong>
+                <i class="fas fa-user-circle"></i>&nbsp;
+                <strong translate class="text-uppercase">titles.detail_inter.table.role</strong> :&nbsp;
                <strong >{{convertRole(item.roles)}}</strong>
               </div>
               <div class="postcard__bar"></div>
@@ -78,8 +77,9 @@
                <strong>(+216) {{item.tel}} </strong>
               </div>
               <div class="postcard__subtitle small">
-                <i class="fas fa-user-circle"></i>
-               <strong translate>titles.detail_inter.table.role </strong> <strong>  {{convertRole(item.roles)}}</strong>
+                <i class="fas fa-user-circle"></i>&nbsp;
+                <strong translate class="text-uppercase">titles.detail_inter.table.role</strong> :&nbsp;
+                <strong >{{convertRole(item.roles)}}</strong>
               </div>
               <div class="postcard__bar"></div>
               <div class="postcard__preview-txt">
