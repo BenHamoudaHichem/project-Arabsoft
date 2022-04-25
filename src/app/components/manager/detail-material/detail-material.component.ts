@@ -6,6 +6,7 @@ import { Notify, Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
 import { Material } from 'src/app/models/resources/Material';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
+import { MapService } from 'src/app/services/map/map.service';
 import { IMaterial } from 'src/app/services/resources/material/imaterial';
 import { EquipmentService } from 'src/app/services/resources/material/material.service';
 
@@ -24,11 +25,13 @@ export class DetailMaterialComponent implements OnInit {
   constructor(
     private serviceMaterial: EquipmentService,
     private route: ActivatedRoute,
-    private AuthenticateService:AuthenticateService
+    private AuthenticateService:AuthenticateService,
+    private servMap:MapService
   ) {
       this.serviceMaterial.showMaterial(String(this.route.snapshot.paramMap.get("id"))).subscribe((m: IMaterial) => {
       this.material = m;
       this.material.address=plainToClass(Address,this.material.address)
+this.servMap.getLocation(this.material.address.Location())
       console.log(this.material)
       if (this.material.status == 'Broken_down') {
         this.btn = this.textEnPanne
