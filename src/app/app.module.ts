@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -25,7 +25,7 @@ import { TeamListComponent } from './components/manager/team-list/team-list.comp
 import { MaterialListComponent } from './components/manager/material-list/material-list.component';
 import { ReclamationListComponent } from './components/manager/reclamation-list/reclamation-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DashboardAdminComponent } from './components/public/dashboard-admin/dashboard-admin.component';
 import { CookieService } from 'ngx-cookie-service';
 import { HomeCustomerComponent } from './components/customer/home-customer/home-customer.component';
@@ -55,6 +55,11 @@ import { UpdateInterventionComponent } from './components/manager/update-interve
 import { AESEncoderService } from './services/aesencoder.service';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { DemandPerYearComponent } from './components/chart/demand-per-year/demand-per-year.component';
+import { PieTeamsComponent } from './components/chart/pie-teams/pie-teams.component';
+import { PieCategoriesComponent } from './components/chart/pie-categories/pie-categories.component';
+import { RadarMaterialsComponent } from './components/chart/radar-materials/radar-materials.component';
+import { GlobalHttpInterceptorService } from './services/global-http-interceptor.service';
+import { GlobalErrorHandlerService } from './services/global-error-handler.service';
 
 export function httpTranslateLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -125,9 +130,14 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     UpdateTeamComponent,
     UpdateInterventionComponent,
     DemandPerYearComponent,
+    PieTeamsComponent,
+    PieCategoriesComponent,
+    RadarMaterialsComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [CookieService, GuardAuthenticateGuard,AESEncoderService],
+  providers: [CookieService, GuardAuthenticateGuard,AESEncoderService,
+    { provide: HTTP_INTERCEPTORS,useClass: GlobalHttpInterceptorService, multi: true  },
+    { provide: ErrorHandler, useClass:GlobalErrorHandlerService}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

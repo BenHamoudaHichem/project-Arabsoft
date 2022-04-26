@@ -11,7 +11,7 @@
             <div class="actions">
               <div class="d-flex justify-content-start">
    <a [routerLink]="['/dashboard/manager/detailCategory',item.id]">
-              <button class="bn30" translate>buttons.consult</button></a>
+              <button class="btn"><span translate>buttons.consult</span></button></a>
               </div>
   </div>
           </div>
@@ -48,9 +48,12 @@
 
             </div>
             <div class="d-flex justify-content-start">
-              <button type="submit" class="bn30" translate>buttons.add</button>
+              <button type="submit" class="btn" ><span translate>buttons.add</span></button>
             </div>
           </form>
+        </div>
+        <div class="card">
+          <app-pie-categories></app-pie-categories>
         </div>
       </div>
     </div>

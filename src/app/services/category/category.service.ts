@@ -23,7 +23,7 @@ export class CategoryService {
   ) {}
 
   all(): Observable<ICategory[]> {
-    return this.http.get<ICategory[]>(`${this.apiURL}`).pipe(
+    return this.http.get<ICategory[]>(`${this.apiURL}`,this.httpOptions).pipe(
       map((cat: ICategory[]) => {
         return cat.map((cat) => ({
           id:cat.id,
@@ -35,7 +35,7 @@ export class CategoryService {
 
 
   findInterventionsByCategory(id:string): Observable<IIntervention[]> {
-    return this.http.get<IIntervention[]>(`${this.apiURL}/${id}/interventions`).pipe(
+    return this.http.get<IIntervention[]>(`${this.apiURL}/${id}/interventions`,this.httpOptions).pipe(
       map((int: IIntervention[]) => {
         return int.map((int) => ({
          id: int.id,

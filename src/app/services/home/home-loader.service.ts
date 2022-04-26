@@ -11,8 +11,8 @@ import { IHomeManager } from './ihome-manager';
 export class HomeLoaderService {
   private headers = {
     headers: new HttpHeaders({
-      "Authorization": `Bearer ${this.authService.getToken}`,
-      "Content-Type":"application/json"
+      Authorization: `Bearer ${this.authService.getToken}`,
+      "Content-Type":"application/json",
     }),
   };
   private apiURL = 'http://127.0.0.1:8080/api/services/homeLoader';
@@ -26,6 +26,7 @@ export class HomeLoaderService {
 
   loadHomeForManager():Observable<IHomeManager>
   {
+    
     return this.http.get<IHomeManager>(`${this.apiURL}/manager`,this.headers)
     .pipe(
       map((iHomeManager: IHomeManager) => {

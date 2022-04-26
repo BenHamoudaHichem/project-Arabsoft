@@ -21,7 +21,7 @@ export class EquipmentService {
     private authService: AuthenticateService
   ) {}
   all(): Observable<IMaterial[]> {
-    return this.http.get<IMaterial[]>(`${this.apiURL}`).pipe(
+    return this.http.get<IMaterial[]>(`${this.apiURL}`,this.httpOptions).pipe(
       map((materials: IMaterial[]) => {
         return materials.map((material) => ({
           id: material.id,

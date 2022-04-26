@@ -14,7 +14,12 @@ const httpOptions = {
 })
 export class UserService {
   private apiURL = 'http://127.0.0.1:8080/api/users';
-
+  private authHttpOptions = {
+    headers: new HttpHeaders({
+      Authorization: `Bearer ${this.authService.getToken}`,
+      'Content-Type': 'application/json',
+    }),
+  };
   constructor(
     private http: HttpClient,
     private authService: AuthenticateService
@@ -89,7 +94,7 @@ roles:user.roles
     );
   }
   agents(): Observable<IUser[]> {
-    return this.http.get<IUser[]>(`${this.apiURL}?role=tm&role2=member`).pipe(
+    return this.http.get<IUser[]>(`${this.apiURL}?role=tm&role2=member`,this.authHttpOptions).pipe(
       map((users: IUser[]) => {
         return users.map((user) => ({
           id: user.id,
@@ -117,7 +122,7 @@ roles:user.roles
     return this.http.put(
       `http://127.0.0.1:8080/api/services/password/change`,
       JSON.stringify(passwordRequest),
-      headers
+      this.authHttpOptions
     );
   }
 }

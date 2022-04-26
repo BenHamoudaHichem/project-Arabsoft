@@ -55,7 +55,7 @@ export class AuthenticateService {
   public get getToken() {
     if (this.cookies.getToken)
     {
-      return this.cookies.getToken!;
+      return String(this.cookies.getToken!);
 
     }
     return null;

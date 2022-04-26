@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit {
             res.id,
             res.roles[0]
           );
+          
           let direction: string = '/dashboard/customer/home';
           if (this.authService.isMANAGER) {
             direction = '/dashboard/manager/home';

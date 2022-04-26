@@ -28,18 +28,19 @@ export class HomeManagerComponent implements OnInit {
     private authService: AuthenticateService,
     private serviceIntervention: InterventionService
   ) {
+
+  }
+
+  ngOnInit(): void
+  {
+    
     this.homeLoaderService
       .loadHomeForManager()
       .subscribe((res: IHomeManager) => {
         this.infos = res;
         console.log(this.infos);
-      });
-    console.log(this.authService.isLogin);
-
-  }
-
-  ngOnInit(): void
-  {this.showPerStatus('In_Progress')
+      })
+      this.showPerStatus('In_Progress')
   this.getTeams()
 }
   getTeams() {
@@ -86,11 +87,15 @@ export class HomeManagerComponent implements OnInit {
         });
       }),
       (error: HttpErrorResponse) => {
-        if (error.status == 401) {
-          this.authService.redirectIfNotAuth();
+     /*   if (error.status === 401) {
+          console.log("eeeeeeeeeeeee");
+          
+         // this.authService.redirectIfNotAuth();
         } else {
           Report.failure('Erreur', error.message, 'OK');
-        }
+        }*/
+        console.log(error.status);
+        
       };
   }
 }
