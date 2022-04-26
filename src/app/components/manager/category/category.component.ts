@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Report } from 'notiflix';
+import { Notify, Report } from 'notiflix';
 import{Category} from 'src/app/models/Category';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { CategoryService } from 'src/app/services/category/category.service';
@@ -33,12 +33,14 @@ get categorie(){return this.categorieForm.get('categorie')}
 this.categorieService.create(categorie).subscribe((res: any) => {
   if(res.status==true)
   {
-    Report.success("Notification d'ajout", res.message, "D'accord");
+    Notify.success("Notification d'ajout", res.message);
+    this.router.navigateByUrl('/dashboard/manager/categorylist');
+
   }
   else{
     Report.warning("Notification d'ajout", res.message, "D'accord");
   }
-  this.router.navigateByUrl('/dashboard/manager/categorylist');
+
 }),
   (error: HttpErrorResponse) => {
     if(error.status==401){

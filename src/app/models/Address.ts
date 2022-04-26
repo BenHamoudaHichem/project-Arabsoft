@@ -10,7 +10,7 @@ export class Address {
     private location:Location
   ) {}
 
-  public get Location(): Location {
+  public  Location(): Location {
     return this.location;
   }
   public setLocation(value: Location): void {
@@ -51,6 +51,6 @@ export class Address {
   public get toString(): string {
     return this.country;
   }
-  
+
 
 }

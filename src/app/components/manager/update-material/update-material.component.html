@@ -7,7 +7,7 @@
             <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
 
             <div class="card-title">
-              <span class="title" translate> titles.add_material </span>
+              <span class="title" translate> titles.update_material </span>
             </div>
           </div>
           <form [formGroup]="formupdateMaterials" (ngSubmit)="updateMaterial()">
@@ -172,7 +172,7 @@
                     </div>
                   </fieldset>
 
-                  <div class="d-flex justify-content-end pt-3">
+                  <div class="d-flex justify-content-end pt-3" (mouseover)="check()">
                     <button class="bn632-hover bn24" type="submit" role="button" [disabled]="!formupdateMaterials.valid"
                       translate> buttons.edit </button>
                   </div>

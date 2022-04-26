@@ -45,5 +45,20 @@ export class HomeCustomerComponent implements OnInit {
 
 
   }
+get status():string{
+  let res="En cours"
+for(let i=0;i<this.getDemands.length;i++){
+switch(this.getDemands[i].status)
+{
+  case "Accepted":
+    res="Acceptée"
+    break
+  case "Refused":
+    res="Refusée"
+    break
+}
+}
+  return res;
+}
 
 }

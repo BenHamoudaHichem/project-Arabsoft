@@ -78,7 +78,7 @@ export class UpdateMaterialComponent implements OnInit {
     if (this.id != null) {
       this.materialService.showMaterial(this.id).subscribe((data: IMaterial) => {
          // this.material = plainToClass(Material,data) ;
-          this.material.address = plainToClass(Address, data.address);
+          //this.material.address = plainToClass(Address, data.address);
 
           console.log(this.material);
 

@@ -80,7 +80,59 @@ export class LoginComponent implements OnInit {
   }
 
 
+  check()
+{
+ Object.keys(this.loginForm.controls).forEach(key => {
+   if (this.loginForm.get(key)!.errors) {
+   console.log(this.loginForm.get(key)!.errors)
+    if(this.loginForm.get(key)!.errors!.hasOwnProperty('required'))
+    {
+      Report.failure(key,"Champs obligatoire","D'accord")
+    }
+    if(this.loginForm.get(key)!.errors!.hasOwnProperty('pattern'))
+    {
+      let stringAlpha:string=" des lettres alphabétiques "
+      let stringdigit:string=" des chiffres "
+      let stringMin:string=" au minimum "
+      let stringMax:string=" au maximum "
+      let stringOperation:string=String(this.loginForm.get(key)!.errors!["pattern"].requiredPattern)
+      console.log(stringOperation);
 
+      let res:string=""
+      if(stringOperation.indexOf("a-z")!=-1)
+      {
+        res="Ce champs doit contenir"
+        res=res+stringAlpha
+      }
+      if(stringOperation.indexOf("0-9")!=-1){
+        if(res.length==0){res="Ce champs doit contenir"
+      res=res+ stringdigit}else{
+
+        res=res+"et"+stringdigit
+      }
+    }
+
+      if (stringOperation.includes("{")) {
+        let min:number=Number(stringOperation.substring(
+          stringOperation.indexOf("{")+1,
+          stringOperation.indexOf(",")
+        ))
+        res=res.concat("avec un taille de "+min+stringMin)
+        if ((Number(stringOperation.substring(stringOperation.indexOf(",")+1,stringOperation.indexOf("}")))!==0)) {
+          let max:number=Number(stringOperation.substring(
+            stringOperation.indexOf(",")+1,
+            stringOperation.indexOf("}")
+          ))
+          res=res.concat("et de "+max+stringMax)
+        }
+      }
+
+      Report.failure(key,res,"D'accord")
+    }
+
+   }
+})
+}
 
   checkCaptcha(captchaResponse: string) {
     this.captcha?.setValue(captchaResponse && captchaResponse.length > 0 ? true : false)

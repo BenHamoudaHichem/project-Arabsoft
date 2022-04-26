@@ -10,6 +10,7 @@ import { DemandService } from 'src/app/services/works/demand/demand.service';
 import { IDemand } from 'src/app/services/works/demand/idemand';
 import { Router } from '@angular/router';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
+import { MapService } from 'src/app/services/map/map.service';
 
 @Component({
   selector: 'app-detail-reclamation',
@@ -23,7 +24,8 @@ export class DetailReclamationComponent implements OnInit {
     private demandService: DemandService,
     private route: ActivatedRoute,
     private router:Router,
-    private AuthenticateService:AuthenticateService
+    private AuthenticateService:AuthenticateService,
+    private MapService:MapService
   ) {
     this.route.snapshot.paramMap.get("id");
     console.log(String(this.route.snapshot.paramMap.get("id")))
@@ -40,7 +42,9 @@ showDetail(id:string) {
   this.demandService.showDemande(id).pipe(finalize(()=>this.demand.title===undefined)).subscribe((res:IDemand)=>{
    this.demand=res as IDemand;
    this.demand.address=plainToClass(Address,res.address)
+
    this.demand.user=plainToClass(User,res.user)
+   this.MapService.getLocation(this.demand.address.Location())
    console.log((this.demand))
  }),(error:HttpErrorResponse)=>{
   if(error.status==401){
@@ -55,10 +59,10 @@ showDetail(id:string) {
   get status():string{
     let res = "Acceptée"
     if (this.demand.status=="In_Progress") {
-      res="nous sommes en train d'étudier cette réclamation"
+      res="Réclamation en cours de traitement"
     }
     if (this.demand.status=="Refused") {
-      res="Malheureusement on ne peut pas accepter votre réclamation"
+      res="Réclamation rejetée"
     }
 
     return res

@@ -56,7 +56,7 @@
       "material": " Entrez le titre de materiel",
       "member": "Membre",
       "mm_select": "Selectionner les membres",
-      "msg_interv": "Il ya {{ interventionlist }} interventions dans cette catégorie",
+      "msg_interv": "Il ya {{interventionList}} interventions dans cette catégorie",
       "msg_tm": "Il ya {{ members }} membres dans cette équipe",
       "team": " Entrez le nom d'équipe",
       "tel": "(+216) __ ___ ___",

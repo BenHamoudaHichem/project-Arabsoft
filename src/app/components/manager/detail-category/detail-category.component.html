@@ -4,11 +4,12 @@
     <h1 class="text-uppercase text-center" translate>
       titles.detail_category
     </h1>
-    <h5 *ngIf="interventionList != null">
-      {{ 'input.msg.msg_interv' | translate:{'interventionList':' interventionList.length'} }}
-    </h5>
+
     <!--OR-->
-    <h5  *ngIf="interventionList != null" [translate]="'input.msg.msg_interv'" [translateParams]="{interventionList: interventionList.length}"></h5>
+    <h5  *ngIf="interventionList != null" [translate]="'input.msg.msg_interv'" [translateParams]="{'interventionList': interventionList.length}"></h5>
+
+    <!--OR-->
+
 
     <hr />
     <div class="posts">

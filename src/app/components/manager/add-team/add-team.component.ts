@@ -103,10 +103,10 @@ export class AddTeamComponent implements OnInit {
     myManager=new Dbref(this.manager?.value[0].id)
     console.log("mm : "+this.manager?.value[0].id)
     console.log("dd : "+this.selectedlist)
-
+    this.selectedlist
     let team = new Team( HTMLEscape.escapeMethod(String(this.titre?.value)),new Dbref(this.manager?.value[0].id),
-    this.selectedlist);
-
+    plainToClass(Dbref,this.selectedlist));
+console.log(team)
     this.teamService.create(team).subscribe((data: any) => {
       console.log(data);
       Notify.success('Equipe crée avec succès');

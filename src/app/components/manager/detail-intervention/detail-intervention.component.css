@@ -294,11 +294,6 @@ li{display: block;
     margin: 0 !important;
   }
 
-
-
-
-
-
   /*
     CSS
   Button
@@ -351,26 +346,7 @@ li{display: block;
     background-image: linear-gradient(-45deg, #4568dc, #b06ab3);
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
 
   .card__icon {
     background: linear-gradient(to top, #4136f1, #8643ff);
@@ -422,4 +398,29 @@ li{display: block;
   }
   .material:hover{
     background-color: #eae1f5;
+  }
+
+
+
+
+  .map {
+    height: 50vh;
+    width: 100%;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-flow: column wrap;
+    justify-content: space-between;
+  }
+
+  .content-area {
+    height: 80%;
+  }
+
+  .demo-area {
+    height: 70vh;
+    margin-right: auto;
+    margin-left: auto;
   }

@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { plainToClass } from 'class-transformer';
 import { Report } from 'notiflix';
 import { Material } from 'src/app/models/resources/Material';
@@ -16,10 +16,12 @@ import { IIntervention } from 'src/app/services/works/intervention/iintervention
 })
 export class DetailCategoryComponent implements OnInit {
 interventionList!:IIntervention[]
-  constructor(private serviceCategory:CategoryService,private route:ActivatedRoute,private AuthenticateService:AuthenticateService) { }
+  constructor(private serviceCategory:CategoryService,private route:ActivatedRoute,
+    private router:Router,
+    private AuthenticateService:AuthenticateService) { }
 
   ngOnInit(): void {
-    this.serviceCategory.findInterventionsByCategory(String(this.route.snapshot.paramMap.get('id'))).subscribe((res:IIntervention[])=>{
+   this.serviceCategory.findInterventionsByCategory(String(this.route.snapshot.paramMap.get('id'))).subscribe((res:IIntervention[])=>{
 this.interventionList=res
 console.log(this.interventionList)
 
@@ -28,10 +30,12 @@ this.interventionList.forEach(element => {
   element.team.manager=plainToClass(User,element.team.manager);
   element.team.members.forEach(m => {
     m=plainToClass(User,m)
+
   });
 
 
-});
+}
+);
     }),
     (error:HttpErrorResponse)=>{
       if(error.status==401){

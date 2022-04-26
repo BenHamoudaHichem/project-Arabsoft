@@ -4,14 +4,14 @@ export class Location {
     private longitude: number,
     private latitude: number
   ) {}
- 
-  public getLongitude(): number {
+
+  public get Longitude(): number {
     return this.longitude;
   }
   public setLongitude(value: number): void {
     this.longitude = value;
   }
-  public getLatitude(): number {
+  public get Latitude(): number {
     return this.latitude;
   }
   public setLatitude(value: number): void {

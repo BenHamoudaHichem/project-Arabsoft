@@ -42,7 +42,7 @@ this.showDemads() }
       console.log(this.demandList)
 
     }),
-    
+
   (error: HttpErrorResponse) => {
     if(error.status==401){
       this.AuthenticateService.redirectIfNotAuth()
@@ -73,10 +73,10 @@ showUser(){
  status(demand:IDemand):string{
   let res = "Acceptée"
   if (demand.status=="In_Progress") {
-    res="nous sommes en train d'étudier cette réclamation"
+    res="La reclamation est en cours de traitement"
   }
   if (demand.status=="Refused") {
-    res="Malheureusement on ne peut pas accepter votre réclamation"
+    res="Réclamation rejetée"
   }
 
   return res

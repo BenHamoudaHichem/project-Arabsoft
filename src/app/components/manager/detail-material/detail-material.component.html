@@ -1,8 +1,8 @@
+
 <section class="min-h-100">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col">
-        <div class="card card-registration my-4">
+  <div class="py-5 h-100">
+
+
           <div class="logo">
             <div class="card-title text-center">
 
@@ -10,73 +10,80 @@
             </div>
           </div>
 
-          <div class="row g-2">
+<div class="card-group">
+  <div class="card d-md-inline">
 
 
+      <div class="card-body p-md-5 text-black">
 
-            <div class="col-xl-6  d-xl-block">
-              <div class="card-body p-md-5 text-black">
+        <h3 class="card-title" translate><i class="fas fa-list-alt"></i>&nbsp;input.titles.title</h3>
 
-                <h3 class="card-title" translate><i class="fas fa-list-alt"></i>&nbsp;input.titles.title</h3>
+        <p class="card-text">
+          {{material.name}}
 
-                <p class="card-text">
-                  {{material.name}}
+        </p>
 
-                </p>
-
-              </div>
-
-              <div class="card-body p-md-5 text-black">
-                <h3 class="card-title" translate><i class="fas fa-info-circle"></i>&nbsp;input.titles.description</h3>
-
-                <p class="card-text">
-                  {{material.description}}
-
-                </p>
-
-
-
-              </div>
-
-            </div>
-            <div class="col-xl-6">
-              <div class="card-body p-md-5 text-black">
-                <h3 class="card-title" translate><i class="fas fa-question-circle"></i>&nbsp;status.title</h3>
-
-                <p class="card-text"> {{material.status}}</p>
-                <h3 class="card-title" translate><i class="fas fa-map-marker-alt"></i>&nbsp;location.title</h3>
-                <p class="card-text">
-                  <span translate>location.postal_code</span>
-                  : {{ material.address.ZipCode }}
-                  <br />   <br />
-                  <span translate>location.street</span>
-                  : {{ material.address.Street }}
-                  <br />
-                  <br /> <span translate>location.city</span> : {{ material.address.City }} <br />
-                  <br /> <span translate>location.governorate</span> : {{ material.address.State }} <br />
-                  <br /> <span translate>location.country</span> : {{ material.address.Country }}
-                </p>
-
-
-                <h3 class="card-title" translate><i class="fas fa-calendar-check"></i>&nbsp;input.titles.purchase_date
-                </h3>
-
-                <p class="card-text">
-                  {{material.dateOfPurchase}}</p>
-
-
-
-              </div>
-
-            </div>
-
-          </div>
-          <div class="d-flex justify-content-end pt-3">
-            <button (click)="changeStatus()" class="bn632-hover bn24" type="submit" role="button">{{btn}}</button>
-          </div>
-
-        </div>
       </div>
+
+      <div class="card-body p-md-5 text-black">
+        <h3 class="card-title" translate><i class="fas fa-info-circle"></i>&nbsp;input.titles.description</h3>
+
+        <p class="card-text">
+          {{material.description}}
+
+        </p>
+
+
+
+
     </div>
   </div>
+  <div class="card d-md-inline">
+
+    <div class="card-body p-md-5 text-black">
+      <h3 class="card-title" translate><i class="fas fa-question-circle"></i>&nbsp;status.title</h3>
+
+      <p class="card-text"> {{material.status}}</p>
+      <h3 class="card-title" translate><i class="fas fa-map-marker-alt"></i>&nbsp;location.title</h3>
+      <p class="card-text">
+        <span translate>location.postal_code</span>
+        : {{ material.address.ZipCode }}
+        <br />   <br />
+        <span translate>location.street</span>
+        : {{ material.address.Street }}
+        <br />
+        <br /> <span translate>location.city</span> : {{ material.address.City }} <br />
+        <br /> <span translate>location.governorate</span> : {{ material.address.State }} <br />
+        <br /> <span translate>location.country</span> : {{ material.address.Country }}
+      </p>
+
+
+      <h3 class="card-title" translate><i class="fas fa-calendar-check"></i>&nbsp;input.titles.purchase_date
+      </h3>
+
+      <p class="card-text">
+        {{material.dateOfPurchase}}</p>
+
+
+
+    </div>
+  </div>
+  <div class="card d-md-inline">
+
+    <div class="wrapper">
+      <div class="content-area">
+
+      <div id="map"  class="map demo-area"></div>
+
+    </div>
+    </div>
+  </div>
+</div>
+<div class="d-flex justify-content-end pt-3">
+  <button (click)="changeStatus()" class="bn632-hover bn24" type="submit" role="button">{{btn}}</button>
+</div>
+
+</div>
+
+
 </section>
