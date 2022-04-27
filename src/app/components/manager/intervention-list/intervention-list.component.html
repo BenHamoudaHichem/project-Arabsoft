@@ -63,7 +63,10 @@
                       ]" translate  ><i class="fas fa-info-circle"></i>buttons.consult_details</a>
                   </li>
                   <li class="tag__item play blue">
-                    <a href="#" translate ><i class="fas fa-door-closed"></i>buttons.close</a>
+                    <a [routerLink]="[
+                    '/dashboard/manager/updateIntervention',
+                    item.id
+                  ]" translate ><i class="fas fa-edit"></i>buttons.edit</a>
                   </li>
                 </ul>
               </div>
@@ -106,7 +109,10 @@
                     ]" translate><i class="fas fa-info-circle"></i>buttons.consult_details</a>
                 </li>
                 <li class="tag__item play blue">
-                  <a href="#" translate><i class="fas fa-door-closed"></i>buttons.close</a>
+                  <a [routerLink]="[
+                  '/dashboard/manager/updateIntervention',
+                  item.id
+                ]" translate ><i class="fas fa-edit"></i>buttons.edit</a>
                 </li>
               </ul>
             </div>
