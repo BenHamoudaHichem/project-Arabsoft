@@ -46,6 +46,8 @@ export class CookiesService {
   }
   deleteAll() {
     this.myCookies.deleteAll('/', 'localhost', false, 'Lax');
+    this.myCookies.deleteAll('/dashboard/manager', 'localhost', false, 'Lax');
+    this.myCookies.deleteAll('/dashboard/customer', 'localhost', false, 'Lax');
   }
   static init() {}
 }

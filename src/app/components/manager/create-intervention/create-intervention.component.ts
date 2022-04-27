@@ -200,8 +200,8 @@ this.counrty?.setValue('Tunisie')
   }
 
   create() {
-    // console.log(this.createInterventionForm.value)
-    console.log(this.Materiel?.value);
+     console.log(this.createInterventionForm.value)
+    //console.log(this.Materiel?.value);
     Array.from(this.Materiel?.value as IMaterial[], (x) => x.id);
     let intervention = new Intervention(
       HTMLEscape.escapeMethod(this.title?.value),

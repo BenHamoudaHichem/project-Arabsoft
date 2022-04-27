@@ -25,7 +25,6 @@ export class HomeManagerComponent implements OnInit {
   constructor(
     private homeLoaderService: HomeLoaderService,
     private teamService: TeamService,
-    private authService: AuthenticateService,
     private serviceIntervention: InterventionService
   ) {
 
@@ -33,7 +32,7 @@ export class HomeManagerComponent implements OnInit {
 
   ngOnInit(): void
   {
-    
+
     this.homeLoaderService
       .loadHomeForManager()
       .subscribe((res: IHomeManager) => {
@@ -59,21 +58,7 @@ export class HomeManagerComponent implements OnInit {
         });
       });
 
-      console.log(this.teamList);
-    }),
-      (error: HttpErrorResponse) => {
-        if (error.status == 401) {
-          this.authService.redirectIfNotAuth();
-        } else {
-          Report.failure('Erreur', error.message, 'OK');
-        }
-      };
-  }
-  displayStatus(status: string): string {
-    if (status == 'Available') {
-      return 'Disponible';
-    }
-    return 'Indisponible';
+    })
   }
   showPerStatus(status: string) {
     this.interventionList = [];
@@ -85,17 +70,15 @@ export class HomeManagerComponent implements OnInit {
         this.interventionList.forEach((e) => {
           e.category = plainToClass(Category, e.category);
         });
-      }),
-      (error: HttpErrorResponse) => {
-     /*   if (error.status === 401) {
-          console.log("eeeeeeeeeeeee");
-          
-         // this.authService.redirectIfNotAuth();
-        } else {
-          Report.failure('Erreur', error.message, 'OK');
-        }*/
-        console.log(error.status);
-        
-      };
+      })
   }
+
+  displayStatus(status: string): string {
+    if (status == 'Available') {
+      return 'Disponible';
+    }
+
+    return 'Indisponible';
+  }
+
 }

@@ -38,18 +38,19 @@ export class UpdateTeamComponent implements OnInit {
     this.teamForm = this.formBuilder.group({
       titre: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z1-9 ]{2,}$')],
+        [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{2,}$')],
       ],
       manager: ['', Validators.required],
       membres: ['', Validators.required],
     });
+    this.getTeam();
+
   }
 
   selectedItems: { item_id: number; item_text: string }[] = [];
 
   ngOnInit() {
     this.getAllUsers();
-    this.getTeam();
     // Setting of dropdown multiselect
     this.dropdownSettings = {
       singleSelection: false,
@@ -89,9 +90,12 @@ export class UpdateTeamComponent implements OnInit {
       .getTeam(String(this.rout.snapshot.paramMap.get('id')))
       .subscribe((res: ITeam) => {
         this.titre?.setValue(res.name);
-        this.manager?.setValue(res.manager);
+        this.manager?.setValue([res.manager,]);
+        this.membres?.setValue(Array.from(res.members,x=> plainToClass(User,x)))
+
         this.membres?.setValue(res.members);
-        //      this.membres?.setValue(Array.from(res.members,x=> plainToClass(User,x)))
+        console.log(res);
+
       }),
       (error: HttpErrorResponse) => {
         if (error.status == 401) {
@@ -107,20 +111,20 @@ export class UpdateTeamComponent implements OnInit {
     let myManager: Dbref;
     myManager = new Dbref(this.manager?.value[0].id);
     console.log('mm : ' + this.manager?.value[0].id);
-    console.log('dd : ' + this.selectedlist);
+    console.log('dd : ' + Array.from(this.membres!.value,(x:any)=> new Dbref(x.id)));
 
     let team = new Team(
       HTMLEscape.escapeMethod(String(this.titre?.value)),
       new Dbref(this.manager?.value[0].id),
-      this.selectedlist
+      Array.from(this.membres!.value,(x:any)=> new Dbref(x.id))
     );
 
-    this.teamService
+   this.teamService
       .update(String(this.rout.snapshot.paramMap.get('id')), team)
       .subscribe((data: any) => {
         console.log(data);
         Notify.success('Equipe modifier avec succès');
-        this.router.navigate([
+        this.router.navigate([ 
           '/dashboard/manager/detailTeam',
           String(this.rout.snapshot.paramMap.get('id')),
         ]);
@@ -136,7 +140,6 @@ export class UpdateTeamComponent implements OnInit {
   getAllUsers() {
     this.userService.allByRole('member').subscribe((users: IUser[]) => {
       this.users = users;
-      console.log(this.users);
     }),
       (error: HttpErrorResponse) => {
         if (error.status == 401) {

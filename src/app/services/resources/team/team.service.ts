@@ -10,10 +10,10 @@ import { ITeam } from './iteam';
 })
 export class TeamService {
   private apiURL = 'http://127.0.0.1:8080/api/teams';
-  private httpOptions = {
+  private headers = {
     headers: new HttpHeaders({
-      "Authorization": `Bearer ${this.authService.getToken}`,
-      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.authService.getToken}`,
+      "Content-Type":"application/json",
     }),
   };
 
@@ -49,19 +49,15 @@ export class TeamService {
   }
 
   getTeam(id: string): Observable<ITeam> {
-    return this.http.get<ITeam>(`${this.apiURL}/${id}`, this.httpOptions).pipe(
+    return this.http.get<ITeam>(`${this.apiURL}/${id}`, this.headers).pipe(
       map((demand: ITeam) => {
         return demand;
       })
     );
   }
 
-  create(team: Team) {
-    return this.http.post(
-      `${this.apiURL}`,
-      JSON.stringify(team),
-      this.httpOptions
-    );
+  create(team:Team) {
+    return this.http.post(`${this.apiURL}`,JSON.stringify(team),this.headers);
   }
 
   update(id:string,team: Team) {
@@ -70,7 +66,7 @@ export class TeamService {
     return this.http.put(
       `${this.apiURL}/${id}`,
       JSON.stringify(team),
-      this.httpOptions
+      this.headers
     );
   }
 }
