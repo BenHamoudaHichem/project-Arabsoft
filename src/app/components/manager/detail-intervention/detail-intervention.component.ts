@@ -32,13 +32,13 @@ export class DetailInterventionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.showDetail(String(this.route.snapshot.paramMap.get('id')));
+    this.findIntervention(String(this.route.snapshot.paramMap.get('id')));
   }
 
-  // showDetail
-  showDetail(id: string) {
+ 
+  findIntervention(id: string) {
     this.interventionService
-      .showIntervention(id)
+      .findIntervention(id)
       .subscribe((res: IIntervention) => {
         this.intervention = res;
         this.intervention.address = plainToClass(
@@ -74,7 +74,7 @@ export class DetailInterventionComponent implements OnInit {
           this.intervention.category
         );
 
-        this.mapService.getLocation(this.intervention.address.Location());
+        this.mapService.findLocation(this.intervention.address.Location());
       }),
       (error: HttpErrorResponse) => {
         if (error.status == 401) {

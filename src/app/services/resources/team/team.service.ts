@@ -34,7 +34,7 @@ export class TeamService {
       })
     );
   }
-  findByStatus(status:string): Observable<ITeam[]> {
+  allByStatus(status:string): Observable<ITeam[]> {
     return this.http.get<ITeam[]>(`${this.apiURL}?status=${status}`).pipe(
       map((team: ITeam[]) => {
         return team.map((team) => ({
@@ -48,7 +48,7 @@ export class TeamService {
     );
   }
 
-  getTeam(id: string): Observable<ITeam> {
+  findTeam(id: string): Observable<ITeam> {
     return this.http.get<ITeam>(`${this.apiURL}/${id}`, this.headers).pipe(
       map((demand: ITeam) => {
         return demand;

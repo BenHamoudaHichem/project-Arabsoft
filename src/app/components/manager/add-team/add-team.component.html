@@ -12,7 +12,7 @@
             <span class="title" translate> titles.add_team </span>
 
           </div>
-          <form [formGroup]="teamForm" (ngSubmit)="AddTeam()">
+          <form [formGroup]="teamForm" (ngSubmit)="create()">
             <div class="row g-0">
               <div class="col-xl-6 d-xl-block">
                 <div class="card-body p-md-5 text-black">
@@ -33,7 +33,7 @@ errors.alph_2error
                     <label class="form-label" translate > input.titles.add_tm</label>
 
                     <ng-multiselect-dropdown [placeholder]="'input.msg.tm_select'|translate"
-                      [settings]="dropdownSettings2" [data]="users" formControlName="manager"
+                      [settings]="tmDropdownSettings" [data]="users" formControlName="manager"
                        class=" form-control-lg">
                     </ng-multiselect-dropdown>
                     <!--Error manager-->
@@ -50,7 +50,7 @@ errors.alph_2error
                   <div class="form-outline">
                     <label class="form-label" translate> input.titles.add_mbrs</label>
 
-                    <ng-multiselect-dropdown [placeholder]="'input.msg.mm_select'|translate" [settings]="dropdownSettings"
+                    <ng-multiselect-dropdown [placeholder]="'input.msg.mm_select'|translate" [settings]="teamDropdownSettings"
                       [data]="users" formControlName="membres" (onSelect)="onItemSelect($event)"
                       (onSelectAll)="onSelectAll($event)" class=" form-control-lg">
                     </ng-multiselect-dropdown>

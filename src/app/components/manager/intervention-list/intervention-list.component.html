@@ -10,14 +10,14 @@
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
           <a
             routerLinkActive>
-            <button (click)="showPerStatus('In_Progress')" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+            <button (click)="allByStatus('In_Progress')" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
               data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" translate>
               <i class="fa-lg fas fa-sync fa-spin"></i>
              buttons.in_prog
             </button></a>
           <a
             routerLinkActive>
-            <button (click)="showPerStatus('Waiting')" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
+            <button (click)="allByStatus('Waiting')" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
               data-bs-target="#nav-profile" type="button" role="tab" aria-selected="false" translate>
               <i class="fa-lg fas fa-spinner"></i>
             buttons.waiting

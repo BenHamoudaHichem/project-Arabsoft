@@ -26,17 +26,17 @@ demandList!:IDemand[]
     ) {
 
 
-this.showUser()
-this.showDemads() }
+this.findUser()
+this.demandsByUser() }
 
   ngOnInit(): void {
 
   }
 
 
-  showDemads()
+  demandsByUser()
   {
-    this.demandService.allByCustomer(String(this.route.snapshot.paramMap.get('id'))).subscribe((res:IDemand[])=>{
+    this.demandService.allByUser(String(this.route.snapshot.paramMap.get('id'))).subscribe((res:IDemand[])=>{
       this.demandList=res
 
       console.log(this.demandList)
@@ -53,8 +53,8 @@ this.showDemads() }
     }    };
   }
 
-showUser(){
-  this.userService.getUser(String(this.route.snapshot.paramMap.get('id')))
+findUser(){
+  this.userService.findUser(String(this.route.snapshot.paramMap.get('id')))
   .subscribe((data: IUser) => {
     this.user = data;
     this.user.address=plainToClass(Address,data.address)

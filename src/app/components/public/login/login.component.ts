@@ -23,10 +23,13 @@ export class LoginComponent implements OnInit {
   ) {
     this.loginForm = this.formBuilder.group({
       identifier: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{8,}$')]],
+      password: [
+        '',
+        [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{8,}$')],
+      ],
       captcha: ['', [Validators.required]],
     });
-    this.captcha?.setValue(false)
+    this.captcha?.setValue(false);
   }
   ngOnInit(): void {
     if (this.authService.isLogin) {
@@ -35,7 +38,6 @@ export class LoginComponent implements OnInit {
   }
 
   try_login() {
-
     this.authService
       .login(
         HTMLEscape.escapeMethod(this.Identifier?.value),
@@ -49,7 +51,7 @@ export class LoginComponent implements OnInit {
             res.id,
             res.roles[0]
           );
-          
+
           let direction: string = '/dashboard/customer/home';
           if (this.authService.isMANAGER) {
             direction = '/dashboard/manager/home';
@@ -58,12 +60,16 @@ export class LoginComponent implements OnInit {
           Notify.success('Bienvenue ' + res.username);
           return;
         } else {
-          Report.failure('Erreur', "invalide login", 'OK');
+          Report.failure('Erreur', 'invalide login', 'OK');
         }
       }),
       (error: HttpErrorResponse) => {
-        console.log(error.message)
-        Report.warning('Notification de connexion', "invalide login", "D'accord");
+        console.log(error.message);
+        Report.warning(
+          'Notification de connexion',
+          'invalide login',
+          "D'accord"
+        );
       };
     //  Report.warning('Echec','Veuillez verifier votre adresse ou mot de passe','OK');
   }
@@ -75,67 +81,77 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  public get captcha()  {
+  public get captcha() {
     return this.loginForm.get('captcha');
   }
 
+  check() {
+    Object.keys(this.loginForm.controls).forEach((key) => {
+      if (this.loginForm.get(key)!.errors) {
+        console.log(this.loginForm.get(key)!.errors);
+        if (this.loginForm.get(key)!.errors!.hasOwnProperty('required')) {
+          Report.failure(key, 'Champs obligatoire', "D'accord");
+        }
+        if (this.loginForm.get(key)!.errors!.hasOwnProperty('pattern')) {
+          let stringAlpha: string = ' des lettres alphabétiques ';
+          let stringdigit: string = ' des chiffres ';
+          let stringMin: string = ' au minimum ';
+          let stringMax: string = ' au maximum ';
+          let stringOperation: string = String(
+            this.loginForm.get(key)!.errors!['pattern'].requiredPattern
+          );
+          console.log(stringOperation);
 
-  check()
-{
- Object.keys(this.loginForm.controls).forEach(key => {
-   if (this.loginForm.get(key)!.errors) {
-   console.log(this.loginForm.get(key)!.errors)
-    if(this.loginForm.get(key)!.errors!.hasOwnProperty('required'))
-    {
-      Report.failure(key,"Champs obligatoire","D'accord")
-    }
-    if(this.loginForm.get(key)!.errors!.hasOwnProperty('pattern'))
-    {
-      let stringAlpha:string=" des lettres alphabétiques "
-      let stringdigit:string=" des chiffres "
-      let stringMin:string=" au minimum "
-      let stringMax:string=" au maximum "
-      let stringOperation:string=String(this.loginForm.get(key)!.errors!["pattern"].requiredPattern)
-      console.log(stringOperation);
+          let res: string = '';
+          if (stringOperation.indexOf('a-z') != -1) {
+            res = 'Ce champs doit contenir';
+            res = res + stringAlpha;
+          }
+          if (stringOperation.indexOf('0-9') != -1) {
+            if (res.length == 0) {
+              res = 'Ce champs doit contenir';
+              res = res + stringdigit;
+            } else {
+              res = res + 'et' + stringdigit;
+            }
+          }
 
-      let res:string=""
-      if(stringOperation.indexOf("a-z")!=-1)
-      {
-        res="Ce champs doit contenir"
-        res=res+stringAlpha
-      }
-      if(stringOperation.indexOf("0-9")!=-1){
-        if(res.length==0){res="Ce champs doit contenir"
-      res=res+ stringdigit}else{
+          if (stringOperation.includes('{')) {
+            let min: number = Number(
+              stringOperation.substring(
+                stringOperation.indexOf('{') + 1,
+                stringOperation.indexOf(',')
+              )
+            );
+            res = res.concat('avec un taille de ' + min + stringMin);
+            if (
+              Number(
+                stringOperation.substring(
+                  stringOperation.indexOf(',') + 1,
+                  stringOperation.indexOf('}')
+                )
+              ) !== 0
+            ) {
+              let max: number = Number(
+                stringOperation.substring(
+                  stringOperation.indexOf(',') + 1,
+                  stringOperation.indexOf('}')
+                )
+              );
+              res = res.concat('et de ' + max + stringMax);
+            }
+          }
 
-        res=res+"et"+stringdigit
-      }
-    }
-
-      if (stringOperation.includes("{")) {
-        let min:number=Number(stringOperation.substring(
-          stringOperation.indexOf("{")+1,
-          stringOperation.indexOf(",")
-        ))
-        res=res.concat("avec un taille de "+min+stringMin)
-        if ((Number(stringOperation.substring(stringOperation.indexOf(",")+1,stringOperation.indexOf("}")))!==0)) {
-          let max:number=Number(stringOperation.substring(
-            stringOperation.indexOf(",")+1,
-            stringOperation.indexOf("}")
-          ))
-          res=res.concat("et de "+max+stringMax)
+          Report.failure(key, res, "D'accord");
         }
       }
-
-      Report.failure(key,res,"D'accord")
-    }
-
-   }
-})
-}
+    });
+  }
 
   checkCaptcha(captchaResponse: string) {
-    this.captcha?.setValue(captchaResponse && captchaResponse.length > 0 ? true : false)
+    this.captcha?.setValue(
+      captchaResponse && captchaResponse.length > 0 ? true : false
+    );
     console.log(
       (this.captchaResolved =
         captchaResponse && captchaResponse.length > 0 ? true : false)

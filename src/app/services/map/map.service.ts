@@ -43,7 +43,7 @@ export class MapService {
     });
   }
 
-  getLocation(Data: Location) {
+ findLocation(Data: Location) {
     //  Data
     var res = plainToClass(Location, Data);
     var coordinates = olProj.fromLonLat([parseFloat(res.Longitude.toFixed(5)),parseFloat(res.Latitude.toFixed(5))]);

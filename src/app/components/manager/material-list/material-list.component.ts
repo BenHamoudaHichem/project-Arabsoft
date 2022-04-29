@@ -46,14 +46,14 @@ export class MaterialListComponent implements OnInit {
 
       }         };
   }
-  showByStatus() {
+  allByStatus() {
     this.route.queryParams.subscribe((params) => {
       this.status = params['status'];
       console.log(this.status);
     });
 
     this.serviceMaterial
-      .materialPerStatus(this.status)
+      .allByStatus(this.status)
       .subscribe((res: IMaterial[]) => {
         this.materialList = res;
         console.log(res.length)

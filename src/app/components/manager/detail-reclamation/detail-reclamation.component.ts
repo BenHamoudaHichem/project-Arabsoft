@@ -30,21 +30,20 @@ export class DetailReclamationComponent implements OnInit {
     this.route.snapshot.paramMap.get("id");
     console.log(String(this.route.snapshot.paramMap.get("id")))
     if(this.route.snapshot.paramMap.has("id"))
-   { this.showDetail(String(this.route.snapshot.paramMap.get("id")));}
+   { this.findDemand(String(this.route.snapshot.paramMap.get("id")));}
 
   }
 
   ngOnInit(): void {}
 
 
-// showDetail
-showDetail(id:string) {
-  this.demandService.showDemande(id).pipe(finalize(()=>this.demand.title===undefined)).subscribe((res:IDemand)=>{
+findDemand(id:string) {
+  this.demandService.findDemand(id).pipe(finalize(()=>this.demand.title===undefined)).subscribe((res:IDemand)=>{
    this.demand=res as IDemand;
    this.demand.address=plainToClass(Address,res.address)
 
    this.demand.user=plainToClass(User,res.user)
-   this.MapService.getLocation(this.demand.address.Location())
+   this.MapService.findLocation(this.demand.address.Location())
    console.log((this.demand))
  }),(error:HttpErrorResponse)=>{
   if(error.status==401){

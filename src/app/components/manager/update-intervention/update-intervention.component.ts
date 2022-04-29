@@ -109,14 +109,14 @@ export class UpdateInterventionComponent implements OnInit {
   dropdownSettings!: {};
   ngOnInit() {
     this.counrty?.setValue('Tunisie');
-    this.getIntervention();
+    this.findIntervention();
     this.demandList = new Array(
       new Dbref(this.route.snapshot.paramMap.get('id')!)
     );
     this.allCategory();
-    this.getMaterials();
+    this.materialsAvailable();
     console.log(this.categoryList);
-    this.allTeam();
+    this.teamAvailable();
 
     this.dropdownSettings = {
       singleSelection: false,
@@ -135,8 +135,8 @@ export class UpdateInterventionComponent implements OnInit {
     console.log(JSON.stringify(items));
   }
 
-  allTeam() {
-    this.teamService.findByStatus("Available").subscribe((data: ITeam[]) => {
+  teamAvailable() {
+    this.teamService.allByStatus("Available").subscribe((data: ITeam[]) => {
       this.teamList = data;
       console.log(this.teamList);
       this.teamList.forEach(item => {
@@ -157,8 +157,8 @@ export class UpdateInterventionComponent implements OnInit {
           Report.failure('Erreur', errors.message, 'OK');
         }      };
   }
-  getMaterials() {
-    this.materialService.materialPerStatus("Available").subscribe((data: IMaterial[]) => {
+  materialsAvailable() {
+    this.materialService.allByStatus("Available").subscribe((data: IMaterial[]) => {
       this.materialsList = data;
       console.log(this.materialsList);
     }),
@@ -232,9 +232,9 @@ export class UpdateInterventionComponent implements OnInit {
       };
   }
 
-  getIntervention() {
+  findIntervention() {
     this.interventionService
-      .showIntervention(String(this.route.snapshot.paramMap.get('id')))
+      .findIntervention(String(this.route.snapshot.paramMap.get('id')))
       .subscribe((res: any) => {
         this.title?.setValue(res.title);
         this.status?.setValue(res.status);

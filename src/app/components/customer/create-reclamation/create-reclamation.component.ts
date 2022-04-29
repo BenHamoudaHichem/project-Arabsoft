@@ -52,7 +52,7 @@ export class CreateReclamationComponent implements OnInit {
 
   }
 
-  sendDemand() {
+  create() {
     this.id = this.cookiesServices.getIdentifier;
     let adresse = new Address(
       HTMLEscape.escapeMethod(String(this.zipCode?.value)),

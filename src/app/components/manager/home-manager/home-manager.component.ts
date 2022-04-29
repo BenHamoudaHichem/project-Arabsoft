@@ -26,26 +26,22 @@ export class HomeManagerComponent implements OnInit {
     private homeLoaderService: HomeLoaderService,
     private teamService: TeamService,
     private serviceIntervention: InterventionService
-  ) {
+  ) {}
 
-  }
-
-  ngOnInit(): void
-  {
-
+  ngOnInit(): void {
     this.homeLoaderService
       .loadHomeForManager()
       .subscribe((res: IHomeManager) => {
         this.infos = res;
         console.log(this.infos);
-      })
-      this.showPerStatus('In_Progress')
-  this.getTeams()
-}
-  getTeams() {
+      });
+    this.interventionsByStatus('In_Progress');
+    this.allTeams();
+  }
+  allTeams() {
     this.teamService.all().subscribe((IT: ITeam[]) => {
       this.teamList = IT;
-      console.log(this.teamList)
+      console.log(this.teamList);
       this.teamList.forEach((item) => {
         item.manager = plainToClass(User, item.manager);
 
@@ -57,28 +53,26 @@ export class HomeManagerComponent implements OnInit {
           subItem.setAddress(plainToClass(Address, subItem.getAddress()));
         });
       });
-
-    })
+    });
   }
-  showPerStatus(status: string) {
+  interventionsByStatus(status: string) {
     this.interventionList = [];
     this.serviceIntervention
-      .interventionPerStatus(status)
+      .allByStatus(status)
       .subscribe((res: IIntervention[]) => {
         console.log(res);
         this.interventionList = res;
         this.interventionList.forEach((e) => {
           e.category = plainToClass(Category, e.category);
         });
-      })
+      });
   }
 
-  displayStatus(status: string): string {
+  Status(status: string): string {
     if (status == 'Available') {
       return 'Disponible';
     }
 
     return 'Indisponible';
   }
-
 }

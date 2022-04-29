@@ -18,14 +18,14 @@ export class TeamListComponent implements OnInit {
   teamList!: ITeam[];
   constructor(private serviceTeam: TeamService,private AuthenticateService:AuthenticateService) {
 
-    this.showAll();
+    this.all();
   }
 
   ngOnInit(): void {
   }
 
-  //Teams
-  showAll() {
+
+  all() {
     this.serviceTeam.all().subscribe((IT: ITeam[]) => {
       this.teamList = IT
 
@@ -53,8 +53,8 @@ export class TeamListComponent implements OnInit {
 
         }        };
   }
-  showAvailable(){
-    this.serviceTeam.findByStatus("Available").subscribe((IT: ITeam[]) => {
+  teamAvailable(){
+    this.serviceTeam.allByStatus("Available").subscribe((IT: ITeam[]) => {
       this.teamList = IT
       this.teamList.forEach(item => {
         item.manager=plainToClass(User,item.manager)

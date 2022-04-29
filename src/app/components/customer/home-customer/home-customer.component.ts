@@ -18,7 +18,7 @@ export class HomeCustomerComponent implements OnInit {
   private demands:IDemand[]=[]
   dataHome!:IHomeCustomer
   constructor(private homeService:HomeLoaderService,private demandService:DemandService,private userService:UserService,private authService:AuthenticateService,public translate:TranslateService) {
-    this.demandService.allByCustomer(this.authService.authentificatorId).subscribe((res:IDemand[])=>{
+    this.demandService.allByUser(this.authService.authentificatorId).subscribe((res:IDemand[])=>{
       this.demands=res
     })
     this.homeService.loadHomeForCustomer().subscribe((res:IHomeCustomer)=>{

@@ -35,7 +35,7 @@ export class EquipmentService {
       })
     );
   }
-  materialPerStatus(status: string): Observable<IMaterial[]> {
+  allByStatus(status: string): Observable<IMaterial[]> {
     return this.http
       .get<IMaterial[]>(`${this.apiURL}?status=${status}`)
       .pipe(
@@ -63,7 +63,7 @@ export class EquipmentService {
   }
 
 
-  showMaterial(id: string): Observable<IMaterial> {
+  findMaterial(id: string): Observable<IMaterial> {
     return this.http
       .get<IMaterial>(`${this.apiURL}/${id}`, this.httpOptions)
       .pipe(

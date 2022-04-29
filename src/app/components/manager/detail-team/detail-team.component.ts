@@ -25,7 +25,7 @@ export class DetailTeamComponent implements OnInit {
   ) {
 
     if(this.route.snapshot.paramMap.has("id")){
-    this.showTeams(String(this.route.snapshot.paramMap.get("id")));}
+    this.findTeam(String(this.route.snapshot.paramMap.get("id")));}
   }
 
   ngOnInit(): void {
@@ -33,13 +33,11 @@ export class DetailTeamComponent implements OnInit {
   }
 
 
-// showDetail
-  showTeams(id:string) {
 
-    this.teamService.getTeam(id).subscribe((res:ITeam)=>{
+  findTeam(id:string) {
+
+    this.teamService.findTeam(id).subscribe((res:ITeam)=>{
       this.team=res
-
-
       this.team.manager=plainToClass(User,res.manager)
       this.team.members=Array.from(res.members,x=> plainToClass(User,x))
 

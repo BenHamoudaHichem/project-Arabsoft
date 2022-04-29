@@ -11,14 +11,14 @@
           <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
               <a [routerLink]="['/customer/reclamationList']" routerLinkActive>
-                <button (click)="showAll()" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
+                <button (click)="all()" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
                   data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" translate>
                   <i class="fas fa-list"></i>   buttons.all
                 </button>
               </a>
               <a [routerLink]="['/dashboard/customer/reclamationList']" routerLinkActive
                 [queryParams]="{ status: 'rejected' }">
-                <button class="nav-link" (click)="showByStatus()" id="nav-profile-tab" data-bs-toggle="tab"
+                <button class="nav-link" (click)="allByStatus()" id="nav-profile-tab" data-bs-toggle="tab"
                   data-bs-target="#nav-profile" type="button" role="tab" aria-selected="false" translate>
                   <i class="fa fa-ban" aria-hidden="true" ></i>
                   buttons.dismiss

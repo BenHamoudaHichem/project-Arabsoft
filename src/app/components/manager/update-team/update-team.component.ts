@@ -24,8 +24,8 @@ export class UpdateTeamComponent implements OnInit {
   teamForm!: FormGroup;
   selectedlist: Dbref[] = [];
   users!: IUser[];
-  dropdownSettings!: {};
-  dropdownSettings2!: {};
+  teamDropdownSettings!: {};
+  tmDropdownSettings!: {};
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,16 +43,16 @@ export class UpdateTeamComponent implements OnInit {
       manager: ['', Validators.required],
       membres: ['', Validators.required],
     });
-    this.getTeam();
+    this.findTeam();
 
   }
 
   selectedItems: { item_id: number; item_text: string }[] = [];
 
   ngOnInit() {
-    this.getAllUsers();
+    this.allMembers();
     // Setting of dropdown multiselect
-    this.dropdownSettings = {
+    this.teamDropdownSettings = {
       singleSelection: false,
 
       idField: 'id',
@@ -63,7 +63,7 @@ export class UpdateTeamComponent implements OnInit {
       itemsShowLimit: 10,
       allowSearchFilter: true,
     };
-    this.dropdownSettings2 = {
+    this.tmDropdownSettings = {
       singleSelection: true,
       idField: 'id',
       textField: 'firstName',
@@ -85,9 +85,9 @@ export class UpdateTeamComponent implements OnInit {
     });
   }
 
-  getTeam() {
+  findTeam() {
     this.teamService
-      .getTeam(String(this.rout.snapshot.paramMap.get('id')))
+      .findTeam(String(this.rout.snapshot.paramMap.get('id')))
       .subscribe((res: ITeam) => {
         this.titre?.setValue(res.name);
         this.manager?.setValue([res.manager,]);
@@ -107,7 +107,7 @@ export class UpdateTeamComponent implements OnInit {
 
   }
 
-  UpdateTeam() {
+  Update() {
     let myManager: Dbref;
     myManager = new Dbref(this.manager?.value[0].id);
     console.log('mm : ' + this.manager?.value[0].id);
@@ -124,7 +124,7 @@ export class UpdateTeamComponent implements OnInit {
       .subscribe((data: any) => {
         console.log(data);
         Notify.success('Equipe modifier avec succès');
-        this.router.navigate([ 
+        this.router.navigate([
           '/dashboard/manager/detailTeam',
           String(this.rout.snapshot.paramMap.get('id')),
         ]);
@@ -137,7 +137,7 @@ export class UpdateTeamComponent implements OnInit {
         }
       };
   }
-  getAllUsers() {
+  allMembers() {
     this.userService.allByRole('member').subscribe((users: IUser[]) => {
       this.users = users;
     }),

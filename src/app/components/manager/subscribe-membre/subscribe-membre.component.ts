@@ -67,7 +67,7 @@ export class SubscribeMembreComponent implements OnInit {
 
   ngOnInit(): void {this.counrty?.setValue('Tunisie')
 }
-  Inscrire() {
+  create() {
     let adresse = new Address(
       HTMLEscape.escapeMethod(String(this.zipCode?.value)),
       HTMLEscape.escapeMethod(String(this.street?.value)),

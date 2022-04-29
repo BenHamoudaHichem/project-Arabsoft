@@ -68,7 +68,7 @@ export class AddMaterialsComponent implements OnInit {
   ngOnInit() {this.counrty?.setValue('Tunisie')
 }
 
-  addMaterial() {
+create() {
     let address = new Address(
       HTMLEscape.escapeMethod(this.zipCode?.value),
       HTMLEscape.escapeMethod(this.street?.value),

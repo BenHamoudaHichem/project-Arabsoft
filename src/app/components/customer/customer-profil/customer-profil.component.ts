@@ -30,7 +30,7 @@ export class CustomerProfilComponent implements OnInit {
     console.log(String(this.route.snapshot.paramMap.get('id')));
     if (this.route.snapshot.paramMap.has('id')) {
       this.userService
-        .getUser(String(this.route.snapshot.paramMap.get('id')))
+        .findUser(String(this.route.snapshot.paramMap.get('id')))
         .subscribe((data: IUser) => {
           this.user = data;
           this.user.address=plainToClass(Address,data.address)
@@ -45,7 +45,7 @@ export class CustomerProfilComponent implements OnInit {
         };
     } else {
       this.userService
-        .getUser(this.cookiesServices.getIdentifier)
+        .findUser(this.cookiesServices.getIdentifier)
         .subscribe((data: IUser) => {
           this.user = data;
           this.user.address=plainToClass(Address,data.address)

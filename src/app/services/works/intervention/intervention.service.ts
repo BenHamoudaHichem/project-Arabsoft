@@ -42,7 +42,7 @@ export class InterventionService {
   }
 
 
-  interventionPerStatus(status:string): Observable<IIntervention[]> {
+  allByStatus(status:string): Observable<IIntervention[]> {
     return this.http.get<IIntervention[]>(`${this.apiURL}?status=${status}`).pipe(
       map((intervention: IIntervention[]) => {
         return intervention.map((intervention) => ({
@@ -79,7 +79,7 @@ export class InterventionService {
     );
   }
 
-  showIntervention(id: string): Observable<IIntervention> {
+  findIntervention(id: string): Observable<IIntervention> {
     return this.http
       .get<IIntervention>(`${this.apiURL}/${id}`, this.headers)
       .pipe(

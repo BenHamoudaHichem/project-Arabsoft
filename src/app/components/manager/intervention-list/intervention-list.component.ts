@@ -27,15 +27,15 @@ export class InterventionListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.showPerStatus('In_Progress')
+    this.allByStatus('In_Progress')
     this.location()
   }
 
   //Interventions
-  showPerStatus(status:string)
+  allByStatus(status:string)
   {
     this.interventionList=[]
-    this.serviceIntervention.interventionPerStatus(status).subscribe((res: IIntervention[]) => {
+    this.serviceIntervention.allByStatus(status).subscribe((res: IIntervention[]) => {
       console.log(res)
       this.interventionList = res;
       this.interventionList.forEach(e=>{

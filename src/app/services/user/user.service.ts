@@ -69,7 +69,7 @@ export class UserService {
   }
 
 
-  getUser(id: string): Observable<IUser> {
+  findUser(id: string): Observable<IUser> {
     return this.http
       .get<IUser>(`${this.apiURL}/${id}`, httpOptions)
       .pipe(

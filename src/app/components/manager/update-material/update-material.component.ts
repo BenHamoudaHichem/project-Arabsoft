@@ -67,16 +67,16 @@ export class UpdateMaterialComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.show();
+    this.findMaterial();
     console.log(this.id);
 
   }
-  show() {
+  findMaterial() {
     this.counrty?.setValue('Tunisie');
 
 
     if (this.id != null) {
-      this.materialService.showMaterial(this.id).subscribe((data: IMaterial) => {
+      this.materialService.findMaterial(this.id).subscribe((data: IMaterial) => {
          // this.material = plainToClass(Material,data) ;
           //this.material.address = plainToClass(Address, data.address);
 
@@ -112,7 +112,7 @@ export class UpdateMaterialComponent implements OnInit {
 
     }
   }
-  updateMaterial() {
+  update() {
     let address = new Address(
       HTMLEscape.escapeMethod(this.zipCode?.value),
       HTMLEscape.escapeMethod(this.street?.value),

@@ -108,12 +108,12 @@ export class CreateInterventionComponent implements OnInit {
 this.counrty?.setValue('Tunisie')
 
     this.demandList = new Array(new Dbref(this.route.snapshot.paramMap.get('id')!));
-    this.allCategory();
-    this.getMaterials();
+    this.all();
+    this.materialsAvailable();
 
     console.log(this.categoryList)
-    this.Teams();
-    this.demandService.showDemande(this.route.snapshot.paramMap.get('id')!).pipe(finalize(()=>this.currentDemand.title===undefined)).subscribe((res:IDemand)=>{
+    this.teamsAvailable();
+    this.demandService.findDemand(this.route.snapshot.paramMap.get('id')!).pipe(finalize(()=>this.currentDemand.title===undefined)).subscribe((res:IDemand)=>{
       this.currentDemand=res as IDemand;
       this.currentDemand.address=plainToClass(Address,res.address)
       console.log(this.currentDemand)
@@ -150,8 +150,8 @@ this.counrty?.setValue('Tunisie')
 
   }
 
-  Teams() {
-    this.teamService.findByStatus("Available").subscribe((data: ITeam[]) => {
+  teamsAvailable() {
+    this.teamService.allByStatus("Available").subscribe((data: ITeam[]) => {
       this.teamList = data;
       console.log(this.teamList);
       this.teamList.forEach(item => {
@@ -169,8 +169,8 @@ this.counrty?.setValue('Tunisie')
         Report.failure('erreur getting Teams', errors.message, 'Ok');
       };
   }
-  getMaterials() {
-    this.materialService.materialPerStatus("Available").subscribe((data: IMaterial[]) => {
+materialsAvailable() {
+    this.materialService.allByStatus("Available").subscribe((data: IMaterial[]) => {
       this.materialsList = data;
       console.log(this.materialsList);
     }),
@@ -184,7 +184,7 @@ this.counrty?.setValue('Tunisie')
         }}
   }
 
-  allCategory() {
+  all() {
     this.categoryService.all().subscribe((data: ICategory[]) => {
       this.categoryList = data;
       console.log(this.categoryList);
@@ -243,15 +243,7 @@ this.counrty?.setValue('Tunisie')
         }          }
   }
 
-  getInterventions() {
-    /*
-    this.interventionService.all().subscribe((res: IIntervention[]) => {
-      this.interventionList = res;
-    }),
-      (error: HttpErrorResponse) => {
-        Report.failure('erreur getting interventions', error.message, 'ok');
-      };*/
-  }
+
   collectStates()
   {
 

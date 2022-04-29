@@ -10,53 +10,51 @@ import { IDemand } from 'src/app/services/works/demand/idemand';
 @Component({
   selector: 'app-reclamation-list',
   templateUrl: './reclamation-list.component.html',
-  styleUrls: ['./reclamation-list.component.css']
+  styleUrls: ['./reclamation-list.component.css'],
 })
 export class ReclamationListComponent implements OnInit {
-status!:string
+  status!: string;
   demandList!: IDemand[];
-  constructor(private serviceDemand: DemandService,
-    private route:ActivatedRoute,
-    private AuthenticateService:AuthenticateService) {
-    this.showAll();
+  constructor(
+    private serviceDemand: DemandService,
+    private route: ActivatedRoute,
+    private AuthenticateService: AuthenticateService
+  ) {
+    this.all();
   }
 
   ngOnInit(): void {
-
-    console.log(this.demandList)
+    console.log(this.demandList);
   }
 
-  //Demands
-  showAll() {
+  all() {
     this.serviceDemand.all().subscribe((ID: IDemand[]) => {
       this.demandList = ID;
-      console.log(this.demandList)
+      console.log(this.demandList);
     }),
       (error: HttpErrorResponse) => {
-        if(error.status==401){
-          this.AuthenticateService.redirectIfNotAuth()
-
-        } else{
-          Report.failure('Erreur', error.message,'OK')
-
-        }         };
+        if (error.status == 401) {
+          this.AuthenticateService.redirectIfNotAuth();
+        } else {
+          Report.failure('Erreur', error.message, 'OK');
+        }
+      };
   }
-  showByStatus(){
-    this.route.queryParams.subscribe(params=>{this.status=params["status"]; console.log(this.status)} )
+  allByStatus() {
+    this.route.queryParams.subscribe((params) => {
+      this.status = params['status'];
+      console.log(this.status);
+    });
 
-    this.serviceDemand.allByStatus(this.status).subscribe((ID:IDemand[])=>{
-      this.demandList=ID
+    this.serviceDemand.allByStatus(this.status).subscribe((ID: IDemand[]) => {
+      this.demandList = ID;
     }),
-    (error: HttpErrorResponse) => {
-      if(error.status==401){
-        this.AuthenticateService.redirectIfNotAuth()
-
-      } else{
-        Report.failure('Erreur', error.message,'OK')
-
-      }       };
+      (error: HttpErrorResponse) => {
+        if (error.status == 401) {
+          this.AuthenticateService.redirectIfNotAuth();
+        } else {
+          Report.failure('Erreur', error.message, 'OK');
+        }
+      };
   }
-
-
-
 }

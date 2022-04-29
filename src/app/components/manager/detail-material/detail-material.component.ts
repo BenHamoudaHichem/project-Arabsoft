@@ -20,33 +20,33 @@ export class DetailMaterialComponent implements OnInit {
   status = 'panne';
   material!: IMaterial;
   id!: string;
-  textEnPanne:string="Ce materiel est reparé ?"
-  textFonctionnel:string="Ce materiel est en panne ?"
+  textEnPanne: string = 'Ce materiel est reparé ?';
+  textFonctionnel: string = 'Ce materiel est en panne ?';
   constructor(
     private serviceMaterial: EquipmentService,
     private route: ActivatedRoute,
-    private AuthenticateService:AuthenticateService,
-    private servMap:MapService
+    private AuthenticateService: AuthenticateService,
+    private servMap: MapService
   ) {
-      this.serviceMaterial.showMaterial(String(this.route.snapshot.paramMap.get("id"))).subscribe((m: IMaterial) => {
-      this.material = m;
-      this.material.address=plainToClass(Address,this.material.address)
-this.servMap.getLocation(this.material.address.Location())
-      console.log(this.material)
-      if (this.material.status == 'Broken_down') {
-        this.btn = this.textEnPanne
-      }
-      if (this.material.status == 'Functional') {
-        this.btn = this.textFonctionnel
-      }
-    }),
+    this.serviceMaterial
+      .findMaterial(String(this.route.snapshot.paramMap.get('id')))
+      .subscribe((m: IMaterial) => {
+        this.material = m;
+        this.material.address = plainToClass(Address, this.material.address);
+        this.servMap.findLocation(this.material.address.Location());
+        console.log(this.material);
+        if (this.material.status == 'Broken_down') {
+          this.btn = this.textEnPanne;
+        }
+        if (this.material.status == 'Functional') {
+          this.btn = this.textFonctionnel;
+        }
+      }),
       (error: HttpErrorResponse) => {
-        if(error.status==401){
-          this.AuthenticateService.redirectIfNotAuth()
-
-        } else{
-          Report.failure('Erreur', error.message,'OK')
-
+        if (error.status == 401) {
+          this.AuthenticateService.redirectIfNotAuth();
+        } else {
+          Report.failure('Erreur', error.message, 'OK');
         }
       };
   }
@@ -54,12 +54,15 @@ this.servMap.getLocation(this.material.address.Location())
   ngOnInit(): void {}
 
   changeStatus() {
-    let newMaterial:Material=new Material(this.material.name,this.material.description,this.material.address
-      ,this.material.dateOfPurchase,this.material.status)
+    let newMaterial: Material = new Material(
+      this.material.name,
+      this.material.description,
+      this.material.address,
+      this.material.dateOfPurchase,
+      this.material.status
+    );
     if (this.btn == this.textEnPanne) {
-
-
-      newMaterial.setStatus('Functional')
+      newMaterial.setStatus('Functional');
       this.serviceMaterial
         .update(this.material.id, newMaterial)
         .subscribe((data: any) => {
@@ -68,19 +71,18 @@ this.servMap.getLocation(this.material.address.Location())
           }
         }),
         (error: HttpErrorResponse) => {
-          if(error.status==401){
-            this.AuthenticateService.redirectIfNotAuth()
-
-          } else{
-            Report.failure('Erreur', error.message,'OK')
-
-          }        };
+          if (error.status == 401) {
+            this.AuthenticateService.redirectIfNotAuth();
+          } else {
+            Report.failure('Erreur', error.message, 'OK');
+          }
+        };
 
       this.btn = this.textFonctionnel;
       return;
     }
     if (this.btn == this.textFonctionnel) {
-      newMaterial.setStatus('Broken_down')
+      newMaterial.setStatus('Broken_down');
 
       this.serviceMaterial
         .update(this.material.id, newMaterial)
@@ -90,13 +92,12 @@ this.servMap.getLocation(this.material.address.Location())
           }
         }),
         (error: HttpErrorResponse) => {
-          if(error.status==401){
-            this.AuthenticateService.redirectIfNotAuth()
-
-          } else{
-            Report.failure('Erreur', error.message,'OK')
-
-          }        };
+          if (error.status == 401) {
+            this.AuthenticateService.redirectIfNotAuth();
+          } else {
+            Report.failure('Erreur', error.message, 'OK');
+          }
+        };
 
       this.btn = this.textEnPanne;
       return;

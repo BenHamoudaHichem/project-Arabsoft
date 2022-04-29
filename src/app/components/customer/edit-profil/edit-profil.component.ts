@@ -71,15 +71,15 @@ export class EditProfilComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.cookies.getIdentifier!= null) {
-      this.showUser();
+      this.findUser();
     }else{
       Report.warning('Error','Erreur de chargement de la page, aucun identifiant à étè detecté',"OK")
     }
   }
 
-  showUser() {
+  findUser() {
 
-    this.userService.getUser(this.cookies.getIdentifier).subscribe((res: IUser) => {
+    this.userService.findUser(this.cookies.getIdentifier).subscribe((res: IUser) => {
       res.address=plainToClass(Address,res.address)
       this.firstName?.setValue(res.firstName),
         this.lastNamme?.setValue(res.lastName),

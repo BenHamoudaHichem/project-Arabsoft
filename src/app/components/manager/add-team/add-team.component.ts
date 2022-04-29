@@ -20,35 +20,36 @@ import { HTMLEscape } from 'src/app/services/validation/HTMLEscapeChars';
   styleUrls: ['./add-team.component.css'],
 })
 export class AddTeamComponent implements OnInit {
-  teamForm!: FormGroup
+  teamForm!: FormGroup;
   selectedlist: Dbref[] = [];
   users!: IUser[];
-  dropdownSettings!: {};
-  dropdownSettings2!: {};
+  teamDropdownSettings!: {};
+  tmDropdownSettings!: {};
 
   constructor(
     private formBuilder: FormBuilder,
     private teamService: TeamService,
     private userService: UserService,
     private router: Router,
-    private AuthenticateService:AuthenticateService
-
+    private AuthenticateService: AuthenticateService
   ) {
-    this.getAllUsers()
+    this.allByRole();
     this.teamForm = this.formBuilder.group({
-      titre: ['', [Validators.required, Validators.pattern('^[a-zA-Z1-9 ]{2,}$')]],
-      manager:['',Validators.required],
+      titre: [
+        '',
+        [Validators.required, Validators.pattern('^[a-zA-Z1-9 ]{2,}$')],
+      ],
+      manager: ['', Validators.required],
       membres: ['', Validators.required],
-    })
-
+    });
   }
 
   selectedItems: { item_id: number; item_text: string }[] = [];
 
   ngOnInit() {
-    this.getAllUsers();
+    this.allByRole();
     // Setting of dropdown multiselect
-    this.dropdownSettings = {
+    this.teamDropdownSettings = {
       singleSelection: false,
 
       idField: 'id',
@@ -59,7 +60,7 @@ export class AddTeamComponent implements OnInit {
       itemsShowLimit: 10,
       allowSearchFilter: true,
     };
-    this.dropdownSettings2 = {
+    this.tmDropdownSettings = {
       singleSelection: true,
       idField: 'id',
       textField: 'firstName',
@@ -68,58 +69,57 @@ export class AddTeamComponent implements OnInit {
       itemsShowLimit: 10,
       allowSearchFilter: true,
     };
-    console.log(this.users)
+    console.log(this.users);
   }
-  getAllUsers() {
-    this.userService.allByRole("member").subscribe((users: IUser[]) => {
+  allByRole() {
+    this.userService.allByRole('member').subscribe((users: IUser[]) => {
       this.users = users;
       console.log(this.users);
     }),
       (error: HttpErrorResponse) => {
-        if(error.status==401){
-          this.AuthenticateService.redirectIfNotAuth()
-
-        }else{
-          Report.failure('Erreur', error.message,'OK')
-
-        }      };
+        if (error.status == 401) {
+          this.AuthenticateService.redirectIfNotAuth();
+        } else {
+          Report.failure('Erreur', error.message, 'OK');
+        }
+      };
   }
 
   onItemSelect(item: any) {
     this.selectedlist.push(new Dbref(item.id));
     console.log(this.selectedlist);
-    return this.selectedlist
+    return this.selectedlist;
   }
   onSelectAll(items: any) {
-    items.forEach( (item:any) => {
+    items.forEach((item: any) => {
       this.selectedlist.push(new Dbref(item.id));
     });
-
-
   }
 
-  AddTeam() {
-    let myManager:Dbref
-    myManager=new Dbref(this.manager?.value[0].id)
-    console.log("mm : "+this.manager?.value[0].id)
-    console.log("dd : "+this.selectedlist)
-    this.selectedlist
-    let team = new Team( HTMLEscape.escapeMethod(String(this.titre?.value)),new Dbref(this.manager?.value[0].id),
-    plainToClass(Dbref,this.selectedlist));
-console.log(team)
+  create() {
+    let myManager: Dbref;
+    myManager = new Dbref(this.manager?.value[0].id);
+    console.log('mm : ' + this.manager?.value[0].id);
+    console.log('dd : ' + this.selectedlist);
+    this.selectedlist;
+    let team = new Team(
+      HTMLEscape.escapeMethod(String(this.titre?.value)),
+      new Dbref(this.manager?.value[0].id),
+      plainToClass(Dbref, this.selectedlist)
+    );
+    console.log(team);
     this.teamService.create(team).subscribe((data: any) => {
       console.log(data);
       Notify.success('Equipe crée avec succès');
       this.router.navigate(['/dashboard/manager/teamList']);
-    }),(
-      error:HttpErrorResponse
-    )=>{   if(error.status==401){
-      this.AuthenticateService.redirectIfNotAuth()
-
-    }else{
-      Report.failure('Erreur', error.message,'OK')
-
-    }}
+    }),
+      (error: HttpErrorResponse) => {
+        if (error.status == 401) {
+          this.AuthenticateService.redirectIfNotAuth();
+        } else {
+          Report.failure('Erreur', error.message, 'OK');
+        }
+      };
   }
   get titre() {
     return this.teamForm.get('titre');
@@ -130,57 +130,66 @@ console.log(team)
   get manager() {
     return this.teamForm.get('manager');
   }
-  check()
-{
- Object.keys(this.teamForm.controls).forEach(key => {
-   if (this.teamForm.get(key)!.errors) {
-   console.log(this.teamForm.get(key)!.errors)
-    if(this.teamForm.get(key)!.errors!.hasOwnProperty('required'))
-    {
-      Report.failure(key,"Champs obligatoire","D'accord")
-    }
-    if(this.teamForm.get(key)!.errors!.hasOwnProperty('pattern'))
-    {
-      let stringAlpha:string=" des lettres alphabétiques "
-      let stringdigit:string=" des chiffres "
-      let stringMin:string=" au minimum "
-      let stringMax:string=" au maximum "
-      let stringOperation:string=String(this.teamForm.get(key)!.errors!["pattern"].requiredPattern)
-      console.log(stringOperation);
+  check() {
+    Object.keys(this.teamForm.controls).forEach((key) => {
+      if (this.teamForm.get(key)!.errors) {
+        console.log(this.teamForm.get(key)!.errors);
+        if (this.teamForm.get(key)!.errors!.hasOwnProperty('required')) {
+          Report.failure(key, 'Champs obligatoire', "D'accord");
+        }
+        if (this.teamForm.get(key)!.errors!.hasOwnProperty('pattern')) {
+          let stringAlpha: string = ' des lettres alphabétiques ';
+          let stringdigit: string = ' des chiffres ';
+          let stringMin: string = ' au minimum ';
+          let stringMax: string = ' au maximum ';
+          let stringOperation: string = String(
+            this.teamForm.get(key)!.errors!['pattern'].requiredPattern
+          );
+          console.log(stringOperation);
 
-      let res:string=""
-      if(stringOperation.indexOf("a-z")!=-1)
-      {
-        res="Ce champs doit contenir"
-        res=res+stringAlpha
-      }
-      if(stringOperation.indexOf("0-9")!=-1){
-        if(res.length==0){res="Ce champs doit contenir"
-      res=res+ stringdigit}else{
+          let res: string = '';
+          if (stringOperation.indexOf('a-z') != -1) {
+            res = 'Ce champs doit contenir';
+            res = res + stringAlpha;
+          }
+          if (stringOperation.indexOf('0-9') != -1) {
+            if (res.length == 0) {
+              res = 'Ce champs doit contenir';
+              res = res + stringdigit;
+            } else {
+              res = res + 'et' + stringdigit;
+            }
+          }
 
-        res=res+"et"+stringdigit
-      }
-    }
+          if (stringOperation.includes('{')) {
+            let min: number = Number(
+              stringOperation.substring(
+                stringOperation.indexOf('{') + 1,
+                stringOperation.indexOf(',')
+              )
+            );
+            res = res.concat('avec un taille de ' + min + stringMin);
+            if (
+              Number(
+                stringOperation.substring(
+                  stringOperation.indexOf(',') + 1,
+                  stringOperation.indexOf('}')
+                )
+              ) !== 0
+            ) {
+              let max: number = Number(
+                stringOperation.substring(
+                  stringOperation.indexOf(',') + 1,
+                  stringOperation.indexOf('}')
+                )
+              );
+              res = res.concat('et de ' + max + stringMax);
+            }
+          }
 
-      if (stringOperation.includes("{")) {
-        let min:number=Number(stringOperation.substring(
-          stringOperation.indexOf("{")+1,
-          stringOperation.indexOf(",")
-        ))
-        res=res.concat("avec un taille de "+min+stringMin)
-        if ((Number(stringOperation.substring(stringOperation.indexOf(",")+1,stringOperation.indexOf("}")))!==0)) {
-          let max:number=Number(stringOperation.substring(
-            stringOperation.indexOf(",")+1,
-            stringOperation.indexOf("}")
-          ))
-          res=res.concat("et de "+max+stringMax)
+          Report.failure(key, res, "D'accord");
         }
       }
-
-      Report.failure(key,res,"D'accord")
-    }
-
-   }
-})
-}
+    });
+  }
 }
