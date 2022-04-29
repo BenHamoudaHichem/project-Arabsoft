@@ -47,7 +47,7 @@
       "email": "Enter your email",
       "firstname": "Enter your firstname",
       "identifier": "Enter your identifier",
-      "intervention": "Enter the intervention name",
+      "intervention": "Enter the title of intervention",
       "lastname": "Enter your lastname",
       "password":"Enter your password",
       "mat_select": "Select materials",
