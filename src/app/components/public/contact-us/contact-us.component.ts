@@ -1,7 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Notify, Report } from 'notiflix';
 import { Contact } from 'src/app/models/Contact';
 import { ContactUsService } from 'src/app/services/contact/contact-us.service';
@@ -17,21 +18,25 @@ export class ContactUSComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private contactService: ContactUsService,
-    private router: Router
+    private router: Router,
+    @Inject(SESSION_STORAGE) private storage: StorageService
   ) {
     this.contactForm = this.formBuilder.group({
-      fullName: [
-        '',
-        [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
-      ],
-
+      fullName: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
       phone: ['', [Validators.required, , Validators.pattern('^[0-9]{8}$')]],
       email: ['', [Validators.required, Validators.email]],
-
       description: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
+
+  ngOnInit(): void {
+    if(this.storage.has('email')){
+   this.email?.setValue(this.storage.get('email'))
+   this.storage.remove('email')
+
+ }}
   send() {
+
     console.log(JSON.stringify(this.contactForm.value));
     let contact = new Contact(
       HTMLEscape.escapeMethod(this.fullName?.value),
@@ -130,5 +135,5 @@ export class ContactUSComponent implements OnInit {
       }
     });
   }
-  ngOnInit(): void {}
+
 }
