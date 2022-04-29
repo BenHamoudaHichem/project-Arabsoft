@@ -18,13 +18,13 @@
     "send": "Send",
     "waiting": "Waiting",
     "register":"Register",
-    "connect":"connect"
+    "connect":"Connect"
   },
   "cards": {
-    "bleu": "notifications",
-    "green": "applications accepted",
-    "red": "rejected applications",
-    "white": "applications in progress"
+    "bleu": "Notifications",
+    "green": "Applications accepted",
+    "red": "Rejected applications",
+    "white": "Applications in progress"
   },
   "errors": {
     "alph_2error": "You must enter at least two characters",
@@ -43,7 +43,7 @@
     "msg": {
       "category": "Enter category name",
       "demand": "Enter the title of claim",
-      "designation": "write...",
+      "designation": "Write...",
       "email": "Enter your email",
       "firstname": "Enter your firstname",
       "identifier": "Enter your identifier",
@@ -77,23 +77,24 @@
       "new_pass": "New password",
       "old_pass": "Old password",
       "password": "Password",
+      "profil":"Profil",
       "purchase_date": "Date of purchase",
       "status": "Status",
       "team": "Team",
       "tel": "Phone",
       "title": "Title",
       "tm": "Team manager",
-      "which_date": "which date",
+      "which_date": "Which date",
       "sender":"The sender"
     }
   },
   "location": {
-    "city": "city",
-    "country": "country",
-    "governorate": "state",
+    "city": "City",
+    "country": "Country",
+    "governorate": "State",
     "postal_code": "Zip code",
-    "street": "street",
-    "title": "location"
+    "street": "Street",
+    "title": "Location"
   },
   "lng": {
     "title": "Choose A Language ",
@@ -105,65 +106,65 @@
     "in_progress": "In progress",
     "is_on": "In good shape",
     "title": "Status",
-    "wating": "wating"
+    "wating": "Waiting"
   },
   "titles": {
-    "add_category": "add category",
+    "add_category": "Add category",
     "add_demand": "Send a claim",
-    "add_emp": "subscribe member",
-    "add_inter": "create an intervention",
-    "add_material": "add material",
-    "add_team": "add team",
+    "add_emp": "Subscribe member",
+    "add_inter": "Create an intervention",
+    "add_material": "Add material",
+    "add_team": "Add team",
     "cat_question": "Need to add another category?",
-    "categories": "categories",
+    "categories": "Categories",
     "choose_file": "Choose file",
-    "customers": "customers",
+    "customers": "Customers",
     "date": "Publication date",
     "demands": {
-      "detail": "claims detail",
-      "title": "claims",
-      "title_home": "list of subscription contracts"
+      "detail": "Claims detail",
+      "title": "Claims",
+      "title_home": "List of claims sent"
     },
-    "detail_category": "category detail",
-    "detail_demand": "requests sent",
+    "detail_category": "Category detail",
+    "detail_demand": "Requests sent",
     "detail_inter": {
-      "demands": "requests affected",
-      "materials": "materials used",
-      "members": "members of {members} ",
+      "demands": "Requests affected",
+      "materials": "Materials used",
+      "members": "Members of {members} ",
       "table": {
-        "action": "action",
-        "nom": "member name",
-        "phone": "phone",
-        "role": "role"
+        "action": "Action",
+        "nom": "Member name",
+        "phone": "Phone",
+        "role": "Role"
       },
-      "team": "responsible team : {{team.name}}",
-      "title": "detail of the intervention"
+      "team": "Responsible team : {{team.name}}",
+      "title": "Intervention detail "
     },
-    "detail_mat": " materiel Detail",
-    "detail_team": "team detail",
-    "employees": "employees",
-    "employees_list": " employees List",
+    "detail_mat": "Materiel Detail",
+    "detail_team": "Team detail",
+    "employees": "Employees",
+    "employees_list": "Employees List",
     "home": "Home",
-    "interv_in": "intervention in progress",
-    "intervention": "interventions",
+    "interv_in": "Intervention in progress",
+    "intervention": "Interventions",
     "interventions_list": "Interventions List",
-    "log": "log in to your space",
+    "log": "Log in to your space",
     "logout": "Sign out",
     "materials": "materials",
-    "materials_list": "materials list",
+    "materials_list": "Materials list",
     "new_inter": "New Intervention",
     "new_material": "New material",
     "new_team": "New team",
     "profil": "Profil",
-    "register": "register",
+    "register": "Register",
     "started_at": "started at",
     "team_detail":"team detail",
     "team_det": " details of {{ name }}",
     "teams": "teams",
-    "teams_list": "teams list",
+    "teams_list": "Teams list",
     "up": "Upload file",
     "up_photo": "Change Photo",
-    "update_material": "update material",
+    "update_material": "Update material",
     "update_pass": "Change password",
     "update_int": "Update intervention",
 
@@ -177,7 +178,7 @@
   "navbar":{
     "home":"Home",
     "contact":"Contact Us",
-    "log":"login",
+    "log":"Login",
     "join_us":"Join Us",
     "about_us":"About Us"
   },
@@ -191,7 +192,7 @@
   },
 
   "about":{
-    "title":"ABOUT US ?",
+    "title":"About us ?",
     "info":"GestIntern is a digital platform responsible for assigning customer intervention requests to expert teams, we offer spaces on our site for:"
   },
   "contact":{
@@ -199,7 +200,7 @@
     "name":"Enter your name",
     "email":" Enter you email",
     "phone":"Enter your phone number",
-    "description":"write...."
+    "description":"Write...."
   },
 "footer":{
   "find_us":"Find Us",

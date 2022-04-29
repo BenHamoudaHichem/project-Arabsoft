@@ -6,7 +6,9 @@
   font-family: "Poppins", sans-serif;
 }
 
-
+title{
+  text-transform: capitalize !important;
+}
 
 .card {
   border-radius: 30px;

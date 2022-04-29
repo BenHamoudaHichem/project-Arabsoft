@@ -35,7 +35,7 @@ export class UserService {
           password: user.password,
           address: user.address,
           tel: user.tel,
-roles:user.roles
+          roles:user.roles
       })
     );
   }))}
@@ -80,17 +80,10 @@ roles:user.roles
   }
 
   update(user: User,id:string) {
-    let headers = {
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${this.authService.getToken}`,
-        'Content-Type': 'application/json',
-      }),
-    };
-
     return this.http.put(
       `${this.apiURL}/${id}`,
       JSON.stringify(user),
-      headers
+      this.authHttpOptions
     );
   }
   agents(): Observable<IUser[]> {
@@ -112,14 +105,7 @@ roles:user.roles
 
   changePassword(passwordRequest:any)
   {
-    let headers = {
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${this.authService.getToken}`,
-        'Content-Type': 'application/json',
-      }),
-    };
-
-    return this.http.put(
+     return this.http.put(
       `http://127.0.0.1:8080/api/services/password/change`,
       JSON.stringify(passwordRequest),
       this.authHttpOptions

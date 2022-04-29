@@ -1,66 +1,100 @@
+<title translate> contact.title </title>
+
 <app-nav-bar></app-nav-bar>
 
 <section class="h-100">
   <div class="container py-5 h-100">
-<div class="card mb-3" id="f">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <div class="map">
+    <div class="card mb-3" id="f">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <div class="map">
 
-      <iframe width="500px" height="800px" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=81%20Av.%20Kheireddine%20Pacha,%20Tunis+(GestIntern)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/truck-gps/">fleet tracking gps</a></iframe></div>
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-
-        <div class="green-contact-form p-5 bg-white">
-          <div class="logo">
-            <span><img
-
-              src="assets/images/gest.png"
-              alt="Sample photo"
-              height="60px" width="100px"
-
-            /></span>
+            <iframe width="500px" height="800px"
+              src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=81%20Av.%20Kheireddine%20Pacha,%20Tunis+(GestIntern)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a
+                href="https://www.gps.ie/truck-gps/">fleet tracking gps</a></iframe>
           </div>
-          <span class="title" translate>contact.title </span>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
 
-          <div class="form-box">
+            <div class="green-contact-form p-5 bg-white">
+              <div class="logo">
+                <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
+              </div>
+              <span class="title" translate>contact.title </span>
+
+              <div class="form-box">
 
 
-                  <form>
-                    <fieldset class="form-group">
+                <form [formGroup]="contactForm" (ngSubmit)="send()">
+                  <fieldset class="form-group">
 
-                      <input type="text" class="form-control" id="yourName" placeholder="{{'contact.name'|translate}}" required>
-                    </fieldset>
+                    <input type="text" formControlName="fullName" class="form-control" id="yourName"
+                      placeholder="{{'contact.name'|translate}}" required>
+                    <p class="ErrorMsg" *ngIf="!fullName?.valid && (fullName?.dirty || fullName?.touched)
+                    " translate>
+                      errors.req_error
+                    </p>
+                    <p translate *ngIf="fullName?.errors?.['pattern']" class="ErrorMsg" translate>
+                      errors.alph_2error
+                    </p>
+                  </fieldset>
 
-                    <fieldset class="form-group">
+                  <fieldset class="form-group">
 
-                      <input type="email" class="form-control" id="yourEmail" placeholder="{{'contact.email'|translate}}" required>
-                    </fieldset>
+                    <input type="email" formControlName="email" class="form-control" id="yourEmail"
+                      placeholder="{{'contact.email'|translate}}" required>
+                    <p class="ErrorMsg" *ngIf="
+                      !email?.valid && (email?.dirty || email?.touched)
+                    " translate>
+                      errors.req_error
+                    </p>
+                    <p *ngIf="email?.errors?.['email']" class="ErrorMsg" translate>
+                      errors.email_patt
+                    </p>
+                  </fieldset>
 
-                    <fieldset class="form-group">
+                  <fieldset class="form-group">
+                    <input type="tel" formControlName="phone" class="form-control" id="yourPhone"
+                      placeholder="{{'contact.phone'|translate}}">
+                    <p class="ErrorMsg" *ngIf="!phone?.valid && (phone?.dirty || phone?.touched)" translate>
+                      errors.req_error
+                    </p>
+                    <p *ngIf="phone?.errors?.['pattern']" class="ErrorMsg" translate>
+                      errors.error_chiff
+                    </p>
+                  </fieldset>
+                  <fieldset class="form-group">
 
-                      <input type="text" class="form-control" id="yourPhone" placeholder="{{'contact.phone'|translate}}">
-                    </fieldset>
-                    <fieldset class="form-group">
+                    <textarea class="form-control" formControlName="description"
+                      placeholder="{{'contact.description'|translate}}" rows="6">
 
-                      <textarea class="form-control" placeholder="{{'contact.description'|translate}}" rows="6"></textarea>
-                    </fieldset>
-                    <div class="d-flex justify-content-end pt-3">
-                      <button    class="bn632-hover bn24"role="button" translate >
+                    </textarea>
+                    <p class="ErrorMsg" *ngIf="
+                    !description?.valid && (description?.dirty || description?.touched)
+                  " translate>
+                  errors.req_error
+                </p>
+                <p translate *ngIf="description?.errors?.['minlength']" class="ErrorMsg" translate>
+                  errors.alph_8error
+                </p>
+                  </fieldset>
+                  <div class="d-flex justify-content-end pt-3">
+                    <button class="bn632-hover bn24" role="button"
+                     (mouseover)="check()"
+                     translate>
+                      buttons.send
+                    </button>
+                  </div>
+                </form>
 
-                          buttons.send
-
-                      </button>
-       </div>  </form>
-
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-</div>
+  </div>
 </section>
 <app-footer></app-footer>

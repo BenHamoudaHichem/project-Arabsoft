@@ -18,7 +18,7 @@
     "send": "Envoyer",
     "waiting": "En attente",
     "register":"Inscrire",
-    "connect":"connecter"
+    "connect":"Connecter"
 
   },
   "cards": {
@@ -52,7 +52,7 @@
       "lastname": " Entrez votre prénom",
       "password":"Entrez votre mot de passe",
 
-      "mat_select": "selectionner les matériels",
+      "mat_select": "Selectionner les matériels",
       "material": " Entrez le titre de materiel",
       "member": "Membre",
       "mm_select": "Selectionner les membres",
@@ -79,6 +79,7 @@
       "new_pass": "Nouveau mot de passe",
       "old_pass": "Ancien mot de passe",
       "password": "Mot de passe",
+      "profil":"Profil",
       "purchase_date": "Date d'achat",
       "status": "Status",
       "team": "Equipe",
@@ -91,89 +92,89 @@
     }
   },
   "location": {
-    "city": "ville",
+    "city": "Ville",
     "country": "pays",
-    "governorate": "governorat",
-    "postal_code": "code postal",
-    "street": "rue",
-    "title": "localisation"
+    "governorate": "Governorat",
+    "postal_code": "Code postal",
+    "street": "Rue",
+    "title": "Localisation"
   },
   "lng": {
     "title": "Choisir une langue ",
 
-    "en": "anglais",
+    "en": "Anglais",
     "fr": "Français"
   },
   "status": {
-    "broken": "en panne",
-    "in_progress": "en cours",
-    "is_on": "en bonne condition",
-    "title": "status",
-    "wating": "en attente"
+    "broken": "En panne",
+    "in_progress": "En cours",
+    "is_on": "En bonne condition",
+    "title": "Status",
+    "wating": "En attente"
   },
   "titles": {
-    "add_category": "ajouter une catégorie",
-    "add_demand": "créer une reclamation",
-    "add_emp": "inscrivez un membre dans le domaines",
-    "add_inter": "créer une intervention",
-    "add_material": "ajouter un materiel",
-    "add_team": "ajouter  une équipe",
-    "cat_question": "vous avez besoins d'ajouter une autre categorie?",
-    "categories": "categories",
-    "choose_file": "choisir une fichier",
-    "customers": "clients",
-    "date": "date de publication",
+    "add_category": "Ajouter une catégorie",
+    "add_demand": "Créer une reclamation",
+    "add_emp": "Inscrivez un membre dans le domaines",
+    "add_inter": "Créer une intervention",
+    "add_material": "Ajouter un materiel",
+    "add_team": "Ajouter  une équipe",
+    "cat_question": "Vous avez besoins d'ajouter une autre categorie?",
+    "categories": "Catégories",
+    "choose_file": "Choisir une fichier",
+    "customers": "Clients",
+    "date": "Date de publication",
     "demands": {
-      "detail": "detail de demande",
-      "title": "demandes",
-      "title_home": "liste des contrats d'abonnements"
+      "detail": "Detail demande",
+      "title": "Demandes",
+      "title_home": "Liste des reclamations envoyées"
     },
-    "detail_category": "detail de la categorie",
-    "detail_demand": "les demandes envoyées",
+    "detail_category": "Detail categorie",
+    "detail_demand": "Les demandes envoyées",
     "detail_inter": {
-      "demands": "les demandes affectées",
-      "matériels": "les matériels utilisés",
-      "members": "les membres {members} ",
+      "demands": "Les demandes affectées",
+      "matériels": "Les matériels utilisés",
+      "members": "Les membres {members} ",
       "table": {
-        "action": "action",
-        "nom": "nom & prénom",
-        "phone": "telephone",
-        "role": "role"
+        "action": "Action",
+        "nom": "Nom & Prénom",
+        "phone": "Telephone",
+        "role": "Role"
       },
-      "team": " équipe responsable  : {{team.name}}",
-      "title": "detail de l'intervention"
+      "team": " Equipe responsable  : {{team.name}}",
+      "title": "Detail intervention"
     },
-    "detail_mat": "detail du materiel",
-    "detail_team": "detail de l'équipe",
-    "employees": "employées",
-    "employees_list": "liste des employées",
-    "home": "acceuil",
-    "interv_in": "interventios en cours",
-    "intervention": "interventions",
-    "interventions_list": "liste des interventions",
-    "log": "connectez vous à votre espace",
-    "logout": "déconnecter",
-    "materials": "matériels",
-    "materials_list": "liste des materieles",
-    "new_inter": "nouvelle intervention",
-    "new_material": "nouvel matériel",
-    "new_team": "nouveau équipe",
-    "profil": "profil",
-    "register": "inscrivez vous a notre site",
-    "started_at": "date de debut",
-    "team_detail":"detail équipe",
+    "detail_mat": "Detail du materiel",
+    "detail_team": "Detail équipe",
+    "employees": "Employées",
+    "employees_list": "Liste des employées",
+    "home": "Acceuil",
+    "interv_in": "Interventios en cours",
+    "intervention": "Interventions",
+    "interventions_list": "Liste des interventions",
+    "log": "Connectez vous à votre espace",
+    "logout": "Déconnecter",
+    "materials": "Matériels",
+    "materials_list": "Liste des materieles",
+    "new_inter": "Nouvelle intervention",
+    "new_material": "Nouvel matériel",
+    "new_team": "Nouveau équipe",
+    "profil": "Profil",
+    "register": "Inscrivez vous a notre site",
+    "started_at": "Date de debut",
+    "team_detail":"Detail équipe",
 
-    "team_det": " details de {{ name }}",
-    "teams": "équipes",
-    "teams_list": "liste des equipes",
-    "up": "telecharger un fichier",
-    "up_photo": "changer photo",
-    "update_material": "mettre à jour le matériel",
-    "update_pass": "modifier votre mot de passe",
-    "update_pro": "mettre à jour le profil",
-    "update_int": "mettre à jour l'intervention",
+    "team_det": " Details de {{ name }}",
+    "teams": "Equipes",
+    "teams_list": "Liste des equipes",
+    "up": "Telecharger un fichier",
+    "up_photo": "Changer photo",
+    "update_material": "Mettre à jour le matériel",
+    "update_pass": "Modifier le mot de passe",
+    "update_pro": "Mettre à jour le profil",
+    "update_int": "Mettre à jour l'intervention",
 
-    "update_team": "mettre à jour l'équipe",
+    "update_team": "Mettre à jour l'équipe",
     "subscribe":"Inscrivez vous à notre site"
   },
   "navbar":{
@@ -192,7 +193,7 @@
   },
 
   "about":{
-    "title":"A PROPOS DE NOUS ?",
+    "title":"A propos de nous ?",
     "info":"GestIntern est une plate-forme numérique responsable à l'affectation des demandes des interventions du client à des équipes expertes, nous offrons des espaces sur notre site pour :",
     "info_customer":""
 
@@ -215,8 +216,8 @@
 },
 "links":{
   "arabsoft":"Companie arabsoft",
-"sector":"secteur public",
-"customers":"nos clients",
+"sector":"Secteur public",
+"customers":"Nos clients",
   "link_log":"Vous avez dejà un compte?",
   "link_register":"Créer un nouveau compte"
 }

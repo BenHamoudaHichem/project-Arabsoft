@@ -1,4 +1,6 @@
-<app-demand-per-year></app-demand-per-year>
+<title translate> titles.home </title>
+
+
 <div class="row">
   <div class="col-8">
     <a routerLink="/dashboard/manager/reclamationList" class="data-card">
@@ -39,6 +41,8 @@
         <i class="fa fa-arrow-right"></i>
       </span>
     </a>
+
+<app-demand-per-year></app-demand-per-year>
     <div class="mb-5">
       <h2 class="card__title text-start" translate>
         <i class="fa fa-users-cog"></i> titles.teams
@@ -158,7 +162,7 @@
               <h5 class="text-uppercase"> {{item.title}} </h5>
               <span class="category">
 
-               {{ item.category.getNameCategory()}}
+               {{ item.category.getName()}}
               </span>
 
             </div>
