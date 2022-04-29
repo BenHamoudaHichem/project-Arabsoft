@@ -250,3 +250,10 @@ background:rgba(0, 0, 0, 0.9);
 padding: 3px 7px;
 border-radius: 30px;
 }
+section {
+  min-height: 90vh;
+  display: block;
+  z-index: auto;
+  justify-content: center;
+  align-items: center;
+}

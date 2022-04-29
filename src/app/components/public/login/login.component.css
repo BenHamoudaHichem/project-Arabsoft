@@ -6,19 +6,31 @@
   font-family: "Poppins", sans-serif;
 }
 
-.form-group{ margin: 20px 0 12px 0;}
+.form-group {
+  margin: 20px 0 12px 0;
+}
+
 .form-control {
   background-color: #f6f6f6;
   border: 2px solid #9b59b6;
-  outline: 0;
+  outline: none;
   box-shadow: none;
 }
 
+
+section {
+  min-height: 90vh;
+  display: block;
+  z-index: auto;
+  justify-content: center;
+  align-items: center;
+}
 
 .extra-line {
   font-size: 15px;
   font-weight: 600;
 }
+
 .extra-line a {
   color: #0095b6;
 }
@@ -31,11 +43,11 @@ h4 {
 
 .profile {
   background: white;
-  height: 80vh;
+  min-height: 80vh;
   padding: 30px;
   overflow: hidden;
-margin-right: auto;
-margin-left: auto;
+  margin-right: auto;
+  margin-left: auto;
   display: flex;
   flex-direction: column;
 }
@@ -90,8 +102,8 @@ margin-left: auto;
   right: -195px;
   border: 3px solid white;
 }
-*
-.profile .profile-header .profile-info .profile-username {
+
+* .profile .profile-header .profile-info .profile-username {
   justify-content: center;
   align-self: center;
   font-size: 35px;
