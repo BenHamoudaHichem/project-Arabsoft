@@ -89,9 +89,9 @@ export class SubscribeMembreComponent implements OnInit {
     console.log(user);
     this.userService.create(user).subscribe((res: any) => {
       Report.success(
-        "Notification d'affectation",res.message,"D'accord"
+        "Notification d'inscription",user.getfirstName()+' '+user.getlastName()+" "+"à étè ajouté avec succées","D'accord"
         );
-      this.router.navigate(['dashboard/login']);
+      this.router.navigate(['dashboard/manager/home']);
     }),
       (error: HttpErrorResponse) => {
         if(error.status==401){

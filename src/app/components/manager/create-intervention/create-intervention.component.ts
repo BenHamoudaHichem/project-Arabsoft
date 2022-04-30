@@ -72,19 +72,19 @@ export class CreateInterventionComponent implements OnInit {
         Materiel: ['', [Validators.required]],
         state: [
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+          [Validators.required],
         ],
         city: [
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+          [Validators.required],
         ],
         street: [
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+          [Validators.required],
         ],
         country: [
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+          [Validators.required],
         ],
         zipCode: ['', [Validators.required, Validators.pattern('^[0-9 -]{4,}$')]],
 

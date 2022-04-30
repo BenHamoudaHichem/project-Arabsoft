@@ -62,10 +62,16 @@ export class DemandService {
 
 
 
-  create(demande: Demand) {
+  create(demande: Demand):Observable<Demand> {
 
-    return this.http.post(`${this.apiURL}`, JSON.stringify(demande), this.headers);
+    return this.http.post<Demand>(`${this.apiURL}`, JSON.stringify(demande), this.headers);
   }
+
+
+update(id:string,demande: Demand) :Observable<Demand>{
+console.log(JSON.stringify(demande))
+  return this.http.put<Demand>(`${this.apiURL}/${id}`, JSON.stringify(demande), this.headers);
+}
 
 
 

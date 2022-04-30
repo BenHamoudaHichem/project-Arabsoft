@@ -65,6 +65,9 @@ export class UpdatePasswordComponent implements OnInit {
       } else {
         Report.failure('Changer Mot de passe', res.message, "D'accord");
       }
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     }),
       (error: HttpErrorResponse) => {
         if (error.status == 401) {

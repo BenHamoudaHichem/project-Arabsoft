@@ -11,6 +11,7 @@ import { IDemand } from 'src/app/services/works/demand/idemand';
 import { Router } from '@angular/router';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { MapService } from 'src/app/services/map/map.service';
+import { Demand } from 'src/app/models/works/demand';
 
 @Component({
   selector: 'app-detail-reclamation',
@@ -28,7 +29,7 @@ export class DetailReclamationComponent implements OnInit {
     private MapService:MapService
   ) {
     this.route.snapshot.paramMap.get("id");
-    console.log(String(this.route.snapshot.paramMap.get("id")))
+   // console.log(String(this.route.snapshot.paramMap.get("id")))
     if(this.route.snapshot.paramMap.has("id"))
    { this.findDemand(String(this.route.snapshot.paramMap.get("id")));}
 
@@ -44,7 +45,7 @@ findDemand(id:string) {
 
    this.demand.user=plainToClass(User,res.user)
    this.MapService.findLocation(this.demand.address.Location())
-   console.log((this.demand))
+  // console.log((this.demand))
  }),(error:HttpErrorResponse)=>{
   if(error.status==401){
     this.AuthenticateService.redirectIfNotAuth()
@@ -66,20 +67,23 @@ findDemand(id:string) {
 
     return res
   }
-  get icon():number
+   hideButton():boolean
   {
-    if (this.demand.status=="In_Progress") {
-      return 2
-    }
-    if (this.demand.status=="Refused") {
-return 0
+    if (this.demand.status=="Accepted"||this.demand.status=="Refused" )  {
+      return true
     }
 
-    return 1
+    return false
   }
   accept()
   {
-    localStorage.setItem("_id",this.demand.id)
-    this.router.navigate(["/dashboard/manager/createIntervention"])
+    let demandAccepted=new Demand(this.demand.title,this.demand.description,this.demand.address,this.demand.createdAt,'Accepted',{id:this.demand.user.getId()})
+    this.demandService.update(String(this.route.snapshot.paramMap.get("id")),demandAccepted).subscribe((res:any)=>{
+
+   if(res==true)
+   {   console.log(res)}
+
+    }),(error:HttpErrorResponse)=>{Report.failure('error',error.message,'ok')}
+
   }
 }
