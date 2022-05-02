@@ -93,4 +93,23 @@ this.data.push(IM[i].address.Location())
       }         };
   }
 
+  get Status():string{
+let status="Fonctionnel"
+this.materialList.forEach(element => {
+  switch (element.status) {
+    case 'Stoled':
+      status="Volé"
+      break;
+    case 'Expired':
+      status="Expiré"
+       break;
+    case 'Broken_down':
+      status="En panne"
+      break;
+  }
+});
+return status
+
+  }
+
 }

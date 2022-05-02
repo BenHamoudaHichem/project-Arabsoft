@@ -180,8 +180,10 @@ errors.alph_8error
                      translate >
 errors.error_confirm                     </p>
                     </div>
-                    <div class="input-box">
-                    <re-captcha (resolved)="checkCaptcha($event)" [siteKey]="siteKey" formControlName="captcha"
+                    <div class="d-flex justify-content-start">
+                    <re-captcha
+
+                     (resolved)="checkCaptcha($event)" [siteKey]="siteKey" formControlName="captcha"
                     ></re-captcha></div>
                   </div>
 

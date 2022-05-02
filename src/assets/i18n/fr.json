@@ -18,8 +18,8 @@
     "send": "Envoyer",
     "waiting": "En attente",
     "register":"Inscrire",
-    "connect":"Connecter"
-
+    "connect":"Connecter",
+"reset":"Réinitialiser"
   },
   "cards": {
     "bleu": "Notifications",
@@ -30,7 +30,7 @@
   "errors": {
     "alph_2error": "Vous devez entrez au minimun deux caractéres",
     "alph_4error": "Vous devez entrez au minimun 4 caractéres",
-    "alph_8error": "Vous devez entrez au minimun 8 caractéres",
+    "alph_8error": "Vous devez entrez 8 caractéres",
     "alph_error": "Ce champ accepte que l'alphabet",
     "date_error": "La date choisi est incorrecte",
     "email_patt": "Structure de email : foulen@foulen",
@@ -148,6 +148,8 @@
     "detail_team": "Detail équipe",
     "employees": "Employées",
     "employees_list": "Liste des employées",
+    "forget_pass":"Mot de passe oublié ",
+    "forget_pass_info":"Entrez votre e-mail enregistré pour réinitialiser votre mot de passe",
     "home": "Acceuil",
     "interv_in": "Interventios en cours",
     "intervention": "Interventions",
@@ -161,6 +163,7 @@
     "new_team": "Nouveau équipe",
     "profil": "Profil",
     "register": "Inscrivez vous a notre site",
+    "reset":"Réinitialiser le mot de passe",
     "started_at": "Date de debut",
     "team_detail":"Detail équipe",
 
@@ -219,6 +222,8 @@
 "sector":"Secteur public",
 "customers":"Nos clients",
   "link_log":"Vous avez dejà un compte?",
-  "link_register":"Créer un nouveau compte"
+  "link_register":"Créer un nouveau compte",
+  "link_forgot_pass":"Mot de passe oublié ?"
+
 }
 }

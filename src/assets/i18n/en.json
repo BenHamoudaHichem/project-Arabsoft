@@ -18,7 +18,9 @@
     "send": "Send",
     "waiting": "Waiting",
     "register":"Register",
-    "connect":"Connect"
+    "connect":"Connect",
+    "reset":"Reset"
+
   },
   "cards": {
     "bleu": "Notifications",
@@ -29,7 +31,7 @@
   "errors": {
     "alph_2error": "You must enter at least two characters",
     "alph_4error": "You must enter at least 4 characters",
-    "alph_8error": "You must enter at least 8 characters",
+    "alph_8error": "You must enter 8 characters",
     "alph_error": "This field only accepts the alphabet",
     "date_error": "The chosen date is incorrect",
     "email_patt": "Email structure: foulen@foulen",
@@ -144,6 +146,8 @@
     "detail_team": "Team detail",
     "employees": "Employees",
     "employees_list": "Employees List",
+    "forget_pass":"Forgot password",
+    "forget_pass_info":"Enter your registered email to reset your password",
     "home": "Home",
     "interv_in": "Intervention in progress",
     "intervention": "Interventions",
@@ -157,6 +161,8 @@
     "new_team": "New team",
     "profil": "Profil",
     "register": "Register",
+    "reset":"Reset password",
+
     "started_at": "started at",
     "team_detail":"team detail",
     "team_det": " details of {{ name }}",
@@ -214,7 +220,8 @@
 "sector":"Public sector",
 "customers":"Our customers",
   "link_log":"Already have an account?",
-  "link_register":"Create a new account"
+  "link_register":"Create a new account",
+  "link_forgot_pass":"Forgot password?"
 
 }
 

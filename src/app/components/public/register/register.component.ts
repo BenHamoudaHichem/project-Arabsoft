@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
           [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
         ],
         tel: ['', [Validators.required, , Validators.pattern('^[0-9]{8}$')]],
-        identifier: ['', [Validators.required, Validators.minLength(8)]],
+        identifier: ['', [Validators.required, Validators.email]],
         password: [
           '',
           [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{8,}$')],

@@ -1,46 +1,36 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Report } from 'notiflix';
+
 @Component({
-  selector: 'app-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css']
+  selector: 'app-forgot-password',
+  templateUrl: './forgot-password.component.html',
+  styleUrls: ['./forgot-password.component.css'],
 })
-export class FooterComponent implements OnInit {
-mailForm:FormGroup
-  constructor(private route:Router,@Inject(SESSION_STORAGE) private storage: StorageService,private formBuilder:FormBuilder) {
-    this.mailForm = this.formBuilder.group({
-      email: ['',[Validators.required, Validators.email],
-      ]}
-    )}
-
-  authRoute(){return this.route.url=='/register' || this.route.url=='/login'|| this.route.url=='/forgotPassword' || this.route.url=='/resetPassword'}
-checkContactRoute(){return this.route.url=='/contact'}
-    mail(){
-this.storage.set('email',this.email?.value)
-this.route.navigateByUrl('/contact')
-    }
-
-    get email(){return this.mailForm.get('email')}
-
-    ngOnInit(): void {
+export class ForgotPasswordComponent implements OnInit {
+  forgetPass!: FormGroup;
+  constructor(private formBuilder: FormBuilder, private router: Router) {
+    this.forgetPass = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+    });
   }
+  ngOnInit(): void {}
+
   check() {
-    Object.keys(this.mailForm.controls).forEach((key) => {
-      if (this.mailForm.get(key)!.errors) {
-        console.log(this.mailForm.get(key)!.errors);
-        if (this.mailForm.get(key)!.errors!.hasOwnProperty('required')) {
-          Report.failure(key, 'Champs obligatoire', "D'accord");
+    Object.keys(this.forgetPass.controls).forEach((key) => {
+      if (this.forgetPass.get(key)!.errors) {
+        console.log(this.forgetPass.get(key)!.errors);
+        if (this.forgetPass.get(key)!.errors!.hasOwnProperty('required')) {
+          Report.failure(key, 'Champ obligatoire', "D'accord");
         }
-        if (this.mailForm.get(key)!.errors!.hasOwnProperty('pattern')) {
+        if (this.forgetPass.get(key)!.errors!.hasOwnProperty('pattern')) {
           let stringAlpha: string = ' des lettres alphabétiques ';
           let stringdigit: string = ' des chiffres ';
           let stringMin: string = ' au minimum ';
           let stringMax: string = ' au maximum ';
           let stringOperation: string = String(
-            this.mailForm.get(key)!.errors!['pattern'].requiredPattern
+            this.forgetPass.get(key)!.errors!['pattern'].requiredPattern
           );
           console.log(stringOperation);
 
@@ -90,5 +80,11 @@ this.route.navigateByUrl('/contact')
     });
   }
 
-
+  get email() {
+    return this.forgetPass.get('email');
+  }
+  sendEmail() {
+    console.log(this.email?.value);
+    this.router.navigate(['/resetPassword']);
+  }
 }

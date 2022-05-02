@@ -35,7 +35,7 @@ export class DetailInterventionComponent implements OnInit {
     this.findIntervention(String(this.route.snapshot.paramMap.get('id')));
   }
 
- 
+
   findIntervention(id: string) {
     this.interventionService
       .findIntervention(id)
@@ -59,7 +59,7 @@ export class DetailInterventionComponent implements OnInit {
           plainToClass(User, x)
         );
         this.intervention.demandList.forEach((element) => {
-          element.user = plainToClass(User, element.user);
+          element.user = plainToClass(User,element.user);
           element.user.setAddress(
             plainToClass(Address, element.user.getAddress())
           );
@@ -73,8 +73,8 @@ export class DetailInterventionComponent implements OnInit {
           Category,
           this.intervention.category
         );
-
-        this.mapService.findLocation(this.intervention.address.Location());
+console.log(this.intervention.address.Location())
+this.mapService.findLocation(this.intervention.address.Location());
       }),
       (error: HttpErrorResponse) => {
         if (error.status == 401) {

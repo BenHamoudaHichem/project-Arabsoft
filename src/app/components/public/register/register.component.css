@@ -1,62 +1,53 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-
 * {
 
-  box-sizing: border-box;
+ box-sizing: border-box;
 
-  font-family: "Poppins", sans-serif;
+font-family: "Poppins", sans-serif;
 }
 
 
-input,
-select {
-  margin: 10px 0px;
+input,select{  margin: 10px 0px;
   width: 100%;
 
   outline: none;
   padding: 10px 5px;
   background-color: #f6f6f6;
 }
-
 .extra-line {
   font-size: 15px;
   font-weight: 600;
 }
-
 .extra-line a {
   color: #0095b6;
 }
-
 /******************************** _ CSS CURRENT FORM  _******************************************/
 
 
 
 
-section {
-  min-height: 90vh;
-  display: block;
+section{
+  min-height: 100vh;
+  display:inline;
   justify-content: center;
   align-items: center;
   padding: 10px;
+  margin-bottom: 40px;
 }
-
-.container {
-  text-transform: uppercase;
+.container{
+text-transform: uppercase;
   max-width: 700px;
   width: 100%;
   background-color: #fff;
   padding: 25px 30px;
   border-radius: 30px;
-  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.15);
+  box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.15);
 }
-
-.container .title {
+.container .title{
   font-size: 25px;
   font-weight: 500;
   position: relative;
 }
-
-.container .title::before {
+.container .title::before{
   content: "";
   position: absolute;
   left: 0;
@@ -66,26 +57,22 @@ section {
   border-radius: 5px;
   background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
-
-.content form .user-details {
+.content form .user-details{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 20px 0 12px 0;
 }
-
-form .user-details .input-box {
+form .user-details .input-box{
   margin-bottom: 15px;
   width: calc(100% / 2 - 20px);
 }
-
-form .input-box span.details {
+form .input-box span.details{
   display: block;
   font-weight: 500;
   margin-bottom: 5px;
 }
-
-.user-details .input-box input {
+.user-details .input-box input{
   height: 45px;
   width: 100%;
   outline: none;
@@ -96,9 +83,7 @@ form .input-box span.details {
   border-bottom-width: 2px;
   transition: all 0.3s ease;
 }
-
-select {
-  height: 45px;
+select { height: 45px;
   width: 100%;
   outline: none;
   font-size: 16px;
@@ -106,41 +91,33 @@ select {
   padding-left: 15px;
   border: 1px solid #ccc;
   border-bottom-width: 2px;
-  transition: all 0.3s ease;
-}
-
-select:focus {
+  transition: all 0.3s ease;}
+select:focus{
   border-color: #d3a6d4;
 }
-
-select:valid {
+select:valid{
   border-color: #d3a6d4;
 }
-
 .user-details .input-box input:focus,
-.user-details .input-box input:valid {
+.user-details .input-box input:valid{
   border-color: #d3a6d4;
 }
-
-form .gender-details .gender-title {
+ form .gender-details .gender-title{
   font-size: 20px;
   font-weight: 500;
-}
-
-form .category {
-  display: flex;
-  width: 80%;
-  margin: 14px 0;
-  justify-content: space-between;
-}
-
-form .category label {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-}
-
-form .category label .dot {
+ }
+ form .category{
+   display: flex;
+   width: 80%;
+   margin: 14px 0 ;
+   justify-content: space-between;
+ }
+ form .category label{
+   display: flex;
+   align-items: center;
+   cursor: pointer;
+ }
+ form .category label .dot{
   height: 18px;
   width: 18px;
   border-radius: 50%;
@@ -149,68 +126,57 @@ form .category label .dot {
   border: 5px solid transparent;
   transition: all 0.3s ease;
 }
-
-#dot-1:checked~.category label .one,
-#dot-2:checked~.category label .two,
-#dot-3:checked~.category label .three {
-  background: #9b59b6;
-  border-color: #d9d9d9;
-}
-
-form input[type="radio"] {
-  display: none;
-}
-
-form .button {
-  height: 45px;
-  margin: 35px 0
-}
-
-form .button input {
-  height: 100%;
-  width: 100%;
-  border-radius: 5px;
-  border: none;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background: linear-gradient(135deg, #71b7e6, #9b59b6);
-}
-
-form .button input:hover {
+ #dot-1:checked ~ .category label .one,
+ #dot-2:checked ~ .category label .two,
+ #dot-3:checked ~ .category label .three{
+   background: #9b59b6;
+   border-color: #d9d9d9;
+ }
+ form input[type="radio"]{
+   display: none;
+ }
+ form .button{
+   height: 45px;
+   margin: 35px 0
+ }
+ form .button input{
+   height: 100%;
+   width: 100%;
+   border-radius: 5px;
+   border: none;
+   color: #fff;
+   font-size: 18px;
+   font-weight: 500;
+   letter-spacing: 1px;
+   cursor: pointer;
+   transition: all 0.3s ease;
+   background: linear-gradient(135deg, #71b7e6, #9b59b6);
+ }
+ form .button input:hover{
   /* transform: scale(0.99); */
   background: linear-gradient(-135deg, #71b7e6, #9b59b6);
-}
-
-@media(max-width: 584px) {
-  .container {
-    max-width: 100%;
   }
-
-  form .user-details .input-box {
+ @media(max-width: 584px){
+ .container{
+  max-width: 100%;
+}
+form .user-details .input-box{
     margin-bottom: 15px;
     width: 100%;
   }
-
-  form .category {
+  form .category{
     width: 100%;
   }
-
-  .content form .user-details {
+  .content form .user-details{
     max-height: 300px;
     overflow-y: scroll;
   }
-
-  .user-details::-webkit-scrollbar {
+  .user-details::-webkit-scrollbar{
     width: 5px;
   }
-}
-
-@media(max-width: 459px) {
-  .container .content .category {
+  }
+  @media(max-width: 459px){
+  .container .content .category{
     flex-direction: column;
   }
 }
@@ -226,15 +192,15 @@ h4 {
   min-height: 80vh;
   padding: 5px;
   overflow: hidden;
-  margin-right: auto;
-  margin-left: auto;
+margin-right: auto;
+margin-left: auto;
   display: flex;
   flex-direction: column;
 }
 
 .profile .profile-header {
-  background-color: #d8dede;
-  background-image: linear-gradient(315deg, #d8dede 0%, #e5bdf6 74%);
+  background-color: #f8ceec;
+  background-image: linear-gradient(315deg, #f8ceec 0%, #a88beb 74%);
   display: flex;
   flex: 1;
   padding: 30px;
@@ -315,10 +281,13 @@ h4 {
 
 
 
-@media(max-width: 800px) {}
+@media(max-width: 800px){
+
+}
 
 .resposive {
-  width: 50vw;
+  width:40vw;
+  min-width: 500px;
 }
 
 
@@ -329,7 +298,7 @@ h4 {
 }
 
 
-.form-control {
+.form-control{
 
   border: 2px solid #9b59b6 !important;
 
@@ -349,5 +318,4 @@ h4 {
   box-shadow: none;
 
   padding: 10px 5px;
-  background-color: #f6f6f6;
-}
+  background-color: #f6f6f6;}

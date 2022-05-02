@@ -311,7 +311,7 @@
             {{ membre.getTel() }}
           </td>
             <td
-            class="responsive-table__body__text responsive-table__body__text--types">
+            class="responsive-table__body__text responsive-table__body__text--types" translate>
             input.msg.member
           </td>
             <td
@@ -384,14 +384,13 @@
       <div class="scrollist">
         <ul class="card__list">
           <li
-            class="card__list-item"
-            *ngFor="let demand of intervention.demandList"
+            class="card__list-item" *ngFor="let demand of intervention.demandList"
           >
             <div class="card__list-item__info">
-              <h5 class="text-uppercase">{{ demand.title }}</h5>
+              <h5 class="text-uppercase">{{demand.title}}</h5>
               <span
                 ><i class="fa fa-map-marker-alt"></i>
-                {{ demand.address.Street }}, {{ demand.address.City }},
+                {{demand.address.Street}}, {{demand.address.City}},
                 {{ demand.address.Country }}</span
               >
               <span

@@ -60,6 +60,8 @@ import { PieCategoriesComponent } from './components/chart/pie-categories/pie-ca
 import { RadarMaterialsComponent } from './components/chart/radar-materials/radar-materials.component';
 import { GlobalHttpInterceptorService } from './services/global-http-interceptor.service';
 import { GlobalErrorHandlerService } from './services/global-error-handler.service';
+import { ForgotPasswordComponent } from './components/public/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/public/reset-password/reset-password.component';
 
 export function httpTranslateLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -133,6 +135,8 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     PieTeamsComponent,
     PieCategoriesComponent,
     RadarMaterialsComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [CookieService, GuardAuthenticateGuard,AESEncoderService,
