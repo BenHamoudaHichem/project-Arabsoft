@@ -77,13 +77,13 @@ findDemand(id:string) {
   }
   accept()
   {
-    let demandAccepted=new Demand(this.demand.title,this.demand.description,this.demand.address,this.demand.createdAt,'Accepted',{id:this.demand.user.getId()})
+   /* let demandAccepted=new Demand(this.demand.title,this.demand.description,this.demand.address,this.demand.createdAt,'Accepted',{id:this.demand.user.getId()})
     this.demandService.update(String(this.route.snapshot.paramMap.get("id")),demandAccepted).subscribe((res:any)=>{
 
    if(res==true)
    {   console.log(res)}
 
     }),(error:HttpErrorResponse)=>{Report.failure('error',error.message,'ok')}
-
+*/
   }
 }

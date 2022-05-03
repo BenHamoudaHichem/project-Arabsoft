@@ -140,8 +140,9 @@
           </div>
           <div class="input-box">
             <span class="details" translate>input.titles.confirm_password</span>
-            <input type="password" placeholder="{{'input.titles.confirm_password'|translate}}"
-              placeholder="Confirmer votre mot de passe" />
+            <input type="password"
+            placeholder="{{'input.titles.confirm_password'|translate}}"
+            formControlName="confirm_password" />
             <p class="ErrorMsg" *ngIf="
                 !confirm_password?.valid &&
                 (confirm_password?.dirty || confirm_password?.touched)

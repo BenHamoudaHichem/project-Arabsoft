@@ -90,6 +90,9 @@ export class DetailMaterialComponent implements OnInit {
           if (data.status) {
             Notify.info(data.message);
           }
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
         }),
         (error: HttpErrorResponse) => {
           if (error.status == 401) {
@@ -102,5 +105,15 @@ export class DetailMaterialComponent implements OnInit {
       this.btn = this.textEnPanne;
       return;
     }
+  }
+
+
+  get Status():string{
+let    res="Functionnel"
+    if(this.material.status=='Broken_down')
+    {
+res="En panne"
+    }
+    return res
   }
 }

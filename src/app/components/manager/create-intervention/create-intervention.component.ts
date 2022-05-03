@@ -33,27 +33,33 @@ import { InterventionService } from 'src/app/services/works/intervention/interve
   styleUrls: ['./create-intervention.component.css'],
 })
 export class CreateInterventionComponent implements OnInit {
-  states!:string[]
-  cities!:string[]
+  states!: string[];
+  cities!: string[];
   createInterventionForm!: FormGroup;
-  currentDemand!:IDemand
+  currentDemand!: IDemand;
   demandList: Dbref[] = [];
-  categoryList: ICategory[]=[]
+  categoryList: ICategory[] = [];
   interventionList!: IIntervention[];
   materialsList!: IMaterial[];
-  teamList: ITeam[]=[];
-  statusList:Associatif[]=[{key:'En attente',value:"Waiting"},{key:'En cours',value:'In_Progress'}]
+  teamList: ITeam[] = [];
+  statusList: Associatif[] = [
+    { key: 'En attente', value: 'Waiting' },
+    { key: 'En cours', value: 'In_Progress' },
+    { key: 'Terminé', value: 'Completed' },
+    { key: 'En panne', value: 'Broken_down' },
+    { key: 'Annulé', value: 'Canceled' },
+  ];
   constructor(
     private formBuilder: FormBuilder,
     private interventionService: InterventionService,
     private categoryService: CategoryService,
     private teamService: TeamService,
-    private demandService :DemandService,
+    private demandService: DemandService,
     private materialService: EquipmentService,
-    private addressService:AddressService,
+    private addressService: AddressService,
     private router: Router,
     private route: ActivatedRoute,
-    private AuthenticateService:AuthenticateService
+    private AuthenticateService: AuthenticateService
   ) {
     this.createInterventionForm = this.formBuilder.group(
       {
@@ -63,31 +69,21 @@ export class CreateInterventionComponent implements OnInit {
         ],
         description: [
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Z ]{8,}$')],
+          [Validators.required, Validators.pattern('^[a-zA-Z ]{4,}$')],
         ],
         category: ['', [Validators.required]],
         date: ['', [Validators.required]],
         status: ['', [Validators.required]],
         team: ['', [Validators.required]],
         Materiel: ['', [Validators.required]],
-        state: [
+        state: ['', [Validators.required]],
+        city: ['', [Validators.required]],
+        street: ['', [Validators.required]],
+        country: ['', [Validators.required]],
+        zipCode: [
           '',
-          [Validators.required],
+          [Validators.required, Validators.pattern('^[0-9 -]{4,}$')],
         ],
-        city: [
-          '',
-          [Validators.required],
-        ],
-        street: [
-          '',
-          [Validators.required],
-        ],
-        country: [
-          '',
-          [Validators.required],
-        ],
-        zipCode: ['', [Validators.required, Validators.pattern('^[0-9 -]{4,}$')]],
-
       },
       {
         validators: DateValidation.DateConfirmation(
@@ -96,42 +92,45 @@ export class CreateInterventionComponent implements OnInit {
         ),
       }
     );
-    this.counrty?.setValue("Tunisie")
+    this.counrty?.setValue('Tunisie');
 
-    this.city?.disable()
-    this.collectStates()
-
+    this.city?.disable();
+    this.collectStates();
   }
 
   dropdownSettings!: {};
   ngOnInit() {
-this.counrty?.setValue('Tunisie')
+    this.counrty?.setValue('Tunisie');
 
-    this.demandList = new Array(new Dbref(this.route.snapshot.paramMap.get('id')!));
+    this.demandList = new Array(
+      new Dbref(this.route.snapshot.paramMap.get('id')!)
+    );
     this.all();
     this.materialsAvailable();
 
-    console.log(this.categoryList)
+    console.log(this.categoryList);
     this.teamsAvailable();
-    this.demandService.findDemand(this.route.snapshot.paramMap.get('id')!).pipe(finalize(()=>this.currentDemand.title===undefined)).subscribe((res:IDemand)=>{
-      this.currentDemand=res as IDemand;
-      this.currentDemand.address=plainToClass(Address,res.address)
-      console.log(this.currentDemand)
-      this.state?.setValue(this.currentDemand.address.State)
-      this.zipCode?.setValue(this.currentDemand.address.ZipCode)
-      this.city?.setValue(this.currentDemand.address.City)
-      this.street?.setValue(this.currentDemand.address.Street)
-      this.counrty?.setValue(this.currentDemand.address.Country)
-      this.currentDemand.user=plainToClass(User,res.user)
-    }),(error:HttpErrorResponse)=>{
-      if(error.status==401){
-        this.AuthenticateService.redirectIfNotAuth()
-
-      } else{
-        Report.failure('Erreur', error.message,'OK')
-
-      }
-    };
+    this.demandService
+      .findDemand(this.route.snapshot.paramMap.get('id')!)
+      .pipe(finalize(() => this.currentDemand.title === undefined))
+      .subscribe((res: IDemand) => {
+        this.currentDemand = res as IDemand;
+        this.currentDemand.address = plainToClass(Address, res.address);
+        console.log(this.currentDemand);
+        this.state?.setValue(this.currentDemand.address.State);
+        this.zipCode?.setValue(this.currentDemand.address.ZipCode);
+        this.city?.setValue(this.currentDemand.address.City);
+        this.street?.setValue(this.currentDemand.address.Street);
+        this.counrty?.setValue(this.currentDemand.address.Country);
+        this.currentDemand.user = plainToClass(User, res.user);
+      }),
+      (error: HttpErrorResponse) => {
+        if (error.status == 401) {
+          this.AuthenticateService.redirectIfNotAuth();
+        } else {
+          Report.failure('Erreur', error.message, 'OK');
+        }
+      };
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',
@@ -147,21 +146,21 @@ this.counrty?.setValue('Tunisie')
   }
   onSelectAll(items: any) {
     console.log(JSON.stringify(items));
-
   }
 
   teamsAvailable() {
-    this.teamService.allByStatus("Available").subscribe((data: ITeam[]) => {
+    this.teamService.allByStatus('Available').subscribe((data: ITeam[]) => {
       this.teamList = data;
       console.log(this.teamList);
-      this.teamList.forEach(item => {
-        item.manager=plainToClass(User,item.manager)
+      this.teamList.forEach((item) => {
+        item.manager = plainToClass(User, item.manager);
 
-        item.manager.setAddress(plainToClass(Address,item.manager.getAddress()))
-        item.members.forEach(subItem => {
-          subItem=plainToClass(User,subItem)
-          subItem.setAddress(plainToClass(Address,subItem.getAddress()))
-
+        item.manager.setAddress(
+          plainToClass(Address, item.manager.getAddress())
+        );
+        item.members.forEach((subItem) => {
+          subItem = plainToClass(User, subItem);
+          subItem.setAddress(plainToClass(Address, subItem.getAddress()));
         });
       });
     }),
@@ -169,19 +168,20 @@ this.counrty?.setValue('Tunisie')
         Report.failure('erreur getting Teams', errors.message, 'Ok');
       };
   }
-materialsAvailable() {
-    this.materialService.allByStatus("Available").subscribe((data: IMaterial[]) => {
-      this.materialsList = data;
-      console.log(this.materialsList);
-    }),
+  materialsAvailable() {
+    this.materialService
+      .allByStatus('Available')
+      .subscribe((data: IMaterial[]) => {
+        this.materialsList = data;
+        console.log(this.materialsList);
+      }),
       (error: HttpErrorResponse) => {
-        if(error.status==401){
-          this.AuthenticateService.redirectIfNotAuth()
-
-        }else{
-          Report.failure('Erreur', error.message,'OK')
-
-        }}
+        if (error.status == 401) {
+          this.AuthenticateService.redirectIfNotAuth();
+        } else {
+          Report.failure('Erreur', error.message, 'OK');
+        }
+      };
   }
 
   all() {
@@ -190,17 +190,16 @@ materialsAvailable() {
       console.log(this.categoryList);
     }),
       (errors: HttpErrorResponse) => {
-        if(errors.status==401){
-          this.AuthenticateService.redirectIfNotAuth()
-
-        } else{
-          Report.failure('Erreur', errors.message,'OK')
-
-        }          };
+        if (errors.status == 401) {
+          this.AuthenticateService.redirectIfNotAuth();
+        } else {
+          Report.failure('Erreur', errors.message, 'OK');
+        }
+      };
   }
 
   create() {
-     console.log(this.createInterventionForm.value)
+    console.log(this.createInterventionForm.value);
     //console.log(this.Materiel?.value);
     Array.from(this.Materiel?.value as IMaterial[], (x) => x.id);
     let intervention = new Intervention(
@@ -209,14 +208,13 @@ materialsAvailable() {
       new Dbref(this.category?.value),
       new Address(
         HTMLEscape.escapeMethod(this.zipCode?.value),
-        HTMLEscape.escapeMethod(this.street?.value)
-        ,
-        HTMLEscape.escapeMethod(this.city?.value)
-        ,
+        HTMLEscape.escapeMethod(this.street?.value),
+        HTMLEscape.escapeMethod(this.city?.value),
         HTMLEscape.escapeMethod(this.state?.value),
         HTMLEscape.escapeMethod(this.counrty?.value),
-        new Location(0,0)),
-      moment(this.date?.value).format("DD-MM-yyyy"),
+        new Location(0, 0)
+      ),
+      moment(this.date?.value).format('DD-MM-yyyy'),
       this.demandList,
       Array.from(this.Materiel?.value as any[], (x) => new Dbref(x.id)),
 
@@ -224,7 +222,7 @@ materialsAvailable() {
       this.status?.value
     );
     console.log(JSON.stringify(intervention));
-      this.interventionService.create(intervention).subscribe((data: any) => {
+    this.interventionService.create(intervention).subscribe((data: any) => {
       console.log(data);
       if (data.status == true) {
         Report.success('Notification', data.message, 'OK');
@@ -234,35 +232,30 @@ materialsAvailable() {
       }
     }),
       (error: HttpErrorResponse) => {
-        if(error.status==401){
-          this.AuthenticateService.redirectIfNotAuth()
-
-        } else{
-          Report.failure('Erreur', error.message,'OK')
-
-        }          }
+        if (error.status == 401) {
+          this.AuthenticateService.redirectIfNotAuth();
+        } else {
+          Report.failure('Erreur', error.message, 'OK');
+        }
+      };
   }
 
-
-  collectStates()
-  {
-
-    this.addressService.allTNStates.subscribe((res:string[])=>{
-      this.states=res
-    })
+  collectStates() {
+    this.addressService.allTNStates.subscribe((res: string[]) => {
+      this.states = res;
+    });
   }
-  collectCitiesBystates(state:string)
-  {
-    this.addressService.allTNCitiesByState(state).subscribe((res:string[])=>{
-      this.cities=res
-    })
+  collectCitiesBystates(state: string) {
+    this.addressService.allTNCitiesByState(state).subscribe((res: string[]) => {
+      this.cities = res;
+    });
   }
-  loadCities(){
+  loadCities() {
     if (this.city?.disabled) {
-      this.city?.enable()
+      this.city?.enable();
     }
 
-    this.collectCitiesBystates(this.state?.value)
+    this.collectCitiesBystates(this.state?.value);
   }
   get title() {
     return this.createInterventionForm.get('title');
@@ -302,65 +295,81 @@ materialsAvailable() {
     return this.createInterventionForm.get('zipCode');
   }
 
-
-  chechIsNow(){
-    if(this.status?.value==this.statusList[1].value)
-    {
-      this.date?.setValue(moment(new Date()).format('yyyy-MM-DD'))
+  chechIsNow() {
+    if (this.status?.value == this.statusList[1].value) {
+      this.date?.setValue(moment(new Date()).format('yyyy-MM-DD'));
     }
   }
 
-  check(){
+  check() {
+    Object.keys(this.createInterventionForm.controls).forEach((key) => {
+      if (this.createInterventionForm.get(key)!.errors) {
+        console.log(this.createInterventionForm.get(key)!.errors);
+        if (
+          this.createInterventionForm
+            .get(key)!
+            .errors!.hasOwnProperty('required')
+        ) {
+          Report.failure(key, 'Champs obligatoire', "D'accord");
+        }
+        if (
+          this.createInterventionForm
+            .get(key)!
+            .errors!.hasOwnProperty('pattern')
+        ) {
+          let stringAlpha: string = ' des lettres alphabétiques ';
+          let stringdigit: string = ' des chiffres ';
+          let stringMin: string = ' au minimum ';
+          let stringMax: string = ' au maximum ';
+          let stringOperation: string = String(
+            this.createInterventionForm.get(key)!.errors!['pattern']
+              .requiredPattern
+          );
+          console.log(stringOperation);
 
-   Object.keys(this.createInterventionForm.controls).forEach(key => {
-   if (this.createInterventionForm.get(key)!.errors) {
-   console.log(this.createInterventionForm.get(key)!.errors)
-    if(this.createInterventionForm.get(key)!.errors!.hasOwnProperty('required'))
-    {
-      Report.failure(key,"Champs obligatoire","D'accord")
-    }
-    if(this.createInterventionForm.get(key)!.errors!.hasOwnProperty('pattern'))
-    {
-      let stringAlpha:string=" des lettres alphabétiques "
-      let stringdigit:string=" des chiffres "
-      let stringMin:string=" au minimum "
-      let stringMax:string=" au maximum "
-      let stringOperation:string=String(this.createInterventionForm.get(key)!.errors!["pattern"].requiredPattern)
-      console.log(stringOperation);
+          let res: string = '';
+          if (stringOperation.indexOf('a-z') != -1) {
+            res = 'Ce champs doit contenir';
+            res = res + stringAlpha;
+          }
+          if (stringOperation.indexOf('0-9') != -1) {
+            if (res.length == 0) {
+              res = 'Ce champs doit contenir';
+              res = res + stringdigit;
+            } else {
+              res = res + 'et' + stringdigit;
+            }
+          }
 
-      let res:string=""
-      if(stringOperation.indexOf("a-z")!=-1)
-      {
-        res="Ce champs doit contenir"
-        res=res+stringAlpha
-      }
-      if(stringOperation.indexOf("0-9")!=-1){
-        if(res.length==0){res="Ce champs doit contenir"
-      res=res+ stringdigit}else{
+          if (stringOperation.includes('{')) {
+            let min: number = Number(
+              stringOperation.substring(
+                stringOperation.indexOf('{') + 1,
+                stringOperation.indexOf(',')
+              )
+            );
+            res = res.concat('avec un taille de ' + min + stringMin);
+            if (
+              Number(
+                stringOperation.substring(
+                  stringOperation.indexOf(',') + 1,
+                  stringOperation.indexOf('}')
+                )
+              ) !== 0
+            ) {
+              let max: number = Number(
+                stringOperation.substring(
+                  stringOperation.indexOf(',') + 1,
+                  stringOperation.indexOf('}')
+                )
+              );
+              res = res.concat('et de ' + max + stringMax);
+            }
+          }
 
-        res=res+"et"+stringdigit
-      }
-    }
-
-      if (stringOperation.includes("{")) {
-        let min:number=Number(stringOperation.substring(
-          stringOperation.indexOf("{")+1,
-          stringOperation.indexOf(",")
-        ))
-        res=res.concat("avec un taille de "+min+stringMin)
-        if ((Number(stringOperation.substring(stringOperation.indexOf(",")+1,stringOperation.indexOf("}")))!==0)) {
-          let max:number=Number(stringOperation.substring(
-            stringOperation.indexOf(",")+1,
-            stringOperation.indexOf("}")
-          ))
-          res=res.concat("et de "+max+stringMax)
+          Report.failure(key, res, "D'accord");
         }
       }
-
-      Report.failure(key,res,"D'accord")
-    }
-
-   }
-})
-}
+    });
+  }
 }
