@@ -57,7 +57,7 @@
       "member": "Membre",
       "mm_select": "Selectionner les membres",
       "msg_interv": "Il ya {{interventionList}} interventions dans cette catégorie",
-      "msg_tm": "Il ya {{ members }} membres dans cette équipe",
+      "msg_tm": "Il ya {{members}} membres dans cette équipe",
       "team": " Entrez le nom d'équipe",
       "tel": "(+216) __ ___ ___",
       "tm": "Chef d'équipe ",
@@ -225,5 +225,9 @@
   "link_register":"Créer un nouveau compte",
   "link_forgot_pass":"Mot de passe oublié ?"
 
+},
+"not_found":{
+  "title":"Erreur 404 - Page non trouvée",
+  "info":"Désolé, la page que vous recherchez n'est pas accessible"
 }
 }

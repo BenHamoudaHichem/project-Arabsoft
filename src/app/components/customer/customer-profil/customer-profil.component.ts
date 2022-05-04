@@ -61,6 +61,23 @@ export class CustomerProfilComponent implements OnInit {
         };
     }
   }
+get Role():string
+{
+ let res="Membre"
+ switch (this.user.roles[0].name) {
+     case 'ROLE_CUSTOMER':
+     res="Client"
+     break;
+     case 'ROLE_TEAMMANAGER':
+     res="Chef d'équipe"
+     break;
+    case 'ROLE_MANAGER':
+     res="Gestionnaire"
+     break;
+ }
+  return res
+}
+
   isProfilUser() {
     return (
       this.cookiesServices.getIdentifier ==

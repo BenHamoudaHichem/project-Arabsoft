@@ -37,8 +37,9 @@
   top: 0;
 }
 
-.profile-head h5 {
-  color: #333;
+.profile-head span{
+  color: rgb(37, 35, 35);
+  font-size: 15px;
 
 }
 

@@ -1,5 +1,13 @@
+<title translate>not_found.title</title>
+<section class="h-100">
+  <app-nav-bar *ngIf="!checkRoute()"></app-nav-bar>
+
 <main>
+
   <h1>4<span><i class="fas fa-ghost"></i></span>4</h1>
-  <h2>Error: 404 page not found</h2>
-  <p>Sorry, the page you're looking for cannot be accessed</p>
+  <h2 translate>not_found.title</h2>
+  <p  translate>not_found.info</p>
 </main>
+<app-footer *ngIf="!checkRoute()"></app-footer>
+
+</section>

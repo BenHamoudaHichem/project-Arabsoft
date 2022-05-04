@@ -6,27 +6,42 @@ import { Report } from 'notiflix';
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css']
+  styleUrls: ['./footer.component.css'],
 })
 export class FooterComponent implements OnInit {
-mailForm:FormGroup
-  constructor(private route:Router,@Inject(SESSION_STORAGE) private storage: StorageService,private formBuilder:FormBuilder) {
+  mailForm: FormGroup;
+  constructor(
+    private route: Router,
+    @Inject(SESSION_STORAGE) private storage: StorageService,
+    private formBuilder: FormBuilder
+  ) {
     this.mailForm = this.formBuilder.group({
-      email: ['',[Validators.required, Validators.email],
-      ]}
-    )}
-
-  authRoute(){return this.route.url=='/register' || this.route.url=='/login'|| this.route.url=='/forgotPassword' || this.route.url=='/resetPassword'}
-checkContactRoute(){return this.route.url=='/contact'}
-    mail(){
-this.storage.set('email',this.email?.value)
-this.route.navigateByUrl('/contact')
-    }
-
-    get email(){return this.mailForm.get('email')}
-
-    ngOnInit(): void {
+      email: ['', [Validators.required, Validators.email]],
+    });
   }
+
+  authRoute() {
+    return (
+      this.route.url == '/register' ||
+      this.route.url == '/login' ||
+      this.route.url == '/forgotPassword' ||
+      this.route.url == '/resetPassword' ||
+      this.route.url == '/not-found'
+    );
+  }
+  checkContactRoute() {
+    return this.route.url == '/contact';
+  }
+  mail() {
+    this.storage.set('email', this.email?.value);
+    this.route.navigateByUrl('/contact');
+  }
+
+  get email() {
+    return this.mailForm.get('email');
+  }
+
+  ngOnInit(): void {}
   check() {
     Object.keys(this.mailForm.controls).forEach((key) => {
       if (this.mailForm.get(key)!.errors) {
@@ -89,6 +104,4 @@ this.route.navigateByUrl('/contact')
       }
     });
   }
-
-
 }

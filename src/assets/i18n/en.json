@@ -57,7 +57,7 @@
       "member": "Member",
       "mm_select": "Select members",
       "msg_interv": "There are {{ interventionList }} interventions in this category",
-      "msg_tm": "There are {{ members }} members in this team",
+      "msg_tm": "There are {{members}} members in this team",
       "team": "Enter the team name",
       "tm": "Team manager",
       "tel": "(+216) __ ___ ___",
@@ -216,6 +216,7 @@
   "plan":"Plan of our web site",
   "contact":"Contact Us"
 },
+
 "links":{"arabsoft":"Company arabsoft",
 "sector":"Public sector",
 "customers":"Our customers",
@@ -223,6 +224,9 @@
   "link_register":"Create a new account",
   "link_forgot_pass":"Forgot password?"
 
+},
+"not_found":{
+  "title":"Error: 404 page not found",
+  "info":"Sorry, the page you're looking for cannot be accessed"
 }
-
 }
