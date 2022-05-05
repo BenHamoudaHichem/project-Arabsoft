@@ -3,6 +3,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Route, Router } from '@angular/router';
+import moment from 'moment';
 import { Notify, Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
 import { Location } from 'src/app/models/Location';
@@ -56,7 +57,7 @@ export class AddMaterialsComponent implements OnInit {
         '',
         [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
       ],
-      zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
+      zipCode: ['', [Validators.required, Validators.pattern('^[a-z0-9]{4,}$')]],
 
     });
     this.counrty?.setValue("Tunisie")
@@ -82,7 +83,7 @@ create() {
       HTMLEscape.escapeMethod(String(this.name?.value)),
       HTMLEscape.escapeMethod(String(this.description?.value)),
       address,
-      this.dateOfPurshase?.value,
+      moment(this.dateOfPurshase?.value,'YYYY-MM-DD').toDate(),
       HTMLEscape.escapeMethod( String(this.status?.value))
     );
     console.log(material);

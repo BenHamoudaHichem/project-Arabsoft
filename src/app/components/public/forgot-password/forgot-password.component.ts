@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Report } from 'notiflix';
+import { ResetService } from 'src/app/services/reset.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -10,7 +11,7 @@ import { Report } from 'notiflix';
 })
 export class ForgotPasswordComponent implements OnInit {
   forgetPass!: FormGroup;
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router,private resetService:ResetService) {
     this.forgetPass = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
     });
@@ -85,6 +86,20 @@ export class ForgotPasswordComponent implements OnInit {
   }
   sendEmail() {
     console.log(this.email?.value);
-    this.router.navigate(['/resetPassword']);
+    this.resetService.forget(this.email?.value).subscribe((res:any)=>{
+      if (res.status==true) {
+        Report.info(
+          'Mot de passe oublié',
+          res.message+' <br/><br/>- ArabIntervent',
+          "D'accord",
+          );
+      } else {
+        Report.failure(
+          'Mot de passe oublié',
+          '"Votre addresse email n existe pas!" <br/><br/>- ArabIntervent',
+          "D'accord",
+          );
+      }
+    })
   }
 }

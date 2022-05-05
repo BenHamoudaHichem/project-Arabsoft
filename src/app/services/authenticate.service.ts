@@ -20,7 +20,6 @@ export class AuthenticateService {
   private apiURL = 'http://127.0.0.1:8080/api/auth';
   constructor(private http: HttpClient, private router: Router,private cookies:CookiesService) {
 
-   // this.doCheck()
   }
 
 

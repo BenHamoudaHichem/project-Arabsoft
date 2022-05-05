@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Report } from 'notiflix';
 import { Observable } from 'rxjs';
 import { CAPTCHA_KEY } from 'src/app/services/properties';
+import { ResetService } from 'src/app/services/reset.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { Confirmed } from 'src/app/services/validation/Confirmed';
 
@@ -17,7 +18,7 @@ export class ResetPasswordComponent implements OnInit {
   siteKey = CAPTCHA_KEY;
   resetPassword!:FormGroup
   constructor(
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,private resetService:ResetService, private route: ActivatedRoute,private router:Router
   ) {
     this.resetPassword = this.formBuilder.group(
       {
@@ -44,7 +45,22 @@ export class ResetPasswordComponent implements OnInit {
 
   resetPass(){
 //this.router.navigate(['/resetPassword'])
-console.log(this.resetPassword.value)  }
+console.log(this.resetPassword.value)
+this.resetService.reset(this.route.snapshot.paramMap.get("token")!,this.resetPassword?.value).subscribe((res:any)=>{
+console.log(res);
+
+  if (res.status==true) {
+    Report.info(
+      'Nouvelle mot de passe',
+      res.message+' <br/><br/>- ArabIntervent',
+      "D'accord",
+      );
+      this.router.navigate(['/login'])
+
+  }
+
+})
+ }
   checkCaptcha(captchaResponse: string) {
     console.log(
       (this.captchaResolved =

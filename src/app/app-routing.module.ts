@@ -41,6 +41,7 @@ import { UpdateTeamComponent } from './components/manager/update-team/update-tea
 import { UpdateInterventionComponent } from './components/manager/update-intervention/update-intervention.component';
 import { ForgotPasswordComponent } from './components/public/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/public/reset-password/reset-password.component';
+import { ResetGuard } from './reset.guard';
 const roles = { customer: 'ROLE_CUSTOMER', manager: 'ROLE_MANAGER' };
 const routes: Routes = [
   { path: 'home', component: HomeComponentPage, canActivate: [RedirectGuard] },
@@ -72,9 +73,9 @@ const routes: Routes = [
     canActivate: [RedirectGuard],
   },
   {
-    path: 'resetPassword',
+    path: 'reset-password/:token',
     component: ResetPasswordComponent,
-    canActivate: [RedirectGuard],
+    canActivate: [RedirectGuard,ResetGuard],
   },
   {
     path: 'dashboard',
