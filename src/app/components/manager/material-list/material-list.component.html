@@ -1,126 +1,121 @@
 <title translate> titles.materials_list </title>
-<section class="min-h-100">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
 
-      <div class="row">
-        <div class="col">
-          <div class="logo">
-            <h1 class="mb-5 text-center text-uppercase" translate>
+
+<div class="container py-5">
+
+  <div class="row">
+    <div class="col">
+      <div class="logo">
+        <h1 class="mb-5 text-center text-uppercase" translate>
           titles.materials_list
-            </h1>
-          </div>
-        </div>
-        <div class="col"><app-radar-materials></app-radar-materials></div>
-      </div>
-      <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <a [routerLink]="['/dashboard/manager/materialList']" routerLinkActive>
-            <button (click)="showAll()" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
-              data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" translate >
-              <i class="fas fa-list"></i> buttons.all
-            </button></a>
-          <a [routerLink]="['/dashboard/manager/materialList']" routerLinkActive
-            [queryParams]="{ status: 'Available' }">
-            <button (click)="allByStatus()" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
-              data-bs-target="#nav-profile" type="button" role="tab" aria-selected="false" translate>
-              <i class="fa fa-spinner" aria-hidden="true"></i>
-              buttons.available
-            </button></a>
-
-                 <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
-                   data-bs-target="#nav-map" type="button" role="tab" aria-selected="false" translate>
-                   map
-                 </button>
-        </div>
-      </nav>
-      <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-
-          <article class="postcard light" *ngFor="let material of materialList">
-            <a class="postcard__img_link" routerLinkActive="router-link-active"
-              [routerLink]="['/dashboard/manager/detailMaterial', material.id]">
-              <img class="postcard__img"
-                src="https://wallup.net/wp-content/uploads/2017/11/23/516941-Kalita_Ivan_Sergejewitsch-monochrome-tools-748x529.jpg"
-                alt="Image Title" />
-            </a>
-            <div class="postcard__text t-dark">
-              <h1 class="postcard__title blue">
-                {{ material.name }}
-              </h1>
-
-              <div class="postcard__subtitle small" >
-              <span translate>  status.title</span> &nbsp; <strong>{{ Status }}</strong>
-              </div>
-              <div class="postcard__bar"></div>
-
-              <ul class="postcard__tagbox">
-                <li class="tag__item">
-                  <a routerLinkActive="router-link-active" [routerLink]="[
-                      '/dashboard/manager/detailMaterial',
-                      material.id
-                    ]" translate ><i class="fas fa-info-circle"></i>buttons.consult_details</a>
-                </li>
-                <li class="tag__item">
-                  <a routerLinkActive="router-link-active" [routerLink]="[
-                      '/dashboard/manager/updateMaterial',
-                      material.id
-                    ]" translate ><i class="fas fa-info-circle"></i>buttons.edit</a>
-                </li>
-              </ul>
-            </div>
-          </article>
-        </div>
-
-        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-          <article class="postcard light" *ngFor="let material of materialList">
-            <a class="postcard__img_link" routerLinkActive="router-link-active"
-              [routerLink]="['/dashboard/manager/detailMaterial', material.id]">
-              <img class="postcard__img"
-                src="https://wallup.net/wp-content/uploads/2017/11/23/516941-Kalita_Ivan_Sergejewitsch-monochrome-tools-748x529.jpg"
-                alt="Image Title" />
-            </a>
-            <div class="postcard__text t-dark">
-              <h1 class="postcard__title blue">
-                {{ material.name }}
-              </h1>
-
-              <div class="postcard__subtitle small" >
-               <span translate> status.title </span> <strong>{{Status}}</strong>
-              </div>
-              <div class="postcard__bar"></div>
-
-              <ul class="postcard__tagbox">
-                <li class="tag__item">
-                  <a routerLinkActive="router-link-active" [routerLink]="[
-                      '/dashboard/manager/detailMaterial',
-                      material.id
-                    ]" translate ><i class="fas fa-info-circle"></i>buttons.consult_details</a>
-                </li>
-                <li class="tag__item">
-                  <a routerLinkActive="router-link-active" [routerLink]="[
-                      '/dashboard/manager/updateMaterial',
-                      material.id
-                    ]" translate ><i class="fas fa-info-circle"></i>buttons.edit</a>
-                </li>
-              </ul>
-            </div>
-          </article>
-        </div>
-        <div class="tab-pane fade" id="nav-map" role="tabpanel" aria-labelledby="nav-profile-tab">
-          <div class="wrapper">
-            <div class="content-area">
-
-            <div>
-              <h2> Map </h2>
-            </div>
-
-            <div id="map"  class="map demo-area"></div>
-
-          </div>
-          </div>
-        </div>
+        </h1>
       </div>
     </div>
+    <div class="col">
+      <app-radar-materials></app-radar-materials>
+    </div>
+
   </div>
-</section>
+  <div class="tab_container">
+
+    <input id="tab1" type="radio" (click)="showAll()" name="tabs" checked>
+    <label for="tab1" translate> <i class="fas fa-list"></i> buttons.all</label>
+
+    <input id="tab2" type="radio" (click)="allByStatus('Available')" name="tabs">
+    <label for="tab2" translate> <i class="fa fa-spinner" aria-hidden="true"></i>
+      buttons.available
+    </label>
+
+    <input id="tab3" type="radio" name="tabs">
+    <label for="tab3"><i class="fa fa-map"></i>
+      map </label>
+    <section id="content1" class="tab-content">
+
+      <article class="postcard light" *ngFor="let material of materialList">
+        <a class="postcard__img_link" routerLinkActive="router-link-active"
+          [routerLink]="['/dashboard/manager/detailMaterial', material.id]">
+          <img class="postcard__img"
+            src="https://wallup.net/wp-content/uploads/2017/11/23/516941-Kalita_Ivan_Sergejewitsch-monochrome-tools-748x529.jpg"
+            alt="Image Title" />
+        </a>
+        <div class="postcard__text t-dark">
+          <h1 class="postcard__title blue">
+            {{ material.name }}
+          </h1>
+
+          <div class="postcard__subtitle small">
+            <span translate> status.title</span> &nbsp; <strong>{{ Status }}</strong>
+          </div>
+          <div class="postcard__bar"></div>
+
+          <ul class="postcard__tagbox">
+            <li class="tag__item">
+              <a routerLinkActive="router-link-active" [routerLink]="[
+                '/dashboard/manager/detailMaterial',
+                material.id
+              ]" translate><i class="fas fa-info-circle"></i>buttons.consult_details</a>
+            </li>
+            <li class="tag__item">
+              <a routerLinkActive="router-link-active" [routerLink]="[
+                '/dashboard/manager/updateMaterial',
+                material.id
+              ]" translate><i class="fas fa-info-circle"></i>buttons.edit</a>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+    </section>
+    <section id="content2" class="tab-content">
+
+      <article class="postcard light" *ngFor="let material of materialList">
+        <a class="postcard__img_link" routerLinkActive="router-link-active"
+          [routerLink]="['/dashboard/manager/detailMaterial', material.id]">
+          <img class="postcard__img"
+            src="https://wallup.net/wp-content/uploads/2017/11/23/516941-Kalita_Ivan_Sergejewitsch-monochrome-tools-748x529.jpg"
+            alt="Image Title" />
+        </a>
+        <div class="postcard__text t-dark">
+          <h1 class="postcard__title blue">
+            {{ material.name }}
+          </h1>
+
+          <div class="postcard__subtitle small">
+            <span translate> status.title </span> <strong>{{Status}}</strong>
+          </div>
+          <div class="postcard__bar"></div>
+
+          <ul class="postcard__tagbox">
+            <li class="tag__item">
+              <a routerLinkActive="router-link-active" [routerLink]="[
+                '/dashboard/manager/detailMaterial',
+                material.id
+              ]" translate><i class="fas fa-info-circle"></i>buttons.consult_details</a>
+            </li>
+            <li class="tag__item">
+              <a routerLinkActive="router-link-active" [routerLink]="[
+                '/dashboard/manager/updateMaterial',
+                material.id
+              ]" translate><i class="fas fa-info-circle"></i>buttons.edit</a>
+            </li>
+          </ul>
+        </div>
+      </article>
+    </section>
+    <section id="content3" class="tab-content">
+
+      <div class="wrapper">
+        <div class="content-area">
+
+          <div>
+            <h2> Map </h2>
+          </div>
+
+          <div id="map" class="map demo-area"></div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+</div>

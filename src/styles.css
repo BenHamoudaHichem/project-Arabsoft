@@ -175,3 +175,9 @@ p {
 .card{
   border-radius: 10px;}
 
+
+
+  input[type="checkbox"] {
+    transform: scale(2) !important;
+    margin-right: 15px;
+  }

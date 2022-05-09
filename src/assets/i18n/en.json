@@ -121,9 +121,13 @@
     "categories": "Categories",
     "choose_file": "Choose file",
     "customers": "Customers",
+    "customers_list":"Customers list",
+
     "date": "Publication date",
     "demands": {
       "detail": "Claims detail",
+      "demand_list":"Claims list",
+
       "title": "Claims",
       "title_home": "List of claims sent"
     },

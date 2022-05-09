@@ -16,6 +16,11 @@ export class UpdatePasswordComponent implements OnInit {
   public captchaResolved: boolean = false;
   siteKey = CAPTCHA_KEY;
   formUpdatePassword!: FormGroup;
+  hide: boolean = true;
+
+  showFn() {
+    this.hide = !this.hide;
+  }
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,

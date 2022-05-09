@@ -40,13 +40,10 @@ export class ReclamationListComponent implements OnInit {
         }
       };
   }
-  allByStatus() {
-    this.route.queryParams.subscribe((params) => {
-      this.status = params['status'];
-      console.log(this.status);
-    });
+  allByStatus(status:string) {
 
-    this.serviceDemand.allByStatus(this.status).subscribe((ID: IDemand[]) => {
+
+    this.serviceDemand.allByStatus(status).subscribe((ID: IDemand[]) => {
       this.demandList = ID;
     }),
       (error: HttpErrorResponse) => {

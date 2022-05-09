@@ -1,6 +1,6 @@
 <title translate> titles.teams_list </title>
 
-<section class="min-h-100">
+
   <div class="container py-5 h-100">
 
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -17,98 +17,97 @@
         </div>
 
       </div>
-      <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <button (click)="all()" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
-            data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" translate>
-           buttons.all
-          </button>
-          <button (click)="teamAvailable()" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" translate
-            role="tab" aria-selected="false">
-            buttons.available
-          </button>
+
+
+
+  <div class="tab_container">
+
+    <input id="tab1" type="radio" (click)="all()" name="tabs" checked>
+    <label for="tab1" translate> <i class="fas fa-list"></i> buttons.all</label>
+
+    <input id="tab2" type="radio" (click)="teamAvailable()" name="tabs">
+    <label for="tab2" translate> <i class="fa fa-spinner" aria-hidden="true"></i>
+      buttons.available
+    </label>
+
+
+    <section id="content1" class="tab-content">
+      <article class="postcard light" *ngFor="let team of teamList">
+        <a class="postcard__img_link" routerLinkActive="router-link-active"
+          [routerLink]="['/dashboard/manager/detailTeam', team.id]">
+          <img class="postcard__img"
+            src="https://wallpaperaccess.com/full/1393442.jpg"
+            alt="Image Title" />
+        </a>
+        <div class="postcard__text t-dark">
+          <h1 class="postcard__title blue">
+            <i class="fa fa-users-cog"></i>{{ team.name }}
+          </h1>
+          <div class="postcard__subtitle small">
+            <i class="fas fa-user-circle"></i>
+            <span translate>input.titles.tm</span>
+            <strong> {{ team.manager.getfirstName() }} </strong>
+          </div>
+          <div class="postcard__bar"></div>
+          <div class="postcard__preview-txt">
+
+            <p [translate]="'input.msg.msg_tm'" [translateParams]="{members: team.members.length}"></p>
+          </div>
+          <ul class="postcard__tagbox">
+            <li class="tag__item">
+              <a routerLinkActive="router-link-active" [routerLink]="['/dashboard/manager/detailTeam', team.id]" translate><i
+                  class="fas fa-info-circle"></i>   buttons.consult_details </a>
+            </li>
+            <li class="tag__item">
+              <a routerLinkActive="router-link-active" [routerLink]="['/dashboard/manager/updateTeam', team.id]" translate><i
+                  class="fas fa-edit"></i>   titles.update_team </a>
+            </li>
+          </ul>
         </div>
-      </nav>
-      <!--End nav-->
-      <!--Start content-->
-      <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-          <article class="postcard light" *ngFor="let team of teamList">
-            <a class="postcard__img_link" routerLinkActive="router-link-active"
-              [routerLink]="['/dashboard/manager/detailTeam', team.id]">
-              <img class="postcard__img"
-                src="https://wallpaperaccess.com/full/1393442.jpg"
-                alt="Image Title" />
-            </a>
-            <div class="postcard__text t-dark">
-              <h1 class="postcard__title blue">
-                <i class="fa fa-users-cog"></i>{{ team.name }}
-              </h1>
-              <div class="postcard__subtitle small">
-                <i class="fas fa-user-circle"></i>
-                <span translate>input.titles.tm</span>
-                <strong> {{ team.manager.getfirstName() }} </strong>
-              </div>
-              <div class="postcard__bar"></div>
-              <div class="postcard__preview-txt">
+      </article>
 
-                <p [translate]="'input.msg.msg_tm'" [translateParams]="{members: team.members.length}"></p>
-              </div>
-              <ul class="postcard__tagbox">
-                <li class="tag__item">
-                  <a routerLinkActive="router-link-active" [routerLink]="['/dashboard/manager/detailTeam', team.id]" translate><i
-                      class="fas fa-info-circle"></i>   buttons.consult_details </a>
-                </li>
-                <li class="tag__item">
-                  <a routerLinkActive="router-link-active" [routerLink]="['/dashboard/manager/updateTeam', team.id]" translate><i
-                      class="fas fa-edit"></i>   titles.update_team </a>
-                </li>
-              </ul>
-            </div>
-          </article>
 
+    </section>
+    <section id="content2" class="tab-content">
+
+      <article class="postcard light" *ngFor="let team of teamList">
+        <a class="postcard__img_link" routerLinkActive="router-link-active"
+          [routerLink]="['/dashboard/manager/detailTeam', team.id]">
+          <img class="postcard__img"
+            src="https://wallpaperaccess.com/full/1393442.jpg"
+            alt="Image Title" />
+        </a>
+        <div class="postcard__text t-dark">
+          <h1 class="postcard__title blue">
+            <i class="fa fa-users-cog"></i>{{ team.name }}
+          </h1>
+          <div class="postcard__subtitle small">
+            <i class="fas fa-user-circle"></i>
+              <span translate>input.titles.tm</span>
+            <strong> {{ team.manager.getfirstName() }} </strong>
+          </div>
+          <div class="postcard__bar"></div>
+          <div class="postcard__preview-txt">
+
+        <p [translate]="'input.msg.msg_tm'" [translateParams]="{members: team.members.length}"> </p>
+
+          </div>
+          <ul class="postcard__tagbox">
+            <li class="tag__item">
+              <a routerLinkActive="router-link-active" [routerLink]="['/dashboard/manager/detailTeam', team.id]" translate><i
+                  class="fas fa-info-circle"></i>   buttons.consult_details </a>
+            </li>
+            <li class="tag__item">
+              <a routerLinkActive="router-link-active" [routerLink]="['/dashboard/manager/updateTeam', team.id]" translate><i
+                  class="fas fa-edit"></i>   titles.update_team </a>
+            </li>
+          </ul>
         </div>
+      </article>
 
-        <!--content 2-->
-
-        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-          <article class="postcard light" *ngFor="let team of teamList">
-            <a class="postcard__img_link" routerLinkActive="router-link-active"
-              [routerLink]="['/dashboard/manager/detailTeam', team.id]">
-              <img class="postcard__img"
-                src="https://wallpaperaccess.com/full/1393442.jpg"
-                alt="Image Title" />
-            </a>
-            <div class="postcard__text t-dark">
-              <h1 class="postcard__title blue">
-                <i class="fa fa-users-cog"></i>{{ team.name }}
-              </h1>
-              <div class="postcard__subtitle small">
-                <i class="fas fa-user-circle"></i>
-                  <span translate>input.titles.tm</span>
-                <strong> {{ team.manager.getfirstName() }} </strong>
-              </div>
-              <div class="postcard__bar"></div>
-              <div class="postcard__preview-txt">
-
-            <p [translate]="'input.msg.msg_tm'" [translateParams]="{members: team.members.length}"> </p>
-
-              </div>
-              <ul class="postcard__tagbox">
-                <li class="tag__item">
-                  <a routerLinkActive="router-link-active" [routerLink]="['/dashboard/manager/detailTeam', team.id]" translate><i
-                      class="fas fa-info-circle"></i>   buttons.consult_details </a>
-                </li>
-                <li class="tag__item">
-                  <a routerLinkActive="router-link-active" [routerLink]="['/dashboard/manager/updateTeam', team.id]" translate><i
-                      class="fas fa-edit"></i>   titles.update_team </a>
-                </li>
-              </ul>
-            </div>
-          </article>
-
-        </div>
-      </div>
-    </div>
+    </section>
   </div>
-</section>
+  </div>
+  </div>
+
+

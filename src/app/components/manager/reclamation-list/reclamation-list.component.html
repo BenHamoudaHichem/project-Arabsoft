@@ -1,100 +1,88 @@
-<title translate> titles.demands.title </title>
+<title translate> titles.demands.demand_list </title>
 
-<section class="min-h-100">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="logo">
         <h1 class="mb-5 text-center text-uppercase" translate>
-         titles.demands.title
+         titles.demands.demand_list
         </h1>
       </div>
-          <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <a [routerLink]="['/customer/reclamationList']" routerLinkActive>
-                <button (click)="all()" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
-                  data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" translate>
-                  <i class="fas fa-list"></i>   buttons.all
-                </button>
-              </a>
-              <a [routerLink]="['/dashboard/customer/reclamationList']" routerLinkActive
-                [queryParams]="{ status: 'rejected' }">
-                <button class="nav-link" (click)="allByStatus()" id="nav-profile-tab" data-bs-toggle="tab"
-                  data-bs-target="#nav-profile" type="button" role="tab" aria-selected="false" translate>
-                  <i class="fa fa-ban" aria-hidden="true" ></i>
-                  buttons.dismiss
-                </button></a>
-            </div>
-          </nav>
-          <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+<div class="tab_container">
+
+  <input id="tab1" type="radio" (click)="all()" name="tabs" checked>
+  <label for="tab1" translate> <i class="fas fa-list"></i> buttons.all</label>
+
+  <input id="tab2" type="radio" name="tabs" (click)="allByStatus('Accepted')">
+  <label for="tab2" translate>
+    <i class="fa fa-check-circle"></i>
+    buttons.accept
+  </label>
 
 
-              <article class="postcard light"  *ngFor="let reclamation of demandList">
-                <a class="postcard__img_link" [routerLink]="['/dashboard/manager/detailReclamation',reclamation.id]">
-                  <img class="postcard__img"
-                    src="https://vertone.com/wp-content/uploads/2014/11/adobestock_117625486.jpeg"
-                    alt="Image Title" />
-                </a>
-                <div class="postcard__text t-dark">
-                  <h1 class="postcard__title blue">
-                  {{ reclamation.title }}
-                  </h1>
+  <section id="content1" class="tab-content">
+
+    <article class="postcard light"  *ngFor="let reclamation of demandList">
+      <a class="postcard__img_link" [routerLink]="['/dashboard/manager/detailReclamation',reclamation.id]">
+        <img class="postcard__img"
+          src="https://vertone.com/wp-content/uploads/2014/11/adobestock_117625486.jpeg"
+          alt="Image Title" />
+      </a>
+      <div class="postcard__text t-dark">
+        <h1 class="postcard__title blue">
+        {{ reclamation.title }}
+        </h1>
 
 
-                  <div class="postcard__subtitle small">
-                    <i class="fas fa-calendar-alt"></i>
-                    {{ reclamation.createdAt | date:'dd-MM-yyyy'}}
-                  </div>
-                  <div class="postcard__bar"></div>
-                  <div class="postcard__preview-txt">
-
-                  </div>
-                  <ul class="postcard__tagbox">
-                    <li class="tag__item">
-                      <a [routerLink]="['/dashboard/manager/detailReclamation', reclamation.id]" routerLinkActive="router-link-active" translate><i class="fas fa-info-circle"></i>
-                        buttons.consult_details</a>
-                    </li>
-                  </ul>
-                </div>
-              </article>
-
-            </div>
-
-            <!--nav 2-->
-
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-              <article class="postcard light"  *ngFor="let reclamation of demandList">
-                <a class="postcard__img_link" [routerLink]="['/dashboard/manager/detailReclamation',reclamation.id]">
-                  <img class="postcard__img"
-                    src="https://vertone.com/wp-content/uploads/2014/11/adobestock_117625486.jpeg"
-                    alt="Image Title" />
-                </a>
-                <div class="postcard__text t-dark">
-                  <h1 class="postcard__title blue">
-                  {{ reclamation.title }}
-                  </h1>
-
-
-                  <div class="postcard__subtitle small">
-                    <i class="fas fa-calendar-alt"></i>
-                    {{ reclamation.createdAt | date:'dd-MM-yyyy'}}
-                  </div>
-                  <div class="postcard__bar"></div>
-                  <div class="postcard__preview-txt">
-
-                  </div>
-                  <ul class="postcard__tagbox">
-                    <li class="tag__item">
-                      <a [routerLink]="['/dashboard/manager/detailReclamation', reclamation.id]" routerLinkActive="router-link-active" translate><i class="fas fa-info-circle"></i>
-                        buttons.consult_details</a>
-                    </li>
-                  </ul>
-                </div>
-              </article>
-            </div>
-          </div>
+        <div class="postcard__subtitle small">
+          <i class="fas fa-calendar-alt"></i>
+          {{ reclamation.createdAt | date:'dd-MM-yyyy'}}
         </div>
+        <div class="postcard__bar"></div>
+        <div class="postcard__preview-txt">
 
+        </div>
+        <ul class="postcard__tagbox">
+          <li class="tag__item">
+            <a [routerLink]="['/dashboard/manager/detailReclamation', reclamation.id]" routerLinkActive="router-link-active" translate><i class="fas fa-info-circle"></i>
+              buttons.consult_details</a>
+          </li>
+        </ul>
       </div>
+    </article>
 
-</section>
+
+  </section>
+  <section id="content2" class="tab-content">
+
+    <article class="postcard light"  *ngFor="let reclamation of demandList">
+      <a class="postcard__img_link" [routerLink]="['/dashboard/manager/detailReclamation',reclamation.id]">
+        <img class="postcard__img"
+          src="https://vertone.com/wp-content/uploads/2014/11/adobestock_117625486.jpeg"
+          alt="Image Title" />
+      </a>
+      <div class="postcard__text t-dark">
+        <h1 class="postcard__title blue">
+        {{ reclamation.title }}
+        </h1>
+
+
+        <div class="postcard__subtitle small">
+          <i class="fas fa-calendar-alt"></i>
+          {{ reclamation.createdAt | date:'dd-MM-yyyy'}}
+        </div>
+        <div class="postcard__bar"></div>
+        <div class="postcard__preview-txt">
+
+        </div>
+        <ul class="postcard__tagbox">
+          <li class="tag__item">
+            <a [routerLink]="['/dashboard/manager/detailReclamation', reclamation.id]" routerLinkActive="router-link-active" translate><i class="fas fa-info-circle"></i>
+              buttons.consult_details</a>
+          </li>
+        </ul>
+      </div>
+    </article>
+
+  </section>
+</div>
+    </div>

@@ -33,8 +33,9 @@ export class AddMaterialsComponent implements OnInit {
     private AuthenticateService:AuthenticateService
   ) {
     this.formAddMaterials = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
+      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{2,}$')]],
       status: ['', [Validators.required]],
+    
 
       dateOfPurshase: ['', [Validators.required]],
       description: [

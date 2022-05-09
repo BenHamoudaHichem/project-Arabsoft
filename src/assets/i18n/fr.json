@@ -123,9 +123,11 @@
     "categories": "Catégories",
     "choose_file": "Choisir une fichier",
     "customers": "Clients",
+    "customers_list":"Liste des clients",
     "date": "Date de publication",
     "demands": {
       "detail": "Detail demande",
+      "demand_list":"Liste des Demandes",
       "title": "Demandes",
       "title_home": "Liste des reclamations envoyées"
     },

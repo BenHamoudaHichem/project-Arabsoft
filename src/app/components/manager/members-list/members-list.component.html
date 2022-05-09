@@ -1,6 +1,4 @@
 <title translate> titles.employees_list </title>
-
-<section class="min-h-100">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="logo">
@@ -9,94 +7,85 @@
          titles.employees_list
         </h1>
       </div>
-      <nav>
-        <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <a >
-            <button  (click)="allTManagers()" class="nav-link active" id="nav-home-tab" data-bs-toggle="tab"
-              data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" translate>
-             <i class="fa fa-user-shield"></i> input.titles.tm
-            </button></a>
-          <a
-         >
-            <button  (click)="allMembers()" class="nav-link" id="nav-profile-tab" data-bs-toggle="tab"
-              data-bs-target="#nav-profile" type="button" role="tab" aria-selected="false"  translate>
-          <i class="fa fa-users"></i>    buttons.members
-            </button></a>
+  <div class="tab_container">
+
+    <input id="tab1" type="radio" (click)="allTManagers()" name="tabs" checked>
+    <label for="tab1" translate><i class="fa fa-user-shield"></i> input.titles.tm
+    </label>
+
+    <input id="tab2" type="radio" name="tabs" (click)="allMembers()">
+    <label for="tab2" translate>
+      <i class="fa fa-users"></i>    buttons.members
+
+    </label>
+
+
+    <section id="content1" class="tab-content">
+      <article class="postcard light" *ngFor="let item of usersList" >
+        <a class="postcard__img_link" [routerLink]="['/dashboard/manager/userProfil',item.id]">
+          <img class="postcard__img"
+            [src]="image"
+            alt="Image Title" />
+        </a>
+        <div class="postcard__text t-dark">
+          <h1 class="postcard__title blue">
+            <i class="fa fa-user"></i> {{item.firstName}}
+          </h1>
+
+          <div class="postcard__subtitle small">
+            <i class="fas fa-phone"></i>
+           <strong>(+216) {{item.tel}} </strong>
+          </div>
+          <div class="postcard__subtitle small">
+            <i class="fas fa-user-circle"></i>&nbsp;
+            <strong translate class="text-uppercase">titles.detail_inter.table.role</strong> :&nbsp;
+           <strong >{{convertRole(item.roles)}}</strong>
+          </div>
+          <div class="postcard__bar"></div>
+          <div class="postcard__preview-txt">
+
+          </div>
+          <ul class="postcard__tagbox">
+            <li class="tag__item">
+              <a [routerLink]="['/dashboard/manager/userProfil', item.id]" translate><i class="fas fa-info-circle"></i>
+                buttons.consult_details</a>
+            </li>
+          </ul>
         </div>
-      </nav>
-      <div class="tab-content" id="nav-tabContent">
-        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-          <article class="postcard light" *ngFor="let item of usersList" >
-            <a class="postcard__img_link" [routerLink]="['/dashboard/manager/userProfil',item.id]">
-              <img class="postcard__img"
-                [src]="image"
-                alt="Image Title" />
-            </a>
-            <div class="postcard__text t-dark">
-              <h1 class="postcard__title blue">
-                <i class="fa fa-user"></i> {{item.firstName}}
-              </h1>
+      </article>
+    </section>
+    <section id="content2" class="tab-content">
+      <article class="postcard light" *ngFor="let item of usersList" >
+        <a class="postcard__img_link" [routerLink]="['/dashboard/manager/userProfil',item.id]">
+          <img class="postcard__img"
+            [src]="image"
+            alt="Image Title" />
+        </a>
+        <div class="postcard__text t-dark">
+          <h1 class="postcard__title blue">
+            <i class="fa fa-user"></i> {{item.firstName}}
+          </h1>
 
-              <div class="postcard__subtitle small">
-                <i class="fas fa-phone"></i>
-               <strong>(+216) {{item.tel}} </strong>
-              </div>
-              <div class="postcard__subtitle small">
-                <i class="fas fa-user-circle"></i>&nbsp;
-                <strong translate class="text-uppercase">titles.detail_inter.table.role</strong> :&nbsp;
-               <strong >{{convertRole(item.roles)}}</strong>
-              </div>
-              <div class="postcard__bar"></div>
-              <div class="postcard__preview-txt">
+          <div class="postcard__subtitle small">
+            <i class="fas fa-phone"></i>
+           <strong>(+216) {{item.tel}} </strong>
+          </div>
+          <div class="postcard__subtitle small">
+            <i class="fas fa-user-circle"></i>&nbsp;
+            <strong translate class="text-uppercase">titles.detail_inter.table.role</strong> :&nbsp;
+            <strong >{{convertRole(item.roles)}}</strong>
+          </div>
+          <div class="postcard__bar"></div>
+          <div class="postcard__preview-txt">
 
-              </div>
-              <ul class="postcard__tagbox">
-                <li class="tag__item">
-                  <a [routerLink]="['/dashboard/manager/userProfil', item.id]" translate><i class="fas fa-info-circle"></i>
-                    buttons.consult_details</a>
-                </li>
-              </ul>
-            </div>
-          </article>
+          </div>
+          <ul class="postcard__tagbox">
+            <li class="tag__item">
+              <a [routerLink]="['/dashboard/manager/userProfil', item.id]" translate><i class="fas fa-info-circle"></i>
+                buttons.consult_details</a>
+            </li>
+          </ul>
         </div>
-
-        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-
-
-          <article class="postcard light" *ngFor="let item of usersList" >
-            <a class="postcard__img_link" [routerLink]="['/dashboard/manager/userProfil',item.id]">
-              <img class="postcard__img"
-                [src]="image"
-                alt="Image Title" />
-            </a>
-            <div class="postcard__text t-dark">
-              <h1 class="postcard__title blue">
-                <i class="fa fa-user"></i> {{item.firstName}}
-              </h1>
-
-              <div class="postcard__subtitle small">
-                <i class="fas fa-phone"></i>
-               <strong>(+216) {{item.tel}} </strong>
-              </div>
-              <div class="postcard__subtitle small">
-                <i class="fas fa-user-circle"></i>&nbsp;
-                <strong translate class="text-uppercase">titles.detail_inter.table.role</strong> :&nbsp;
-                <strong >{{convertRole(item.roles)}}</strong>
-              </div>
-              <div class="postcard__bar"></div>
-              <div class="postcard__preview-txt">
-
-              </div>
-              <ul class="postcard__tagbox">
-                <li class="tag__item">
-                  <a [routerLink]="['/dashboard/manager/userProfil', item.id]" translate><i class="fas fa-info-circle"></i>
-                    buttons.consult_details</a>
-                </li>
-              </ul>
-            </div>
-          </article>
-        </div>
-      </div>
-    </div>
+      </article>
+    </section>
   </div>
-</section>

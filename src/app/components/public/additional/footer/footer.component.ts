@@ -25,7 +25,7 @@ export class FooterComponent implements OnInit {
       this.route.url == '/register' ||
       this.route.url == '/login' ||
       this.route.url == '/forgotPassword' ||
-      this.route.url == '/resetPassword' ||
+      this.route.url.includes("reset") ||
       this.route.url == '/not-found'
     );
   }
