@@ -87,7 +87,10 @@
       "title": "Title",
       "tm": "Team manager",
       "which_date": "Which date",
-      "sender":"The sender"
+      "sender":"The sender",
+      "show_password":"Show password",
+      "show_passwords":"Show passwords"
+
     }
   },
   "location": {

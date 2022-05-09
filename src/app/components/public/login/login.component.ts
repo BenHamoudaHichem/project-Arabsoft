@@ -16,6 +16,11 @@ export class LoginComponent implements OnInit {
   public captchaResolved: boolean = false;
   siteKey = CAPTCHA_KEY;
   loginForm!: FormGroup;
+  hide: boolean = true;
+
+  showFn() {
+    this.hide = !this.hide;
+  }
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthenticateService,

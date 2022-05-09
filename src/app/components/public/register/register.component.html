@@ -143,6 +143,7 @@
                       <input
                         type="password"
                         formControlName="password"
+                        [type]="hide ? 'password' : 'text'"
                         placeholder="{{'input.titles.password'|translate}}"
                       />
                       <!--pwd errors-->
@@ -163,6 +164,7 @@ errors.alph_8error
                       <input
                         type="password"
                         formControlName="confirm_password"
+                        [type]="hide ? 'password' : 'text'"
                         placeholder="{{'input.titles.confirm_password'| translate}}"
                       />
                       <p
@@ -180,12 +182,18 @@ errors.alph_8error
                      translate >
 errors.error_confirm                     </p>
                     </div>
+
+
                     <div class="d-flex justify-content-start">
                     <re-captcha
 
                      (resolved)="checkCaptcha($event)" [siteKey]="siteKey" formControlName="captcha"
                     ></re-captcha></div>
                   </div>
+
+                    <label  translate><input type="checkbox" class="checkbox" (click)="showFn()" >input.titles.show_passwords</label>
+
+
 
                   <div class="d-flex justify-content-end pt-3" (mouseover)="check()" >
                     <button

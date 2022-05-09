@@ -12,7 +12,7 @@
           <div class="actions">
             <div class="about">
               <form [formGroup]="loginForm" (ngSubmit)="try_login()" novalidate>
-                <div class="form-group required">
+                <div class="form-group  ">
                   <label for="username" translate>input.titles.identifier</label>
                   <input type="text" formControlName="identifier" class="form-control"
                     placeholder="{{'input.msg.identifier'|translate}}" />
@@ -24,11 +24,12 @@
                     errors.req_error
                   </p>
                 </div>
-                <div class="form-group required">
-                  <label class="d-flex flex-row align-items-center" for="password"
+                <div class="form-group  ">
+                  <label class="d-flex flex-row align-items-center " for="password"
                     translate>input.titles.password</label>
 
                   <input type="text" formControlName="password" class="form-control"
+                  [type]="hide ? 'password' : 'text'"
                     placeholder="{{'input.msg.password'|translate}}" />
                   <p class="ErrorMsg" *ngIf="
                       !Password?.valid && (Password?.dirty || Password?.touched)
@@ -39,6 +40,12 @@
                     errors.alph_8error </p>
 
                 </div>
+                <div class="form-group  ">
+                  <label class="form-label" translate>
+                    <input type="checkbox" class="chechbox" (click)="showFn()" >input.titles.show_password</label>
+
+
+              </div>
                 <re-captcha (resolved)="checkCaptcha($event)" [siteKey]="siteKey" formControlName="captcha">
                 </re-captcha>
                 <div class="d-flex justify-content-end pt-3"(mouseout)="check()">

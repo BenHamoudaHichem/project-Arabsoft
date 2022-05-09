@@ -17,6 +17,11 @@ export class ResetPasswordComponent implements OnInit {
   public captchaResolved: boolean = false;
   siteKey = CAPTCHA_KEY;
   resetPassword!:FormGroup
+  hide: boolean = true;
+
+  showFn() {
+    this.hide = !this.hide;
+  }
   constructor(
     private formBuilder: FormBuilder,private resetService:ResetService, private route: ActivatedRoute,private router:Router
   ) {

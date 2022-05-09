@@ -88,7 +88,12 @@
 
       "title": "Titre",
       "which_date": "A quelle date ",
-      "sender":"L'expéditeur"
+      "sender":"L'expéditeur",
+      "show_password":"Afficher le mot de passe",
+      "show_passwords":"Afficher les mots de passe"
+
+
+
     }
   },
   "location": {
