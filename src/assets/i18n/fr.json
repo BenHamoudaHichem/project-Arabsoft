@@ -17,9 +17,9 @@
     "members": "Membres",
     "send": "Envoyer",
     "waiting": "En attente",
-    "register":"Inscrire",
-    "connect":"Connecter",
-"reset":"Réinitialiser"
+    "register": "Inscrire",
+    "connect": "Connecter",
+    "reset": "Réinitialiser"
   },
   "cards": {
     "bleu": "Notifications",
@@ -50,7 +50,7 @@
       "identifier": " Entrez votre identifiant",
       "intervention": " Entrez le titre de l'intervention",
       "lastname": " Entrez votre prénom",
-      "password":"Entrez votre mot de passe",
+      "password": "Entrez votre mot de passe",
 
       "mat_select": "Selectionner les matériels",
       "material": " Entrez le titre de materiel",
@@ -79,7 +79,7 @@
       "new_pass": "Nouveau mot de passe",
       "old_pass": "Ancien mot de passe",
       "password": "Mot de passe",
-      "profil":"Profil",
+      "profil": "Profil",
       "purchase_date": "Date d'achat",
       "status": "Status",
       "team": "Equipe",
@@ -88,17 +88,14 @@
 
       "title": "Titre",
       "which_date": "A quelle date ",
-      "sender":"L'expéditeur",
-      "show_password":"Afficher le mot de passe",
-      "show_passwords":"Afficher les mots de passe"
-
-
-
+      "sender": "L'expéditeur",
+      "show_password": "Afficher le mot de passe",
+      "show_passwords": "Afficher les mots de passe"
     }
   },
   "location": {
     "city": "Ville",
-    "country": "pays",
+    "country": "Pays",
     "governorate": "Governorat",
     "postal_code": "Code postal",
     "street": "Rue",
@@ -128,11 +125,12 @@
     "categories": "Catégories",
     "choose_file": "Choisir une fichier",
     "customers": "Clients",
-    "customers_list":"Liste des clients",
+    "customers_list": "Liste des clients",
     "date": "Date de publication",
+
     "demands": {
       "detail": "Detail demande",
-      "demand_list":"Liste des Demandes",
+      "demand_list": "Liste des Demandes",
       "title": "Demandes",
       "title_home": "Liste des reclamations envoyées"
     },
@@ -155,8 +153,8 @@
     "detail_team": "Detail équipe",
     "employees": "Employées",
     "employees_list": "Liste des employées",
-    "forget_pass":"Mot de passe oublié ",
-    "forget_pass_info":"Entrez votre e-mail enregistré pour réinitialiser votre mot de passe",
+    "forget_pass": "Mot de passe oublié ",
+    "forget_pass_info": "Entrez votre e-mail enregistré pour réinitialiser votre mot de passe",
     "home": "Acceuil",
     "interv_in": "Interventios en cours",
     "intervention": "Interventions",
@@ -170,9 +168,9 @@
     "new_team": "Nouveau équipe",
     "profil": "Profil",
     "register": "Inscrivez vous a notre site",
-    "reset":"Réinitialiser le mot de passe",
+    "reset": "Réinitialiser le mot de passe",
     "started_at": "Date de debut",
-    "team_detail":"Detail équipe",
+    "team_detail": "Detail équipe",
 
     "team_det": " Details de {{ name }}",
     "teams": "Equipes",
@@ -185,56 +183,53 @@
     "update_int": "Mettre à jour l'intervention",
 
     "update_team": "Mettre à jour l'équipe",
-    "subscribe":"Inscrivez vous à notre site"
+    "subscribe": "Inscrivez vous à notre site"
   },
-  "navbar":{
-    "home":"Accueil",
-    "contact":"Contactez-nous",
-    "log":"Connexion",
-    "join_us":"Joignez-nous",
-    "about_us":"A propos de nous"
+  "navbar": {
+    "home": "Accueil",
+    "contact": "Contactez-nous",
+    "log": "Connexion",
+    "join_us": "Joignez-nous",
+    "about_us": "A propos de nous"
   },
-  "home":{
-    "title":"Bienvenue à ARAB INTERVENT",
-    "title_":"Decouvrez notre site web",
-  "btn_h":"Rejoignez-nous",
-  "btn_hover":"Profitez de nos services",
-  "info":"ARAB INTERVENT s’est spécialisée à la distribution de solutions de gestion pour le secteur public"
+  "home": {
+    "title": "Bienvenue à ARAB INTERVENT",
+    "title_": "Decouvrez notre site web",
+    "btn_h": "Rejoignez-nous",
+    "btn_hover": "Profitez de nos services",
+    "info": "ARAB INTERVENT s’est spécialisée à la distribution de solutions de gestion pour le secteur public"
   },
 
-  "about":{
-    "title":"A propos de nous ?",
-    "info":"GestIntern est une plate-forme numérique responsable à l'affectation des demandes des interventions du client à des équipes expertes, nous offrons des espaces sur notre site pour :",
-    "info_customer":""
-
-
+  "about": {
+    "title": "A propos de nous ?",
+    "info": "GestIntern est une plate-forme numérique responsable à l'affectation des demandes des interventions du client à des équipes expertes, nous offrons des espaces sur notre site pour :",
+    "info_customer": ""
   },
-"contact":{
-  "title":"Contactez Nous",
-  "name":"Entrez votre nom",
-  "email":" Entrez votre email",
-  "phone":"Entrez votre numéro de telephone",
-  "description":"Ecrivez"
-},
-"footer":{
-  "find_us":"Trouvez nous",
-  "call_us":"Appelez-nous",
-  "mail_us":"Envoyez-nous un e-mail",
-  "follow_us":"Suivez nous",
-  "plan":"Plan de notre site ",
-  "contact":"Contactez-nous"
-},
-"links":{
-  "arabsoft":"Companie arabsoft",
-"sector":"Secteur public",
-"customers":"Nos clients",
-  "link_log":"Vous avez dejà un compte?",
-  "link_register":"Créer un nouveau compte",
-  "link_forgot_pass":"Mot de passe oublié ?"
-
-},
-"not_found":{
-  "title":"Erreur 404 - Page non trouvée",
-  "info":"Désolé, la page que vous recherchez n'est pas accessible"
-}
+  "contact": {
+    "title": "Contactez Nous",
+    "name": "Entrez votre nom",
+    "email": " Entrez votre email",
+    "phone": "Entrez votre numéro de telephone",
+    "description": "Ecrivez"
+  },
+  "footer": {
+    "find_us": "Trouvez nous",
+    "call_us": "Appelez-nous",
+    "mail_us": "Envoyez-nous un e-mail",
+    "follow_us": "Suivez nous",
+    "plan": "Plan de notre site ",
+    "contact": "Contactez-nous"
+  },
+  "links": {
+    "arabsoft": "Companie arabsoft",
+    "sector": "Secteur public",
+    "customers": "Nos clients",
+    "link_log": "Vous avez dejà un compte?",
+    "link_register": "Créer un nouveau compte",
+    "link_forgot_pass": "Mot de passe oublié ?"
+  },
+  "not_found": {
+    "title": "Erreur 404 - Page non trouvée",
+    "info": "Désolé, la page que vous recherchez n'est pas accessible"
+  }
 }

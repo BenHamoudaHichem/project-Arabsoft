@@ -108,4 +108,9 @@ return status
 
   }
 
+
+  loadMap(){
+    this.ngOnInit()
+  }
+
 }
