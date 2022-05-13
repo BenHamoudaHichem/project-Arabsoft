@@ -26,11 +26,8 @@ export class MaterialListComponent implements OnInit {
     private AuthenticateService:AuthenticateService,
     private mapService:MapService
   ) {
-    this.showAll();
+    this.showAll()
     this.location()
-
-    //this.mapElement.cheked=true
-
   }
 
   ngOnInit(): void {
@@ -38,8 +35,7 @@ export class MaterialListComponent implements OnInit {
 
   showAll() {
     this.serviceMaterial.all().subscribe((IM: IMaterial[]) => {
-      this.materialList = IM;
-
+      this.materialList = IM
     }),
     (error: HttpErrorResponse) => {
       if(error.status==401){
