@@ -73,6 +73,8 @@ export class DetailInterventionComponent implements OnInit {
           Category,
           this.intervention.category
         );
+        console.log(this.intervention);
+
 console.log(this.intervention.address.Location())
 this.mapService.findLocation(this.intervention.address.Location());
       }),

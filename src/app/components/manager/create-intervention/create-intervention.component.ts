@@ -45,9 +45,7 @@ export class CreateInterventionComponent implements OnInit {
   statusList: Associatif[] = [
     { key: 'En attente', value: 'Waiting' },
     { key: 'En cours', value: 'In_Progress' },
-    { key: 'Terminé', value: 'Completed' },
-    { key: 'En panne', value: 'Broken_down' },
-    { key: 'Annulé', value: 'Canceled' },
+
   ];
   constructor(
     private formBuilder: FormBuilder,
@@ -102,9 +100,12 @@ export class CreateInterventionComponent implements OnInit {
   ngOnInit() {
     this.counrty?.setValue('Tunisie');
 
+    console.log(this.states);
+
     this.demandList = new Array(
       new Dbref(this.route.snapshot.paramMap.get('id')!)
     );
+
     this.all();
     this.materialsAvailable();
 
@@ -112,9 +113,9 @@ export class CreateInterventionComponent implements OnInit {
     this.teamsAvailable();
     this.demandService
       .findDemand(this.route.snapshot.paramMap.get('id')!)
-      .pipe(finalize(() => this.currentDemand.title === undefined))
+      //.pipe(finalize(() => this.currentDemand.title === undefined))
       .subscribe((res: IDemand) => {
-        this.currentDemand = res as IDemand;
+        this.currentDemand = res
         this.currentDemand.address = plainToClass(Address, res.address);
         console.log(this.currentDemand);
         this.state?.setValue(this.currentDemand.address.State);
@@ -243,7 +244,10 @@ export class CreateInterventionComponent implements OnInit {
   collectStates() {
     this.addressService.allTNStates.subscribe((res: string[]) => {
       this.states = res;
+
     });
+    console.log(this.states);
+
   }
   collectCitiesBystates(state: string) {
     this.addressService.allTNCitiesByState(state).subscribe((res: string[]) => {

@@ -18,7 +18,7 @@
   </div>
   <div class="tab_container">
 
-    <input id="tab1" type="radio" (click)="showAll()" name="tabs" checked>
+    <input id="tab1" type="radio" (click)="showAll()" name="tabs" #target>
     <label for="tab1" translate> <i class="fas fa-list"></i> buttons.all</label>
 
     <input id="tab2" type="radio" (click)="allByStatus('Available')" name="tabs">
@@ -26,8 +26,8 @@
       buttons.available
     </label>
 
-    <input id="tab3" type="radio" name="tabs">
-    <label for="tab3"><i class="fa fa-map"></i>
+    <input id="tab3" type="radio" name="tabs"checked>
+    <label for="tab3"><i class="fa fa-map" ></i>
       map </label>
     <section id="content1" class="tab-content">
 
@@ -104,7 +104,7 @@
     </section>
     <section id="content3" class="tab-content">
 
-      <div class="wrapper">
+      <div class="wrapper" >
         <div class="content-area">
 
           <div>

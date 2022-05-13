@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { plainToClass } from 'class-transformer';
 import { Report } from 'notiflix';
@@ -16,6 +16,7 @@ import { EquipmentService } from 'src/app/services/resources/material/material.s
   styleUrls: ['./material-list.component.css'],
 })
 export class MaterialListComponent implements OnInit {
+  @ViewChild('target') mapElement:any
   materialList!: IMaterial[];
   status!: string;
   data: Location[]=[]
@@ -28,9 +29,12 @@ export class MaterialListComponent implements OnInit {
     this.showAll();
     this.location()
 
+    //this.mapElement.cheked=true
+
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   showAll() {
     this.serviceMaterial.all().subscribe((IM: IMaterial[]) => {

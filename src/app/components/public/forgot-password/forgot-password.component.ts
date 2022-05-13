@@ -90,7 +90,7 @@ export class ForgotPasswordComponent implements OnInit {
       if (res.status==true) {
         Report.info(
           'Mot de passe oublié',
-          res.message+' <br/><br/>- ArabIntervent',
+        'Merci de consulter votre mail. <br/><br/>- ArabIntervent',
           "D'accord",
           );
       } else {

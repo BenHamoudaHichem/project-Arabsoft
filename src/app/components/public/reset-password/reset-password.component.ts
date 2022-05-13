@@ -51,7 +51,7 @@ export class ResetPasswordComponent implements OnInit {
   resetPass(){
 //this.router.navigate(['/resetPassword'])
 console.log(this.resetPassword.value)
-this.resetService.reset(this.route.snapshot.paramMap.get("token")!,this.resetPassword?.value).subscribe((res:any)=>{
+this.resetService.reset(this.route.snapshot.paramMap.get("token")!,String(this.new_password?.value)).subscribe((res:any)=>{
 console.log(res);
 
   if (res.status==true) {
