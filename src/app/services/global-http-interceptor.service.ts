@@ -38,8 +38,10 @@ export class GlobalHttpInterceptorService implements HttpInterceptor {
            this.authService.redirectIfNotAuth()
             Report.warning("Alert de sécurité","Vous dever reconnecter !","D'accord")
           }
+          if (error.status===400) {
+             Report.warning("Alert de sécurité","Vous dever fffff !","D'accord")
+           }
           if (error.status===500) {
-            this.authService.redirectIfNotAuth()
              Notify.failure("problème au niveau du serveur !")
            }
         }

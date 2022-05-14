@@ -116,10 +116,11 @@ export class RegisterComponent implements OnInit {
     this.userService.create(user).subscribe((res: any) => {
       if (res.status == true) {
         Report.success("Notification d'inscription", res.message, "D'accord");
+        this.router.navigateByUrl('/login');
+
       } else {
         Report.warning("Notification d'inscription", res.message, "D'accord");
       }
-      this.router.navigateByUrl('/login');
     }),
       (error: HttpErrorResponse) => {
         Report.warning("Notification d'inscription", error.message, "D'accord");

@@ -102,21 +102,16 @@ export class UpdateInterventionComponent implements OnInit {
     );
     this.counrty?.setValue('Tunisie');
 
-    this.city?.disable();
-    this.collectStates();
+    this.allCategory();
+    this.materialsAvailable();
+    this.teamAvailable();
+    this.collectStates()
+    this.findIntervention()
   }
 
   dropdownSettings!: {};
   ngOnInit() {
-    this.counrty?.setValue('Tunisie');
-    this.findIntervention();
-    this.demandList = new Array(
-      new Dbref(this.route.snapshot.paramMap.get('id')!)
-    );
-    this.allCategory();
-    this.materialsAvailable();
-    console.log(this.categoryList);
-    this.teamAvailable();
+
 
     this.dropdownSettings = {
       singleSelection: false,
@@ -127,6 +122,8 @@ export class UpdateInterventionComponent implements OnInit {
       itemsShowLimit: 10,
       allowSearchFilter: true,
     };
+    this.findIntervention();
+
   }
   onItemSelect(item: any) {
     console.log(item);
@@ -235,19 +232,22 @@ export class UpdateInterventionComponent implements OnInit {
   findIntervention() {
     this.interventionService
       .findIntervention(String(this.route.snapshot.paramMap.get('id')))
-      .subscribe((res: any) => {
+      .subscribe((res: IIntervention) => {
+        console.log(res)
         this.title?.setValue(res.title);
         this.status?.setValue(res.status);
         this.Materiel?.setValue(res.materialList);
-        this.date?.setValue(res.startedAt);
-        this.category?.setValue(res.category);
-        this.team?.setValue(res.team);
+        this.date?.setValue(moment(res.startedAt).format("MM-DD-yyyy"));
+        this.category?.setValue(res.category.getName());
+        this.teamList.push(res.team)
+       // this.team?.setValue(res.team.name);
         this.description?.setValue(res.description);
+        this.collectStates()
+        this.state?.setValue(res.address.State);
+this.collectCitiesBystates(res.address.State)
         this.city?.setValue(res.address.City);
         this.street?.setValue(res.address.Street);
         this.zipCode?.setValue(res.address.ZipCode);
-        this.state?.setValue(res.address.State);
-        this.counrty?.setValue(res.address.Country);
       }),
 
       (error: HttpErrorResponse) => {
