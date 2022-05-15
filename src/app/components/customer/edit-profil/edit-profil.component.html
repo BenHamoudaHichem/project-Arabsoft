@@ -46,17 +46,7 @@
           </div>
           <div class="input-box">
             <span class="details" translate>input.titles.email</span>
-            <input type="email" formControlName="identifier" placeholder="{{'input.msg.email'| translate}}" />
-            <!--identifier errors-->
-            <p class="ErrorMsg" *ngIf="
-                !identifier?.valid && (identifier?.dirty || identifier?.touched)
-              " translate>
-              errors.req_error
-            </p>
-            <p *ngIf="identifier?.errors?.['email']" class="ErrorMsg" translate>
-              errors.email_patt
-            </p>
-            <!------------>
+            <input type="email" readonly formControlName="identifier" placeholder="{{'input.msg.email'| translate}}" />
           </div>
 
           <div class="input-box">

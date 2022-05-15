@@ -46,8 +46,12 @@
 
 
               </div>
-                <re-captcha (resolved)="checkCaptcha($event)" [siteKey]="siteKey" formControlName="captcha">
-                </re-captcha>
+              <div class="form-group  ">
+                <re-captcha
+
+                (resolved)="checkCaptcha($event)" [siteKey]="siteKey" formControlName="captcha"
+               ></re-captcha>
+</div>
                 <div class="d-flex justify-content-end pt-3"(mouseout)="check()">
                   <button class="bn632-hover bn24" type="submit" role="button" [disabled]="!loginForm.valid" translate>
                     buttons.connect

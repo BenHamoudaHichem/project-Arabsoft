@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
       ],
       captcha: ['', [Validators.required]],
     });
-    this.captcha?.setValue(false);
   }
   ngOnInit(): void {
     if (this.authService.isLogin) {

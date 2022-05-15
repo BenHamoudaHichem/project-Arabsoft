@@ -3,7 +3,8 @@ li{  text-transform: capitalize;
 
 
 }
-.dropdown-item {cursor: pointer;}
+.dropdown-item {cursor: pointer;
+font-size: 14px !important;}
 .nav-link {
   padding: 20px;
   letter-spacing: 2px;

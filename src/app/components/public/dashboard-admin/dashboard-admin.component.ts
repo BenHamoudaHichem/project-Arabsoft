@@ -62,6 +62,12 @@ export class DashboardAdminComponent implements OnInit {
     this.storage.set("Lang",lang)
 
     this.translate.use(this.storage.get("Lang"));
+    if(this.route.url=='/dashboard/manager/home')
+    {
+      setTimeout(() => {
+        window.location.reload();
+      }, 10);
+    }
 
   }
   public get username():string{

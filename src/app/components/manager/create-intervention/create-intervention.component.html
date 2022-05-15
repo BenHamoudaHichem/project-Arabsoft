@@ -32,7 +32,7 @@
                   </div>
                   <div class="form-outline">
                     <label class="form-label" translate>status.title</label>
-                    <select formControlName="status" class="form-select" (change)="chechIsNow()" required>
+                    <select formControlName="status" class="form-select" (change)="chechIsNow()" >
                       <option *ngFor="let item of statusList" [value]="item.value">
                         {{item.key}}
                       </option>

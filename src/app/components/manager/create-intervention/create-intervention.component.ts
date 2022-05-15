@@ -59,6 +59,8 @@ export class CreateInterventionComponent implements OnInit {
     private route: ActivatedRoute,
     private AuthenticateService: AuthenticateService
   ) {
+    console.log(this.statusList);
+
     this.createInterventionForm = this.formBuilder.group(
       {
         title: [
@@ -94,20 +96,21 @@ export class CreateInterventionComponent implements OnInit {
 
     this.city?.disable();
     this.collectStates();
+
+    this.all();
+    this.materialsAvailable();
+    this.teamsAvailable();
+
   }
 
   dropdownSettings!: {};
   ngOnInit() {
-    this.counrty?.setValue('Tunisie');
 
     console.log(this.states);
 
     this.demandList = new Array(
       new Dbref(this.route.snapshot.paramMap.get('id')!)
     );
-
-    this.all();
-    this.materialsAvailable();
 
     console.log(this.categoryList);
     this.teamsAvailable();

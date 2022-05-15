@@ -176,6 +176,9 @@ errors.alph_8error
                      translate >
                       errors.req_error
                       </p>
+                      <p *ngIf="confirm_password?.errors?.['pattern']" class="ErrorMsg" translate>
+                        errors.alph_8error
+                                              </p>
                       <p
                         *ngIf="registerForm.hasError('ConfirmedValidator')"
                         class="ErrorMsg"

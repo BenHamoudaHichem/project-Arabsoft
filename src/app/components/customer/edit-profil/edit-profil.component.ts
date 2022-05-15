@@ -84,11 +84,13 @@ export class EditProfilComponent implements OnInit {
       this.firstName?.setValue(res.firstName),
         this.lastNamme?.setValue(res.lastName),
         this.tel?.setValue(res.tel),
+        this.identifier?.setValue(res.identifier)
         this.counrty?.setValue(res.address.Country);
         this.state?.setValue(res.address.State),
         this.loadCities()
       this.city?.setValue(res.address.City),
-        this.street?.setValue(res.address.Street)
+        this.street?.setValue(res.address.Street),
+        this.zipCode?.setValue(res.address.ZipCode)
 
 
     }),

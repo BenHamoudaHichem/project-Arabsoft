@@ -6,7 +6,7 @@
     <a routerLink="/dashboard/manager/reclamationList" class="data-card">
       <h3> <i class="fa fa-list"></i>
         {{infos.countCurrentDemands}}</h3>
-      <h4>Demandes d'interventions</h4>
+      <h4 translate>titles.demands.title</h4>
       <span class="link-text" translate>
         buttons.consult_all <i class="fa fa-arrow-right"></i>
 
@@ -15,7 +15,7 @@
     <a routerLink="/dashboard/manager/teamList" class="data-card">
       <h3> <i class="fa fa-users-cog"></i>
         {{infos.countTeam}}</h3>
-      <h4>Equipes en cours</h4>
+      <h4 translate>titles.teams_progress</h4>
       <span class="link-text" translate>
         buttons.consult_all
         <i class="fa fa-arrow-right"></i>
@@ -23,7 +23,7 @@
     </a>
     <a routerLink="/dashboard/manager/employeeList" class="data-card">
       <h3> <i class="fa fa-users"></i>{{infos.countemployees}}</h3>
-      <h4>Employées </h4>
+      <h4 translate>titles.employees </h4>
       <span class="link-text" translate>
         buttons.consult_all
         <i class="fa fa-arrow-right"></i>
@@ -34,8 +34,7 @@
         <i class="fas fa-times-circle"></i>
         {{infos.countMaterialsBrukenDown}}
       </h3>
-      <h4>
-        Materiels en panne</h4>
+      <h4 translate>titles.broken_material</h4>
       <span class="link-text" translate>
         buttons.consult_all
         <i class="fa fa-arrow-right"></i>

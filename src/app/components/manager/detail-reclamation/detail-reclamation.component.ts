@@ -8,10 +8,8 @@ import { Address } from 'src/app/models/Address';
 import { User } from 'src/app/models/user';
 import { DemandService } from 'src/app/services/works/demand/demand.service';
 import { IDemand } from 'src/app/services/works/demand/idemand';
-import { Router } from '@angular/router';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { MapService } from 'src/app/services/map/map.service';
-import { Demand } from 'src/app/models/works/demand';
 
 @Component({
   selector: 'app-detail-reclamation',
@@ -24,7 +22,6 @@ export class DetailReclamationComponent implements OnInit {
   constructor(
     private demandService: DemandService,
     private route: ActivatedRoute,
-    private router:Router,
     private AuthenticateService:AuthenticateService,
     private MapService:MapService
   ) {
@@ -75,15 +72,5 @@ findDemand(id:string) {
 
     return false
   }
-  accept()
-  {
-   /* let demandAccepted=new Demand(this.demand.title,this.demand.description,this.demand.address,this.demand.createdAt,'Accepted',{id:this.demand.user.getId()})
-    this.demandService.update(String(this.route.snapshot.paramMap.get("id")),demandAccepted).subscribe((res:any)=>{
 
-   if(res==true)
-   {   console.log(res)}
-
-    }),(error:HttpErrorResponse)=>{Report.failure('error',error.message,'ok')}
-*/
-  }
 }

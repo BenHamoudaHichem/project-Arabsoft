@@ -24,14 +24,14 @@
   },
   "cards": {
     "bleu": "Notifications",
-    "green": "Applications accepted",
-    "red": "Rejected applications",
-    "white": "Applications in progress"
+    "green": "Accepted Claims",
+    "red": "Rejected claims",
+    "white": "Claims in progress"
   },
   "errors": {
     "alph_2error": "You must enter at least two characters",
     "alph_4error": "You must enter at least 4 characters",
-    "alph_8error": "You must enter 8 characters",
+    "alph_8error": "You must enter at least 8 characters",
     "alph_error": "This field only accepts the alphabet",
     "date_error": "The chosen date is incorrect",
     "email_patt": "Email structure: foulen@foulen",
@@ -151,6 +151,8 @@
     },
     "detail_mat": "Materiel Detail",
     "detail_team": "Team detail",
+    "demand_per_year":"Claims per year",
+
     "employees": "Employees",
     "employees_list": "Employees List",
     "forget_pass":"Forgot password",
@@ -164,6 +166,8 @@
     "materials": "materials",
     "materials_list": "Materials list",
     "new_inter": "New Intervention",
+    "broken_material":"Broken material",
+
     "new_material": "New material",
     "new_team": "New team",
     "profil": "Profil",
@@ -174,6 +178,8 @@
     "team_detail":"team detail",
     "team_det": " details of {{ name }}",
     "teams": "teams",
+    "teams_progress":"Teams in progress",
+
     "teams_list": "Teams list",
     "up": "Upload file",
     "up_photo": "Change Photo",

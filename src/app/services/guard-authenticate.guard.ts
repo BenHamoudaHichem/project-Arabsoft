@@ -4,10 +4,7 @@ import {
   CanActivate,
   Router,
   RouterStateSnapshot,
-  UrlTree,
 } from '@angular/router';
-import * as Notiflix from 'notiflix';
-import { Observable } from 'rxjs';
 import { AuthenticateService } from './authenticate.service';
 import { CookiesService } from './cookies.service';
 
