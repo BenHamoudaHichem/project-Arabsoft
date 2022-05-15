@@ -42,6 +42,7 @@ import { UpdateInterventionComponent } from './components/manager/update-interve
 import { ForgotPasswordComponent } from './components/public/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/public/reset-password/reset-password.component';
 import { ResetGuard } from './reset.guard';
+import { HomeTeamManagerComponent } from './components/teamManager/home-team-manager/home-team-manager.component';
 const roles = { customer: 'ROLE_CUSTOMER', manager: 'ROLE_MANAGER' };
 const routes: Routes = [
   { path: 'home', component: HomeComponentPage, canActivate: [RedirectGuard] },
@@ -379,6 +380,10 @@ const routes: Routes = [
         path: 'not-found',
         component: NotFoundComponent,
         canActivate: [AuthGuard],
+      },
+      {
+        path: 'tm',
+        component: HomeTeamManagerComponent,
       },
 
       { path: '**', redirectTo: '/dashboard/not-found', pathMatch: 'full' },

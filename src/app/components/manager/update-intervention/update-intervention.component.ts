@@ -6,6 +6,7 @@ import { plainToClass } from 'class-transformer';
 import moment from 'moment';
 import { Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
+import { Category } from 'src/app/models/Category';
 import { Dbref } from 'src/app/models/dbref';
 import { Location } from 'src/app/models/Location';
 import { User } from 'src/app/models/user';
@@ -122,7 +123,6 @@ export class UpdateInterventionComponent implements OnInit {
       itemsShowLimit: 10,
       allowSearchFilter: true,
     };
-    this.findIntervention();
 
   }
   onItemSelect(item: any) {
@@ -135,7 +135,6 @@ export class UpdateInterventionComponent implements OnInit {
   teamAvailable() {
     this.teamService.allByStatus("Available").subscribe((data: ITeam[]) => {
       this.teamList = data;
-      console.log(this.teamList);
       this.teamList.forEach(item => {
         item.manager=plainToClass(User,item.manager)
 
@@ -157,7 +156,6 @@ export class UpdateInterventionComponent implements OnInit {
   materialsAvailable() {
     this.materialService.allByStatus("Available").subscribe((data: IMaterial[]) => {
       this.materialsList = data;
-      console.log(this.materialsList);
     }),
       (errors: HttpErrorResponse) => {
         if (errors.status == 401) {
@@ -171,7 +169,6 @@ export class UpdateInterventionComponent implements OnInit {
   allCategory() {
     this.categoryService.all().subscribe((data: ICategory[]) => {
       this.categoryList = data;
-      console.log(this.categoryList);
     }),
       (errors: HttpErrorResponse) => {
         if (errors.status == 401) {
@@ -233,18 +230,23 @@ export class UpdateInterventionComponent implements OnInit {
     this.interventionService
       .findIntervention(String(this.route.snapshot.paramMap.get('id')))
       .subscribe((res: IIntervention) => {
-        console.log(res)
+       // res.startedAt=new Date(res.startedAt)
+
         this.title?.setValue(res.title);
         this.status?.setValue(res.status);
         this.Materiel?.setValue(res.materialList);
-        this.date?.setValue(moment(res.startedAt).format("MM-DD-yyyy"));
-        this.category?.setValue(res.category.getName());
+        this.date?.setValue(moment(res.startedAt,"DD-MM-yyyy").format("yyyy-MM-DD"));
+        res.category=plainToClass(Category,res.category)
+        res.address=plainToClass(Address,res.address)
+        console.log(String(res.startedAt))
+
+        this.category?.setValue(res.category.getId());
         this.teamList.push(res.team)
-       // this.team?.setValue(res.team.name);
+        this.team?.setValue(res.team.id)
         this.description?.setValue(res.description);
-        this.collectStates()
+
         this.state?.setValue(res.address.State);
-this.collectCitiesBystates(res.address.State)
+        this.collectCitiesBystates(res.address.State)
         this.city?.setValue(res.address.City);
         this.street?.setValue(res.address.Street);
         this.zipCode?.setValue(res.address.ZipCode);

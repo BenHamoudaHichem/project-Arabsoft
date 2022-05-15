@@ -48,7 +48,7 @@
                   <div class="form-outline">
                     <label class="form-label" translate> input.titles.which_date</label>
 
-                    <input type="date" formControlName="date" class="form-control form-control-lg" name="" id="" />
+                    <input type="date" formControlName="date" placeholder="dd-mm-yyyy" class="form-control form-control-lg" name="date" id="" />
 
                     <p *ngIf="(date?.touched || date?.dirty) && !date?.valid" class="ErrorMsg">
                       errors.req_error

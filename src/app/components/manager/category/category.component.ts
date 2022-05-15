@@ -35,7 +35,7 @@ export class CategoryComponent implements OnInit {
   }
 
   create() {
-    let categorie = new Category(
+    let categorie = new Category(null,
       HTMLEscape.escapeMethod(String(this.categorie?.value))
     );
     this.categorieService.create(categorie).subscribe((res: any) => {

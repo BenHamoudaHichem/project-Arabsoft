@@ -45,9 +45,14 @@ export class CookiesService {
     this.myCookies.set('_id', this.aesEncodeService.encode(id));
   }
   deleteAll() {
-    this.myCookies.deleteAll('/', 'localhost', false,'Lax');
+
+
+    console.log(document.cookie)
+
+    this.myCookies.deleteAll('/', 'localhost',false, 'Lax');
     this.myCookies.deleteAll('/dashboard/manager', 'localhost', false, 'Lax');
     this.myCookies.deleteAll('/dashboard/customer', 'localhost', false, 'Lax');
+    
   }
   static init() {}
 }

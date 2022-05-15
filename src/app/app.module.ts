@@ -62,6 +62,8 @@ import { GlobalHttpInterceptorService } from './services/global-http-interceptor
 import { GlobalErrorHandlerService } from './services/global-error-handler.service';
 import { ForgotPasswordComponent } from './components/public/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/public/reset-password/reset-password.component';
+import { HomeTeamManagerComponent } from './components/teamManager/home-team-manager/home-team-manager.component';
+import { BubbleComponent } from './components/chart/bubble/bubble.component';
 
 export function httpTranslateLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -137,6 +139,8 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     RadarMaterialsComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
+    HomeTeamManagerComponent,
+    BubbleComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [CookieService, GuardAuthenticateGuard,AESEncoderService,
