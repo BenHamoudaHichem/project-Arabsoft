@@ -27,12 +27,12 @@ export class DemandPerYearComponent implements OnInit {
   public stat!:IDemandPerYear[]
   axeX:number[]=[]
   axeY:number[]=[]
-   res!: String;
+  titleDemand!: String;
 
 
-  constructor(private demandStats:DemandStatisticService,private trnslteService:TranslateService) {
+  constructor(private demandStats:DemandStatisticService,private translateServ:TranslateService) {
 
-this.trnslteService.get('titles.demand_per_year').subscribe((res)=>{this.res=res;})
+this.translateServ.get('titles.demand_per_year').subscribe((res)=>{this.titleDemand=res;})
     this.demandStats.getDemandsPerYear.subscribe((res:IDemandPerYear[])=>{
       this.stat= res
       this.stat.forEach((element:IDemandPerYear)=>{
@@ -61,7 +61,7 @@ this.trnslteService.get('titles.demand_per_year').subscribe((res)=>{this.res=res
           curve: "straight"
         },
         title: {
-          text:this.res ,
+          text:this.titleDemand ,
           align: "left"
         },
         grid: {

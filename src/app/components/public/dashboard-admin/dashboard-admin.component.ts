@@ -62,7 +62,7 @@ export class DashboardAdminComponent implements OnInit {
     this.storage.set("Lang",lang)
 
     this.translate.use(this.storage.get("Lang"));
-    if(this.route.url=='/dashboard/manager/home')
+    if(this.route.url=='/dashboard/manager/home' || this.route.url.includes('teamList')||this.route.url.includes('materialList'))
     {
       setTimeout(() => {
         window.location.reload();

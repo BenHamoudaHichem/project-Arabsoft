@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { ApexAxisChartSeries, ApexChart, ApexTitleSubtitle, ApexXAxis, ChartComponent } from 'ng-apexcharts';
 import { MaterialStatisticService } from 'src/app/services/statistics/material/material-statistic.service';
 import { Associatif } from 'src/app/services/types/associatif';
@@ -18,9 +19,12 @@ export class RadarMaterialsComponent implements OnInit {
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions!: Partial<ChartOptions>;
 
+  labels:string[]=[]
 
-  constructor(private materialStatisticService:MaterialStatisticService) {
+  constructor(private materialStatisticService:MaterialStatisticService,private translateServ:TranslateService) {
     this.materialStatisticService.getPieStatus.subscribe((res:Associatif[])=>{
+      res.flatMap(x=> [String(x.key)]).forEach((element:any)=>
+      (this.translateServ.stream(element).subscribe((value)=>{this.labels.push(value);})))
       this.chartOptions = {
         series: [
           {
@@ -36,7 +40,7 @@ export class RadarMaterialsComponent implements OnInit {
           text: "Basic Radar Chart"
         },
         xaxis: {
-          categories: res.flatMap(x=> [x.key])
+          categories:this.labels
         }
       };
     })

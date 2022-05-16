@@ -58,8 +58,8 @@ import { DemandPerYearComponent } from './components/chart/demand-per-year/deman
 import { PieTeamsComponent } from './components/chart/pie-teams/pie-teams.component';
 import { PieCategoriesComponent } from './components/chart/pie-categories/pie-categories.component';
 import { RadarMaterialsComponent } from './components/chart/radar-materials/radar-materials.component';
-import { GlobalHttpInterceptorService } from './services/global-http-interceptor.service';
-import { GlobalErrorHandlerService } from './services/global-error-handler.service';
+//import { GlobalHttpInterceptorService } from './services/global-http-interceptor.service';
+//import { GlobalErrorHandlerService } from './services/global-error-handler.service';
 import { ForgotPasswordComponent } from './components/public/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/public/reset-password/reset-password.component';
 import { HomeTeamManagerComponent } from './components/teamManager/home-team-manager/home-team-manager.component';
@@ -144,8 +144,9 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [CookieService, GuardAuthenticateGuard,AESEncoderService,
-    { provide: HTTP_INTERCEPTORS,useClass: GlobalHttpInterceptorService, multi: true  },
-    { provide: ErrorHandler, useClass:GlobalErrorHandlerService}],
+   // { provide: HTTP_INTERCEPTORS,useClass: GlobalHttpInterceptorService, multi: true  },
+   // { provide: ErrorHandler, useClass:GlobalErrorHandlerService}
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,6 +1,8 @@
 {
   "buttons": {
     "accept": "Accept",
+
+    "accepted": "Accepted",
     "add": "Add",
     "all": "All",
     "available": "Available",
@@ -111,12 +113,16 @@
     "in_progress": "In progress",
     "is_on": "In good shape",
     "title": "Status",
-    "wating": "Waiting"
+    "wating": "Waiting",
+    "is_free":"Available",
+    "not_free":"Unavailable",
+    "stolen":"stolen",
+    "out_of_order":"Out of order"
   },
   "titles": {
     "add_category": "Add category",
     "add_demand": "Send a claim",
-    "add_emp": "Subscribe member",
+    "add_emp": "Subscribe a member in the domains",
     "add_inter": "Create an intervention",
     "add_material": "Add material",
     "add_team": "Add team",
@@ -128,7 +134,7 @@
 
     "date": "Publication date",
     "demands": {
-      "detail": "Claims detail",
+      "detail": "Claim detail",
       "demand_list":"Claims list",
 
       "title": "Claims",

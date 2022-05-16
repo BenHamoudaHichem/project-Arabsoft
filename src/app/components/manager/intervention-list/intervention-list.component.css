@@ -421,7 +421,7 @@ label .fa {
   label .fa{display: inline-block;
   }
   i{
-    display: none;
+    display: none !important;
   }
   .tab_container {
     width: 98%;

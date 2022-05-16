@@ -1,6 +1,7 @@
 {
   "buttons": {
     "accept": "Accepter",
+    "accepted": "Acceptées",
     "add": "Ajouter",
     "all": "Tous",
     "available": "Disponible",
@@ -53,7 +54,7 @@
       "password": "Entrez votre mot de passe",
 
       "mat_select": "Selectionner les matériels",
-      "material": " Entrez le titre de materiel",
+      "material": " Entrez le titre de matériel",
       "member": "Membre",
       "mm_select": "Selectionner les membres",
       "msg_interv": "Il ya {{interventionList}} interventions dans cette catégorie",
@@ -112,14 +113,18 @@
     "in_progress": "En cours",
     "is_on": "En bonne condition",
     "title": "Status",
-    "wating": "En attente"
+    "wating": "En attente",
+    "is_free":"Disponible",
+    "not_free":"Indisponible",
+    "stolen":"Volé",
+    "out_of_order":"Hors service"
   },
   "titles": {
     "add_category": "Ajouter une catégorie",
     "add_demand": "Créer une reclamation",
     "add_emp": "Inscrivez un membre dans le domaines",
     "add_inter": "Créer une intervention",
-    "add_material": "Ajouter un materiel",
+    "add_material": "Ajouter un matériel",
     "add_team": "Ajouter  une équipe",
     "cat_question": "Vous avez besoins d'ajouter une autre categorie?",
     "categories": "Catégories",
@@ -149,7 +154,7 @@
       "team": " Equipe responsable  : {{team.name}}",
       "title": "Detail intervention"
     },
-    "detail_mat": "Detail du materiel",
+    "detail_mat": "Detail du matériel",
     "detail_team": "Detail équipe",
     "demand_per_year":"Demandes par année",
     "employees": "Employées",
@@ -166,7 +171,7 @@
     "materials_list": "Liste des matériels",
     "new_inter": "Nouvelle intervention",
     "new_material": "Nouvel matériel",
-    "broken_material":"Matériel en panne",
+    "broken_material":"Matériels en panne",
     "new_team": "Nouveau équipe",
     "profil": "Profil",
     "register": "Inscrivez vous a notre site",

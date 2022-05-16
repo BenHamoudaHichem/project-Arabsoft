@@ -1,4 +1,4 @@
-import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+/*import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import Notiflix, { Notify, Report } from 'notiflix';
@@ -53,3 +53,4 @@ export class GlobalHttpInterceptorService implements HttpInterceptor {
   }
 
 }
+*/

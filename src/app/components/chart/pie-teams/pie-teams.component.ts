@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { ApexChart, ApexNonAxisChartSeries, ApexResponsive, ChartComponent } from 'ng-apexcharts';
 import { TeamStatisticService } from 'src/app/services/statistics/team/team-statistic.service';
 import { Associatif } from 'src/app/services/types/associatif';
@@ -17,16 +18,18 @@ export class PieTeamsComponent implements OnInit {
 
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions!: Partial<ChartOptions>;
-
-  constructor(private temStatisticService:TeamStatisticService) {
+labels:string[]=[]
+  constructor(private temStatisticService:TeamStatisticService,private translateServ:TranslateService) {
     this.temStatisticService.getPieTeams.subscribe((res:Associatif[])=>{
-      this.chartOptions = {
+    res.flatMap(x=> [String(x.key)]).forEach((element:any)=>
+    (this.translateServ.stream(element).subscribe((value)=>{this.labels.push(value);})))
+     this.chartOptions = {
         series: res.flatMap(x=> [Number(x.value)]),
         chart: {
           width: 380,
-          type: "pie"
+          type:  "pie"
         },
-        labels: res.flatMap(x=> [x.key]),
+        labels: this.labels,
         responsive: [
           {
             breakpoint: 480,
