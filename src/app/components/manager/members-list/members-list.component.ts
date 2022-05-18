@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { IUser } from 'src/app/services/user/iuser';
@@ -16,10 +17,18 @@ export class MembersListComponent implements OnInit {
 
   constructor(
     private UserService: UserService,
-    private AuthenticateService: AuthenticateService
+    private AuthenticateService: AuthenticateService,
+    private activatedRoute:ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    if (this.activatedRoute.snapshot.queryParamMap.has('searchKey')) {
+      const firstParam: string = this.activatedRoute.snapshot.queryParamMap.get('searchKey')!;
+
+
+    }
+
+
     this.image = 'https://wallpaperaccess.com/full/4321838.jpg';
 
     this.allTManagers();

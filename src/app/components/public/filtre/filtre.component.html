@@ -1,46 +1,37 @@
-<fieldset class="">
-  <legend><i class=" fas fa-duotone fa-filter"></i>
-    Trier par
-  </legend>
-  <div class="row">
-    <div class="col-md-6 mb-4">
-      <div class="form-outline">
-        <label class="form-label" for="form3Example1n">Proprieté</label>
-
-        <select class="form-select" aria-label="Default select example">
-          <option selected>Open this select menu</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
-        </select>
-      </div>
-      <hr>
-      <div class="form-outline">
-        <label class="form-label" for="form3Example1n">Ordre</label>
-        <div id="radio-buttons">
-          <div class="radio">
-            <input type="radio" id="radio-1" name="radioBouton" />
-            <label for="radio-1"></label>
-            <span>Decroissant</span>
-          </div>
-
-          <div class="radio">
-            <input type="radio" id="radio-2" name="radioBouton" />
-            <label for="radio-2"></label>
-            <span>Croissant</span>
-          </div>
+<div class="container">
+  <form [formGroup]="searchForm" (submit)="onSearch()" id="fs">
+    <div class="p-1 bg-light rounded rounded-pill shadow-sm mb-4">
+      <div class="input-group">
+        <input type="search" formControlName="search" placeholder="What're you searching for?" aria-describedby="button-addon1" class="form-control border-0 bg-light">
+        <div class="input-group-append">
+          <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
         </div>
       </div>
 
     </div>
-    <div class="d-flex  justify-content-end">
-      <a href="/buttons/9"><button class="bn9"><span>Appliquer</span></button></a>
+    <div class="row" >
+      <div class="col">
+        <div class="input-group">
+          <select class="form-select" aria-label="Default select example" formControlName="attribute">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
+        </div>
+      </div>
+      <div class="col"id="order">
+        <div class="input-group">
+          <input type="radio" formControlName="order"class="btn-check" style="border-radius: 10px 15px;margin-top: 5px;" value="Croissant" id="option1" autocomplete="off" checked>
+               <label class="btn btn-secondary"style="border-radius: 10px 15px;margin-top: 5px;" for="option1">Croissant</label><br>
+          <input type="radio" formControlName="order" class="btn-check" value="Decroissant" style="border-radius: 10px 15px;margin-left: 15px;margin-top: 5px;" id="option4" autocomplete="off">
+             <label class="btn btn-secondary" style="border-radius: 10px 15px; margin-left: 15px;;margin-left: 15px;margin-top: 5px;" for="option4">Decroissant </label>
+        </div>
+      </div>
 
     </div>
-  </div>
-</fieldset>
 
-<div class="btn_pg text-left">
-  <a href="/buttons/9"><button class="bn9"><span><i class="fas fa-arrow-left"></i>Pred</span></button></a>
-  <a href="/buttons/9"><button class="bn9"><span>Suiv<i class="fas fa-arrow-right"></i></span></button></a>
-</div>
+
+  </form>
+<hr></div>
+
