@@ -89,6 +89,7 @@
       "title": "Title",
       "tm": "Team manager",
       "which_date": "Which date",
+      "end_date":"Expected end date",
       "sender":"The sender",
       "show_password":"Show password",
       "show_passwords":"Show passwords"

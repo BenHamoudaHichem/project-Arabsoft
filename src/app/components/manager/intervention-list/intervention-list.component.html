@@ -35,14 +35,23 @@
                 <a href="#"> {{ item.title }} </a>
               </h1>
               <div class="postcard__subtitle small">
-                <time datetime="2020-05-25 12:00:00">
-                  <i class="fas fa-calendar-alt mr-2"></i>
+                <time datetime="2020-05-25 12:00:00" >
+                  <i class="fas fa-calendar-alt mr-2"></i>  &nbsp; <strong translate>titles.started_at</strong>:
                   {{ item.createdAt | date:'dd-MM-yyyy'}}
                 </time>
               </div>
+              <div class="postcard__subtitle small">
+                <time datetime="2020-05-25 12:00:00">
+                  <i class="fas fa-calendar-check"></i> &nbsp; <strong translate> input.titles.end_date</strong>
+                  {{ item.expiredAt | date:'dd-MM-yyyy'}}
+                </time>
+              </div>
+
               <div class="postcard__bar"></div>
               <div class="postcard__preview-txt">
-                {{ item.category.getName() }}
+                <strong translate>input.titles.category</strong>:
+
+                <strong > {{ item.category.getName() }}</strong>
               </div>
               <ul class="postcard__tagbox">
                 <li class="tag__item">
@@ -78,14 +87,22 @@
                 <a href="#"> {{ item.title }} </a>
               </h1>
               <div class="postcard__subtitle small">
-                <time datetime="2020-05-25 12:00:00">
-                  <i class="fas fa-calendar-alt mr-2"></i>
+                <time datetime="2020-05-25 12:00:00" >
+                  <i class="fas fa-calendar-alt mr-2"></i>  &nbsp; <strong translate>titles.started_at</strong>:
                   {{ item.createdAt | date:'dd-MM-yyyy'}}
+                </time>
+              </div>
+              <div class="postcard__subtitle small">
+                <time datetime="2020-05-25 12:00:00">
+                  <i class="fas fa-calendar-check"></i> &nbsp; <strong translate> input.titles.end_date</strong>
+                  {{ item.expiredAt | date:'dd-MM-yyyy'}}
                 </time>
               </div>
               <div class="postcard__bar"></div>
               <div class="postcard__preview-txt">
-                {{ item.category.getName() }}
+                <strong translate>input.titles.category</strong>:
+
+                <strong > {{ item.category.getName() }}</strong>
               </div>
               <ul class="postcard__tagbox">
                 <li class="tag__item">

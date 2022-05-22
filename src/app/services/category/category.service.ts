@@ -48,6 +48,7 @@ export class CategoryService {
     demandList:int.demandList,
     team:int.team,
     createdAt: int.createdAt,
+    expiredAt:int.expiredAt,
     materialList:int.materialList
         }));
       })

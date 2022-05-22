@@ -10,6 +10,8 @@ export class Intervention {
     protected category: Dbref,
     protected address:Address,
     protected startedAt: string,
+
+    protected expiredAt: string,
     protected demandList:Dbref[],
     protected materialList:Dbref[],
     protected team:Dbref,
@@ -60,5 +62,11 @@ export class Intervention {
   }
   public setStartedAt(value: string): void {
     this.startedAt = value;
+  }
+  public getExpiredAt(): string {
+    return this.expiredAt;
+  }
+  public setExpiredAt(value: string): void {
+    this.expiredAt = value;
   }
 }

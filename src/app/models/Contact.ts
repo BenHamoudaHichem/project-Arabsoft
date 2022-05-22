@@ -1,10 +1,10 @@
 export class Contact{
   constructor(
-    private FullName:string,
+    private fullName:string,
     private phone : string,
     private email:String,
     private description:string
   ){}
-  
+
 
 }

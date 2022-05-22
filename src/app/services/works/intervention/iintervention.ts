@@ -11,6 +11,7 @@ export interface IIntervention {
     category: Category,
     address:Address,
     startedAt: Date,
+    expiredAt:Date,
     status: string,
     demandList:IDemand[],
     team:ITeam,

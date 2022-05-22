@@ -73,6 +73,8 @@ export class CreateInterventionComponent implements OnInit {
         ],
         category: ['', [Validators.required]],
         date: ['', [Validators.required]],
+
+        endDate: ['', [Validators.required]],
         status: ['', [Validators.required]],
         team: ['', [Validators.required]],
         Materiel: ['', [Validators.required]],
@@ -86,11 +88,19 @@ export class CreateInterventionComponent implements OnInit {
         ],
       },
       {
-        validators: DateValidation.DateConfirmation(
+        validators:[ DateValidation.DateConfirmation(
           'date',
-          new Date('2019-12-07')
-        ),
-      }
+          new Date('2022-05-20')), DateValidation.endDateConfirmation(
+            'endDate',
+            'date'
+
+          ),]
+
+
+
+
+      },
+
     );
     this.counrty?.setValue('Tunisie');
 
@@ -219,6 +229,8 @@ export class CreateInterventionComponent implements OnInit {
         new Location(0, 0)
       ),
       moment(this.date?.value).format('DD-MM-yyyy'),
+
+      moment(this.endDate?.value).format('DD-MM-yyyy'),
       this.demandList,
       Array.from(this.Materiel?.value as any[], (x) => new Dbref(x.id)),
 
@@ -275,6 +287,9 @@ export class CreateInterventionComponent implements OnInit {
   }
   get date() {
     return this.createInterventionForm.get('date');
+  }
+  get endDate() {
+    return this.createInterventionForm.get('endDate');
   }
   get team() {
     return this.createInterventionForm.get('team');

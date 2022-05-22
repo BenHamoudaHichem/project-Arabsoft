@@ -89,6 +89,8 @@
       "tm": "Chef d'équipe ",
       "title": "Titre",
       "which_date": "A quelle date ",
+      "end_date":"Date de fin prévue",
+
       "sender": "L'expéditeur",
       "show_password": "Afficher le mot de passe",
       "show_passwords": "Afficher les mots de passe"

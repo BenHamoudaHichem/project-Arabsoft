@@ -13,10 +13,16 @@
 
             <p class="card__text">{{ intervention.title }}</p>
             <h2 class="card__title" translate>
-              <i class="fas fa-calendar-check"></i> &nbsp; titles.started_at
+              <i class="fas fa-calendar-alt"></i> &nbsp; titles.started_at
             </h2>
 
             <p class="card__text">{{ intervention.startedAt }}</p>
+            <h2 class="card__title" translate>
+              <i class="fas fa-calendar-check"></i> &nbsp; input.titles.end_date
+            </h2>
+
+            <p class="card__text">{{ intervention.expiredAt }}</p>
+
             <h2 class="card__title" translate>
               <i class="fas fa-info-circle"></i> &nbsp;status.title
             </h2>
