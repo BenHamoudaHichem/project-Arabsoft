@@ -72,7 +72,7 @@ export class AddTeamComponent implements OnInit {
     console.log(this.users);
   }
   allByRole() {
-    this.userService.allByRole('member').subscribe((users: IUser[]) => {
+    this.userService.agents().subscribe((users: IUser[]) => {
       this.users = users;
       console.log(this.users);
     }),

@@ -42,7 +42,7 @@ export class UserService {
 
 
   allByRole(role:string): Observable<IUser[]> {
-    return this.http.get<IUser[]>(`${this.apiURL}?role=${role}&status=Available
+    return this.http.get<IUser[]>(`${this.apiURL}?role=${role}
     `).pipe(
       map((users: IUser[]) => {
         return users.map((user) => ({
