@@ -1,9 +1,12 @@
+import { LocationStrategy } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, ErrorHandler, OnInit } from '@angular/core';
+import { Component, ErrorHandler, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 import { ActivatedRoute, Router } from '@angular/router';
 import { plainToClass } from 'class-transformer';
 import moment from 'moment';
+import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Notify, Report } from 'notiflix';
 import { finalize } from 'rxjs';
 import { Address } from 'src/app/models/Address';
@@ -42,10 +45,10 @@ export class CreateInterventionComponent implements OnInit {
   interventionList!: IIntervention[];
   materialsList!: IMaterial[];
   teamList: ITeam[] = [];
+  output: boolean = false;
   statusList: Associatif[] = [
     { key: 'En attente', value: 'Waiting' },
     { key: 'En cours', value: 'In_Progress' },
-
   ];
   constructor(
     private formBuilder: FormBuilder,
@@ -57,10 +60,15 @@ export class CreateInterventionComponent implements OnInit {
     private addressService: AddressService,
     private router: Router,
     private route: ActivatedRoute,
-    private AuthenticateService: AuthenticateService
+    private AuthenticateService: AuthenticateService,
+    private location: LocationStrategy,
+    @Inject(SESSION_STORAGE) private storage: StorageService
   ) {
-    console.log(this.statusList);
+    /* this.location.onPopState(() => {
 
+     this.output=false
+      });
+    */
     this.createInterventionForm = this.formBuilder.group(
       {
         title: [
@@ -77,7 +85,6 @@ export class CreateInterventionComponent implements OnInit {
         endDate: ['', [Validators.required]],
         status: ['', [Validators.required]],
         team: ['', [Validators.required]],
-        Materiel: ['', [Validators.required]],
         state: ['', [Validators.required]],
         city: ['', [Validators.required]],
         street: ['', [Validators.required]],
@@ -88,19 +95,11 @@ export class CreateInterventionComponent implements OnInit {
         ],
       },
       {
-        validators:[ DateValidation.DateConfirmation(
-          'date',
-          new Date('2022-05-20')), DateValidation.endDateConfirmation(
-            'endDate',
-            'date'
-
-          ),]
-
-
-
-
-      },
-
+        validators: [
+          DateValidation.DateConfirmation('date', new Date('2022-05-20')),
+          DateValidation.endDateConfirmation('endDate', 'date'),
+        ],
+      }
     );
     this.counrty?.setValue('Tunisie');
 
@@ -110,12 +109,10 @@ export class CreateInterventionComponent implements OnInit {
     this.all();
     this.materialsAvailable();
     this.teamsAvailable();
-
   }
 
   dropdownSettings!: {};
   ngOnInit() {
-
     console.log(this.states);
 
     this.demandList = new Array(
@@ -128,7 +125,7 @@ export class CreateInterventionComponent implements OnInit {
       .findDemand(this.route.snapshot.paramMap.get('id')!)
       //.pipe(finalize(() => this.currentDemand.title === undefined))
       .subscribe((res: IDemand) => {
-        this.currentDemand = res
+        this.currentDemand = res;
         this.currentDemand.address = plainToClass(Address, res.address);
         console.log(this.currentDemand);
         this.state?.setValue(this.currentDemand.address.State);
@@ -146,7 +143,7 @@ export class CreateInterventionComponent implements OnInit {
         }
       };
     this.dropdownSettings = {
-      singleSelection: false,
+      singleSelection: true,
       idField: 'id',
       textField: 'name',
       selectAllText: 'Select All',
@@ -215,7 +212,7 @@ export class CreateInterventionComponent implements OnInit {
   create() {
     console.log(this.createInterventionForm.value);
     //console.log(this.Materiel?.value);
-    Array.from(this.Materiel?.value as IMaterial[], (x) => x.id);
+    // Array.from(this.Materiel?.value as IMaterial[], (x) => x.id);
     let intervention = new Intervention(
       HTMLEscape.escapeMethod(this.title?.value),
       HTMLEscape.escapeMethod(this.description?.value),
@@ -232,17 +229,19 @@ export class CreateInterventionComponent implements OnInit {
 
       moment(this.endDate?.value).format('DD-MM-yyyy'),
       this.demandList,
-      Array.from(this.Materiel?.value as any[], (x) => new Dbref(x.id)),
-
+      //   Array.from(this.Materiel?.value as any[], (x) => new Dbref(x.id)),
+      null!,
       new Dbref(this.team?.value),
       this.status?.value
     );
     console.log(JSON.stringify(intervention));
-    this.interventionService.create(intervention).subscribe((data: any) => {
+    this.storage.set('intervention', JSON.stringify(intervention));
+    this.output = true;
+    /*this.interventionService.create(intervention).subscribe((data: any) => {
       console.log(data);
       if (data.status == true) {
-        Report.success('Notification', data.message, 'OK');
-        this.router.navigate(['/dashboard/manager/interventionList']);
+        Notify.success(data.message);
+
       } else {
         Report.success('Notification', data.message, 'OK');
       }
@@ -253,16 +252,14 @@ export class CreateInterventionComponent implements OnInit {
         } else {
           Report.failure('Erreur', error.message, 'OK');
         }
-      };
+      };*/
   }
 
   collectStates() {
     this.addressService.allTNStates.subscribe((res: string[]) => {
       this.states = res;
-
     });
     console.log(this.states);
-
   }
   collectCitiesBystates(state: string) {
     this.addressService.allTNCitiesByState(state).subscribe((res: string[]) => {
@@ -294,9 +291,7 @@ export class CreateInterventionComponent implements OnInit {
   get team() {
     return this.createInterventionForm.get('team');
   }
-  get Materiel() {
-    return this.createInterventionForm.get('Materiel');
-  }
+
   get status() {
     return this.createInterventionForm.get('status');
   }

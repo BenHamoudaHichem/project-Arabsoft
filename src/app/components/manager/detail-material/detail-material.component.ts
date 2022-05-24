@@ -57,6 +57,7 @@ export class DetailMaterialComponent implements OnInit {
     let newMaterial: Material = new Material(
       this.material.name,
       this.material.description,
+      this.material.totalQuantity,
       this.material.address,
       this.material.dateOfPurchase,
       this.material.status

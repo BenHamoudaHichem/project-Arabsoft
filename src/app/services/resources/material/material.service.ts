@@ -27,6 +27,7 @@ export class EquipmentService {
           id: material.id,
           name: material.name,
           description: material.description,
+          totalQuantity:material.totalQuantity,
           dateOfPurchase: material.dateOfPurchase,
 
           status: material.status,
@@ -44,6 +45,7 @@ export class EquipmentService {
             id: equipment.id,
             name: equipment.name,
             description: equipment.description,
+            totalQuantity:equipment.totalQuantity,
             dateOfPurchase: equipment.dateOfPurchase,
             address: equipment.address,
             status: equipment.status,

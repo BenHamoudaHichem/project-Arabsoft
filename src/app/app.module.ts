@@ -64,6 +64,7 @@ import { ForgotPasswordComponent } from './components/public/forgot-password/for
 import { ResetPasswordComponent } from './components/public/reset-password/reset-password.component';
 import { HomeTeamManagerComponent } from './components/teamManager/home-team-manager/home-team-manager.component';
 import { BubbleComponent } from './components/chart/bubble/bubble.component';
+import { ChooseMaterialComponent } from './components/manager/choose-material/choose-material.component';
 
 export function httpTranslateLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -141,6 +142,7 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     ResetPasswordComponent,
     HomeTeamManagerComponent,
     BubbleComponent,
+    ChooseMaterialComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [CookieService, GuardAuthenticateGuard,AESEncoderService,

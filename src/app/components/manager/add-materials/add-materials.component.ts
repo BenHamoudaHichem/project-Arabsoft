@@ -21,35 +21,35 @@ import { HTMLEscape } from 'src/app/services/validation/HTMLEscapeChars';
 })
 export class AddMaterialsComponent implements OnInit {
   formAddMaterials!: FormGroup;
-  states!:string[]
-  cities!:string[]
+  states!: string[];
+  cities!: string[];
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private formBuilder: FormBuilder,
-    private addressService:AddressService,
+    private addressService: AddressService,
 
     private materialService: EquipmentService,
     private router: Router,
-    private AuthenticateService:AuthenticateService
+    private AuthenticateService: AuthenticateService
   ) {
     this.formAddMaterials = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{2,}$')]],
+      name: [
+        '',
+        [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{2,}$')],
+      ],
       status: ['', [Validators.required]],
-    
 
       dateOfPurshase: ['', [Validators.required]],
       description: [
         '',
         [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
       ],
-      state: [
+      totalQuantity: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+        [Validators.required, Validators.pattern('^[0-9]{1,}$')],
       ],
-      city: [
-        '',
-        [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
-      ],
+      state: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
+      city: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
       street: [
         '',
         [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
@@ -58,19 +58,22 @@ export class AddMaterialsComponent implements OnInit {
         '',
         [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
       ],
-      zipCode: ['', [Validators.required, Validators.pattern('^[a-z0-9]{4,}$')]],
-
+      zipCode: [
+        '',
+        [Validators.required, Validators.pattern('^[a-z0-9]{4,}$')],
+      ],
     });
-    this.counrty?.setValue("Tunisie")
+    this.counrty?.setValue('Tunisie');
 
-    this.city?.disable()
-    this.collectStates()
+    this.city?.disable();
+    this.collectStates();
   }
 
-  ngOnInit() {this.counrty?.setValue('Tunisie')
-}
+  ngOnInit() {
+    this.counrty?.setValue('Tunisie');
+  }
 
-create() {
+  create() {
     let address = new Address(
       HTMLEscape.escapeMethod(this.zipCode?.value),
       HTMLEscape.escapeMethod(this.street?.value),
@@ -83,9 +86,10 @@ create() {
     let material = new Material(
       HTMLEscape.escapeMethod(String(this.name?.value)),
       HTMLEscape.escapeMethod(String(this.description?.value)),
+      this.totalQuantity?.value,
       address,
-      moment(this.dateOfPurshase?.value,'YYYY-MM-DD').toDate(),
-      HTMLEscape.escapeMethod( String(this.status?.value))
+      moment(this.dateOfPurshase?.value, 'YYYY-MM-DD').toDate(),
+      HTMLEscape.escapeMethod(String(this.status?.value))
     );
     console.log(material);
     this.materialService.create(material).subscribe((data) => {
@@ -94,37 +98,35 @@ create() {
       this.router.navigate(['manager/materialList']);
     }),
       (error: HttpErrorResponse) => {
-        if(error.status==401){
-          this.AuthenticateService.redirectIfNotAuth()
-
-        }else{
-          Report.failure('Erreur', error.message,'OK')
-
+        if (error.status == 401) {
+          this.AuthenticateService.redirectIfNotAuth();
+        } else {
+          Report.failure('Erreur', error.message, 'OK');
         }
-              };
+      };
   }
-  collectStates()
-  {
-
-    this.addressService.allTNStates.subscribe((res:string[])=>{
-      this.states=res
-    })
+  collectStates() {
+    this.addressService.allTNStates.subscribe((res: string[]) => {
+      this.states = res;
+    });
   }
-  collectCitiesBystates(state:string)
-  {
-    this.addressService.allTNCitiesByState(state).subscribe((res:string[])=>{
-      this.cities=res
-    })
+  collectCitiesBystates(state: string) {
+    this.addressService.allTNCitiesByState(state).subscribe((res: string[]) => {
+      this.cities = res;
+    });
   }
-  loadCities(){
+  loadCities() {
     if (this.city?.disabled) {
-      this.city?.enable()
+      this.city?.enable();
     }
 
-    this.collectCitiesBystates(this.state?.value)
+    this.collectCitiesBystates(this.state?.value);
   }
   get name() {
     return this.formAddMaterials.get('name');
+  }
+  get totalQuantity() {
+    return this.formAddMaterials.get('totalQuantity');
   }
   get status() {
     return this.formAddMaterials.get('status');
@@ -150,57 +152,68 @@ create() {
   get zipCode() {
     return this.formAddMaterials.get('zipCode');
   }
-  check()
-{
- Object.keys(this.formAddMaterials.controls).forEach(key => {
-   if (this.formAddMaterials.get(key)!.errors) {
-   console.log(this.formAddMaterials.get(key)!.errors)
-    if(this.formAddMaterials.get(key)!.errors!.hasOwnProperty('required'))
-    {
-      Report.failure(key,"Champs obligatoire","D'accord")
-    }
-    if(this.formAddMaterials.get(key)!.errors!.hasOwnProperty('pattern'))
-    {
-      let stringAlpha:string=" des lettres alphabétiques "
-      let stringdigit:string=" des chiffres "
-      let stringMin:string=" au minimum "
-      let stringMax:string=" au maximum "
-      let stringOperation:string=String(this.formAddMaterials.get(key)!.errors!["pattern"].requiredPattern)
-      console.log(stringOperation);
+  check() {
+    Object.keys(this.formAddMaterials.controls).forEach((key) => {
+      if (this.formAddMaterials.get(key)!.errors) {
+        console.log(this.formAddMaterials.get(key)!.errors);
+        if (
+          this.formAddMaterials.get(key)!.errors!.hasOwnProperty('required')
+        ) {
+          Report.failure(key, 'Champs obligatoire', "D'accord");
+        }
+        if (this.formAddMaterials.get(key)!.errors!.hasOwnProperty('pattern')) {
+          let stringAlpha: string = ' des lettres alphabétiques ';
+          let stringdigit: string = ' des chiffres ';
+          let stringMin: string = ' au minimum ';
+          let stringMax: string = ' au maximum ';
+          let stringOperation: string = String(
+            this.formAddMaterials.get(key)!.errors!['pattern'].requiredPattern
+          );
+          console.log(stringOperation);
 
-      let res:string=""
-      if(stringOperation.indexOf("a-z")!=-1)
-      {
-        res="Ce champs doit contenir"
-        res=res+stringAlpha
-      }
-      if(stringOperation.indexOf("0-9")!=-1){
-        if(res.length==0){res="Ce champs doit contenir"
-      res=res+ stringdigit}else{
+          let res: string = '';
+          if (stringOperation.indexOf('a-z') != -1) {
+            res = 'Ce champs doit contenir';
+            res = res + stringAlpha;
+          }
+          if (stringOperation.indexOf('0-9') != -1) {
+            if (res.length == 0) {
+              res = 'Ce champs doit contenir';
+              res = res + stringdigit;
+            } else {
+              res = res + 'et' + stringdigit;
+            }
+          }
 
-        res=res+"et"+stringdigit
-      }
-    }
+          if (stringOperation.includes('{')) {
+            let min: number = Number(
+              stringOperation.substring(
+                stringOperation.indexOf('{') + 1,
+                stringOperation.indexOf(',')
+              )
+            );
+            res = res.concat('avec un taille de ' + min + stringMin);
+            if (
+              Number(
+                stringOperation.substring(
+                  stringOperation.indexOf(',') + 1,
+                  stringOperation.indexOf('}')
+                )
+              ) !== 0
+            ) {
+              let max: number = Number(
+                stringOperation.substring(
+                  stringOperation.indexOf(',') + 1,
+                  stringOperation.indexOf('}')
+                )
+              );
+              res = res.concat('et de ' + max + stringMax);
+            }
+          }
 
-      if (stringOperation.includes("{")) {
-        let min:number=Number(stringOperation.substring(
-          stringOperation.indexOf("{")+1,
-          stringOperation.indexOf(",")
-        ))
-        res=res.concat("avec un taille de "+min+stringMin)
-        if ((Number(stringOperation.substring(stringOperation.indexOf(",")+1,stringOperation.indexOf("}")))!==0)) {
-          let max:number=Number(stringOperation.substring(
-            stringOperation.indexOf(",")+1,
-            stringOperation.indexOf("}")
-          ))
-          res=res.concat("et de "+max+stringMax)
+          Report.failure(key, res, "D'accord");
         }
       }
-
-      Report.failure(key,res,"D'accord")
-    }
-
-   }
-})
-}
+    });
+  }
 }

@@ -6,6 +6,7 @@ export class Material {
 
     private name: string,
     private description: string,
+    private totalQuantity:number,
     private address: Address,
     private dateOfPurshase: Date,
     private status: string
@@ -45,5 +46,14 @@ export class Material {
   }
   public setStatus(value: string): void {
     this.status = value;
+  }
+
+
+
+  public getTotalQuantity(): number {
+    return this.totalQuantity;
+  }
+  public setTotalQuantity(value: number): void {
+    this.totalQuantity = value;
   }
 }

@@ -1,6 +1,6 @@
 <title translate> titles.add_inter </title>
 
-<section class="h-100">
+<section  *ngIf="output==false" class="h-100">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col">
@@ -26,13 +26,13 @@
                       errors.req_error
                     </p>
                     <p *ngIf="title?.errors?.['pattern']" class="ErrorMsg" translate>
-                     errors.alph_2error
+                      errors.alph_2error
                     </p>
                     <!----------->
                   </div>
                   <div class="form-outline">
                     <label class="form-label" translate>status.title</label>
-                    <select formControlName="status" class="form-select" (change)="chechIsNow()" >
+                    <select formControlName="status" class="form-select" (change)="chechIsNow()">
                       <option *ngFor="let item of statusList" [value]="item.value">
                         {{item.key}}
                       </option>
@@ -94,16 +94,17 @@
                     </p>
                     <div *ngIf="categoryList?.length==0">
 
-                      <a class="nullValueLink" routerLink="/dashboard/manager/categorylist" translate>titles.add_category
+                      <a class="nullValueLink" routerLink="/dashboard/manager/categorylist"
+                        translate>titles.add_category
                       </a>
                     </div>
                   </div>
 
                   <div class="form-outline">
                     <label class="form-label" translate>input.titles.team</label>
-                    <select formControlName="team" class="form-select" aria-label="Default select example" >
-                    <option *ngIf="teamList?.length==0" translate>errors.null_team</option>
-                      <option  *ngFor="let item of teamList" [value]="item.id">
+                    <select formControlName="team" class="form-select" aria-label="Default select example">
+                      <option *ngIf="teamList?.length==0" translate>errors.null_team</option>
+                      <option *ngFor="let item of teamList" [value]="item.id">
                         {{ item.name }}
                       </option>
                     </select>
@@ -132,7 +133,7 @@
                       errors.req_error
                     </p>
                     <p *ngIf="description?.errors?.['pattern']" class="ErrorMsg" translate>
-                     errors.alph_8error
+                      errors.alph_8error
                     </p>
                     <!----------->
                   </div>
@@ -145,18 +146,13 @@
                       <div class="col-md-6 mb-4">
                         <div class="form-outline">
                           <label class="form-label" for="pays" translate> location.country </label>
-                          <input name="value" type="text" [readonly]="true"
-                            formControlName="country"
-                            class="form-control form-control-lg"
-                          />
+                          <input name="value" type="text" [readonly]="true" formControlName="country"
+                            class="form-control form-control-lg" />
                           <!--Country errors-->
-                          <p
-                            class="ErrorMsg"
-                            *ngIf="
+                          <p class="ErrorMsg" *ngIf="
                               !counrty?.valid &&
                               (counrty?.dirty || counrty?.touched)
-                            "
-                       translate  >
+                            " translate>
                             errors.req_error
                           </p>
 
@@ -169,16 +165,13 @@
                             location.governorate</label> <br>
 
                           <select formControlName="state" (change)="loadCities()">
-                            <option *ngFor="let item of states"  [value]="item">{{item}}</option>
+                            <option *ngFor="let item of states" [value]="item">{{item}}</option>
                           </select>
 
                           <!--Zip code errors-->
-                          <p
-                            class="ErrorMsg"
-                            *ngIf="
+                          <p class="ErrorMsg" *ngIf="
                               !state?.valid && (state?.dirty || state?.touched)
-                            " translate
-                          >
+                            " translate>
                             errors.req_error
                           </p>
 
@@ -189,17 +182,14 @@
                       <div class="col-md-6 mb-4">
                         <div class="form-outline">
                           <label class="form-label" translate> location.city</label><br>
-                          <select   formControlName="city">
+                          <select formControlName="city">
                             <option *ngFor="let item of cities" [value]="item">{{item}}</option>
                           </select>
 
                           <!--Ville errors-->
-                          <p
-                            class="ErrorMsg"
-                            *ngIf="
+                          <p class="ErrorMsg" *ngIf="
                               !city?.valid && (city?.dirty || city?.touched)
-                            "
-                         translate >
+                            " translate>
                             errors.req_error
                           </p>
 
@@ -209,25 +199,16 @@
                       </div>
                       <div class="col-md-6 mb-4">
                         <div class="form-outline">
-                          <label class="form-label" for="code postal" translate
-                            >location.postal_code</label
-                          >
+                          <label class="form-label" for="code postal" translate>location.postal_code</label>
 
-                          <input
-                            type="text"
-                            formControlName="zipCode"
-                            placeholder="{{'location.postal_code'|translate}}"
-                            class="form-control form-control-lg"
-                          />
+                          <input type="text" formControlName="zipCode"
+                            placeholder="{{'location.postal_code'|translate}}" class="form-control form-control-lg" />
 
                           <!--Zip code errors-->
-                          <p
-                            class="ErrorMsg"
-                            *ngIf="
+                          <p class="ErrorMsg" *ngIf="
                               !zipCode?.valid &&
                               (zipCode?.dirty || zipCode?.touched)
-                            "
-                        translate  >
+                            " translate>
                             errors.req_error
                           </p>
 
@@ -237,20 +218,13 @@
                       <div class="col-md-6 mb-4">
                         <div class="form-outline">
                           <label class="form-label" for="Rue" translate> location.street </label>
-                          <input
-                            type="text"
-                            formControlName="street"
-                            placeholder="{{'location.street'|translate}}"
-                            class="form-control form-control-lg"
-                          />
+                          <input type="text" formControlName="street" placeholder="{{'location.street'|translate}}"
+                            class="form-control form-control-lg" />
                           <!--Street errors-->
-                          <p
-                            class="ErrorMsg"
-                            *ngIf="
+                          <p class="ErrorMsg" *ngIf="
                               !street?.valid &&
                               (street?.dirty || street?.touched)
-                            "
-                        translate  >
+                            " translate>
                             errors.req_error
                           </p>
 
@@ -260,30 +234,12 @@
                     </div>
                   </fieldset>
 
-                  <div class="form-outline">
-                    <label class="form-label" translate> input.titles.materials</label>
 
-                    <ng-multiselect-dropdown formControlName="Materiel" [placeholder]="'input.msg.mat_select'|translate"
-                      [settings]="dropdownSettings" [data]="materialsList" (onSelect)="onItemSelect($event)"
-                      (onSelectAll)="onSelectAll($event)" class="form-control-lg">
-                    </ng-multiselect-dropdown>
-                    <p *ngIf="
-                        (Materiel?.touched || Materiel?.dirty) &&
-                        !Materiel?.valid
-                      " class="ErrorMsg">
-                      errors.req_error
-                    </p>
-                    <div *ngIf="materialsList?.length==0">
 
-                      <a class="nullValueLink" routerLink="/dashboard/manager/addMaterial" translate>titles.add_material
-                      </a>
-                    </div>
-                  </div>
-
-                  <div class="d-flex justify-content-end pt-3" (mouseover)="check()">
+                  <div class="d-flex justify-content-end pt-3" >
                     <button class="bn632-hover bn24" type="submit" role="button"
-                      [disabled]="createInterventionForm.invalid" translate>
-                      buttons.create
+                translate>
+                      buttons.next
                     </button>
                   </div>
                 </div>
@@ -295,3 +251,4 @@
     </div>
   </div>
 </section>
+<app-choose-material *ngIf="output==true"></app-choose-material>

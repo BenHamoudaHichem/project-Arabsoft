@@ -1,0 +1,101 @@
+<title translate> titles.add_inter </title>
+
+
+<section class="h-100 ">
+  <div class="container py-5">
+    <div class="row ">
+      <div class="col">
+        <div class="card">
+          <div class="logo">
+            <div class="card-title">
+              <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
+            </div>
+            <span class="title" translate>titles.add_inter</span>
+
+          </div>
+          <form [formGroup]="materialForm" (ngSubmit)="create()">
+            <div class="row g-0">
+              <div class="col-md-auto d-xl-block">
+                <div class="card-body p-md-5 text-black">
+                  <div class="form-outline">
+                    <label class="form-label" translate> input.titles.materials</label>
+
+                    <ng-multiselect-dropdown formControlName="materiel" [placeholder]="'input.msg.mat_select'|translate"
+                      [settings]="dropdownSettings" [data]="materialsList" (onSelect)="onItemSelect($event)"
+                      (onSelectAll)="onSelectAll($event)" class="form-control-lg">
+                    </ng-multiselect-dropdown>
+                    <p *ngIf="(materiel?.touched || materiel?.dirty) && !materiel?.valid" class="ErrorMsg">
+                      errors.req_error
+                    </p>
+                    <div *ngIf="materialsList?.length==0">
+
+                      <a class="nullValueLink" routerLink="/dashboard/manager/addMaterial" translate>titles.add_material
+                      </a>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div class="col-xl-6 d-xl-block">
+                <div class="card-body p-md-5 text-black">
+                  <fieldset>
+                    <div class="row">
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label" for="Quantity" translate>Total Quantity </label>
+                          <input name="value" type="number" step="any" min="0" formControlName="quantity"
+                            class="form-control form-control-lg" />
+
+                        </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <label class="form-label">Choose measure </label>
+
+                          <div class="input-group">
+                            <div class="input-group-prepend">
+                              <label class="input-group-text" style="padding: 10px 5px;
+            margin: 10px 0px;
+          " for="inputGroupSelect01">mesure</label>
+                            </div>
+                            <select class="custom-select" id="inputGroupSelect01" formControlName="measure">
+                              <option selected>Choose...</option>
+                              <option value="1">One</option>
+                              <option value="2">Two</option>
+                              <option value="3">Three</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>
+
+
+
+
+
+                </div>
+              </div>
+           <div class="col-md-auto d-xl-block">
+            <div class="card-body p-md-5 ">
+              <div class="d-flex justify-content-center pt-3">
+                <img src="assets/images/remove.png" height="60px" width="60px" alt="remove">
+                &nbsp;&nbsp;
+                  <img src="assets/images/add.png" height="60px" width="60px" alt="add"></div>
+              </div>
+
+            </div>
+
+          </div>
+
+            <div class="d-flex justify-content-end pt-3" (mouseover)="check()">
+
+              <button class="bn632-hover bn24" type="submit" translate>buttons.add</button>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

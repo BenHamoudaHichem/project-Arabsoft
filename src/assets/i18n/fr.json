@@ -2,6 +2,7 @@
   "buttons": {
     "accept": "Accepter",
     "accepted": "Acceptées",
+    "next":"Suivant",
     "add": "Ajouter",
     "all": "Tous",
     "available": "Disponible",
@@ -24,8 +25,8 @@
   },
   "cards": {
     "bleu": "Notifications",
-    "green": "Demandes acceptés",
-    "red": "Demandes rejetés",
+    "green": "Demandes acceptées",
+    "red": "Demandes rejetées",
     "white": "Demandes en cours"
   },
   "errors": {
@@ -124,7 +125,7 @@
   "titles": {
     "add_category": "Ajouter une catégorie",
     "add_demand": "Créer une reclamation",
-    "add_emp": "Inscrivez un membre dans le domaines",
+    "add_emp": "Inscrivez un membre dans le domaine",
     "add_inter": "Créer une intervention",
     "add_material": "Ajouter un matériel",
     "add_team": "Ajouter  une équipe",
