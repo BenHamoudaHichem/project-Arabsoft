@@ -1,11 +1,15 @@
 import { Address } from "src/app/models/Address";
+import { QuantityValue } from "src/app/models/resources/QuantityValue";
 
 export interface IMaterial {
   id: string;
   name: string;
   description: string;
-  totalQuantity:number;
-  address: Address;
+  totalQuantity:QuantityValue;
+
   dateOfPurchase: Date;
+
+  address: Address;
+  category:string
   status: string;
 }

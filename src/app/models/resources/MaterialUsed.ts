@@ -1,38 +1,37 @@
 import { Address } from "../Address";
 import { Material } from "./Material";
+import { QuantityValue } from "./QuantityValue";
 
 export class MaterialUsed extends Material {
   constructor(name: string,
     description: string,
-   totalQuantity:number,
+    totalQuantity: QuantityValue,
+    dateOfPurshase: Date,
 
     address: Address,
-    dateOfPurshase: Date,
+    category:string,
     status: string,
-    private quantityToUse: number,
-    private measure: string,
-    private dateOfUse: Date) {
+
+    private quantityToUse: QuantityValue,
+    private dateOfUse: Date
+    ) {
     super(name,
       description,
       totalQuantity,
-      address,
+
       dateOfPurshase,
+      address,
+      category,
       status);
   }
 
-  public getquantityToUse(): number {
+  public getquantityToUse(): QuantityValue {
     return this.quantityToUse;
   }
-  public setquantityToUse(value: number): void {
+  public setquantityToUse(value: QuantityValue): void {
     this.quantityToUse = value;
   }
-  public setMeasure(value: string): void {
-    this.measure = value;
-  }
 
-  public getMeasure(): string {
-    return this.measure;
-  }
   public setdateOfUse(value: Date): void {
     this.dateOfUse = value;
   }

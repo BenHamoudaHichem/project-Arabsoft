@@ -45,6 +45,17 @@
                     <!----------->
 
                   </div>
+                  <div class="form-outline">
+                    <label class="form-label" translate> input.titles.category</label>
+                      <select formControlName="category" class="form-select">
+
+<option *ngFor="let category of categoryList" [value]="category.key">{{category.value}}</option>
+                      </select>
+                      <!--Error name-->
+                      <p *ngIf="(category?.touched|| category?.dirty ) && !(category?.valid) "class="ErrorMsg" translate> errors.req_error</p>
+                      <!----------->
+
+                  </div>
                   <!--     <div class="form-outline">
                  <label class="form-label" for="image-gallery">Choisir une photo</label>
                     <div class="custom-file">

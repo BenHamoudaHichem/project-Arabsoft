@@ -2,7 +2,8 @@
   "buttons": {
     "accept": "Accepter",
     "accepted": "Acceptées",
-    "next":"Suivant",
+    "next": "Suivant",
+    "back": "Precedant",
     "add": "Ajouter",
     "all": "Tous",
     "available": "Disponible",
@@ -40,7 +41,7 @@
     "error_confirm": "Les 2 mots de passe ne sont pas identiques",
     "null_cat": "Aucun categorie",
     "null_team": "Pas de équipe pour le moment",
-    "req_error": "Ce champs est obligatoire"
+    "req_error": "Ce champ est obligatoire"
   },
   "input": {
     "msg": {
@@ -63,7 +64,7 @@
       "team": " Entrez le nom d'équipe",
       "tel": "(+216) __ ___ ___",
       "tm": "Chef d'équipe ",
-      "tm_select": "Selectionnez un chef d'équipe"
+      "tm_select": "Sélectionnez un chef d'équipe"
     },
     "titles": {
       "add_mbrs": "Ajouter des membres",
@@ -90,8 +91,8 @@
       "tm": "Chef d'équipe ",
       "title": "Titre",
       "which_date": "A quelle date ",
-      "end_date":"Date de fin prévue",
-
+      "end_date": "Date de fin prévue",
+      "closed_date": "Date de clôture",
       "sender": "L'expéditeur",
       "show_password": "Afficher le mot de passe",
       "show_passwords": "Afficher les mots de passe"
@@ -117,10 +118,10 @@
     "is_on": "En bonne condition",
     "title": "Status",
     "wating": "En attente",
-    "is_free":"Disponible",
-    "not_free":"Indisponible",
-    "stolen":"Volé",
-    "out_of_order":"Hors service"
+    "is_free": "Disponible",
+    "not_free": "Indisponible",
+    "stolen": "Volé",
+    "out_of_order": "Hors service"
   },
   "titles": {
     "add_category": "Ajouter une catégorie",
@@ -157,9 +158,10 @@
       "team": " Equipe responsable  : {{team.name}}",
       "title": "Detail intervention"
     },
+
     "detail_mat": "Detail du matériel",
     "detail_team": "Detail équipe",
-    "demand_per_year":"Demandes par année",
+    "demand_per_year": "Demandes par année",
     "employees": "Employées",
     "employees_list": "Liste des employées",
     "forget_pass": "Mot de passe oublié ",
@@ -168,24 +170,29 @@
     "interv_in": "Intervention en cours",
     "intervention": "Interventions",
     "interventions_list": "Liste des interventions",
+    "interventions_closed_list": "Interventions clôturées",
+    "close_intervention":"Clôturer l'intervention",
     "log": "Connectez vous à votre espace",
     "logout": "Déconnecter",
     "materials": "Matériels",
+    "materials_used":"Les matériels utilisés",
     "materials_list": "Liste des matériels",
     "new_inter": "Nouvelle intervention",
     "new_material": "Nouvel matériel",
-    "broken_material":"Matériels en panne",
+    "material_name": "Nom du matériel",
+"participating _members":"Les membres participants",
+    "broken_material": "Matériels en panne",
     "new_team": "Nouveau équipe",
     "profil": "Profil",
     "register": "Inscrivez vous a notre site",
     "reset": "Réinitialiser le mot de passe",
-    "started_at": "Date de debut",
+    "started_at": "Date de début",
     "team_detail": "Detail équipe",
 
     "team_det": " Details de {{ name }}",
     "teams": "Equipes",
-    "teams_progress":"Equipes en cours",
-    "teams_list": "Liste des equipes",
+    "teams_progress": "Equipes en cours",
+    "teams_list": "Liste des équipes",
     "up": "Telecharger un fichier",
     "up_photo": "Changer photo",
     "update_material": "Mettre à jour le matériel",
@@ -194,6 +201,10 @@
     "update_int": "Mettre à jour l'intervention",
 
     "update_team": "Mettre à jour l'équipe",
+    "choose_measure":"Choisir la mesure",
+
+    "quantity_used":"Quantité utilisée",
+    "quantity_total":"Quantité total",
     "subscribe": "Inscrivez vous à notre site"
   },
   "navbar": {

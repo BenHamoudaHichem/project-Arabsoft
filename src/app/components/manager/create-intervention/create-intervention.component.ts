@@ -1,6 +1,6 @@
 import { LocationStrategy } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, ErrorHandler, Inject, OnInit } from '@angular/core';
+import { Component, ErrorHandler, Inject, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { ActivatedRoute, Router } from '@angular/router';
@@ -29,6 +29,7 @@ import { DemandService } from 'src/app/services/works/demand/demand.service';
 import { IDemand } from 'src/app/services/works/demand/idemand';
 import { IIntervention } from 'src/app/services/works/intervention/iintervention';
 import { InterventionService } from 'src/app/services/works/intervention/intervention.service';
+import { ChooseMaterialComponent } from '../choose-material/choose-material.component';
 
 @Component({
   selector: 'app-create-intervention',
@@ -50,6 +51,11 @@ export class CreateInterventionComponent implements OnInit {
     { key: 'En attente', value: 'Waiting' },
     { key: 'En cours', value: 'In_Progress' },
   ];
+  @ViewChild('app-choose-material', { static: false })
+  ChooseMaterialComponent!: ChooseMaterialComponent;
+
+
+
   constructor(
     private formBuilder: FormBuilder,
     private interventionService: InterventionService,
@@ -64,12 +70,7 @@ export class CreateInterventionComponent implements OnInit {
     private location: LocationStrategy,
     @Inject(SESSION_STORAGE) private storage: StorageService
   ) {
-    /* this.location.onPopState(() => {
-
-     this.output=false
-      });
-    */
-    this.createInterventionForm = this.formBuilder.group(
+      this.createInterventionForm = this.formBuilder.group(
       {
         title: [
           '',
@@ -109,6 +110,7 @@ export class CreateInterventionComponent implements OnInit {
     this.all();
     this.materialsAvailable();
     this.teamsAvailable();
+
   }
 
   dropdownSettings!: {};
@@ -237,6 +239,7 @@ export class CreateInterventionComponent implements OnInit {
     console.log(JSON.stringify(intervention));
     this.storage.set('intervention', JSON.stringify(intervention));
     this.output = true;
+
     /*this.interventionService.create(intervention).subscribe((data: any) => {
       console.log(data);
       if (data.status == true) {

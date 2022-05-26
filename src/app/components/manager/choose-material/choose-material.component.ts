@@ -1,43 +1,47 @@
+import { InfoWindowManager } from '@agm/core';
+import { WindowRef } from '@agm/core/lib/utils/browser-globals';
+import { LocationStrategy } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import EventEmitter from 'events';
 import { Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { IMaterial } from 'src/app/services/resources/material/imaterial';
 import { EquipmentService } from 'src/app/services/resources/material/material.service';
 import { TeamService } from 'src/app/services/resources/team/team.service';
+import { Associatif } from 'src/app/services/types/associatif';
 import { IUser } from 'src/app/services/user/iuser';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-choose-material',
   templateUrl: './choose-material.component.html',
-  styleUrls: ['./choose-material.component.css']
+  styleUrls: ['./choose-material.component.css'],
 })
 export class ChooseMaterialComponent implements OnInit {
-
   materialForm!: FormGroup;
   materialsList!: IMaterial[];
 
   dropdownSettings!: {};
-
+  measureList: Associatif[] = [
+    { key: 'Kilogram', value: 'Kilogram' },
+    { key: 'Meter', value: 'Meter' },
+    { key: 'Liter', value: 'Liter' },
+  ];
+  output: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private materialService: EquipmentService,
-
-
+    private location: LocationStrategy
   ) {
-
     this.materialForm = this.formBuilder.group({
-      measure: [
-        '',
-        [Validators.required, Validators.pattern('^[a-zA-Z1-9 ]{2,}$')],
-      ],
+      measure: ['', [Validators.required]],
       materiel: ['', [Validators.required]],
 
-      quantity: ['', Validators.required],
+      quantity: ['', [Validators.required, Validators.pattern('^[0-9]{1,}$')]],
     });
   }
 
@@ -45,7 +49,7 @@ export class ChooseMaterialComponent implements OnInit {
 
   ngOnInit() {
     // Setting of dropdown multiselect
-this.materialsAvailable()
+    this.materialsAvailable();
     this.dropdownSettings = {
       singleSelection: true,
       idField: 'id',
@@ -57,10 +61,8 @@ this.materialsAvailable()
     };
   }
 
-
   create() {
-       // Array.from(this.Materiel?.value as IMaterial[], (x) => x.id);
-
+    // Array.from(this.Materiel?.value as IMaterial[], (x) => x.id);
   }
   materialsAvailable() {
     this.materialService
@@ -70,7 +72,7 @@ this.materialsAvailable()
         console.log(this.materialsList);
       }),
       (error: HttpErrorResponse) => {
-          Report.failure('Erreur', error.message, 'OK');
+        Report.failure('Erreur', error.message, 'OK');
       };
   }
   get materiel() {
@@ -78,7 +80,8 @@ this.materialsAvailable()
   }
   get quantity() {
     return this.materialForm.get('quantity');
-  }  get measure() {
+  }
+  get measure() {
     return this.materialForm.get('measure');
   }
   onItemSelect(item: any) {
@@ -150,6 +153,16 @@ this.materialsAvailable()
       }
     });
   }
+  back() {
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
+  }
 
-
+  remove(){
+    console.log("hi im remove photo ! ")
+  }
+  add(){
+    console.log("hi im add photo ! ")
+  }
 }

@@ -66,8 +66,8 @@
                 class="fa fa-list"></i> {{'titles.interventions_list'|translate}}</a>
           </li>
           <li>
-            <a data-toggle="tab" class="text-light" [routerLink]="['/dashboard/manager/createIntervention']"><i
-                class="fa fa-plus-circle"></i> {{'titles.new_inter'|translate}}</a>
+            <a data-toggle="tab" class="text-light" [routerLink]="['/dashboard/manager/interventionClosedList']"><i
+                class="fa fa-lock"></i>{{'titles.interventions_closed_list'|translate}}</a>
           </li>
           <li>
             <a data-toggle="tab" class="text-light" [routerLink]="['/dashboard/manager/categorylist']"><i
@@ -106,16 +106,18 @@
       <div class="dropdown pb-4">
         <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
           data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="https://www.pngitem.com/pimgs/m/22-220721_circled-user-male-type-user-colorful-icon-png.png" alt="hugenerd" width="50" height="50" class="rounded-circle" />
+          <img src="https://www.pngitem.com/pimgs/m/22-220721_circled-user-male-type-user-colorful-icon-png.png"
+            alt="hugenerd" width="50" height="50" class="rounded-circle" />
           <span class="d-none d-sm-inline mx-1">{{username}} </span>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-          <li *ngIf="isCustomer"> <a class="dropdown-item text-small text-light" routerLink="/dashboard/customer/changePassword"
-              translate>titles.update_pass </a></li>
-          <li *ngIf="isManager"> <a class="dropdown-item text-small text-light" routerLink="/dashboard/manager/changePassword"
-              translate>titles.update_pass </a></li>
+          <li *ngIf="isCustomer"> <a class="dropdown-item text-small text-light"
+              routerLink="/dashboard/customer/changePassword" translate>titles.update_pass </a></li>
+          <li *ngIf="isManager"> <a class="dropdown-item text-small text-light"
+              routerLink="/dashboard/manager/changePassword" translate>titles.update_pass </a></li>
 
-          <li> <a class="dropdown-item text-small-light text-light" (click)="onLogout()" translate>titles.logout </a></li>
+          <li> <a class="dropdown-item text-small-light text-light" (click)="onLogout()" translate>titles.logout </a>
+          </li>
 
         </ul>
       </div>
@@ -138,9 +140,8 @@
 
             <li class="nav-item dropdown dropdown-mega position-static ml-auto">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside">
-                 <img
-              class="globe" src="assets/images/globe.png" title="{{'lng.title'|translate}}" height="50px" width="50px"
-              alt="language"></a>
+                <img class="globe" src="assets/images/globe.png" title="{{'lng.title'|translate}}" height="50px"
+                  width="50px" alt="language"></a>
               <div class="dropdown-menu shadow bgColor border-0">
                 <div class="mega-content px-4">
                   <div class="container-fluid">
@@ -148,7 +149,7 @@
                       <div class="col-12  md-5">
                         <strong translate> lng.title </strong>
                         <div class="list-group">
-                          <span class="fw-bold"  translate>
+                          <span class="fw-bold" translate>
                             <img class="long" (click)="translateLanguageTo('en')"
                               src="https://media.istockphoto.com/vectors/united-kingdom-flag-realistic-waving-union-jack-vector-id1251660737?k=20&m=1251660737&s=612x612&w=0&h=Hd3fVDhA3KUaefIawI9jcyTFL7M_YZwO6wBxTu8bVxE="
                               alt="">
@@ -177,7 +178,7 @@
       <!--
            <app-filtre *ngIf="isList()" (buttonClicked)="listenSearch()" ></app-filtre>
       -->
-   
+
       <div class="col-sm-6">
 
 

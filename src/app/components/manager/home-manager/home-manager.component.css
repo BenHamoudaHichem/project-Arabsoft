@@ -147,11 +147,7 @@
   background-color: #e1e8f2;
 }
 
-@media (max-width: 991px) {
-  .responsive-table__head {
-    display: none;
-  }
-}
+
 
 .responsive-table__head__title {
   display: flex;

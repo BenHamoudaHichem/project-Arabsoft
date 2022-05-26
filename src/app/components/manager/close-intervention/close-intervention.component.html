@@ -1,0 +1,150 @@
+<title translate>titles.close_intervention </title>
+
+
+<section class="h-100 ">
+  <div class="container py-5">
+    <div class="row ">
+      <div class="col">
+        <div class="card">
+          <div class="logo">
+            <div class="card-title">
+              <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
+            </div>
+            <span class="title" translate>titles.close_intervention</span>
+
+          </div>
+<form [formGroup]="closeForm" (ngSubmit)="close()">
+          <div class="row g-0">
+            <div class="col-xl-6 d-xl-block">
+              <div class="card-body p-md-5 text-black">
+                <div class="form-outline">
+                  <label class="form-label" for="form3Example1n" translate>input.titles.title</label>
+                  <h4 class="form-control-lg">{{intervention.title}}</h4>
+                </div>
+
+
+              </div>
+              <div class="card-body p-md-5 text-black">
+                <div class="form-outline">
+                  <label class="form-label" for="form3Example1n" translate>input.titles.tm</label>
+                  <h4 class="form-control-lg">{{intervention.team.manager}}</h4>
+                </div>
+
+
+              </div>
+            </div>
+            <div class="col-xl-6  d-xl-block">
+              <div class="card-body p-md-5 text-black">
+                <div class="form-outline">
+                  <label class="form-label" translate> titles.participating _members</label>
+
+                  <ng-multiselect-dropdown [placeholder]="'input.msg.mm_select'|translate"
+                    [settings]="teamDropdownSettings" [data]="intervention.team.members"  formControlName="members"
+                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)" class=" form-control-lg">
+                  </ng-multiselect-dropdown>
+                  <!--Error  members-->
+                  <p *ngIf="( members?.touched||  members?.dirty ) && ! members?.valid" class="ErrorMsg" translate>
+                    errors.req_error</p>
+                  <!----------->
+
+
+                </div>
+              </div>
+              <div class="card-body p-md-5  text-black">
+                <div class="form-outline">
+                  <label class="form-label" translate> input.titles.description</label>
+
+                  <textarea formControlName="description" class="form-control"
+                    placeholder="{{'input.msg.designation'|translate}}"></textarea>
+                    <p *ngIf="( description?.touched||  description?.dirty ) && ! description?.valid" class="ErrorMsg" translate>
+                      errors.req_error</p>
+                      <p *ngIf="description?.errors?.['pattern']" class="ErrorMsg" translate>
+                        errors.alph_4error
+                      </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <table class="responsive-table">
+            <!-- Responsive Table Header Section -->
+            <thead class="responsive-table__head">
+              <tr class="responsive-table__row">
+                <th class="responsive-table__head__title responsive-table__head__title--name" translate>
+                  titles.material_name
+                  <svg version="1.1" class="up-arrow" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+                    style="enable-background: new 0 0 512 512" xml:space="preserve">
+                    <path
+                      d="M374.176,110.386l-104-104.504c-0.006-0.006-0.013-0.011-0.019-0.018c-7.818-7.832-20.522-7.807-28.314,0.002c-0.006,0.006-0.013,0.011-0.019,0.018l-104,104.504c-7.791,7.829-7.762,20.493,0.068,28.285    c7.829,7.792,20.492,7.762,28.284-0.067L236,68.442V492c0,11.046,8.954,20,20,20c11.046,0,20-8.954,20-20V68.442l69.824,70.162c7.792,7.829,20.455,7.859,28.284,0.067C381.939,130.878,381.966,118.214,374.176,110.386z" />
+                  </svg>
+                </th>
+                <th class="responsive-table__head__title responsive-table__head__title--types" translate>
+                  titles.quantity_total
+                </th>
+                <th class="responsive-table__head__title responsive-table__head__title--country" translate>
+                  titles.quantity_used
+                </th>
+                <th class="responsive-table__head__title responsive-table__head__title--country">
+                </th>
+              </tr>
+            </thead>
+            <!-- Responsive Table Body Section -->
+            <tbody class="responsive-table__body">
+              <div class="scroll">
+                <tr class="responsive-table__row" *ngFor="let item of intervention.materialList">
+                  <td class="responsive-table__body__text responsive-table__body__text--name">
+{{item.name}}
+                   &nbsp;
+                  </td>
+
+                  <td class="responsive-table__body__text responsive-table__body__text--types" translate>
+                  {{item.totalQuantity.getquantityToUse()}} &nbsp;  {{item.totalQuantity.getMeasure()}}
+                  </td>
+                  <td class="responsive-table__body__text responsive-table__body__text--country">
+                    <div class="form-outline">
+                      <input name="value" type="number" step="any" min="0" formControlName="quantity"
+                        class="form-control form-control-lg" />
+
+
+                      <!----------->
+                    </div>
+
+                    <p *ngIf="
+                    (quantity?.touched || quantity?.dirty) &&
+                    !quantity?.valid
+                  " class="ErrorMsg" translate>
+                      errors.req_error
+                    </p>
+                  </td>
+                  <td class="responsive-table__body__text responsive-table__body__text--country">
+
+                    <div class="input-group">
+                      <select class="custom-select" id="inputGroupSelect01" formControlName="measure">
+                        <option *ngFor="let item of measureList" [value]="item.value">{{item.key}}</option>
+
+                      </select>
+
+
+                      <p *ngIf="
+                        (measure?.touched || measure?.dirty) &&
+                        !measure?.valid
+                      " class="ErrorMsg" translate>
+                        errors.req_error
+                      </p>
+</div>
+
+
+                  </td>
+                </tr>
+
+
+              </div>
+            </tbody>
+          </table>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

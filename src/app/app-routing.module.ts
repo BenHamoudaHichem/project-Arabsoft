@@ -43,6 +43,9 @@ import { ForgotPasswordComponent } from './components/public/forgot-password/for
 import { ResetPasswordComponent } from './components/public/reset-password/reset-password.component';
 import { ResetGuard } from './reset.guard';
 import { HomeTeamManagerComponent } from './components/teamManager/home-team-manager/home-team-manager.component';
+import { InterventionClosedListComponent } from './components/manager/intervention-closed-list/intervention-closed-list.component';
+import { DetailInterventionClosedComponent } from './components/manager/detail-intervention-closed/detail-intervention-closed.component';
+import { CloseInterventionComponent } from './components/manager/close-intervention/close-intervention.component';
 const roles = { customer: 'ROLE_CUSTOMER', manager: 'ROLE_MANAGER' };
 const routes: Routes = [
   { path: 'home', component: HomeComponentPage, canActivate: [RedirectGuard] },
@@ -199,6 +202,30 @@ const routes: Routes = [
       {
         path: 'manager/interventionList',
         component: InterventionListComponent,
+        canActivate:[GuardAuthenticateGuard],
+        data: {
+         roles: roles.manager
+       }
+      },
+      {
+        path: 'manager/interventionClosedList',
+        component: InterventionClosedListComponent,
+        canActivate:[GuardAuthenticateGuard],
+        data: {
+         roles: roles.manager
+       }
+      },
+      {
+        path: 'manager/closeIntervention/:id',
+        component: CloseInterventionComponent,
+        canActivate:[GuardAuthenticateGuard],
+        data: {
+         roles: roles.manager
+       }
+      },
+      {
+        path: 'manager/detailInterventionClosed/:id',
+        component: DetailInterventionClosedComponent,
         canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager

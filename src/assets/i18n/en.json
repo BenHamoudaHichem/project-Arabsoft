@@ -1,7 +1,8 @@
 {
   "buttons": {
     "accept": "Accept",
-"next":"Next",
+    "next": "Next",
+    "back": "Back",
     "accepted": "Accepted",
     "add": "Add",
     "all": "All",
@@ -19,10 +20,9 @@
     "members": "Members",
     "send": "Send",
     "waiting": "Waiting",
-    "register":"Register",
-    "connect":"Connect",
-    "reset":"Reset"
-
+    "register": "Register",
+    "connect": "Connect",
+    "reset": "Reset"
   },
   "cards": {
     "bleu": "Notifications",
@@ -53,7 +53,7 @@
       "identifier": "Enter your identifier",
       "intervention": "Enter the title of intervention",
       "lastname": "Enter your lastname",
-      "password":"Enter your password",
+      "password": "Enter your password",
       "mat_select": "Select materials",
       "material": "Enter the material name",
       "member": "Member",
@@ -81,7 +81,7 @@
       "new_pass": "New password",
       "old_pass": "Old password",
       "password": "Password",
-      "profil":"Profil",
+      "profil": "Profil",
       "purchase_date": "Date of purchase",
       "status": "Status",
       "team": "Team",
@@ -89,11 +89,11 @@
       "title": "Title",
       "tm": "Team manager",
       "which_date": "Which date",
-      "end_date":"Expected end date",
-      "sender":"The sender",
-      "show_password":"Show password",
-      "show_passwords":"Show passwords"
-
+      "end_date": "Expected end date",
+      "closed_date": "Closed date",
+      "sender": "The sender",
+      "show_password": "Show password",
+      "show_passwords": "Show passwords"
     }
   },
   "location": {
@@ -115,10 +115,10 @@
     "is_on": "In good shape",
     "title": "Status",
     "wating": "Waiting",
-    "is_free":"Available",
-    "not_free":"Unavailable",
-    "stolen":"stolen",
-    "out_of_order":"Out of order"
+    "is_free": "Available",
+    "not_free": "Unavailable",
+    "stolen": "stolen",
+    "out_of_order": "Out of order"
   },
   "titles": {
     "add_category": "Add category",
@@ -131,12 +131,12 @@
     "categories": "Categories",
     "choose_file": "Choose file",
     "customers": "Customers",
-    "customers_list":"Customers list",
+    "customers_list": "Customers list",
 
     "date": "Publication date",
     "demands": {
       "detail": "Claim detail",
-      "demand_list":"Claims list",
+      "demand_list": "Claims list",
 
       "title": "Claims",
       "title_home": "List of claims sent"
@@ -158,34 +158,41 @@
     },
     "detail_mat": "Materiel Detail",
     "detail_team": "Team detail",
-    "demand_per_year":"Claims per year",
+    "demand_per_year": "Claims per year",
 
     "employees": "Employees",
     "employees_list": "Employees List",
-    "forget_pass":"Forgot password",
-    "forget_pass_info":"Enter your registered email to reset your password",
+    "forget_pass": "Forgot password",
+    "forget_pass_info": "Enter your registered email to reset your password",
     "home": "Home",
     "interv_in": "Intervention in progress",
     "intervention": "Interventions",
     "interventions_list": "Interventions List",
+    "interventions_closed_list": "Interventions closed list",
+    "close_intervention":"Close the intervention",
+
     "log": "Log in to your space",
     "logout": "Sign out",
-    "materials": "materials",
+    "materials_used":"Materials used",
+
+    "materials": "Materials",
     "materials_list": "Materials list",
     "new_inter": "New Intervention",
-    "broken_material":"Broken material",
+    "broken_material": "Broken material",
+    "material_name": "Material name",
+    "participating _members":"Participating members",
 
     "new_material": "New material",
     "new_team": "New team",
     "profil": "Profil",
     "register": "Register",
-    "reset":"Reset password",
+    "reset": "Reset password",
 
     "started_at": "started at",
-    "team_detail":"team detail",
+    "team_detail": "team detail",
     "team_det": " details of {{ name }}",
     "teams": "teams",
-    "teams_progress":"Teams in progress",
+    "teams_progress": "Teams in progress",
 
     "teams_list": "Teams list",
     "up": "Upload file",
@@ -196,57 +203,59 @@
 
     "update_pro": "Update profil",
     "update_team": "Update team",
-    "subscribe":"Subscribe to our web site"
+"choose_measure":"Choose measure",
+    "quantity_used":"Used quantity",
+    "quantity_total":"Total quantity ",
 
-
-  },
-
-  "navbar":{
-    "home":"Home",
-    "contact":"Contact Us",
-    "log":"Login",
-    "join_us":"Join Us",
-    "about_us":"About Us"
-  },
-  "home":{
-    "title":"Welcome to ARAB INTERVENT",
-    "title_":"Check out our web site",
-    "info":"ARAB INTERVENT specializes in the distribution of management solutions for the public sector",
-    "btn_h":"Join us",
-    "btn_hover":"Enjoy our services"
+    "subscribe": "Subscribe to our web site"
 
   },
 
-  "about":{
-    "title":"About us ?",
-    "info":"GestIntern is a digital platform responsible for assigning customer intervention requests to expert teams, we offer spaces on our site for:"
+  "navbar": {
+    "home": "Home",
+    "contact": "Contact Us",
+    "log": "Login",
+    "join_us": "Join Us",
+    "about_us": "About Us"
   },
-  "contact":{
-    "title":"Contact us",
-    "name":"Enter your name",
-    "email":" Enter you email",
-    "phone":"Enter your phone number",
-    "description":"Write...."
+  "home": {
+    "title": "Welcome to ARAB INTERVENT",
+    "title_": "Check out our web site",
+    "info": "ARAB INTERVENT specializes in the distribution of management solutions for the public sector",
+    "btn_h": "Join us",
+    "btn_hover": "Enjoy our services"
   },
-"footer":{
-  "find_us":"Find Us",
-  "call_us":"Call Us",
-  "mail_us":"Mail Us",
-  "follow_us":"Follow Us",
-  "plan":"Plan of our web site",
-  "contact":"Contact Us"
-},
 
-"links":{"arabsoft":"Company arabsoft",
-"sector":"Public sector",
-"customers":"Our customers",
-  "link_log":"Already have an account?",
-  "link_register":"Create a new account",
-  "link_forgot_pass":"Forgot password?"
+  "about": {
+    "title": "About us ?",
+    "info": "GestIntern is a digital platform responsible for assigning customer intervention requests to expert teams, we offer spaces on our site for:"
+  },
+  "contact": {
+    "title": "Contact us",
+    "name": "Enter your name",
+    "email": " Enter you email",
+    "phone": "Enter your phone number",
+    "description": "Write...."
+  },
+  "footer": {
+    "find_us": "Find Us",
+    "call_us": "Call Us",
+    "mail_us": "Mail Us",
+    "follow_us": "Follow Us",
+    "plan": "Plan of our web site",
+    "contact": "Contact Us"
+  },
 
-},
-"not_found":{
-  "title":"Error: 404 page not found",
-  "info":"Sorry, the page you're looking for cannot be accessed"
-}
+  "links": {
+    "arabsoft": "Company arabsoft",
+    "sector": "Public sector",
+    "customers": "Our customers",
+    "link_log": "Already have an account?",
+    "link_register": "Create a new account",
+    "link_forgot_pass": "Forgot password?"
+  },
+  "not_found": {
+    "title": "Error: 404 page not found",
+    "info": "Sorry, the page you're looking for cannot be accessed"
+  }
 }

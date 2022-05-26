@@ -58,8 +58,10 @@ export class DetailMaterialComponent implements OnInit {
       this.material.name,
       this.material.description,
       this.material.totalQuantity,
-      this.material.address,
       this.material.dateOfPurchase,
+
+      this.material.address,
+      this.material.category,
       this.material.status
     );
     if (this.btn == this.textEnPanne) {

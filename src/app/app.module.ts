@@ -65,6 +65,9 @@ import { ResetPasswordComponent } from './components/public/reset-password/reset
 import { HomeTeamManagerComponent } from './components/teamManager/home-team-manager/home-team-manager.component';
 import { BubbleComponent } from './components/chart/bubble/bubble.component';
 import { ChooseMaterialComponent } from './components/manager/choose-material/choose-material.component';
+import { InterventionClosedListComponent } from './components/manager/intervention-closed-list/intervention-closed-list.component';
+import { DetailInterventionClosedComponent } from './components/manager/detail-intervention-closed/detail-intervention-closed.component';
+import { CloseInterventionComponent } from './components/manager/close-intervention/close-intervention.component';
 
 export function httpTranslateLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -143,6 +146,9 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     HomeTeamManagerComponent,
     BubbleComponent,
     ChooseMaterialComponent,
+    InterventionClosedListComponent,
+    DetailInterventionClosedComponent,
+    CloseInterventionComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [CookieService, GuardAuthenticateGuard,AESEncoderService,

@@ -1,6 +1,6 @@
 <title translate> titles.add_inter </title>
 
-<section  *ngIf="output==false" class="h-100">
+<section *ngIf="output==false" class="h-100">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col">
@@ -120,23 +120,7 @@
                   </div>
 
 
-                  <div class="form-outline">
-                    <label class="form-label" translate>input.titles.description</label>
 
-                    <textarea formControlName="description" class="form-control form-control-lg"
-                      placeholder="{{'input.msg.designation'|translate}}" rows="6"></textarea>
-                    <!--Error description-->
-                    <p *ngIf="
-                        (description?.touched || description?.dirty) &&
-                        !description?.valid
-                      " class="ErrorMsg" translate>
-                      errors.req_error
-                    </p>
-                    <p *ngIf="description?.errors?.['pattern']" class="ErrorMsg" translate>
-                      errors.alph_8error
-                    </p>
-                    <!----------->
-                  </div>
                 </div>
               </div>
               <div class="col-xl-6">
@@ -233,12 +217,28 @@
                       </div>
                     </div>
                   </fieldset>
+                  <div class="form-outline">
+                    <label class="form-label" translate>input.titles.description</label>
+
+                    <textarea formControlName="description" class="form-control"
+                      placeholder="{{'input.msg.designation'|translate}}" rows="8"></textarea>
+                    <!--Error description-->
+                    <p *ngIf="
+                        (description?.touched || description?.dirty) &&
+                        !description?.valid
+                      " class="ErrorMsg" translate>
+                      errors.req_error
+                    </p>
+                    <p *ngIf="description?.errors?.['pattern']" class="ErrorMsg" translate>
+                      errors.alph_8error
+                    </p>
+                    <!----------->
+                  </div>
 
 
 
-                  <div class="d-flex justify-content-end pt-3" >
-                    <button class="bn632-hover bn24" type="submit" role="button"
-                translate>
+                  <div class="d-flex justify-content-end pt-3">
+                    <button class="bn632-hover bn24" type="submit" role="button" translate>
                       buttons.next
                     </button>
                   </div>

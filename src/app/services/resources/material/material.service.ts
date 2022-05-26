@@ -32,6 +32,9 @@ export class EquipmentService {
 
           status: material.status,
           address: material.address,
+          category:material.category
+
+
         }));
       })
     );
@@ -49,6 +52,8 @@ export class EquipmentService {
             dateOfPurchase: equipment.dateOfPurchase,
             address: equipment.address,
             status: equipment.status,
+            category:equipment.category
+
           }));
         })
       );

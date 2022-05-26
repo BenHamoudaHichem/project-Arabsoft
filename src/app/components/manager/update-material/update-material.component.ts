@@ -27,6 +27,10 @@ export class UpdateMaterialComponent implements OnInit {
   material!: IMaterial;
   states!: string[];
   cities!: string[];
+  categoryList: Associatif[] = [
+    { key: 'Material', value: 'Material' },
+    { key: 'Matter', value: 'Matter' },
+  ];
   constructor(
     private ActivatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
@@ -40,7 +44,7 @@ export class UpdateMaterialComponent implements OnInit {
       status: ['', [Validators.required]],
 
       dateOfPurshase: ['', [Validators.required]],
-
+      category: ['', [Validators.required]],
       description: [
         '',
         [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
@@ -130,9 +134,9 @@ export class UpdateMaterialComponent implements OnInit {
       HTMLEscape.escapeMethod(String(this.name?.value)),
       HTMLEscape.escapeMethod(String(this.description?.value)),
       this.totalQuantity?.value,
-
-      address,
       this.dateOfPurshase?.value,
+      address,
+      HTMLEscape.escapeMethod(String(this.category?.value)),
       HTMLEscape.escapeMethod(String(this.status?.value))
     );
     this.materialService
@@ -176,6 +180,9 @@ export class UpdateMaterialComponent implements OnInit {
   }
   get totalQuantity() {
     return this.formupdateMaterials.get('totalQuantity');
+  }
+  get category() {
+    return this.formupdateMaterials.get('category');
   }
 
   get name() {

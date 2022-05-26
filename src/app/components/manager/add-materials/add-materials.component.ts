@@ -12,6 +12,7 @@ import { Material } from 'src/app/models/resources/Material';
 import { AddressService } from 'src/app/services/address/address.service';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { EquipmentService } from 'src/app/services/resources/material/material.service';
+import { Associatif } from 'src/app/services/types/associatif';
 import { HTMLEscape } from 'src/app/services/validation/HTMLEscapeChars';
 
 @Component({
@@ -23,6 +24,10 @@ export class AddMaterialsComponent implements OnInit {
   formAddMaterials!: FormGroup;
   states!: string[];
   cities!: string[];
+  categoryList: Associatif[] = [
+    { key: 'Material', value: 'Material' },
+    { key: 'Matter', value: 'Matter' },
+  ];
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private formBuilder: FormBuilder,
@@ -40,6 +45,8 @@ export class AddMaterialsComponent implements OnInit {
       status: ['', [Validators.required]],
 
       dateOfPurshase: ['', [Validators.required]],
+      category: ['', [Validators.required]],
+
       description: [
         '',
         [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
@@ -87,8 +94,9 @@ export class AddMaterialsComponent implements OnInit {
       HTMLEscape.escapeMethod(String(this.name?.value)),
       HTMLEscape.escapeMethod(String(this.description?.value)),
       this.totalQuantity?.value,
-      address,
       moment(this.dateOfPurshase?.value, 'YYYY-MM-DD').toDate(),
+      address,
+      HTMLEscape.escapeMethod(String(this.category?.value)),
       HTMLEscape.escapeMethod(String(this.status?.value))
     );
     console.log(material);
@@ -124,6 +132,9 @@ export class AddMaterialsComponent implements OnInit {
   }
   get name() {
     return this.formAddMaterials.get('name');
+  }
+  get category() {
+    return this.formAddMaterials.get('category');
   }
   get totalQuantity() {
     return this.formAddMaterials.get('totalQuantity');
