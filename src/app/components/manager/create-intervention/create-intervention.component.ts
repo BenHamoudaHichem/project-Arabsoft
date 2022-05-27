@@ -12,6 +12,7 @@ import { finalize } from 'rxjs';
 import { Address } from 'src/app/models/Address';
 import { Dbref } from 'src/app/models/dbref';
 import { Location } from 'src/app/models/Location';
+import { MaterialUsed } from 'src/app/models/resources/MaterialUsed';
 import { User } from 'src/app/models/user';
 import { Intervention } from 'src/app/models/works/intervention';
 import { AddressService } from 'src/app/services/address/address.service';
@@ -108,20 +109,18 @@ export class CreateInterventionComponent implements OnInit {
     this.collectStates();
 
     this.all();
-    this.materialsAvailable();
+
     this.teamsAvailable();
 
   }
 
   dropdownSettings!: {};
   ngOnInit() {
-    console.log(this.states);
 
     this.demandList = new Array(
       new Dbref(this.route.snapshot.paramMap.get('id')!)
     );
 
-    console.log(this.categoryList);
     this.teamsAvailable();
     this.demandService
       .findDemand(this.route.snapshot.paramMap.get('id')!)
@@ -129,7 +128,7 @@ export class CreateInterventionComponent implements OnInit {
       .subscribe((res: IDemand) => {
         this.currentDemand = res;
         this.currentDemand.address = plainToClass(Address, res.address);
-        console.log(this.currentDemand);
+       // console.log(this.currentDemand);
         this.state?.setValue(this.currentDemand.address.State);
         this.zipCode?.setValue(this.currentDemand.address.ZipCode);
         this.city?.setValue(this.currentDemand.address.City);
@@ -164,7 +163,6 @@ export class CreateInterventionComponent implements OnInit {
   teamsAvailable() {
     this.teamService.allByStatus('Available').subscribe((data: ITeam[]) => {
       this.teamList = data;
-      console.log(this.teamList);
       this.teamList.forEach((item) => {
         item.manager = plainToClass(User, item.manager);
 
@@ -181,26 +179,11 @@ export class CreateInterventionComponent implements OnInit {
         Report.failure('erreur getting Teams', errors.message, 'Ok');
       };
   }
-  materialsAvailable() {
-    this.materialService
-      .allByStatus('Available')
-      .subscribe((data: IMaterial[]) => {
-        this.materialsList = data;
-        console.log(this.materialsList);
-      }),
-      (error: HttpErrorResponse) => {
-        if (error.status == 401) {
-          this.AuthenticateService.redirectIfNotAuth();
-        } else {
-          Report.failure('Erreur', error.message, 'OK');
-        }
-      };
-  }
+
 
   all() {
     this.categoryService.all().subscribe((data: ICategory[]) => {
       this.categoryList = data;
-      console.log(this.categoryList);
     }),
       (errors: HttpErrorResponse) => {
         if (errors.status == 401) {
@@ -212,9 +195,6 @@ export class CreateInterventionComponent implements OnInit {
   }
 
   create() {
-    console.log(this.createInterventionForm.value);
-    //console.log(this.Materiel?.value);
-    // Array.from(this.Materiel?.value as IMaterial[], (x) => x.id);
     let intervention = new Intervention(
       HTMLEscape.escapeMethod(this.title?.value),
       HTMLEscape.escapeMethod(this.description?.value),
@@ -231,38 +211,20 @@ export class CreateInterventionComponent implements OnInit {
 
       moment(this.endDate?.value).format('DD-MM-yyyy'),
       this.demandList,
-      //   Array.from(this.Materiel?.value as any[], (x) => new Dbref(x.id)),
       null!,
       new Dbref(this.team?.value),
       this.status?.value
     );
-    console.log(JSON.stringify(intervention));
     this.storage.set('intervention', JSON.stringify(intervention));
     this.output = true;
 
-    /*this.interventionService.create(intervention).subscribe((data: any) => {
-      console.log(data);
-      if (data.status == true) {
-        Notify.success(data.message);
 
-      } else {
-        Report.success('Notification', data.message, 'OK');
-      }
-    }),
-      (error: HttpErrorResponse) => {
-        if (error.status == 401) {
-          this.AuthenticateService.redirectIfNotAuth();
-        } else {
-          Report.failure('Erreur', error.message, 'OK');
-        }
-      };*/
   }
 
   collectStates() {
     this.addressService.allTNStates.subscribe((res: string[]) => {
       this.states = res;
     });
-    console.log(this.states);
   }
   collectCitiesBystates(state: string) {
     this.addressService.allTNCitiesByState(state).subscribe((res: string[]) => {
@@ -324,7 +286,7 @@ export class CreateInterventionComponent implements OnInit {
   check() {
     Object.keys(this.createInterventionForm.controls).forEach((key) => {
       if (this.createInterventionForm.get(key)!.errors) {
-        console.log(this.createInterventionForm.get(key)!.errors);
+      //  console.log(this.createInterventionForm.get(key)!.errors);
         if (
           this.createInterventionForm
             .get(key)!
@@ -345,7 +307,7 @@ export class CreateInterventionComponent implements OnInit {
             this.createInterventionForm.get(key)!.errors!['pattern']
               .requiredPattern
           );
-          console.log(stringOperation);
+        //  console.log(stringOperation);
 
           let res: string = '';
           if (stringOperation.indexOf('a-z') != -1) {

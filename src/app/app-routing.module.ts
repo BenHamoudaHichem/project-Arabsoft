@@ -46,6 +46,7 @@ import { HomeTeamManagerComponent } from './components/teamManager/home-team-man
 import { InterventionClosedListComponent } from './components/manager/intervention-closed-list/intervention-closed-list.component';
 import { DetailInterventionClosedComponent } from './components/manager/detail-intervention-closed/detail-intervention-closed.component';
 import { CloseInterventionComponent } from './components/manager/close-intervention/close-intervention.component';
+import { CalendarComponent } from './components/public/calendar/calendar.component';
 const roles = { customer: 'ROLE_CUSTOMER', manager: 'ROLE_MANAGER' };
 const routes: Routes = [
   { path: 'home', component: HomeComponentPage, canActivate: [RedirectGuard] },
@@ -396,7 +397,15 @@ const routes: Routes = [
         data: {
          roles: roles.manager
        }
+
       },
+      {
+        path: 'manager/calandar',
+        component: CalendarComponent,
+        canActivate:[GuardAuthenticateGuard],
+        data: {
+         roles: roles.manager
+      }},
       /*
        * End manager
        *

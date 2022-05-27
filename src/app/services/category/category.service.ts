@@ -49,7 +49,7 @@ export class CategoryService {
     team:int.team,
     createdAt: int.createdAt,
     expiredAt:int.expiredAt,
-    materialList:int.materialList
+    materialsToBeUsed:int.materialsToBeUsed
         }));
       })
     );

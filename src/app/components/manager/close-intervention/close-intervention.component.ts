@@ -2,10 +2,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { plainToClass } from 'class-transformer';
+import { plainToClass, plainToInstance } from 'class-transformer';
 import moment from 'moment';
 import { Report } from 'notiflix';
+import { Address } from 'src/app/models/Address';
+import { Category } from 'src/app/models/Category';
 import { Dbref } from 'src/app/models/dbref';
+import { MaterialUsed } from 'src/app/models/resources/MaterialUsed';
 import { QuantityValue } from 'src/app/models/resources/QuantityValue';
 import { Team } from 'src/app/models/resources/team';
 import { User } from 'src/app/models/user';
@@ -24,7 +27,7 @@ import { InterventionService } from 'src/app/services/works/intervention/interve
 })
 export class CloseInterventionComponent implements OnInit {
   closeForm!: FormGroup;
-  materialsList!: IMaterial[];
+  materialsUsedList: MaterialUsed[] = [];
   intervention!: IIntervention;
   dropdownSettings!: {};
   measureList: Associatif[] = [
@@ -55,6 +58,7 @@ export class CloseInterventionComponent implements OnInit {
 
   ngOnInit() {
     // Setting of dropdown multiselect
+
     this.teamDropdownSettings = {
       singleSelection: false,
 
@@ -66,30 +70,37 @@ export class CloseInterventionComponent implements OnInit {
       itemsShowLimit: 10,
       allowSearchFilter: true,
     };
+    /***/
     if (this.route.snapshot.paramMap.has('id')) {
       this.findintervention();
     }
   }
 
   close() {
-    Dbref;
     let team = new Team(
       HTMLEscape.escapeMethod(String(this.intervention.team.name)),
       new Dbref(this.intervention.team.manager.getId()),
       Array.from(this.members?.value, (x: any) => new Dbref(x.id))
     );
+    this.intervention.category = Object.assign(
+      Category.prototype,
+      this.intervention.category
+    );
+    //  console.log(this.intervention.category.getId());
+
     let interventionClosed = new InterventionClosed(
       this.intervention.title,
       this.intervention.description,
       new Dbref(this.intervention.category.getId()!),
       this.intervention.address,
-      moment(this.intervention.startedAt).format('DD-MM-yyyy'),
-      moment(this.intervention.expiredAt).format('DD-MM-yyyy'),
+      String(this.intervention.startedAt),
+      String(this.intervention.expiredAt),
       Array.from(this.intervention.demandList, (x: any) => new Dbref(x.id)),
-      Array.from(this.intervention.materialList, (x: any) => new Dbref(x.id)),
+      this.intervention.materialsToBeUsed,
       new Dbref(this.intervention.team.id),
       'Completed',
       HTMLEscape.escapeMethod(this.description?.value),
+      null!,
       null!,
       team
     );
@@ -109,15 +120,36 @@ export class CloseInterventionComponent implements OnInit {
       .findIntervention(String(this.route.snapshot.paramMap.get('id')))
       .subscribe((res: IIntervention) => {
         this.intervention = res;
-        this.members?.setValue(
-          Array.from(this.intervention.team.members, (x) =>
-            plainToClass(User, x)
-          )
+
+        this.intervention.team.manager = plainToClass(
+          User,
+          this.intervention.team.manager
         );
-        this.intervention.materialList.forEach((item) => {
-          item.totalQuantity = plainToClass(QuantityValue, item.totalQuantity);
+        this.intervention.team.members = Array.from(res.team.members, (x) =>
+          plainToClass(User, x)
+        );
+        this.members?.setValue(this.intervention.team.members);
+        this.materialsUsedList = Array.from(
+          this.intervention.materialsToBeUsed,
+          (x: MaterialUsed) => x
+        );
+        console.log(this.materialsUsedList);
+
+        this.materialsUsedList.forEach((element) => {
+          element.setquantityToUse(
+            plainToClass(QuantityValue, element.getquantityToUse())
+          );
+          element.setTotalQuantity(
+            plainToClass(QuantityValue, element.getTotalQuantity())
+          );
         });
-      });
+      }),
+      (error: HttpErrorResponse) => {
+        Report.failure('Erreur', error.message, 'OK');
+      };
+  }
+  input(item: any) {
+    console.log(item);
   }
   get quantity() {
     return this.closeForm.get('quantity');
@@ -128,13 +160,13 @@ export class CloseInterventionComponent implements OnInit {
   get description() {
     return this.closeForm.get('description');
   }
+  get members() {
+    return this.closeForm.get('members');
+  }
   onItemSelect(item: any) {
     console.log(item);
   }
   onSelectAll(items: any) {
     console.log(JSON.stringify(items));
-  }
-  get members() {
-    return this.closeForm.get('members');
   }
 }

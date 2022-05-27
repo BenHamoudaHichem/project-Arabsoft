@@ -101,6 +101,10 @@
         <a data-toggle="tab " [routerLink]="['/dashboard/manager/reclamationList']"><i class="fa fa-clipboard-list"></i>
           {{'titles.demands.title'|translate}} </a>
       </li>
+      <li *ngIf="isManager">
+        <a data-toggle="tab" [routerLink]="['/dashboard/manager/calandar']"><i class="fa fa-calendar"></i>
+          calandar </a>
+      </li>
 
       <!--     !!!!!  LOGOUTTTTTT !!!! -->
       <div class="dropdown pb-4">

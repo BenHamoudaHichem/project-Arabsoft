@@ -15,46 +15,7 @@
       <div class="tab-content" id="nav-tabContent">
         <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-          <article class="postcard light" >
-            <a class="postcard__img_link" [routerLink]="['/dashboard/manager/detailInterventionClosed','intervention.id']">
-              <img class="postcard__img" src="
-                https://c0.wallpaperflare.com/preview/275/261/297/agreement-business-businessman-businesswoman.jpg"
-                alt="Image Title" />
-            </a>
-            <div class="postcard__text t-dark">
-              <h1 class="postcard__title blue">
-                {{'intervention.title'}}
-              </h1>
-
-              <div class="postcard__subtitle small">
-                <time datetime="2020-05-25 12:00:00">
-                  <i class="fas fa-calendar-alt mr-2"></i> &nbsp; <strong translate>titles.started_at</strong>:
-                  {{ 'intervention.createdAt' | date:'dd-MM-yyyy'}}
-                </time>
-              </div>
-              <div class="postcard__subtitle small">
-                <time datetime="2020-05-25 12:00:00">
-                  <i class="fas fa-calendar-check"></i> &nbsp; <strong translate> input.titles.closed_date</strong>
-                  {{ 'intervention.closedDate' | date:'dd-MM-yyyy'}}
-                </time>
-              </div>
-
-
-              <div class="postcard__bar"></div>
-              <div class="postcard__preview-txt">
-
-              </div>
-              <ul class="postcard__tagbox">
-                <li class="tag__item">
-                  <a [routerLink]="['/dashboard/manager/detailInterventionClosed', 'intervention.id']" translate><i
-                      class="fas fa-info-circle"></i>
-                    buttons.consult_details
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </article>
-          <article class="postcard light" *ngFor="let intervention of interventionList">
+           <article class="postcard light" *ngFor="let intervention of interventionList">
             <a class="postcard__img_link" [routerLink]="['/dashboard/manager/detailInterventionClosed',intervention.id]">
               <img class="postcard__img" src="
                 https://c0.wallpaperflare.com/preview/275/261/297/agreement-business-businessman-businesswoman.jpg"

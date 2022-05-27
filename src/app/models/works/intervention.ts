@@ -1,7 +1,6 @@
 import { Address } from '../Address';
-import { Category } from '../Category';
 import { Dbref } from '../dbref';
-import { Material } from '../resources/Material';
+import { MaterialUsed } from '../resources/MaterialUsed';
 
 export class Intervention {
   constructor(
@@ -10,15 +9,20 @@ export class Intervention {
     protected category: Dbref,
     protected address:Address,
     protected startedAt: string,
-
     protected expiredAt: string,
     protected demandList:Dbref[],
-    protected materialList:Dbref[],
+    protected materialsToBeUsed:MaterialUsed[],
     protected team:Dbref,
     protected status: string
   ) {}
 
 
+  public getDemandList(): Dbref[] {
+    return this.demandList;
+  }
+  public setDemandList(value: Dbref[]): void {
+    this.demandList = value;
+  }
 
   public getTeam(): Dbref {
     return this.team;
@@ -68,5 +72,12 @@ export class Intervention {
   }
   public setExpiredAt(value: string): void {
     this.expiredAt = value;
+  }
+
+  public getStatus(): string {
+    return this.status;
+  }
+  public setStatus(value: string): void {
+    this.status = value;
   }
 }

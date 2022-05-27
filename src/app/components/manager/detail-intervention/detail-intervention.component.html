@@ -340,7 +340,7 @@
       <div class="scrollist">
         <div
           class="card material mb-3"
-          *ngFor="let material of intervention.materialList"
+          *ngFor="let material of intervention.materialsToBeUsed"
         >
           <div class="card-body">
             <div class="d-flex flex-column flex-lg-row">
@@ -349,20 +349,20 @@
               /></span>
               <div class="row flex-fill">
                 <div class="col-sm-5">
-                  <h3>{{ material.name }}</h3>
+                  <h3>{{ material.getName() }}</h3>
                   <span class="Status" translate>status.title</span> :
-                  <span> {{ material.status }} </span>
+                  <span> {{ material.getStatus()}} </span>
                 </div>
                 <div class="col-sm-4 py-2 calendar">
                   <i class="fa fa-map-marker-alt"></i>
-                  {{ material.address.Street }}, {{ material.address.City }},
-                  {{ material.address.Country }}
+                  {{ material.getaddress().Street }}, {{ material.getaddress().City }},
+                  {{ material.getaddress().Country }}
                 </div>
                 <div class="col-sm-3 text-lg-end">
                   <a
                     [routerLink]="[
                       '/dashboard/manager/detailMaterial',
-                      material.id
+                      material.getId()
                     ]"
                   >
                     <button class="bn30"><span translate> buttons.consult_details</span></button>

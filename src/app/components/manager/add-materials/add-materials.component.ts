@@ -9,6 +9,7 @@ import { Address } from 'src/app/models/Address';
 import { Location } from 'src/app/models/Location';
 
 import { Material } from 'src/app/models/resources/Material';
+import { QuantityValue } from 'src/app/models/resources/QuantityValue';
 import { AddressService } from 'src/app/services/address/address.service';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { EquipmentService } from 'src/app/services/resources/material/material.service';
@@ -28,6 +29,11 @@ export class AddMaterialsComponent implements OnInit {
     { key: 'Material', value: 'Material' },
     { key: 'Matter', value: 'Matter' },
   ];
+  measureList: Associatif[] = [
+    { key: 'Kilogram', value: 'Kilogram' },
+    { key: 'Meter', value: 'Meter' },
+    { key: 'Liter', value: 'Liter' },
+  ];
   constructor(
     private mapsAPILoader: MapsAPILoader,
     private formBuilder: FormBuilder,
@@ -42,8 +48,10 @@ export class AddMaterialsComponent implements OnInit {
         '',
         [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{2,}$')],
       ],
-      status: ['', [Validators.required]],
+      measure: ['', [Validators.required]],
 
+      status: ['', [Validators.required]],
+      quantity: ['', [Validators.required, Validators.pattern('^[0-9]{1,}$')]],
       dateOfPurshase: ['', [Validators.required]],
       category: ['', [Validators.required]],
 
@@ -51,10 +59,7 @@ export class AddMaterialsComponent implements OnInit {
         '',
         [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
       ],
-      totalQuantity: [
-        '',
-        [Validators.required, Validators.pattern('^[0-9]{1,}$')],
-      ],
+
       state: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
       city: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
       street: [
@@ -89,19 +94,23 @@ export class AddMaterialsComponent implements OnInit {
       HTMLEscape.escapeMethod(this.counrty?.value),
       new Location(1, 1)
     );
+    let totalquantity = new QuantityValue(
+      this.quantity?.value,
+      this.measure?.value
+    );
     //  console.log(location)
-    let material = new Material(
+    let material = new Material(null!,
       HTMLEscape.escapeMethod(String(this.name?.value)),
       HTMLEscape.escapeMethod(String(this.description?.value)),
-      this.totalQuantity?.value,
+      totalquantity,
       moment(this.dateOfPurshase?.value, 'YYYY-MM-DD').toDate(),
       address,
       HTMLEscape.escapeMethod(String(this.category?.value)),
       HTMLEscape.escapeMethod(String(this.status?.value))
     );
     console.log(material);
-    this.materialService.create(material).subscribe((data) => {
-      console.log(data);
+    this.materialService.create(material).subscribe((data:any) => {
+      console.log(data.message);
       Notify.success('Materiel est ajouté avec succès');
       this.router.navigate(['manager/materialList']);
     }),
@@ -136,9 +145,7 @@ export class AddMaterialsComponent implements OnInit {
   get category() {
     return this.formAddMaterials.get('category');
   }
-  get totalQuantity() {
-    return this.formAddMaterials.get('totalQuantity');
-  }
+
   get status() {
     return this.formAddMaterials.get('status');
   }
@@ -163,10 +170,15 @@ export class AddMaterialsComponent implements OnInit {
   get zipCode() {
     return this.formAddMaterials.get('zipCode');
   }
+  get measure() {
+    return this.formAddMaterials.get('measure');
+  }
+  get quantity() {
+    return this.formAddMaterials.get('quantity');
+  }
   check() {
     Object.keys(this.formAddMaterials.controls).forEach((key) => {
       if (this.formAddMaterials.get(key)!.errors) {
-        console.log(this.formAddMaterials.get(key)!.errors);
         if (
           this.formAddMaterials.get(key)!.errors!.hasOwnProperty('required')
         ) {

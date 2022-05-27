@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { plainToClass } from 'class-transformer';
+import moment from 'moment';
 import { Notify, Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
 import { Material } from 'src/app/models/resources/Material';
@@ -33,6 +34,7 @@ export class DetailMaterialComponent implements OnInit {
       .subscribe((m: IMaterial) => {
         this.material = m;
         this.material.address = plainToClass(Address, this.material.address);
+        moment(this.material.dateOfPurchase).format('DD-MM-yyyy')
         this.servMap.findLocation(this.material.address.Location());
         console.log(this.material);
         if (this.material.status == 'Broken_down') {
@@ -55,6 +57,7 @@ export class DetailMaterialComponent implements OnInit {
 
   changeStatus() {
     let newMaterial: Material = new Material(
+      this.material.id,
       this.material.name,
       this.material.description,
       this.material.totalQuantity,

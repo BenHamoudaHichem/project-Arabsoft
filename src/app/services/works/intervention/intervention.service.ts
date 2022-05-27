@@ -36,7 +36,7 @@ export class InterventionService {
           team:intervention.team,
           createdAt: intervention.createdAt,
           expiredAt:intervention.expiredAt,
-          materialList:intervention.materialList
+          materialsToBeUsed:intervention.materialsToBeUsed
         }));
       })
     );
@@ -59,14 +59,14 @@ export class InterventionService {
     createdAt: intervention.createdAt,
     expiredAt:intervention.expiredAt,
 
-    materialList:intervention.materialList
+    materialsToBeUsed:intervention.materialsToBeUsed
         }));
       })
     );
   }
 
   create(intervention: Intervention): Observable<Intervention> {
-
+console.log(JSON.stringify(intervention))
     return this.http.post<Intervention>(
       `${this.apiURL}`,
       JSON.stringify(intervention),

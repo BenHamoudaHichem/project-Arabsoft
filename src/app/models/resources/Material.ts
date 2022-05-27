@@ -1,22 +1,25 @@
 import { Address } from '../Address';
 import { QuantityValue } from './QuantityValue';
 
-
 export class Material {
   constructor(
+    protected id: string,
+    protected name: string,
+    protected description: string,
+    protected totalQuantity: QuantityValue,
+    protected dateOfPurshase: Date,
 
-     protected name: string,
-     protected description: string,
-     protected totalQuantity:QuantityValue,
-     protected dateOfPurshase: Date,
+    protected address: Address,
+    protected category: string,
 
-     protected address: Address,
-    protected category :string,
-
-     protected status: string
+    protected status: string
   ) {}
-
-
+ public getId(): string {
+    return this.id;
+  }
+  public setId(value: string) {
+    this.id = value;
+  }
   public getName(): string {
     return this.name;
   }
@@ -58,12 +61,10 @@ export class Material {
     this.category = value;
   }
 
-
-
   public getTotalQuantity(): QuantityValue {
     return this.totalQuantity;
   }
-  public setTotalQuantity(value: QuantityValue): void {
+  public setTotalQuantity(value: QuantityValue) {
     this.totalQuantity = value;
   }
 }

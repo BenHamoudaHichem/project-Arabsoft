@@ -5,15 +5,12 @@ import { plainToClass } from 'class-transformer';
 import { Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
 import { Category } from 'src/app/models/Category';
-import { QuantityValue } from 'src/app/models/resources/QuantityValue';
 import { User } from 'src/app/models/user';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { MapService } from 'src/app/services/map/map.service';
 import { ITeam } from 'src/app/services/resources/team/iteam';
-import { IIntervention } from 'src/app/services/works/intervention/iintervention';
 import { IInterventionClosed } from 'src/app/services/works/intervention/iinterventionClosed';
 import { interventionClosedService } from 'src/app/services/works/intervention/intervention-closed.service';
-import { InterventionService } from 'src/app/services/works/intervention/intervention.service';
 
 @Component({
   selector: 'app-detail-intervention-closed',
@@ -58,10 +55,6 @@ export class DetailInterventionClosedComponent implements OnInit {
             plainToClass(Address, element.user.getAddress())
           );
           element.address = plainToClass(Address, element.address);
-        });
-
-        this.intervention.materialList.forEach((element) => {
-          element.quantityToUse = plainToClass(QuantityValue, element.quantityToUse);
         });
         this.intervention.category = plainToClass(
           Category,

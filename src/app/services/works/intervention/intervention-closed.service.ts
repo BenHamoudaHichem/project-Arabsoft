@@ -37,10 +37,11 @@ export class interventionClosedService {
           createdAt: intervention.createdAt,
           expiredAt: intervention.expiredAt,
 
-          materialList: intervention.materialList,
+          materialsToBeUsed: intervention.materialsToBeUsed,
 
           closingComment: intervention.closingComment,
           closedDate: intervention.closedDate,
+          materialUsedList:intervention.materialUsedList,
           workingGroup: intervention.workingGroup,
         }));
       })
@@ -50,6 +51,7 @@ export class interventionClosedService {
 
 
   create(intervention: InterventionClosed): Observable<InterventionClosed> {
+    console.log( JSON.stringify(intervention))
     return this.http.post<InterventionClosed>(
       `${this.apiURL}`,
       JSON.stringify(intervention),

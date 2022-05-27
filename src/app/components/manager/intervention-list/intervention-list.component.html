@@ -20,61 +20,6 @@
 
         <section id="content1" class="tab-content">
 
-          <article class="postcard light" >
-            <a class="postcard__img_link" [routerLink]="[
-              '/dashboard/manager/detailIntervention',
-            '  item.id'
-            ]">
-              <img class="postcard__img"
-                src="
-                  https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
-                alt="Image Title" />
-            </a>
-            <div class="postcard__text t-dark">
-              <h1 class="postcard__title blue">
-                <a href="#"> item.title  </a>
-              </h1>
-              <div class="postcard__subtitle small">
-                <time datetime="2020-05-25 12:00:00" >
-                  <i class="fas fa-calendar-alt mr-2"></i>  &nbsp; <strong translate>titles.started_at</strong>:
-                </time>
-              </div>
-              <div class="postcard__subtitle small">
-                <time datetime="2020-05-25 12:00:00">
-                  <i class="fas fa-calendar-check"></i> &nbsp; <strong translate> input.titles.end_date</strong>
-                </time>
-              </div>
-
-              <div class="postcard__bar"></div>
-              <div class="postcard__preview-txt">
-                <strong translate>input.titles.category</strong>:
-
-                <strong > nnn</strong>
-              </div>
-              <ul class="postcard__tagbox">
-                <li class="tag__item">
-                  <a [routerLink]="[
-                    '/dashboard/manager/detailIntervention',
-                   ' item.id'
-                  ]" translate><i class="fas fa-info-circle"></i>buttons.consult_details</a>
-                </li>
-                <li class="tag__item">
-                  <a [routerLink]="[
-                '/dashboard/manager/updateIntervention',
-               ' item.id'
-              ]" translate><i class="fas fa-edit"></i>buttons.edit</a>
-                </li>
-
-                <li class="tag__item play blue">
-                  <a [routerLink]="[
-                '/dashboard/manager/closeIntervention',
-               ' item.id'
-              ]" translate><i class="fa fa-lock"></i>buttons.close</a>
-                </li>
-
-              </ul>
-            </div>
-          </article>
 
 
           <article class="postcard light" *ngFor="let item of interventionList">
@@ -84,8 +29,7 @@
             ]">
               <img class="postcard__img"
                 src="
-                  https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
-                alt="Image Title" />
+                  https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80" alt="Image Title" />
             </a>
             <div class="postcard__text t-dark">
               <h1 class="postcard__title blue">
@@ -99,7 +43,7 @@
               </div>
               <div class="postcard__subtitle small">
                 <time datetime="2020-05-25 12:00:00">
-                  <i class="fas fa-calendar-check"></i> &nbsp; <strong translate> input.titles.end_date</strong>
+                  <i class="fas fa-calendar-check"></i> &nbsp; <strong translate> input.titles.end_date</strong>:
                   {{ item.expiredAt | date:'dd-MM-yyyy'}}
                 </time>
               </div>

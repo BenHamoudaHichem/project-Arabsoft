@@ -131,6 +131,7 @@ export class UpdateMaterialComponent implements OnInit {
     );
     //  console.log(location)
     let newMaterial = new Material(
+      null!,
       HTMLEscape.escapeMethod(String(this.name?.value)),
       HTMLEscape.escapeMethod(String(this.description?.value)),
       this.totalQuantity?.value,

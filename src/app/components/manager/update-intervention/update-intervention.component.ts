@@ -204,7 +204,7 @@ export class UpdateInterventionComponent implements OnInit {
 
       moment(this.endDate?.value).format('DD-MM-yyyy'),
       this.demandList,
-      Array.from(this.Materiel?.value as any[], (x) => new Dbref(x.id)),
+      null!,
 
       new Dbref(this.team?.value),
       this.status?.value
@@ -241,7 +241,7 @@ export class UpdateInterventionComponent implements OnInit {
 
         this.title?.setValue(res.title);
         this.status?.setValue(res.status);
-        this.Materiel?.setValue(res.materialList);
+        this.Materiel?.setValue(res.materialsToBeUsed);
         this.date?.setValue(moment(res.startedAt,"DD-MM-yyyy").format("yyyy-MM-DD"));
         res.category=plainToClass(Category,res.category)
         res.address=plainToClass(Address,res.address)

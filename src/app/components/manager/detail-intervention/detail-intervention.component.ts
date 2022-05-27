@@ -66,9 +66,9 @@ export class DetailInterventionComponent implements OnInit {
           element.address = plainToClass(Address, element.address);
         });
 
-        this.intervention.materialList.forEach((element) => {
-          element.address = plainToClass(Address, element.address);
-        });
+       /* this.intervention.materialsToBeUsed.forEach((element) => {
+          element.getaddress() = plainToClass(Address, element.address);
+        });*/
         this.intervention.category = plainToClass(
           Category,
           this.intervention.category

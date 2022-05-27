@@ -25,7 +25,11 @@ import { TeamListComponent } from './components/manager/team-list/team-list.comp
 import { MaterialListComponent } from './components/manager/material-list/material-list.component';
 import { ReclamationListComponent } from './components/manager/reclamation-list/reclamation-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from '@angular/common/http';
 import { DashboardAdminComponent } from './components/public/dashboard-admin/dashboard-admin.component';
 import { CookieService } from 'ngx-cookie-service';
 import { HomeCustomerComponent } from './components/customer/home-customer/home-customer.component';
@@ -49,7 +53,7 @@ import { DetailCategoryComponent } from './components/manager/detail-category/de
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { UpdatePasswordComponent } from './components/public/update-password/update-password.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { RecaptchaModule,RecaptchaFormsModule } from "ng-recaptcha";
+import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 import { UpdateTeamComponent } from './components/manager/update-team/update-team.component';
 import { UpdateInterventionComponent } from './components/manager/update-intervention/update-intervention.component';
 import { AESEncoderService } from './services/aesencoder.service';
@@ -58,8 +62,8 @@ import { DemandPerYearComponent } from './components/chart/demand-per-year/deman
 import { PieTeamsComponent } from './components/chart/pie-teams/pie-teams.component';
 import { PieCategoriesComponent } from './components/chart/pie-categories/pie-categories.component';
 import { RadarMaterialsComponent } from './components/chart/radar-materials/radar-materials.component';
-//import { GlobalHttpInterceptorService } from './services/global-http-interceptor.service';
-//import { GlobalErrorHandlerService } from './services/global-error-handler.service';
+import { GlobalHttpInterceptorService } from './services/global-http-interceptor.service';
+import { GlobalErrorHandlerService } from './services/global-error-handler.service';
 import { ForgotPasswordComponent } from './components/public/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/public/reset-password/reset-password.component';
 import { HomeTeamManagerComponent } from './components/teamManager/home-team-manager/home-team-manager.component';
@@ -69,31 +73,47 @@ import { InterventionClosedListComponent } from './components/manager/interventi
 import { DetailInterventionClosedComponent } from './components/manager/detail-intervention-closed/detail-intervention-closed.component';
 import { CloseInterventionComponent } from './components/manager/close-intervention/close-intervention.component';
 
+import { CalendarComponent } from './components/public/calendar/calendar.component';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 export function httpTranslateLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     NgMultiSelectDropDownModule,
     HttpClientModule,
     FormsModule,
+
+    NgbModule,
+
     NgApexchartsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCYYC0LjtQyFdL2PfLbUymRPuBjKlMtvcs',
-      libraries: ['places']
-   }),
-   TranslateModule.forRoot({
-    loader: {
-      provide: TranslateLoader,
-      useFactory: httpTranslateLoaderFactory,
-      deps: [HttpClient]
-    }
-  }),
-  RecaptchaModule,
-  RecaptchaFormsModule
+      libraries: ['places'],
+    }),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
+    RecaptchaModule,
+    RecaptchaFormsModule,
+    NgbModalModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
   ],
   declarations: [
     AppComponent,
@@ -149,11 +169,15 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     InterventionClosedListComponent,
     DetailInterventionClosedComponent,
     CloseInterventionComponent,
+    CalendarComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [CookieService, GuardAuthenticateGuard,AESEncoderService,
-   // { provide: HTTP_INTERCEPTORS,useClass: GlobalHttpInterceptorService, multi: true  },
-   // { provide: ErrorHandler, useClass:GlobalErrorHandlerService}
+  providers: [
+    CookieService,
+    GuardAuthenticateGuard,
+    AESEncoderService,
+  /* { provide: HTTP_INTERCEPTORS,useClass: GlobalHttpInterceptorService, multi: true  },
+   { provide: ErrorHandler, useClass:GlobalErrorHandlerService}*/
   ],
   bootstrap: [AppComponent],
 })

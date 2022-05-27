@@ -1,19 +1,21 @@
-import { InfoWindowManager } from '@agm/core';
-import { WindowRef } from '@agm/core/lib/utils/browser-globals';
 import { LocationStrategy } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import EventEmitter from 'events';
-import { Report } from 'notiflix';
-import { AuthenticateService } from 'src/app/services/authenticate.service';
+import { plainToClass } from 'class-transformer';
+import moment from 'moment';
+import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
+import { Notify, Report } from 'notiflix';
+import { Dbref } from 'src/app/models/dbref';
+import { Material } from 'src/app/models/resources/Material';
+import { MaterialUsed } from 'src/app/models/resources/MaterialUsed';
+import { QuantityValue } from 'src/app/models/resources/QuantityValue';
+import { Intervention } from 'src/app/models/works/intervention';
 import { IMaterial } from 'src/app/services/resources/material/imaterial';
 import { EquipmentService } from 'src/app/services/resources/material/material.service';
-import { TeamService } from 'src/app/services/resources/team/team.service';
 import { Associatif } from 'src/app/services/types/associatif';
-import { IUser } from 'src/app/services/user/iuser';
-import { UserService } from 'src/app/services/user/user.service';
+import { InterventionService } from 'src/app/services/works/intervention/intervention.service';
 
 @Component({
   selector: 'app-choose-material',
@@ -23,33 +25,33 @@ import { UserService } from 'src/app/services/user/user.service';
 export class ChooseMaterialComponent implements OnInit {
   materialForm!: FormGroup;
   materialsList!: IMaterial[];
-
+  material!: IMaterial;
+  selectedMaterialsUsed: MaterialUsed[] = [];
   dropdownSettings!: {};
   measureList: Associatif[] = [
     { key: 'Kilogram', value: 'Kilogram' },
     { key: 'Meter', value: 'Meter' },
     { key: 'Liter', value: 'Liter' },
   ];
-  output: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private materialService: EquipmentService,
-    private location: LocationStrategy
+    private router: Router,
+    private interventionService: InterventionService,
+    @Inject(SESSION_STORAGE) private storage: StorageService
   ) {
     this.materialForm = this.formBuilder.group({
       measure: ['', [Validators.required]],
       materiel: ['', [Validators.required]],
-
       quantity: ['', [Validators.required, Validators.pattern('^[0-9]{1,}$')]],
     });
+    this.materialsAvailable();
   }
 
   selectedItems: { item_id: number; item_text: string }[] = [];
 
   ngOnInit() {
-    // Setting of dropdown multiselect
-    this.materialsAvailable();
     this.dropdownSettings = {
       singleSelection: true,
       idField: 'id',
@@ -60,9 +62,62 @@ export class ChooseMaterialComponent implements OnInit {
       allowSearchFilter: true,
     };
   }
-
+  onItemSelect(item: any) {
+    console.log(item);
+    this.materialService.findMaterial(item.id).subscribe((res: IMaterial) => {
+      this.material = res;
+      console.log(res);
+    });
+  }
   create() {
-    // Array.from(this.Materiel?.value as IMaterial[], (x) => x.id);
+    let quantityToUse = new QuantityValue(
+      this.quantity?.value,
+      this.measure?.value
+    );
+    let materialToBeUsed = new MaterialUsed(
+      this.material.id,
+      this.material.name,
+      this.material.description,
+      this.material.totalQuantity,
+      this.material.dateOfPurchase,
+      this.material.address,
+      this.material.category,
+      this.material.status,
+      quantityToUse,
+      new Date()
+    );
+    console.log(materialToBeUsed);
+    this.selectedMaterialsUsed.push(materialToBeUsed);
+    let values: Intervention;
+    values = JSON.parse(this.storage.get('intervention'));
+    values = Object.assign(Intervention.prototype, values);
+    console.log(values.getTitle());
+    let intervention = new Intervention(
+      values.getTitle(),
+      values.getDescription(),
+      values.getCategory(),
+      values.getAddress(),
+      values.getStartedAt(),
+      values.getExpiredAt(),
+      values.getDemandList(),
+      this.selectedMaterialsUsed,
+      values.getTeam(),
+      values.getStatus()
+    );
+    //  console.log(intervention);
+    this.interventionService.create(intervention).subscribe((data: any) => {
+      console.log(data);
+      if (data.status == true) {
+        Notify.success(data.message);
+        this.storage.remove('intervention');
+        this.router.navigate(['/dashboard/manager/interventionList']);
+      } else {
+        Report.failure('Notification', data.message, 'OK');
+      }
+    }),
+      (error: HttpErrorResponse) => {
+        Report.warning('Erreur', error.message, 'OK');
+      };
   }
   materialsAvailable() {
     this.materialService
@@ -84,9 +139,7 @@ export class ChooseMaterialComponent implements OnInit {
   get measure() {
     return this.materialForm.get('measure');
   }
-  onItemSelect(item: any) {
-    console.log(item);
-  }
+
   onSelectAll(items: any) {
     console.log(JSON.stringify(items));
   }
@@ -94,7 +147,6 @@ export class ChooseMaterialComponent implements OnInit {
   check() {
     Object.keys(this.materialForm.controls).forEach((key) => {
       if (this.materialForm.get(key)!.errors) {
-        console.log(this.materialForm.get(key)!.errors);
         if (this.materialForm.get(key)!.errors!.hasOwnProperty('required')) {
           Report.failure(key, 'Champs obligatoire', "D'accord");
         }
@@ -159,10 +211,10 @@ export class ChooseMaterialComponent implements OnInit {
     }, 100);
   }
 
-  remove(){
-    console.log("hi im remove photo ! ")
+  remove() {
+    console.log('hi im remove photo ! ');
   }
-  add(){
-    console.log("hi im add photo ! ")
+  add() {
+    console.log('hi im add photo ! ');
   }
 }

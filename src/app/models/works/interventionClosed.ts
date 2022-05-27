@@ -1,5 +1,6 @@
 import { Address } from '../Address';
 import { Dbref } from '../dbref';
+import { MaterialUsed } from '../resources/MaterialUsed';
 import { Team } from '../resources/team';
 import { Intervention } from './intervention';
 
@@ -12,11 +13,12 @@ export class InterventionClosed extends Intervention {
     startedAt: string,
     expiredAt: string,
     demandList: Dbref[],
-    materialList: Dbref[],
+    materialsToBeUsed: MaterialUsed[],
     team: Dbref,
     status: string,
     private closingComment: string,
     private closedDate: Date,
+    private materialUsedList:MaterialUsed[],
     private workingGroup: Team
   ) {
     super(
@@ -27,7 +29,7 @@ export class InterventionClosed extends Intervention {
       startedAt,
       expiredAt,
       demandList,
-      materialList,
+      materialsToBeUsed,
       team,
       status
     );
@@ -45,8 +47,14 @@ export class InterventionClosed extends Intervention {
   public setClosedDate(value: Date): void {
     this.closedDate = value;
   }
+  public getMaterialUsedList(): MaterialUsed[] {
+    return this.materialUsedList;
+  }
+  public setMaterialUsedList(value: MaterialUsed[]): void {
+    this.materialUsedList = value;
+  }
 
- 
+
 
 
   public getworkingGroup(): Team {

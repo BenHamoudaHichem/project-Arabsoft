@@ -1,13 +1,13 @@
 export class QuantityValue{
 
- constructor( private quantityToUse:number,private measure:string){}
- public getquantityToUse(): number {
+ constructor( protected quantityToUse:number,protected measure:string){}
+ public getquantityToUse() {
   return this.quantityToUse;
 }
 public setquantityToUse(value: number): void {
   this.quantityToUse = value;
 }
-public getMeasure(): string {
+public getMeasure() {
   return this.measure;
 }
 public setMeasure(value: string): void {
