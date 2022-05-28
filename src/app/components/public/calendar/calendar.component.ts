@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
 
   ViewChild,
@@ -25,6 +25,8 @@ import moment from 'moment';
 import { Address } from 'src/app/models/Address';
 import { User } from 'src/app/models/user';
 import { plainToClass } from 'class-transformer';
+import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
+import { ChangeDetectionStrategy } from '@angular/compiler';
 
 const colors:any = {
   red: {
@@ -45,12 +47,21 @@ const colors:any = {
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.css']
+
 })
 export class CalendarComponent implements OnInit {
+
+
   events: CalendarEvent[]=[]
   intervention!: IIntervention;
+  locale!:string
+
+  constructor(private modal: NgbModal, private interventionService:InterventionService,
+    @Inject(SESSION_STORAGE) private storage: StorageService) {
 
 
+
+  }
 
   ngOnInit(): void {
     this.interventionService.allByStatus('In_Progress').subscribe((res:IIntervention[])=>{
@@ -104,10 +115,6 @@ setInterventions(){
 
   activeDayIsOpen: boolean = true;
 
-  constructor(private modal: NgbModal, private interventionService:InterventionService) {
-
-
-  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {

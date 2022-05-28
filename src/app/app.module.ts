@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, Inject, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -52,7 +52,7 @@ import { DetailsCustomerComponent } from './components/manager/details-customer/
 import { DetailCategoryComponent } from './components/manager/detail-category/detail-category.component';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { UpdatePasswordComponent } from './components/public/update-password/update-password.component';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { RecaptchaModule, RecaptchaFormsModule } from 'ng-recaptcha';
 import { UpdateTeamComponent } from './components/manager/update-team/update-team.component';
 import { UpdateInterventionComponent } from './components/manager/update-intervention/update-intervention.component';
@@ -72,13 +72,22 @@ import { ChooseMaterialComponent } from './components/manager/choose-material/ch
 import { InterventionClosedListComponent } from './components/manager/intervention-closed-list/intervention-closed-list.component';
 import { DetailInterventionClosedComponent } from './components/manager/detail-intervention-closed/detail-intervention-closed.component';
 import { CloseInterventionComponent } from './components/manager/close-intervention/close-intervention.component';
-
+import {  LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
 import { CalendarComponent } from './components/public/calendar/calendar.component';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import localeFr from '@angular/common/locales/fr';
+import localeEn from '@angular/common/locales/en';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
+
+registerLocaleData(localeFr);
+registerLocaleData(localeEn);
+
 export function httpTranslateLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
@@ -176,9 +185,16 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     CookieService,
     GuardAuthenticateGuard,
     AESEncoderService,
+
+    { provide: LOCALE_ID, useValue: 'en'},
   /* { provide: HTTP_INTERCEPTORS,useClass: GlobalHttpInterceptorService, multi: true  },
    { provide: ErrorHandler, useClass:GlobalErrorHandlerService}*/
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+
+
+}
+
+
