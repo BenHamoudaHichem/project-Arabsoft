@@ -22,7 +22,7 @@ export class InterventionService {
     private authService: AuthenticateService
   ) {}
   all(): Observable<IIntervention[]> {
-    return this.http.get<IIntervention[]>(`${this.apiURL}`).pipe(
+    return this.http.get<IIntervention[]>(`${this.apiURL}`,this.headers).pipe(
       map((intervention: IIntervention[]) => {
         return intervention.map((intervention) => ({
           id: intervention.id,
@@ -44,7 +44,7 @@ export class InterventionService {
 
 
   allByStatus(status:string): Observable<IIntervention[]> {
-    return this.http.get<IIntervention[]>(`${this.apiURL}?status=${status}`).pipe(
+    return this.http.get<IIntervention[]>(`${this.apiURL}?status=${status}`,this.headers).pipe(
       map((intervention: IIntervention[]) => {
         return intervention.map((intervention) => ({
     id: intervention.id,

@@ -36,7 +36,6 @@ export class MembersListComponent implements OnInit {
 
   agents() {
     this.UserService.agents().subscribe((res: IUser[]) => {
-      console.log(res);
       this.usersList = res;
     }),
       (error: HttpErrorResponse) => {
@@ -48,7 +47,6 @@ export class MembersListComponent implements OnInit {
       'https://png.pngtree.com/background/20210711/original/pngtree-creative-synthetic-double-exposure-city-business-minimalist-background-picture-image_1115148.jpg';
 
     this.UserService.allByRole('tm').subscribe((res: IUser[]) => {
-      console.log(res);
       this.usersList = res;
     }),
       (error: HttpErrorResponse) => {
@@ -63,7 +61,6 @@ export class MembersListComponent implements OnInit {
     this.image = 'https://wallpaperaccess.com/full/4321838.jpg';
 
     this.UserService.allByRole('member').subscribe((res: IUser[]) => {
-      console.log(res);
       this.usersList = res;
     }),
       (error: HttpErrorResponse) => {

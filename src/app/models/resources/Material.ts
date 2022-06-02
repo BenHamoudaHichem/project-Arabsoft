@@ -7,7 +7,7 @@ export class Material {
     protected name: string,
     protected description: string,
     protected totalQuantity: QuantityValue,
-    protected dateOfPurshase: Date,
+    protected dateOfPurchase: string,
 
     protected address: Address,
     protected category: string,
@@ -41,11 +41,11 @@ export class Material {
     this.address = value;
   }
 
-  public getDateOfPurshase(): Date {
-    return this.dateOfPurshase;
+  public getDateOfPurchase(): string {
+    return this.dateOfPurchase;
   }
-  public setDateOfPurshase(value: Date): void {
-    this.dateOfPurshase = value;
+  public setDateOfPurchase(value: string): void {
+    this.dateOfPurchase = value;
   }
 
   public getStatus(): string {

@@ -27,6 +27,7 @@ import { User } from 'src/app/models/user';
 import { plainToClass } from 'class-transformer';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { ChangeDetectionStrategy } from '@angular/compiler';
+import { Category } from 'src/app/models/Category';
 
 const colors:any = {
   red: {
@@ -136,15 +137,9 @@ setInterventions(){
     this.modal.open(this.modalContent, { size: 'lg' });
    this.interventionService.findIntervention(String(event.id)).subscribe((res:IIntervention)=>{
       this.intervention=res
-      this.intervention.address = plainToClass(
-        Address,
-        this.intervention.address
-      );
-
-      this.intervention.team.manager = plainToClass(
-        User,
-        this.intervention.team.manager
-      );
+      this.intervention.address = plainToClass( Address,res.address)
+      this.intervention.team.manager = plainToClass(User,res.team.manager)
+      this.intervention.category=plainToClass(Category,res.category)
 
    })
   }

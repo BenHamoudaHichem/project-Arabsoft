@@ -49,7 +49,7 @@
                   <div class="form-outline">
                     <label class="form-label" translate> input.titles.which_date</label>
 
-                    <input type="date" formControlName="date" class="form-control form-control-lg" name="" id="" />
+                    <input type="date" formControlName="date" (blur)="checkExpiredAt()" class="form-control form-control-lg" name="" id="" />
 
                     <p *ngIf="(date?.touched || date?.dirty) && !date?.valid" class="ErrorMsg">
                       errors.req_error
@@ -64,7 +64,7 @@
                   <div class="form-outline">
                     <label class="form-label" translate> input.titles.end_date</label>
 
-                    <input type="date" formControlName="endDate" class="form-control form-control-lg" name="" id="" />
+                    <input type="date" formControlName="endDate" (blur)="checkStartedAtAt()" class="form-control form-control-lg" name="" id="" />
 
                     <p *ngIf="(endDate?.touched || endDate?.dirty) && !endDate?.valid" class="ErrorMsg">
                       errors.req_error
@@ -238,7 +238,7 @@
 
 
                   <div class="d-flex justify-content-end pt-3">
-                    <button class="bn632-hover bn24" type="submit" role="button" translate>
+                    <button class="bn632-hover bn24" type="submit" [disabled]="!createInterventionForm.valid" role="button" translate>
                       buttons.next
                     </button>
                   </div>
@@ -250,5 +250,7 @@
       </div>
     </div>
   </div>
+
 </section>
 <app-choose-material *ngIf="output==true"></app-choose-material>
+

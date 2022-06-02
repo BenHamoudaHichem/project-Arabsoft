@@ -26,7 +26,7 @@ export class DemandService {
 //Get all
 
   all(): Observable<IDemand[]> {
-    return this.http.get<IDemand[]>(`${this.apiURL}`).pipe(
+    return this.http.get<IDemand[]>(`${this.apiURL}`,this.headers).pipe(
       map((demandes: IDemand[]) => {
         return demandes.map((demandes) => ({
           id: demandes.id,
@@ -43,7 +43,7 @@ export class DemandService {
   }
 
   allByStatus( status:string): Observable<IDemand[]> {
-    return this.http.get<IDemand[]>(`${this.apiURL}?status=${status}`).pipe(
+    return this.http.get<IDemand[]>(`${this.apiURL}?status=${status}`,this.headers).pipe(
       map((demandes: IDemand[]) => {
         return demandes.map((demandes) => ({
           id: demandes.id,
@@ -86,7 +86,7 @@ console.log(JSON.stringify(demande))
       );
   }
   allByUser(id:string): Observable<IDemand[]> {
-    return this.http.get<IDemand[]>(`${this.apiURL}/user/${id}`).pipe(
+    return this.http.get<IDemand[]>(`${this.apiURL}/user/${id}`,this.headers).pipe(
       map((demandes: IDemand[]) => {
         return demandes.map((demandes) => ({
           id: demandes.id,

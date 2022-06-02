@@ -80,4 +80,9 @@ export class Intervention {
   public setStatus(value: string): void {
     this.status = value;
   }
+
+  public static get value() : string[] {
+    return Object.keys(Reflect.construct(Intervention, []))
+  }
+
 }

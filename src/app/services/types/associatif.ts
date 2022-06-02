@@ -1,4 +1,4 @@
 export type Associatif= {
-  key:string,
-  value:string
+  key:string | undefined,
+  value:any
 }

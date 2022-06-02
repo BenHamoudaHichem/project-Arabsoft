@@ -13,4 +13,8 @@ public getMeasure() {
 public setMeasure(value: string): void {
   this.measure = value;
 }
+public get str() : string {
+  return this.quantityToUse+" "+this.measure
+}
+
 }

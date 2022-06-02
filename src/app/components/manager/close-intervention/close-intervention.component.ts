@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { plainToClass, plainToInstance } from 'class-transformer';
 import moment from 'moment';
 import { Report } from 'notiflix';
@@ -34,23 +34,26 @@ export class CloseInterventionComponent implements OnInit {
     { key: 'Kilogram', value: 'Kilogram' },
     { key: 'Meter', value: 'Meter' },
     { key: 'Liter', value: 'Liter' },
+    { key: 'Tons', value: 'Tons' },
+    { key: 'Unity', value: 'Unity' },
+
   ];
 
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private interServ: InterventionService,
+    private router:Router,
     private interventionClosedServ: interventionClosedService
   ) {
     this.closeForm = this.formBuilder.group({
-      measure: ['', [Validators.required]],
-
-      members: ['', [Validators.required]],
-      quantity: ['', [Validators.required, Validators.pattern('^[0-9]{1,}$')]],
       description: [
         '',
         [Validators.required, Validators.pattern('^[a-zA-Z ]{4,}$')],
       ],
+      materialsUsed:this.formBuilder.array([]),
+      members: ['', [Validators.required]],
+
     });
   }
   selectedItems: { item_id: number; item_text: string }[] = [];
@@ -86,6 +89,32 @@ export class CloseInterventionComponent implements OnInit {
       Category.prototype,
       this.intervention.category
     );
+
+    let materialUsedValue:MaterialUsed[]=[]
+    let i =0
+    this.materialsUsed.controls.forEach(e=>{
+
+      let m:MaterialUsed=this.materialsUsedList[i]
+      if (m.getCategory()=="Matter") {
+        m.setquantityToUse(new QuantityValue(Number(e.get('quantity')?.value),e.get('measure')?.value))
+
+      }
+      m.setDateOfPurchase(moment(m.getDateOfPurchase(),'DD-MM-yyyy').format("yyyy-MM-DD"))
+
+
+      console.log(moment(m.getDateOfPurchase(),'DD-MM-yyyy').format("yyyy-MM-DD"))
+
+      materialUsedValue.push(m)
+      i+=1
+    })
+
+    this.intervention.materialsToBeUsed.forEach(m=>{
+      m.setDateOfPurchase(moment(m.getDateOfPurchase(),'DD-MM-yyyy').format("yyyy-MM-DD"))
+
+      console.log(m.getDateOfPurchase());
+
+    })
+
     //  console.log(this.intervention.category.getId());
 
     let interventionClosed = new InterventionClosed(
@@ -101,14 +130,20 @@ export class CloseInterventionComponent implements OnInit {
       'Completed',
       HTMLEscape.escapeMethod(this.description?.value),
       null!,
-      null!,
+      materialUsedValue,
       team
     );
+
+
+    console.log(interventionClosed);
+
     this.interventionClosedServ
       .create(interventionClosed)
       .subscribe((res: any) => {
         if (res.status == true) {
           Report.success('Notification', res.message, 'ok');
+          this.router.navigate(['/dashboard/manager/interventionClosedList']);
+
         }
       }),
       (errors: HttpErrorResponse) => {
@@ -121,20 +156,19 @@ export class CloseInterventionComponent implements OnInit {
       .subscribe((res: IIntervention) => {
         this.intervention = res;
 
-        this.intervention.team.manager = plainToClass(
-          User,
-          this.intervention.team.manager
-        );
+        this.intervention.team.manager = plainToClass(User,this.intervention.team.manager);
         this.intervention.team.members = Array.from(res.team.members, (x) =>
           plainToClass(User, x)
         );
+        this.intervention.materialsToBeUsed=Array.from(res.materialsToBeUsed,(x)=>x=plainToClass(MaterialUsed,x))
+      console.log(this.intervention.materialsToBeUsed);
+
         this.members?.setValue(this.intervention.team.members);
         this.materialsUsedList = Array.from(
           this.intervention.materialsToBeUsed,
-          (x: MaterialUsed) => x
+          (x) => x=plainToClass(MaterialUsed,x)
         );
         console.log(this.materialsUsedList);
-
         this.materialsUsedList.forEach((element) => {
           element.setquantityToUse(
             plainToClass(QuantityValue, element.getquantityToUse())
@@ -142,6 +176,7 @@ export class CloseInterventionComponent implements OnInit {
           element.setTotalQuantity(
             plainToClass(QuantityValue, element.getTotalQuantity())
           );
+          this.addMaterialUsed(element)
         });
       }),
       (error: HttpErrorResponse) => {
@@ -168,5 +203,22 @@ export class CloseInterventionComponent implements OnInit {
   }
   onSelectAll(items: any) {
     console.log(JSON.stringify(items));
+  }
+  public get materialsUsed() :FormArray {
+    return this.closeForm.get("materialsUsed") as FormArray
+  }
+
+  newMaterialUsed(v:QuantityValue): FormGroup {
+    return this.formBuilder.group({
+      quantity: [v.getquantityToUse(),[]],
+      measure: [v.getMeasure(),[]],
+    })
+  }
+  addMaterialUsed(material:MaterialUsed) {
+    this.materialsUsed.push(this.newMaterialUsed(material.getquantityToUse()));
+    if (material.getCategory()=="Material") {
+      this.materialsUsed.controls[this.materialsUsed.length-1].get("quantity")?.disable()
+      this.materialsUsed.controls[this.materialsUsed.length-1].get("measure")?.disable()
+    }
   }
 }

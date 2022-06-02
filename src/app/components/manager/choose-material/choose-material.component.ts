@@ -1,9 +1,10 @@
 import { LocationStrategy } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { plainToClass } from 'class-transformer';
+import { ht } from 'date-fns/locale';
 import moment from 'moment';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Notify, Report } from 'notiflix';
@@ -24,14 +25,18 @@ import { InterventionService } from 'src/app/services/works/intervention/interve
 })
 export class ChooseMaterialComponent implements OnInit {
   materialForm!: FormGroup;
+  totalQuantityValues:number[]=[]
+  private intervention_1: Intervention = Object.assign(Intervention.prototype, JSON.parse(this.storage.get('intervention')))
   materialsList!: IMaterial[];
-  material!: IMaterial;
+  imaterial!: IMaterial;
   selectedMaterialsUsed: MaterialUsed[] = [];
   dropdownSettings!: {};
   measureList: Associatif[] = [
     { key: 'Kilogram', value: 'Kilogram' },
     { key: 'Meter', value: 'Meter' },
     { key: 'Liter', value: 'Liter' },
+    { key: 'Tons', value: 'Tons' },
+    { key: 'Unity', value: 'Unity' },
   ];
 
   constructor(
@@ -42,9 +47,7 @@ export class ChooseMaterialComponent implements OnInit {
     @Inject(SESSION_STORAGE) private storage: StorageService
   ) {
     this.materialForm = this.formBuilder.group({
-      measure: ['', [Validators.required]],
-      materiel: ['', [Validators.required]],
-      quantity: ['', [Validators.required, Validators.pattern('^[0-9]{1,}$')]],
+      materialsUsed:this.formBuilder.array([]),
     });
     this.materialsAvailable();
   }
@@ -61,37 +64,63 @@ export class ChooseMaterialComponent implements OnInit {
       itemsShowLimit: 10,
       allowSearchFilter: true,
     };
+    console.log(this.intervention_1);
+
   }
   onItemSelect(item: any) {
     console.log(item);
+
     this.materialService.findMaterial(item.id).subscribe((res: IMaterial) => {
-      this.material = res;
+      this.imaterial = res;
       console.log(res);
     });
+
+    for (let index = 0; index < this.materialsList.length; index++) {
+      const element:IMaterial = this.materialsList[index];
+
+
+      if (element.id==item.id) {
+
+      document.getElementsByName("total")[this.materialsUsed.length-1].innerText=String(element.totalQuantity.getquantityToUse())
+
+        this.totalQuantityValues.push(element.totalQuantity.getquantityToUse())
+        this.setFormArrayValueX(element.totalQuantity)
+        this.materialsList.splice(index,1)
+        break
+      }
+    }
   }
   create() {
-    let quantityToUse = new QuantityValue(
-      this.quantity?.value,
-      this.measure?.value
-    );
-    let materialToBeUsed = new MaterialUsed(
-      this.material.id,
-      this.material.name,
-      this.material.description,
-      this.material.totalQuantity,
-      this.material.dateOfPurchase,
-      this.material.address,
-      this.material.category,
-      this.material.status,
-      quantityToUse,
-      new Date()
-    );
-    console.log(materialToBeUsed);
-    this.selectedMaterialsUsed.push(materialToBeUsed);
+
+    this.selectedMaterialsUsed=[]
+
+    this.materialsAvailable()
+    this.materialsUsed.controls.forEach(element => {
+      console.log(this.materialsList[0].id);
+      console.log(element.get('material')?.value[0].id)
+      let m:IMaterial=this.materialsList.find(x=>x.id==element.get('material')?.value[0].id)!
+      let quantityToUse = new QuantityValue(
+        Number(element.get('quantity')?.value),element.get('measure')?.value
+      );
+      this.selectedMaterialsUsed.push(new MaterialUsed(
+        m.id,
+        m.name,
+        m.description,
+        m.totalQuantity,
+        m.dateOfPurchase,
+        m.address,
+        m.category,
+        m.status,
+        quantityToUse,
+        new Date()
+      ))
+
+    });
     let values: Intervention;
     values = JSON.parse(this.storage.get('intervention'));
     values = Object.assign(Intervention.prototype, values);
-    console.log(values.getTitle());
+
+
     let intervention = new Intervention(
       values.getTitle(),
       values.getDescription(),
@@ -104,13 +133,15 @@ export class ChooseMaterialComponent implements OnInit {
       values.getTeam(),
       values.getStatus()
     );
-    //  console.log(intervention);
+     console.log(intervention);
+
     this.interventionService.create(intervention).subscribe((data: any) => {
-      console.log(data);
       if (data.status == true) {
         Notify.success(data.message);
         this.storage.remove('intervention');
         this.router.navigate(['/dashboard/manager/interventionList']);
+
+        
       } else {
         Report.failure('Notification', data.message, 'OK');
       }
@@ -123,21 +154,15 @@ export class ChooseMaterialComponent implements OnInit {
     this.materialService
       .allByStatus('Available')
       .subscribe((data: IMaterial[]) => {
-        this.materialsList = data;
-        console.log(this.materialsList);
+        this.storage.set("materials",JSON.stringify(data))
       }),
       (error: HttpErrorResponse) => {
         Report.failure('Erreur', error.message, 'OK');
       };
-  }
-  get materiel() {
-    return this.materialForm.get('materiel');
-  }
-  get quantity() {
-    return this.materialForm.get('quantity');
-  }
-  get measure() {
-    return this.materialForm.get('measure');
+      this.materialsList=JSON.parse(this.storage.get("materials")) as IMaterial[]
+      this.materialsList.forEach(e=>{
+        e.totalQuantity=plainToClass(QuantityValue,e.totalQuantity)
+      })
   }
 
   onSelectAll(items: any) {
@@ -217,4 +242,64 @@ export class ChooseMaterialComponent implements OnInit {
   add() {
     console.log('hi im add photo ! ');
   }
+  public get materialsUsed() :FormArray {
+    return this.materialForm.get("materialsUsed") as FormArray
+  }
+  newMaterialUsed(): FormGroup {
+    /*if (this.materialsUsed.length>0) {
+      this.materialsList.filter(m=>{m})
+
+    }*/
+    return this.formBuilder.group({
+      material:['',[Validators.required]],
+      quantity: ['',[Validators.required]],
+      measure: ['',[Validators.required]],
+    })
+  }
+  addMaterialUsed() {
+
+
+    this.materialsUsed.push(this.newMaterialUsed());
+
+  }
+  removeMaterialUsed(i:number) {
+    this.materialsUsed.removeAt(i);
+
+    if (this.materialsUsed.length==0){
+
+      this.materialsAvailable()
+    }
+
+  }
+  getTotalQuantity(i:number):number{
+
+    if (this.materialsUsed.length===0) {
+      return 0
+    }
+     return this.totalQuantityValues[i]
+     //this.materialsList[i].totalQuantity.getquantityToUse()
+  }
+  public quantity(i:number) : AbstractControl | null {
+    return this.materialsUsed.controls[i].get("quantity")
+  }
+  public measure(i:number) : AbstractControl | null {
+    return this.materialsUsed.controls[i].get("measure")
+  }
+  public material(i:number) : AbstractControl | null {
+    return this.materialsUsed.controls[i].get("material")
+  }
+
+
+  public setFormArrayValueX(q:QuantityValue) {
+
+    this.quantity(this.materialsUsed.controls.length-1)?.addValidators(Validators.max(q.getquantityToUse()))
+
+    this.measure(this.materialsUsed.controls.length-1)?.setValue(q.getMeasure())
+    if (q.getMeasure()=="Unity") {
+
+      this.measure(this.materialsUsed.controls.length-1)?.disable()
+    }
+
+  }
+
 }

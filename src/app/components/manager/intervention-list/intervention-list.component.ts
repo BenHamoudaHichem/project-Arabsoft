@@ -40,6 +40,7 @@ export class InterventionListComponent implements OnInit {
       this.interventionList = res;
       this.interventionList.forEach(e=>{
         e.category=plainToClass(Category,e.category)
+        e.address=plainToClass(Address,e.address)
       })
     }),
       (error: HttpErrorResponse) => {
@@ -62,7 +63,6 @@ location(){
   for(let i=0;i<res.length;i++){
 this.data.push(res[i].address.Location())
   }
- console.log(this.data)
   this.mapService.initilizeMap(this.data)
 
 }),

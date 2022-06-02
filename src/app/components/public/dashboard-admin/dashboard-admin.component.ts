@@ -1,12 +1,15 @@
+import { FnParam } from '@angular/compiler/src/output/output_ast';
 import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { DefaultLangChangeEvent, DEFAULT_LANGUAGE, MissingTranslationHandler, TranslateService } from '@ngx-translate/core';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import Notiflix, { Notify, Report } from 'notiflix';
 import { filter } from 'rxjs';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { FiltreComponent } from '../filtre/filtre.component';
-
+type Params = {
+  [key: string]: any;
+};
 @Component({
   selector: 'app-dashboard-admin',
   templateUrl: './dashboard-admin.component.html',
@@ -30,10 +33,7 @@ export class DashboardAdminComponent implements OnInit {
   }
  public listenSearch()
   {
-    const queryParams: Params = { searchKey: this.filtercomponent.getFilter?.search ,
-      order:this.filtercomponent.getFilter?.order.key,
-      asc:this.filtercomponent.getFilter?.order.value
-    };
+
     let url:string=this.route.url
     if (this.route.url.indexOf("?")!=-1) {
       url=url.substring(0,url.indexOf("?"))
@@ -42,7 +42,7 @@ export class DashboardAdminComponent implements OnInit {
     [String(url)],
     {
       relativeTo: this.activatedRoute,
-      queryParams: queryParams,
+      queryParams: Object.fromEntries(this.filtercomponent.getFilter!),
       queryParamsHandling: 'merge', // remove to replace all query params by provided
     });
     this.route.routeReuseStrategy.shouldReuseRoute = function () {

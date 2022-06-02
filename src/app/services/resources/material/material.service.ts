@@ -10,10 +10,10 @@ import { IMaterial } from './imaterial';
 })
 export class EquipmentService {
   private apiURL = 'http://127.0.0.1:8080/api/materials';
-  private httpOptions = {
+  private headers = {
     headers: new HttpHeaders({
       "Authorization": `Bearer ${this.authService.getToken}`,
-      'Content-Type': 'application/json',
+      "Content-Type":"application/json"
     }),
   };
   constructor(
@@ -21,7 +21,7 @@ export class EquipmentService {
     private authService: AuthenticateService
   ) {}
   all(): Observable<IMaterial[]> {
-    return this.http.get<IMaterial[]>(`${this.apiURL}`,this.httpOptions).pipe(
+    return this.http.get<IMaterial[]>(`${this.apiURL}`,this.headers).pipe(
       map((materials: IMaterial[]) => {
         return materials.map((material) => ({
           id: material.id,
@@ -41,7 +41,7 @@ export class EquipmentService {
   }
   allByStatus(status: string): Observable<IMaterial[]> {
     return this.http
-      .get<IMaterial[]>(`${this.apiURL}?status=${status}`)
+      .get<IMaterial[]>(`${this.apiURL}?status=${status}`,this.headers)
       .pipe(
         map((equipment: IMaterial[]) => {
           return equipment.map((equipment) => ({
@@ -64,15 +64,14 @@ export class EquipmentService {
 
     return this.http.post(
       `${this.apiURL}`,
-      JSON.stringify(equipment),
-      this.httpOptions
+      JSON.stringify(equipment),this.headers
     );
   }
 
 
   findMaterial(id: string): Observable<IMaterial> {
     return this.http
-      .get<IMaterial>(`${this.apiURL}/${id}`, this.httpOptions)
+      .get<IMaterial>(`${this.apiURL}/${id}`,this.headers)
       .pipe(
         map((material: IMaterial) => {
           return material;
@@ -86,8 +85,7 @@ export class EquipmentService {
 
     return this.http.put(
       `${this.apiURL}/${id}`,
-      JSON.stringify(material),
-      this.httpOptions
+      JSON.stringify(material),this.headers
     );
   }
 }

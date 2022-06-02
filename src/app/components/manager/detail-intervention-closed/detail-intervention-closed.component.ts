@@ -5,6 +5,8 @@ import { plainToClass } from 'class-transformer';
 import { Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
 import { Category } from 'src/app/models/Category';
+import { MaterialUsed } from 'src/app/models/resources/MaterialUsed';
+import { QuantityValue } from 'src/app/models/resources/QuantityValue';
 import { User } from 'src/app/models/user';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { MapService } from 'src/app/services/map/map.service';
@@ -29,6 +31,7 @@ export class DetailInterventionClosedComponent implements OnInit {
   ) {}
   ngOnInit(): void {
     this.findIntervention(String(this.route.snapshot.paramMap.get('id')));
+
   }
 
 
@@ -37,15 +40,18 @@ export class DetailInterventionClosedComponent implements OnInit {
       .findById(id)
       .subscribe((res: IInterventionClosed) => {
         this.intervention = res;
-        this.intervention.address = plainToClass(
-          Address,
-          this.intervention.address
-        );
-
+        this.intervention.address = plainToClass(Address,this.intervention.address);
+        this.intervention.materialUsedList=Array.from(res.materialUsedList,(x)=>plainToClass(MaterialUsed,x))
+        this.intervention.materialsToBeUsed=Array.from(res.materialsToBeUsed,(x)=>plainToClass(MaterialUsed,x))
+        this.intervention.materialUsedList.forEach((element:MaterialUsed)=>{
+          element.setquantityToUse(plainToClass(QuantityValue,element.getquantityToUse()))
+        })
+        this.intervention.materialsToBeUsed.forEach((element:MaterialUsed)=>{
+          element.setquantityToUse(plainToClass(QuantityValue,element.getquantityToUse()))
+        })
         this.intervention.workingGroup.manager = plainToClass(
           User,
-          this.intervention.workingGroup.manager
-        );
+          this.intervention.workingGroup.manager);
         this.intervention.workingGroup.members = Array.from(res.workingGroup.members, (x) =>
           plainToClass(User, x)
         );
@@ -62,7 +68,6 @@ export class DetailInterventionClosedComponent implements OnInit {
         );
         console.log(this.intervention);
 
-console.log(this.intervention.address.Location())
 this.mapService.findLocation(this.intervention.address.Location());
       }),
       (error: HttpErrorResponse) => {

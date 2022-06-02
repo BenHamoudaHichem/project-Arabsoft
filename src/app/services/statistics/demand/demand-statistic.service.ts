@@ -25,7 +25,7 @@ export class DemandStatisticService {
   public get getDemandsPerYear():Observable<IDemandPerYear[]>
   {
 
-    return this.http.get<IDemandPerYear[]>(`${this.apiURL}`).pipe(
+    return this.http.get<IDemandPerYear[]>(`${this.apiURL}`,this.headers).pipe(
       map((demand: IDemandPerYear[]) => {
         return demand.map((demand) => ({
           month:demand.month,

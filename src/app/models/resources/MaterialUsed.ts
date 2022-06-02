@@ -8,7 +8,7 @@ export class MaterialUsed extends Material {
     name: string,
     description: string,
     totalQuantity: QuantityValue,
-    dateOfPurshase: Date,
+    dateOfPurshase: string,
 
     address: Address,
     category: string,

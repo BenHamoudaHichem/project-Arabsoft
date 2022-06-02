@@ -93,15 +93,17 @@
               </thead>
               <!-- Responsive Table Body Section -->
               <tbody class="responsive-table__body">
-                <div class="scroll">
-                  <tr class="responsive-table__row" *ngFor="let item of  materialsUsedList">
+                <div class="scroll"formArrayName="materialsUsed">
+                  <tr class="responsive-table__row" *ngFor="let item of materialsUsed.controls; let i=index" [formGroupName]="i">
                     <td class="responsive-table__body__text responsive-table__body__text--name">
-                      {{item.getName()}}
+                      {{ this.materialsUsedList[i].getName() }}
+
                       &nbsp;
                     </td>
 
                     <td class="responsive-table__body__text responsive-table__body__text--types" translate>
-                      {{item.getquantityToUse().getquantityToUse()}} &nbsp; {{item.getquantityToUse().getMeasure()}}
+                      {{ this.materialsUsedList[i].getTotalQuantity().getquantityToUse()+' '+this.materialsUsedList[i].getTotalQuantity().getMeasure() }}
+
                     </td>
                     <td class="responsive-table__body__text responsive-table__body__text--country">
                       <div class="form-outline">
@@ -122,7 +124,7 @@
                     <td class="responsive-table__body__text responsive-table__body__text--country">
 
                       <div class="input-group">
-                        <select class="custom-select" id="inputGroupSelect01" formControlName="measure">
+                        <select class="custom-select" id="inputGroupSelect01" formControlName="measure" >
                           <option *ngFor="let item of measureList" [value]="item.value">{{item.key}}</option>
 
                         </select>

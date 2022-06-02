@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, Inject, NgModule } from '@angular/core';
+import {  CUSTOM_ELEMENTS_SCHEMA, ErrorHandler, Inject, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -92,38 +92,7 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 @NgModule({
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    NgMultiSelectDropDownModule,
-    HttpClientModule,
-    FormsModule,
 
-    NgbModule,
-
-    NgApexchartsModule,
-    ReactiveFormsModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyCYYC0LjtQyFdL2PfLbUymRPuBjKlMtvcs',
-      libraries: ['places'],
-    }),
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: httpTranslateLoaderFactory,
-        deps: [HttpClient],
-      },
-    }),
-    RecaptchaModule,
-    RecaptchaFormsModule,
-    NgbModalModule,
-    FlatpickrModule.forRoot(),
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-    }),
-  ],
   declarations: [
     AppComponent,
     HomeComponentPage,
@@ -180,15 +149,47 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     CloseInterventionComponent,
     CalendarComponent,
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [
+  imports: [
+
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    NgMultiSelectDropDownModule,
+    HttpClientModule,
+    FormsModule,
+    NgApexchartsModule,
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCYYC0LjtQyFdL2PfLbUymRPuBjKlMtvcs',
+      libraries: ['places'],
+    }),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
+    RecaptchaModule,
+    RecaptchaFormsModule,
+    NgbModalModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA,
+  ],
+    providers: [
     CookieService,
     GuardAuthenticateGuard,
     AESEncoderService,
 
     { provide: LOCALE_ID, useValue: 'en'},
-  /* { provide: HTTP_INTERCEPTORS,useClass: GlobalHttpInterceptorService, multi: true  },
-   { provide: ErrorHandler, useClass:GlobalErrorHandlerService}*/
+   { provide: HTTP_INTERCEPTORS,useClass: GlobalHttpInterceptorService, multi: true  },
+   { provide: ErrorHandler, useClass:GlobalErrorHandlerService}
   ],
   bootstrap: [AppComponent],
 })

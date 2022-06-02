@@ -2,15 +2,18 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { plainToClass, plainToInstance } from 'class-transformer';
+import moment from 'moment';
 import { Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
 import { Category } from 'src/app/models/Category';
 import { Material } from 'src/app/models/resources/Material';
+import { MaterialUsed } from 'src/app/models/resources/MaterialUsed';
 import { User } from 'src/app/models/user';
 import { Demand } from 'src/app/models/works/demand';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { MapService } from 'src/app/services/map/map.service';
 import { ITeam } from 'src/app/services/resources/team/iteam';
+import { IDemand } from 'src/app/services/works/demand/idemand';
 import { IIntervention } from 'src/app/services/works/intervention/iintervention';
 import { InterventionService } from 'src/app/services/works/intervention/intervention.service';
 
@@ -23,6 +26,9 @@ export class DetailInterventionComponent implements OnInit {
   id!: string;
   intervention!: IIntervention;
   status!: string;
+  percent!:number
+  stylPercent!:string
+
   ITeam!: ITeam[];
   constructor(
     private interventionService: InterventionService,
@@ -33,6 +39,7 @@ export class DetailInterventionComponent implements OnInit {
 
   ngOnInit(): void {
     this.findIntervention(String(this.route.snapshot.paramMap.get('id')));
+
   }
 
 
@@ -40,6 +47,8 @@ export class DetailInterventionComponent implements OnInit {
     this.interventionService
       .findIntervention(id)
       .subscribe((res: IIntervention) => {
+        console.log(res);
+
         this.intervention = res;
         this.intervention.address = plainToClass(
           Address,
@@ -58,24 +67,33 @@ export class DetailInterventionComponent implements OnInit {
         this.intervention.team.members = Array.from(res.team.members, (x) =>
           plainToClass(User, x)
         );
-        this.intervention.demandList.forEach((element) => {
-          element.user = plainToClass(User,element.user);
-          element.user.setAddress(
-            plainToClass(Address, element.user.getAddress())
-          );
-          element.address = plainToClass(Address, element.address);
-        });
+      this.intervention.demandList = Array.from(res.demandList, (x) =>
+      x=x as IDemand
+    );
+    this.intervention.demandList.forEach((element) => {
+      element.user = plainToClass(User,element.user);
+      element.user.setAddress(
+        plainToClass(Address, element.user.getAddress())
+      );
+      element.address = plainToClass(Address, element.address);
+    });
 
-       /* this.intervention.materialsToBeUsed.forEach((element) => {
-          element.getaddress() = plainToClass(Address, element.address);
-        });*/
+
         this.intervention.category = plainToClass(
           Category,
           this.intervention.category
         );
-        console.log(this.intervention);
+        this.intervention.materialsToBeUsed = Array.from(res.materialsToBeUsed, (x) =>
+        plainToClass(MaterialUsed, x)
+      );
+      this.intervention.materialsToBeUsed.forEach(e=>{
+        e.setaddress(plainToClass(Address,e.getaddress()))
+      })
 
-console.log(this.intervention.address.Location())
+
+
+this.percent=((Date.now()-moment(this.intervention.startedAt,"DD-MM-yyyy").toDate().getTime())/(moment(this.intervention.expiredAt,"DD-MM-yyyy").toDate().getTime()-moment(this.intervention.startedAt,"DD-MM-yyyy").toDate().getTime()))*100;
+this.stylPercent="width: "+this.percent+"%;"
 this.mapService.findLocation(this.intervention.address.Location());
       }),
       (error: HttpErrorResponse) => {

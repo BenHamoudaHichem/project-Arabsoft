@@ -96,12 +96,6 @@ export class CreateInterventionComponent implements OnInit {
           [Validators.required, Validators.pattern('^[0-9 -]{4,}$')],
         ],
       },
-      {
-        validators: [
-          DateValidation.DateConfirmation('date', new Date('2022-05-20')),
-          DateValidation.endDateConfirmation('endDate', 'date'),
-        ],
-      }
     );
     this.counrty?.setValue('Tunisie');
 
@@ -128,6 +122,7 @@ export class CreateInterventionComponent implements OnInit {
       .subscribe((res: IDemand) => {
         this.currentDemand = res;
         this.currentDemand.address = plainToClass(Address, res.address);
+
        // console.log(this.currentDemand);
         this.state?.setValue(this.currentDemand.address.State);
         this.zipCode?.setValue(this.currentDemand.address.ZipCode);
@@ -135,6 +130,8 @@ export class CreateInterventionComponent implements OnInit {
         this.street?.setValue(this.currentDemand.address.Street);
         this.counrty?.setValue(this.currentDemand.address.Country);
         this.currentDemand.user = plainToClass(User, res.user);
+        this.date?.addValidators([Validators.required,DateValidation.isBefor(res.createdAt)])
+        this.date?.updateValueAndValidity()
       }),
       (error: HttpErrorResponse) => {
         if (error.status == 401) {
@@ -354,4 +351,25 @@ export class CreateInterventionComponent implements OnInit {
       }
     });
   }
+  checkExpiredAt()
+  {
+    if (this.date?.valid) {
+      this.endDate?.clearValidators()
+      this.endDate?.addValidators([Validators.required,DateValidation.isBefor(moment(this.date?.value,'yyyy-MM-DD').toDate())])
+      this.endDate?.updateValueAndValidity()
+
+    }
+  }
+  checkStartedAtAt()
+  {
+    if (this.endDate?.valid) {
+
+      this.date?.clearValidators()
+      this.date?.addValidators([Validators.required,DateValidation.isAfter(moment(this.endDate?.value,'yyyy-MM-DD').toDate())])
+      this.date?.updateValueAndValidity()
+
+
+    }
+  }
+
 }

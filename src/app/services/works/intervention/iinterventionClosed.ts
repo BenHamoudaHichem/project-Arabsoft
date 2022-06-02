@@ -8,18 +8,7 @@ import { IDemand } from '../demand/idemand';
 import { IIntervention } from './iintervention';
 
 export interface IInterventionClosed extends IIntervention {
-  id: string;
-  title: string;
-  description: string;
-  category: Category;
-  address: Address;
-  startedAt: Date;
-  expiredAt: Date;
-  status: string;
-  demandList: IDemand[];
-  team: ITeam;
-  createdAt: Date;
-  materialsToBeUsed: MaterialUsed[];
+
   closingComment: string;
   closedDate: Date;
   materialUsedList:MaterialUsed[]

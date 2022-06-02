@@ -52,7 +52,6 @@ export class MaterialListComponent implements OnInit {
       .allByStatus(status)
       .subscribe((res: IMaterial[]) => {
         this.materialList = res;
-        console.log(res.length)
       }),
       (error: HttpErrorResponse) => {
         if(error.status==401){
@@ -75,7 +74,6 @@ export class MaterialListComponent implements OnInit {
       for(let i=0;i<IM.length;i++){
 this.data.push(IM[i].address.Location())
       }
-    //  console.log(this.data)
       this.mapService.initilizeMap(this.data)
 
     }),

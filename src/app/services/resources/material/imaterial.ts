@@ -6,9 +6,7 @@ export interface IMaterial {
   name: string;
   description: string;
   totalQuantity: QuantityValue;
-
-  dateOfPurchase: Date;
-
+  dateOfPurchase: string;
   address: Address;
   category: string;
   status: string;

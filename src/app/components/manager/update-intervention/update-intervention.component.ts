@@ -96,15 +96,6 @@ export class UpdateInterventionComponent implements OnInit {
           [Validators.required, Validators.pattern('^[0-9 -]{4,}$')],
         ],
       },
-      {
-        validators:[ DateValidation.DateConfirmation(
-          'date',
-          new Date('2022-05-20')), DateValidation.endDateConfirmation(
-            'endDate',
-            'date'
-
-          ),]
-      }
     );
     this.counrty?.setValue('Tunisie');
 

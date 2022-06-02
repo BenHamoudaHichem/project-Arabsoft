@@ -33,6 +33,8 @@ export class AddMaterialsComponent implements OnInit {
     { key: 'Kilogram', value: 'Kilogram' },
     { key: 'Meter', value: 'Meter' },
     { key: 'Liter', value: 'Liter' },
+    { key: 'Tons', value: 'Tons' },
+    { key: 'Unity', value: 'Unity' },
   ];
   constructor(
     private mapsAPILoader: MapsAPILoader,
@@ -103,7 +105,7 @@ export class AddMaterialsComponent implements OnInit {
       HTMLEscape.escapeMethod(String(this.name?.value)),
       HTMLEscape.escapeMethod(String(this.description?.value)),
       totalquantity,
-      moment(this.dateOfPurshase?.value, 'YYYY-MM-DD').toDate(),
+      this.dateOfPurshase?.value,
       address,
       HTMLEscape.escapeMethod(String(this.category?.value)),
       HTMLEscape.escapeMethod(String(this.status?.value))

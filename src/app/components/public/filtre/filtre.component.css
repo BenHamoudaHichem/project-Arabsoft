@@ -37,4 +37,17 @@ input[type="radio"]:checked+label{
   box-shadow:10px 5px rgb(210, 165, 231)
 
 }
+ .btn-primary{
+  background: rgb(230,135,246);
+  background: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(231, 149, 252) 100%);
+  border-radius: 15px 50px 30px;
+  color: rgb(31, 8, 46);
+}
+li{
+  cursor: pointer;
+}
+li:hover{
+  background-color: blueviolet;
+  color: white;
+}
 

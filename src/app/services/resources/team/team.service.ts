@@ -22,7 +22,7 @@ export class TeamService {
     private authService: AuthenticateService
   ) {}
   all(): Observable<ITeam[]> {
-    return this.http.get<ITeam[]>(`${this.apiURL}`).pipe(
+    return this.http.get<ITeam[]>(`${this.apiURL}`,this.headers).pipe(
       map((teams: ITeam[]) => {
         return teams.map((team) => ({
           id: team.id,
@@ -35,7 +35,7 @@ export class TeamService {
     );
   }
   allByStatus(status:string): Observable<ITeam[]> {
-    return this.http.get<ITeam[]>(`${this.apiURL}?status=${status}`).pipe(
+    return this.http.get<ITeam[]>(`${this.apiURL}?status=${status}`,this.headers).pipe(
       map((team: ITeam[]) => {
         return team.map((team) => ({
           id: team.id,

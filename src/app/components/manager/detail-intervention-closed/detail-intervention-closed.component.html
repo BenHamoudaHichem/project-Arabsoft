@@ -16,12 +16,12 @@
               <i class="fas fa-calendar-alt"></i> &nbsp; titles.started_at
             </h2>
 
-            <p class="card__text">{{ intervention.startedAt | date:'yyyy-MM-dd'}}</p>
+            <p class="card__text">{{ intervention.startedAt}}</p>
             <h2 class="card__title" translate>
               <i class="fas fa-calendar-check"></i> &nbsp;input.titles.closed_date
             </h2>
 
-            <p class="card__text">{{ intervention.closedDate | date:'yyyy-MM-dd' }}</p>
+            <p class="card__text">{{ intervention.closedDate}}</p>
 
 
             <h2 class="card__title" translate>
@@ -245,38 +245,25 @@
       <span class="card__title" translate> titles.materials_used
         <i class="fa fa-cogs"></i> </span>
     </div>
-    <div class="overflow-hidden">
-      <div class="scrollist">
-        <div class="card material mb-3" *ngFor="let material of intervention.materialUsedList">
-          <div class="card-body">
-            <div class="d-flex flex-column flex-lg-row">
-              <span class="avatar avatar-text rounded-3 me-4 mb-2"><img
-                  src="https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/512x512/tools.png"
-                  width="80px" height="80px" alt="" /></span>
-              <div class="row flex-fill">
-                <div class="col-sm-5">
-                  <h3>{{ material.getName() }}</h3>
-                  <span class="Status" translate>titles.quantity_used</span> :
-                  <span> {{ material.getquantityToUse().getquantityToUse()}} {{
-                    material.getquantityToUse().getMeasure()}} </span>
-                </div>
-                <div class="col-sm-4  py-2 calendar">
-                  <i class="fa fa-map-marker-alt"></i>
-                  {{ material.getaddress().Street }}, {{ material.getaddress().City }},
-                  {{ material.getaddress().Country }}
-                </div>
-                <div class="col-sm-3 text-lg-end">
-                  <a [routerLink]="[
-                      '/dashboard/manager/detailMaterial',
-                      material.getId()
-                    ]">
-                    <button class="bn30"><span translate> buttons.consult_details</span></button>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="">
+      <div class="">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Nom du materiel</th>
+              <th scope="col">Quantité déclaré pour utiliser</th>
+              <th scope="col">Quantité utilisé</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-info" *ngFor="let item of this.intervention.materialsToBeUsed let i=index">
+              <th scope="row">{{item.getName()}}</th>
+              <td >{{item.getquantityToUse().str}}</td>
+              <td>{{this.intervention.materialUsedList[i].getquantityToUse().str}}</td>
+            </tr>
+            </tbody>
+            </table>
+
       </div>
     </div>
     <div class="card demend">

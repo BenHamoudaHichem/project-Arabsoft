@@ -13,91 +13,69 @@
             <span class="title" translate>titles.add_inter</span>
 
           </div>
-          <form [formGroup]="materialForm" (ngSubmit)="create()">
-            <div class="row g-0">
-              <div class="col-md-auto d-xl-block">
-                <div class="card-body p-md-5 text-black">
-                  <div class="form-outline">
-                    <label class="form-label" translate> input.titles.materials</label>
 
-                    <ng-multiselect-dropdown formControlName="materiel" [placeholder]="'input.msg.mat_select'|translate"
-                      [settings]="dropdownSettings" [data]="materialsList" (onSelect)="onItemSelect($event)"
-                      (onSelectAll)="onSelectAll($event)" class="form-control-lg">
-                    </ng-multiselect-dropdown>
-                    <p *ngIf="(materiel?.touched || materiel?.dirty) && !materiel?.valid" class="ErrorMsg" translate>
+          <form [formGroup]="materialForm" (ngSubmit)="create()">
+            <table class="table table-hover">
+              <thead>
+                <tr class="table-primary">
+                  <th scope="col">Materièl</th>
+                  <th scope="col">Quantité total</th>
+                  <th scope="col">Quantité à choisir</th>
+                  <th scope="col">Mesure</th>
+                  <th scope="col">Supprimé ?</th>
+                </tr>
+              </thead>
+              <tbody formArrayName="materialsUsed">
+                <tr class="table-light" *ngFor="let item of materialsUsed.controls; let i=index" [formGroupName]="i">
+                  <td scope="row">
+                    <ng-multiselect-dropdown formControlName="material" [placeholder]="'input.msg.mat_select'|translate"
+                    [settings]="dropdownSettings" [data]="materialsList" (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)" >
+                  </ng-multiselect-dropdown> <p *ngIf="(material(i)?.touched || material(i)?.dirty) && !material(i)?.valid" class="ErrorMsg" translate>
+                    errors.req_error
+                  </p>
+                  <div *ngIf="materialsList?.length==0">
+
+                    <a class="nullValueLink" routerLink="/dashboard/manager/addMaterial" translate>titles.add_material
+                    </a>
+                  </div>
+                </td>
+                  <td name="total">0</td>
+                  <td><input name="value" type="number" step="any" min="0" formControlName="quantity"
+                  class="form-control form-control-lg" />
+                <p *ngIf="
+                  (quantity(i)?.touched || quantity(i)?.dirty) &&
+                  !quantity(i)?.valid
+                " class="ErrorMsg" translate>
+                  errors.req_error
+                </p></td>
+                  <td>            <div class="input-group">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" style="padding: 10px 5px;margin: 10px 0px;" for="inputGroupSelect01">mesure</label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect01" formControlName="measure">
+                      <option *ngFor="let item of measureList" [value]="item.value">{{item.key}}</option>
+
+                    </select>
+                    <p *ngIf="
+                    (measure(i)?.touched || measure(i)?.dirty) &&
+                    !measure(i)?.valid
+                  " class="ErrorMsg" translate>
                       errors.req_error
                     </p>
-                    <div *ngIf="materialsList?.length==0">
-
-                      <a class="nullValueLink" routerLink="/dashboard/manager/addMaterial" translate>titles.add_material
-                      </a>
-                    </div>
 
                   </div>
-                </div>
-              </div>
-              <div class="col-xl-6 d-xl-block">
-                <div class="card-body p-md-5 text-black">
-                  <fieldset>
-                    <div class="row">
-                      <div class="col-md-6 mb-4">
-                        <div class="form-outline">
-                          <label class="form-label" for="Quantity" translate>titles.quantity_total</label>
-                          <input name="value" type="number" step="any" min="0" formControlName="quantity"
-                            class="form-control form-control-lg" />
-                          <p *ngIf="
-                            (quantity?.touched || quantity?.dirty) &&
-                            !quantity?.valid
-                          " class="ErrorMsg" translate>
-                            errors.req_error
-                          </p>
-
-                          <!----------->
-                        </div>
-                      </div>
-                      <div class="col-md-6 mb-4">
-                        <div class="form-outline">
-                          <label class="form-label" translate >titles.choose_measure </label>
-
-                          <div class="input-group">
-                            <div class="input-group-prepend">
-                              <label class="input-group-text" style="padding: 10px 5px;
-            margin: 10px 0px;
-          " for="inputGroupSelect01">mesure</label>
-                            </div>
-                            <select class="custom-select" id="inputGroupSelect01" formControlName="measure">
-                              <option *ngFor="let item of measureList" [value]="item.value">{{item.key}}</option>
-
-                            </select>
-                            <p *ngIf="
-                            (measure?.touched || measure?.dirty) &&
-                            !measure?.valid
-                          " class="ErrorMsg" translate>
-                              errors.req_error
-                            </p>
-
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </fieldset>
-
-
-
-
-
-                </div>
-              </div>
-              <div class="col-md-auto d-xl-block">
-                <div class="card-body p-md-5 ">
-                  <div class="d-flex justify-content-center pt-3">
-                    <img (click)="remove()"  src="assets/images/remove.png" height="60px" width="60px" alt="remove">
-                    &nbsp;&nbsp;
-                    <img (click)="add()" src="assets/images/add.png" height="60px" width="60px" alt="add">
-                  </div>
-                </div>
-
-              </div>
+                </td>
+                <td>  <div class="d-flex justify-content-center pt-3">
+                  <img (click)="removeMaterialUsed(i)"  src="assets/images/remove.png" height="60px" width="60px" alt="remove">
+                  &nbsp;&nbsp;
+                   </div>
+                  </td>
+                </tr>
+                </tbody>
+                </table>
+            <div class="d-flex justify-content-center">
+              <img (click)="addMaterialUsed()" src="assets/images/add.png" height="60px" width="60px" alt="add">
 
             </div>
             <div class="d-flex justify-content-center">
@@ -109,7 +87,7 @@
               </div>
               <div class="d-flex justify-content-start pt-3" >
 
-                <button class="bn632-hover bn24" type="submit" translate>buttons.create</button>
+                <button class="bn632-hover bn24" type="submit" [disabled]="!materialForm.valid">buttons.create</button>
 
               </div>
             </div>

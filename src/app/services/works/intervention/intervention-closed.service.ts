@@ -9,20 +9,20 @@ import { IInterventionClosed } from './iinterventionClosed';
   providedIn: 'root',
 })
 export class interventionClosedService {
-  headers = {
+  private headers = {
     headers: new HttpHeaders({
       Authorization: `Bearer ${this.authService.getToken}`,
       'Content-Type': 'application/json',
     }),
   };
-  private apiURL = 'http://127.0.0.1:8080/api/interventionsCloseds';
+  private apiURL = 'http://127.0.0.1:8080/api/interventionCloseds';
 
   constructor(
     private http: HttpClient,
     private authService: AuthenticateService
   ) {}
   all(): Observable<IInterventionClosed[]> {
-    return this.http.get<IInterventionClosed[]>(`${this.apiURL}`).pipe(
+    return this.http.get<IInterventionClosed[]>(`${this.apiURL}`,this.headers).pipe(
       map((intervention: IInterventionClosed[]) => {
         return intervention.map((intervention) => ({
           id: intervention.id,
@@ -50,7 +50,7 @@ export class interventionClosedService {
 
 
 
-  create(intervention: InterventionClosed): Observable<InterventionClosed> {
+  create(intervention: InterventionClosed){
     console.log( JSON.stringify(intervention))
     return this.http.post<InterventionClosed>(
       `${this.apiURL}`,

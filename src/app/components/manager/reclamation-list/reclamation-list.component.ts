@@ -30,7 +30,6 @@ export class ReclamationListComponent implements OnInit {
   all() {
     this.serviceDemand.all().subscribe((ID: IDemand[]) => {
       this.demandList = ID;
-      console.log(this.demandList);
     }),
       (error: HttpErrorResponse) => {
         if (error.status == 401) {
