@@ -36,11 +36,11 @@ export class DetailReclamationComponent implements OnInit {
 
 
 findDemand(id:string) {
-  this.demandService.findDemand(id).pipe(finalize(()=>this.demand.title===undefined)).subscribe((res:IDemand)=>{
-   this.demand=res as IDemand;
-   this.demand.address=plainToClass(Address,res.address)
+  this.demandService.findDemand(id).pipe(finalize(()=>this.demand.title===undefined)).subscribe((res)=>{
+   this.demand=res.body! as IDemand;
+   this.demand.address=plainToClass(Address,res.body!.address)
 
-   this.demand.user=plainToClass(User,res.user)
+   this.demand.user=plainToClass(User,res.body!.user)
    this.MapService.findLocation(this.demand.address.Location())
   // console.log((this.demand))
  }),(error:HttpErrorResponse)=>{

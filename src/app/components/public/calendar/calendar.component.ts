@@ -65,9 +65,9 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.interventionService.allByStatus('In_Progress').subscribe((res:IIntervention[])=>{
+    this.interventionService.allByStatus('In_Progress').subscribe((res)=>{
     //  console.log(res)
-      res.forEach((element: IIntervention) => {
+      res.body!.forEach((element: IIntervention) => {
         this.events.push(
           {
             id: element.id,
@@ -135,11 +135,11 @@ setInterventions(){
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
     this.modal.open(this.modalContent, { size: 'lg' });
-   this.interventionService.findIntervention(String(event.id)).subscribe((res:IIntervention)=>{
-      this.intervention=res
-      this.intervention.address = plainToClass( Address,res.address)
-      this.intervention.team.manager = plainToClass(User,res.team.manager)
-      this.intervention.category=plainToClass(Category,res.category)
+   this.interventionService.findIntervention(String(event.id)).subscribe((res)=>{
+      this.intervention=res.body!
+      this.intervention.address = plainToClass( Address,res.body!.address)
+      this.intervention.team.manager = plainToClass(User,res.body!.team.manager)
+      this.intervention.category=plainToClass(Category,res.body!.category)
 
    })
   }

@@ -39,17 +39,14 @@ export class ShowReclamationComponent implements OnInit {
 
 // findDemand
   findDemand(id:string) {
-     this.demandService.findDemand(id).pipe(finalize(()=>this.demand.title===undefined)).subscribe((res:IDemand)=>{
-      this.demand=res as IDemand;
-      this.demand.address=plainToClass(Address,res.address)
-      console.log((this.demand.address))
-    }),(error:HttpErrorResponse)=>{
+     this.demandService.findDemand(id).pipe(finalize(()=>this.demand.title===undefined)).subscribe((res)=>{
+      this.demand=res.body! as IDemand;
+      this.demand.address=plainToClass(Address,res.body!.address)}),(error:HttpErrorResponse)=>{
       if(error.status==401){
         this.AuthenticateService.redirectIfNotAuth()
 
       }else{
         Report.failure('Erreur', error.message,'OK')
-
       }
     };
   }

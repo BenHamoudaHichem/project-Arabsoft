@@ -88,12 +88,12 @@ export class UpdateTeamComponent implements OnInit {
   findTeam() {
     this.teamService
       .findTeam(String(this.rout.snapshot.paramMap.get('id')))
-      .subscribe((res: ITeam) => {
-        this.titre?.setValue(res.name);
-        this.manager?.setValue([res.manager,]);
-        this.membres?.setValue(Array.from(res.members,x=> plainToClass(User,x)))
+      .subscribe((res) => {
+        this.titre?.setValue(res.body!.name);
+        this.manager?.setValue([res.body!.manager,]);
+        this.membres?.setValue(Array.from(res.body!.members,x=> plainToClass(User,x)))
 
-        this.membres?.setValue(res.members);
+        this.membres?.setValue(res.body!.members);
         console.log(res);
 
       }),
@@ -138,8 +138,8 @@ export class UpdateTeamComponent implements OnInit {
       };
   }
   allMembers() {
-    this.userService.allByRole('member').subscribe((users: IUser[]) => {
-      this.users = users;
+    this.userService.allByRole('member',undefined).subscribe((res) => {
+      this.users = res.body!;
     }),
       (error: HttpErrorResponse) => {
         if (error.status == 401) {

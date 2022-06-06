@@ -1,4 +1,4 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -69,12 +69,10 @@ export class AddTeamComponent implements OnInit {
       itemsShowLimit: 10,
       allowSearchFilter: true,
     };
-    console.log(this.users);
   }
   allByRole() {
-    this.userService.agents().subscribe((users: IUser[]) => {
-      this.users = users;
-      console.log(this.users);
+    this.userService.agents(undefined).subscribe((users: HttpResponse<IUser[]>) => {
+      this.users = users.body!
     }),
       (error: HttpErrorResponse) => {
         if (error.status == 401) {
@@ -87,7 +85,6 @@ export class AddTeamComponent implements OnInit {
 
   onItemSelect(item: any) {
     this.selectedlist.push(new Dbref(item.id));
-    console.log(this.selectedlist);
     return this.selectedlist;
   }
   onSelectAll(items: any) {

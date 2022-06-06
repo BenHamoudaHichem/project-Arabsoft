@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Category } from 'src/app/models/Category';
@@ -17,20 +17,21 @@ export class CategoryService {
       'Content-Type': 'application/json',
     }),
   };
+
+  private responseHeaders = {
+    headers: new HttpHeaders({
+      "Authorization": `Bearer ${this.authService.getToken}`,
+      "Content-Type":"application/json"
+    }),
+    observe:"response"as "body",
+  };
   constructor(
     private http: HttpClient,
     private authService: AuthenticateService
   ) {}
 
-  all(): Observable<ICategory[]> {
-    return this.http.get<ICategory[]>(`${this.apiURL}`,this.httpOptions).pipe(
-      map((cat: ICategory[]) => {
-        return cat.map((cat) => ({
-          id:cat.id,
-          name: cat.name,
-        }));
-      })
-    );
+  all(): Observable<HttpResponse<ICategory[]>> {
+    return this.http.get<HttpResponse<ICategory[]>>(`${this.apiURL}`,this.httpOptions)
   }
 
 

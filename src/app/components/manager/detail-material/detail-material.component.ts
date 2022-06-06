@@ -31,12 +31,10 @@ export class DetailMaterialComponent implements OnInit {
   ) {
     this.serviceMaterial
       .findMaterial(String(this.route.snapshot.paramMap.get('id')))
-      .subscribe((m: IMaterial) => {
-        this.material = m;
+      .subscribe((res) => {
+        this.material = res.body!;
         this.material.address = plainToClass(Address, this.material.address);
-        moment(this.material.dateOfPurchase).format('DD-MM-yyyy')
         this.servMap.findLocation(this.material.address.Location());
-        console.log(this.material);
         if (this.material.status == 'Broken_down') {
           this.btn = this.textEnPanne;
         }

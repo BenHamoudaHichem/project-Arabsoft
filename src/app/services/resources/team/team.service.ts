@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Team } from 'src/app/models/resources/team';
@@ -16,44 +16,31 @@ export class TeamService {
       "Content-Type":"application/json",
     }),
   };
+  private responseHeaders = {
+    headers: new HttpHeaders({
+      "Authorization": `Bearer ${this.authService.getToken}`,
+      "Content-Type":"application/json"
+    }),
+    observe:"response"as "body",
+  };
 
   constructor(
     private http: HttpClient,
     private authService: AuthenticateService
   ) {}
-  all(): Observable<ITeam[]> {
-    return this.http.get<ITeam[]>(`${this.apiURL}`,this.headers).pipe(
-      map((teams: ITeam[]) => {
-        return teams.map((team) => ({
-          id: team.id,
-          name: team.name,
-          manager: team.manager,
-          members: team.members,
-          status:team.status
-        }));
-      })
-    );
+  all(queryparams:string | undefined): Observable<HttpResponse<ITeam[]>> {
+    let url:string=this.apiURL
+    if (queryparams!==undefined) {
+      url=url.concat(queryparams)
+    }
+    return this.http.get<HttpResponse<ITeam[]>>(`${url}`,this.responseHeaders)
   }
-  allByStatus(status:string): Observable<ITeam[]> {
-    return this.http.get<ITeam[]>(`${this.apiURL}?status=${status}`,this.headers).pipe(
-      map((team: ITeam[]) => {
-        return team.map((team) => ({
-          id: team.id,
-          name: team.name,
-          manager: team.manager,
-          members: team.members,
-          status:team.status
-        }));
-      })
-    );
+  allByStatus(status:string): Observable<HttpResponse<ITeam[]>>{
+    return this.http.get<HttpResponse<ITeam[]>>(`${this.apiURL}?status=${status}`,this.responseHeaders)
   }
 
-  findTeam(id: string): Observable<ITeam> {
-    return this.http.get<ITeam>(`${this.apiURL}/${id}`, this.headers).pipe(
-      map((demand: ITeam) => {
-        return demand;
-      })
-    );
+  findTeam(id: string): Observable<HttpResponse<ITeam>> {
+    return this.http.get<HttpResponse<ITeam>>(`${this.apiURL}/${id}`, this.responseHeaders)
   }
 
   create(team:Team) {

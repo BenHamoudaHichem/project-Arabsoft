@@ -1,4 +1,4 @@
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -57,8 +57,8 @@ export class CategoryComponent implements OnInit {
 
   all() {
     this.categorieService.all().subscribe(
-      (res: ICategory[]) => {
-        this.listCategorie = res;
+      (res: HttpResponse<ICategory[]>) => {
+        this.listCategorie = res.body!;
       },
       (error: HttpErrorResponse) => {
         if (error.status == 401) {

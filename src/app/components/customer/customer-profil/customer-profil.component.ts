@@ -31,9 +31,8 @@ export class CustomerProfilComponent implements OnInit {
     if (this.route.snapshot.paramMap.has('id')) {
       this.userService
         .findUser(String(this.route.snapshot.paramMap.get('id')))
-        .subscribe((data: IUser) => {
-          this.user = data;
-          this.user.address=plainToClass(Address,data.address)
+        .subscribe((res) => {
+          this.user = res.body!;
           console.log(this.user);
         }),
         (error: HttpErrorResponse) => {
@@ -46,9 +45,9 @@ export class CustomerProfilComponent implements OnInit {
     } else {
       this.userService
         .findUser(this.cookiesServices.getIdentifier)
-        .subscribe((data: IUser) => {
-          this.user = data;
-          this.user.address=plainToClass(Address,data.address)
+        .subscribe((res) => {
+          this.user = res.body!;
+          this.user.address=plainToClass(Address,res.body!.address)
 
           console.log(this.user);
         }),

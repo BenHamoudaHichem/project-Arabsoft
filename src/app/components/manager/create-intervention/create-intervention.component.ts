@@ -119,9 +119,9 @@ export class CreateInterventionComponent implements OnInit {
     this.demandService
       .findDemand(this.route.snapshot.paramMap.get('id')!)
       //.pipe(finalize(() => this.currentDemand.title === undefined))
-      .subscribe((res: IDemand) => {
-        this.currentDemand = res;
-        this.currentDemand.address = plainToClass(Address, res.address);
+      .subscribe((res) => {
+        this.currentDemand = res.body!
+         this.currentDemand.address = plainToClass(Address, res.body!.address);
 
        // console.log(this.currentDemand);
         this.state?.setValue(this.currentDemand.address.State);
@@ -129,8 +129,8 @@ export class CreateInterventionComponent implements OnInit {
         this.city?.setValue(this.currentDemand.address.City);
         this.street?.setValue(this.currentDemand.address.Street);
         this.counrty?.setValue(this.currentDemand.address.Country);
-        this.currentDemand.user = plainToClass(User, res.user);
-        this.date?.addValidators([Validators.required,DateValidation.isBefor(res.createdAt)])
+        this.currentDemand.user = plainToClass(User, res.body!.user);
+        this.date?.addValidators([Validators.required,DateValidation.isBefor(res.body!.createdAt)])
         this.date?.updateValueAndValidity()
       }),
       (error: HttpErrorResponse) => {
@@ -158,8 +158,8 @@ export class CreateInterventionComponent implements OnInit {
   }
 
   teamsAvailable() {
-    this.teamService.allByStatus('Available').subscribe((data: ITeam[]) => {
-      this.teamList = data;
+    this.teamService.allByStatus('Available').subscribe((res) => {
+      this.teamList = res.body!;
       this.teamList.forEach((item) => {
         item.manager = plainToClass(User, item.manager);
 
@@ -179,8 +179,8 @@ export class CreateInterventionComponent implements OnInit {
 
 
   all() {
-    this.categoryService.all().subscribe((data: ICategory[]) => {
-      this.categoryList = data;
+    this.categoryService.all().subscribe((res) => {
+      this.categoryList = res.body!;
     }),
       (errors: HttpErrorResponse) => {
         if (errors.status == 401) {

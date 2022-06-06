@@ -36,10 +36,10 @@ export class DetailTeamComponent implements OnInit {
 
   findTeam(id:string) {
 
-    this.teamService.findTeam(id).subscribe((res:ITeam)=>{
-      this.team=res
-      this.team.manager=plainToClass(User,res.manager)
-      this.team.members=Array.from(res.members,x=> plainToClass(User,x))
+    this.teamService.findTeam(id).subscribe((res)=>{
+      this.team=res.body!
+      this.team.manager=plainToClass(User,res.body!.manager)
+      this.team.members=Array.from(res.body!.members,x=> plainToClass(User,x))
 
     }),(error:HttpErrorResponse)=>{
       if(error.status==401){

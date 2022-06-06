@@ -70,8 +70,8 @@ export class ChooseMaterialComponent implements OnInit {
   onItemSelect(item: any) {
     console.log(item);
 
-    this.materialService.findMaterial(item.id).subscribe((res: IMaterial) => {
-      this.imaterial = res;
+    this.materialService.findMaterial(item.id).subscribe((res) => {
+      this.imaterial = res.body!;
       console.log(res);
     });
 
@@ -141,7 +141,7 @@ export class ChooseMaterialComponent implements OnInit {
         this.storage.remove('intervention');
         this.router.navigate(['/dashboard/manager/interventionList']);
 
-        
+
       } else {
         Report.failure('Notification', data.message, 'OK');
       }

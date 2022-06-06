@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { InterventionClosed } from 'src/app/models/works/interventionClosed';
@@ -14,15 +14,26 @@ export class interventionClosedService {
       Authorization: `Bearer ${this.authService.getToken}`,
       'Content-Type': 'application/json',
     }),
-  };
+  }
+  private responseHeaders = {
+    headers: new HttpHeaders({
+      "Authorization": `Bearer ${this.authService.getToken}`,
+      "Content-Type":"application/json"
+    }),
+    observe:"response"as "body",
+  }
   private apiURL = 'http://127.0.0.1:8080/api/interventionCloseds';
 
   constructor(
     private http: HttpClient,
     private authService: AuthenticateService
   ) {}
-  all(): Observable<IInterventionClosed[]> {
-    return this.http.get<IInterventionClosed[]>(`${this.apiURL}`,this.headers).pipe(
+  all(queryparams:string | undefined): Observable<IInterventionClosed[]> {
+    let url:string=this.apiURL
+    if (queryparams!==undefined) {
+      url=url.concat("?".concat(queryparams))
+    }
+    return this.http.get<IInterventionClosed[]>(`${url}`,this.headers).pipe(
       map((intervention: IInterventionClosed[]) => {
         return intervention.map((intervention) => ({
           id: intervention.id,
@@ -66,13 +77,7 @@ export class interventionClosedService {
     );
   }
 
-  findById(id: string): Observable<IInterventionClosed> {
-    return this.http
-      .get<IInterventionClosed>(`${this.apiURL}/${id}`, this.headers)
-      .pipe(
-        map((intervention: IInterventionClosed) => {
-          return intervention;
-        })
-      );
+  findById(id: string): Observable<HttpResponse<IInterventionClosed>> {
+    return this.http.get<HttpResponse<IInterventionClosed>>(`${this.apiURL}/${id}`, this.responseHeaders)
   }
 }

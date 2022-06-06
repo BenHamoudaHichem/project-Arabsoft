@@ -9,4 +9,5 @@ export interface IDemand {
   createdAt: Date
   status: string
   user: User
+  
 }

@@ -179,14 +179,15 @@
     </nav>
 
     <div class="row">
-  
-           <app-filtre *ngIf="isList()" (buttonClicked)="listenSearch()" ></app-filtre>
+
 
 
       <div class="col-sm-6">
 
 
         <router-outlet></router-outlet>
+        <app-filtre  *ngIf="isList()" (buttonClicked)="listenSearch()" ></app-filtre>
+
 
       </div>
     </div>

@@ -129,8 +129,8 @@ export class UpdateInterventionComponent implements OnInit {
   }
 
   teamAvailable() {
-    this.teamService.allByStatus("Available").subscribe((data: ITeam[]) => {
-      this.teamList = data;
+    this.teamService.allByStatus("Available").subscribe((res) => {
+      this.teamList = res.body!;
       this.teamList.forEach(item => {
         item.manager=plainToClass(User,item.manager)
 
@@ -163,8 +163,8 @@ export class UpdateInterventionComponent implements OnInit {
   }
 
   allCategory() {
-    this.categoryService.all().subscribe((data: ICategory[]) => {
-      this.categoryList = data;
+    this.categoryService.all().subscribe((res) => {
+      this.categoryList = res.body!;
     }),
       (errors: HttpErrorResponse) => {
         if (errors.status == 401) {
@@ -227,27 +227,27 @@ export class UpdateInterventionComponent implements OnInit {
   findIntervention() {
     this.interventionService
       .findIntervention(String(this.route.snapshot.paramMap.get('id')))
-      .subscribe((res: IIntervention) => {
+      .subscribe((res) => {
        // res.startedAt=new Date(res.startedAt)
 
-        this.title?.setValue(res.title);
+        this.title?.setValue(res.body!.title);
         this.status?.setValue(res.status);
-        this.Materiel?.setValue(res.materialsToBeUsed);
-        this.date?.setValue(moment(res.startedAt,"DD-MM-yyyy").format("yyyy-MM-DD"));
-        res.category=plainToClass(Category,res.category)
-        res.address=plainToClass(Address,res.address)
-        console.log(String(res.startedAt))
+        this.Materiel?.setValue(res.body!.materialsToBeUsed);
+        this.date?.setValue(moment(res.body!.startedAt,"DD-MM-yyyy").format("yyyy-MM-DD"));
+        res.body!.category=plainToClass(Category,res.body!.category)
+        res.body!.address=plainToClass(Address,res.body!.address)
+        console.log(String(res.body!.startedAt))
 
-        this.category?.setValue(res.category.getId());
-        this.teamList.push(res.team)
-        this.team?.setValue(res.team.id)
-        this.description?.setValue(res.description);
+        this.category?.setValue(res.body!.category.getId());
+        this.teamList.push(res.body!.team)
+        this.team?.setValue(res.body!.team.id)
+        this.description?.setValue(res.body!.description);
 
-        this.state?.setValue(res.address.State);
-        this.collectCitiesBystates(res.address.State)
-        this.city?.setValue(res.address.City);
-        this.street?.setValue(res.address.Street);
-        this.zipCode?.setValue(res.address.ZipCode);
+        this.state?.setValue(res.body!.address.State);
+        this.collectCitiesBystates(res.body!.address.State)
+        this.city?.setValue(res.body!.address.City);
+        this.street?.setValue(res.body!.address.Street);
+        this.zipCode?.setValue(res.body!.address.ZipCode);
       }),
 
       (error: HttpErrorResponse) => {

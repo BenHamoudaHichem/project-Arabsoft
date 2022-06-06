@@ -2,6 +2,7 @@ import { FnParam } from '@angular/compiler/src/output/output_ast';
 import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { DefaultLangChangeEvent, DEFAULT_LANGUAGE, MissingTranslationHandler, TranslateService } from '@ngx-translate/core';
+import { plainToClass } from 'class-transformer';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import Notiflix, { Notify, Report } from 'notiflix';
 import { filter } from 'rxjs';
@@ -33,18 +34,33 @@ export class DashboardAdminComponent implements OnInit {
   }
  public listenSearch()
   {
+    let qParams: Map<any,any>=new Map()
+    qParams=plainToClass(Map,this.activatedRoute.snapshot.queryParams)
+    qParams.forEach((x,y)=>{
+      if (!(x.includes("status")||x.includes("role"))) {
+        qParams.delete(x)
+      }
+    })
+    this.filtercomponent.getFilter!.forEach((x,y)=>{
+      qParams.set(y,x)
+    })
+
 
     let url:string=this.route.url
-    if (this.route.url.indexOf("?")!=-1) {
+    if (this.route.url.includes("?")) {
       url=url.substring(0,url.indexOf("?"))
     }
+
+    console.log(qParams);
+
+
   this.route.navigate(
     [String(url)],
     {
       relativeTo: this.activatedRoute,
-      queryParams: Object.fromEntries(this.filtercomponent.getFilter!),
-      queryParamsHandling: 'merge', // remove to replace all query params by provided
+      queryParams: Object.fromEntries(qParams),
     });
+    this.filtercomponent.getFilter?.clear()
     this.route.routeReuseStrategy.shouldReuseRoute = function () {
       return false;
     };

@@ -33,15 +33,14 @@ export class HomeManagerComponent implements OnInit {
       .loadHomeForManager()
       .subscribe((res: IHomeManager) => {
         this.infos = res;
-        console.log(this.infos);
       });
     this.interventionsByStatus('In_Progress');
     this.allTeams();
   }
   allTeams() {
-    this.teamService.all().subscribe((IT: ITeam[]) => {
-      this.teamList = IT;
-      console.log(this.teamList);
+
+    this.teamService.all(undefined).subscribe((res) => {
+      this.teamList = res.body!;
       this.teamList.forEach((item) => {
         item.manager = plainToClass(User, item.manager);
 
@@ -59,9 +58,8 @@ export class HomeManagerComponent implements OnInit {
     this.interventionList = [];
     this.serviceIntervention
       .allByStatus(status)
-      .subscribe((res: IIntervention[]) => {
-        console.log(res);
-        this.interventionList = res;
+      .subscribe((res) => {
+        this.interventionList = res.body!;
         this.interventionList.forEach((e) => {
           e.category = plainToClass(Category, e.category);
         });

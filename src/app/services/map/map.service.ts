@@ -86,7 +86,7 @@ return  this.map = new Map({
 
       );
       this.feature = new Feature(new Point(coordinates));
-      console.log(this.feature.getGeometry().getCoordinates());
+     // console.log(this.feature.getGeometry().getCoordinates());
 
       this.tunisie.push(this.feature);
     }

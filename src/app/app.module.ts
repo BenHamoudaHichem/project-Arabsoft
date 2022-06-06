@@ -84,6 +84,7 @@ import localeFr from '@angular/common/locales/fr';
 import localeEn from '@angular/common/locales/en';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
+import { PaginationComponent } from './components/public/additional/pagination/pagination.component';
 
 registerLocaleData(localeFr);
 registerLocaleData(localeEn);
@@ -148,6 +149,7 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     DetailInterventionClosedComponent,
     CloseInterventionComponent,
     CalendarComponent,
+    PaginationComponent,
   ],
   imports: [
 

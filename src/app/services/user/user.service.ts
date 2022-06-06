@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
@@ -20,43 +20,37 @@ export class UserService {
       'Content-Type': 'application/json',
     }),
   };
+  private responseHeaders = {
+    headers: new HttpHeaders({
+      "Authorization": `Bearer ${this.authService.getToken}`,
+      "Content-Type":"application/json"
+    }),
+    observe:"response"as "body",
+  };
   constructor(
     private http: HttpClient,
     private authService: AuthenticateService
   ) { }
-  all(): Observable<IUser[]> {
-    return this.http.get<IUser[]>(`${this.apiURL}`).pipe(
-      map((users: IUser[]) => {
-        return users.map((user) => ({
-          id: user.id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          identifier: user.identifier,
-          password: user.password,
-          address: user.address,
-          tel: user.tel,
-          roles:user.roles
-      })
-    );
-  }))}
+  all(queryparams:string | undefined): Observable<HttpResponse<IUser[]>> {
+    let url:string=this.apiURL
+    if (queryparams!==undefined) {
+      url=url.concat("?".concat(queryparams))
+    }
+
+    return this.http.get<HttpResponse<IUser[]>>(`${url}`,this.responseHeaders)
+  }
 
 
-  allByRole(role:string): Observable<IUser[]> {
-    return this.http.get<IUser[]>(`${this.apiURL}?role=${role}
-    `).pipe(
-      map((users: IUser[]) => {
-        return users.map((user) => ({
-          id: user.id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          identifier: user.identifier,
-          password: user.password,
-          address: user.address,
-          tel: user.tel,
-          roles:user.roles
-      })
-    );
-  }))}
+  allByRole(role:string,queryparams:string | undefined): Observable<HttpResponse<IUser[]>> {
+    let url:string=this.apiURL
+   /* if (queryparams!==undefined) {
+      queryparams=queryparams.replace("?","&")
+      url=url.concat(queryparams)
+
+    }*/
+    return this.http.get<HttpResponse<IUser[]>>(`${url}?role=${role}`,this.responseHeaders)
+
+  }
 
 
 
@@ -70,14 +64,8 @@ export class UserService {
   }
 
 
-  findUser(id: string): Observable<IUser> {
-    return this.http
-      .get<IUser>(`${this.apiURL}/${id}`, httpOptions)
-      .pipe(
-        map((user: IUser) => {
-          return user;
-        })
-      );
+  findUser(id: string): Observable<HttpResponse<IUser>> {
+    return this.http.get<HttpResponse<IUser>>(`${this.apiURL}/${id}`, this.responseHeaders)
   }
 
   update(user: User,id:string) {
@@ -87,21 +75,14 @@ export class UserService {
       this.authHttpOptions
     );
   }
-  agents(): Observable<IUser[]> {
-    return this.http.get<IUser[]>(`${this.apiURL}?role=tm&role2=member`,this.authHttpOptions).pipe(
-      map((users: IUser[]) => {
-        return users.map((user) => ({
-          id: user.id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          identifier: user.identifier,
-          password: user.password,
-          address: user.address,
-          tel: user.tel,
-          roles:user.roles
-      })
-    );
-  }))}
+  agents(queryparams:string | undefined): Observable<HttpResponse<IUser[]>>{
+    let url:string=this.apiURL
+    if (queryparams!==undefined) {
+      queryparams=queryparams.replace("?","&")
+      url=url.concat(queryparams)
+    }
+    return this.http.get<HttpResponse<IUser[]>>(`${this.apiURL}?role=tm&role2=member`,this.responseHeaders)
+}
 
 
   changePassword(passwordRequest:any)

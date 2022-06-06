@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { plainToClass } from 'class-transformer';
+import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
 import { User } from 'src/app/models/user';
@@ -16,7 +17,9 @@ import { TeamService } from 'src/app/services/resources/team/team.service';
 export class TeamListComponent implements OnInit {
 
   teamList!: ITeam[];
-  constructor(private serviceTeam: TeamService,private AuthenticateService:AuthenticateService) {
+  constructor(private serviceTeam: TeamService,private AuthenticateService:AuthenticateService,
+      @Inject(SESSION_STORAGE) private storage: StorageService
+  ) {
 
     this.all();
   }
@@ -26,8 +29,16 @@ export class TeamListComponent implements OnInit {
 
 
   all() {
-    this.serviceTeam.all().subscribe((IT: ITeam[]) => {
-      this.teamList = IT
+    let queryParams:string|undefined
+    if (window.location.href.includes("?")) {
+      queryParams=window.location.href.substring(window.location.href.indexOf("?")+1)
+    }
+    this.serviceTeam.all(queryParams).subscribe((res) => {
+      this.storage.set("totalResults",res.headers.get("totalResults"))
+      this.storage.set("totalPages",res.headers.get("totalPages"))
+      this.storage.set("page",Number(res.headers.get("page")!))
+      this.storage.set("size",res.headers.get("size"))
+      this.teamList = res.body!
 
       this.teamList.forEach(item => {
         item.manager=plainToClass(User,item.manager)
@@ -54,8 +65,8 @@ export class TeamListComponent implements OnInit {
         }        };
   }
   teamAvailable(){
-    this.serviceTeam.allByStatus("Available").subscribe((IT: ITeam[]) => {
-      this.teamList = IT
+    this.serviceTeam.allByStatus("Available").subscribe((res) => {
+      this.teamList = res.body!
       this.teamList.forEach(item => {
         item.manager=plainToClass(User,item.manager)
 
@@ -77,7 +88,7 @@ export class TeamListComponent implements OnInit {
         } else{
           Report.failure('Erreur', error.message,'OK')
 
-        }        };
+        }        }
 }
 
 

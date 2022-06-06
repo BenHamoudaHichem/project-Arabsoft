@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 import { Material } from 'src/app/models/resources/Material';
@@ -16,28 +16,26 @@ export class EquipmentService {
       "Content-Type":"application/json"
     }),
   };
+  private responseHeaders = {
+    headers: new HttpHeaders({
+      "Authorization": `Bearer ${this.authService.getToken}`,
+      "Content-Type":"application/json"
+    }),
+    observe:"response"as "body",
+  };
   constructor(
     private http: HttpClient,
     private authService: AuthenticateService
   ) {}
-  all(): Observable<IMaterial[]> {
-    return this.http.get<IMaterial[]>(`${this.apiURL}`,this.headers).pipe(
-      map((materials: IMaterial[]) => {
-        return materials.map((material) => ({
-          id: material.id,
-          name: material.name,
-          description: material.description,
-          totalQuantity:material.totalQuantity,
-          dateOfPurchase: material.dateOfPurchase,
 
-          status: material.status,
-          address: material.address,
-          category:material.category
+  all(queryparams:string | undefined): Observable<HttpResponse<IMaterial[]>> {
 
+    let url:string=this.apiURL
+    if (queryparams!==undefined) {
+      url=url.concat('?'.concat(queryparams))
+    }
 
-        }));
-      })
-    );
+    return (this.http.get<HttpResponse<IMaterial[]>>(`${url}`,this.responseHeaders))
   }
   allByStatus(status: string): Observable<IMaterial[]> {
     return this.http
@@ -69,14 +67,8 @@ export class EquipmentService {
   }
 
 
-  findMaterial(id: string): Observable<IMaterial> {
-    return this.http
-      .get<IMaterial>(`${this.apiURL}/${id}`,this.headers)
-      .pipe(
-        map((material: IMaterial) => {
-          return material;
-        })
-      );
+  findMaterial(id: string): Observable<HttpResponse<IMaterial>> {
+    return this.http.get<HttpResponse<IMaterial>>(`${this.apiURL}/${id}`,this.responseHeaders)
   }
 
 

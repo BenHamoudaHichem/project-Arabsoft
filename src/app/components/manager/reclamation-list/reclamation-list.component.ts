@@ -1,6 +1,7 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { Component, Inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 
 import { Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
@@ -17,19 +18,43 @@ export class ReclamationListComponent implements OnInit {
   demandList!: IDemand[];
   constructor(
     private serviceDemand: DemandService,
-    private route: ActivatedRoute,
-    private AuthenticateService: AuthenticateService
+    private router: Router,
+    private activatedRoute:ActivatedRoute,
+    private AuthenticateService: AuthenticateService,
+    @Inject(SESSION_STORAGE) private storage: StorageService
+
   ) {
     this.all();
   }
 
   ngOnInit(): void {
-    console.log(this.demandList);
+    console.log(window.location.href.substring(window.location.href.indexOf("?")));
+
+
   }
 
   all() {
-    this.serviceDemand.all().subscribe((ID: IDemand[]) => {
-      this.demandList = ID;
+    if (window.location.href.includes("status")) {
+      this.router.navigate([], {
+        relativeTo: this.activatedRoute,
+        queryParams: {},
+      });
+    }
+
+    let queryParams:string|undefined
+
+    if (window.location.href.includes("?")) {
+      queryParams=window.location.href.substring(window.location.href.indexOf("?")+1)
+
+    }
+
+    this.serviceDemand.all(queryParams).subscribe((res) => {
+      this.storage.set("totalResults",res.headers.get("totalResults"))
+      this.storage.set("totalPages",res.headers.get("totalPages"))
+      this.storage.set("page",Number(res.headers.get("page")!))
+      this.storage.set("size",res.headers.get("size"))
+      this.demandList = res.body!;
+
     }),
       (error: HttpErrorResponse) => {
         if (error.status == 401) {
@@ -40,10 +65,27 @@ export class ReclamationListComponent implements OnInit {
       };
   }
   allByStatus(status:string) {
+    this.router.navigate(['.'], {
+      relativeTo: this.activatedRoute,
+      queryParams: {},
+      skipLocationChange: true
 
+    });
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: {
+        status: status
+      },
+      queryParamsHandling: 'merge',
+      skipLocationChange: false
+    });
 
-    this.serviceDemand.allByStatus(status).subscribe((ID: IDemand[]) => {
-      this.demandList = ID;
+    this.serviceDemand.allByStatus(status,undefined).subscribe((res) => {
+      this.storage.set("totalResults",res.headers.get("totalResults"))
+      this.storage.set("totalPages",res.headers.get("totalPages"))
+      this.storage.set("page",Number(res.headers.get("page")!))
+      this.storage.set("size",res.headers.get("size"))
+      this.demandList = res.body!;
     }),
       (error: HttpErrorResponse) => {
         if (error.status == 401) {

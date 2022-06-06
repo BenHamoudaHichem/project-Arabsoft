@@ -1,5 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { Intervention } from 'src/app/models/works/intervention';
 import { AuthenticateService } from '../../authenticate.service';
@@ -15,54 +16,32 @@ export class InterventionService {
       "Content-Type":"application/json"
     }),
   };
+  private responseHeaders = {
+    headers: new HttpHeaders({
+      "Authorization": `Bearer ${this.authService.getToken}`,
+      "Content-Type":"application/json"
+    }),
+    observe:"response"as "body",
+  };
   private apiURL = 'http://127.0.0.1:8080/api/interventions';
 
   constructor(
     private http: HttpClient,
     private authService: AuthenticateService
   ) {}
-  all(): Observable<IIntervention[]> {
-    return this.http.get<IIntervention[]>(`${this.apiURL}`,this.headers).pipe(
-      map((intervention: IIntervention[]) => {
-        return intervention.map((intervention) => ({
-          id: intervention.id,
-          title: intervention.title,
-          description: intervention.description,
-          category: intervention.category,
-          address:intervention.address,
-          startedAt: intervention.startedAt,
-          status: intervention.status,
-          demandList:intervention.demandList,
-          team:intervention.team,
-          createdAt: intervention.createdAt,
-          expiredAt:intervention.expiredAt,
-          materialsToBeUsed:intervention.materialsToBeUsed
-        }));
-      })
-    );
+  all(queryparams:string | undefined): Observable<HttpResponse<IIntervention[]>> {
+    let url:string=this.apiURL
+    if (queryparams!==undefined) {
+      url=url.concat("?".concat(queryparams))
+    }
+    return this.http.get<HttpResponse<IIntervention[]>>(`${url}`,this.responseHeaders)
   }
 
 
-  allByStatus(status:string): Observable<IIntervention[]> {
-    return this.http.get<IIntervention[]>(`${this.apiURL}?status=${status}`,this.headers).pipe(
-      map((intervention: IIntervention[]) => {
-        return intervention.map((intervention) => ({
-    id: intervention.id,
-    title: intervention.title,
-    description: intervention.description,
-    category: intervention.category,
-    address:intervention.address,
-    startedAt: intervention.startedAt,
-    status: intervention.status,
-    demandList:intervention.demandList,
-    team:intervention.team,
-    createdAt: intervention.createdAt,
-    expiredAt:intervention.expiredAt,
+  allByStatus(status:string): Observable<HttpResponse<IIntervention[]>> {
+    let url:string=this.apiURL
 
-    materialsToBeUsed:intervention.materialsToBeUsed
-        }));
-      })
-    );
+    return this.http.get<HttpResponse<IIntervention[]>>(`${url}?status=${status}`,this.responseHeaders)
   }
 
   create(intervention: Intervention): Observable<Intervention> {
@@ -82,14 +61,9 @@ console.log(JSON.stringify(intervention))
     );
   }
 
-  findIntervention(id: string): Observable<IIntervention> {
-    return this.http
-      .get<IIntervention>(`${this.apiURL}/${id}`, this.headers)
-      .pipe(
-        map((intervention: IIntervention) => {
-          return intervention;
-        })
-      );
+  findIntervention(id: string): Observable<HttpResponse<IIntervention>> {
+    return this.http.get<HttpResponse<IIntervention>>(`${this.apiURL}/${id}`, this.responseHeaders)
+
   }
 
 

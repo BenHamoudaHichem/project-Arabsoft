@@ -55,10 +55,9 @@ this.demandsByUser() }
 
 findUser(){
   this.userService.findUser(String(this.route.snapshot.paramMap.get('id')))
-  .subscribe((data: IUser) => {
-    this.user = data;
-    this.user.address=plainToClass(Address,data.address)
-    console.log(this.user);
+  .subscribe((res) => {
+    this.user = res.body!;
+    this.user.address=plainToClass(Address,res.body!.address)
   }),
   (error: HttpErrorResponse) => {
     if(error.status==401){

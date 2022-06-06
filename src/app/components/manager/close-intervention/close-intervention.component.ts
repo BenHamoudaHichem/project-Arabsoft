@@ -153,14 +153,14 @@ export class CloseInterventionComponent implements OnInit {
   findintervention() {
     this.interServ
       .findIntervention(String(this.route.snapshot.paramMap.get('id')))
-      .subscribe((res: IIntervention) => {
-        this.intervention = res;
+      .subscribe((res) => {
+        this.intervention = res.body!
 
         this.intervention.team.manager = plainToClass(User,this.intervention.team.manager);
-        this.intervention.team.members = Array.from(res.team.members, (x) =>
+        this.intervention.team.members = Array.from(this.intervention.team.members, (x) =>
           plainToClass(User, x)
         );
-        this.intervention.materialsToBeUsed=Array.from(res.materialsToBeUsed,(x)=>x=plainToClass(MaterialUsed,x))
+        this.intervention.materialsToBeUsed=Array.from(this.intervention.materialsToBeUsed,(x)=>x=plainToClass(MaterialUsed,x))
       console.log(this.intervention.materialsToBeUsed);
 
         this.members?.setValue(this.intervention.team.members);

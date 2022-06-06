@@ -79,18 +79,18 @@ export class EditProfilComponent implements OnInit {
 
   findUser() {
 
-    this.userService.findUser(this.cookies.getIdentifier).subscribe((res: IUser) => {
-      res.address=plainToClass(Address,res.address)
-      this.firstName?.setValue(res.firstName),
-        this.lastNamme?.setValue(res.lastName),
-        this.tel?.setValue(res.tel),
-        this.identifier?.setValue(res.identifier)
-        this.counrty?.setValue(res.address.Country);
-        this.state?.setValue(res.address.State),
+    this.userService.findUser(this.cookies.getIdentifier).subscribe((res) => {
+      res.body!.address=plainToClass(Address,res.body!.address)
+      this.firstName?.setValue(res.body!.firstName),
+        this.lastNamme?.setValue(res.body!.lastName),
+        this.tel?.setValue(res.body!.tel),
+        this.identifier?.setValue(res.body!.identifier)
+        this.counrty?.setValue(res.body!.address.Country);
+        this.state?.setValue(res.body!.address.State),
         this.loadCities()
-      this.city?.setValue(res.address.City),
-        this.street?.setValue(res.address.Street),
-        this.zipCode?.setValue(res.address.ZipCode)
+      this.city?.setValue(res.body!.address.City),
+        this.street?.setValue(res.body!.address.Street),
+        this.zipCode?.setValue(res.body!.address.ZipCode)
 
 
     }),

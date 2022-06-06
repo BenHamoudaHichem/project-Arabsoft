@@ -1,7 +1,8 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { Component, EventEmitter, Inject, OnInit, Output, ViewChild } from '@angular/core';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { plainToClass } from 'class-transformer';
+import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
 import { Location } from 'src/app/models/Location';
@@ -17,25 +18,45 @@ import { EquipmentService } from 'src/app/services/resources/material/material.s
 })
 export class MaterialListComponent implements OnInit {
   @ViewChild('target') mapElement:any
+  @Output() responseIsComming = new EventEmitter();
+
   materialList!: IMaterial[];
   status!: string;
   data: Location[]=[]
   constructor(
     private serviceMaterial: EquipmentService,
-    private route: ActivatedRoute,
+    private router:Router,
+    private activatedRoute: ActivatedRoute,
     private AuthenticateService:AuthenticateService,
-    private mapService:MapService
+    private mapService:MapService,
+    @Inject(SESSION_STORAGE) private storage: StorageService
   ) {
+
+  }
+
+  ngOnInit(): void {
     this.showAll()
     this.location()
   }
 
-  ngOnInit(): void {
-  }
-
   showAll() {
-    this.serviceMaterial.all().subscribe((IM: IMaterial[]) => {
-      this.materialList = IM
+   /* this.router.navigate(['.'], {
+      relativeTo: this.activatedRoute,
+      queryParams: {},
+    });*/
+
+    let queryParams
+    if (window.location.href.includes("?")) {
+      queryParams=window.location.href.substring(window.location.href.indexOf("?")+1)
+
+    }
+    this.serviceMaterial.all(queryParams).subscribe((res:HttpResponse<IMaterial[]>) => {
+      this.storage.set("totalResults",res.headers.get("totalResults"))
+      this.storage.set("totalPages",res.headers.get("totalPages"))
+      this.storage.set("page",Number(res.headers.get("page")!))
+      this.storage.set("size",res.headers.get("size"))
+
+      this.materialList = res.body!
     }),
     (error: HttpErrorResponse) => {
       if(error.status==401){
@@ -47,10 +68,17 @@ export class MaterialListComponent implements OnInit {
       }         };
   }
   allByStatus(status:string) {
-
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: {
+        status: status
+      },
+      queryParamsHandling: 'merge',
+      skipLocationChange: false
+    });
     this.serviceMaterial
       .allByStatus(status)
-      .subscribe((res: IMaterial[]) => {
+      .subscribe((res) => {
         this.materialList = res;
       }),
       (error: HttpErrorResponse) => {
@@ -65,14 +93,18 @@ export class MaterialListComponent implements OnInit {
 
 
   location(){
+    let queryParams:string|undefined
+    if (window.location.href.includes("?")) {
+      queryParams=window.location.href.substring(window.location.href.indexOf("?")+1)
+    }
 
-      this.serviceMaterial.all().subscribe((IM: IMaterial[]) => {
+      this.serviceMaterial.all(queryParams).subscribe((res) => {
 
-      IM.forEach(e=>{
+      res.body!.forEach(e=>{
           e.address=plainToClass(Address,e.address)
         })
-      for(let i=0;i<IM.length;i++){
-this.data.push(IM[i].address.Location())
+      for(let i=0;i<res.body!.length;i++){
+         this.data.push(res.body![i].address.Location())
       }
       this.mapService.initilizeMap(this.data)
 

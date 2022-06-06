@@ -38,11 +38,11 @@ export class DetailInterventionClosedComponent implements OnInit {
   findIntervention(id: string) {
     this.interventionService
       .findById(id)
-      .subscribe((res: IInterventionClosed) => {
-        this.intervention = res;
+      .subscribe((res) => {
+        this.intervention = res.body!;
         this.intervention.address = plainToClass(Address,this.intervention.address);
-        this.intervention.materialUsedList=Array.from(res.materialUsedList,(x)=>plainToClass(MaterialUsed,x))
-        this.intervention.materialsToBeUsed=Array.from(res.materialsToBeUsed,(x)=>plainToClass(MaterialUsed,x))
+        this.intervention.materialUsedList=Array.from(res.body!.materialUsedList,(x)=>plainToClass(MaterialUsed,x))
+        this.intervention.materialsToBeUsed=Array.from(res.body!.materialsToBeUsed,(x)=>plainToClass(MaterialUsed,x))
         this.intervention.materialUsedList.forEach((element:MaterialUsed)=>{
           element.setquantityToUse(plainToClass(QuantityValue,element.getquantityToUse()))
         })
@@ -52,7 +52,7 @@ export class DetailInterventionClosedComponent implements OnInit {
         this.intervention.workingGroup.manager = plainToClass(
           User,
           this.intervention.workingGroup.manager);
-        this.intervention.workingGroup.members = Array.from(res.workingGroup.members, (x) =>
+        this.intervention.workingGroup.members = Array.from(res.body!.workingGroup.members, (x) =>
           plainToClass(User, x)
         );
         this.intervention.demandList.forEach((element) => {

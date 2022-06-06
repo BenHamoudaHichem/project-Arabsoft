@@ -46,10 +46,9 @@ export class DetailInterventionComponent implements OnInit {
   findIntervention(id: string) {
     this.interventionService
       .findIntervention(id)
-      .subscribe((res: IIntervention) => {
-        console.log(res);
+      .subscribe((res) => {
 
-        this.intervention = res;
+        this.intervention = res.body!;
         this.intervention.address = plainToClass(
           Address,
           this.intervention.address
@@ -64,10 +63,10 @@ export class DetailInterventionComponent implements OnInit {
           User,
           this.intervention.team.manager
         );
-        this.intervention.team.members = Array.from(res.team.members, (x) =>
+        this.intervention.team.members = Array.from(res.body!.team.members, (x) =>
           plainToClass(User, x)
         );
-      this.intervention.demandList = Array.from(res.demandList, (x) =>
+      this.intervention.demandList = Array.from(res.body!.demandList, (x) =>
       x=x as IDemand
     );
     this.intervention.demandList.forEach((element) => {
@@ -83,7 +82,7 @@ export class DetailInterventionComponent implements OnInit {
           Category,
           this.intervention.category
         );
-        this.intervention.materialsToBeUsed = Array.from(res.materialsToBeUsed, (x) =>
+        this.intervention.materialsToBeUsed = Array.from(res.body!.materialsToBeUsed, (x) =>
         plainToClass(MaterialUsed, x)
       );
       this.intervention.materialsToBeUsed.forEach(e=>{

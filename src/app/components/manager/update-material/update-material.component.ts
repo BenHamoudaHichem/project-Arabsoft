@@ -85,25 +85,23 @@ export class UpdateMaterialComponent implements OnInit {
     if (this.id != null) {
       this.materialService
         .findMaterial(this.id)
-        .subscribe((data: IMaterial) => {
-          // this.material = plainToClass(Material,data) ;
-          //this.material.address = plainToClass(Address, data.address);
+        .subscribe((res) => {
 
           console.log(this.material);
 
-          this.name?.setValue(data.name);
-          this.description?.setValue(data.description);
+          this.name?.setValue(res.body!.name);
+          this.description?.setValue(res.body!.description);
           this.dateOfPurshase?.setValue(
-            moment(data.dateOfPurchase).format('yyyy-MM-DD')
+            moment(res.body!.dateOfPurchase).format('yyyy-MM-DD')
           );
-          this.counrty?.setValue(data.address.Country);
+          this.counrty?.setValue(res.body!.address.Country);
 
-          this.state?.setValue(data.address.State);
+          this.state?.setValue(res.body!.address.State);
 
           this.city?.setValue(this.material.address.City);
 
-          this.street?.setValue(data.address.Street);
-          this.zipCode?.setValue(data.address.ZipCode);
+          this.street?.setValue(res.body!.address.Street);
+          this.zipCode?.setValue(res.body!.address.ZipCode);
           this.statusList.forEach((element) => {
             if (element.value == this.material.status) {
               this.status?.setValue(element.value);

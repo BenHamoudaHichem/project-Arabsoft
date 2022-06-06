@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { IUser } from 'src/app/services/user/iuser';
@@ -14,6 +15,7 @@ export class CustomerListComponent implements OnInit {
   usersList!: IUser[];
   constructor(
     private UserService: UserService,
+    @Inject(SESSION_STORAGE) private storage: StorageService,
     private AuthenticateService: AuthenticateService
   ) {}
 
@@ -22,9 +24,11 @@ export class CustomerListComponent implements OnInit {
   }
 
   allByRole() {
-    this.UserService.allByRole('ROLE_USER').subscribe((res: IUser[]) => {
-      console.log(res);
-      this.usersList = res;
+    this.UserService.all('role=ROLE_CUSTOMER').subscribe((res) => {
+      this.usersList = res.body! as IUser[]
+      console.log();
+
+
     }),
       (error: HttpErrorResponse) => {
         if (error.status == 401) {
