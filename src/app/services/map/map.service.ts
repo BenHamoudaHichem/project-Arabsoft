@@ -12,6 +12,8 @@ import * as olProj from 'ol/proj';
 import BaseLayer from 'ol/layer/Base';
 import { plainToClass } from 'class-transformer';
 import { Location } from 'src/app/models/Location';
+import { Overlay } from 'ol';
+import 'ol/ol.css';
 
 @Injectable({
   providedIn: 'root',
@@ -25,83 +27,84 @@ export class MapService {
   coord!: any;
   res: any;
   feature!: any;
-
+  overlay!: Overlay;
   get style() {
     return new Style({
       image: new Circle({
         fill: new Fill({
-          color: 'red'
+          color: 'red',
         }),
         stroke: new Stroke({
           color: 'yellow',
-          width: 2
+          width: 2,
         }),
-        radius: 7
-      })
-
-
+        radius: 7,
+      }),
     });
   }
 
- findLocation(Data: Location) {
+  findLocation(Data: Location) {
     //  Data
     var res = plainToClass(Location, Data);
-    var coordinates = olProj.fromLonLat([parseFloat(res.Longitude.toFixed(5)),parseFloat(res.Latitude.toFixed(5))]);
-    this.feature = new Feature(new Point(olProj.fromLonLat([parseFloat(res.Longitude.toFixed(5)),parseFloat(res.Latitude.toFixed(5))])));
-   // console.log(this.feature.getGeometry().getCoordinates());
- this.vectorSource = new VectorSource({
-    features:  [this.feature]
-  });
- // console.log(this.vectorSource.getView());
-
-  this.vectorLayer = new VectorLayer({
-    source: this.vectorSource,
-    style: this.style,
-  })
-  //console.log(this.vectorLayer.dispose())
-return  this.map = new Map({
-    target: 'map',
-    layers: [
-      new TileLayer({
-        source: new OSM(),
-      }),
-      this.vectorLayer,
-    ],
-    view: new View({
-      center: coordinates,
-      zoom: 13,
-      maxZoom: 30,
-    }),
-  });
-}
-  initilizeMap(Data: Location[]) {
-    for (var i = 0; i < Data.length; i++) {
-      //  Data
-      var res = plainToClass(Location, Data);
-      var coordinates = olProj.fromLonLat(
-        [
-          parseFloat(res[i].Longitude.toFixed(5)),
-          parseFloat(res[i].Latitude.toFixed(5)),
-        ],
-
-      );
-      this.feature = new Feature(new Point(coordinates));
-     // console.log(this.feature.getGeometry().getCoordinates());
-
-      this.tunisie.push(this.feature);
-    }
-
+    var coordinates = olProj.fromLonLat([
+      parseFloat(res.Longitude.toFixed(5)),
+      parseFloat(res.Latitude.toFixed(5)),
+    ]);
+    this.feature = new Feature(
+      new Point(
+        olProj.fromLonLat([
+          parseFloat(res.Longitude.toFixed(5)),
+          parseFloat(res.Latitude.toFixed(5)),
+        ])
+      )
+    );
     this.vectorSource = new VectorSource({
-      features: this.tunisie,
+      features: [this.feature],
     });
-   // console.log(this.vectorSource.getView());
+    // console.log(this.vectorSource.getView());
 
     this.vectorLayer = new VectorLayer({
       source: this.vectorSource,
       style: this.style,
-    })
+    });
     //console.log(this.vectorLayer.dispose())
-  return  this.map = new Map({
+    return (this.map = new Map({
+      target: 'map',
+      layers: [
+        new TileLayer({
+          source: new OSM(),
+        }),
+        this.vectorLayer,
+      ],
+      view: new View({
+        center: coordinates,
+        zoom: 13,
+        maxZoom: 30,
+      }),
+    }));
+  }
+  initilizeMap(Data: Location[]) {
+    for (var i = 0; i < Data.length; i++) {
+      //  Data
+      var res = plainToClass(Location, Data);
+      var coordinates = olProj.fromLonLat([
+        parseFloat(res[i].Longitude.toFixed(5)),
+        parseFloat(res[i].Latitude.toFixed(5)),
+      ]);
+
+      this.feature = new Feature(new Point(coordinates));
+
+      this.tunisie.push(this.feature);
+    }
+    this.vectorSource = new VectorSource({
+      features: this.tunisie,
+    });
+    this.vectorLayer = new VectorLayer({
+      source: this.vectorSource,
+      style: this.style,
+    });
+
+    this.map = new Map({
       target: 'map',
       layers: [
         new TileLayer({
@@ -114,10 +117,39 @@ return  this.map = new Map({
         zoom: 7,
         maxZoom: 30,
       }),
+      /*overlays:[new Overlay({
+        element: document.getElementById('panel') as HTMLTextAreaElement,
+        stopEvent: false,
+        //offset:[0,0],
+        autoPan: true,
+        position: olProj.transform(
+          [9.537499, 33.886917],
+          'EPSG:4326',
+          'EPSG:3857'
+        ),
+        autoPanAnimation: {
+          duration: 250,
+        },
+      })]*/
     });
+   /* this.overlay = new Overlay({
+      element: document.getElementById('panel') as HTMLTextAreaElement,
+      stopEvent: false,
+      //offset:[0,0],
+      autoPan: true,
+      position: olProj.transform(
+        [9.537499, 33.886917],
+        'EPSG:4326',
+        'EPSG:3857'
+      ),
+      autoPanAnimation: {
+        duration: 250,
+      },
+    });
+    this.map.addOverlay(this.overlay);
+*/
+    return this.map;
   }
-
-
 
   getCoord(event: any) {
     this.coord = this.map.getEventCoordinate(event);
