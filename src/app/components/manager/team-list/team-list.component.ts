@@ -21,10 +21,11 @@ export class TeamListComponent implements OnInit {
       @Inject(SESSION_STORAGE) private storage: StorageService
   ) {
 
-    this.all();
   }
 
   ngOnInit(): void {
+    this.all();
+
   }
 
 
@@ -78,7 +79,6 @@ export class TeamListComponent implements OnInit {
         });
       });
 
-      console.log(this.teamList)
 
     }),
       (error: HttpErrorResponse) => {

@@ -7,7 +7,7 @@ import { Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { DemandService } from 'src/app/services/works/demand/demand.service';
 import { IDemand } from 'src/app/services/works/demand/idemand';
-
+const claimImg:string="assets/images/claim.png"
 @Component({
   selector: 'app-reclamation-list',
   templateUrl: './reclamation-list.component.html',
@@ -34,12 +34,7 @@ export class ReclamationListComponent implements OnInit {
   }
 
   all() {
-    if (window.location.href.includes("status")) {
-      this.router.navigate([], {
-        relativeTo: this.activatedRoute,
-        queryParams: {},
-      });
-    }
+
 
     let queryParams:string|undefined
 
@@ -94,5 +89,9 @@ export class ReclamationListComponent implements OnInit {
           Report.failure('Erreur', error.message, 'OK');
         }
       };
+  }
+
+  public get img() : string {
+    return claimImg
   }
 }

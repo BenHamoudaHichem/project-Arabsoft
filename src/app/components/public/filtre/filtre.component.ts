@@ -72,7 +72,13 @@ export class FiltreComponent implements OnInit {
     this.filterValue?.set("page",Number(this.pageValue?.value))
    this.filterValue?.set("size",Number(this.sizeValue?.value))
 
-    this.buttonClicked.emit(Object.fromEntries(this.filterValue!))
+   this.sizeValue?.setValue(null)
+   this.attributeValue?.setValue(null)
+   this.propertySearchValue?.setValue(null)
+   this.attributeValue?.setValue(null)
+
+
+   this.buttonClicked.emit(Object.fromEntries(this.filterValue!))
   }
 
   public get propertySearchValue() : AbstractControl | null {

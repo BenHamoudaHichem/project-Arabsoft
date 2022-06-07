@@ -6,6 +6,7 @@ import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Report } from 'notiflix';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
+const doneimg:string="assets/images/done.jpg"
 
 @Component({
   selector: 'app-intervention-closed-list',
@@ -43,4 +44,9 @@ export class InterventionClosedListComponent implements OnInit {
         }
       };
   }
+
+  public get img() : string {
+    return doneimg
+  }
+
 }

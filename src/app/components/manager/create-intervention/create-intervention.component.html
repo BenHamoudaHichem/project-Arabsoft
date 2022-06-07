@@ -232,13 +232,13 @@
                     <p *ngIf="description?.errors?.['pattern']" class="ErrorMsg" translate>
                       errors.alph_8error
                     </p>
-                    <!----------->
+                    <!-----[disabled]="!createInterventionForm.valid"------>
                   </div>
 
 
 
                   <div class="d-flex justify-content-end pt-3">
-                    <button class="bn632-hover bn24" type="submit" [disabled]="!createInterventionForm.valid" role="button" translate>
+                    <button class="bn632-hover bn24" type="submit"  role="button" translate>
                       buttons.next
                     </button>
                   </div>

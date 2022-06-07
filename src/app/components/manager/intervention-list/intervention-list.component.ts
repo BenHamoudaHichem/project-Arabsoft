@@ -11,7 +11,8 @@ import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { MapService } from 'src/app/services/map/map.service';
 import { IIntervention } from 'src/app/services/works/intervention/iintervention';
 import { InterventionService } from 'src/app/services/works/intervention/intervention.service';
-
+const doneimg:string="assets/images/done.jpg"
+const inprogressimg="https://images.unsplash.com/photo-1593436878396-e943a3cac98f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80"
 @Component({
   selector: 'app-intervention-list',
   templateUrl: './intervention-list.component.html',
@@ -92,5 +93,10 @@ location(){
   }
 };
 }
+
+public get img() : string {
+  return inprogressimg
+}
+
 
 }

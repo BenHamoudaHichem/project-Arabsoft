@@ -17,8 +17,7 @@
 
            <article class="postcard light" *ngFor="let intervention of interventionList">
             <a class="postcard__img_link" [routerLink]="['/dashboard/manager/detailInterventionClosed',intervention.id]">
-              <img class="postcard__img" src="
-                https://c0.wallpaperflare.com/preview/275/261/297/agreement-business-businessman-businesswoman.jpg"
+              <img class="postcard__img" [src]="img"
                 alt="Image Title" />
             </a>
             <div class="postcard__text t-dark">

@@ -31,7 +31,7 @@ import { IDemand } from 'src/app/services/works/demand/idemand';
 import { IIntervention } from 'src/app/services/works/intervention/iintervention';
 import { InterventionService } from 'src/app/services/works/intervention/intervention.service';
 import { ChooseMaterialComponent } from '../choose-material/choose-material.component';
-
+const done:string=""
 @Component({
   selector: 'app-create-intervention',
   templateUrl: './create-intervention.component.html',
