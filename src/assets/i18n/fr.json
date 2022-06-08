@@ -22,7 +22,13 @@
     "waiting": "En attente",
     "register": "Inscrire",
     "connect": "Connecter",
-    "reset": "Réinitialiser"
+    "reset": "Réinitialiser",
+    "ascending":"Croissant",
+    "descending":"Décroissant",
+    "close_m":"Fermer",
+    "next_page":"Page suivante",
+    "previous_page":"Page précédente"
+
   },
   "cards": {
     "bleu": "Notifications",
@@ -165,6 +171,7 @@
     "demand_per_year": "Demandes par année",
     "employees": "Employées",
     "employees_list": "Liste des employées",
+    "sort":"Filtrer",
     "forget_pass": "Mot de passe oublié ",
     "forget_pass_info": "Entrez votre e-mail enregistré pour réinitialiser votre mot de passe",
     "home": "Acceuil",

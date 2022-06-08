@@ -2,13 +2,13 @@
 
 <div class="container">
       <div class='example'>
-        <div class='text'(click)="previous()">previous page</div>
+        <div class='text'(click)="previous()" translate>buttons.previous_page</div>
         <div class='counter'>
             <span class='number'>{{getCurrentPage}}</span>
             <div class='background'></div>
             <span class='number'>{{allPages}}</span>
         </div>
-        <div class='text'(click)="next()">next page</div>
+        <div class='text'(click)="next()"translate>buttons.next_page</div>
     </div>
 
 
@@ -26,7 +26,8 @@
       <form [formGroup]="searchForm" (submit)="onSearch()" id="fs">
 
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <h5 class="modal-title" id="staticBackdropLabel" translate>  <i class="fa fa-filter"></i>
+          titles.sort</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
 
@@ -35,7 +36,7 @@
             <div class="col-4">
               <div class="input-group">
                 <select class="form-control border-0 bg-light" aria-label="Default select example" formControlName="propertySearch">
-                  <option selected>Open this select menu</option>
+
                   <option *ngFor="let item of getProperties" [value]="item">{{item}}</option>
                 </select>
               </div>
@@ -53,7 +54,7 @@
           <div class="col-12 .col-md-8">
             <div class="input-group">
               <select class="form-select" aria-label="Default select example" formControlName="propertyOrder" [selectedIndex]="1">
-                <option [selected]="true">Open this select menu</option>
+
                 <option *ngFor="let item of getProperties" [value]="item">{{item}}</option>
               </select>
             </div>
@@ -61,9 +62,9 @@
           <div class="col-md-6 .ms-auto"id="order">
             <div class="input-group">
               <input type="radio" formControlName="order"class="btn-check" style="border-radius: 10px 15px;margin-top: 5px;" value="asc" id="option1" autocomplete="off" checked>
-                   <label class="btn btn-secondary"style="border-radius: 10px 15px;margin-top: 5px;" for="option1">Croissant</label><br>
+                   <label class="btn btn-secondary"style="border-radius: 10px 15px;margin-top: 5px;" for="option1" translate>buttons.ascending</label><br>
               <input type="radio" formControlName="order" class="btn-check" value="desc" style="border-radius: 10px 15px;margin-left: 15px;margin-top: 5px;" id="option4" autocomplete="off">
-                 <label class="btn btn-secondary" style="border-radius: 10px 15px; margin-left: 15px;;margin-left: 15px;margin-top: 5px;" for="option4">Decroissant </label>
+                 <label class="btn btn-secondary" style="border-radius: 10px 15px; margin-left: 15px;;margin-left: 15px;margin-top: 5px;" for="option4" translate >buttons.descending </label>
             </div>
           </div>
         </div>
@@ -71,8 +72,8 @@
 
     </div>
       <div class="modal-footer">
-        <button type="button" id="close" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Filtrer </button>
+        <button type="button" id="close" class="btn btn-secondary" data-bs-dismiss="modal" translate>buttons.close_m</button>
+        <button type="submit" class="btn btn-primary" translate>titles.sort </button>
       </div>
       <input type="hidden" formControlName="page"  >
       <input type="hidden" formControlName="size"  >

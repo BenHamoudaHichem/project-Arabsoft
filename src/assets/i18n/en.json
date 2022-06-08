@@ -22,7 +22,13 @@
     "waiting": "Waiting",
     "register": "Register",
     "connect": "Connect",
-    "reset": "Reset"
+    "reset": "Reset",
+    "ascending":"Ascending",
+    "descending":"Descending",
+    "close_m":"Close",
+    "next_page":"Next page",
+    "previous_page":"Previous page"
+
   },
   "cards": {
     "bleu": "Notifications",
@@ -162,6 +168,8 @@
 
     "employees": "Employees",
     "employees_list": "Employees List",
+    "sort":"Sort",
+
     "forget_pass": "Forgot password",
     "forget_pass_info": "Enter your registered email to reset your password",
     "home": "Home",
