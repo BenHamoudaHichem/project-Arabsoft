@@ -406,7 +406,16 @@ const routes: Routes = [
         canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
-      }},
+      },
+    },
+    {
+      path: 'manager/calandar/Report-Drafting',
+      component: ReportDraftingComponent,
+      canActivate:[GuardAuthenticateGuard],
+      data: {
+       roles: roles.manager
+    },
+    },
       /*
        * End manager
        *

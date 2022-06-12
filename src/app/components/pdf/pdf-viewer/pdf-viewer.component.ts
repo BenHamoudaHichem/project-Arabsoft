@@ -46,6 +46,7 @@ export class PdfViewerComponent implements OnInit , AfterViewInit {
       console.log( instance.Core.documentViewer);
 
     })
+    
   }
   test()
   {

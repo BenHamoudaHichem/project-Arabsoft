@@ -105,6 +105,10 @@
         <a data-toggle="tab" [routerLink]="['/dashboard/manager/calandar']"translate><i class="fa fa-calendar"></i>
       titles.calendar </a>
       </li>
+      <li *ngIf="isManager">
+        <a data-toggle="tab" [routerLink]="['/dashboard/manager/Report-Drafting']"><i class="fa fa-file" ></i>
+      rapport </a>
+      </li>
 
       <!--     !!!!!  LOGOUTTTTTT !!!! -->
       <div class="dropdown pb-4">
