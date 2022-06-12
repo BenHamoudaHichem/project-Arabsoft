@@ -16,10 +16,6 @@ import { Intervention } from 'src/app/models/works/intervention';
 })
 export class FiltreComponent implements OnInit {
 
-  currentPage:number=1
-  allPages!:number
-  size!:number
-
 
   @Output() buttonClicked = new EventEmitter();
 
@@ -29,14 +25,12 @@ export class FiltreComponent implements OnInit {
   constructor(private formBuilder:FormBuilder,private router: Router, private activatedRoute: ActivatedRoute,
     @Inject(SESSION_STORAGE) private storage: StorageService
   ) {
-    this.size=Number(this.storage.get('size'))
     this.searchForm=formBuilder.group({
       search:['',[]],
       propertySearch:['',[]],
       propertyOrder:['',[]],
       order:['',[]],
-      page:['',[]],
-      size:['',[]],
+
 
     })
 
@@ -45,7 +39,7 @@ export class FiltreComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.paginationInitialize()
+
   }
 
   public get getFilter() :Map<string,any> | undefined{
@@ -58,7 +52,8 @@ export class FiltreComponent implements OnInit {
 
     this.filterValue = new Map<string,any>()
     this.filterValue.clear()
-    if (this.propertySearchValue?.value!=undefined &&this.searchValue?.value!=undefined) {
+    if (this.propertySearchValue?.value!=undefined &&this.searchValue?.value!=undefined&&
+      String(this.propertySearchValue?.value).length>0 &&String(this.searchValue?.value).length>0) {
       this.filterValue?.set(this.propertySearchValue?.value,this.searchValue?.value)
     }
     if (String(this.attributeValue?.value).length!=0) {
@@ -69,14 +64,6 @@ export class FiltreComponent implements OnInit {
     if (String(this.orderValue?.value).length!=0) {
       this.filterValue?.set("direction",this.orderValue?.value)
     }
-    this.filterValue?.set("page",Number(this.pageValue?.value))
-   this.filterValue?.set("size",Number(this.sizeValue?.value))
-
-   this.sizeValue?.setValue(null)
-   this.attributeValue?.setValue(null)
-   this.propertySearchValue?.setValue(null)
-   this.attributeValue?.setValue(null)
-
 
    this.buttonClicked.emit(Object.fromEntries(this.filterValue!))
   }
@@ -86,12 +73,6 @@ export class FiltreComponent implements OnInit {
   }
   public get searchValue() : AbstractControl | null {
     return this.searchForm.get('search')
-  }
-  public get pageValue() : AbstractControl | null {
-    return this.searchForm.get('page')
-  }
-  public get sizeValue() : AbstractControl | null {
-    return this.searchForm.get('size')
   }
   public get attributeValue() : AbstractControl | null {
     return this.searchForm.get('propertyOrder')
@@ -143,44 +124,6 @@ export class FiltreComponent implements OnInit {
   }
   changeProperty(value:string){
     this.propertySearchValue?.setValue(value)
-  }
-  private get queryparams() : string {
-    return `size=${this.size}&page=${this.currentPage}`
-  }
-
-  next(){
-    if (this.getCurrentPage+1>this.allPages) {
-      return ;
-    }
-    this.pageValue?.setValue(this.getCurrentPage+1)
-    this.onSearch()
-  }
-  previous(){
-    if (this.getCurrentPage-1<0) {
-      return ;
-    }
-    this.pageValue?.setValue(this.getCurrentPage-1)
-    this.onSearch()
-  }
-
-  paginationInitialize()
-  {
-    this.pageValue?.setValue(0)
-    this.sizeValue?.setValue(10)
-    if (!isNaN(this.storage.get("page"))) {
-      this.pageValue?.setValue(Number(this.storage.get("page")))
-    }
-    if (!isNaN(this.storage.get("size"))) {
-      this.sizeValue?.setValue(Number(this.storage.get("size")))
-    }
-    if (!isNaN(this.storage.get("totalPages"))) {
-      this.allPages=Number(this.storage.get("totalPages"))
-    }
-
-    console.log(Number("01") )
-  }
-  public get getCurrentPage() : number {
-    return Number(this.storage.get("page"))
   }
 
   }

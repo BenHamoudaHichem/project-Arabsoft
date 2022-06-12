@@ -4,6 +4,7 @@
       <div class="logo">
         <h1 class="mb-5 text-center text-uppercase" translate>
           titles.interventions_list
+
         </h1>
       </div>
       <div class="tab_container">
@@ -78,7 +79,7 @@
           </article>
         </section>
 
-        <section id="content2" class="tab-content">
+        <section id="content2" class="tab-content" *ngIf="hasResult">
           <article class="postcard light" *ngFor="let item of interventionList">
             <a class="postcard__img_link" [routerLink]="[
               '/dashboard/manager/detailIntervention',
@@ -143,5 +144,8 @@
             </div>
           </div>
         </section>
+
+
       </div>
+      <app-pagination [paginationParams]="pagination"></app-pagination>
     </div>

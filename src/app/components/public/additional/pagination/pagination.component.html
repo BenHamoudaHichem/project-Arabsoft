@@ -1,17 +1,11 @@
-<div class="row">
-  <div class="col">
-    <div class="pagination">
-    <button class="page-item ">
-      <a class="page-link" >Previous</a>
-    </button>
-    <button class="page-item"><a class="page-link" href="#">1</a></button>
-    <button class="page-item active" aria-current="page">
-      <a class="page-link" href="#">2</a>
-    </button>
-    <button class="page-item"><a class="page-link" href="#">3</a></button>
-    <button class="page-item">
-      <a class="page-link" >Next</a>
-    </button>
-  </div></div>
-  <div class="col"></div>
+<div class='example' *ngIf="this.hasResult">
+  <div class='text'(click)="previous()" translate>buttons.previous_page</div>
+  <div class='counter'>
+      <span class='number'>{{getCurrentPage }}</span>
+      <div class='background'></div>
+      <span class='number'>{{allPages }}</span>
+  </div>
+  <div class='text'(click)="next()"translate>buttons.next_page</div>
 </div>
+<i  class="fas fa-spinner fa-pulse" *ngIf="load"></i>
+

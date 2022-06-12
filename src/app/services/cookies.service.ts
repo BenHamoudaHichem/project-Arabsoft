@@ -8,16 +8,17 @@ import { AESEncoderService } from './aesencoder.service';
 export class CookiesService {
   public static ROLE_CUSTOMER: string = 'ROLE_CUSTOMER';
   public static ROLE_MANAGER: string = 'ROLE_MANAGER';
+  private dateEx!:Date
   constructor(private myCookies: CookieService,private aesEncodeService:AESEncoderService) {
-    try {
-      this.getIdentifier;
-    } catch (error) {
-      console.log('error get identifier');
-    }
+
+    this.dateEx=new Date()
+    this.dateEx.setMinutes(new Date().getMinutes()+30)
+
+
   }
 
   createToken(token: string): void {
-    this.myCookies.set('_token', this.aesEncodeService.encode(token));
+    this.myCookies.set('_token', this.aesEncodeService.encode(token),this.dateEx);
   }
   get getToken(): string {
     return this.aesEncodeService.decode(this.myCookies.get('_token'));
@@ -35,24 +36,20 @@ export class CookiesService {
   }
 
   addUserRole(role: string): void {
-    this.myCookies.set('_role', this.aesEncodeService.encode(role));
+    this.myCookies.set('_role', this.aesEncodeService.encode(role),this.dateEx);
   }
 
   addUsername(name: string): void {
-    this.myCookies.set('_username', this.aesEncodeService.encode(name));
+    this.myCookies.set('_username', this.aesEncodeService.encode(name),this.dateEx);
   }
   addUserId(id: string): void {
-    this.myCookies.set('_id', this.aesEncodeService.encode(id));
+    this.myCookies.set('_id', this.aesEncodeService.encode(id),this.dateEx);
   }
   deleteAll() {
-
-
-    console.log(document.cookie)
-
     this.myCookies.deleteAll('/', 'localhost',false, 'Lax');
     this.myCookies.deleteAll('/dashboard/manager', 'localhost', false, 'Lax');
     this.myCookies.deleteAll('/dashboard/customer', 'localhost', false, 'Lax');
-    
+
   }
   static init() {}
 }

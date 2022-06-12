@@ -15,6 +15,7 @@ const claimImg:string="assets/images/claim.png"
 })
 export class ReclamationListComponent implements OnInit {
   status!: string;
+  pagination:Map<string,number>=new Map()
   demandList!: IDemand[];
   constructor(
     private serviceDemand: DemandService,
@@ -44,10 +45,10 @@ export class ReclamationListComponent implements OnInit {
     }
 
     this.serviceDemand.all(queryParams).subscribe((res) => {
-      this.storage.set("totalResults",res.headers.get("totalResults"))
-      this.storage.set("totalPages",res.headers.get("totalPages"))
-      this.storage.set("page",Number(res.headers.get("page")!))
-      this.storage.set("size",res.headers.get("size"))
+      this.pagination.set("totalResults",Number(res.headers.get("totalResults")))
+      this.pagination.set("totalPages",Number(res.headers.get("totalPages")))
+      this.pagination.set("page",Number(res.headers.get("page")!))
+      this.pagination.set("size",Number(res.headers.get("size")))
       this.demandList = res.body!;
 
     }),
@@ -76,11 +77,10 @@ export class ReclamationListComponent implements OnInit {
     });
 
     this.serviceDemand.allByStatus(status,undefined).subscribe((res) => {
-      this.storage.set("totalResults",res.headers.get("totalResults"))
-      this.storage.set("totalPages",res.headers.get("totalPages"))
-      this.storage.set("page",Number(res.headers.get("page")!))
-      this.storage.set("size",res.headers.get("size"))
-      this.demandList = res.body!;
+      this.pagination.set("totalResults",Number(res.headers.get("totalResults")))
+      this.pagination.set("totalPages",Number(res.headers.get("totalPages")))
+      this.pagination.set("page",Number(res.headers.get("page")!))
+      this.pagination.set("size",Number(res.headers.get("size")))
     }),
       (error: HttpErrorResponse) => {
         if (error.status == 401) {
@@ -94,4 +94,8 @@ export class ReclamationListComponent implements OnInit {
   public get img() : string {
     return claimImg
   }
+  public get hasResult() : boolean {
+    return this.demandList !== undefined&& this.demandList.length!==0
+  }
+
 }

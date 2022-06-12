@@ -47,6 +47,7 @@ import { InterventionClosedListComponent } from './components/manager/interventi
 import { DetailInterventionClosedComponent } from './components/manager/detail-intervention-closed/detail-intervention-closed.component';
 import { CloseInterventionComponent } from './components/manager/close-intervention/close-intervention.component';
 import { CalendarComponent } from './components/public/calendar/calendar.component';
+import { ReportDraftingComponent } from './components/manager/report-drafting/report-drafting.component';
 const roles = { customer: 'ROLE_CUSTOMER', manager: 'ROLE_MANAGER' };
 const routes: Routes = [
   { path: 'home', component: HomeComponentPage, canActivate: [RedirectGuard] },
@@ -419,17 +420,21 @@ const routes: Routes = [
       },
       {
         path: 'tm',
-        component: HomeTeamManagerComponent,
+        component: ReportDraftingComponent,
       },
 
       { path: '**', redirectTo: '/dashboard/not-found', pathMatch: 'full' },
       { path: '', redirectTo: '/dashboard/not-found', pathMatch: 'full' },
     ],
   },
-
+  {
+    path: 'tm',
+    component: HomeTeamManagerComponent,
+  },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 
   { path: '**', redirectTo: '/not-found', pathMatch: 'full' },
+
 ];
 
 @NgModule({

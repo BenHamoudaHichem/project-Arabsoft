@@ -21,6 +21,7 @@ const inprogressimg="https://images.unsplash.com/photo-1593436878396-e943a3cac98
 export class InterventionListComponent implements OnInit {
   interventionList!: IIntervention[];
   status!:string
+  pagination:Map<string,number>=new Map()
   data:Location[]=[]
   constructor(private serviceIntervention: InterventionService,
     private activatedRoute:ActivatedRoute,
@@ -31,13 +32,33 @@ export class InterventionListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.allByStatus('In_Progress')
-    this.location()
+    let qParams: Map<any,any>=new Map()
+    qParams=plainToClass(Map,this.activatedRoute.snapshot.queryParams)
+    if (!qParams.has("status")) {
+      this.allByStatus("In_Progress")
+
+    }
+       this.location()
+
+
+/*
+    if (urlParams.has("status")) {
+      this.allByStatus(urlParams.get("status")!)
+
+    }
+    else{
+      this.allByStatus("In_Progress")
+
+    }*/
+
+
+
   }
 
   //Interventions
-  allByStatus(status:string)
+  allByStatus(status:string )
   {
+
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
       queryParams: {
@@ -47,16 +68,44 @@ export class InterventionListComponent implements OnInit {
       skipLocationChange: false
     });
     this.interventionList=[]
-    this.serviceIntervention.allByStatus(status).subscribe((res) => {
-      this.storage.set("totalResults",res.headers.get("totalResults"))
-      this.storage.set("totalPages",res.headers.get("totalPages"))
-      this.storage.set("page",Number(res.headers.get("page")!))
-      this.storage.set("size",res.headers.get("size"))
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    if (urlParams.has("status")) {
+      urlParams.set("status",status)
+
+    }
+    else{
+      urlParams.append("status",status)
+
+    }
+    let query:string=""
+    urlParams.forEach((v,k)=>{
+
+      query=query.concat(k+"="+v+"&")
+    })
+    query=query.slice(0,-1)
+
+    this.serviceIntervention.all(query).subscribe((res) => {
+
+      if (Number(res.headers.get("totalResults"))==-0) {
+
+        Report.info('Interventions','Pas de résultat',"Je comprend")
+      }
+      this.pagination.set("totalResults",Number(res.headers.get("totalResults")))
+      this.pagination.set("totalPages",Number(res.headers.get("totalPages")))
+      this.pagination.set("page",Number(res.headers.get("page")!))
+      this.pagination.set("size",Number(res.headers.get("size")))
+
       this.interventionList = res.body!;
       this.interventionList.forEach(e=>{
         e.category=plainToClass(Category,e.category)
         e.address=plainToClass(Address,e.address)
       })
+
+
+
     }),
       (error: HttpErrorResponse) => {
         if(error.status==401){
@@ -69,12 +118,30 @@ export class InterventionListComponent implements OnInit {
   }
 
 location(){
-  let queryParams:string|undefined
-  if (window.location.href.includes("?")) {
-    queryParams=window.location.href.substring(window.location.href.indexOf("?")+1)
-  }
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
 
-  this.serviceIntervention.all(queryParams).subscribe((res) => {
+  if (urlParams.has("status")) {
+    urlParams.set("status",status)
+
+  }
+  else{
+    urlParams.append("status",status)
+
+  }
+  let query:string=""
+  urlParams.forEach((v,k)=>{
+
+    query=query.concat(k+"="+v+"&")
+  })
+  query=query.slice(0,-1)
+
+  this.serviceIntervention.all(query).subscribe((res) => {
+
+    if (Number(res.headers.get("totalResults"))==-0) {
+
+      Report.info('Interventions','Pas de résultat',"Je comprend")
+    }
 
     res.body!.forEach(e=>{
       e.address=plainToClass(Address,e.address)
@@ -96,6 +163,10 @@ location(){
 
 public get img() : string {
   return inprogressimg
+}
+
+public get hasResult() : boolean {
+  return this.interventionList !== undefined&& this.interventionList.length!==0
 }
 
 
