@@ -409,7 +409,7 @@ const routes: Routes = [
       },
     },
     {
-      path: 'manager/calandar/Report-Drafting',
+      path: 'manager/Report-Drafting',
       component: ReportDraftingComponent,
       canActivate:[GuardAuthenticateGuard],
       data: {
@@ -427,10 +427,7 @@ const routes: Routes = [
         component: NotFoundComponent,
         canActivate: [AuthGuard],
       },
-      {
-        path: 'tm',
-        component: ReportDraftingComponent,
-      },
+
 
       { path: '**', redirectTo: '/dashboard/not-found', pathMatch: 'full' },
       { path: '', redirectTo: '/dashboard/not-found', pathMatch: 'full' },
