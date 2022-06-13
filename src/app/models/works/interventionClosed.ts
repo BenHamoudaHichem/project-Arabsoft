@@ -6,6 +6,7 @@ import { Intervention } from './intervention';
 
 export class InterventionClosed extends Intervention {
   constructor(
+    id:string|undefined=undefined,
     title: string,
     description: string,
     category: Dbref,
@@ -22,6 +23,7 @@ export class InterventionClosed extends Intervention {
     private workingGroup: Team
   ) {
     super(
+      id,
       title,
       description,
       category,

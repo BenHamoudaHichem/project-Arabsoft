@@ -1,14 +1,14 @@
 import { LocationStrategy } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, ErrorHandler, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ErrorHandler, EventEmitter, Inject, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RoutesRecognized } from '@angular/router';
 import { plainToClass } from 'class-transformer';
 import moment from 'moment';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Notify, Report } from 'notiflix';
-import { finalize } from 'rxjs';
+import { filter, finalize, pairwise } from 'rxjs';
 import { Address } from 'src/app/models/Address';
 import { Dbref } from 'src/app/models/dbref';
 import { Location } from 'src/app/models/Location';
@@ -39,6 +39,8 @@ const done:string=""
 })
 export class CreateInterventionComponent implements OnInit {
   states!: string[];
+  @Output("changeStep") parentFun: EventEmitter<any> = new EventEmitter();
+
   cities!: string[];
   createInterventionForm!: FormGroup;
   currentDemand!: IDemand;
@@ -47,7 +49,6 @@ export class CreateInterventionComponent implements OnInit {
   interventionList!: IIntervention[];
   materialsList!: IMaterial[];
   teamList: ITeam[] = [];
-  output: boolean = false;
   statusList: Associatif[] = [
     { key: 'En attente', value: 'Waiting' },
     { key: 'En cours', value: 'In_Progress' },
@@ -96,15 +97,16 @@ export class CreateInterventionComponent implements OnInit {
           [Validators.required, Validators.pattern('^[0-9 -]{4,}$')],
         ],
       },
-    );
-    this.counrty?.setValue('Tunisie');
-
+    )
     this.city?.disable();
     this.collectStates();
 
-    this.all();
+    this.allCategories();
 
     this.teamsAvailable();
+    this.counrty?.setValue('Tunisie');
+
+
 
   }
 
@@ -126,7 +128,8 @@ export class CreateInterventionComponent implements OnInit {
        // console.log(this.currentDemand);
         this.state?.setValue(this.currentDemand.address.State);
         this.zipCode?.setValue(this.currentDemand.address.ZipCode);
-        this.city?.setValue(this.currentDemand.address.City);
+
+        this.loadCities()
         this.street?.setValue(this.currentDemand.address.Street);
         this.counrty?.setValue(this.currentDemand.address.Country);
         this.currentDemand.user = plainToClass(User, res.body!.user);
@@ -178,7 +181,7 @@ export class CreateInterventionComponent implements OnInit {
   }
 
 
-  all() {
+  allCategories() {
     this.categoryService.all().subscribe((res) => {
       this.categoryList = res.body!;
     }),
@@ -192,7 +195,9 @@ export class CreateInterventionComponent implements OnInit {
   }
 
   create() {
+
     let intervention = new Intervention(
+      undefined,
       HTMLEscape.escapeMethod(this.title?.value),
       HTMLEscape.escapeMethod(this.description?.value),
       new Dbref(this.category?.value),
@@ -212,9 +217,10 @@ export class CreateInterventionComponent implements OnInit {
       new Dbref(this.team?.value),
       this.status?.value
     );
-    this.storage.set('intervention', JSON.stringify(intervention));
-    this.output = true;
 
+    this.storage.set('intervention', JSON.stringify(intervention));
+
+    this.parentFun.emit()
 
   }
 

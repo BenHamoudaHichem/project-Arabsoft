@@ -29,58 +29,69 @@ export class ReclamationListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(window.location.href.substring(window.location.href.indexOf("?")));
+    let queryString = window.location.search;
+    let urlParams = new URLSearchParams(queryString);
+
+
+    if (urlParams.has("status")) {
+
+      switch (urlParams.get("status")) {
+        case "In_Progress":
+
+        document.getElementById("tab2")?.click()
+          break;
+        default:
+          document.getElementById("tab3")?.click()
+          break;
+      }
+    }
 
 
   }
 
-  all() {
+  all(status:string|undefined=undefined) {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
 
+    if (!urlParams.has("status")&&status===undefined) {
 
-    let queryParams:string|undefined
+      urlParams.delete("status")
+      console.log(urlParams);
 
-    if (window.location.href.includes("?")) {
-      queryParams=window.location.href.substring(window.location.href.indexOf("?")+1)
+    }else{
+      if (!urlParams.has("status")) {
+        urlParams.append("status",status!)
+      }
+      else{
+        urlParams.set("status",status!)
 
+      }
     }
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: Object.assign({},urlParams),
+      queryParamsHandling: 'merge',
+      skipLocationChange: false
+    });
+    let query:string=""
+    urlParams.forEach((v,k)=>{
 
-    this.serviceDemand.all(queryParams).subscribe((res) => {
+
+      query=query.concat(k+"="+v+"&")
+    })
+    query=query.slice(0,-1)
+
+
+    this.serviceDemand.all(query).subscribe((res) => {
+      if (Number(res.headers.get("totalResults"))==0) {
+        Report.info('Réclamations','Pas de résultat',"Je comprend")
+      }
       this.pagination.set("totalResults",Number(res.headers.get("totalResults")))
       this.pagination.set("totalPages",Number(res.headers.get("totalPages")))
       this.pagination.set("page",Number(res.headers.get("page")!))
       this.pagination.set("size",Number(res.headers.get("size")))
       this.demandList = res.body!;
 
-    }),
-      (error: HttpErrorResponse) => {
-        if (error.status == 401) {
-          this.AuthenticateService.redirectIfNotAuth();
-        } else {
-          Report.failure('Erreur', error.message, 'OK');
-        }
-      };
-  }
-  allByStatus(status:string) {
-    this.router.navigate(['.'], {
-      relativeTo: this.activatedRoute,
-      queryParams: {},
-      skipLocationChange: true
-
-    });
-    this.router.navigate([], {
-      relativeTo: this.activatedRoute,
-      queryParams: {
-        status: status
-      },
-      queryParamsHandling: 'merge',
-      skipLocationChange: false
-    });
-
-    this.serviceDemand.allByStatus(status,undefined).subscribe((res) => {
-      this.pagination.set("totalResults",Number(res.headers.get("totalResults")))
-      this.pagination.set("totalPages",Number(res.headers.get("totalPages")))
-      this.pagination.set("page",Number(res.headers.get("page")!))
-      this.pagination.set("size",Number(res.headers.get("size")))
     }),
       (error: HttpErrorResponse) => {
         if (error.status == 401) {

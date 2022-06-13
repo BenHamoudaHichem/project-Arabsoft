@@ -15,7 +15,7 @@ export class InterventionService {
       Authorization: `Bearer ${this.authService.getToken}`,
       "Content-Type":"application/json"
     }),
-  };
+  }
   private responseHeaders = {
     headers: new HttpHeaders({
       "Authorization": `Bearer ${this.authService.getToken}`,

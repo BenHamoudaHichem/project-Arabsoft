@@ -7,7 +7,6 @@ import { AddFileMaterialsComponent } from './components/manager/add-file-materia
 import { AddFileMembersComponent } from './components/manager/add-file-members/add-file-members.component';
 import { AddMaterialsComponent } from './components/manager/add-materials/add-materials.component';
 import { AddTeamComponent } from './components/manager/add-team/add-team.component';
-import { CreateInterventionComponent } from './components/manager/create-intervention/create-intervention.component';
 import { DetailInterventionComponent } from './components/manager/detail-intervention/detail-intervention.component';
 import { DetailMaterialComponent } from './components/manager/detail-material/detail-material.component';
 import { DetailReclamationComponent } from './components/manager/detail-reclamation/detail-reclamation.component';
@@ -48,6 +47,7 @@ import { DetailInterventionClosedComponent } from './components/manager/detail-i
 import { CloseInterventionComponent } from './components/manager/close-intervention/close-intervention.component';
 import { CalendarComponent } from './components/public/calendar/calendar.component';
 import { ReportDraftingComponent } from './components/manager/report-drafting/report-drafting.component';
+import { ContainerInterventionComponent } from './components/manager/container-intervention/container-intervention.component';
 const roles = { customer: 'ROLE_CUSTOMER', manager: 'ROLE_MANAGER' };
 const routes: Routes = [
   { path: 'home', component: HomeComponentPage, canActivate: [RedirectGuard] },
@@ -303,11 +303,13 @@ const routes: Routes = [
       },
       {
         path: 'manager/createIntervention/:id',
-        component: CreateInterventionComponent,
+        component: ContainerInterventionComponent,
         canActivate:[GuardAuthenticateGuard],
         data: {
          roles: roles.manager
        }
+
+
       },
       {
         path: 'manager/updateIntervention/:id',

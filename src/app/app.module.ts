@@ -87,6 +87,7 @@ import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { PaginationComponent } from './components/public/additional/pagination/pagination.component';
 import { PdfViewerComponent } from './components/pdf/pdf-viewer/pdf-viewer.component';
 import { ReportDraftingComponent } from './components/manager/report-drafting/report-drafting.component';
+import { ContainerInterventionComponent } from './components/manager/container-intervention/container-intervention.component';
 
 registerLocaleData(localeFr);
 registerLocaleData(localeEn);
@@ -154,6 +155,7 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     PaginationComponent,
     PdfViewerComponent,
     ReportDraftingComponent,
+    ContainerInterventionComponent,
   ],
   imports: [
 

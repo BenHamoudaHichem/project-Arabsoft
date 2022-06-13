@@ -11,12 +11,12 @@
 
       <input id="tab1" type="radio" (click)="all()" name="tabs" checked>
       <label for="tab1" translate> <i class="fas fa-list"></i> buttons.all</label>
-      <input id="tab2" type="radio" name="tabs" (click)="allByStatus('In_Progress')">
+      <input id="tab2" type="radio" name="tabs" (click)="all('In_Progress')">
       <label for="tab2" translate>
         <i class="fa fa-spinner"></i>
         buttons.in_prog
       </label>
-      <input id="tab3" type="radio" name="tabs" (click)="allByStatus('Accepted')">
+      <input id="tab3" type="radio" name="tabs" (click)="all('Accepted')">
       <label for="tab3" translate>
         <i class="fa fa-check-circle"></i>
         buttons.accepted

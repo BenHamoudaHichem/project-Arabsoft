@@ -31,7 +31,7 @@ export class TeamService {
   all(queryparams:string | undefined): Observable<HttpResponse<ITeam[]>> {
     let url:string=this.apiURL
     if (queryparams!==undefined) {
-      url=url.concat(queryparams)
+      url=url.concat('?'.concat(queryparams))
     }
     return this.http.get<HttpResponse<ITeam[]>>(`${url}`,this.responseHeaders)
   }

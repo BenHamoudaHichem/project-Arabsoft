@@ -1,0 +1,2 @@
+<app-create-intervention *ngIf="step==0" (changeStep)="changeStep(1)"></app-create-intervention>
+<app-choose-material *ngIf="step==1" (changeStep)="changeStep(0)"></app-choose-material>

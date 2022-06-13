@@ -10,9 +10,11 @@ import { QuantityValue } from 'src/app/models/resources/QuantityValue';
 import { User } from 'src/app/models/user';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { MapService } from 'src/app/services/map/map.service';
+import { PdfGeneratorService } from 'src/app/services/pdf-generator.service';
 import { ITeam } from 'src/app/services/resources/team/iteam';
 import { IInterventionClosed } from 'src/app/services/works/intervention/iinterventionClosed';
 import { interventionClosedService } from 'src/app/services/works/intervention/intervention-closed.service';
+
 
 @Component({
   selector: 'app-detail-intervention-closed',
@@ -27,7 +29,8 @@ export class DetailInterventionClosedComponent implements OnInit {
     private interventionService: interventionClosedService,
     private AuthenticateService: AuthenticateService,
     private route: ActivatedRoute,
-    private mapService: MapService
+    private mapService: MapService,
+    private pdfGenerator:PdfGeneratorService,
   ) {}
   ngOnInit(): void {
     this.findIntervention(String(this.route.snapshot.paramMap.get('id')));
@@ -66,7 +69,6 @@ export class DetailInterventionClosedComponent implements OnInit {
           Category,
           this.intervention.category
         );
-        console.log(this.intervention);
 
 this.mapService.findLocation(this.intervention.address.Location());
       }),
@@ -77,5 +79,10 @@ this.mapService.findLocation(this.intervention.address.Location());
           Report.failure('Erreur', error.message, 'OK');
         }
       };
+  }
+  download()
+  {
+
+    this.pdfGenerator.generateFromId("A4",this.intervention.id)
   }
 }

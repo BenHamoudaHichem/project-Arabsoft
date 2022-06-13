@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
@@ -15,53 +15,73 @@ import { UserService } from 'src/app/services/user/user.service';
 export class MembersListComponent implements OnInit {
   usersList!: IUser[];
   image!: string;
+  pagination:Map<string,number>=new Map()
+
 
   constructor(
     private UserService: UserService,
     private AuthenticateService: AuthenticateService,
     private activatedRoute:ActivatedRoute,
+    private router:Router,
     @Inject(SESSION_STORAGE) private storage: StorageService
 
   ) {}
 
   ngOnInit(): void {
-    if (this.activatedRoute.snapshot.queryParamMap.has('searchKey')) {
-      const firstParam: string = this.activatedRoute.snapshot.queryParamMap.get('searchKey')!;
+    let queryString = window.location.search;
+    let urlParams = new URLSearchParams(queryString);
 
 
-    }
+    if (urlParams.has("role")) {
 
-
-    this.image = 'https://wallpaperaccess.com/full/4321838.jpg';
-
-    this.allTManagers();
+      switch (urlParams.get("status")) {
+        case "tm":
+        this.allTManagers()
+        document.getElementById("tab1")?.click()
+          break;
+        default:
+          this.allMembers()
+          document.getElementById("tab2")?.click()
+          break;
+      }
   }
-
-  agents() {
-    let queryParams:string|undefined
-    if (window.location.href.includes("?")) {
-      queryParams=window.location.href.substring(window.location.href.indexOf("?")+1)
-    }
-    this.UserService.agents(queryParams).subscribe((res) => {
-      this.storage.set("totalResults",res.headers.get("totalResults"))
-      this.storage.set("totalPages",res.headers.get("totalPages"))
-      this.storage.set("page",Number(res.headers.get("page")!))
-      this.storage.set("size",res.headers.get("size"))
-      this.usersList = res.body!;
-    }),
-      (error: HttpErrorResponse) => {
-        Report.failure('Erreur', error.message, 'OK');
-      };
+  else{
+    this.allTManagers()
   }
+}
+
+
   allTManagers() {
     this.image =
       'https://png.pngtree.com/background/20210711/original/pngtree-creative-synthetic-double-exposure-city-business-minimalist-background-picture-image_1115148.jpg';
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
 
-    this.UserService.allByRole('tm',undefined).subscribe((res) => {
-      this.storage.set("totalResults",res.headers.get("totalResults"))
-      this.storage.set("totalPages",res.headers.get("totalPages"))
-      this.storage.set("page",Number(res.headers.get("page")!))
-      this.storage.set("size",res.headers.get("size"))
+      if (urlParams.has("role")) {
+        urlParams.set("role","tm")
+      }
+      else{
+        urlParams.append("role","tm")
+      }
+      this.router.navigate([], {
+        relativeTo: this.activatedRoute,
+        queryParams: Object.assign({},urlParams),
+        queryParamsHandling: 'merge',
+        skipLocationChange: false
+      });
+      let query:string=""
+      urlParams.forEach((v,k)=>{
+        query=query.concat(k+"="+v+"&")
+      })
+      query=query.slice(0,-1)
+    this.UserService.all(query).subscribe((res) => {
+      if (Number(res.headers.get("totalResults"))==0) {
+        Report.info('Réclamations','Pas de résultat',"Je comprend")
+      }
+      this.pagination.set("totalResults",Number(res.headers.get("totalResults")))
+      this.pagination.set("totalPages",Number(res.headers.get("totalPages")))
+      this.pagination.set("page",Number(res.headers.get("page")!))
+      this.pagination.set("size",Number(res.headers.get("size")))
       this.usersList = res.body!;
     }),
       (error: HttpErrorResponse) => {
@@ -75,11 +95,39 @@ export class MembersListComponent implements OnInit {
   allMembers() {
     this.image = 'https://wallpaperaccess.com/full/4321838.jpg';
 
-    this.UserService.allByRole('member',undefined).subscribe((res) => {
-      this.storage.set("totalResults",res.headers.get("totalResults"))
-      this.storage.set("totalPages",res.headers.get("totalPages"))
-      this.storage.set("page",Number(res.headers.get("page")!))
-      this.storage.set("size",res.headers.get("size"))
+
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    if (urlParams.has("role")) {
+      urlParams.set("role","member")
+    }
+    else{
+      urlParams.append("role","member")
+
+    }
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: Object.assign({},urlParams),
+      queryParamsHandling: 'merge',
+      skipLocationChange: false
+    });
+    let query:string=""
+    urlParams.forEach((v,k)=>{
+
+      query=query.concat(k+"="+v+"&")
+    })
+    query=query.slice(0,-1)
+
+    this.UserService.all(query).subscribe((res) => {
+      if (Number(res.headers.get("totalResults"))==0) {
+        Report.info('Réclamations','Pas de résultat',"Je comprend")
+      }
+      this.pagination.set("totalResults",Number(res.headers.get("totalResults")))
+      this.pagination.set("totalPages",Number(res.headers.get("totalPages")))
+      this.pagination.set("page",Number(res.headers.get("page")!))
+      this.pagination.set("size",Number(res.headers.get("size")))
       this.usersList = res.body!;
     }),
       (error: HttpErrorResponse) => {

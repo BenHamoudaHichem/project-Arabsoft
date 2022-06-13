@@ -1,6 +1,6 @@
 <title translate> titles.add_inter </title>
 
-<section *ngIf="output==false" class="h-100">
+<section class="h-100">
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col">
@@ -79,10 +79,10 @@
                   <div class="form-outline">
                     <label class="form-label" translate>input.titles.category</label>
                     <select formControlName="category" class="form-select">
-                      <option *ngIf="categoryList?.length==0" translate>errors.null_cat</option>
+                      <option *ngIf="this.categoryList.length==0||this.categoryList===undefined" translate>errors.null_cat</option>
 
-                      <option *ngFor="let item of categoryList" [value]="item.id">
-                        {{ item.name }}
+                      <option *ngFor="let item of this.categoryList" [value]="item.id">
+                        {{item.name}}
                       </option>
                     </select>
                     <!--Error category-->
@@ -104,7 +104,7 @@
                     <label class="form-label" translate>input.titles.team</label>
                     <select formControlName="team" class="form-select" aria-label="Default select example">
                       <option *ngIf="teamList?.length==0" translate>errors.null_team</option>
-                      <option *ngFor="let item of teamList" [value]="item.id">
+                      <option *ngFor="let item of this.teamList" [value]="item.id">
                         {{ item.name }}
                       </option>
                     </select>
@@ -252,5 +252,4 @@
   </div>
 
 </section>
-<app-choose-material *ngIf="output==true"></app-choose-material>
 

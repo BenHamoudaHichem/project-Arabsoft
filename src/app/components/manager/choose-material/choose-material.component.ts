@@ -1,6 +1,6 @@
 import { LocationStrategy } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { plainToClass } from 'class-transformer';
@@ -26,6 +26,7 @@ import { InterventionService } from 'src/app/services/works/intervention/interve
 export class ChooseMaterialComponent implements OnInit {
   materialForm!: FormGroup;
   totalQuantityValues:number[]=[]
+  @Output("changeStep") parentFun: EventEmitter<any> = new EventEmitter();
   private intervention_1: Intervention = Object.assign(Intervention.prototype, JSON.parse(this.storage.get('intervention')))
   materialsList!: IMaterial[];
   imaterial!: IMaterial;
@@ -122,6 +123,7 @@ export class ChooseMaterialComponent implements OnInit {
 
 
     let intervention = new Intervention(
+      undefined,
       values.getTitle(),
       values.getDescription(),
       values.getCategory(),
@@ -231,9 +233,7 @@ export class ChooseMaterialComponent implements OnInit {
     });
   }
   back() {
-    setTimeout(() => {
-      window.location.reload();
-    }, 100);
+    this.parentFun.emit()
   }
 
   remove() {

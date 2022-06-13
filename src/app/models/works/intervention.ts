@@ -4,6 +4,7 @@ import { MaterialUsed } from '../resources/MaterialUsed';
 
 export class Intervention {
   constructor(
+    protected id:string|undefined=undefined,
     protected title: string,
     protected description: string,
     protected category: Dbref,

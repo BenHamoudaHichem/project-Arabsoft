@@ -34,7 +34,7 @@ export class PdfViewerComponent implements OnInit , AfterViewInit {
   ngAfterViewInit(): void {
     WebViewer({
       path: '../../../wv-resources/lib',
-      initialDoc: '../../../assets/files/Report.pdf'
+      initialDoc: '../../../assets/files/report2.pdf'
     }, this.viewer.nativeElement).then((instance:any) => {
       this.wvInstance = instance;
       instance.UI.openElement('notesPanel');
@@ -46,7 +46,7 @@ export class PdfViewerComponent implements OnInit , AfterViewInit {
       console.log( instance.Core.documentViewer);
 
     })
-    
+
   }
   test()
   {

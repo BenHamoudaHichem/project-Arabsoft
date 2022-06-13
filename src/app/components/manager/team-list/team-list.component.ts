@@ -15,7 +15,7 @@ import { TeamService } from 'src/app/services/resources/team/team.service';
   styleUrls: ['./team-list.component.css']
 })
 export class TeamListComponent implements OnInit {
-
+  pagination:Map<string,number>=new Map()
   teamList!: ITeam[];
   constructor(private serviceTeam: TeamService,private AuthenticateService:AuthenticateService,
       @Inject(SESSION_STORAGE) private storage: StorageService
@@ -30,15 +30,27 @@ export class TeamListComponent implements OnInit {
 
 
   all() {
-    let queryParams:string|undefined
-    if (window.location.href.includes("?")) {
-      queryParams=window.location.href.substring(window.location.href.indexOf("?")+1)
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    if (urlParams.has("status")) {
+      urlParams.delete("status")
     }
-    this.serviceTeam.all(queryParams).subscribe((res) => {
-      this.storage.set("totalResults",res.headers.get("totalResults"))
-      this.storage.set("totalPages",res.headers.get("totalPages"))
-      this.storage.set("page",Number(res.headers.get("page")!))
-      this.storage.set("size",res.headers.get("size"))
+
+    let query:string=""
+    urlParams.forEach((v,k)=>{
+      query=query.concat(k+"="+v+"&")
+    })
+    query=query.slice(0,-1)
+    this.serviceTeam.all(query).subscribe((res) => {
+      if (Number(res.headers.get("totalResults"))==0) {
+
+        Report.info('Interventions','Pas de résultat',"Je comprend")
+      }
+      this.pagination.set("totalResults",Number(res.headers.get("totalResults")))
+
+      this.pagination.set("totalPages",Number(res.headers.get("totalPages")))
+      this.pagination.set("page",Number(res.headers.get("page")!))
+      this.pagination.set("size",Number(res.headers.get("size")))
       this.teamList = res.body!
 
       this.teamList.forEach(item => {
@@ -66,7 +78,18 @@ export class TeamListComponent implements OnInit {
         }        };
   }
   teamAvailable(){
-    this.serviceTeam.allByStatus("Available").subscribe((res) => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    if (!urlParams.has("status")) {
+      urlParams.append("status","Available")
+    }
+    let query:string=""
+    urlParams.forEach((v,k)=>{
+      query=query.concat(k+"="+v+"&")
+    })
+    query=query.slice(0,-1)
+    this.serviceTeam.all(query).subscribe((res) => {
       this.teamList = res.body!
       this.teamList.forEach(item => {
         item.manager=plainToClass(User,item.manager)
@@ -88,11 +111,14 @@ export class TeamListComponent implements OnInit {
         } else{
           Report.failure('Erreur', error.message,'OK')
 
-        }        }
+        }
+      }
 }
 
 
-
+public get hasResult() : boolean {
+  return this.teamList !== undefined&& this.teamList.length!==0
+}
 
 
 

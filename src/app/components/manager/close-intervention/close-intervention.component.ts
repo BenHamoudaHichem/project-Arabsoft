@@ -118,6 +118,7 @@ export class CloseInterventionComponent implements OnInit {
     //  console.log(this.intervention.category.getId());
 
     let interventionClosed = new InterventionClosed(
+      this.intervention.id,
       this.intervention.title,
       this.intervention.description,
       new Dbref(this.intervention.category.getId()!),

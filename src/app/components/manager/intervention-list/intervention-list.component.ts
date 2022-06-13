@@ -138,7 +138,7 @@ location(){
 
   this.serviceIntervention.all(query).subscribe((res) => {
 
-    if (Number(res.headers.get("totalResults"))==-0) {
+    if (Number(res.headers.get("totalResults"))==0) {
 
       Report.info('Interventions','Pas de résultat',"Je comprend")
     }

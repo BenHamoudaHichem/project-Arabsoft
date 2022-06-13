@@ -31,7 +31,7 @@ export class CategoryService {
   ) {}
 
   all(): Observable<HttpResponse<ICategory[]>> {
-    return this.http.get<HttpResponse<ICategory[]>>(`${this.apiURL}`,this.httpOptions)
+    return this.http.get<HttpResponse<ICategory[]>>(`${this.apiURL}`,this.responseHeaders)
   }
 
 

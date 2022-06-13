@@ -180,6 +180,7 @@ export class UpdateInterventionComponent implements OnInit {
     console.log(this.Materiel?.value);
     Array.from(this.Materiel?.value as IMaterial[], (x) => x.id);
     let intervention = new Intervention(
+      undefined,
       HTMLEscape.escapeMethod(this.title?.value),
       HTMLEscape.escapeMethod(this.description?.value),
       new Dbref(this.category?.value),
