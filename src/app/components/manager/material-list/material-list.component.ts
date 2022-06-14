@@ -20,7 +20,7 @@ export class MaterialListComponent implements OnInit {
   @ViewChild('target') mapElement:any
   @Output() responseIsComming = new EventEmitter();
   pagination:Map<string,number>=new Map()
-  materialList!: IMaterial[];
+  materialList!: IMaterial[]
   status!: string;
   data: Location[]=[]
   constructor(

@@ -18,10 +18,12 @@ export class DetailTeamComponent implements OnInit {
 
   team!: ITeam;
   id!: string;
+  linkIntervention:String | null= null
   constructor(
     private teamService: TeamService,
     private route: ActivatedRoute,
-    private AuthenticateService:AuthenticateService
+    private AuthenticateService:AuthenticateService,
+
   ) {
 
     if(this.route.snapshot.paramMap.has("id")){
@@ -40,6 +42,11 @@ export class DetailTeamComponent implements OnInit {
       this.team=res.body!
       this.team.manager=plainToClass(User,res.body!.manager)
       this.team.members=Array.from(res.body!.members,x=> plainToClass(User,x))
+      if (res.headers.get("hasIntervention")=="true") {
+        this.linkIntervention=res.headers.get("currrentIntervention")
+        console.log(this.linkIntervention);
+
+      }
 
     }),(error:HttpErrorResponse)=>{
       if(error.status==401){

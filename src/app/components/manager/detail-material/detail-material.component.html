@@ -64,14 +64,11 @@
             <br /> <span translate>location.country</span> : {{ material.address.Country }}
           </p>
 
-
           <h3 class="card-title" translate><i class="fas fa-calendar-check"></i>&nbsp;input.titles.purchase_date
           </h3>
 
           <p class="card-text">
-            {{material.dateOfPurchase | date:'yyyy-MM-dd'}}</p>
-
-
+            {{material.dateOfPurchase }}</p>
 
         </div>
       </div>
@@ -91,6 +88,18 @@
     </div>
 
   </div>
+  <div class="card border-primary mx-auto" style="max-width: 18rem;" *ngIf="currentAddress!==null">
+    <div class="card-header"><img src="assets/images/icon-info.png" alt=""></div>
+    <div class="card-body text-primary">
+      <h4 class="card-title">Ce materiel est en cours d'utilisation</h4>
+      <p class="text-info">City : {{currentAddress.get("city")}}</p>
+      <p class="text-info"> State : {{currentAddress.get("state")}}</p>
+      <p class="text-info"> Country : {{currentAddress.get("country")}}</p>
+
+
+    </div>
+  </div>
+
 
 
 </section>

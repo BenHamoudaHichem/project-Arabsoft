@@ -25,13 +25,13 @@
     <input id="tab1" type="radio" (click)="all()" name="tabs" checked>
     <label for="tab1" translate> <i class="fas fa-list"></i> buttons.all</label>
 
-    <input id="tab2" type="radio" (click)="teamAvailable()" name="tabs">
+    <input id="tab2" type="radio" (click)="all('Available')" name="tabs">
     <label for="tab2" translate> <i class="fa fa-spinner" aria-hidden="true"></i>
       buttons.available
     </label>
 
 
-    <section id="content1" class="tab-content">
+    <section id="content1" class="tab-content"*ngIf="hasResult">
       <article class="postcard light" *ngFor="let team of teamList">
         <a class="postcard__img_link" routerLinkActive="router-link-active"
           [routerLink]="['/dashboard/manager/detailTeam', team.id]">
@@ -68,7 +68,7 @@
 
 
     </section>
-    <section id="content2" class="tab-content">
+    <section id="content2" class="tab-content" *ngIf="hasResult">
 
       <article class="postcard light" *ngFor="let team of teamList">
         <a class="postcard__img_link" routerLinkActive="router-link-active"
@@ -104,10 +104,11 @@
           </ul>
         </div>
       </article>
-      <app-pagination [paginationParams]="pagination"></app-pagination>
 
     </section>
   </div>
+  <app-pagination [paginationParams]="pagination"></app-pagination>
+
   </div>
   </div>
 

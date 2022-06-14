@@ -23,6 +23,8 @@ export class DetailMaterialComponent implements OnInit {
   id!: string;
   textEnPanne: string = 'Ce materiel est reparé ?';
   textFonctionnel: string = 'Ce materiel est en panne ?';
+  currentAddress:Map<string,string> | null=null
+
   constructor(
     private serviceMaterial: EquipmentService,
     private route: ActivatedRoute,
@@ -33,6 +35,16 @@ export class DetailMaterialComponent implements OnInit {
       .findMaterial(String(this.route.snapshot.paramMap.get('id')))
       .subscribe((res) => {
         this.material = res.body!;
+        if (res.headers.get("inIntervention")=="true") {
+          this.currentAddress= new Map()
+          String(res.headers.get("Address")).trim().replace("Address{","").replace("}","").split(",").forEach(x=>{
+            this.currentAddress?.set(x.substring(0,x.indexOf("=")).replace(/[^a-zA-Z ]/g, "").replace(" ",""),x.substring(x.indexOf("=")+1,x.length-1).replace(/[^a-zA-Z ]/g, "").replace(" ",""))
+          })
+
+
+          console.log(this.currentAddress);
+
+        }
         this.material.address = plainToClass(Address, this.material.address);
         this.servMap.findLocation(this.material.address.Location());
         if (this.material.status == 'Broken_down') {

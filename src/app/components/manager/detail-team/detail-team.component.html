@@ -5,9 +5,12 @@
    <!-- <div class="h1 text-center text-dark" id="pageHeaderTitle"   [translate]="'titles.team_det'" [translateParams]="{name:'team.name'}">
     </div>
 -->
-<h1 class="mb-5 text-center text-uppercase" translate>
+<h1 class="mb-5 text-center text-uppercase" translate> {{team.name}}    </h1>
 
-  {{team.name}}    </h1>
+  <p class="text-center text-info" *ngIf="linkIntervention!==null">
+<a [routerLink]="['/dashboard/manager/detailIntervention',linkIntervention]">
+      <img src="assets/images/icon-info.png" alt="">&nbsp;In intervention </a>
+  </p>
 <article class="postcard dark">
 			<a class="postcard__img_link">
 				<img class="postcard__img" src="

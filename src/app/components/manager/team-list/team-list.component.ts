@@ -29,12 +29,23 @@ export class TeamListComponent implements OnInit {
   }
 
 
-  all() {
+  all(i:string | undefined = undefined) {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    if (urlParams.has("status")) {
-      urlParams.delete("status")
+
+    if(i === undefined)
+    {
+      if (urlParams.has("status") ){
+        urlParams.delete("status")
+      }
+    }else{
+      if (urlParams.has("status") ){
+        urlParams.set("status",i)
+      }else{
+        urlParams.append("status",i)
+      }
     }
+
 
     let query:string=""
     urlParams.forEach((v,k)=>{
@@ -60,13 +71,9 @@ export class TeamListComponent implements OnInit {
         item.members.forEach(subItem => {
           subItem=plainToClass(User,subItem)
           subItem.setAddress(plainToClass(Address,subItem.getAddress()))
-
-
-        });
-      });
-
+        })
+      })
       console.log(this.teamList)
-
     }),
       (error: HttpErrorResponse) => {
         if(error.status==401){
@@ -77,44 +84,6 @@ export class TeamListComponent implements OnInit {
 
         }        };
   }
-  teamAvailable(){
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-
-    if (!urlParams.has("status")) {
-      urlParams.append("status","Available")
-    }
-    let query:string=""
-    urlParams.forEach((v,k)=>{
-      query=query.concat(k+"="+v+"&")
-    })
-    query=query.slice(0,-1)
-    this.serviceTeam.all(query).subscribe((res) => {
-      this.teamList = res.body!
-      this.teamList.forEach(item => {
-        item.manager=plainToClass(User,item.manager)
-
-        item.manager.setAddress(plainToClass(Address,item.manager.getAddress()))
-        item.members.forEach(subItem => {
-          subItem=plainToClass(User,subItem)
-          subItem.setAddress(plainToClass(Address,subItem.getAddress()))
-
-        });
-      });
-
-
-    }),
-      (error: HttpErrorResponse) => {
-        if(error.status==401){
-          this.AuthenticateService.redirectIfNotAuth()
-
-        } else{
-          Report.failure('Erreur', error.message,'OK')
-
-        }
-      }
-}
-
 
 public get hasResult() : boolean {
   return this.teamList !== undefined&& this.teamList.length!==0
