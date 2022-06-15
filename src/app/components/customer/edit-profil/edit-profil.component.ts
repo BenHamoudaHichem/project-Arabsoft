@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Report } from 'notiflix';
 import { Address } from 'src/app/models/Address';
@@ -8,7 +8,6 @@ import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
 import { Location } from 'src/app/models/Location';
 import { CookiesService } from 'src/app/services/cookies.service';
-import { IUser } from 'src/app/services/user/iuser';
 import { AddressService } from 'src/app/services/address/address.service';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { HTMLEscape } from 'src/app/services/validation/HTMLEscapeChars';

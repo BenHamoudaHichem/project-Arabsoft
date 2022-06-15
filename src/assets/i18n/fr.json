@@ -27,7 +27,9 @@
     "descending":"Décroissant",
     "close_m":"Fermer",
     "next_page":"Page suivante",
-    "previous_page":"Page précédente"
+    "previous_page":"Page précédente",
+    "form":"Former",
+    "reform":"Réformer"
 
   },
   "cards": {
@@ -131,13 +133,14 @@
   },
   "titles": {
     "add_category": "Ajouter une catégorie",
-    "add_demand": "Créer une reclamation",
+    "add_demand": "Envoyer une demande",
     "add_emp": "Inscrivez un membre dans le domaine",
     "add_inter": "Créer une intervention",
     "add_material": "Ajouter un matériel",
-    "add_team": "Ajouter  une équipe",
+    "add_team": "Former une équipe",
     "cat_question": "Vous avez besoins d'ajouter une autre categorie?",
     "categories": "Catégories",
+    "geo_carte":"Carte géographique",
     "calendar":"Calendrier",
     "choose_file": "Choisir une fichier",
     "customers": "Clients",
@@ -148,7 +151,7 @@
       "detail": "Detail demande",
       "demand_list": "Liste des Demandes",
       "title": "Demandes",
-      "title_home": "Liste des reclamations envoyées"
+      "title_home": "Liste des demandes envoyées"
     },
     "detail_category": "Detail categorie",
     "detail_demand": "Les demandes envoyées",
@@ -190,7 +193,7 @@
     "material_name": "Nom du matériel",
 "participating _members":"Les membres participants",
     "broken_material": "Matériels en panne",
-    "new_team": "Nouveau équipe",
+    "new_team": "Former une équipe",
     "profil": "Profil",
     "register": "Inscrivez vous a notre site",
     "reset": "Réinitialiser le mot de passe",
@@ -201,14 +204,14 @@
     "teams": "Equipes",
     "teams_progress": "Equipes en cours",
     "teams_list": "Liste des équipes",
-    "up": "Telecharger un fichier",
+    "up": "Importer un fichier",
     "up_photo": "Changer photo",
     "update_material": "Mettre à jour le matériel",
     "update_pass": "Modifier le mot de passe",
     "update_pro": "Mettre à jour le profil",
     "update_int": "Mettre à jour l'intervention",
 
-    "update_team": "Mettre à jour l'équipe",
+    "update_team": "Réformer l'équipe",
     "choose_measure":"Choisir la mesure",
 
     "quantity_used":"Quantité utilisée",

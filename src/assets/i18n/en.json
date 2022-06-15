@@ -27,7 +27,9 @@
     "descending":"Descending",
     "close_m":"Close",
     "next_page":"Next page",
-    "previous_page":"Previous page"
+    "previous_page":"Previous page",
+    "form":"Form",
+    "reform":"Reform"
 
   },
   "cards": {
@@ -132,9 +134,10 @@
     "add_emp": "Subscribe a member in the domains",
     "add_inter": "Create an intervention",
     "add_material": "Add material",
-    "add_team": "Add team",
+    "add_team": "Form a team",
     "cat_question": "Need to add another category?",
     "categories": "Categories",
+    "geo_carte":"Geographic map",
     "choose_file": "Choose file",
     "customers": "Customers",
     "customers_list": "Customers list",
@@ -191,7 +194,7 @@
     "participating _members":"Participating members",
 
     "new_material": "New material",
-    "new_team": "New team",
+    "new_team": "Form a team",
     "profil": "Profil",
     "register": "Register",
     "reset": "Reset password",
@@ -210,7 +213,7 @@
     "update_int": "Update intervention",
 
     "update_pro": "Update profil",
-    "update_team": "Update team",
+    "update_team": "Reform team",
 "choose_measure":"Choose measure",
     "quantity_used":"Used quantity",
     "quantity_total":"Total quantity ",
