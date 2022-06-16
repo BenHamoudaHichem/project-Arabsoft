@@ -1,31 +1,35 @@
 <title translate>titles.calendar</title>
+
+<button type="button" (click)="changeStatus()">
+  besoin de planifier une intervention ?
+</button>
+<br><br>
+  <button type="button" class="btn btn-primary pull-right"
+  class="btn btn-danger" type="button" *ngIf="btn==true" (click)="openInterventionModal()"
+   data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+
+  planifier
+</button>
+<button class="btn btn-primary"
+data-bs-toggle="modal" 
+type="button" *ngIf="btn==true" (click)="clear()">
+  annuler
+</button>
+
 <div class="container py-5">
+
   <div class="row text-center">
     <div class="col-md-4">
       <div class="btn-group">
-        <div
-          class="btn btn-dark"
-          mwlCalendarPreviousView
-          [view]="view"
-          [(viewDate)]="viewDate"
-          (viewDateChange)="closeOpenMonthViewDay()"
-        >
+        <div class="btn btn-dark" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+          (viewDateChange)="closeOpenMonthViewDay()">
           Previous
         </div>
-        <div
-          class="btn btn-outline-secondary"
-          mwlCalendarToday
-          [(viewDate)]="viewDate"
-        >
+        <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
           Today
         </div>
-        <div
-        class="btn btn-dark"
-        mwlCalendarNextView
-          [view]="view"
-          [(viewDate)]="viewDate"
-          (viewDateChange)="closeOpenMonthViewDay()"
-        >
+        <div class="btn btn-dark" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+          (viewDateChange)="closeOpenMonthViewDay()">
           Next
         </div>
       </div>
@@ -35,25 +39,13 @@
     </div>
     <div class="col-md-4">
       <div class="btn-group">
-        <div
-        class="btn btn-dark"
-        (click)="setView(CalendarView.Month)"
-          [class.active]="view === CalendarView.Month"
-        >
+        <div class="btn btn-dark" (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month">
           Month
         </div>
-        <div
-        class="btn btn-dark"
-        (click)="setView(CalendarView.Week)"
-          [class.active]="view === CalendarView.Week"
-        >
+        <div class="btn btn-dark" (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week">
           Week
         </div>
-        <div
-        class="btn btn-dark"
-        (click)="setView(CalendarView.Day)"
-          [class.active]="view === CalendarView.Day"
-        >
+        <div class="btn btn-dark" (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day">
           Day
         </div>
       </div>
@@ -61,114 +53,372 @@
   </div>
   <br />
   <div [ngSwitch]="view">
-    <mwl-calendar-month-view
-      *ngSwitchCase="CalendarView.Month"
-      [viewDate]="viewDate"
-      [events]="events"
-      [refresh]="refresh"
-      [activeDayIsOpen]="activeDayIsOpen"
-      (dayClicked)="dayClicked($event.day)"
-      (eventClicked)="handleEvent('Clicked', $event.event)"
-    >
+    <mwl-calendar-month-view *ngSwitchCase="CalendarView.Month" [viewDate]="viewDate" [events]="events"
+      [refresh]="refresh" [activeDayIsOpen]="activeDayIsOpen"
+      (dayClicked)="dayClicked($event.day);clickedDay($event.day)"
+      (eventClicked)="handleEvent(   $event.event)">
     </mwl-calendar-month-view>
-    <mwl-calendar-week-view
-      *ngSwitchCase="CalendarView.Week"
-      [viewDate]="viewDate"
-      [events]="events"
-      [refresh]="refresh"
-      (eventClicked)="handleEvent('Clicked', $event.event)"
-    >
+    <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events"
+      [refresh]="refresh" (eventClicked)="handleEvent(   $event.event)">
     </mwl-calendar-week-view>
-    <mwl-calendar-day-view
-      *ngSwitchCase="CalendarView.Day"
-      [viewDate]="viewDate"
-      [events]="events"
-      [refresh]="refresh"
-      (eventClicked)="handleEvent('Clicked', $event.event)"
-    >
+    <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+      (eventClicked)="handleEvent($event.event)">
     </mwl-calendar-day-view>
   </div>
 
-  <!-- Everything you see below is just for the demo, you don't need to include it in your app -->
+  <!-- Model detail event intervention-->
+  <div class="modal fade" id="detailBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="detailBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="detailBackdropLabel" translate>  <i class="fa fa-filter"></i>
+            titles.sort</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
 
 
+        <div class="card-group">
+          <div class="card info d-md-inline">
+            <div class="row m-auto">
+              <div class="card-body text-black">
+                <h2 class="card__title" translate>
+                  <i class="fa fa-heading"></i> &nbsp; input.titles.title
+                </h2>
 
-  <ng-template #modalContent let-close="close">
-    <div class="modal-header">
-      <h1 class="text-uppercase text-center" translate>titles.detail_inter.title</h1>
-      <button type="button" class="close" (click)="close()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
+                <p class="card__text">{{ intervention?.title }}</p>
+                <h2 class="card__title" translate>
+                  <i class="fas fa-calendar-alt"></i> &nbsp; titles.started_at
+                </h2>
 
+                <p class="card__text">{{ intervention?.startedAt }}</p>
+                <h2 class="card__title" translate>
+                  <i class="fas fa-calendar-check"></i> &nbsp; input.titles.end_date
+                </h2>
 
-          <div class="card-group">
-            <div class="card info d-md-inline">
-              <div class="row m-auto">
-                <div class="card-body text-black">
-                  <h2 class="card__title" translate>
-                    <i class="fa fa-heading"></i> &nbsp; input.titles.title
-                  </h2>
+                <p class="card__text">{{ intervention?.expiredAt }}</p>
 
-                  <p class="card__text">{{ intervention.title }}</p>
-                  <h2 class="card__title" translate>
-                    <i class="fas fa-calendar-alt"></i> &nbsp; titles.started_at
-                  </h2>
+                <h2 class="card__title" translate>
+                  <i class="fas fa-exclamation-circle"></i> &nbsp; titles.categories
+                </h2>
 
-                  <p class="card__text">{{ intervention.startedAt }}</p>
-                  <h2 class="card__title" translate>
-                    <i class="fas fa-calendar-check"></i> &nbsp; input.titles.end_date
-                  </h2>
-
-                  <p class="card__text">{{ intervention.expiredAt }}</p>
-
-                       <h2 class="card__title" translate>
-                    <i class="fas fa-exclamation-circle"></i> &nbsp; titles.categories
-                  </h2>
-
-                  <p class="card__text">
-                    {{ intervention.category.getName() }}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="card info d-md-inline">
-              <div class="row m-auto">
-                <div class="card-body text-black">
-                  <h2 class="card__title" translate>
-                    <i class="fas fa-users-cog"></i>&nbsp;  input.titles.team
-                  </h2>
-                  <p class="card__text">
-                    {{ intervention.team.name }}
-                  </p>
-                  <h2 class="card__title" translate>
-                    <i class="fas fa-map-marker-alt"></i>&nbsp; location.title
-                  </h2>
-                  <p class="card__text">
-                     <p >
-                      <span translate>location.street</span> : {{ intervention.address.Street }} <br />
-                      <br />   <span translate>location.city</span>  : {{ intervention.address.City }} <br />
-                      <br />   <span translate>location.governorate</span>  : {{ intervention.address.State }} <br />
-                      <br />   <span translate>location.country</span>  : {{ intervention.address.Country }}
-                    </p>
-
-                </div>
+                <p class="card__text">
+                  {{ intervention?.category?.getName() }}
+                </p>
               </div>
             </div>
           </div>
+          <div class="card info d-md-inline">
+            <div class="row m-auto">
+              <div class="card-body text-black">
+                <h2 class="card__title" translate>
+                  <i class="fas fa-users-cog"></i>&nbsp; input.titles.team
+                </h2>
+                <p class="card__text">
+                  {{ intervention?.team?.name }}
+                </p>
+                <h2 class="card__title" translate>
+                  <i class="fas fa-map-marker-alt"></i>&nbsp; location.title
+                </h2>
+                <p class="card__text">
+                <p>
+                  <span translate>location.street</span> : {{ intervention?.address?.Street }} <br />
+                  <br /> <span translate>location.city</span> : {{ intervention?.address?.City }} <br />
+                  <br /> <span translate>location.governorate</span> : {{ intervention?.address?.State }} <br />
+                  <br /> <span translate>location.country</span> : {{ intervention?.address?.Country }}
+                </p>
+
+              </div>
+            </div>
+          </div>
+        </div>
 
 
 
 
 
-      </div>
 
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-secondary" (click)="close()">
-        OK
-      </button>
+      <button type="button" id="close" class="btn btn-secondary" data-bs-dismiss="modal" translate>buttons.close_m</button>
+      <button type="submit" class="btn btn-primary" translate>titles.sort </button>
     </div>
-  </ng-template>
+      </div>
+
+    </div>
+  </div>
+
+<!-- Modal create intervention -->
+<div class="modal fade" id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <section *ngIf="output==false" class="h-100">
+
+        <div class="col">
+
+            <div class="logo">
+              <span><img src="assets/images/gest.png" alt="Sample photo" height="60px" width="100px" /></span>
+
+              <div class="card-title">
+                <span class="title" translate> titles.add_inter</span>
+              </div>
+            </div>
+            <form [formGroup]="createInterventionForm" (ngSubmit)="create()" novalidate>
+              <div class="row g-0">
+                <div class="col-xl-6 d-xl-block">
+                  <div class="card-body p-md-5 text-black">
+                    <div class="form-outline">
+                      <label class="form-label" translate>input.titles.title</label>
+
+                      <input type="text" formControlName="title" class="form-control form-control-lg"
+                        placeholder="{{'input.msg.intervention'|translate}}" />
+                      <!--Error Title-->
+                      <p *ngIf="(title?.touched || title?.dirty) && !title?.valid" class="ErrorMsg" translate>
+                        errors.req_error
+                      </p>
+                      <p *ngIf="title?.errors?.['pattern']" class="ErrorMsg" translate>
+                        errors.alph_2error
+                      </p>
+                      <!----------->
+                    </div>
+                    <div class="form-outline">
+                      <label class="form-label" translate>status.title</label>
+                      <select formControlName="status" class="form-select" (change)="chechIsNow()">
+                        <option *ngFor="let item of statusList" [value]="item.value">
+                          {{item.key}}
+                        </option>
+
+                      </select>
+                      <!--Error category-->
+                      <p *ngIf="
+                          (status?.touched || status?.dirty) &&
+                          !status?.valid
+                        " class="ErrorMsg" translate>
+                        errors.req_error
+                      </p>
+                    </div>
+                    <div class="form-outline">
+                      <label class="form-label" translate> input.titles.which_date</label>
+
+                      <input type="date" formControlName="date" (blur)="checkExpiredAt()" class="form-control form-control-lg" name="" id="" />
+
+                      <p *ngIf="(date?.touched || date?.dirty) && !date?.valid" class="ErrorMsg">
+                        errors.req_error
+                      </p>
+
+                      <p *ngIf="
+                          createInterventionForm.hasError('DateConfirmation')
+                        " class="ErrorMsg" translate>
+                        errors.date_error
+                      </p>
+                    </div>
+                    <div class="form-outline">
+                      <label class="form-label" translate> input.titles.end_date</label>
+
+                      <input type="date" formControlName="endDate" (blur)="checkStartedAtAt()" class="form-control form-control-lg" name="" id="" />
+
+                      <p *ngIf="(endDate?.touched || endDate?.dirty) && !endDate?.valid" class="ErrorMsg">
+                        errors.req_error
+                      </p>
+
+                      <p *ngIf="
+                          createInterventionForm.hasError('endDateConfirmation')
+                        " class="ErrorMsg" translate>
+                        errors.date_error
+                      </p>
+                    </div>
+                    <div class="form-outline">
+                      <label class="form-label" translate>input.titles.category</label>
+                      <select formControlName="category" class="form-select">
+                        <option *ngIf="categoryList?.length==0" translate>errors.null_cat</option>
+
+                        <option *ngFor="let item of categoryList" [value]="item.id">
+                          {{ item.name }}
+                        </option>
+                      </select>
+                      <!--Error category-->
+                      <p *ngIf="
+                          (category?.touched || category?.dirty) &&
+                          !category?.valid
+                        " class="ErrorMsg" translate>
+                        errors.req_error
+                      </p>
+                      <div *ngIf="categoryList?.length==0">
+
+                        <a class="nullValueLink" routerLink="/dashboard/manager/categorylist"
+                          translate>titles.add_category
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="form-outline">
+                      <label class="form-label" translate>input.titles.team</label>
+                      <select formControlName="team" class="form-select" aria-label="Default select example">
+                        <option *ngIf="teamList?.length==0" translate>errors.null_team</option>
+                        <option *ngFor="let item of teamList" [value]="item.id">
+                          {{ item.name }}
+                        </option>
+                      </select>
+                      <!--Error team-->
+                      <p *ngIf="(team?.touched || team?.dirty) && !team?.valid" class="ErrorMsg" translate>
+                        errors.req_error
+                      </p>
+                      <!----------->
+                      <div *ngIf="teamList?.length==0">
+                        <a class="nullValueLink" routerLink="/dashboard/manager/addTeam" translate>titles.add_team
+                        </a>
+                      </div>
+                    </div>
+
+
+
+                  </div>
+                </div>
+                <div class="col-xl-6">
+                  <div class="card-body p-md-5 text-black">
+                    <fieldset>
+                      <div class="row">
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <label class="form-label" for="pays" translate> location.country </label>
+                            <input name="value" type="text" [readonly]="true" formControlName="country"
+                              class="form-control form-control-lg" />
+                            <!--Country errors-->
+                            <p class="ErrorMsg" *ngIf="
+                                !counrty?.valid &&
+                                (counrty?.dirty || counrty?.touched)
+                              " translate>
+                              errors.req_error
+                            </p>
+
+                            <!------------>
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <label class="form-label" for="state" translate>
+                              location.governorate</label> <br>
+
+                            <select formControlName="state" (change)="loadCities()">
+                              <option *ngFor="let item of states" [value]="item">{{item}}</option>
+                            </select>
+
+                            <!--Zip code errors-->
+                            <p class="ErrorMsg" *ngIf="
+                                !state?.valid && (state?.dirty || state?.touched)
+                              " translate>
+                              errors.req_error
+                            </p>
+
+                            <!------------>
+                          </div>
+
+                        </div>
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <label class="form-label" translate> location.city</label><br>
+                            <select formControlName="city">
+                              <option *ngFor="let item of cities" [value]="item">{{item}}</option>
+                            </select>
+
+                            <!--Ville errors-->
+                            <p class="ErrorMsg" *ngIf="
+                                !city?.valid && (city?.dirty || city?.touched)
+                              " translate>
+                              errors.req_error
+                            </p>
+
+                            <!------------>
+                          </div>
+
+                        </div>
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <label class="form-label" for="code postal" translate>location.postal_code</label>
+
+                            <input type="text" formControlName="zipCode"
+                              placeholder="{{'location.postal_code'|translate}}" class="form-control form-control-lg" />
+
+                            <!--Zip code errors-->
+                            <p class="ErrorMsg" *ngIf="
+                                !zipCode?.valid &&
+                                (zipCode?.dirty || zipCode?.touched)
+                              " translate>
+                              errors.req_error
+                            </p>
+
+                            <!------------>
+                          </div>
+                        </div>
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <label class="form-label" for="Rue" translate> location.street </label>
+                            <input type="text" formControlName="street" placeholder="{{'location.street'|translate}}"
+                              class="form-control form-control-lg" />
+                            <!--Street errors-->
+                            <p class="ErrorMsg" *ngIf="
+                                !street?.valid &&
+                                (street?.dirty || street?.touched)
+                              " translate>
+                              errors.req_error
+                            </p>
+
+                            <!------------>
+                          </div>
+                        </div>
+                      </div>
+                    </fieldset>
+                    <div class="form-outline">
+                      <label class="form-label" translate>input.titles.description</label>
+
+                      <textarea formControlName="description" class="form-control"
+                        placeholder="{{'input.msg.designation'|translate}}" rows="8"></textarea>
+                      <!--Error description-->
+                      <p *ngIf="
+                          (description?.touched || description?.dirty) &&
+                          !description?.valid
+                        " class="ErrorMsg" translate>
+                        errors.req_error
+                      </p>
+                      <p *ngIf="description?.errors?.['pattern']" class="ErrorMsg" translate>
+                        errors.alph_8error
+                      </p>
+                      <!-----[disabled]="!createInterventionForm.valid"------>
+                    </div>
+
+
+
+                    <div class="d-flex justify-content-end pt-3">
+                      <button class="bn632-hover bn24" type="submit"  role="button" translate>
+                        buttons.next
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+
+  </section>
+  <app-choose-material *ngIf="output==true"></app-choose-material>
+
+  <div class="modal-footer">
+    <button type="button" id="close" class="btn btn-secondary" data-bs-dismiss="modal" translate>buttons.close_m</button>
+  </div>
+    </div>
+
+  </div>
+</div>
+<!-- Modal Script -->
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+
+
+
 
 </div>

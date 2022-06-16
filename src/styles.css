@@ -182,3 +182,11 @@ p {
     transform: scale(2) !important;
     margin-right: 15px;
   }
+/*
+CSS Calendar
+*/
+
+.cal-day-selected,
+.cal-day-selected:hover {
+  background-color: deeppink !important;
+}

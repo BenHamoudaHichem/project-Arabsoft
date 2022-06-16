@@ -7,7 +7,13 @@ li {
 li:hover {
   background-color: #eae1f5;
 }
-
+.md{
+  z-index:1;
+}
+.h{
+  position: relative;
+  z-index: -1;
+}
 /* Responsive Table Style */
 .responsive-table {
   background-color: #fefefe;
@@ -457,24 +463,98 @@ h2 {
 
 
 
-.map {
-  height: 50vh;
-  width: 100%;
+.nullMessage{font-size: 18px;letter-spacing: 2px;
+  margin-top: 10px;margin-bottom: 10px;
+text-transform: capitalize;font-weight: bold;}
+.nullValueLink{font-size: 16px;letter-spacing: 2px;
+  text-transform: capitalize; font-weight: bold;color: #9b59b6;}
+
+
+
+
+.title{
+
+  text-transform: uppercase;
+  font-size: 25px;
+  font-weight: 500;
+  position: relative;
+}
+.title::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 300px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+}
+.form-control{
+
+  border: 2px solid #9b59b6 !important;
+
+
+  font-size: 16px;
+  border-radius: 5px;
+  padding-left: 15px;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+
+  margin: 10px 0px;
+  width: 70%;
+  background-color: #f6f6f6;
+
+  border: 2px solid #9b59b6;
+  outline: 0;
+  box-shadow: none;
+
+  padding: 10px 5px;
+  background-color: #f6f6f6;
 }
 
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  flex-flow: column wrap;
-  justify-content: space-between;
+
+  select{
+    border: 2px solid #9b59b6 !important;
+
+
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+
+    margin: 10px 0px;
+    width: 70%;
+    background-color: #f6f6f6;
+
+    border: 2px solid #9b59b6;
+    outline: 0;
+    box-shadow: none;
+
+    padding: 10px 5px;
+
+  }
+
+  .custom-select
+{   border: 2px solid #9b59b6 !important;
+
+
+  font-size: unset;
+  border-radius: 5px;
+  padding-left: unset;
+  border: 1px solid #ccc;
+  border-bottom-width: unset;
+
+  background-color: #f6f6f6;
+
+  outline: unset;
+  box-shadow: none;
+
+    padding: 10px 5px;
+
+
+
 }
 
-.content-area {
-  height: 80%;
-}
 
-.demo-area {
-  height: 70vh;
-  margin-right: auto;
-  margin-left: auto;
-}
+
