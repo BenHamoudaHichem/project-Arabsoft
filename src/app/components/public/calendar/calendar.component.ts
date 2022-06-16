@@ -200,13 +200,9 @@ detailView!: any;
 
   handleEvent(event: CalendarEvent): void {
    //this.modal.dismissAll()
-   //this.modal.open(this.modalContent, { size: 'xl' });
+ this.modal.open(this.modalContent, { size: 'xl' });
     //document.getElementById("close")!.click();
-    this.displayModal=true
-console.log(this.displayModal)
-if(  this.displayModal==true)
-    //this.detailView.open()
-   {
+
     this.interventionService
     .findIntervention(String(event.id))
     .subscribe((res) => {
@@ -220,7 +216,7 @@ if(  this.displayModal==true)
     }),
     (error:HttpErrorResponse)=>{Report.failure('Error calendar',error.message,'ok')}
 
-   } }
+  }
 
 
 

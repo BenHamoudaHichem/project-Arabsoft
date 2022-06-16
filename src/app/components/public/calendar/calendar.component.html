@@ -11,7 +11,7 @@
   planifier
 </button>
 <button class="btn btn-primary"
-data-bs-toggle="modal" 
+data-bs-toggle="modal"
 type="button" *ngIf="btn==true" (click)="clear()">
   annuler
 </button>
@@ -65,8 +65,85 @@ type="button" *ngIf="btn==true" (click)="clear()">
       (eventClicked)="handleEvent($event.event)">
     </mwl-calendar-day-view>
   </div>
+  <ng-template #modalContent let-close="close">
+    <div class="modal-header">
+      <h1 class="text-uppercase text-center" translate>titles.detail_inter.title</h1>
+      <button type="button" class="close" (click)="close()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
 
-  <!-- Model detail event intervention-->
+
+      <div class="card-group">
+        <div class="card info d-md-inline">
+          <div class="row m-auto">
+            <div class="card-body text-black">
+              <h2 class="card__title" translate>
+                <i class="fa fa-heading"></i> &nbsp; input.titles.title
+              </h2>
+
+              <p class="card__text">{{ intervention?.title }}</p>
+              <h2 class="card__title" translate>
+                <i class="fas fa-calendar-alt"></i> &nbsp; titles.started_at
+              </h2>
+
+              <p class="card__text">{{ intervention?.startedAt }}</p>
+              <h2 class="card__title" translate>
+                <i class="fas fa-calendar-check"></i> &nbsp; input.titles.end_date
+              </h2>
+
+              <p class="card__text">{{ intervention?.expiredAt }}</p>
+
+              <h2 class="card__title" translate>
+                <i class="fas fa-exclamation-circle"></i> &nbsp; titles.categories
+              </h2>
+
+              <p class="card__text">
+                {{ intervention?.category?.getName() }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="card info d-md-inline">
+          <div class="row m-auto">
+            <div class="card-body text-black">
+              <h2 class="card__title" translate>
+                <i class="fas fa-users-cog"></i>&nbsp; input.titles.team
+              </h2>
+              <p class="card__text">
+                {{ intervention?.team?.name }}
+              </p>
+              <h2 class="card__title" translate>
+                <i class="fas fa-map-marker-alt"></i>&nbsp; location.title
+              </h2>
+              <p class="card__text">
+              <p>
+                <span translate>location.street</span> : {{ intervention?.address?.Street }} <br />
+                <br /> <span translate>location.city</span> : {{ intervention?.address?.City }} <br />
+                <br /> <span translate>location.governorate</span> : {{ intervention?.address?.State }} <br />
+                <br /> <span translate>location.country</span> : {{ intervention?.address?.Country }}
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary" (click)="close()">
+        OK
+      </button>
+    </div>
+  </ng-template>
+
+  <!-- Model detail event intervention
   <div class="modal fade" id="detailBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="detailBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
       <div class="modal-content">
@@ -145,7 +222,7 @@ type="button" *ngIf="btn==true" (click)="clear()">
 
     </div>
   </div>
-
+-->
 <!-- Modal create intervention -->
 <div class="modal fade" id="staticBackdrop"  data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
