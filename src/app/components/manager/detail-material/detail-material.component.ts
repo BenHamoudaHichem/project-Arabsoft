@@ -108,7 +108,7 @@ export class DetailMaterialComponent implements OnInit {
           }
           setTimeout(() => {
             window.location.reload();
-          }, 2000);
+          }, 500);
         }),
         (error: HttpErrorResponse) => {
           if (error.status == 401) {
