@@ -75,13 +75,9 @@ export class UserService {
       this.authHttpOptions
     );
   }
-  agents(queryparams:string | undefined): Observable<HttpResponse<IUser[]>>{
-    let url:string=this.apiURL
-    if (queryparams!==undefined) {
-      queryparams=queryparams.replace("?","&")
-      url=url.concat(queryparams)
-    }
-    return this.http.get<HttpResponse<IUser[]>>(`${this.apiURL}?role=tm&role2=member`,this.responseHeaders)
+  agents(): Observable<HttpResponse<IUser[]>>{
+
+    return this.http.get<HttpResponse<IUser[]>>(`${this.apiURL}?role=tm&status=Available`,this.responseHeaders)
 }
 
 

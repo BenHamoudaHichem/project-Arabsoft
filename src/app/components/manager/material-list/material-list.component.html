@@ -41,18 +41,16 @@
           <h1 class="postcard__title blue">
             {{ material.name }}
           </h1>
-
+          
           <div class="postcard__subtitle small">
-            <span translate> status.title</span> &nbsp; <strong>{{ Status }}</strong>
+            <span translate> status.title</span> &nbsp; <strong>{{ Status(material) }}</strong>
           </div>
           <div class="postcard__bar"></div>
 
           <ul class="postcard__tagbox">
             <li class="tag__item">
               <a routerLinkActive="router-link-active" [routerLink]="[
-                '/dashboard/manager/detailMaterial',
-                material.id
-              ]" translate><i class="fas fa-info-circle"></i>buttons.consult_details</a>
+                '/dashboard/manager/detailMaterial',material.id]" translate><i class="fas fa-info-circle"></i>buttons.consult_details</a>
             </li>
             <li class="tag__item">
               <a routerLinkActive="router-link-active" [routerLink]="[

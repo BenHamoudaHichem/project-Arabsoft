@@ -37,12 +37,8 @@ export class ResetPasswordComponent implements OnInit {
         ],
     captcha: ['', [Validators.required]],
       },
-      {
-        Validators: Confirmed.ConfirmedValidator(
-          'new_password',
-          'confirm_new_password'
-        ),
-      }
+      {validators:Confirmed.ConfirmedValidator("new_password","confirm_new_password")}
+
     );
   }
   ngOnInit(): void {

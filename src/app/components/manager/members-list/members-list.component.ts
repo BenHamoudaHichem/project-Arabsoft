@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { SESSION_STORAGE, StorageService } from 'ngx-webstorage-service';
 import { Report } from 'notiflix';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
@@ -34,14 +34,15 @@ export class MembersListComponent implements OnInit {
 
     if (urlParams.has("role")) {
 
-      switch (urlParams.get("status")) {
+      switch (urlParams.get("role")) {
         case "tm":
         this.allTManagers()
         document.getElementById("tab1")?.click()
           break;
         default:
-          this.allMembers()
           document.getElementById("tab2")?.click()
+          this.allMembers()
+
           break;
       }
   }
@@ -56,8 +57,9 @@ export class MembersListComponent implements OnInit {
       'https://png.pngtree.com/background/20210711/original/pngtree-creative-synthetic-double-exposure-city-business-minimalist-background-picture-image_1115148.jpg';
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
+      document.getElementById("tab1")?.click()
 
-      if (urlParams.has("role")) {
+      if (urlParams.has("role")&&urlParams.get("role")!="tm") {
         urlParams.set("role","tm")
       }
       else{
@@ -65,7 +67,7 @@ export class MembersListComponent implements OnInit {
       }
       this.router.navigate([], {
         relativeTo: this.activatedRoute,
-        queryParams: Object.assign({},urlParams),
+        queryParams: {role:"tm"},
         queryParamsHandling: 'merge',
         skipLocationChange: false
       });
@@ -94,13 +96,14 @@ export class MembersListComponent implements OnInit {
   }
   allMembers() {
     this.image = 'https://wallpaperaccess.com/full/4321838.jpg';
+    document.getElementById("tab2")?.click()
 
 
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
 
-    if (urlParams.has("role")) {
+    if (urlParams.has("role")&&urlParams.get("role")!="menber") {
       urlParams.set("role","member")
     }
     else{
@@ -109,7 +112,7 @@ export class MembersListComponent implements OnInit {
     }
     this.router.navigate([], {
       relativeTo: this.activatedRoute,
-      queryParams: Object.assign({},urlParams),
+      queryParams: {role:"member"},
       queryParamsHandling: 'merge',
       skipLocationChange: false
     });

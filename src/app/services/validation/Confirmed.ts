@@ -1,4 +1,4 @@
-import { FormGroup } from "@angular/forms";
+import { AbstractControl, FormGroup, ValidationErrors, ValidatorFn } from "@angular/forms";
 
 export class Confirmed {
 
@@ -15,5 +15,10 @@ static ConfirmedValidator(controlName: string, matchingControlName: string){
           matchingControl?.setErrors(null);
       }
   }
+
 }
+
 }
+
+
+

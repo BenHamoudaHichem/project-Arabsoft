@@ -71,8 +71,10 @@ export class AddTeamComponent implements OnInit {
     };
   }
   allByRole() {
-    this.userService.agents(undefined).subscribe((users: HttpResponse<IUser[]>) => {
+    this.userService.agents().subscribe((users: HttpResponse<IUser[]>) => {
       this.users = users.body!
+      console.log(users);
+
     }),
       (error: HttpErrorResponse) => {
         if (error.status == 401) {

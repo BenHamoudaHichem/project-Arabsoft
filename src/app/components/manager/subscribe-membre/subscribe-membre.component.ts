@@ -43,21 +43,16 @@ export class SubscribeMembreComponent implements OnInit {
         identifier: ['', [Validators.required,Validators.minLength(8)]],
         password: [
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{8,}$')],
+          [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{8,}$'),Validators.minLength(8)],
         ],
-        confirm_password: ['', [Validators.required]],
+        confirm_password: ['', [Validators.required,Validators.minLength(8)]],
         state: ['', Validators.required],
         city: ['', Validators.required],
         street: ['', Validators.required],
         country: ['', Validators.required],
         zipCode: ['', Validators.required],
       },
-      {
-        Validators: Confirmed .ConfirmedValidator(
-          'password',
-          'confirm_password'
-        ),
-      }
+      {validators:Confirmed.ConfirmedValidator("password","confirm_password")}
     );
     this.counrty?.setValue("Tunisie")
 

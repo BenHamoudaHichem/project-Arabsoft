@@ -154,23 +154,20 @@ export class MaterialListComponent implements OnInit {
       }         };
   }
 
-  get Status():string{
-let status="Fonctionnel"
-this.materialList.forEach(element => {
-  switch (element.status) {
+   Status(material:IMaterial):string{
+    if (material.category=="Matter"&&material.status=="Fonctionnal") {
+      return "Disponible"
+    }
+  switch (material.status) {
     case 'Stoled':
-      status="Volé"
-      break;
+      return"Volé"
     case 'Expired':
-      status="Expiré"
-       break;
+      return"Expiré"
     case 'Broken_down':
-      status="En panne"
-      break;
+      return"En panne"
+    default:
+      return"Fonctionnel";
   }
-});
-return status
-
   }
 
 

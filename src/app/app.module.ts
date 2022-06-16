@@ -158,7 +158,6 @@ export function httpTranslateLoaderFactory(http: HttpClient) {
     ContainerInterventionComponent,
   ],
   imports: [
-
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

@@ -92,6 +92,12 @@ export class DetailInterventionComponent implements OnInit {
 
 
 this.percent=((Date.now()-moment(this.intervention.startedAt,"DD-MM-yyyy").toDate().getTime())/(moment(this.intervention.expiredAt,"DD-MM-yyyy").toDate().getTime()-moment(this.intervention.startedAt,"DD-MM-yyyy").toDate().getTime()))*100;
+
+if (this.percent>100) {
+  Report.warning("Date d'expiration","Cette intervention est dépassée le date d'expiration!","D'accord")
+}
+console.log(this.percent);
+
 this.stylPercent="width: "+this.percent+"%;"
 this.mapService.findLocation(this.intervention.address.Location());
       }),

@@ -123,13 +123,19 @@ export class DetailMaterialComponent implements OnInit {
     }
   }
 
-
-  get Status():string{
-let    res="Functionnel"
-    if(this.material.status=='Broken_down')
-    {
-res="En panne"
+  public get Status():string{
+    if (this.material.category=="Matter"&&this.material.status=="Fonctionnal") {
+      return "Disponible"
     }
-    return res
+  switch (this.material.status) {
+    case 'Stoled':
+      return"Volé"
+    case 'Expired':
+      return"Expiré"
+    case 'Broken_down':
+      return"En panne"
+    default:
+      return"Fonctionnel";
+  }
   }
 }

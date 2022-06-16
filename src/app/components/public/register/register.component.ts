@@ -72,12 +72,8 @@ export class RegisterComponent implements OnInit {
         ],
         zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
       },
-      {
-        Validators: Confirmed.ConfirmedValidator(
-          'password',
-          'confirm_password'
-        ),
-      }
+      {validators:Confirmed.ConfirmedValidator("password","confirm_password")}
+
     );
 
     this.counrty?.setValue('Tunisie');
