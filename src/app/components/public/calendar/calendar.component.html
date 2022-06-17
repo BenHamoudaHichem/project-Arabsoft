@@ -1,52 +1,60 @@
-<title translate>titles.calendar</title>
+<title translate>titles.calendar</title><br>
 
-<button type="button" (click)="changeStatus()">
-  besoin de planifier une intervention ?
-</button>
+<div class="d-flex justify-content-center">
+
+
+<button  type="button"  class="bn48" (click)="changeStatus()" translate>
+  titles.queston_intervention</button>
 <br><br>
+&nbsp;&nbsp;
   <button type="button" class="btn btn-primary pull-right"
-  class="btn btn-danger" type="button" *ngIf="btn==true" (click)="openInterventionModal()"
-   data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  class="btn btn-primary"
+   type="button" *ngIf="btn==true" (click)="openInterventionModal()"
+   data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+   translate
+   >
+buttons.plan
 
-  planifier
 </button>
-<button class="btn btn-primary"
+&nbsp;&nbsp;
+<button
 data-bs-toggle="modal"
-type="button" *ngIf="btn==true" (click)="clear()">
-  annuler
+type="button" *ngIf="btn==true"
+class="btn btn-danger" (click)="clear()" translate>
+buttons.dismiss
 </button>
-
+</div>
 <div class="container py-5">
 
   <div class="row text-center">
     <div class="col-md-4">
       <div class="btn-group">
         <div class="btn btn-dark" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
-          (viewDateChange)="closeOpenMonthViewDay()">
-          Previous
+          (viewDateChange)="closeOpenMonthViewDay()" translate>
+          buttons.previous
         </div>
-        <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
-          Today
+        <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate" translate>
+          buttons.today
         </div>
         <div class="btn btn-dark" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
-          (viewDateChange)="closeOpenMonthViewDay()">
-          Next
+          (viewDateChange)="closeOpenMonthViewDay()" translate>
+          buttons.next
         </div>
       </div>
     </div>
     <div class="col-md-4">
-      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+      <h3 >{{ viewDate | calendarDate:(view + 'ViewTitle'):'en'||"fr" }}</h3>
     </div>
     <div class="col-md-4">
       <div class="btn-group">
-        <div class="btn btn-dark" (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month">
-          Month
+        <div class="btn btn-dark" (click)="setView(CalendarView.Month)" [class.active]="view === CalendarView.Month" translate>
+         buttons.month
         </div>
-        <div class="btn btn-dark" (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week">
-          Week
+        <div class="btn btn-dark" (click)="setView(CalendarView.Week)" [class.active]="view === CalendarView.Week" translate>
+          buttons.week
         </div>
-        <div class="btn btn-dark" (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day">
-          Day
+        <div class="btn btn-dark" (click)="setView(CalendarView.Day)" [class.active]="view === CalendarView.Day" translate>
+          buttons.day
         </div>
       </div>
     </div>
@@ -59,7 +67,7 @@ type="button" *ngIf="btn==true" (click)="clear()">
       (eventClicked)="handleEvent(   $event.event)">
     </mwl-calendar-month-view>
     <mwl-calendar-week-view *ngSwitchCase="CalendarView.Week" [viewDate]="viewDate" [events]="events"
-      [refresh]="refresh" (eventClicked)="handleEvent(   $event.event)">
+      [refresh]="refresh" (eventClicked)="handleEvent($event.event)">
     </mwl-calendar-week-view>
     <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events" [refresh]="refresh"
       (eventClicked)="handleEvent($event.event)">

@@ -2,7 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { plainToClass } from 'class-transformer';
-import { Report } from 'notiflix';
+import { Confirm, Report } from 'notiflix';
 import { finalize } from 'rxjs';
 import { Address } from 'src/app/models/Address';
 import { User } from 'src/app/models/user';
@@ -10,6 +10,7 @@ import { DemandService } from 'src/app/services/works/demand/demand.service';
 import { IDemand } from 'src/app/services/works/demand/idemand';
 import { AuthenticateService } from 'src/app/services/authenticate.service';
 import { MapService } from 'src/app/services/map/map.service';
+import { Demand } from 'src/app/models/works/demand';
 
 @Component({
   selector: 'app-detail-reclamation',
@@ -71,6 +72,37 @@ findDemand(id:string) {
     }
 
     return false
+  }
+
+
+  rejectDemand(){
+    let demand=new Demand(this.demand.title,this.demand.description,this.demand.address,this.demand.createdAt,'Refused', {id:this.demand.user.getId()})
+
+    Confirm.show(
+      'Confirmation',
+      'Vous êtes sûr de rejeter cette demande ?',
+      'Oui',
+      'Non',
+      () => {
+
+        this.demandService.update(String(this.route.snapshot.paramMap.get("id")),demand).subscribe((res:any)=>{
+       //   console.log(res)
+       if(res.status==true)
+{Report.success("Succées",'Votre demande est rejetée avec succée',"OK")
+
+}
+    })
+
+      },
+      () => {
+        setTimeout(() => {
+          window.location.reload();
+        }, 2);
+      },
+      {
+      },)
+
+
   }
 
 }

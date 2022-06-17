@@ -22,7 +22,7 @@ export class InterventionListComponent implements OnInit {
   interventionList!: IIntervention[];
   status!:string
   pagination:Map<string,number>=new Map()
-  data:Location[]=[]
+  data:Address[]=[]
   constructor(private serviceIntervention: InterventionService,
     private activatedRoute:ActivatedRoute,
     private router:Router,
@@ -145,7 +145,7 @@ location(){
 
     res.body!.forEach(e=>{
       e.address=plainToClass(Address,e.address)
-      this.data.push(e.address.Location())
+      this.data.push(e.address)
     })
   this.mapService.initilizeMap(this.data)
 

@@ -190,3 +190,16 @@ CSS Calendar
 .cal-day-selected:hover {
   background-color: deeppink !important;
 }
+
+
+
+.bn48 {
+  background: linear-gradient(90deg, #1e39a5, #c50e07);
+  background-size: auto;
+  border: none;
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-size: 300% 300%;
+  -webkit-text-fill-color: transparent;
+}

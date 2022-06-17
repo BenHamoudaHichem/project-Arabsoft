@@ -1,13 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-add-file-materials',
   templateUrl: './add-file-materials.component.html',
   styleUrls: ['./add-file-materials.component.css']
 })
 export class AddFileMaterialsComponent implements OnInit {
+  fileLoad!:FormGroup
+  constructor(private formBuilder: FormBuilder) {
+    this.fileLoad = this.formBuilder.group({
+      file: [
+        '',
+        [Validators.required],
+      ]
+    });
+   }
 
-  constructor() { }
-
+   get file(){
+    return this.fileLoad.get('file')
+   }
   output=""
   typeFile=""
     ngOnInit(): void {

@@ -1,5 +1,6 @@
 {
   "buttons": {
+    "plan":"Set",
     "accept": "Accept",
     "next": "Next",
     "back": "Back",
@@ -29,7 +30,13 @@
     "next_page":"Next page",
     "previous_page":"Previous page",
     "form":"Form",
-    "reform":"Reform"
+    "reform":"Reform",
+    "previous":"Previous",
+    "today":"Today",
+"month":"Month",
+"week":"Week",
+"day":"day"
+
 
   },
   "cards": {
@@ -129,6 +136,10 @@
     "out_of_order": "Out of order"
   },
   "titles": {
+    "queston_intervention":"Plan an intervention",
+
+    "pdf":"Download in PDF",
+    "quantity_declared":"Quantity declared for use",
     "add_category": "Add category",
     "add_demand": "Send a claim",
     "add_emp": "Subscribe a member in the domains",
@@ -199,10 +210,10 @@
     "register": "Register",
     "reset": "Reset password",
 
-    "started_at": "started at",
-    "team_detail": "team detail",
-    "team_det": " details of {{ name }}",
-    "teams": "teams",
+    "started_at": "Started at",
+    "team_detail": "Team detail",
+    "team_det": " Details of {{ name }}",
+    "teams": "Teams",
     "teams_progress": "Teams in progress",
 
     "teams_list": "Teams list",
@@ -218,7 +229,8 @@
     "quantity_used":"Used quantity",
     "quantity_total":"Total quantity ",
 
-    "subscribe": "Subscribe to our web site"
+    "subscribe": "Subscribe to our web site",
+    "report":"Write your report"
 
   },
 

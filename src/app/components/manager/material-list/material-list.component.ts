@@ -22,7 +22,7 @@ export class MaterialListComponent implements OnInit {
   pagination:Map<string,number>=new Map()
   materialList!: IMaterial[]
   status!: string;
-  data: Location[]=[]
+  data: Address[]=[]
   constructor(
     private serviceMaterial: EquipmentService,
     private router:Router,
@@ -139,7 +139,7 @@ export class MaterialListComponent implements OnInit {
           e.address=plainToClass(Address,e.address)
         })
       for(let i=0;i<res.body!.length;i++){
-         this.data.push(res.body![i].address.Location())
+         this.data.push(res.body![i].address)
       }
       this.mapService.initilizeMap(this.data)
 

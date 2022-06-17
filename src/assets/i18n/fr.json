@@ -1,5 +1,6 @@
 {
   "buttons": {
+    "plan":"Planifier",
     "accept": "Accepter",
     "accepted": "Acceptées",
     "next": "Suivant",
@@ -29,7 +30,13 @@
     "next_page":"Page suivante",
     "previous_page":"Page précédente",
     "form":"Former",
-    "reform":"Réformer"
+    "reform":"Réformer",
+    "previous":"Précedant",
+    "today":"Aujourd'hui",
+    "month":"Mois",
+"week":"Semaine",
+"day":"Jour"
+
 
   },
   "cards": {
@@ -132,6 +139,9 @@
     "out_of_order": "Hors service"
   },
   "titles": {
+    "queston_intervention":"Planifier une intervention ?",
+    "pdf":"Télécharger en PDF",
+    "quantity_declared":"Quantité déclarée pour utiliser",
     "add_category": "Ajouter une catégorie",
     "add_demand": "Envoyer une demande",
     "add_emp": "Inscrivez un membre dans le domaine",
@@ -216,7 +226,8 @@
 
     "quantity_used":"Quantité utilisée",
     "quantity_total":"Quantité total",
-    "subscribe": "Inscrivez vous à notre site"
+    "subscribe": "Inscrivez vous à notre site",
+    "report":"Rédigez votre rapport"
   },
   "navbar": {
     "home": "Accueil",

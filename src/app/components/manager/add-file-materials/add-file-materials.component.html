@@ -5,10 +5,10 @@
       <div class="card-body">
         <div class="card-title text-center">
             <h2 class="mb-5 text-uppercase" translate>titles.up </h2>
-
+            <form [formGroup]="fileLoad">
         <div class="custom-file">
 
-        <input type="file" class="custom-file__input" id="field-upload" name="upload"(change)="upload($event)" required>
+        <input type="file" formControlName="file" class="custom-file__input" id="field-upload" name="upload"(change)="upload($event)" required>
         <label *ngIf="output==''" class="custom-file__label" for="field-upload" translate>titles.choose_file</label>
         <label *ngIf="output!=''" class="custom-file__label" for="field-upload">{{output}}</label>
         <p *ngIf="typeFile!=''" > {{typeFile}}</p>
@@ -17,7 +17,8 @@
   <button class="bn30" role="button" translate>
       buttons.add
   </button>
-  </div>
+
+  </div></form>
     </div>
   </div>
 </div>

@@ -5,7 +5,7 @@ import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
 import { Tile as TileLayer, Vector as VectorLayer } from 'ol/layer';
 import VectorSource from 'ol/source/Vector';
-import { Circle, Fill, Icon, Stroke, Style } from 'ol/style';
+import { Circle, Fill, Icon, Stroke, Style, Text } from 'ol/style';
 import OSM from 'ol/source/OSM';
 import { Geometry } from 'ol/geom';
 import * as olProj from 'ol/proj';
@@ -14,10 +14,39 @@ import { plainToClass } from 'class-transformer';
 import { Location } from 'src/app/models/Location';
 import { Overlay } from 'ol';
 import 'ol/ol.css';
+import { Address } from 'src/app/models/Address';
+import {FullScreen, defaults as defaultControls} from 'ol/control';
 
+let style=new Style({
+  image: new Circle({
+    fill: new Fill({
+      color: 'red',
+    }),
+    stroke: new Stroke({
+      color: 'yellow',
+      width: 2,
+    }),
+    radius: 7,
+  }),
+  text: new Text({
+
+    offsetY: 15,
+    font: '20px Calibri,sans-serif',
+    fill: new Fill({
+      color: "red",
+    }),
+    stroke: new Stroke({
+      color: "#ffffff",
+      width: 10
+    }),
+
+
+  })
+});
 @Injectable({
   providedIn: 'root',
 })
+
 export class MapService {
   constructor() {}
   map!: Map;
@@ -28,7 +57,8 @@ export class MapService {
   res: any;
   feature!: any;
   overlay!: Overlay;
-  get style() {
+
+  get styleCircle() {
     return new Style({
       image: new Circle({
         fill: new Fill({
@@ -44,6 +74,8 @@ export class MapService {
   }
 
   findLocation(Data: Location) {
+
+
     //  Data
     var res = plainToClass(Location, Data);
     var coordinates = olProj.fromLonLat([
@@ -65,7 +97,7 @@ export class MapService {
 
     this.vectorLayer = new VectorLayer({
       source: this.vectorSource,
-      style: this.style,
+      style: this.styleCircle,
     });
     //console.log(this.vectorLayer.dispose())
     return (this.map = new Map({
@@ -83,28 +115,38 @@ export class MapService {
       }),
     }));
   }
-  initilizeMap(Data: Location[]) {
+  initilizeMap(Data: Address[]) {
     for (var i = 0; i < Data.length; i++) {
-      //  Data
-      var res = plainToClass(Location, Data);
+      var res = plainToClass(Address, Data);
+      var l=plainToClass(Location,res[i].Location())
+      console.log(l)
       var coordinates = olProj.fromLonLat([
-        parseFloat(res[i].Longitude.toFixed(5)),
-        parseFloat(res[i].Latitude.toFixed(5)),
+        parseFloat(l.Longitude.toFixed(5)),
+        parseFloat(l.Latitude.toFixed(5)),
       ]);
-
-      this.feature = new Feature(new Point(coordinates));
+      this.feature = new Feature(
+        {geometry: new Point(coordinates), label: res[i].State.concat(" ",res[i].Street," ").concat(res[i].City)}
+        );
 
       this.tunisie.push(this.feature);
+
     }
+
     this.vectorSource = new VectorSource({
       features: this.tunisie,
     });
     this.vectorLayer = new VectorLayer({
       source: this.vectorSource,
-      style: this.style,
+      style:this.styleCircle
+      /* function (feature) {
+           style.getText().setText(feature.get('label'));
+        return style
+      }*/
     });
 
     this.map = new Map({
+      controls: defaultControls().extend([new FullScreen()]),
+
       target: 'map',
       layers: [
         new TileLayer({
@@ -117,42 +159,13 @@ export class MapService {
         zoom: 7,
         maxZoom: 30,
       }),
-      /*overlays:[new Overlay({
-        element: document.getElementById('panel') as HTMLTextAreaElement,
-        stopEvent: false,
-        //offset:[0,0],
-        autoPan: true,
-        position: olProj.transform(
-          [9.537499, 33.886917],
-          'EPSG:4326',
-          'EPSG:3857'
-        ),
-        autoPanAnimation: {
-          duration: 250,
-        },
-      })]*/
+
     });
-   /* this.overlay = new Overlay({
-      element: document.getElementById('panel') as HTMLTextAreaElement,
-      stopEvent: false,
-      //offset:[0,0],
-      autoPan: true,
-      position: olProj.transform(
-        [9.537499, 33.886917],
-        'EPSG:4326',
-        'EPSG:3857'
-      ),
-      autoPanAnimation: {
-        duration: 250,
-      },
-    });
-    this.map.addOverlay(this.overlay);
-*/
     return this.map;
   }
 
-  getCoord(event: any) {
+ /* getCoord(event: any) {
     this.coord = this.map.getEventCoordinate(event);
     this.res = olProj.transform(this.coord, 'EPSG:3857', 'EPSG:4326');
-  }
+  }*/
 }
