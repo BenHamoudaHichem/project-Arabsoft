@@ -89,4 +89,8 @@ export class UserService {
       this.authHttpOptions
     );
   }
+  createFile(fd:FormData)
+  {
+    return this.http.post(`this.apiURL/file`,fd,this.authHttpOptions)
+  }
 }

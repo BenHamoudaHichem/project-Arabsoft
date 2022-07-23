@@ -40,28 +40,28 @@ export class UpdateMaterialComponent implements OnInit {
     private AuthenticateService: AuthenticateService
   ) {
     this.formupdateMaterials = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
+      name: ['', [Validators.required, Validators.pattern('^[A-zÀ-ú ]{2,}$')]],
       status: ['', [Validators.required]],
 
       dateOfPurshase: ['', [Validators.required]],
       category: ['', [Validators.required]],
       description: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+        [Validators.required, Validators.pattern('^[A-zÀ-ú ]{2,}$')],
       ],
       totalQuantity: [
         '',
         [Validators.required, Validators.pattern('^[0-9]{1,}$')],
       ],
-      state: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
-      city: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
+      state: ['', [Validators.required, Validators.pattern('^[A-zÀ-ú ]{2,}$')]],
+      city: ['', [Validators.required, Validators.pattern('^[A-zÀ-ú ]{2,}$')]],
       street: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+        [Validators.required, Validators.pattern('^[A-zÀ-ú ]{2,}$')],
       ],
       country: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+        [Validators.required, Validators.pattern('^[A-zÀ-ú ]{2,}$')],
       ],
       zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{4}$')]],
     });

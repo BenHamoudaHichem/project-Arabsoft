@@ -48,7 +48,7 @@ export class AddMaterialsComponent implements OnInit {
     this.formAddMaterials = this.formBuilder.group({
       name: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{2,}$')],
+        [Validators.required, Validators.pattern('^[A-zÀ-ú0-9 ]{2,}$')],
       ],
       measure: ['', [Validators.required]],
 
@@ -59,18 +59,18 @@ export class AddMaterialsComponent implements OnInit {
 
       description: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+        [Validators.required, Validators.pattern('^[A-zÀ-ú ]{2,}$')],
       ],
 
-      state: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
-      city: ['', [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')]],
+      state: ['', [Validators.required, Validators.pattern('^[A-zÀ-ú ]{2,}$')]],
+      city: ['', [Validators.required, Validators.pattern('^[A-zÀ-ú ]{2,}$')]],
       street: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+        [Validators.required, Validators.pattern('^[A-zÀ-ú ]{2,}$')],
       ],
       country: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+        [Validators.required, Validators.pattern('^[A-zÀ-ú ]{2,}$')],
       ],
       zipCode: [
         '',

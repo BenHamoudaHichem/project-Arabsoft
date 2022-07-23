@@ -62,11 +62,11 @@ export class UpdateInterventionComponent implements OnInit {
       {
         title: [
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+          [Validators.required, Validators.pattern('^[A-zÀ-ú ]{2,}$')],
         ],
         description: [
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Z ]{8,}$')],
+          [Validators.required, Validators.pattern('^[A-zÀ-ú ]{8,}$')],
         ],
         category: ['', [Validators.required]],
         date: ['', [Validators.required]],
@@ -77,19 +77,19 @@ export class UpdateInterventionComponent implements OnInit {
         Materiel: ['', [Validators.required]],
         state: [
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+          [Validators.required, Validators.pattern('^[A-zÀ-ú ]{2,}$')],
         ],
         city: [
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+          [Validators.required, Validators.pattern('^[A-zÀ-ú ]{2,}$')],
         ],
         street: [
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+          [Validators.required, Validators.pattern('^[A-zÀ-ú ]{2,}$')],
         ],
         country: [
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+          [Validators.required, Validators.pattern('^[A-zÀ-ú ]{2,}$')],
         ],
         zipCode: [
           '',

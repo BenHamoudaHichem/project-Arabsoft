@@ -33,17 +33,17 @@ export class SubscribeMembreComponent implements OnInit {
       {
         firstName: [
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+          [Validators.required, Validators.pattern('^[A-zÀ-ú ]{2,}$')],
         ],
         lastNamme: [
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+          [Validators.required, Validators.pattern('^[A-zÀ-ú ]{2,}$')],
         ],
         tel: ['', [Validators.required, , Validators.pattern('^[0-9]{8}$')]],
         identifier: ['', [Validators.required,Validators.minLength(8)]],
         password: [
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{8,}$'),Validators.minLength(8)],
+          [Validators.required, Validators.pattern('^[A-zÀ-ú0-9 ]{8,}$'),Validators.minLength(8)],
         ],
         confirm_password: ['', [Validators.required,Validators.minLength(8)]],
         state: ['', Validators.required],

@@ -30,15 +30,17 @@ export class LoginComponent implements OnInit {
       identifier: ['', [Validators.required]],
       password: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{8,}$')],
+        [Validators.required, Validators.pattern('^[A-zÀ-ú0-9 ]{8,}$')],
       ],
       captcha: ['', [Validators.required]],
     });
   }
   ngOnInit(): void {
+
     if (this.authService.isLogin) {
       this.router.navigate(['/dashboard/not-found']);
     }
+
   }
 
   try_login() {

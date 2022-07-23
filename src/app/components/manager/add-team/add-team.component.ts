@@ -37,7 +37,7 @@ export class AddTeamComponent implements OnInit {
     this.teamForm = this.formBuilder.group({
       titre: [
         '',
-        [Validators.required, Validators.pattern('^[a-zA-Z1-9 ]{2,}$')],
+        [Validators.required, Validators.pattern('^[A-zÀ-ú1-9 ]{2,}$')],
       ],
       manager: ['', Validators.required],
       membres: ['', Validators.required],

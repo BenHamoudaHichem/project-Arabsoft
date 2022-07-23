@@ -76,11 +76,11 @@ export class CreateInterventionComponent implements OnInit {
       {
         title: [
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Z ]{2,}$')],
+          [Validators.required, Validators.pattern('^[A-zÀ-ú ]{2,}$')],
         ],
         description: [
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Z ]{4,}$')],
+          [Validators.required, Validators.pattern('^[A-zÀ-ú ]{4,}$')],
         ],
         category: ['', [Validators.required]],
         date: ['', [Validators.required]],

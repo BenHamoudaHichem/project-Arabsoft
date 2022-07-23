@@ -52,6 +52,7 @@ export class MaterialListComponent implements OnInit {
 
     }
     this.serviceMaterial.all(queryParams).subscribe((res:HttpResponse<IMaterial[]>) => {
+      console.log(JSON.stringify(res.body))
       this.pagination.set("totalResults",Number(res.headers.get("totalResults")))
       this.pagination.set("totalPages",Number(res.headers.get("totalPages")))
       this.pagination.set("page",Number(res.headers.get("page")!))

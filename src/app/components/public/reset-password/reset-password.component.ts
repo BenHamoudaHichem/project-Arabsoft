@@ -29,11 +29,11 @@ export class ResetPasswordComponent implements OnInit {
       {
         confirm_new_password: [
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{8,}$')],
+          [Validators.required, Validators.pattern('^[A-zÀ-ú0-9 ]{8,}$')],
         ],
         new_password: [
           '',
-          [Validators.required, Validators.pattern('^[a-zA-Z0-9 ]{8,}$')],
+          [Validators.required, Validators.pattern('^[A-zÀ-ú0-9 ]{8,}$')],
         ],
     captcha: ['', [Validators.required]],
       },

@@ -16,6 +16,14 @@ export class EquipmentService {
       "Content-Type":"application/json"
     }),
   };
+  private headersFile = {
+    headers: new HttpHeaders({
+      "Authorization": `Bearer ${this.authService.getToken}`,
+     // "Content-Type":"multipart/form-data",
+      "reportProgress": "true",
+      "responseType": 'json'
+    }),
+  };
   private responseHeaders = {
     headers: new HttpHeaders({
       "Authorization": `Bearer ${this.authService.getToken}`,
@@ -79,5 +87,9 @@ export class EquipmentService {
       `${this.apiURL}/${id}`,
       JSON.stringify(material),this.headers
     );
+  }
+  createFile(fd:FormData)
+  {
+    return this.http.post(`${this.apiURL}/file`,fd,this.headersFile)
   }
 }

@@ -5,7 +5,7 @@
       <div class="card-body">
         <div class="card-title text-center">
             <h2 class="mb-5 text-uppercase" translate>titles.up </h2>
-            <form [formGroup]="fileLoad">
+            <form [formGroup]="fileLoad" enctype="multipart/form-data" (submit)="create()">
         <div class="custom-file">
 
         <input type="file" formControlName="file" class="custom-file__input" id="field-upload" name="upload"(change)="upload($event)" required>
@@ -14,7 +14,7 @@
         <p *ngIf="typeFile!=''" > {{typeFile}}</p>
         </div>
 <div class="d-flex justify-content-center pt-3">
-  <button class="bn30" role="button" translate>
+  <button class="bn30" role="button" type="submit" translate>
       buttons.add
   </button>
 

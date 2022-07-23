@@ -162,14 +162,14 @@ export class CloseInterventionComponent implements OnInit {
           plainToClass(User, x)
         );
         this.intervention.materialsToBeUsed=Array.from(this.intervention.materialsToBeUsed,(x)=>x=plainToClass(MaterialUsed,x))
-      console.log(this.intervention.materialsToBeUsed);
+     // console.log(this.intervention.materialsToBeUsed);
 
         this.members?.setValue(this.intervention.team.members);
         this.materialsUsedList = Array.from(
           this.intervention.materialsToBeUsed,
           (x) => x=plainToClass(MaterialUsed,x)
         );
-        console.log(this.materialsUsedList);
+      //  console.log(this.materialsUsedList);
         this.materialsUsedList.forEach((element) => {
           element.setquantityToUse(
             plainToClass(QuantityValue, element.getquantityToUse())
@@ -218,6 +218,7 @@ export class CloseInterventionComponent implements OnInit {
   addMaterialUsed(material:MaterialUsed) {
     this.materialsUsed.push(this.newMaterialUsed(material.getquantityToUse()));
     if (material.getCategory()=="Material") {
+      this.materialsUsed.controls[this.materialsUsed.length-1].get("quantity")?.setValue(1)
       this.materialsUsed.controls[this.materialsUsed.length-1].get("quantity")?.disable()
       this.materialsUsed.controls[this.materialsUsed.length-1].get("measure")?.disable()
     }
